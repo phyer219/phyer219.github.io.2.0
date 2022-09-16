@@ -1,0 +1,95 @@
+#+TITLE: Fourier transform 总结
+#+DATE: <2018-09-07>
+#+CATEGORIES: 专业笔记
+#+TAGS: Fourier, 数学
+#+HTML: <!-- toc -->
+#+HTML: <!-- more -->
+* 总的分类
+
+根据变量的连续与否，F.T.总共有三种。
+
+- 完全离散
+
+\begin{align*}
+  \sum_l e^{-i\frac{2\pi}{N}k'l} e^{i\frac{2\pi}{N}kl}=N\delta_{kk'}
+\end{align*}
+
+- 部分离散
+
+\begin{align*}
+  \int_{-\infty}^{\infty} e^{-ik'x} e^{ikx} \mathrm{d}x = L \delta_{kk'}
+\end{align*}
+
+- 完全连续
+
+\begin{align*}
+  \int_{-\infty}^{\infty} e^{-ikx} e^{ik'x} \mathrm{d}x = 2\pi \delta (x-x')
+\end{align*}
+
+* 部分离散
+
+** 动量本征函数
+
+\begin{align*}
+\frac{\hbar}{i} \frac{\mathrm{d}}{\mathrm{d}x} \psi = p \psi\quad \Longrightarrow\quad \psi = e^{i\frac{p}{\hbar}x}
+\end{align*}
+
+** 归一化
+
+\begin{align*}
+\langle e^{ikx} \mid e^{ikx'} \rangle = \int_{-\infty}^{\infty} e^{-ikx} e^{ikx'} \mathrm{d}k = \int_{-\infty}^{\infty} e^{ik(x'-x)} \mathrm{d}k = 2\pi \delta(x-x')
+\end{align*}
+
+** 周期为 $L$
+
+$f(x)$ 是周期函数
+
+\begin{align*}
+f(x+L) = f(x)
+\end{align*}
+
+将 $x$ 从 $2\pi$ 拉伸到 $L$
+
+\begin{align*}
+x \rightarrow x \cdot \frac{2\pi}{L}​
+\end{align*}
+
+相应归一化到 $L$
+
+\begin{align*}
+\langle e^{ikx \cdot \frac{2\pi}{L}} \mid e^{ikx' \cdot \frac{2\pi}{L}} \rangle = \int_{-\infty}^{\infty} e^{-ikx \cdot \frac{2\pi}{L}} e^{ikx' \cdot \frac{2\pi}{L}} \mathrm{d}k = L \delta(x-x')
+\end{align*}
+
+Fourier展开系数由下式求得
+
+\begin{align*}
+f(x)= \frac{1}{L} \sum_k \mid e^{ikx \cdot \frac{2\pi}{L}} \rangle \langle e^{ikx \cdot \frac{2\pi}{L}} \mid f(x) \rangle = \sum_k e^{ikx \cdot \frac{2\pi}{L}} C_k
+\end{align*}
+
+\begin{align*}
+C_k = \frac{1}{L} \int_{-\infty}^{\infty} f(x) e^{-ikx \cdot \frac{2\pi}{L}} \mathrm{d}x
+\end{align*}
+
+* 完全连续
+
+当周期 $L \rightarrow \infty​$ 时，$\frac{2\pi}{L} \rightarrow 0​$ ，指数上的 $k\frac{2\pi}{L}​$ 由原来离散的取值 $\frac{2\pi}{L}, 2\frac{2\pi}{L}, 3\frac{2\pi}{L}, \cdots​$ 变成连续的变量，记为新的 $k​$ ，且 $\mathrm{d}k = \frac{2\pi}{L}​$ 。
+
+则Fourier展开变为
+
+\begin{align*}
+f(x) = \lim_{L\rightarrow \infty} \frac{1}{2 \pi}\frac{2\pi}{L} \sum_k \mid e^{ikx\cdot\frac{2\pi}{L}}\rangle\langle e^{ikx\cdot\frac{2\pi}{L}}\mid f(x) \rangle = \int_{-\infty}^{\infty} \mathrm{d}k \frac{1}{2\pi}\mid e^{ikx\cdot\frac{2\pi}{L}}\rangle\langle e^{ikx\cdot\frac{2\pi}{L}}\mid f(x) \rangle \\\\=\frac{1}{2\pi} \int _{-\infty}^{\infty}\mathrm{d}k\int _{-\infty}^{\infty}\mathrm{d}x' e^{ikx}\cdot e^{-ikx'}f(x')
+\end{align*}
+
+也就是
+
+\begin{align*}
+f(x) = \frac{1}{2\pi} \int_{-\infty}^{\infty} \mathrm{d}k \int_{-\infty}^{\infty} \mathrm{d}x' e^{ik(x-x')} f(x')
+\end{align*}
+
+* 完全离散
+
+类似群论中的不可约表示。
+
+\begin{align*}
+\sum_l e^{-i\frac{2\pi}{N}k'l} e^{i\frac{2\pi}{N}kl}=N\delta_{kk'}
+\end{align*}

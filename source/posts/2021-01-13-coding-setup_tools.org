@@ -1,0 +1,201 @@
+#+TITLE: 如何将 python 程序打包成一个 package
+#+DATE: <2021-01-13>
+#+CATEGORIES: 软件使用
+#+TAGS: python
+#+HTML: <!-- toc -->
+#+HTML: <!-- more -->
+
+* 示例
+一个简单的示例. 比如写了一个名为 saudade 的包. 目录结构为(用 tree 生成, 不错的程
+序, 之前没用过)
+#+begin_src shell
+.
+├── demo
+│   └── __init__.py
+├── saudade
+│   ├── coding_func.py
+│   ├── __init__.py
+│   └── physics_func.py
+└── setup.py
+#+end_src
+直接执行
+#+begin_src shell
+python setup.py install --user
+#+end_src
+即可安装完成. =--user= 安装给当前用户, 直接就放在 =~/.local/lib/python_xx= 目录下
+了, 不影响其它用户, 也不需要管理员权限.
+#+begin_src shell
+pip uninstall saudade
+#+end_src
+即可卸载.
+当然也可以传到 github, 直接从 github 上安装.
+
+* 结果
+
+安装完以后就可以调用了. 如
+#+begin_src python
+>>> import saudade as sau
+>>> @sau.timer
+... def foo(x):
+...     return x**2
+... 
+>>> foo(3)
+Finished 'foo' in 0.0000 secs
+9
+>>>
+#+end_src
+可以看出, 可以调用包的中计时器了.
+
+而 =demo= 目录下的函数, 调用时要调用 demo , 如
+#+begin_src python
+>>> import demo
+>>> demo.hello()
+hello
+>>>
+#+end_src
+
+* 源码说明
+
+** file:./2021-01-13-coding-setup_tools/setup.py
+
+#+begin_src python
+from setuptools import setup, find_packages
+setup(
+    name = 'saudade',
+    version ='0.1',
+    packages = find_packages(),
+    description = "This is ZQW's first python package",
+    author = 'ZQW',
+    author_email = "zeqing6688@126.com",
+)
+#+end_src
+此文件最重要, 它说明这个目录是一个包, 可以安装.
+
+** demo/file:./2021-01-13-coding-setup_tools/demo/__init__.py
+#+begin_src python
+def hello():
+    print('hello')
+#+end_src
+这是一个测试函数
+
+** saudade/file:./2021-01-13-coding-setup_tools/saudade/coding_func.py
+#+begin_src python
+import numpy as np
+#import matplotlib.pyplot as plt
+import functools
+import time
+
+def timer(func):
+    """
+    Print the runtime of the decorated function.
+    参考自: https://realpython.com/primer-on-python-decorators/
+    """
+    @functools.wraps(func)
+    def wrapper_timer(*args, **kwargs):
+        start_time = time.perf_counter()
+        value = func(*args, **kwargs)
+        end_time = time.perf_counter()
+        run_time = end_time - start_time
+        print(f"Finished {func.__name__!r} in {run_time:.4f} secs")
+        return value
+    return wrapper_timer
+
+@timer
+def get_data(parameters, func, x):
+    '''
+    计算画图所需要的点, 并将参数和结果保存到文件.
+    由于自己写的这些函数不能输入数组然后输出数组, 所以只能用循环一个一个算
+    '''
+    num_points = len(x)
+    y = []
+    pm = parameters.get_parameters()
+
+    # 计算每一个数据点
+    for i in range(num_points):
+        print(f"正在计算第 {i+1:d}/{num_points:d}个点...")
+        yi = func(x[i])
+        y.append(yi)
+
+    # 保存数据和参数到文件
+    np.savetxt('./data/x.csv', x, delimiter=',')
+    np.savetxt('./data/y.csv', y, delimiter=',')
+    np.savetxt('./data/paramaters.csv', pm, delimiter=',')
+    return x, y, pm
+#+end_src
+=saudade= 目录的名字与包的名字相同, 包含了包的主要内容. 此文件是包中的一些函数
+
+** saudade/[[file:./2021-01-13-coding-setup_tools/saudade/__init__.py]] 
+#+begin_src python
+from .coding_func import *
+from .physics_func import *
+#+end_src
+整个包的初始化位置.
+
+** saudade/[[file:./2021-01-13-coding-setup_tools/saudade/physics_func.py]] 
+#+begin_src python
+import numpy as np
+
+def ts(f, a, b, n=51):
+    """Tanh-sinh quadrature 方法. 适用于端点发散的情况."""
+    up = 4
+    h = 2*up / (n-1)
+    t = np.linspace(-up, up, n, endpoint=True)
+    x = np.tanh(1/2*np.pi*np.sinh(t))
+    w = 1/2*h*np.pi*np.cosh(t)
+    w = w/(np.cosh(1/2*np.pi*np.sinh(t))**2)
+    gc = 0
+    for i in range(n):
+        p = (x[i]*(b-a) + a + b)/2
+        gc = gc + f(p)*w[i]
+    err = 0
+    gc = gc * (b-a)/2
+    return gc, err
+
+def bose(beta, energy):
+    """Bose 分布函数"""
+    x = -beta * energy
+    return np.exp(x) / (1 - np.exp(x))
+
+def cos_theta_kq(theta_k, phi_k, theta_q, phi_q):
+    """k, q 夹角的余弦值"""
+    x = (np.sin(theta_k)*np.sin(theta_q) * np.cos(phi_k - phi_q) 
+            + np.cos(theta_k)*np.cos(theta_q))
+    return x
+
+class PrincipalValueInt():
+    """分母带有无穷小的那种积分"""
+    def __init__(self, numerator, coeff, down_bound, upbound):
+        """初始化, numerator 都是函数. 分母为 a*x**2 + b*x + c"""
+        self.numerator = numerator
+        self.down_bound = down_bound
+        self.upbound = upbound
+        self.coeff = coeff
+        a = coeff[0]
+        b = coeff[1]
+        c = coeff[2]
+        self.delta = b**2 - 4*a*c
+
+    def get_imag(self):
+        """计算积分的虚部."""
+        root_exist = self.delta > 0
+
+        if root_exist:
+            # 如果根存在, 计算两根
+            root1 = (-self.coeff[1] - np.sqrt(self.delta)) / (2 * self.coeff[0])
+            root2 = (-self.coeff[1] + np.sqrt(self.delta)) / (2 * self.coeff[0])
+
+            # 判断两根是否位于积分区间内
+            root1_in = self.down_bound < root1 and root1 < self.upbound
+            root2_in = self.down_bound < root2 and root2 < self.upbound
+
+            # 计算积分结果
+            imag = (root1_in) * self.numerator(root1) 
+            imag += (root2_in) * self.numerator(root2) 
+            imag *= -np.pi / np.abs(root2 - root1)
+        else:
+            # 根不存在, 虚部为 0
+            imag = 0 
+        imag *= 1/self.coeff[0] # bug No.2 分子要除以 a 才行.
+        return imag
+#+end_src
+包中的另一些函数.

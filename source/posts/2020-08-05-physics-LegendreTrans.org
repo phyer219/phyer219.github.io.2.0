@@ -1,0 +1,94 @@
+#+TITLE: Legendre Transform
+#+DATE: <2020-08-05>
+#+CATEGORIES: 专业笔记
+#+TAGS: 物理, 数学, Legendre Transformation, Classical Mechanics, Statistical Mechanics 
+#+HTML: <!-- toc -->
+#+HTML: <!-- more -->
+
+* Intro
+
+多次看到过 Legendre transform 这个名词.
+
+Reference [Am. J. Phys. 77 (7), July 2009] 非常详细清晰友好地解答了我心中的各种
+疑惑, 现将它做一个整理.
+
+它在开头说道:
+
+#+BEGIN_QUOTE
+The Legendre transform is a powerful tool in theoretical physics and plays an
+important role in classical mechanics, statistical mechanics, and
+thermodynamics. 
+
+Legendre transform 在理论物理领域是一个强有用的工具, 在经典力学, 统计力学, 以及
+热力学中发挥了的作用.
+#+END_QUOTE
+
+进行 Legendre transform 之后, 相当于是相同的信息, 用了不同的方式进行展示
+(display).
+
+* Definition 
+
+给定一个函数 $F(x)$ 如果它满足
+
+1. 是一个凸(conves)函数, 也就是像 $y=x^2$ 这种二阶导数恒正的函数. 并且是光滑的函
+   数.
+
+2. $F$ 的导数, 比 $x$ 本身, 更加容易去测量, 控制或者考虑.
+
+那么对它 Legendre transform 更加方便.
+
+
+对于函数 $F(x)$ 它的斜率
+\begin{align}
+  s(x) \equiv \frac{\mathrm{d}F(x)}{\mathrm{d}x}
+\end{align}
+$s(x)$ 是一个单调函数, 也就是说 $s$ 和 $x$ 是一一对应的. 那么, 就可以将 $s$ 做为
+一个独立变量来代替 $x$, 即
+\begin{align}
+  F(x(s))
+\end{align}
+也就是说我们用了 $F$ 的导数, 而不是 $x$ 本身来描述这个函数关系.
+
+这个用复合函数的方法, 将 $x$ 用 $F$ 的导数, 即 $s$ 做了替换. 这是最容易想到的.
+而 Legendre transform 提供了另一种方法, 定义 $F(x)$ 的 Legendre transform $G(s)$
+为
+\begin{align}
+  G(s) \equiv s x(s) - F(x(s))
+\end{align}
+需要注意的是上式只有一个独立变量 $s$ . Legendre transform 的好处是, $G(s)$ 和
+$F(x)$ 一种对称的的关系(此外 Reference [Am. J. Phys. 77 (7), July 2009] 给出一一
+种几何上的直观理解) 以及一些其它的性质. 这体现在
+
+- 
+\begin{align}
+  x(s) = \frac{\mathrm{d}G}{\mathrm{d}s} \\
+  s(x) = \frac{\mathrm{d}F}{\mathrm{d}x}
+\end{align} 
+
+- Legendre 变换的逆变换是它本身. 也就是说经过两次 Legendre 变换后, 回到函数本身.
+   形式上将这种关系表示为
+\begin{align}
+ \{F, x\} \Leftrightarrow \{G, s\} \\
+  G(s) + f(x) = sx
+\end{align}
+要注意独立变量只有一个, $s, x$ 并不相互独立.
+
+- 它们的极值
+\begin{align}
+  F_{\mathrm{min}} = -G(0) \\
+  G_{\mathrm{min}} = -F(0)
+\end{align}
+
+* Examples
+
+** Lagrangian to Hamiltonian
+
+** In Statistical Thermodynamics
+
+* Reference
+
+- Herbert Goldstein Charles P. Poole John Safko - Classical Mechanics
+
+- Making sense of the Legendre transform, Am. J. Phys. 77 (7), July 2009
+  (arXiv:0806.1147v2  [physics.ed-ph]  4 Mar 2009) 
+

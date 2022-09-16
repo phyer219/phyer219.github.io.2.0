@@ -1,0 +1,91 @@
+#+TITLE: 格林函数方法求解微分方程
+#+DATE: <2020-07-03>
+#+CATEGORIES: 专业笔记
+#+TAGS: 数学, Green's Function
+#+HTML: <!-- toc -->
+#+HTML: <!-- more -->
+
+* 方法介绍
+$y(x)$ 在区间 $x\in [a, b]$ 内满足微分方程
+\begin{align}
+  \mathcal{L} y \equiv \frac{\mathrm{d}}{\mathrm{d}x}
+  \left( p(x) \frac{\mathrm{d}y}{\mathrm{d}x}\right) + q(x) y = f(x)
+\end{align}
+边界条件为
+\begin{align}
+\left\{ 
+\begin{array}{c}
+y(a) = 0 \\
+y(b) = 0
+\end{array}
+\right.
+\end{align}
+如果边界值不为零, 如 $y(a) = c_1, y(b) = c_2$, 可以很容易地构造一个边界
+值为零的函数 $u = y - \frac{c_1(b - x) + c_2 (x - a)}{b - a}$ .
+
+它的解可以由对格林函数的积分求得 
+\begin{align}
+  y(x) = \int_a^b G(x, t) f(t) \mathrm{d}t
+\end{align}
+格林函数满足
+\begin{align}
+\mathcal{L} G(x, t) = \delta(x - t)
+\end{align}
+格林函数可以按照如下方式构造
+\begin{align}
+G(x, t) = 
+\left\{ 
+\begin{array}{cc}
+A y_1(x) y_2(t),& x < t\\
+A y_2(x) y_1(t),& x > t
+\end{array}
+\right.
+\end{align}
+其中 $y_1, y_2$ 满足 homogeneous 方程 $\mathcal{L}y = 0$ . 并且分别满足边界条件
+$y_1(a) = 0, y_2(b) = 0$ . $A$ 的值为
+\begin{align}
+  A = \frac{1}{p(t) \left[ y_2'(t) y_1(t) - y_1'(t) y_2(t) \right]}
+\end{align}
+
+* 例
+
+可用格林函数方法求解微分方程
+\begin{align}
+  - y'' = f(x) ,\quad \quad \quad y(0) = y(1) = 0
+\end{align}
+在这里, $p(x) = -1$ , 两个满足边界条件的齐次解取为 $y_1 = x, y_2 = x - 1$ , 所以可
+以求得 $A = \frac{1}{-1\left[1 \cdot t - 1 \cdot (t - 1) \right]} = -1$ 所以格林函数为
+\begin{align}
+G(x, t) = 
+\left\{ 
+\begin{array}{cc}
+- x (t - 1),& x < t\\
+- t (x - 1) ,& x > t
+\end{array}
+\right.
+\end{align}
+那么方程的解为
+\begin{align}
+  y(x) = \int_0^1 G(x, t) f(t) \mathrm{d}t = (1 - x)\int_0^x t f(t) \mathrm{d}t
+    + x\int_x^1 (1-t) f(t) \mathrm{d}t
+\end{align}
+如果取 $f(x) = \sin (\pi x)$ , 那么可以算得
+\begin{align}
+y(x) = \frac{1}{\pi ^2} \sin (\pi x)
+\end{align}
+如果取 $f(x) = \cos (\pi x)$ , 那么可以算得
+\begin{align}
+y(x) = \frac{1}{\pi ^2} \left[2x + \cos (\pi x) - 1 \right]
+\end{align}
+
+* Summary 
+
+格林函数方法将求解微分方程, 转换成计算定积分. 即使没有解析解, 也可以形式上写成一
+个积分.
+
+更加复杂的情况以后用到再整理.
+
+* Reference
+
+- Arfken, Weber, Harris, Mathematical Methods for Physicists 7ed:
+

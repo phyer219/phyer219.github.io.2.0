@@ -1,0 +1,72 @@
+#+TITLE: BEC 极限下的 Tc 的估计
+#+DATE: <2021-10-05>
+#+CATEGORIES: 专业笔记
+#+TAGS: BEC
+#+HTML: <!-- toc -->
+#+HTML: <!-- more -->
+
+* Theory
+取单位 $\hbar = M = 1$ .
+
+在 BEC极限下, 原子两两配对, 形成的 dimmer 的粒子数密度为
+\begin{align}
+n_{\mathrm{dimmer}} = \frac{N}{V} \sum_{\vec{k}} n_B(\xi_q + E_b)
+  = \frac{1}{2\pi^2}\int_0^{\infty} \mathrm{d}q \frac{q^2}{e^{\beta(q^2/4 - 2\mu + E_b)} - 1}
+\end{align}
+因此, 忽略极少数没有配对的原子, 总的原子的粒子数密度就是
+\begin{align}
+n_{\mathrm{total}} = 2n_{\mathrm{dimmer}}
+\end{align}
+
+如果原子是两分量的, 比如 Bose 原子通过 p 波相互作用配对, 或者费米子通过 s 波相互
+作用配对, 那么能量单位可以取为
+$E_{n, p} = \frac{k_{n, p}^2}{2} = \frac{(3 \pi^2 n_{\mathrm{total}})^{2/3}}{2}$
+
+如果原子是单分量的, 比如 Bose 原子通过 d 波相互作用配对, 那么能量单位可以取为
+$E_{n, d} = \frac{k_{n, d}^2}{2} = \frac{(6 \pi^2 n_{\mathrm{total}})^{2/3}}{2}$
+
+在 BEC 极限下, 给定密度的情况下, 当 $2\mu$ 刚好能够形成束缚态, 也就是 $2\mu = E_b$
+时, 处于临界状态. 如果 fix 粒子数密度 $n_{\mathrm{total}}$ , 那么可以算出
+$n_{\mathrm{total}} /T_{BEC}$ , 也就是取能量单位 $E_n$ 时的临界温度.
+
+两分量费米子 s 波相互作用在 BEC 极限下的 BEC 临界温度为
+\begin{align}
+T_{\mathrm{BEC}} \approx 0.218 E_F
+\end{align}
+
+* Numerical
+
+#+begin_src python
+import numpy as np
+from scipy.integrate import quad
+
+
+mu = -1
+E_b = 2*mu
+
+
+def density(q):
+    volume = q**2 / (np.pi**2)
+    a = q**2/4 - 2*mu + E_b
+    return volume / (np.exp(a) - 1)
+
+
+n = quad(density, 0, 100, points=[0])[0]
+ef_p = (3*np.pi**2 * n)**(2/3) / 2
+ef_d = (6*np.pi**2 * n)**(2/3) / 2
+tcef_p = 1 / ef_p
+tcef_d = 1 / ef_d
+
+print(n)
+print(tcef_p, tcef_d)
+#+end_src
+[[file:2021-10-05-physics-BEC_limit_Tc/code.py][code]]
+
+#+begin_src shell
+0.9382979415622876
+0.2180329612206701 0.13735215870641743
+#+end_src
+
+* Reference
+
+Zhai, H. Ultracold atomic physics. (Cambridge University Press, 2020).

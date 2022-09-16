@@ -1,0 +1,99 @@
+<!DOCTYPE html><html class="no-js" lang="zh">
+
+<head>
+<script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+    </script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Long+Cang&family=Noto+Serif+SC&display=swap" rel="stylesheet"> <meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>从冰上的水</title>
+<link rel="apple-touch-icon" sizes="180x180" href="../static/images/apple-touch-icon-next.png?v=6.4.1">
+<link rel="icon" type="image/png" sizes="32x32" href="../static/images/favicon-32x32-next.png?v=6.4.1">
+<link rel="icon" type="image/png" sizes="16x16" href="../static/images/favicon-16x16-next.png?v=6.4.1">
+<link rel="stylesheet" type="text/css" href="../static/css/mystyle.css">    
+
+</head>
+<body>
+    <div class="container">
+        <header>
+            <section class="banner"><img src="../static/images/banner_20220427_tamako-love-story.jpg"></section>
+        </header>
+        <nav class="row">
+    <a class="nav" href="../index.html">首页</a>
+    <a class="nav" href="../category/category.html">分类</a>
+    <a class="nav" href="#">标签</a>
+    <a class="nav" href="#">关于</a>
+</nav>
+        <main>
+            <h1 class="post-title">magnetic dipole
+            </h1>
+            <section class="post-meta">
+                <p><2022-05-20></p>
+                <p>['SO(3), group theory']</p>
+                <p>专业笔记</p>
+            </section>
+            <section class="post-content">
+                
+
+$$\begin{align}
+\vec{B} = \frac{\mu_0}{4\pi} \left[
+   3\hat{r}(\vec{m}\cdot \hat{r}) -\vec{m}\right] \frac{1}{r^3}
+\end{align}$$
+
+
+<h2>Demo</h2>
+
+<p><a href='2022-05-20-physics-magnetic_dipole/code.py'>code</a></p>
+
+<pre><code class="language- python">import matplotlib.pyplot as plt
+import numpy as np
+
+
+n = 30
+x = np.linspace(-30, 30.1, n)
+y = np.linspace(-30, 30.1, n)
+bx = np.zeros([n, n])
+by = np.zeros([n, n])
+
+mu = [0, 1]
+
+
+def field(x, y):
+    r = np.sqrt(x**2 + y**2)
+    vx = (3*(mu[0]*x+mu[1]*y) * x/(r**2) - mu[0]) / r**3
+    vy = (3*(mu[0]*x+mu[1]*y) * y/(r**2) - mu[1]) / r**3
+    return vx, vy
+
+
+X, Y = np.meshgrid(x, y)
+vx, vy = field(X, Y)
+
+
+plt.streamplot(x, y, vx, vy)
+plt.savefig('magnetic-dipole.png')</code></pre>
+
+<p><p><img src='2022-05-20-physics-magnetic_dipole/magnetic-dipole.png' alt='figalt' max-width: 100%><p></p>
+
+<h2>Reference</h2>
+
+<ul>
+<li><a href='https://en.wikipedia.org/wiki/Magnetic_dipole'>wikipedia: Magnetic diopole</a></li>
+</ul>
+
+            </section>
+        </main>
+        <footer>zqw</footer>
+
+    </div>
+</body>
+</html>

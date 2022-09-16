@@ -1,0 +1,46 @@
+#+TITLE: scipy.integrate.quad 是如何取点的
+#+DATE: <2021-09-16>
+#+CATEGORIES: 软件使用
+#+TAGS: python, quadrature
+#+HTML: <!-- toc -->
+#+HTML: <!-- more -->
+
+探究 =scipy.integrate.quad= 取点的方式
+
+#+begin_src python
+import numpy as np
+from scipy import integrate
+import matplotlib.pyplot as plt
+
+nodes = []
+
+
+def foo(x):
+    nodes.append(x)
+    return np.exp(x) + np.sin(10*x)**2 + np.exp(x)**100
+
+
+result = integrate.quad(foo, -1, 1, epsrel=1e-125, limit=2, full_output=1)
+n = np.linspace(1, len(nodes), len(nodes))
+print(len(nodes))
+print(len(nodes)/21)
+print(result[2]['neval'])
+plt.plot(n, nodes, '*')
+plt.grid()
+plt.title('limit = 2')
+plt.xlabel(r"$i$")
+plt.ylabel("position of $i$th node")
+plt.savefig('fig.png')
+#+end_src
+
+[[file:2021-09-16-scipy_integrate/code.py][code]]
+
+[[file:2021-09-16-scipy_integrate/fig.png]]
+
+* Reference
+
+- [[https://docs.scipy.org/doc/scipy/reference/reference/generated/scipy.integrate.quad.html#scipy.integrate.quad][scipy.integrate.quad]]
+
+- [[https://en.wikipedia.org/wiki/QUADPACK][wikipedia: QUADPACK]]
+
+- [[https://en.wikipedia.org/wiki/Adaptive_quadrature][wikipedia: Adaptive quadrature]]

@@ -1,0 +1,265 @@
+#+TITLE: 读书笔记: Time Reversal and Kramer's Degeneracy
+#+DATE: <2020-05-21>
+#+CATEGORIES: 专业笔记
+#+TAGS: 物理, Time Reversal, Kramer's Degeneracy
+#+HTML: <!-- toc -->
+#+HTML: <!-- more -->
+
+* 引言: 时间反演概述与 Kramer's Degeneracy
+
+对于牛顿力学
+\begin{align}
+  m \frac{\mathrm{d}}{\mathrm{d}t} \vec{x}(t) = - \nabla V(\vec{x})
+\end{align}
+$x(-t)$ 也是它的一个解.
+
+但是对于 Schrodinger 方程( $H$ 不含时)
+\begin{align}
+  \mathrm{i} \frac{\partial}{\partial t} \psi(t) = H \psi(t)
+\end{align}
+由于上式中有对时间的一阶导数,  $\psi(- t)$ 不是它的解. 但是 $\psi^{*}(- t)$ 是它的解.
+因为将上式取复共轭 
+\begin{align}
+  -\mathrm{i}\frac{\partial}{\partial t} \psi^{*}(t) =& H \psi^{*}(t) \\
+                         \Downarrow& \\
+  \mathrm{i}\frac{\partial}{\partial t'} \psi^{*}(-t') =& H \psi^{*}(-t')
+\end{align}
+因此 $\psi^{*}(-t)$ 还是 Schrodinger 方程的解. 
+#+BEGIN_QUOTE
+对于一个在平面波态 $\psi(t) =
+e^{\mathrm{i} (\vec{p}\cdot \vec{x} - Et)}$ spinless 的 
+粒子, $\psi^{*}(-t) = e^{-\mathrm{i} (-\vec{p}\cdot \vec{x} - Et)}$ 是反向传播的平面波,
+还是 Schrodinger 方程的解.
+#+END_QUOTE
+定义时间反演算符 $T \psi(t) = \psi^{*}(-t)$ , 这是一种对称操作. 如果波函数破缺了这种
+对称性, 它也会引起简并. 具体地说:
+
+如果 $[H, T] = 0$ , 也就是说 Hamiltonian 具有时间反演对称性, 那么
+\begin{align}
+  HT\psi = TH\psi = TE\Psi = E T\psi
+\end{align}
+从上式可以看出, 如果 $\psi$ 不具有时间反演对称性, 那么就会有简并.
+
+#+BEGIN_QUOTE
+Example: 
+
+对于一个静电场中的电子, 它的 Hamiltonian 中有关相互作用的部分为
+\begin{align}
+  H = e\phi(\vec{x})
+\end{align}
+$\phi(\vec{x})$ 是位置 $\vec{x}$ 的实函数, 由于 $\vec{x}$ 在时间反演下是不变的, 所
+以这个系统的 Hamiltonian $[H, T] = 0$ . 
+
+同时, 时间反演对 spin $1/2$ 作用的结果为
+$T^2 |\rangle = - |\rangle$
+所以 $T$ 作用在自旋上会使原来的态变成另一个态. 如果 $T$ 作用的结果仅仅是一个相伴
+的化, 就会有 $T^2 = 1$ .
+
+因此, 在这个系统中, Hamiltonian 具有时间反演对称性, 而系统的态不具有时间反演对称
+性, 所以会产生简并, 这就是 Kramer's Degeneracy
+#+END_QUOTE
+
+* 时间反演的含义
+
+时间反演的含义, 就是使运动往时间减小的方向演化.
+
+* 时间反演算符是 antiunitary 的
+
+假设一个一维自由波包, 动量为 $p$ , 方向水平向右为正. 在 $t=0$ 时刻, 波包中心在
+$x=0$ 处, 将此时的态记为 
+\begin{align}
+|\alpha\rangle = |p, 0\rangle
+\end{align}
+
+考虑这样一个过程.
+#+BEGIN_QUOTE
+我们对它进行一个时间反演的操作, 根据时间反演的含义, 它应该变成向左的动量, 也就是
+$|-p, 0\rangle$ 也就是
+\begin{align}
+T |p, 0\rangle = |-p, 0\rangle
+\end{align}
+然后让 $T|-p, 0\rangle$ 经过一段小时间后, 它会按动量 $-p$ 向左传播, 记经过
+$\delta t$ 时间后, 波包中心到了 $-\delta x$ , 记为态 $|\beta\rangle = |-p, -\delta x\rangle$ , 也就是
+\begin{align}
+  \left[1 - \frac{\mathrm{i}}{\hbar} H\, \delta t\right] T |p, 0\rangle = |-p, -\delta x\rangle = |\beta \rangle
+\end{align}
+#+END_QUOTE
+再考虑另一个过程
+#+BEGIN_QUOTE
+先让这个粒子演化 $- \delta t$ 的时间, 相当于往左后退, 它应该变成态 $| p , -\delta x\rangle$ ,
+也就是
+\begin{align}
+  \left[1 - \frac{\mathrm{i}}{\hbar} H\, (-\delta t)\right] |p, 0\rangle = |p, -\delta x\rangle
+\end{align}
+再做一个时间反演操作, 使它的动量反向, 也就是
+\begin{align}
+  T\left[1 - \frac{\mathrm{i}}{\hbar} H\, (-\delta t)\right] |p, 0\rangle = |-p, -\delta x\rangle = |\beta\rangle
+\end{align}
+#+END_QUOTE
+对比两个过程, 它们的初末态是一样的, 所以两个演化过程是等价的, 也就是说
+\begin{align}
+  T\left[1 - \frac{\mathrm{i}}{\hbar} H\, (-\delta t)\right] = \left[1 - \frac{\mathrm{i}}{\hbar} H\, \delta t\right]T
+\end{align}
+即
+\begin{align}
+T \,\mathrm{i}H = - \mathrm{i}H\, T
+\end{align}
+如果 $T$ 是幺正的, 一定有
+\begin{align}
+  H T = - T H
+\end{align}
+这是非物理的, 因为对于能量本征态 $H|n\rangle = E_n|n\rangle$ 一定有
+\begin{align}
+    H T |n\rangle= - T H|n\rangle= (-E_n) T |n\rangle
+\end{align}
+得出的结论是态 $T |n\rangle$ 具有负能量, 但这对于一个自由波包来说是非物理的.
+
+因此, $T$ 只能是反幺正的, 就也是 $T\mathrm{i} = -\mathrm{i}T $ 那么就有 $TH =
+HT$ , 这才是物理的.
+#+BEGIN_QUOTE
+关于 antiunitary 的定义, 高量书上给出了两个条件.
+
+反幺正算符作用在态 $|\alpha\rangle, |\beta\rangle$ 上
+\begin{align}
+|\alpha\rangle \to |\tilde{\alpha}\rangle = \theta |\alpha\rangle, \quad |\beta\rangle \to |\tilde{\beta}\rangle = \theta |\beta\rangle
+\end{align}
+有两个性质
+\begin{align}
+\langle \tilde{\beta} | \tilde{\alpha} \rangle &= \langle \beta|\alpha \rangle^{*} \\
+\theta \left(c_1|\alpha\rangle + c_2|\beta\rangle  \right) &= c^{*}_1\theta|\alpha\rangle + c^{*}_2\theta|\beta\rangle 
+\end{align}
+第二条单列出来叫做 antilinear. 
+#+END_QUOTE
+有一个重要的 identity:
+#+BEGIN_QUOTE
+Exercise: 证明对于线性算符 $A$ 有
+\begin{align}
+  \langle \beta | \hat{A} | \alpha \rangle = \langle \tilde{\alpha} | T \hat{A}^{\dagger} T^{-1} | \tilde{\beta} \rangle
+\end{align}
+#+END_QUOTE
+
+* 可观测量在时间反演下的奇偶
+
+定义在 time reversal 作用下 observables 的 odd 与 even. 如果 observeral 满足
+\begin{align}
+  \langle \alpha | \hat{A} |\alpha\rangle = \pm \langle \tilde{\alpha} | \hat{A} | \tilde{\alpha}\rangle
+\end{align}
+那么 $+$ 为 even, $-$ 为 odd. 根据那个重要的 identity, 并且 observable $\hat{A}$ 是厄
+米的, 上述定义等价于 $T \hat{A} T^{-1} = \pm \hat{A}$
+\begin{align}
+  \langle \alpha | \hat{A} |\alpha\rangle =& \langle \tilde{\alpha} |T \hat{A}T^{-1} | \tilde{\alpha}\rangle\\
+   \Downarrow& \\
+  \langle \alpha | \hat{A} |\alpha\rangle = \pm \langle \tilde{\alpha} | \hat{A} | \tilde{\alpha}\rangle\quad \Leftrightarrow& \quad 
+  T \hat{A} T^{-1} = \pm \hat{A} 
+\end{align}
+
+* 对易关系与时间反演的奇偶
+
+角动量的对易关系为
+\begin{align}
+  [J_i, J_j] = \mathrm{i}\hbar\epsilon_{ijk}J_k
+\end{align}
+那么
+\begin{align} 
+  T[J_i, J_j]T^{-1} =&T \,\mathrm{i}\hbar\epsilon_{ijk}J_kT^{-1} \\
+  \Downarrow& \\
+  [(TJ_iT^{-1}), (TJ_jT^{-1})] =&-\mathrm{i}\hbar\epsilon_{ijk} (T J_kT^{-1}) \\
+  \Downarrow& \\
+  T \vec{J} T^{-1} = - \vec{J}
+\end{align}
+角动量在时间反演下反号, 这是符合物理的.
+#+BEGIN_QUOTE
+Exercise: 由 $\vec{x}$ 是时间反演不变的, 以及位置与动量的对易关系, 得出动量在时
+间反演下是反号的.
+#+END_QUOTE
+
+* 角动量时间反演作用下的结果
+
+* 整数角动量
+
+态 $|\alpha\rangle$ 在坐标表象下的波函数 $\psi_{\alpha}(x) = \langle x|\alpha\rangle$
+\begin{align}
+T \psi_{\alpha}(x) \equiv \langle x |T|\alpha\rangle = \langle \tilde{x}|T|\alpha\rangle =\langle \tilde{x} |\tilde{\alpha}\rangle = \langle x |\alpha\rangle^{*} =  \psi_{\alpha}(x)^{*}
+\end{align}
+因此, 对于 $l\in \mathbb{N}$ 角动量, 本征函数
+\begin{align}
+ T Y^m_l(\theta, \phi) =  Y^{m*}_l(\theta, \phi) = (-1)^mY^{-m}_l(\theta, \phi)
+\end{align}
+也就是说
+\begin{align}
+  T | l , m \rangle = (-1)^m |l, -m\rangle
+\end{align}
+它会出现一个相位. 如果作用两次, 会有
+\begin{align}
+  T | l , m \rangle =  |l, m\rangle
+\end{align}
+就会回到原来的态.
+
+* 半整数角动量
+
+对于 $l$ 是半整数的情况, 以 spin $1/2$ 为例, 它也会出现一个相位. 我们并不知
+道相位是多少, 只知道它会使 $m$ 量子数反号, 因此假设它产生的相位是 $\eta$ . 也就是
+说 
+\begin{align}
+  T |\uparrow\rangle = \eta |\downarrow \rangle
+\end{align}
+同时根据自旋的定义, 翻转自旋相当于绕 $y$ 轴转 $pi$ 的角度, 也就是
+\begin{align}
+  e^{-\mathrm{i}\pi S_y/\hbar}|\downarrow\rangle = |\uparrow\rangle
+\end{align}
+将 $T$ 写成 $T=UK$ 的形式( Supplementary 中证明 ), 其中 $U$ 是一个幺正算符, $U$ 是取共轭. 再结合以上两式
+可得
+\begin{align}
+  \eta |\downarrow \rangle = UK |\uparrow\rangle =& UK e^{-\mathrm{i}\pi S_y/\hbar} |\downarrow\rangle = e^{\mathrm{i}\pi S_y/\hbar} U|\downarrow\rangle\\
+  \Downarrow & \\
+  U =& \eta e^{-\mathrm{i}\pi S_y/\hbar}\\
+  \Downarrow & \\
+  T =& \eta e^{-\mathrm{i}\pi S_y/\hbar} K = -\mathrm{i}\eta \left( \frac{2S_y}{\hbar} \right)K
+\end{align}
+因此我们找到了 $T$ 的具体形式. 但是相位 $\eta$ 是未知的. 如果作用两次
+\begin{align}
+  T^2 |\uparrow\rangle = T\eta |\downarrow\rangle = \eta^{*}T|\downarrow\rangle = \eta^{*} (-\mathrm{i})\cdot \eta \left( \frac{2S_y}{\hbar} \right)K  |\downarrow\rangle
+  = \eta^{*}\cdot(-\mathrm{i})\eta \left( \frac{2S_y}{\hbar} \right) |\downarrow\rangle = -|\uparrow\rangle
+\end{align}
+
+* Supplementary 
+
+$T$ 可以写成 $T=UK$ ,那么 $UK$ 应该满足它的两人条件
+\begin{align}
+\langle \tilde{\beta} | \tilde{\alpha} \rangle &= \langle \beta|\alpha \rangle^{*} \\
+\theta \left(c_1|\alpha\rangle + c_2|\beta\rangle  \right) &= c^{*}_1\theta|\alpha\rangle + c^{*}_2\theta|\beta\rangle 
+\end{align}
+第二条比较明显是满足的. 下面说明第一条.
+
+将 $|\alpha\rangle$ 在一组基底下展开
+\begin{align}
+  |\alpha\rangle = \sum_a|a\rangle\langle a|\alpha\rangle
+\end{align}
+那么
+\begin{align}
+  |\tilde{\alpha}\rangle = \sum_aUK|a\rangle\langle a|\alpha\rangle = \sum_aU|a\rangle\langle a|\alpha\rangle^{*}
+\end{align}
+同理
+\begin{align}
+  |\tilde{\beta}\rangle =&  \sum_b U|b\rangle\langle b|\beta\rangle^{*} \\
+  \Downarrow&\mathrm{D.C.}\\
+  \langle \tilde{\beta} | =& \sum_b \langle b|\beta \rangle \langle b| U^{\dagger}
+\end{align}
+所以
+\begin{align}
+  \langle \tilde{\beta} |\tilde{\alpha}\rangle = \sum_a\sum_b \langle b|\beta \rangle \langle b| U^{\dagger}U|a\rangle\langle a|\alpha\rangle^{*} 
+  = \langle \tilde{\beta} |\tilde{\alpha}\rangle^{*}
+\end{align}
+
+* Reference
+
+- Jun John Sakurai, Jim Napolitano, Modern Quantum Mechanics, 2017, Cambridge
+  University Press, Chap 4.4
+
+- A. Zee, Group Theory in a Nutshell for Physicists, 2016, Princeton University
+  Press
+
+- https://en.wikipedia.org/wiki/Kramers_theorem
+
+
+

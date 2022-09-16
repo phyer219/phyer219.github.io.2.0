@@ -1,0 +1,189 @@
+#+TITLE: 读书笔记: Tensors and Representations of the Rotation Groups SO(N)
+#+DATE: <2020-05-14>
+#+CATEGORIES: 专业笔记
+#+TAGS: 数学
+#+HTML: <!-- toc -->
+#+HTML: <!-- more -->
+
+* 前言
+
+Zee 的这本书看了好久了, 也没整理过笔记. 看到哪里都不记得了... 今天整理一下, 下次
+再看就知道从哪看了(虽然不知道下次什么时候看 (- _ -)  ).
+
+* IV.1 Tensor and Representations of Rotation Groups $SO(N)$
+
+** Representing the rotation groups
+
+$SO(N)$ 群定义为, 满足如下关系的, $N\times N$ 维矩阵 $R$ , 组成的群
+\begin{align}
+  R^TR = I \\
+  \det R = 1
+\end{align}
+
+vector 的定义, 由它在转动下的关系定义
+\begin{align}
+  v^i \to V'^{i} = R^{ij} V^j \quad \quad \mathrm{with} i, j = 1, 2, \cdots,N
+\end{align}
+
+由一个 vector 生成 $SO(N)$ 群的一个 $N$ 维 irreducible representations.
+
+** Several questions and some flying guesses
+
+** Constructing the irreducible representations of $SO(N)$
+
+这里给出了 tensor 的一个例子. 想像一下, 在 $N$ 维空间里, 一个数学的东西, 它长着
+两个指标, 如果它在旋转下按如下方式变换
+\begin{align}
+  T^{ij} \to T'^{ij} = R^{ik} R^{jl} T^{kl}
+\end{align}
+那 $T$ 就像一个 tensor 一样变换, 它就是一个 tensor.
+
+** Fear of tensors
+
+** Representation Theory
+
+tensor $T$ 的每个指标都独立地变换
+\begin{align}
+  T^{ij} \to T'^{ij} = R^{ik} R^{jl} T^{kl}
+\end{align}
+tensor $T$ 生成 $SO(3)$ 群的一个九维表示 $D(R)D(R)$ .
+
+** Reducible or irreducible?
+
+有九个量 $T^{ij}$ 在变换下会变成另外九个. 但是它是否存在一个子集, 能够独立地变换?
+有的.
+
+antisymmetric 的 $A^{ij}\equiv T^{ij} - T^{ji}$ , 具有反对称的性质 $A^{ij} =
+-A^{ji}$ . 它如下变换
+\begin{align}
+  A^{ij} \to A'^{ij} \equiv T'^{ij} - T'^{ji} = R^{ik}R^{jl}T^{kl} - R^{jk}R^{il}T^{kl}
+  = R^{ik}R^{jl}T^{kl} - R^{jl}R^{ik}T^{lk}
+  = R^{ik}R^{jl}(T^{kl} - T^{lk}) = R^{ik}R^{jl} A^{kl}
+\end{align}
+所以 $A^{ji}$ 也是一个 tensor. 反对称的特性在变换下不变. $A^{ji}$ 共有
+$\frac{1}{2}N(N-1)$ 个, 例如此时 $N=3$ 共有 $3$ 个.
+
+还有 symmetric $S^{ij}\equiv T^{ij} + T^{ji}$ , 同样可以证明它是一个 tensor. 然而它
+还可以约化, 它的 trace $S^{ii} = S^{11} + S^{22} + \cdots$ 也是一个 tensor. 
+
+因此 tensor $T^{ij}$ 生成 $SO(3)$ 的一个 $9$ 维表示, 它可以约化为 $3\oplus 5\oplus 1$ , 分
+别是 $\frac{1}{2}N(N-1)$ 维的反对称张量 $A^{ij}$ ,  $\frac{1}{2}N(N+1)-1$ 维的无迹
+对称张量 $\tilde{S}^{ij} = S^{ij} - \delta^{ij}\frac{S^{kk}}{N}$ 和 $1$ 维的迹
+$S^{ii}$ .
+
+将 $T^{ij}$ 约化成三个表示, 也就是将 $T^{ij}$ 生成的表示分块对角化的过程.
+
+** An advanced tidbit(花絮)
+
+** Invariant symbols
+
+SO(3) 的 Orthogonal
+\begin{align}
+  R^TR =&  I \\
+  (R^{T})^{ij}R^{jk} =& R^{ji} R^{jk} = \delta^{ik} \\
+ \delta^{ij} R^{ik}R^{jl} =& \delta^{kl}
+\end{align}
+SO(3) 的 Special
+\begin{align}
+  \det R =& 1 \\
+  \varepsilon^{ijk\cdots n}R^{ip}R^{jq}R^{kr}\cdots R^{ns} =& \varepsilon^{pqr\cdots s}
+\end{align}
+
+从上面的式子可以看出, $\delta^{ij}, \varepsilon^{ijk\cdots n}$ 在旋转下是不变的, 是
+invariant symbols. 
+
+** Dual tensors
+
+定义一个新的 tensor $B^{k\cdots n} = \varepsilon^{ijk\cdots n}A^{ij}$ , 它有 $N-2$ 个指标(
+再复习的时候, 可以验证它按张量的方式旋转做练习哦 ). $A$ 和 $B$ 叫做 dual to each
+other. 
+
+对于 $N=3$ 的情况, $B^k=\varepsilon^{ijk}A^{ij}$ , 有一个指标, 就是一个
+vector. 所以我们从 $9$ 维表示中约化出来的 $3$ 维表示就是之前定义 $SO(3)$ 时的
+vector. 
+
+** Constructing larger irreducible representations of $SO(N)$
+
+用这种张量的方法, 可以构造出许多 $SO(N)$ 群的表示.
+
+** Contraction indices
+
+$S^{ii}$ 是 contracted indices 的一种特殊情况, 它只有两个指标, 把它们收缩了之后,
+就按照 $0$ 个指标的张量旋转, 也就是一个 trivial 的表示.
+
+** Why SO(3) is special
+
+在前面的 Dual tensors 部分提到, 对于 $N=3$ 的 $SO(3)$ 的情况, 对于一个全反对称的
+张量 $A^{ij}$ , 它的 dual tensor 有 $N-2 = 3 - 2 = 1$ 个指标. $N =3$ 说明
+$\varepsilon_{ijk}$ 只有 $3$ 个指标, $2$ 是说 $A^{ij}$ 有两个指标.
+
+下面说明对于 $SO(3)$ , 高阶的张量表示 $T^{i_1\cdots i_j}$ , 对它们进行分解, 只有全对称
+张量会给出新的不可约表示. 
+
+#+BEGIN_QUOTE
+Example:
+
+对于二阶张量, 前面已经详细讨论了, 分解后给出的不可约表示是 $3 \oplus 5 \oplus 1$ , 其中
+$1$ 是 trivial 的表示, $3$ 等价于一阶张量, 也就是 vector 给出的表示, 只有二阶全
+对称无迹张量会给出 $SO(3)$ 群一个新的不可约表示
+#+END_QUOTE
+
+#+BEGIN_QUOTE
+Example:
+
+对于三阶张量, 可以构造部分对称和反对称的张量 $T^{\{ij\}k} \equiv (T^{ijk} + T^{jik})$ ,
+$T^{[ij]k} \equiv (T^{ijk} - T^{jik})$
+
+对于 $T^{[ij]k}$ , 因为可以构造一个二阶张量 $B^{lk} \equiv
+\varepsilon^{ijl}T^{[ij]k}$ 所以它生成的表示在二阶张量中就已经存在了
+
+对于 $T^{\{ij\}k}$ , 可以将它分解成全对称和部分反对称的部分, 也就是 $3T^{\{ij\}k} =
+(T^{\{ij\}k} + T^{\{jk\}i} + T^{\{ki\}j}) + (T^{\{ij\}k} - T^{\{jk\}i}) + (T^{\{ij\}k} -
+T^{\{ki\}j})$
+第一个小括号中是全对称的, 后两个小括号分别是关于 $ik, jk$ 反对称的. 对于反对称的
+部分, 它们生成的表示同样可以在更低阶的张量中找到. 所以三阶张量只有全对称部分才会
+生成 $SO(3)$ 群新的表示.
+#+END_QUOTE
+
+对于更高阶的张量, 比如四阶张量 $T^{ijkl}$ , 可以做类似的分解, 最终也只有全对称部
+分中会有新的表示.
+
+** Dimension of the irreducible representations of $SO(3)$
+
+通过上面的分析, 得出的结论就是, 一个新的更高维的张量, 只有全对称的部分会给出新的
+表示, 所以通过考虑各阶的全对称张量, 会给出 $SO(3)$ 群的许多不可约表示, 下面求它
+们的维度是多少.
+
+考虑 $j$ 阶全对称张量 $S^{i_1i_2\cdots i_j}$ , 它总共有 
+\begin{align}
+  \sum_{k=0}^j(k+1) = \frac{1}{2}( j + 1)(j + 2)
+\end{align}
+$SO(3)$ 群的指标只有三种可能的值, 假设第一个指标有 $j - k$ 个, 那么剩下的两指标总共有
+$k$ 个. 这 $k$ 个指标, 有 $k+1$ 种分配可能.
+
+然后去掉它们的 trace $\delta^{i_1i_2}S^{i_1i_2\cdots i_j}$ , 这个 trace 是个 $j - 2$ 阶全对称
+张量, 因此根据上面的讨论有 $\frac{1}{2}(j - 2 + 1)(j - 2 + 2) = \frac{1}{2}j(j -
+1)$ 个迹. 所以 $j$ 阶张量给出的 $SO(3)$ 的新的不可约表示的维度是
+\begin{align}
+  \frac{1}{2}(j + 1)(j + 2) - \frac{1}{2}j(j - 1) = 2j + 1
+\end{align}
+
+
+** The tensors of $SO(2)$
+
+** Polar decomposition
+
+** Roations in higher-dimensional space
+
+** Self-dual and antiself-dual
+
+** Restriction to a subgroup
+
+** The adjoint representation and the Jacobi identity
+
+** The adjoint of $SO(N)$
+
+* Reference
+
+- A. Zee, Group Theory in a Nutshell for Physicists, 2016, Princeton University Press
+

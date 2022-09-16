@@ -1,0 +1,188 @@
+#+TITLE: 读书笔记: SU(2) 群
+#+DATE: <2020-05-20>
+#+CATEGORIES: 专业笔记
+#+TAGS: 数学
+#+HTML: <!-- toc -->
+#+HTML: <!-- more -->
+
+* $SU(2)$ locally isomorphic to $SO(3)$
+在牛津高阶中, iso- 与 morph 的解释为
+#+BEGIN_QUOTE
+iso-:
+equal
+
+morph: 
+to change smoothly from one image to another using computer action
+to change, or make sb/sth change into sth different
+#+END_QUOTE
+那么 isomorphic 的意思就是 equal change, 相同的变换, 也就是同构.
+选 traceless hermitean 的 Pauli 矩阵 $\sigma_1, \sigma_2, \sigma_3$ 做为 $SU(2)$ 群的基底, 对于
+一个 $SO(3)$ 的自然表示基底中的一个 vector $\vec{V} = (x, y, z)$ , 它们是对应的
+|                | SO(2)                                    | SU(2)                                                                                                                            |
+| basis          | $(\hat{e}_x, \hat{e}_y, \hat{e}_z)$       | $(\sigma_1, \sigma_2, \sigma_3)$                                                                                                                |
+|                | 三维空间中的 vector: $\vec{V}=(x, y, z)$ | 任意 traceless hermitean $2\times 2$ matrix: $X = \left(\begin{array}{cc} z&x-\mathrm{i}y \\ x+ \mathrm{i}y & -z \end{array}\right)$ |
+| transformation | $\vec{V}' = R \vec{V}$                   | $X' = U^{\dagger} XU$                                                                                                                  |
+| element        | $R$                                      | $U$                                                                                                                              |
+| invariant      | $V = x^2 + y^2 + z^2$                       | $\det X = -(x^2 + y^2 + z^2)$                                                                                                       |
+上表在说明 $SU(2)$ 和 $SO(3)$ isomorphic. 而 locally 是说并不是真的 isomorphic ,
+因为 $SU(2)$ 中元素 $U$ 和 $-U$ 对应 $SO(3)$ 中的同一个 $R$ . 因此 $SU(2)$
+covers $SO(3)$ twice.
+
+* Lie algebra of $SU(2)$
+
+群元 $U=e^{\mathrm{i}H}$ . $U^{\dagger}U = 1$ 要求 $H$ 是 hermitean 的. $\det U = 1$
+要求 $H$ 是 traceless 的. 对于 $SU(2)$ , 一个 $2\times 2$ 的 traceless hermitean 的
+矩阵有 $N^2 - 1 = 3$ (去掉 $1$ 个 trace)个独立的变量. 对于 $SU(2)$ 来说, 就是由
+$3$ 个 Pauli matrix 来线性组合成任意 $2\times 2$  traceless hermitean 的 $H$
+#+BEGIN_QUOTE
+Exercise: 
+
+对于 $SO(N)$ 来说, 需要的 $\frac{1}{2}N(N-1)$ . 如何得出这个结论.
+#+END_QUOTE
+
+#+BEGIN_QUOTE
+Example:
+
+$SU(2)$ 的参数个数是 $2^2 - 1 = 3$ 个. $SO(3)$ 的参数个数是 $\frac{1}{2}\cdot 3
+\cdot(3 - 1) = 3$ 个. 它们的参数个数是相同的.
+#+END_QUOTE
+
+
+Pauli 矩阵的所有性质都包含在下式中
+\begin{align}
+  \sigma_a\sigma_b = \delta_{ab} + \mathrm{i}\varepsilon_{abc}\sigma_c, \quad \mathrm{where}\quad a, b, c= 1, 2, 3
+\end{align}
+#+BEGIN_QUOTE
+Example:
+
+当 $b = a$ 时, 可得 $(\sigma_{a})^2 = I$
+#+END_QUOTE
+#+BEGIN_QUOTE
+Example:
+
+当 $b\neq a$ 时, 可得 $\sigma_a\sigma_b = \mathrm{i}\varepsilon_{abc}\sigma_c$ , 也就是
+$\sigma_1\sigma_2 = \mathrm{i}\sigma_3$ 以及类似结果
+#+END_QUOTE
+#+BEGIN_QUOTE
+Example:
+通过交换 $a, b$ 可得以下两式
+\begin{align}
+  \sigma_a\sigma_b = \delta_{ab} + \mathrm{i}\varepsilon_{abc}\sigma_c
+  \sigma_b\sigma_a = \delta_{ab} - \mathrm{i}\varepsilon_{abc}\sigma_c
+\end{align}
+两式相差可得 Pauli 矩阵的对易关系
+\begin{align}
+  [\sigma_a, \sigma_b] = 2 \mathrm{i}\varepsilon_{abc}\sigma_c
+\end{align}
+两式相加可得 Pauli 矩阵的反对易关系
+\begin{align}
+  \{ \sigma_a, \sigma_b \} = 2 \delta_{ab}
+\end{align}
+#+END_QUOTE
+
+$SU(N)$ 群的李代数可以由 $[T^a, T^b] = \mathrm{i}f^{abc}T^c$ 给出, 那么根据上面的关
+系, 就可以得到 $SU(2)$ 群的李代数
+\begin{align}
+  \left[ \frac{\sigma_a}{2}, \frac{\sigma_b}{2} \right] = \mathrm{i}\varepsilon_{abc}\frac{\sigma_c}{2}
+\end{align}
+也就是说 $SU(2)$ 的 generators $T^a$ 由 $\frac{\sigma_a}{2}$ , $SU(2)$ 的 structure
+constant 就是反对称张量 $f^{abc} = \varepsilon^{abc}$ . 可以看出, 它和 $SO(3)$
+李代数是相同的.
+
+
+* The group elements of $SU(2)$
+
+$SU(2)$ 的任何元素都可以写为 
+\begin{align}
+  U = e^{\mathrm{i} \phi_a \frac{\sigma_a}{2}} 
+    = \cos \frac{\phi}{2}\,I + \mathrm{i}\hat{\phi}\cdot\vec{\sigma}\sin \frac{\phi}{2}
+\end{align}
+现在看 $U^{\dagger} X U$ 是如何作用的. 不失一般性地, 取 $\phi$ 的方向沿 $\sigma_3$ , 也就是说
+绕 $z$ 轴旋转.
+\begin{align}
+  U^{\dagger} X U =& \left[ \cos \frac{\phi}{2}\,I - \mathrm{i}\sigma_3\sin \frac{\phi}{2} \right]
+          (x\sigma_1 + y\sigma_2 + z\sigma_3)
+    \left[ \cos \frac{\phi}{2}\,I + \mathrm{i}\sigma_3\sin \frac{\phi}{2} \right] \\
+  =&\left( \begin{array}{ccc} \sigma_1&\sigma_2&\sigma_3 \end{array} \right)
+  \left( \begin{array}{ccc} \cos\phi & -\sin\phi&0 \\
+                            \sin\phi&\cos\phi&0 \\ 
+                            0&0&1 \end{array} \right)
+  \left( \begin{array}{c} x\\y\\z \end{array} \right)
+
+\end{align}
+#+BEGIN_QUOTE
+Exercise: 
+
+计算 $U^{\dagger} X U$ .
+\begin{align}
+   U^{\dagger} \sigma_1 U = \cos^2 \frac{\phi}{2}\sigma_1 + \sin^2 \frac{\phi}{2} \sigma_3\sigma_1\sigma_3 
+          + \mathrm{i}\sin \frac{\phi}{2}\cos \frac{\phi}{2}[\sigma_1, \sigma_3]
+\end{align} 
+而 $\sigma_3\sigma_1\sigma_3 = \sigma_3\{\sigma_1\sigma_3\} - \sigma_3\sigma_3\sigma_1 =2 \sigma_3 \delta_{13} - \sigma_1 = -\sigma_1$ , $[\sigma_1,
+\sigma_3] = 2\mathrm{i}\epsilon_{132}\sigma_2 = -2\mathrm{i}\sigma_2$
+所以
+\begin{align}
+   U^{\dagger} \sigma_1 U =& \cos^2 \frac{\phi}{2}\sigma_1 - \sin^2 \frac{\phi}{2} \sigma_1
+          +2\sin \frac{\phi}{2} \cos \frac{\phi}{2} \sigma_2 \\
+   &= \cos \phi \,\sigma_1 + \sin \phi\, \sigma_2
+\end{align} 
+同样的
+\begin{align}
+   U^{\dagger} \sigma_2 U =& \cos^2 \frac{\phi}{2}\sigma_2 - \sin^2 \frac{\phi}{2} \sigma_2
+          -2\sin \frac{\phi}{2}\cos \frac{\phi}{2} \sigma_1 \\
+    = & \cos \phi \, \sigma_2 - \sin \phi \, \sigma_1
+\end{align} 
+对于 $U^{\dagger} \sigma_3 U$ , $\sigma_3\sigma_3\sigma_3 = \sigma_3$ , $[\sigma_3,
+\sigma_3] = 0$
+所以
+\begin{align}
+   U^{\dagger} \sigma_3 U = \cos^2 \frac{\phi}{2}\sigma_3 + \sin^2 \frac{\phi}{2} \sigma_3 = \sigma_3
+\end{align}
+将以上三个结果合在一起为
+\begin{align}
+  U^{\dagger} X U =&U^{\dagger} \left( \begin{array}{ccc} \sigma_1&\sigma_2&\sigma_3 \end{array} \right)
+  \left( \begin{array}{c} x\\y\\z \end{array} \right) U \\
+  =&\left( \begin{array}{ccc} \sigma_1&\sigma_2&\sigma_3 \end{array} \right)
+  \left( \begin{array}{ccc} \cos\phi & -\sin\phi&0 \\
+                            \sin\phi&\cos\phi&0 \\ 
+                            0&0&1 \end{array} \right)
+  \left( \begin{array}{c} x\\y\\z \end{array} \right)
+\end{align}
+#+END_QUOTE
+注意, 以上并没有用到 Pauli 算符的具体形式. 这样我们就找出了 $U =
+e^{\mathrm{i}\phi_a \frac{\sigma_a}{2}}$ 所对应的 $SO(3)$ 群中的群元, 它就对应 $SO(3)$ 中
+对应的角度 $\vec{\phi}$ 的转动. 
+
+如果把 Pauli 矩阵代入, 会有下面的矩阵
+\begin{align}
+     \left( \begin{array}{cc} z & x - \mathrm{i}y \\
+                         x + \mathrm{i}y & -z 
+            \end{array} 
+     \right)
+\end{align}
+和下式对比
+\begin{align}
+  U = e^{\mathrm{i} \phi_a \frac{\sigma_a}{2}} 
+    = \cos \frac{\phi}{2}\,I + \mathrm{i}\hat{\phi}\cdot\vec{\sigma}\sin \frac{\phi}{2}
+\end{align}
+注意区分上面两个式子, 第一个式子是 tarceless hermitean 的. 而第二个式子是满足
+$U^{\dagger}U = 1, \det U = 1$ , 但并不是 tarceless hermitean 的. 所以只有第二个式子是
+$SU(2)$ 的一个表示
+
+如果我们再次不失一般性地取 $\vec{\phi}$ 沿 $\sigma_3$ 方向, 那么
+\begin{align}
+  U(\phi) = \left( \begin{array}{cc} e^{\mathrm{i}\frac{\phi}{2}} &0 \\
+                         0 & e^{-\mathrm{i}\frac{\phi}{2}}
+            \end{array} 
+     \right)
+\end{align}
+上式是 $SU(2)$ , 可以看出, 对于 $\phi\in[0, 2\pi)$ 和 $\phi\in[2\pi, 4\pi)$ ,它对应不同的群元,
+但是它对应的 $SO(3)$ 转动却是相同的, 从这个意义上来说, 它不构成 $SO(3)$ 
+的一个通常意义上的表示, 它有时被叫做又会表示( a double-valued
+representation of $SO(3)$ ) .
+
+
+* Reference
+
+- A. Zee, Group Theory in a Nutshell for Physicists, 2016, Princeton University Press
+

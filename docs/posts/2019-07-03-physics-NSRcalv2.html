@@ -1,0 +1,220 @@
+<!DOCTYPE html><html class="no-js" lang="zh">
+
+<head>
+<script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+    </script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Long+Cang&family=Noto+Serif+SC&display=swap" rel="stylesheet"> <meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>从冰上的水</title>
+<link rel="apple-touch-icon" sizes="180x180" href="../static/images/apple-touch-icon-next.png?v=6.4.1">
+<link rel="icon" type="image/png" sizes="32x32" href="../static/images/favicon-32x32-next.png?v=6.4.1">
+<link rel="icon" type="image/png" sizes="16x16" href="../static/images/favicon-16x16-next.png?v=6.4.1">
+<link rel="stylesheet" type="text/css" href="../static/css/mystyle.css">    
+
+</head>
+<body>
+    <div class="container">
+        <header>
+            <section class="banner"><img src="../static/images/banner_20220427_tamako-love-story.jpg"></section>
+        </header>
+        <nav class="row">
+    <a class="nav" href="../index.html">首页</a>
+    <a class="nav" href="../category/category.html">分类</a>
+    <a class="nav" href="#">标签</a>
+    <a class="nav" href="#">关于</a>
+</nav>
+        <main>
+            <h1 class="post-title">NSR Calculate II
+            </h1>
+            <section class="post-meta">
+                <p><2019-09-08></p>
+                <p>['物理, NSR Calculate']</p>
+                <p>专业笔记</p>
+            </section>
+            <section class="post-content">
+                
+<h2>整体思路</h2>
+
+
+$$\begin{align}
+  \frac{\Delta F}{NE_n} 
+  = \left[ \tilde{\tilde{\Omega}}_{\mathrm{int}} - \tilde{\Omega}_{0}^{\mathrm{M}} 
+  + \tilde{\mu} \right]\left( \frac{n_{\varepsilon}}{n} \right)^{2/3}
+\end{align}$$
+
+
+$$\begin{align}
+  \frac{n}{n_{\varepsilon}} 
+ =& - \frac{\partial}{\partial\tilde{\mu}}\left[
+       \tilde{\tilde{\Omega}}_{\mathrm{int}} + \tilde{\Omega}_{0}^{\mathrm{B}}
+    \right]
+\end{align}$$
+
+
+$$\begin{align}
+  \tilde{\tilde{\Omega}}_{\mathrm{int}} = \int \mathrm{d}\tilde{q}\cdot \tilde{q}^2
+     \int_{-\infty}^{+\infty}\mathrm{d}\tilde{\omega}
+      \cdot \frac{3}{\pi}\cdot \frac{1}{e^{\tilde{\beta}\tilde{\omega}}-1} 
+       \delta^p(\vec{q},z)
+\end{align}$$
+
+
+$$\begin{align}
+  \tilde{\Omega}_0^{\mathrm{B}} = \frac{3}{\tilde{\beta}} \int_0^{\infty} \mathrm{d}
+  \tilde{k} \cdot \tilde{k}^2 \ln \left[1 - e^{- \tilde{\beta} \tilde{\xi}_k}\right]
+\end{align}$$
+
+
+$$\begin{align}
+  \delta^p(\vec{q}, z) 
+       =& \mathrm{Arg}\left[
+             \frac{1}{4\pi}\cdot \frac{2R}{k_{\varepsilon}^2 v}
+            + \tilde{z}\cdot\frac{1}{4\pi} 
+           + \frac{2 R}{M k_{\varepsilon}^2}\Pi_r(\vec{q},z + \mathrm{i}0^+) 
+                \right]
+\end{align}$$
+
+
+$$\begin{align}
+  \frac{2 R}{M k_{\varepsilon}^2}\Pi_r(\vec{q},z) 
+  =& \frac{2}{\pi^2} \cdot k_{\varepsilon}R\cdot \int \mathrm{d}\tilde{k}
+           \left\{
+       \int_{-1}^1 \mathrm{d}x
+        \cdot x^2\left[
+        1+n(\xi_{\vec{k}+\vec{q}/2}) + n(\xi_{-\vec{k}+\vec{q}/2})
+              \right]\frac{3}{2}\frac{\tilde{k}^4}
+          {2\tilde{k}^2 - \tilde{z}}
+           -\frac{1}{2}\tilde{k}^2
+           - \frac{1}{4}\tilde{z}
+          \right\} 
+\end{align}$$
+
+
+<p>带 tilde 的都是以 $\varepsilon$ 或 $k_{\varepsilon}$ 为单位的无量纲量.</p>
+
+<p>最终画的是 $(1)$ 式. $(1)$ 式左边以 $E_n$ 为单位, 右边乘上 $\left(
+\frac{n_{\varepsilon}}{n} \right)^{2/3}$ 进行单位转换.</p>
+
+<p>将 $(2)~(5)$ 式依次代入可得结果</p>
+
+<p>还有一些关系: $\tilde{\xi} <code> \tilde{k}^2 - \tilde{\mu} ,\quad n(\xi) </code>
+\frac{1}{e^{\tilde{\beta} \tilde{\xi}}-1}, \quad \tilde{z} =
+\tilde{\omega} - \frac{\tilde{q}^2}{2} + 2 \tilde{\mu}$ </p>
+
+<h2>$\delta^p(\vec{q}, z)$ 的近似的解析表达式</h2>
+
+<p>$\delta^p(\vec{q}, z)$ 的近似的解析表达式为</p>
+
+$$\begin{align}
+  -\pi \theta(\omega - a)
+\end{align}$$
+
+<p>其中 </p>
+
+$$\begin{align}
+  a = \frac{\tilde{q}^2}{2} - 2 \tilde{\mu} - \frac{2R}{k_{\varepsilon}^2 v}
+\end{align}$$
+
+
+<p>以 $\tilde{q}$ 和 $\tilde{\omega}$ 为变量, 数值上画出的
+$\delta^p(\vec{q}, z)$ 的二维图为</p>
+
+<p><p><img src='./2019-09-08-physics-NSRcalv2/2Dfig.png' alt='figalt' max-width: 100%><p></p>
+
+<p>是一个阶跃函数. 其边界和近似的解析表达式对比</p>
+
+<p><p><img src='./2019-09-08-physics-NSRcalv2/stepLine.png' alt='figalt' max-width: 100%><p></p>
+
+<h2>计算 density I</h2>
+
+$$\begin{align}
+  \frac{n}{n_{\varepsilon}} 
+ =& - \frac{\partial}{\partial\tilde{\mu}}\left[
+       \tilde{\tilde{\Omega}}_{\mathrm{int}} + \tilde{\Omega}_{0}^{\mathrm{B}}
+    \right]
+\end{align}$$
+
+
+<p>density $\frac{n}{n_{\varepsilon}}$  与温度 $\tilde{\beta}$ , $k_{\varepsilon}R$ ,
+$\frac{2R}{k_{\varepsilon}^2 v}$ , 化学势 $\tilde{\mu}$ 有关.</p>
+
+<p>将温度 $\tilde{\beta}<code>1$ 和 $k_{\varepsilon}R</code>1/30$ 固定, 以
+$\frac{2R}{k_{\varepsilon}^2 v}$ 为横坐标, 画出不同化学势
+$\tilde{\mu}$ 时积分部分的多条曲线.</p>
+
+<p>取 $\frac{2R}{k_{\varepsilon}^2 v}\in [-2, 2]$ , $\mu \in [-2, -.0.1]$</p>
+
+<h2>计算 density II</h2>
+
+<p>用 $\delta^p(\vec{q}, z)$ 的近似的解析表达式求 density 的解析表达式</p>
+
+$$\begin{align}
+  \frac{n}{n_{\varepsilon}} 
+ =& - \frac{\partial}{\partial\tilde{\mu}}\left[
+       \tilde{\tilde{\Omega}}_{\mathrm{int}} + \tilde{\Omega}_{0}^{\mathrm{B}}
+    \right] \\
+ =& \int_0^{\infty}\mathrm{d}\tilde{q}\cdot 3 \tilde{q}^2\left[ 
+    \frac{2}{e^{\tilde{\beta}a}-1} +
+    \frac{1}{e^{\tilde{\beta}(\tilde{q}^2 - \tilde{\mu})}-1}
+  \right]
+\end{align}$$
+
+
+<h2>最终结果</h2>
+
+<p>将结果与原文中的结果对比</p>
+
+<p><p><img src='./2019-09-08-physics-NSRcalv2/co-result.png' alt='figalt' max-width: 100%><p></p>
+
+<ul>
+<li>蓝线: 原文结果</li>
+<li>num 数值结果.</li>
+<li>ana1 只把 $\delta^p$ 的边界的边界用数值解代替(analytically calculate $\delta^p$ ).</li>
+<li>ana2 直到积分的结果都是解析的, 微分是数值微分(analytically calculate the integral F).</li>
+<li>ana3 对 $\mu$ 的微分也用解析结果(analytically calculate $\mu$ ).</li>
+</ul>
+<h2>计算 $T_C$</h2>
+
+<h3>weak coupling</h3>
+
+<p>算出 $\mu = 0$ 时的 density .</p>
+
+<p>对应的纵坐标为</p>
+
+$$\begin{align}
+  \frac{k_BT_C}{E_n} = \frac{1}{\beta E_n} = \frac{1}{\varepsilon \beta} \frac{\varepsilon}{E_n}
+  = \frac{1}{\tilde{\beta}} \cdot \left(\frac{n_{\varepsilon}}{n}\right)^{2/3}
+\end{align}$$
+
+<p>横坐标为</p>
+
+$$\begin{align}
+  \frac{2 R_p}{k_n^2v_p} = \frac{2 \tilde{R_p}}{k_{\varepsilon}^2 \tilde{v_p}}\cdot \left(
+   \frac{n_{\varepsilon}}{n}\right)^{2/3}
+\end{align}$$
+
+
+<p><p><img src='./2019-09-08-physics-NSRcalv2/Tc.png' alt='figalt' max-width: 100%><p></p>
+
+<p><p><img src='./2019-09-08-physics-NSRcalv2/TcNum.png' alt='figalt' max-width: 100%><p></p>
+
+
+
+            </section>
+        </main>
+        <footer>zqw</footer>
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,243 @@
+<!DOCTYPE html><html class="no-js" lang="zh">
+
+<head>
+<script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+    </script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Long+Cang&family=Noto+Serif+SC&display=swap" rel="stylesheet"> <meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>从冰上的水</title>
+<link rel="apple-touch-icon" sizes="180x180" href="../static/images/apple-touch-icon-next.png?v=6.4.1">
+<link rel="icon" type="image/png" sizes="32x32" href="../static/images/favicon-32x32-next.png?v=6.4.1">
+<link rel="icon" type="image/png" sizes="16x16" href="../static/images/favicon-16x16-next.png?v=6.4.1">
+<link rel="stylesheet" type="text/css" href="../static/css/mystyle.css">    
+
+</head>
+<body>
+    <div class="container">
+        <header>
+            <section class="banner"><img src="../static/images/banner_20220427_tamako-love-story.jpg"></section>
+        </header>
+        <nav class="row">
+    <a class="nav" href="../index.html">首页</a>
+    <a class="nav" href="../category/category.html">分类</a>
+    <a class="nav" href="#">标签</a>
+    <a class="nav" href="#">关于</a>
+</nav>
+        <main>
+            <h1 class="post-title">Stationary Phase Approx, Laplace's Method
+            </h1>
+            <section class="post-meta">
+                <p><2020-09-23></p>
+                <p>["物理, 数学, Stationary Phase Approx, Laplace's Method, Stirling's approx"]</p>
+                <p>专业笔记</p>
+            </section>
+            <section class="post-content">
+                
+<h2>Laplace's Method</h2>
+
+<h3>结论</h3>
+
+<p>对于积分</p>
+
+
+$$\begin{align}
+  \int_a^b  e^{Mf(x)} \cdot\mathrm{d} x 
+\end{align}$$
+
+
+<p>假设 $f(x)$ 只有一个全局最大值, 位于 $x = x_0 \in (a, b)$ 处. 那么当 $M\gg 0$ 时, 它
+可以做如下近似</p>
+
+$$\begin{align}
+  \int_a^b  e^{Mf(x)} \cdot\mathrm{d} x \approx \sqrt{\frac{2\pi}{M|f''(x_0)|}} e^{Mf(x_0)}
+\end{align}$$
+
+
+<h3>证明</h3>
+
+<p>将 $f(x)$ 在 $x = x_0$ 处 Taylor 展开</p>
+
+$$\begin{align}
+  \int_a^b  e^{Mf(x)} \cdot\mathrm{d} x 
+ = \int_a^b  e^{M\left[f(x_0) - \frac{|f''(x_0)|}{2}(x - x_0)^2 + \cdots \right]} \cdot\mathrm{d} x 
+\end{align}$$
+
+<p>其中利用了 $f'(x_0) = 0, f''(x_0) < 0$ .</p>
+
+<p>由于 $f(x_0)$ 是极大值, 且 $M$ 很大, 所以积分主要由 $x_0$ 附近贡献. 下图是
+$f(x)= -x^2$ 时的情况, 可以看出 $M$ 越大, 积分的贡献越集中于 $x_{0}$ 处
+<p><img src='./2020-09-23-physics-StationaryPhaseApprox/laplace.png' alt='figalt' max-width: 100%><p>
+只保留到展开的二阶项, 略去更高阶, 因此积分近似为</p>
+
+$$\begin{align}
+  \int_a^b  e^{Mf(x)} \cdot\mathrm{d} x 
+ \approx e^{Mf(x_0)}\int_a^b  e^{- M\frac{|f''(x_0)|}{2}(x - x_0)^2 } \cdot\mathrm{d} x 
+\end{align}$$
+
+<p>由于远离 $x_0$ 的部分对积分贡献几乎为零, 所以可以将积分区间拓展到 $(-\infty, +\infty)$ ,
+这样就可以将高斯积分算出, 得到结果</p>
+
+$$\begin{align}
+  \int_a^b  e^{Mf(x)} \cdot\mathrm{d} x \approx \sqrt{\frac{2\pi}{M|f''(x_0)|}} e^{Mf(x_0)}
+\end{align}$$
+
+
+<h3>例子: Stirling's Approx</h3>
+
+<p>$\Gamma$ function 为</p>
+
+$$\begin{align}
+  N! = \Gamma(N+1) = \int_0^{\infty} \mathrm{d}x\cdot x^N e^{-x}
+\end{align}$$
+
+<p>可以将上式变形</p>
+
+$$\begin{align}
+  N! = \int_0^{\infty} \mathrm{d}x\cdot e^{-x +N\ln x} = \int_0^{\infty} \mathrm{d}x\cdot e^{N\left(-\frac{x}{N} +\ln x\right)}
+\end{align}$$
+
+<p>当 $N$ 很大的时候, 可以进行 Laplace's method 近似. 做变量代换 $x/N = t$ , 那么</p>
+
+$$\begin{align}
+  N! = \int_0^{\infty} \mathrm{d}x\cdot e^{-x +N\ln x} = N^{N + 1}\int_0^{\infty} \mathrm{d}t\cdot e^{Nf(t)}
+\end{align}$$
+
+<p>其中 $f(t) = -t +\ln t$ 如下图
+<p><img src='./2020-09-23-physics-StationaryPhaseApprox/stirling.png' alt='figalt' max-width: 100%><p>
+在 $t = 1$ 处有极大值. 因此可以用 Laplace's method 做近似为</p>
+
+$$\begin{align}
+  N! \approx N^{N + 1} e^{-N} \sqrt{\frac{2\pi}{N\cdot 1}} = \sqrt{2\pi N} e^{N(\ln N -1)}
+\end{align}$$
+
+<p>取对数为</p>
+
+$$\begin{align}
+  \ln N! \approx \frac{1}{2}\ln 2\pi + \frac{1}{2}\ln N + N(\ln N - 1) \approx N(\ln N - 1)
+\end{align}$$
+
+<p>最后一步省略了前两项, 因为相比较于后两项, 它们是可以忽略的. 这就是常用的
+Stirling 公式.</p>
+
+<h2>Stationary Phase Approx</h2>
+
+<h3>结论</h3>
+
+<p>对于积分</p>
+
+$$\begin{align}
+  I = \int_a^b g(t) e^{\mathrm{i}kf(t)} \cdot \mathrm{d}t
+\end{align}$$
+
+<p>称其中的 $f(t)$ 为 phase function. 假如 $f(t)$ 在 $(a, b)$ 内有 $n$ 个
+stationary points (也就是一阶导数为零的点) $s_j, 其中 j = 1, 2, \cdots ,n$ 那么当
+$k\to \infty$ 时, 有如下近似</p>
+
+$$\begin{align}
+  I \approx \sum_{j=1}^n g(s_j) e^{\mathrm{i}k f(s_j) + \frac{\mathrm{i}\mathrm{sign}[f''(s_j)]\pi}{4}}
+       \sqrt{\frac{2\pi}{k|f''(s_j)|}}
+\end{align}$$
+
+
+<h3>Intuition (不做严格证明)</h3>
+
+<p>假设 $f(t)$ 只有一个 stationary point $s_j \in(a, b)$ : $f'(s_j) = 0$ .</p>
+
+<p>将 $f(t)$ 在 $t = s_j$ 处 Taylor 展开</p>
+
+$$\begin{align}
+  I = \int_a^b g(t) e^{\mathrm{i}k\left[f(s_j) + \frac{f''(s_j)}{2}(t - s_j)^2 + \cdots \right]}
+       \cdot \mathrm{d}t
+\end{align}$$
+
+<p>其中利用了 $f'(s_j) = 0$</p>
+
+<p>当 $k\to \infty$ 时, 剧烈振荡, 相互抵消(Coates-Euler formula), 积分主要由 stationary point 处贡献. 只保留到
+二阶项, 略去更高阶项, 并且将积分区间拓展到 $(-\infty, + \infty)$ , 就可以得到结论</p>
+
+
+$$\begin{align}
+  I \approx &\int_a^b g(s_j) e^{\mathrm{i}k\left[f(s_j) + \frac{f''(s_j)}{2}(t - s_j)^2 \right]}
+       \cdot \mathrm{d}t \\
+    =& g(s_j)e^{\mathrm{i}kf(s_j)} \int_a^b e^{\mathrm{i}k\left[\frac{f''(s_j)}{2}(t - s_j)^2 \right]}
+       \cdot \mathrm{d}t \\
+    \approx & g(s_j)e^{\mathrm{i}kf(s_j)} \int_{-\infty}^{\infty} e^{\mathrm{i}k\left[\frac{f''(s_j)}{2}(t - s_j)^2 \right]}
+       \cdot \mathrm{d}t \\
+    =& g(s_j)e^{\mathrm{i}kf(s_j)}\sqrt{\frac{2\pi\mathrm{i}}{k f''(s_j)}} \\
+    =& g(s_j)e^{\mathrm{i}kf(s_j)}\left[\mathrm{i} \cdot\mathrm{sign}[f''(s_j)]\right]^{1/2}
+        \sqrt{\frac{2\pi}{k |f''(s_j)|}} \\
+    =& g(s_j)e^{\mathrm{i}kf(s_j) + \frac{\mathrm{i} \cdot\mathrm{sign}[f''(s_j)]\pi}{4}}
+        \sqrt{\frac{2\pi}{k |f''(s_j)|}}
+\end{align}$$
+
+<p>有多个 stationary points 时, 对它们求和即可.</p>
+
+<h3>例: Bessel functions 的渐近形式</h3>
+
+<p>Bessel functions 的积分表达形式为</p>
+
+$$\begin{align}
+  J_n(x) = \frac{1}{\pi} \int_0^{\pi} \cos (x \sin \theta - n\theta) \mathrm{d}\theta
+\end{align}$$
+
+<p>将其写为指数形式</p>
+
+$$\begin{align}
+  J_n(x) = \frac{1}{\pi} \mathrm{Re}\left[\int_0^{\pi} e^{\mathrm{i}(x \sin \theta - n\theta)}  \mathrm{d}\theta\right]
+\end{align}$$
+
+<p>当 $x\to\infty$ 时, 积分可以用 stationary phase approx</p>
+
+$$\begin{align}
+  \int_0^{\pi} e^{\mathrm{i}(x \sin \theta - n\theta)}  \mathrm{d}\theta
+  = \int_0^{\pi}e^{-\mathrm{i} n\theta} e^{\mathrm{i}x \sin \theta }  \mathrm{d}\theta
+\end{align}$$
+
+<p>$\sin\theta$ 在积分区间 $(0, \pi)$ 内的 stationary points  为 $\theta = \frac{\pi}{2}$
+因此其近似结果为</p>
+
+$$\begin{align}
+  \int_0^{\pi} e^{\mathrm{i}(x \sin \theta - n\theta)}  \mathrm{d}\theta
+  \approx& e^{-\mathrm{i} n \frac{\pi}{2}} e^{\mathrm{i} x \sin \frac{\pi}{2} 
+    + \frac{\mathrm{i} \cdot (-1)\cdot \pi}{4}}\sqrt{\frac{2\pi}{x \cdot 1}} \\
+  =& e^{-\mathrm{i}  \frac{n\pi}{2}} e^{\mathrm{i} (x  
+    - \frac{\mathrm{i} \cdot \pi}{4})}\sqrt{\frac{2\pi}{x}}
+\end{align}$$
+
+<p>代回 Bessel functions 取实部得到</p>
+
+$$\begin{align}
+ J_n(x) \approx& \frac{1}{\pi} \mathrm{Re}\left[e^{-\mathrm{i}  \frac{n\pi}{2}} e^{\mathrm{i} (x  
+    - \frac{\mathrm{i} \cdot \pi}{4})}\sqrt{\frac{2\pi}{x}} \right] \\
+  = &\sqrt{\frac{2}{\pi x}} \cos\left( x - \frac{n\pi}{2} - \frac{\pi}{4} \right) , \quad
+   \mathrm{as} \, x \to \infty
+\end{align}$$
+
+
+<h2>Reference</h2>
+
+<ul>
+<li>https://www.youtube.com/watch?v=7PuZQhqkWxk</li>
+<li>https://www.youtube.com/watch?v=b7PZlmorEok</li>
+<li>https://www.math.unl.edu/~scohn1/8423/intasym4.pdf</li>
+<li>Altland Alexander, Simons Ben D., Condensed Matter Field Theory, Second Edition-Cambridge University Press (2010)</li>
+</ul>
+
+            </section>
+        </main>
+        <footer>zqw</footer>
+
+    </div>
+</body>
+</html>

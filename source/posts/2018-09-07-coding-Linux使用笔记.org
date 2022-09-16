@@ -1,0 +1,593 @@
+#+TITLE: Linux使用笔记(update 28/Jan/2021)
+#+DATE: <2018-09-07>
+#+CATEGORIES: 软件使用
+#+TAGS: Linux
+#+HTML: <!-- toc -->
+#+HTML: <!-- more -->
+
+* 常用命令
+
+1. 显示已安装的软件包列表：=dpkg -l=
+2. gbk编码访问bbs：=luit -encoding gbk telnet bbs.xxx.xxx.xx=\\
+3. 列出块设备：=lsblk=
+4. 打印当前系统的全部相关信息：=uname -a=
+5. 显示已执行命令：=history=
+6. 打开pdf文件：=evince test.pdf=
+7. 查看ip：=ip addr show=
+
+* Note of /*Linux Command Line and Shell Scripting*/
+
+=man= mannual
+
+=pwd= present working directory
+
+=cd= change directory
+
+The single dot ( . ) to represent the current directory The double dot (
+.. ) to represent the parent directory
+
+cd ../../etc
+
+=ls= list
+
+=ls -F= The -F parameter flags the directories with a forward slash ( /
+), to help identify them in the listing, it flags executable files (like
+the my\_script file in the preceding code) with an asterisk ( * ).
+
+=ls -R= recursive
+
+=ls -a= all
+
+文件名上的单引号: 有空格或需要转义的字符
+
+常用组合: =ls -alF=
+
+=ls -l= long listing format.
+
+The file type --- such as directory ( d ), file ( - ), linked file ( l
+), character device ( c ), or block device ( b ) The file permissions
+(see Chapter 6) The number of file hard links (See the section "Linking
+Files" in Chapter 7.) The file owner usernameThe file primary group name
+The file byte size The last time the file was modified The filename or
+directory name
+
+A question mark ( ? ) to represent one character An asterisk ( * ) to
+represent any number of characters
+
+$ ls -l my\_scr[ai]pt -rw-rw-r--- 1 christine christine 0 May 21 13:25
+my\_scrapt -rwxrw-r--- 1 christine christine 54 May 21 11:26 my\_script
+
+$ ls -l f[a-i]ll -rw-rw-r--- 1 christine christine 0 May 21 13:44 fall
+-rw-rw-r--- 1 christine christine 0 May 21 13:44 fell -rw-rw-r--- 1
+christine christine 0 May 21 13:44 fill
+
+$ ls -l f[!a]ll -rw-rw-r--- 1 christine christine 0 May 21 13:44 fell
+-rw-rw-r--- 1 christine christine 0 May 21 13:44 fill -rw-rw-r--- 1
+christine christine 0 May 21 13:44 full
+
+=touch= : change file timestamps
+
+cp test\_one test\_two ls -l test\_* -rw-rw-r--- 1 christine christine 0
+May 21 14:35 test\_one -rw-rw-r--- 1 christine christine 0 May 21 15:15
+test\_two
+
+It is best to add the -i option to force the shell to ask whether you
+want to overwrite a file:
+
+cp -i test\_one /home/christine/Documents/
+
+If you need to copy a file with a long source object name to your
+present working directory, the single dot can simplify the task: $ cp -i
+/etc/NetworkManager/NetworkManager.conf .
+
+cp -R Scripts/ Mod\_Scripts
+
+You can also use wildcard metacharacters in your cp commands: $ cp
+*script Mod\_Scripts/
+
+=mv= You can use the mv command to move a file's location and rename it,
+all in one easy step:
+
+mv /home/christine/Pictures/fzll /home/christine/fall
+
+To create several directories and subdirectories at the same time, you
+need to add the -p parameter: $ mkdir -p New\_Dir/Sub\_Dir/Under\_Dir
+
+rm -ri My\_Dir
+
+tree hexo -L 1 hexo ├── \_config.yml ├── db.json ├── hexo-org-cache ├──
+node\_modules ├── package.json ├── package-lock.json ├── public ├──
+scaffolds ├── source └── themes
+
+file my\_file my\_file: ASCII text
+
+file Mathematica\_11.0.0\_Keygen.exe Mathematica\_11.0.0\_Keygen.exe:
+PE32 executable (console) Intel 80386, for MS Windows
+
+cat -n test1 1 hello 2 3 This is a test file. 4 5 6 That we'll use to $
+test the cat command.
+
+=more= 用 q 退出 =less=
+
+The tail command displays the last lines in a file (the file's "tail").
+By default, it shows the last 10 lines in the file.
+
+tail -n 2 log\_file line19 Last line - line20
+
+=tail= =head=
+
+The -f parameter is a pretty cool feature of the tail command. It allows
+you to peek inside a file as the file is being used by other processes.
+The tail command stays active and continues to display new lines as they
+appear in the text file. This is a great way to monitor the system log
+files in real-time mode.
+
+*** More bash Shell Commands
+    :PROPERTIES:
+    :CUSTOM_ID: more-bash-shell-commands
+    :END:
+
+**** ps
+     :PROPERTIES:
+     :CUSTOM_ID: ps
+     :END:
+
+By default, the ps command shows only the processes that belong to the
+current user and that are running on the current terminal.
+
+=ps -ef= (all full)
+
+**** top
+     :PROPERTIES:
+     :CUSTOM_ID: top
+     :END:
+
+if your load averages start getting over 2, things are getting busy on
+your system.
+
+=kill= =killall http*=
+
+自己可以安装 gotop
+
+**** mount
+     :PROPERTIES:
+     :CUSTOM_ID: mount
+     :END:
+
+mount -t type device directory
+
+vfat: Windows long filesystem ntfs: Windows advanced filesystem used in
+Windows NT, XP, and Vista iso9660: The standard CD-ROM filesystem
+
+umount /home/rich/mnt
+
+**** df
+     :PROPERTIES:
+     :CUSTOM_ID: df
+     :END:
+
+**** du
+     :PROPERTIES:
+     :CUSTOM_ID: du
+     :END:
+
+disk usage
+
+-c : Produces a grand total of all the files listed -h : Prints sizes in
+human-readable form, using K for kilobyte, M for megabyte, and G for
+gigabyte -s : Summarizes each argument
+
+**** sort
+     :PROPERTIES:
+     :CUSTOM_ID: sort
+     :END:
+
+=sort -n=
+
+**** grep
+     :PROPERTIES:
+     :CUSTOM_ID: grep
+     :END:
+
+grep import fft.py import numpy as np import matplotlib.pyplot as plt
+from scipy import integrate
+
+**** gzip
+     :PROPERTIES:
+     :CUSTOM_ID: gzip
+     :END:
+
+**** tar
+     :PROPERTIES:
+     :CUSTOM_ID: tar
+     :END:
+
+tar -cvf test.tar test/ test2/ 打包
+
+tar -xvf 解包
+
+*** understand shell
+    :PROPERTIES:
+    :CUSTOM_ID: understand-shell
+    :END:
+
+cat /etc/passwd [...]
+christine:x:1000:1000:Christine,,,:/home/christine:/bin/bash
+
+On a single line, you can designate a list of commands to be run one
+after another.
+
+=ls ; ls -lh=
+
+=(ls ; cd /etc ; ls ; echo $BASH_SUBSHELL)= 在新的 shell 运行,
+运行完不改变工作路径
+
+=ls ; cd /etc ; ls ; echo $BASH_SUBSHELL= 在本 shell 运行, 运行完到了
+=/etc= 路径
+
+**** jobs
+     :PROPERTIES:
+     :CUSTOM_ID: jobs
+     :END:
+
+jobs command displays any user's processes (jobs) currently running in
+background mode:
+
+**** type
+     :PROPERTIES:
+     :CUSTOM_ID: type
+     :END:
+
+**** which
+     :PROPERTIES:
+     :CUSTOM_ID: which
+     :END:
+
+type cd cd is a shell builtin
+
+Using the type -a command shows both types for each of the two commands.
+Note that the which command shows only the external command file.
+
+**** history
+     :PROPERTIES:
+     :CUSTOM_ID: history
+     :END:
+
+Command history is kept in the hidden .bash\_history file, which is
+located in the user's home directory
+
+You can force the command history to be written to the .bash\_history
+file before leaving a shell session. In order to force this write, use
+the -a option on the history command: history -a
+
+!20 type -a pwd pwd is a shell builtin pwd is /bin/pwd
+
+Command number 20 was pulled from command history. Notice that similar
+to executing the last command in history, the bash shell first displays
+the command it is recalling from the shell's history. After the command
+is displayed, it is executed.
+
+=!!= 上一条命令
+
+**** alias
+     :PROPERTIES:
+     :CUSTOM_ID: alias
+     :END:
+
+=alias -p=
+
+alias li='ls -li'
+
+*** Using Linux Environment Variables
+    :PROPERTIES:
+    :CUSTOM_ID: using-linux-environment-variables
+    :END:
+
+=env= or the =printenv=
+
+**** echo
+     :PROPERTIES:
+     :CUSTOM_ID: echo
+     :END:
+
+You can also use the echo command to display a variable's value. When
+referencing an environment variable in this case, you must place a
+dollar sign ( $ ) before the environmentvariable name
+
+echo $HOME
+
+The dollar sign before a variable name allows the variable to be passed
+as a command parameter: ls $HOME
+
+**** set
+     :PROPERTIES:
+     :CUSTOM_ID: set
+     :END:
+
+The set command displays all variables defined for a specific process,
+including both local and global environment variables and user-defined
+variables
+
+echo my\_variable my\_variable=Hello echo my\_variable
+
+If you need to assign a string value that contains spaces, you need to
+use a single or double quotation mark to delineate the beginning and the
+end of the string:
+
+my\_variable="Hello World"
+
+Notice that for the local variable you defined, you used lowercase
+letters, while the system environment variables you've seen so far have
+all used uppercase letters.
+
+**** export
+     :PROPERTIES:
+     :CUSTOM_ID: export
+     :END:
+
+=export my_variable=
+
+This is done by using the export command and the variable name minus the
+dollar sign
+
+**** unset
+     :PROPERTIES:
+     :CUSTOM_ID: unset
+     :END:
+
+unset my\_variable
+
+If you are doing anything with the variable, use the dollar sign. If you
+are doing anything to the variable, don't use the dollar sign.
+
+echo $PATH
+
+=PATH=$PATH:/home/christine/Scripts= 添加 PATH 环境变量
+
+It is a better idea to create a file ending with .sh in the
+/etc/profile.d directory. In that file, place all your new or modified
+global environment variable settings.
+
+
+* 软件
+
+1. 黑客帝国：cmatrix
+2. 小火车：sl
+3. 格言：fortune
+4. 不断输出字符：yes
+
+** play
+
+方法1：
+
+#+BEGIN_EXAMPLE
+     ffplay xxx.avi
+#+END_EXAMPLE
+
+方法2：
+
+#+BEGIN_EXAMPLE
+    mplayer -vo caca video.avi 
+#+END_EXAMPLE
+
+注：参数caca表示彩色字符模式，aa表示黑白字符模式。
+
+** w3m
+   :PROPERTIES:
+   :CUSTOM_ID: w3m
+   :END:
+
+sudo apt-get install w3m w3m-img w3m www.zhihu.com
+
+** telnet
+   :PROPERTIES:
+   :CUSTOM_ID: telnet
+   :END:
+
+#+BEGIN_EXAMPLE
+    telnet towel.blinkenlights.nl
+#+END_EXAMPLE
+
+** Host
+   :PROPERTIES:
+   :CUSTOM_ID: host
+   :END:
+
+#+BEGIN_EXAMPLE
+    127.0.0.1   localhost
+    127.0.1.1   dx-PC
+
+    # The following lines are desirable for IPv6 capable hosts
+    ::1     ip6-localhost ip6-loopback
+    fe00::0 ip6-localnet
+    ff00::0 ip6-mcastprefix
+    ff02::1 ip6-allnodes
+    ff02::2 ip6-allrouters
+#+END_EXAMPLE
+
+#+BEGIN_EXAMPLE
+    sudo gedit /etc/hosts
+    sudo /etc/init.d/networking restart
+#+END_EXAMPLE
+
+*** matlab
+    :PROPERTIES:
+    :CUSTOM_ID: matlab
+    :END:
+
+**** 运行命令行界面
+     :PROPERTIES:
+     :CUSTOM_ID: 运行命令行界面
+     :END:
+
+#+BEGIN_EXAMPLE
+    ./matlab -nodisplay
+#+END_EXAMPLE
+
+**** 添加环境变量
+     :PROPERTIES:
+     :CUSTOM_ID: 添加环境变量
+     :END:
+
+=cd /etc=
+
+=sudo gedit profile=
+
+添加
+
+=\# add matlab path=
+
+=export PATH=$PATH:/usr/local/MATLAB/R2018a/bin=
+
+保存
+
+*** mathematica
+
+退出： =ctrl D=
+
+在linux下一般用scp这个命令来通过ssh传输文件。
+
+1、从服务器上下载文件 scp username@servername:/path/filename
+/var/www/local\_dir（本地目录）
+
+例如scp root@192.168.0.101:/var/www/test.txt
+把192.168.0.101上的/var/www/test.txt
+的文件下载到/var/www/local\_dir（本地目录）
+
+2、上传本地文件到服务器 scp /path/filename username@servername:/path
+
+例如scp /var/www/test.php root@192.168.0.101:/var/www/
+把本机/var/www/目录下的test.php文件上传到192.168.0.101这台服务器上的/var/www/目录中
+
+3、从服务器下载整个目录 scp -r
+username@servername:/var/www/remote\_dir/（远程目录）
+/var/www/local\_dir（本地目录）
+
+例如:scp -r root@192.168.0.101:/var/www/test /var/www/
+
+4、上传目录到服务器 scp -r local\_dir username@servername:remote\_dir
+例如：scp -r test root@192.168.0.101:/var/www/
+把当前目录下的test目录上传到服务器的/var/www/ 目录
+
+** 好玩的
+
+*** ASSIC码电影：
+
+1. 在线观看=telnet towel.blinkenlights.nl=
+
+* 根目录
+
+** =/etc=
+
+即 et cetera. 这下面放的都是一堆零零碎碎的东西. 比如
+
+- =/etc/fstab= 存放开机自动挂载的分区.
+
+- =/etc/group= 存放所有的用户组
+
+- =/etc/passwd= 存放所有的用户信息
+
+- =/etc/issue= 存放欢迎信息(可借此查看发行版信息)
+
+** =/bin= 
+
+* 权限管理
+
+** 用户与用户组
+
+*** 用户组
+
+=/etc/group= 存放了用户组信息, 格式为
+
+#+begin_src shell
+组名:口令:组标识号:组内用户列表
+#+end_src
+
+添加用户组用命令 =groupadd= , 帮助如下
+
+#+begin_src shell
+> groupadd -h
+用法：groupadd [选项] 组
+
+选项:
+  -f, --force                   如果组已经存在则成功退出
+                                并且如果 GID 已被使用则取消 -g
+  -g, --gid GID                 为新组使用 GID
+  -h, --help                    显示此帮助信息并退出
+  -K, --key KEY=VALUE           不使用 /etc/login.defs 中的默认值
+  -o, --non-unique              允许创建有重复 GID 的组
+  -p, --password PASSWORD       为新组使用此加密过的密码
+  -r, --system                  创建一个系统账户
+  -R, --root CHROOT_DIR         chroot 到的目录
+  -P, --prefix PREFIX_DIR       directory prefix
+#+end_src
+
+删除用户组 =groupdel= , 帮助如下
+
+#+begin_src shell
+> groupdel -h
+用法：groupdel [选项] 组
+
+选项:
+  -h, --help                    显示此帮助信息并退出
+  -R, --root CHROOT_DIR         chroot 到的目录
+  -P, --prefix PREFIX_DIR       prefix directory where are located the /etc/* files
+  -f, --force                   即便是用户的主组也继续删除
+#+end_src
+
+更改用户组的属性 =groupmod= .
+
+*** 用户
+
+=/etc/passwd= 存放了用户信息, 格式为
+
+#+begin_src shell
+用户名:口令:用户标识号:组标识号:注释性描述:主目录:登录Shell
+#+end_src
+
+可修改此文件来修改默认的 shell.
+
+添加用户 =useradd= 
+
+#+begin_src shell
+> useradd -h
+用法：useradd [选项] 登录名
+      useradd -D
+      useradd -D [选项]
+
+选项：
+      --badnames                do not check for bad names
+  -b, --base-dir BASE_DIR       新账户的主目录的基目录
+      --btrfs-subvolume-home    use BTRFS subvolume for home directory
+  -c, --comment COMMENT         新账户的 GECOS 字段
+  -d, --home-dir HOME_DIR       新账户的主目录
+  -D, --defaults                显示或更改默认的 useradd 配置
+  -e, --expiredate EXPIRE_DATE  新账户的过期日期
+  -f, --inactive INACTIVE       新账户的密码不活动期
+  -g, --gid GROUP               新账户主组的名称或 ID
+  -G, --groups GROUPS           新账户的附加组列表
+  -h, --help                    显示此帮助信息并退出
+  -k, --skel SKEL_DIR           使用此目录作为骨架目录
+  -K, --key KEY=VALUE           不使用 /etc/login.defs 中的默认值
+  -l, --no-log-init             不要将此用户添加到最近登录和登录失败数据库
+  -m, --create-home             创建用户的主目录
+  -M, --no-create-home          不创建用户的主目录
+  -N, --no-user-group           不创建同名的组
+  -o, --non-unique              允许使用重复的 UID 创建用户
+  -p, --password PASSWORD       加密后的新账户密码
+  -r, --system                  创建一个系统账户
+  -R, --root CHROOT_DIR         chroot 到的目录
+  -P, --prefix PREFIX_DIR       prefix directory where are located the /etc/* files
+  -s, --shell SHELL             新账户的登录 shell
+  -u, --uid UID                 新账户的用户 ID
+  -U, --user-group              创建与用户同名的组
+#+end_src
+
+(不知道 =-p= 参数是如何用的, 最终还是要 =passwd USERNAME= 来设置密码)
+
+* Reference
+
+- Linux Command Line and Shell Scripting
+
+- [[https://www.runoob.com/linux/linux-user-manage.html][鸟哥]]
+

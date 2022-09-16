@@ -1,0 +1,281 @@
+#+TITLE: 从此不再恐惧变分和高阶泛函导数(update 23/Sept/2020) 
+#+DATE: <2020-05-18>
+#+CATEGORIES: 专业笔记
+#+TAGS: 数学
+#+HTML: <!-- toc -->
+#+HTML: <!-- more -->
+
+* 前言
+
+经常碰到, 将对泛的一些认识整理在这里, 以便查找.
+
+* Definition 
+
+通俗地讲, function 的输入是一个数, 输出也是一个数. functional 输入的是一个
+function, 输出是一个数
+\begin{align}
+\mathrm{Function:}&\quad\quad  \mathrm{number: 3} 
+\Rightarrow \mathrm{number: 27} \\
+\mathrm{Functional:}&\quad\quad \mathrm{function:} \frac{e^xx^2}{3}
+\Rightarrow \mathrm{number: 29}
+\end{align}
+更加形象的是 Blundell 书上的漫画.
+
+* Example
+
+functional $G[f]$ 做用到一个 funciton $f$ 上的结果如下
+\begin{align}
+  G[f] = \int_{-a}^a 5[f(x)]^2 \mathrm{d}x
+\end{align}
+那么如果给定一个 function $f(x) = x^2$ , 那么 functional 将会返回下面的 number 
+\begin{align}
+  G[f] = \int_{-a}^a 5x^4 \mathrm{d}x = 2a^5
+\end{align}
+
+* Functional Derivative
+
+类似 function 的导数的定义, functional 的导数的定义如下
+\begin{align}
+  \frac{\delta F}{\delta f(x)} = \lim_{\epsilon\to 0} \frac{F[f(x') + \epsilon \delta(x - x')] - F[f(x')]}{\epsilon} 
+\end{align}
+
+#+BEGIN_QUOTE
+Example:
+
+对于 functional $J[f] = \int [f(y)]^p\varphi(y) \mathrm{d}y$ ,它的泛函导数为
+\begin{align}
+  \frac{\delta J[f]}{\delta f(x)} = \lim_{\epsilon\to 0}\frac{1}{\epsilon}\left[  
+    \int [f(y) + \epsilon \delta(y-x)]^p\varphi(y) \mathrm{d}y - \int [f(y)]^p\varphi(y) \mathrm{d}y
+   \right]
+\end{align}
+是一个 $\frac{0}{0}$ 型的极限, 上下对 $\epsilon$ 求导得
+\begin{align}
+  \frac{\delta J[f]}{\delta f(x)} =& \lim_{\epsilon\to 0}\frac{1}{1}\left[  
+    p\int [f(y) + \epsilon \delta(y-x)]^{p-1}\varphi(y)\delta(y - x) \mathrm{d}y 
+   \right] \\
+=& \left[  
+    p\int f(y) ^{p-1}\varphi(y)\delta(y - x) \mathrm{d}y 
+   \right] \\
+=& p f(x) ^{p-1}\varphi(x)
+\end{align}
+与幂指数型的 function 求导有类似的结果.
+#+END_QUOTE
+
+#+BEGIN_QUOTE
+Example:
+
+对于 functional $F[f(x)] = \int_a^b g(f') \mathrm{d}x$ , 它的泛函导数为
+\begin{align}
+  \frac{\delta F[f]}{\delta f(x)} =& \lim_{\epsilon\to 0}
+  \frac{1}{\epsilon}\left[  
+    \int_a^b g[f'(y) + \epsilon \delta'(y-x)] \mathrm{d}y - \int_a^b g[f'(y)] \mathrm{d}y 
+   \right] \\
+  =& \lim_{\epsilon\to 0}
+    \frac{\mathrm{d}}{\mathrm{d}\epsilon}\left[  
+    \int_a^b g[f'(y) + \epsilon \delta'(y-x)] \mathrm{d}y 
+   \right] \\
+=&    \int_a^b \frac{\mathrm{d}g }{\mathrm{d}f'}
+     \delta'(y-x) \mathrm{d}y  \\
+\end{align}
+上式中 $\delta'(y-x)$ 是没法处理的, 但是我们可以用分部积分法
+\begin{align}
+  \frac{\delta F[f]}{\delta f(x)} =&  \int_a^b \frac{\mathrm{d}g }{\mathrm{d}f'}
+     \delta'(y-x) \mathrm{d}y  \\
+   = & \left.\frac{\mathrm{d}g }{\mathrm{d}f'}
+     \delta(y-x)\right|_{y=a}^{y=b} - 
+ \int_a^b\mathrm{d}y \cdot \frac{\mathrm{d}}{\mathrm{d}x}\left( \frac{\mathrm{d}g }{\mathrm{d}f'} \right)
+   \delta(y-x)
+\end{align}
+由于原来泛函中的积分区间是 $(a, b)$ , 所以 $y\in(a, b)$ 才有意义, 不然变分恒为零.
+因此 $\delta(a-x) = \delta(b-x) = 0$ . 最终的泛函导数为
+\begin{align}
+  \frac{\delta F[f]}{\delta f(x)} =& - 
+ \int_a^b\mathrm{d}y \cdot \frac{\mathrm{d}}{\mathrm{d}x}\left( \frac{\mathrm{d}g }{\mathrm{d}f'} \right)
+   \delta(y-x) \\
+  =& - \frac{\mathrm{d}}{\mathrm{d}x}\left( \frac{\mathrm{d}g }{\mathrm{d}f'} \right)
+\end{align}
+#+END_QUOTE
+
+* High Order Derivative
+
+functional 最 general 的导数的定义来来自于它的 Taylor 展开.
+
+对于一个给定的任意函数 $f(x)$ , 它的任意无穷小的 variation $\delta f(x)$ 可以记为
+\begin{align}
+  \delta f(x) = \epsilon \eta (x)
+\end{align}
+其中 $\epsilon$ 是一个无穷小的数, $\eta(x)$ 是一个任意的函数. 
+
+进而, 定义一个 functional $F[f]$ 的 variation $\delta F$ 为
+\begin{align}
+  \delta F \equiv F[f + \delta f] - F[f]
+\end{align}
+可以看出, $F[f + \delta f]$ 关于 $\epsilon$ 是一个函数, 也就是说给定一个 $\epsilon$ , 就会得到一
+个数. 因此, 可以对这个关于 $\epsilon$ 的函数在 $\epsilon = 0$ 处做 Taylor 展开
+\begin{align}
+  F[f + \epsilon \eta] = F[f] + \left.\frac{\mathrm{d} F[f + \epsilon \eta]}{\mathrm{d}\epsilon}\right|_{\epsilon=0}\epsilon
+  + \frac{1}{2}\left.\frac{\mathrm{d}^2 F[f + \epsilon \eta]}{\mathrm{d}\epsilon^2}\right|_{\epsilon=0}\epsilon^2
+  + \cdots
+\end{align}
+根据这个展开, 可以定义泛函的一阶导数为
+\begin{align}
+  \left.\frac{\mathrm{d} F[f + \epsilon \eta]}{\mathrm{d}\epsilon}\right|_{\epsilon=0}
+  \equiv \int \mathrm{d}x_1 \frac{\delta F[f]}{\delta f(x_1)} \eta (x_1)
+\end{align}
+发现如果这里取 $\eta(x_1) = \delta x - x_{1}$ , 那么就与之前定义的泛函导数 $\frac{\delta F}{\delta
+f(x)}$ 是一致的.
+
+为什么要将对 $\epsilon$ 的一阶项定义为泛函导数的积分, 而不是直接定义成泛函层数, 可以借
+助 Simons 书中将泛函理解成多变量函数在变量无穷多时的极限, 泛函导数对应成多变量函
+数对某个变量的偏微分. 也就是
+| 多变量函数                                            | functional                                                                                                             |   |
+| $F(f_1, f_2, \cdots , f_n)$                                  | $F[f(x)]$                                                                                                              |   |
+| $\frac{\partial F}{\partial f_i}$                                    | $\frac{\delta F}{\delta f(x)}$                                                                                                 |   |
+| $\mathrm{d}F = \sum_{i=1}^n \frac{\partial F}{\partial f_i}\mathrm{d}f$ | $\left[\frac{\mathrm{d} F[f + \epsilon \eta]}{\mathrm{d}\epsilon}\right] _{\epsilon=0} = \int  \frac{\delta F[f]}{\delta f(x_1)} \eta (x_1)\mathrm{d}x_1$  |   |
+
+因此, 类比一阶导数, 可以根据 Taylor 展开的 $\epsilon$ 的二阶项定义泛函的二阶导数
+$\frac{\delta^2 F[f]}{\delta f(x_1)\delta f(x_2)}$ 为
+\begin{align}
+  \left.\frac{\mathrm{d}^2 F[f + \epsilon \eta]}{\mathrm{d}\epsilon^2}\right|_{\epsilon=0}
+  \equiv \int \mathrm{d}x_1 \int\mathrm{d}x_2 \frac{\delta^2 F[f]}{\delta f(x_1)\delta f(x_2)} \eta (x_1) \eta(x_2)
+\end{align}
+同样可以定义更高阶的导数, 不再多说. 
+
+求泛函导数可以根据极限的定义求, 如前面几个求一阶导数的例子. 还有一种方法就是按照
+$\epsilon$ Taylor 展开, 然后对应得到导数, 下面举几个用这种方法求高阶导数的例子.
+
+* Example of High Order Derivative
+
+** Thomas-Fermi kinetic energy
+
+参考 Ref[4] 中的例子, The energy functional of the simplest DFT, the
+Thomas-Fermi kinetic energy 
+\begin{align}
+  F_{\mathrm{TF}} [n] \equiv T^{\mathrm{TF}}_{\mathrm{s}}[n] = C_{\mathrm{TF}} 
+    \int \mathrm{d}^3r\cdot  n^{5/3} (\vec{r})
+\end{align}
+因此
+\begin{align}
+  \delta F_{\mathrm{TF}} =& F_{\mathrm{TF}}[n + \epsilon \eta] - F_{\mathrm{TF}}[n] \\
+    =& C_{\mathrm{TF}} \int \mathrm{d}r^3\cdot [(n + \epsilon \eta)^{5/3} - n^{5/3}] \\
+    =& C_{\mathrm{TF}} \int \mathrm{d}r^3\cdot \left[\frac{5}{3}n^{2/3}\epsilon \eta 
+       + \frac{1}{2}\cdot \frac{10}{9}n^{-1/3}\epsilon^2\eta^2 + \cdots \right]
+\end{align}
+对比定义就可以得到泛函的一阶导数
+\begin{align}
+  \frac{\delta F_{\mathrm{TF}}}{\delta n(\vec{r}) } = \frac{5}{3}C_{\mathrm{TF}} n(\vec{r})^{2/3}
+\end{align}
+泛函的二阶导数
+\begin{align}
+  \frac{\delta^2 F_{\mathrm{TF}}}{\delta n(\vec{r}_1)\delta n(\vec{r}_2) } 
+   = \frac{10}{9}C_{\mathrm{TF}} n(\vec{r})^{-1/3}\delta^3\left(\vec{r_1} - \vec{r_2}\right)
+\end{align}
+从上式可以看出泛函的二阶导数是对角的.
+
+** Stationary Phase Approximation of a Single Particle Path Integral
+
+此例子在 Simons 书的的第 110 页.
+
+单粒子在势 $V(r)$ 中, 它的传播子为
+\begin{align}
+  \langle q_f | e^{-\frac{\mathrm{i}}{\hbar}\hat{H}t}|q_i\rangle = \int_{q(t)=q_f, q(0)= q_i} Dq\cdot
+    e^{\frac{\mathrm{i}}{\hbar}S[q]}
+\end{align}
+其中 $S[q] = \int_0^t \mathrm{d}t'L(q, \dot{q})$ , $L(q, \dot{q})
+=\frac{m\dot{q}^2}{2} - V(q)$ 
+
+对它在经典路径 $q_{\mathrm{cl}}(t)$ 附近做 stationary phase approximation , 并记
+$r(t) = q(t) - q_{\mathrm{cl}}(t)$ , 它的传播子可近似为
+\begin{align}
+  \langle q_f | e^{-\frac{\mathrm{i}}{\hbar}\hat{H}t}|q_i\rangle \approx e^{\frac{\mathrm{i}}{\hbar}S[q_{\mathrm{cl}}]}
+    \int_{r(t)=r(0)=0} Dq\cdot    e^{\frac{\mathrm{i}}{2\hbar}\int_0^t\mathrm{d}_{1}\int_0^t\mathrm{d}_2 r(t_{1})
+      \frac{\delta^2 S[q]}{\delta q(t_1)\delta q(t_2)} r(t_2)}
+\end{align}
+其中, 作用量泛函的二阶导数 $\frac{\delta^2 S[q]}{\delta q(t_1)\delta q(t_2)}$ 可以用上面
+的 Taylor 展开法求.
+\begin{align}
+\delta S =& S[q_{\mathrm{cl}} + r(t)] - S[q_{\mathrm{cl}}(t)] \\
+   =& \int_0^t\mathrm{d}t' \cdot\left\{ \frac{m}{2}\left[\partial_{t'}( q_{\mathrm{cl}} + r)\right]^2 - V(q_{\mathrm{cl}} + r) 
+    -\frac{m}{2}\left[\partial_{t'} q_{\mathrm{cl}} \right]^2 + V(q_{\mathrm{cl}}) \right\} \\
+   = & \int_0^t\mathrm{d}t' \cdot\left\{O(r) + \frac{m}{2} (\partial_{t'}r)^2 - \frac{1}{2}V''(q_{\mathrm{cl}})r^2
+    + O(r^{3}) + \cdots\right\}
+
+\end{align}
+其中 $O(r^n)$ 表示 $r^n$ 阶项. 可以用分部积分法做如下变换
+\begin{align}
+  \int_0^t \mathrm{d}t'\cdot \left[\partial_{t'}r(t')\right] \left[\partial_{t'}r(t')\right]
+  =& \left.r(t')\partial_{t'}r(t')\right|_0^t - \int_0^t \mathrm{d}t'\cdot r(t')\partial_{t'}^{2}r(t') \\
+  = & - \int_0^t \mathrm{d}t'\cdot r(t')\partial_{t'}^{2}r(t')
+\end{align}
+最终得到作用量泛函的二阶导数 $\frac{\delta^2 S[q]}{\delta q(t_1)\delta q(t_2)}$ 为
+\begin{align}
+  \frac{\delta^2 S[q]}{\delta q(t_1)\delta q(t_2)} 
+    = -\delta(r_1 - r_2)\left[m\partial_{t_2}^2 + V''q_{\mathrm{cl}}(t_2)\right]
+\end{align}
+
+* Chain Rule for Functions to Functionals
+
+对于泛函导数的链式法则, 首先要说明的是, 如 Ref[2] 中指出的, 并不存在 the
+functional of a functional, 存在的是  functions to functional. 
+
+比如 functional $F$ 依赖于 function $G(y)$ . 而 $G$ 是 $f(x)$ 的 functional, 记
+做 $G[f](y)$ . 这样的话, $F$ 也是 $f(x)$ 的 functinal, 根据定义, 它对 $f$ 的变分
+就为
+\begin{align}
+      \left.\frac{\mathrm{d}F[G[f(x) + \epsilon \eta(x)](y)]}{\mathrm{d}\epsilon}\right|_{\epsilon=0}
+     = \int \frac{\delta F[f]}{\delta f(x)}  \eta (x) \mathrm{d}x 
+\end{align}
+如果我们把 $G[f(x) + \epsilon \eta(x)](y)$ 展成 $G$ 对 $f$ 的泛函导数
+\begin{align}
+  G[f(x) + \epsilon \eta(x)](y) =& G[f(x)](y) + \int \frac{\delta G[f](y)}{\delta f(x)} \epsilon \eta(x) \mathrm{d}x +\mathcal{O}(\epsilon^2) \\
+     =& G[f(x)](y) + \epsilon\bar{\eta}(y) +\mathcal{O}(\epsilon^2)
+\end{align}
+上式中第二个等号是对 $\bar{\eta}(y)$ 的定义. 把上式带回到 $F$ 对 $f(x)$ 的泛函导数定
+义中, 就会发现它是 $F$ 对 $G(y)$ 的泛函导数的形式
+\begin{align}
+      \left.\frac{\mathrm{d}F[G[f(x)](y) + \epsilon \bar{\eta}(y)]}{\mathrm{d}\epsilon}\right|_{\epsilon=0}
+     = \int \frac{\delta F[f]}{\delta G(y)}  \bar{\eta} (y) \mathrm{d}y
+\end{align}
+对比就可以知道 $F$ 对 $f(x)$ 的泛函导数 $\frac{\delta F}{\delta f(x)}$ 与  $F$ 对 $G(y)$
+的泛函导数 $\frac{\delta F}{\delta G(y)}$ 之间的关系了 
+\begin{align}
+  \int \frac{\delta F[f]}{\delta f(x)}  \eta (x) \mathrm{d}x  =& \int \frac{\delta F[f]}{\delta G(y)}  \bar{\eta} (y) \mathrm{d}y \\
+  =& \int \int \frac{\delta F[f]}{\delta G(y)}  \frac{\delta G[f](y)}{\delta f(x)} \eta(x) \mathrm{d}x     \mathrm{d}y
+\end{align}
+也就是
+\begin{align}
+   \frac{\delta F[f]}{\delta f(x)} = \int \frac{\delta F[f]}{\delta G(y)}  \frac{\delta G[f](y)}{\delta f(x)}  \mathrm{d}y
+\end{align}
+这就是泛函导数的链式法则. 上式也可以通过 Simons 书中将泛函看成是多元函数的极限来
+用多元函数求导的链式法则来理解.
+
+* Product Rule of Functional differentiation
+
+直接用泛函导数的定义就可以得到
+\begin{align}
+  &\left. \frac{\mathrm{d}\left( F_1[f + \epsilon \eta] F_2[f + \epsilon \eta] \right) }{\mathrm{d}\epsilon} \right|_{\epsilon = 0} \\
+  =& \left. \frac{\mathrm{d} F_1[f + \epsilon \eta] }{\mathrm{d}\epsilon}  F_2[f + \epsilon \eta] \right|_{\epsilon = 0}
+    +\left. F_1[f + \epsilon \eta] \frac{\mathrm{d} F_2[f + \epsilon \eta] }{\mathrm{d}\epsilon}  \right|_{\epsilon = 0}
+\end{align}
+也就是说
+\begin{align}
+  \frac{\delta(F_1F_2)}{\delta f(x)} = \frac{\delta F_1}{\delta f(x)} F_2 + F_1\frac{\delta F_2}{\delta f(x)} 
+\end{align}
+
+* Reference
+
+- [1] Tom Lancaster, Stephen J. Blundell, Quantum Field Theory for the Gifted
+  Amateur, 2014, Oxford University Press
+
+- [2] https://math.stackexchange.com/questions/235769/is-there-a-chain-rule-for-functional-derivatives 
+
+- [3] Appendix A of Density Functional Theory An Advanced Course by Eberhard
+  Engel, Reiner M. Dreizler:
+  https://link.springer.com/content/pdf/bbm%3A978-3-642-14090-7%2F1.pdf 
+
+- [4] Altland Alexander, Simons Ben D., Condensed Matter Field Theory, Second
+  Edition-Cambridge University Press (2010) 
+
+- [5]
+  https://physics.stackexchange.com/questions/251265/how-to-calculate-the-second-functional-derivative-of-the-action-of-a-one-particl/581476#581476 
+  

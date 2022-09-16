@@ -1,0 +1,63 @@
+#+TITLE: two body density matrix
+#+DATE: <2021-03-01>
+#+CATEGORIES: 专业笔记
+#+TAGS: two body, density matrix
+#+HTML: <!-- toc -->
+#+HTML: <!-- more -->
+
+两体密度矩阵
+\begin{align}
+        \rho(\mathbf{r}, \mathbf{r}'; \mathbf{r}_1)
+         \equiv \langle \Psi |
+         \psi^{\dagger}(\mathbf{r}) \psi^{\dagger}(\mathbf{r}_1)
+                         \psi(\mathbf{r}_1) \psi(\mathbf{r'})
+                | \Psi \rangle
+            = \phi^*(\mathbf{r}, \mathbf{r}_1)\phi(\mathbf{r}_1, \mathbf{r}')
+    \end{align}
+其中 $|\Psi\rangle$ 是两体态
+\begin{align}
+        | \Psi \rangle = \int \mathrm{d} \mathbf{r}_3
+                         \int \mathrm{d} \mathbf{r}_4\cdot
+                         \phi (\mathbf{r}_3, \mathbf{r}_4)\cdot
+                \psi^{\dagger}(\mathbf{r}_3) \psi^{\dagger}(\mathbf{r}_4)
+                | 0 \rangle
+\end{align}
+\begin{align}
+        \langle \Psi| = \int \mathrm{d} \mathbf{r}_5
+                         \int \mathrm{d} \mathbf{r}_6\cdot
+                         \phi^{*} (\mathbf{r}_5, \mathbf{r}_6)\cdot
+                \langle 0 |\psi(\mathbf{r}_6) \psi(\mathbf{r}_5)
+\end{align}
+所以
+\begin{align}
+  \rho(\mathbf{r}, \mathbf{r}'; \mathbf{r}_1)
+   = &\int \mathrm{d} \mathbf{r}_3 \int \mathrm{d} \mathbf{r}_4
+     \int \mathrm{d} \mathbf{r}_5\int \mathrm{d} \mathbf{r}_6\cdot
+        \phi^{*} (\mathbf{r}_5, \mathbf{r}_6)\phi (\mathbf{r}_3, \mathbf{r}_4)\\
+  &\langle 0 |
+       \psi(\mathbf{r}_6) \psi(\mathbf{r}_5)\cdot
+         \psi^{\dagger}(\mathbf{r}) \psi^{\dagger}(\mathbf{r}_1)
+                         \psi(\mathbf{r}_1) \psi(\mathbf{r'})\cdot
+                \psi^{\dagger}(\mathbf{r}_3) \psi^{\dagger}(\mathbf{r}_4)
+    |0\rangle \\
+   =&\int \mathrm{d} \mathbf{r}_3 \int \mathrm{d} \mathbf{r}_4
+     \int \mathrm{d} \mathbf{r}_5\int \mathrm{d} \mathbf{r}_6\cdot
+        \phi^{*} (\mathbf{r}_5, \mathbf{r}_6)\phi (\mathbf{r}_3, \mathbf{r}_4)\\
+  &\left[ \delta (\mathrm{r} - \mathrm{r}_{5}) \delta(\mathrm{r}_1 - \mathrm{r}_{6})
+         -\delta (\mathrm{r} - \mathrm{r}_6) \delta(\mathrm{r}_1 - \mathrm{r}_5) \right]\cdot
+    \left[ \delta (\mathrm{r}' - \mathrm{r}_3) \delta(\mathrm{r}_1 - \mathrm{r}_4)
+         -\delta (\mathrm{r}' - \mathrm{r}_4) \delta(\mathrm{r}_1 - \mathrm{r}_3) \right]
+\end{align}
+so
+\begin{align}
+        \rho(\mathbf{r}, \mathbf{r}'; \mathbf{r}_1)
+        = \sharp \phi^*(\mathbf{r}, \mathbf{r}_1)\phi(\mathbf{r}_1, \mathbf{r}')
+\end{align}
+
+
+* Reference
+
+- Harald Siegfried Friedrich, Theoretical Atomic Physics-Springer (2005) Chap
+  1.4.1
+
+

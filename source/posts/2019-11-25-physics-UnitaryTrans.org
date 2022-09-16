@@ -1,0 +1,423 @@
+#+TITLE: 厄米矩阵及其幺正对角化
+#+DATE: <2019-11-25>
+#+CATEGORIES: 专业笔记
+#+TAGS: 数学, 幺正变换
+#+HTML: <!-- toc -->
+#+HTML: <!-- more -->
+
+* Intro: 实对称矩阵的正交对角化
+
+
+
+* 厄米矩阵的幺正对角化
+
+接下来在复变量的范围内考虑, 也就是矩阵元都在复数的范围内讨论.
+
+**  厄米矩阵
+
+*** 定义
+
+厄米矩阵定义为满足
+\begin{align}
+  U^{\dagger} \equiv U
+\end{align}
+的矩阵.
+
+*** $2\times 2$
+
+比如对于一个 $2\times 2$ 的厄米矩阵应满足
+\begin{align}
+  \left(\begin{array}{cc}
+    a  & b \\
+    c  & d \\
+  \end{array}\right)
+  =
+  \left(\begin{array}{cc}
+    a^{*}  & c^{*} \\
+    b^{*}  & d^{*} \\
+  \end{array}\right)
+\end{align}
+得
+\begin{align}
+  a^{*} &= a \\
+  d^{*} &= d \\
+  b^{*} &= c \\
+  c^{*} &= b
+\end{align}
+也就是说 $a, d$ 都是实数, $b, c$ 互为复共轭. 所以 $2\times 2$ 的厄米矩阵最一般的
+形式可以写为
+\begin{align}
+  \left(\begin{array}{cc}
+    u  & r^{e^{-\mathrm{i}\phi}} \\
+    r^{e^{\mathrm{i}\phi}}  & v  \\
+  \end{array}\right)
+\end{align}
+其中 $u, v, r, \phi$ 都是实数. 可见,  $2\times 2$ 的厄米矩阵中四个独立的实变量.
+本来 $2\times 2$ 的矩阵有八个变量嘛, 对角元是实数, 去掉两个独立实变量, 非对角元的
+互为复共轭, 再去年两个, 还剩下四个.
+
+*** $n\times n$
+
+更一般地, 可以证明, 对于 $n\times n$ 的厄米矩阵, 对角元都是实的, 非对角元是一组
+互为复共轭的复数, 有 $n^2$ 个独立实变量, 正好相当于一个实矩阵的独立变量个数.
+
+*** 性质 
+
+- 厄米矩阵的本征值都是实数.
+- 厄米矩阵对应不同特征值的特征向量相互正交.
+
+** 幺正矩阵
+
+*** 定义
+
+幺正矩阵定义为
+\begin{align}
+  U U^{\dagger} \equiv 1
+\end{align}
+其中 $1$ 表示单位矩阵. 等价地
+\begin{align}
+  U^{\dagger} \equiv U^{-1}
+\end{align}
+
+*** $2\times 2$
+
+$2\times 2$ 的幺正矩阵应满足
+\begin{align}
+  \left(\begin{array}{cc}
+    a  & b \\
+    c  & d \\
+  \end{array}\right)
+  \left(\begin{array}{cc}
+    a^{*}  & c^{*} \\
+    b^{*}  & d^{*} \\
+  \end{array}\right)
+  =   
+ \left(\begin{array}{cc}
+    1  & 0 \\
+    0  & 1 \\
+  \end{array}\right)
+\end{align}
+也就是
+\begin{align}
+  |a|^2 + |b|^2 =& 1 \\
+  |c|^2 + |d|^2 =& 1 \\
+  a^{*}c + b^{*}d =& 0 \\
+  ac^{*} + bd^{*} =& 0 
+\end{align}
+同样, 由 $U^{\dagger}U =1$ 可得
+\begin{align}
+  |a|^2 + |c|^2 =& 1 \\
+  |b|^2 + |d|^2 =& 1 
+\end{align}
+所以它和行列都正交
+\begin{align}
+  |a|^2 + |b|^2 =& 1 \\
+  |c|^2 + |d|^2 =& 1 \\
+  |a|^2 + |c|^2 =& 1 \\
+  |b|^2 + |d|^2 =& 1 \\
+\end{align}
+只剩下四个独立的实变量.
+
+它最一般的形式可以表示为
+\begin{align}
+  \left(\begin{array}{cc}
+    e^{\mathrm{i}\alpha}\cos\theta  & -e^{\mathrm{i}\alpha}e^{\mathrm{i}\phi}\sin\theta \\
+    e^{\mathrm{i}\beta}e^{-\mathrm{i}\phi}\sin\theta  & e^{\mathrm{i}\beta}\cos\theta \\
+  \end{array}\right)
+\end{align}
+总之, 它有四个独立的实变量.
+
+*** 问题
+
+厄米矩阵一定可以通过幺正变换对角化吗?
+
+* 例: BCS Mean-Field Hamiltonian 的对角化
+
+BCS 平均场的 Hamiltonian 为
+\begin{align}
+  H_{\mathrm{MF}} = \sum_{\vec{k}}\left\{
+                     \left(\hat{c}^{\dagger}_{\vec{k}, \uparrow}\quad \hat{c}_{-\vec{k}, \downarrow}\right)
+                     \left(\begin{array}{cc}
+                       \epsilon_{\vec{k}} - \mu & \Delta\\
+                       \Delta^{*} & -(\epsilon_{\vec{k}} - \mu)
+                      \end{array}\right)
+                      \left( \begin{array}{c}
+                           \hat{c}_{\vec{k}, \uparrow} \\
+                           \hat{c}^{\dagger}_{-\vec{k}, \downarrow}
+                       \end{array} \right)
+                     + (\epsilon_{\vec{k}} - \mu)
+                    \right\}
+                     - \frac{V}{g}|\Delta|^2
+\end{align}
+下面考虑对角化其中写成矩阵的部分
+\begin{align}
+  H_0(\vec{k}) = \left(\hat{c}^{\dagger}_{\vec{k}, \uparrow}\quad \hat{c}_{-\vec{k}, \downarrow}\right)
+                     \left(\begin{array}{cc}
+                       \epsilon_{\vec{k}} - \mu & \Delta\\
+                       \Delta^{*} & -(\epsilon_{\vec{k}} - \mu)
+                      \end{array}\right)
+                      \left( \begin{array}{c}
+                           \hat{c}_{\vec{k}, \uparrow} \\
+                           \hat{c}^{\dagger}_{-\vec{k}, \downarrow}
+                       \end{array} \right)
+\end{align}
+为了方便, 省略一部分下标 $\vec{k}$ , 并记 $\epsilon_{\vec{k}} - \mu =
+\xi_{\vec{k}}$ , $k = (\vec{k}, \uparrow), -k=(-\vec{k}, \downarrow)$
+\begin{align}
+  H_0 = \left(\hat{c}^{\dagger}_k\quad \hat{c}_{-k}\right)
+                     \left(\begin{array}{cc}
+                       \xi & \Delta\\
+                       \Delta^{*} & -\xi
+                      \end{array}\right)
+                      \left( \begin{array}{c}
+                           \hat{c}_k \\
+                           \hat{c}^{\dagger}_{-k}
+                       \end{array} \right)
+\end{align}
+它是厄米的, 试图通过幺正变换将其对角化
+\begin{align}
+  H_0 = \left(\hat{c}^{\dagger}_k\quad \hat{c}_{-k}\right)
+                       U U^{\dagger}
+                     \left(\begin{array}{cc}
+                       \xi & \Delta\\
+                       \Delta^{*} & -\xi
+                      \end{array}\right) 
+                       U U^{\dagger}
+                      \left( \begin{array}{c}
+                           \hat{c}_k \\
+                           \hat{c}^{\dagger}_{-k}
+                       \end{array} \right)
+\end{align}
+两样, 比较特别, 这个厄米矩阵还是 traceless 的, 也就是对角元的和为 0 .那它的本征
+值可以直接得到两个本征值为 $\pm E$ , 其中
+\begin{align}
+  E = \sqrt{|\Delta|^2 + \xi^2}
+\end{align}
+将本征值带回来解本征矢
+\begin{align}
+   \left(\begin{array}{cc}
+   \xi & \Delta\\
+   \Delta^{*} & -\xi
+   \end{array}\right) 
+   \left(\begin{array}{c}
+   C_{1\pm}\\
+   C_{2\pm}
+   \end{array}\right)  
+   = \pm E
+   \left(\begin{array}{c}
+   C_{1\pm}\\
+   C_{2\pm}
+   \end{array}\right)  
+\end{align}
+可得
+\begin{align}
+  \frac{C_{1\pm}}{C_{2\pm}} 
+   = \frac{\Delta}{\pm E - \xi}
+\end{align}
+对于幺正矩阵来说
+\begin{align}
+  |C_{1\pm}|^2 + |C_{2\pm}|^2 = 1
+\end{align}
+有
+\begin{align}
+   \left(\begin{array}{c}
+   C_{1\pm}\\
+   C_{2\pm}
+   \end{array}\right)  
+  =
+  \left(\begin{array}{c}
+   \frac{\Delta}{\sqrt{2E(E\mp \xi)}}\\
+   \frac{\pm E - \xi}{\sqrt{2E(E\mp \xi)}}
+   \end{array}\right)  
+  =
+  \left(\begin{array}{c}
+   \frac{\Delta}{\sqrt{2E(E\mp \xi)}}\\
+   \frac{\pm |\Delta|}{\sqrt{2E(E\pm \xi)}}
+   \end{array}\right)  
+\end{align}
+可以看出, 很明显
+\begin{align}
+  |C_{1+}|^2 + |C_{1-}|^2 = 1\\
+  |C_{2+}|^2 + |C_{2-}|^2 = 1 \\
+  C_{1\pm} = \mp C_{2\mp}e^{\mathrm{i}\phi} 
+\end{align}
+其中 $\phi$ 是 $\Delta$ 的相位, 即 $\phi = \mathrm{Arg} (\Delta)$ . 所以
+\begin{align}
+  U^{\dagger} =
+   \left(\begin{array}{cc}
+    C_{1+} & C_{2+} \\
+    C_{1-} & C_{2-}
+   \end{array}\right) 
+   =
+   \left(\begin{array}{cc}
+    -C_{2-} e^{\mathrm{i}\phi} & C_{2+} \\
+    C_{2+} e^{\mathrm{i}\phi}  &  C_{2-}
+   \end{array}\right) 
+\end{align}
+
+由它们的具体表达式可以看出, $C_{2\pm}$ 是实的. 它们有三个独立的实变量. 而一般的
+ $2\times 2$ 的幺正有四个独立的实变量. 这里少了一个, 是因为厄米矩阵的两对角元中
+ 只有一个实变量, 也少了一个.
+
+采用新的记号
+\begin{align}
+  u &= C_{2-} \\
+  v &= -C_{2+}
+\end{align}
+变为
+\begin{align}
+  U^{\dagger} =
+   \left(\begin{array}{cc}
+    -u e^{\mathrm{i}\phi} & -v \\
+    -v e^{\mathrm{i}\phi} & u
+   \end{array}\right) 
+\end{align}
+这里, 关于 $\Delta$ 的相位 $\phi$ 的问题, 我还没有完全弄清楚, 有些地方(Reference
+[3])说:
+#+BEGIN_QUOTE
+These phases may beabsorbed into the definitions of the fermion operators
+themselves.
+#+END_QUOTE
+而同老师讲义中说
+#+BEGIN_QUOTE
+对空间平移对称的情况, 可取为实数, 即定相位为零.
+
+(当空间不均匀时, 及讨论不同超导体连接时, $\phi$ 不可忽略).
+#+END_QUOTE
+接下来的处理, 可以理解为将相位吸收到 Fermionic 算符的定义中去, 而不放在
+$U^{\dagger}$ 中, 这样新的基矢为 
+\begin{align}
+   \left(\begin{array}{c}
+    \alpha\\
+    \beta'
+   \end{array}\right)
+  =    \left(\begin{array}{cc}
+    -u e^{\mathrm{i}\phi} & -v \\
+    -v e^{\mathrm{i}\phi} & u
+   \end{array}\right) 
+\left( \begin{array}{c}
+       -e^{\mathrm{i}\phi}\hat{c}_k \\
+       \hat{c}^{\dagger}_{-k}
+       \end{array} \right) \\
+  =  \left( \begin{array}{cc}
+       u & -v \\
+       v & u
+       \end{array} \right) 
+\left( \begin{array}{c}
+       \hat{c}_k \\
+       \hat{c}^{\dagger}_{-k}
+       \end{array} \right) 
+\end{align}
+或者是理解这里选 $\phi = -\pi$ , 那么 $-e^{\mathrm{i}\phi} = 1$ , 同样也得到
+\begin{align}
+   \left(\begin{array}{c}
+    \alpha\\
+    \beta'
+   \end{array}\right)
+    =  \left( \begin{array}{cc}
+       u & -v \\
+       v & u
+       \end{array} \right) 
+\left( \begin{array}{c}
+       \hat{c}_k \\
+       \hat{c}^{\dagger}_{-k}
+       \end{array} \right) 
+\end{align}
+总之, 搞定这个相位之后有
+\begin{align}
+  U^{\dagger} = \left( \begin{array}{cc}
+                 u & -v \\
+                 v & u
+                \end{array} \right)
+\end{align}
+而新的基矢
+\begin{align}
+   \left(\begin{array}{c}
+    \alpha\\
+    \beta'
+   \end{array}\right)
+    =  U^{\dagger}
+\left( \begin{array}{c}
+       \hat{c}_k \\
+       \hat{c}^{\dagger}_{-k}
+       \end{array} \right) 
+    =  \left( \begin{array}{cc}
+       u & -v \\
+       v & u
+       \end{array} \right) 
+\left( \begin{array}{c}
+       \hat{c}_k \\
+       \hat{c}^{\dagger}_{-k}
+       \end{array} \right) 
+\end{align}
+这样, 就得到, 经过变换后
+\begin{align}
+  H_0 =& \left(\hat{c}^{\dagger}_k\quad \hat{c}_{-k}\right)U
+                     \left(\begin{array}{cc}
+                       E & 0\\
+                       0 & -E
+                      \end{array}\right) U^{\dagger}
+                      \left( \begin{array}{c}
+                           \hat{c}_k \\
+                           \hat{c}^{\dagger}_{-k}
+                       \end{array} \right) \\
+=& \left(\alpha^{\dagger}\quad \beta'^{\dagger}\right)
+                     \left(\begin{array}{cc}
+                       E & 0\\
+                       0 & -E
+                      \end{array}\right)
+                      \left(\begin{array}{c}
+                     \alpha\\
+                     \beta'
+                     \end{array}\right) \\
+=& E \left(\alpha^{\dagger} \alpha - \beta'^{\dagger} \beta' \right)
+\end{align}
+可以看出, 准粒子 $\alpha$ 的激发能是 $E$ , 而准粒子 $\beta'$ 的激发能是 $-E$
+. 为了使基态是准粒子的真空态, 所有准粒子的激发能应该都是非负的, 所以定义新的准粒
+子
+\begin{align}
+  \beta = \beta'^{\dagger}
+\end{align}
+这时
+\begin{align}
+  H_0 = E(\alpha^{\dagger}\alpha - \beta\beta^{\dagger}) 
+      = E(\alpha^{\dagger}\alpha + \beta\beta^{\dagger}) -E
+\end{align}
+
+所以最终有
+\begin{align}
+  H_{MF} = \sum_{\vec{k}} \left[ E_{\vec{k}} 
+                                (\alpha_{\vec{k}}^{\dagger}\alpha_{\vec{k}} 
+                                 + \beta_{\vec{k}}^{\dagger}\beta_{\vec{k}}) 
+           + (\epsilon_{\vec{k}} - \mu -E_{\vec{k}} ) \right] 
+           - \frac{V}{g}|\Delta|^2
+\end{align}
+where
+\begin{align}
+   \left(\begin{array}{c}
+    \alpha_{\vec{k}}\\
+    \beta_{\vec{k}}^{\dagger}
+   \end{array}\right)
+    =  U^{\dagger}
+\left( \begin{array}{c}
+       \hat{c}_k \\
+       \hat{c}^{\dagger}_{-k}
+       \end{array} \right) 
+    =  \left( \begin{array}{cc}
+       u_{\vec{k}} & -v_{\vec{k}} \\
+       v_{\vec{k}} & u_{\vec{k}}
+       \end{array} \right) 
+\left( \begin{array}{c}
+       \hat{c}_k \\
+       \hat{c}^{\dagger}_{-k}
+       \end{array} \right) 
+\end{align}
+
+* Reference
+
+[1]
+[[https://ccjou.wordpress.com/%e5%b0%88%e9%a1%8c%e6%8e%a2%e7%a9%b6/hermitian%e5%af%a6%e5%b0%8d%e7%a8%b1%e7%9f%a9%e9%99%a3%e5%b0%88%e9%a1%8c/]]
+
+[2] https://en.wikipedia.org/wiki/Unitary_matrix
+
+[3] https://courses.physics.ucsd.edu/2014/Spring/physics239/LECTURES/CH03.pdf

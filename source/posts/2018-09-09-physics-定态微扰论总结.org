@@ -1,0 +1,447 @@
+#+TITLE: 定态微扰论总结 (update 18/Apr/2020)
+#+DATE: <2018-09-09>
+#+CATEGORIES: 专业笔记
+#+TAGS: 物理, 高等量子力学, 微扰
+#+HTML: <!-- toc -->
+#+HTML: <!-- more -->
+
+* Statement of the Problem
+
+已知 $H_0$ 的精确解：
+\begin{align*}
+H_0 \mid n^{(0)} \rangle = E_n^{(0)} \mid n^{(0)} \rangle
+\end{align*}
+
+$\{ \mid n^{(0)} \rangle\}$ 是一组完备基，也就是 $1 = \sum_n \mid n^{(0)} \rangle \langle n^{(0)} \mid$ ；
+
+求解：
+\begin{align*}
+(H_0 + \lambda V) \mid n \rangle = E_n \mid n \rangle \tag{1}
+\end{align*}
+
+$\mid n \rangle$ 和 $E_n$ 都是 $\lambda$ 的连续函数。
+
+* 核心思路
+
+微扰的核心，把本征态和本征能量按 $\lambda$ 级数展开：
+\begin{align*}
+\mid n \rangle = \mid n^{(0)} \rangle +\lambda \mid n^{(1)} \rangle + \lambda^2 \mid n^{(2)} \rangle+\cdots
+\end{align*}
+
+\begin{align*}
+E_n = E_n^{(0)} +\lambda E_n^{(1)} +\lambda^2 E_n^{(2)} + \cdots
+\end{align*}
+
+* 本征能量修正
+
+从薛定谔方程入手考虑
+\begin{align*}
+(H_0 + \lambda V) \mid n \rangle = E_n \mid n \rangle
+\tag{1}
+\end{align*}
+基本思是把 $E_n$ 直接展开成 $\lambda$ 的级数，同时把薛定谔方程也展开成 $\lambda$ 的级数，然后二者对应相等，即可得出 $\lambda$ 的系数。
+先把方程 $(1)$ 从一个关于态矢的方程变成一个关于数的方程，可以考虑左乘一个左矢。由于 $\langle n^{(0)} \mid$ 是 $H_0$ 的本征矢，所以
+就左乘  $\langle n^{(0)} \mid$ 。由于不知道算符 $V$ 的本征态，而态矢 $\mid n \rangle$ 是最终要求得的量，只能保留。左乘  $\langle n^{(0)} \mid$ 后得到以下方程：
+\begin{align*}
+  \langle n^{(0)} \mid  (H_0 + \lambda V) \mid n \rangle =& \langle n^{(0)} \mid  E_n \mid n \rangle \\
+  \Downarrow &\\
+  \langle n^{(0)} \mid  \lambda V \mid n \rangle =& \langle n^{(0)} \mid  (E_n- E_n^{(0)}) \mid n \rangle \\
+\end{align*}
+记
+\begin{align*}
+\Delta_n \equiv E_n - E_n^{(0)}
+\end{align*}
+求得 $\Delta_n$ 也就求得了 $E_n$ 。如果将新的波函数归一化到 $\langle n^{(0)} \mid$ ，而不是 $\langle n \mid$ ：
+\begin{align*}
+\langle n^{(0)} \mid n \rangle = 1
+\end{align*}
+能量修正就为：
+$$
+\Delta_n = \lambda\langle n^{(0)} \mid V \mid n \rangle
+$$
+也就是 $V$ 在微扰前后的本征态之间的跃迁矩阵元。展开成 $\lambda$ 的级数：
+$$
+\Delta_n = \Delta_n^{(0)} +\lambda\Delta_n^{(1)}+\lambda^2\Delta_n^{(2)}+\cdots
+= \lambda \langle n^{(0)}\mid V(\mid n^{(0)}\rangle +\lambda \mid n^{(1)}\rangle +\lambda^2\mid n^{(2)}\rangle+\cdots)\\\\
+=\lambda\langle n^{(0)}\mid V\mid n^{(0)}\rangle +\lambda^2\langle n^{(0)}\mid V\mid n^{(1)}\rangle+\cdots
+$$
+对应系数相等得 ：
+$$
+\Delta_n^{(0)} = 0
+$$
+$\Delta$ 的零阶当然为 $0$ ，微扰不存在时能级没有移动；
+$$
+\Delta_n^{(1)} = \langle n^{(0)}\mid V\mid n^{(0)}\rangle
+$$
+一阶修正是 $V$ 在无微扰的本征态之间的跃迁；
+$$
+\Delta_n^{(2)} = \langle n^{(0)}\mid V\mid n^{(1)}\rangle
+$$
+二阶修正是 $V$ 在本征态的一阶微扰和无微本征态之间的跃迁；
+$$
+\Delta_n^{(3)} = \langle n^{(0)}\mid V\mid n^{(2)}\rangle \\
+\vdots
+$$
+某一阶能量修正对 $V$ 在应某一阶本征态修正和无微扰本征态之间的跃迁矩阵元。各阶求和的结果就是$V$ 在微扰前后的本征态之间的跃迁矩阵元。
+
+其中有未知的 $\mid n \rangle$ ，是另外一个最终要求得的量。接下来求 $\mid n \rangle$ 。
+
+* 本征态修正
+
+从薛定谔方程入手考虑
+$$
+(H_0 + \lambda V) \mid n \rangle = E_n \mid n \rangle
+\tag{1}
+$$
+将 $(1)$ 式化为
+$$
+(H_0 + \lambda V) \mid n \rangle = (E_n^{(0)} + \Delta_n) \mid n \rangle
+$$
+移项得
+$$
+(E_n^{(0)}-H_0)\mid n \rangle = (\lambda V -\Delta_n)\mid n \rangle
+\tag{2}
+$$
+思路也是把 $\mid n \rangle$ 直接展开成 $\lambda$ 的级数
+\begin{align*}
+\mid n \rangle = \mid n^{(0)} \rangle +\lambda \mid n^{(1)} \rangle + \lambda^2 \mid n^{(2)} \rangle+\cdots
+\end{align*}
+同时把薛定谔方程也展开成 $\lambda$ 的级数，然后二者对应相
+等，即可得出 $\lambda$ 的系数。同样， $H_0$ 的所有信息都是
+已知的，不想让它作为算符存在，而是以它的本征值的形式存在。最终将要
+求得的 $\mid n^{(1)} \rangle$ ， $\mid n^{(2)} \rangle$ ……应该是
+在基底 $\{\mid n^{(0)}\rangle\}$ 下的表示形式，所以只要求得它在这组基底下的系数 $\langle n'^{(0)}\mid n \rangle$ 即可。故
+将方程 $(2)$ 左乘 $\langle n'^{(0)} \mid$ 是最佳选择：
+\begin{align*}
+  \langle n'^{(0)} \mid (E_n^{(0)}-H_0)\mid n \rangle =&\langle n'^{(0)} \mid  (\lambda V -\Delta_n)\mid n \rangle \\
+  \Downarrow & \\
+  (E_n^{(0)}-E_{n'}^{(0)})\langle n'^{(0)} \mid n \rangle =&\langle n'^{(0)} \mid  (\lambda V -\Delta_n)\mid n \rangle \\
+\tag{3}
+\end{align*}
+
+只要把 $(E_n^{(0)}-E_{n'}^{(0)})​$ 移到右边，就得到想要的表达式。但是移项之前应该考虑要是否为 $0​$ 。以下两种情况满足$E_n^{(0)}\neq E_{n'}^{(0)}​$ ：
+
+- 非体系没有简并，且 $n\neq n'$ ；
+- 体系有简并，但是并非 $n$ 和 $n'$ 都在简并空间
+
+下面分开讨论。
+
+* 非简并
+
+非简并，且 $n\neq n'$ 时，可以把 $(E_n^{(0)}-E_{n'}^{(0)})$ 移到右边：
+$$
+\langle n'^{(0)} \mid n \rangle =\frac{1}{E_n^{(0)}-E_{n'}^{(0)}}\langle n'^{(0)} \mid  (\lambda V -\Delta_n)\mid n \rangle
+$$
+把上述方程展开成 $\lambda$ 的级数：
+$$
+\langle n'^{(0)} \mid( \mid n^{(0)} \rangle +\lambda \mid n^{(1)} \rangle +\cdots)\\\\
+=\frac{1}{E_n^{(0)}-E_{n'}^{(0)}}\langle n'^{(0)} \mid  (\lambda V -\lambda\Delta_n^{(1)}-\cdots)( \mid n^{(0)} \rangle +\lambda \mid n^{(1)} \rangle +\cdots)
+$$
+对应 $\lambda$ 的系数相等得：
+$$
+\langle n'^{(0)}\mid n^{(1)} \rangle
+=\frac{1}{E_n^{(0)}-E_{n'}^{(0)}}\langle n'^{(0)} \mid  (V -\Delta_n^{(1)}) \mid n^{(0)} \rangle
+$$
+由于 $n\neq n'$ ，所以 $\langle n'^{(0)} \mid  \lambda\Delta_n^{(1)}\mid n^{(0)} \rangle=\lambda\Delta_n^{(1)}\langle n'^{(0)} \mid n^{(0)} \rangle=0$ ，故：
+$$
+\langle n'^{(0)}\mid n^{(1)} \rangle
+=\frac{1}{E_n^{(0)}-E_{n'}^{(0)}}\langle n'^{(0)} \mid  V \mid n^{(0)} \rangle
+$$
+那么 $\mid n^{(1)} \rangle$ 就是（将 $ n=n'$ 的系数 $\langle n^{(0)}\mid n^{(1)} \rangle$ 全都放到 $\mid n^{(0)} \rangle$ 里面）：
+$$
+\mid n^{(1)}\rangle=\sum_{n'\neq n}\mid n'^{(0)}\rangle\langle n'^{(0)}\mid n^{(1)} \rangle
+=\sum_{n'\neq n}\frac{1}{E_n^{(0)}-E_{n'}^{(0)}}\mid n'^{(0)}\rangle\langle n'^{(0)} \mid  V \mid n^{(0)} \rangle
+$$
+同样也可以对应 $\lambda^2$ ， $\lambda^3$ ……的系数相等。
+
+* 简并
+** 并非 $n$ 和 $n'$ 都在简并空间
+
+体系有简并，但是并非 $n$ 和 $n'$ 都在简并空间时， $(E_n^{(0)}-E_{n'}^{(0)})$ 也可以移到右边，情况与非简并的情况完全一样。
+
+** $n$ 和 $n'$ 都在简并空间
+
+为了便于区分，将简并空间中的本征态用 $m$ 标记， $E_m^{(0)} = E_D^{(0)}$ ，假设简并空间记为 $D$ ，是 $g$ 重简并的，投影
+到简并空间的投影算符记为 $P_D$ ，投影到非简并空间的投影算符记为 $P_N = 1 - P_D$ 。 $\mid m_0 \rangle$ 是只在简
+并空间的，但是微扰变成 $\mid m \rangle$ 后掺入了非简并空间的分量。所以 $\mid m \rangle$ 可以分成两部分：
+$$
+\mid m \rangle   = P_D \mid m \rangle  + P_N \mid m \rangle
+$$
+回到薛定谔方程 $(3)$ ：
+$$
+\langle m'^{(0)} \mid (E_D^{(0)}-H_0)\mid m \rangle =\langle m'^{(0)} \mid  (\lambda V -\Delta_m)\mid m \rangle
+$$
+
+$$
+\Downarrow
+$$
+
+$$
+\langle m'^{(0)} \mid (E_D^{(0)}-E_D^{(0)})\mid m \rangle= 0 =\langle m'^{(0)} \mid  (\lambda V -\Delta_m)\mid m \rangle
+$$
+
+$$
+\Downarrow
+$$
+
+$$
+\langle m'^{(0)} \mid  (\lambda V -\Delta_m)\mid m \rangle =0
+\tag{4}
+$$
+
+这是唯一的出路，所以将 $(4)​$ 式展开成 $\lambda​$ 的级数：
+$$
+\langle m'^{(0)} \mid  (\lambda V -\lambda \Delta_m^{(1)}-\lambda^2 \Delta_m^{(2)}-\cdots)(\mid m^{(0)}\rangle+\lambda \mid m^{(1)}\rangle+\cdots ) =0
+$$
+对应 $\lambda​$ 的系数相等得：
+$$
+\langle m'^{(0)} \mid  ( V -\Delta_m)\mid m^{(0)} \rangle =0
+$$
+这是一个本征值问题，算符 $V$ 在简并空间 $D$ 中的本征值问题。也就是说加入微扰以后的零级本
+征态应该满足上式，而不是简并空间中任意的一组基底都可以作为零级本征态进行微扰计算。记满足上述方程的基底为 $\{\mid l^{0)}\rangle\}$ ，即
+$$
+\langle l'^{(0)} \mid V \mid l^{(0)}\rangle = v_i\delta_{l,l'}
+$$
+其中 $v_i$ 为 $V$ 在简并空间中解得的本征值。再看 $\lambda ^2$ 对应的系数相等得（这时已经换到新的基底了）：
+$$
+\langle l'^{(0)}\mid(V - \Delta_l^{(1)}) \mid l^{(1)}\rangle -\langle l'^{(0)}\mid\Delta_l^{(2)} \mid l^{(0)}\rangle=0
+$$
+而 $\langle l'^{(0)}\mid\Delta_D^{(2)}\mid l^{(0)}\rangle=\Delta_D^{(2)}\langle l'^{(0)}\mid l^{(0)}\rangle=0$ ，所以
+$$
+\langle l'^{(0)}\mid(V - \Delta_l^{(1)}) \mid l^{(1)}\rangle =0
+$$
+$l^{(1)}$ 中在非简并空间中的分量已经知道了，所以将 $\mid l^{(1)} \rangle$ 分成两部分：
+$$
+\mid l^{(1)} \rangle   = P_D \mid l^{(1)} \rangle  + P_N \mid l^{(1)} \rangle
+$$
+所以
+$$
+\langle l'^{(0)}\mid(V - \Delta_l^{(1)}) P_D\mid l^{(1)}\rangle + \langle l'^{(0)}\mid(V - \Delta_l^{(1)}) P_N\mid l^{(1)}\rangle =0
+$$
+
+
+其中 $P_N \mid l^{(1)} \rangle$ 为情况“并非 $n$ 和 $n'$ 都在简并空间”中已知的结果。而
+$$
+\langle l'^{(0)}\mid V  P_D\mid l^{(1)}\rangle =\langle l'^{(0)}\mid V  \sum_l \mid l^{(0)}\rangle\langle l^{(0)}\mid l^{(1)}\rangle=  v_{l'}\langle l'^{(0)}\mid  \sum_{l''} \mid l''^{(0)}\rangle\langle l''^{(0)}\mid l^{(1)}\rangle=v_{l'}\langle l'^{(0)}\mid l^{(1)}\rangle
+$$
+
+$$
+\langle l'^{(0)}\mid \Delta_l^{(1)} P_N\mid l^{(1)}\rangle =\Delta_l^{(1)} \langle l'^{(0)}\mid P_N\mid l^{(1)}\rangle=0
+$$
+
+所以可以求得
+$$
+(v_{l'}-\Delta_l^{(1)})\langle l'^{(0)}\mid l^{(1)}\rangle = \langle l'^{(0)}\mid V  P_N\mid l^{(1)}\rangle
+$$
+
+$$
+\Downarrow
+$$
+
+$$
+\langle l'^{(0)}\mid l^{(1)}\rangle =\frac{1}{v_{l'}-\Delta_l^{(1)}}\langle l'^{(0)}\mid V  P_N\mid l^{(1)}\rangle
+$$
+
+其中 $P_N \mid l^{(1)} \rangle$ 为：
+$$
+P_N \mid l^{(1)} \rangle = \sum_{n\notin D} \mid n^{(0)} \rangle\langle n^{(0)}\mid l^{(1)}\rangle =\sum_{n\notin D} \mid n^{(0)} \rangle \frac{1}{E_D^{(0)}-E_{n}^{(0)}}\langle n^{(0)} \mid  V \mid l^{(0)} \rangle
+$$
+由于 $\Delta_l^{(1)} = v_l$ ，最终可求得
+$$
+\langle l'^{(0)}\mid l^{(1)}\rangle =\frac{1}{v_{l'}-v_l}\langle l'^{(0)}\mid V  \sum_{n\notin D} \mid n^{(0)} \rangle \frac{1}{E_D^{(0)}-E_{n}^{(0)}}\langle n^{(0)} \mid  V \mid l^{(0)} \rangle
+$$
+
+* 总结
+
+已知 $H_0$ 的精确解：
+$$
+H_0 \mid n^{(0)} \rangle = E_n^{(0)} \mid n^{(0)} \rangle
+$$
+求解：
+$$
+(H_0 + V) \mid n \rangle = E_n \mid n \rangle
+$$
+
+** 对于非简并或 $\mid n \rangle$ 不在简并空间时
+
+新的本征能量为：
+$$
+E_n = E_n^{(0)} + \langle n^{(0)}\mid V\mid n^{(0)}\rangle + \langle n^{(0)}\mid V\mid n^{(1)}\rangle +\cdots
+$$
+新的本征态为：
+$$
+\mid n \rangle = \mid n^{(0)}\rangle + \mid n^{(1)}\rangle +\cdots
+$$
+其中：
+$$
+\mid n^{(1)}\rangle=\sum_{n'\neq n}\frac{1}{E_n^{(0)}-E_{n'}^{(0)}}\mid n'^{(0)}\rangle\langle n'^{(0)} \mid  V \mid n^{(0)} \rangle
+$$
+
+** 对于 $\mid n \rangle$ 在简并空间中时
+
+新的本征能量为：
+$$
+E_l = E_D +v_l  + \langle l^{(0)}\mid V\mid l^{(1)}\rangle +\cdots
+$$
+
+
+其中 $E_D$ 为简并的本征能量， $\mid l^{(0)}\rangle$ 为：
+$$
+\langle m'^{(0)} \mid  ( V -\Delta_m)\mid m^{(0)} \rangle =0
+$$
+的本征态，其中$\mid m^{(0)} \rangle, \mid m'^{(0)} \rangle$ 为简并空间中的的未经微扰的本征态，且记其本征值为 $v_l$ 。
+
+
+
+
+
+新的本征态为：
+$$
+\mid n \rangle = \mid l^{(0)}\rangle + \mid l^{(1)}\rangle +\cdots
+$$
+ $\mid l^{(1)}\rangle$ 为
+$$
+\mid l^{(1)}\rangle=\sum_{n\notin D}\frac{1}{E_D^{(0)}-E_{n}^{(0)}}\mid n^{(0)}\rangle\langle n^{(0)} \mid  V \mid l^{(0)} \rangle
+\\\\+ \sum_{l'^{(0)}}\mid l'^{(0)}\rangle\frac{1}{v_{l'}-v_l}\langle l'^{(0)}\mid V  \sum_{n\notin D} \mid n^{(0)} \rangle \frac{1}{E_D^{(0)}-E_{n}^{(0)}}\langle n^{(0)} \mid  V \mid l^{(0)} \rangle
+$$
+
+* 例子
+
+** 二能级系统
+
+假设一个系统的 Hamiltonian 为
+\begin{align}
+  \hat{H} = \hat{H}_0 + \hat{V} 
+\end{align}
+它在 $H_0$ 的本征表象中
+\begin{align}
+  H = H_0+V = \left( 
+  \begin{array}{cc}
+   E^{(0)}_1 & 0 \\
+   0 & E^{(0)}_2
+  \end{array}
+ \right) + 
+\left( 
+  \begin{array}{cc}
+   0 & V \\
+   V & 0
+  \end{array}
+ \right)
+\end{align}
+如果用微扰论计算, 它的能量一阶修正是零, 因为微扰的对角元为零. 二阶修正为
+\begin{align}
+E_1^{(2)} = \frac{V^2}{E_1-E_2} \\
+E_2^{(2)} = \frac{V^2}{E_2-E_1}
+\end{align}
+同时它可以精确求解
+\begin{align}
+  E^{\pm} = \frac{E_1^{(0)} + E^{(0)}_2}{2}
+  \pm \sqrt{\left( \frac{E^{(0)}_1 - E^{(0)}_2}{2} \right)^2 + V^2} 
+\end{align}
+如果把 $V$ 做为小量, 将精确解展开(假设 $E_1>E_2$ )
+\begin{align}
+  E^{\pm} =& \frac{E_1^{(0)} + E^{(0)}_2}{2} 
+  \pm \sqrt{\left( \frac{E^{(0)}_1 - E^{(0)}_2}{2} \right)^2 + V^2} \\
+  =& \left\{ 
+  \begin{array}{cc}
+  E_1 + \frac{V^2}{E_1 - E_{2}} + \mathcal{O}(V^{4}) ,&+\\
+  E_2 - \frac{V^2}{E_1 - E_{2}} + \mathcal{O}(V^{4}) ,&-
+  \end{array}
+ \right. 
+\end{align}
+正好与微扰论相符.
+
+** 三能级系统
+假设一个系统的 Hamiltonian 为
+\begin{align}
+  \hat{H} = \hat{H}_0 + \hat{V} 
+\end{align}
+它在 $H_0$ 的本征表象中
+\begin{align}
+  H = H_0+V = \left( 
+  \begin{array}{ccc}
+   E^{(0)}_1 & 0 &0\\
+   0 & E^{(0)}_2 & 0 \\
+   0 & 0 & E^{(0)}_e
+  \end{array}
+ \right) + 
+\left( 
+  \begin{array}{ccc}
+   0 & V_{12} & V_{13}\\
+   V_{12} & 0 & V_{23} \\
+   V_{13} & V_{23} & 0
+  \end{array}
+ \right)
+\end{align}
+假设它们具体数值, 并用数值精确求解
+#+BEGIN_SRC python
+import numpy as np
+e1 = 100
+e2 = 300
+e3 = 500
+v12 = 10
+v13 = 20
+v23 = 30
+a = np.array([[e1,   v12,   v13],
+              [v12,   e2,   v23],
+              [v13,  v23,    e3]])
+w, v = np.linalg.eig(a)
+print(w)
+print(v)
+#+END_SRC
+结果为
+#+BEGIN_SRC python
+[ 98.64010314 505.51622055 295.84367631]
+[[-0.99800619  0.0523362  -0.03527831]
+ [ 0.04262872  0.14673809 -0.98825641]
+ [ 0.04654492  0.98778988  0.14867655]]
+#+END_SRC
+用微扰论求解 $E_1$ , 一阶修正是零. 二阶修正为
+\begin{align}
+  E_1^{(2)} =& V_{12}\frac{1}{E_1 - E_2}V_{12} + V_{13}\frac{1}{E_1 - E_3}V_{13} \\ 
+  =& 10\cdot\frac{1}{100-300}\cdot 10 + 20\cdot\frac{1}{100-500}\cdot 20 \\
+  =& -1.5
+\end{align}       
+三阶修正为(如果微扰对角元不为零, 此公式还有一项)
+\begin{align}
+  E_1^{(3)} =& V_{12}\frac{1}{E_1 - E_2}V_{23}\frac{1}{E_1 - E_3}V_{31} \\ 
+  +& V_{13}\frac{1}{E_1 - E_3}V_{32}\frac{1}{E_1 - E_2}V_{21}\\
+  =& 2\times 0.075 = 0.15
+\end{align}       
+所以微扰论给出二阶修正结果为 $100-1.5=98.5$ , 三阶修正给出的结果为 
+$100-1.5+0.15 = 98.65$ , 而数值求解的结果为 $98.64010314$ . $E_{2}, E_3$ 的微扰修正
+可作为练习.
+
+* Appendix
+** 算符出现在分母上
+
+意为逆算符. 即
+\begin{align*}
+  A^{-1} \equiv \frac{1}{A}
+\end{align*}
+和它本身有共同本征值. 其本征值为自身本征值的倒数.
+
+证明如下:
+
+#+BEGIN_QUOTE
+假设 $A$ 对应态 $|n\rangle$ 的本征值为 $a_n$ ,即
+\begin{align*}
+  A |n \rangle = a_n |n\rangle
+\end{align*}
+那么两边左乘 $A^{-1}$ 有
+\begin{align*}
+  | n \rangle =& a_n A^{-1} | n \rangle \\
+  \Downarrow& \\
+  \frac{1}{a_n} | n \rangle =& A^{-1} | n \rangle
+\end{align*}
+用分数的记法即
+\begin{align*}
+  \frac{1}{A}| n \rangle = \frac{1}{a_n} |n \rangle
+\end{align*}
+#+END_QUOTE
+
+* Reference
+
+- J. J. Sakurai, Jim Napolitano, Modern Quantum Mechanics 2nd 
+
+- 高阶修正的公式: https://en.wikipedia.org/wiki/Perturbation_theory_(quantum_mechanics)

@@ -1,0 +1,81 @@
+#+TITLE: python 并行的简单例子
+#+DATE: <2021-01-13>
+#+CATEGORIES: 软件使用
+#+TAGS: python
+#+HTML: <!-- toc -->
+#+HTML: <!-- more -->
+
+
+#+begin_src python
+import multiprocessing as mp
+import time
+import functools
+import numpy as np
+import matplotlib.pyplot as plt
+
+def timer(func):
+    """
+    Print the runtime of the decorated function.
+    参考自: https://realpython.com/primer-on-python-decorators/
+    """
+    @functools.wraps(func)
+    def wrapper_timer(*args, **kwargs):
+        start_time = time.perf_counter()
+        value = func(*args, **kwargs)
+        end_time = time.perf_counter()
+        run_time = end_time - start_time
+        print(f"Finished {func.__name__!r} in {run_time:.14f} secs")
+        return value
+    return wrapper_timer
+
+
+def foo(x):
+    '''
+    测试函数, 简单地计算 sin(x), 重复 1e5 次
+    '''
+    for i in range(int(1e5)):
+        a = np.sin(x)    
+    a = np.sin(x)
+    return a
+
+n = int(96)
+x = np.linspace(0, 10, n)
+
+@timer
+def loop_single_processing(x, n):
+    y_l_s_p = np.zeros(n)
+    for i in range(n):
+        # 单核运行 n 次 foo(x) 函数
+        y_l_s_p[i] = foo(x[i])
+    y_l_s_p = foo(x)
+    return y_l_s_p
+
+@timer
+def loop_multi_processing(x, n):
+    pool = mp.Pool()
+    y_m_s_p = pool.map(foo, x)
+    pool.close()
+    pool.join()
+    return np.array(y_m_s_p)
+    
+
+lsp = loop_single_processing(x, n)
+lmp = loop_multi_processing(x, n)
+
+plt.plot(x, lsp, '.', label='loop single processing')
+plt.plot(x, lmp+1, '.', label='loop multi processing')
+plt.legend()
+plt.savefig('fig.png')
+plt.show()
+#+end_src
+
+结果
+file:./2021-01-13-coding-multiprocessor/fig.png
+#+begin_src python
+Finished 'loop_single_processing' in 9.28632830292918 secs
+Finished 'loop_multi_processing' in 3.00595757691190 secs
+#+end_src
+code: [[file:./2021-01-13-coding-multiprocessor/mp.py]]
+
+从结果上看, 串行与并行当然给出相同的结果. 电脑上有 8 核, 但速度只提升了约 3 倍,
+而不是 8 倍, 是核之间的任务分配与数据交换耗时还是我的程序有问题, 目前并不清楚.

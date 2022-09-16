@@ -1,0 +1,519 @@
+#+TITLE: BCS Theory 课堂笔记整理
+#+DATE: <2019-11-14>
+#+CATEGORIES: 专业笔记
+#+TAGS: 物理, BCS
+#+HTML: <!-- toc -->
+#+HTML: <!-- more -->
+
+* Review
+
+有相互作用的费米系统, 一般有以下三类, 前两类比较常见.
+
+** Fermi Liquid
+
+一类非常像无相互作用的费米系统的系统. 它的特征:
+- 费米面, 是系统 gapless 的地方, 所有的低能激发主要集中在费米面附近, 对费米面附
+  近的态, 最主要的描述就是 $Z$ , qusi-particle residual 和 effective mass 这两个
+  参数, 它们都可以通过自能得到. 所以要了解一个 Fermi liquid, 最主要的就是要想办
+  法知道它的自能函数长什么样子, 知道了自能函数, 就知道了这个 Fermi liquid 的低能
+  行为. 这类系统通常有一个费米面. 费米面的定义就是, 粒子数动量分布在动量空间有一
+  个跳变, 这个跳变的位置就是费米面的位置.
+- 它的激发都是费米型的, 而且都是 gapless 的, 也就是说, 在费米面上, 激发是无能隙
+  的.
+
+** Ordered State
+
+- BCS, Fermion 有 pairing 这样的 order, 费米子要配对.
+- Anti-Ferromagnetic 
+- Charged-Density wave
+
+费米子有 order 的 state, 它和 Fermi liquid 不一样, 这些系统通常没有费米面, 没有
+费米面的结构. 这些系统中, 它的激发在很多时候都是 gaped 的, 也就是有能隙的.
+
+** Non-Fermi Liquid
+
+前两者在现有的多体理论框架中是了解的比较清楚的, 而 Non-Fermi Liquid 还了解的不是
+很清楚的. Non-Fermi Liquid 并不是指除了 Fermi liquid 以外的, 比如 上面的 ordered
+state. 一般指除了 Fermi liquid 和 ordered-stated 以外的有相互作用的费米系统的态.
+
+* Introduction
+
+BCS 理论, 是 ordered state 的典型代表. BCS 理论的发现是为了解决超导问题. 超导和
+超流是上世纪低温物理最重要的两个实验发现, 对我们理解多体物理, 起到非常重要的作用. 
+
+He-4 的超流, 可以由有相互作用的 BEC 来理解. Landau 判据, 有相互作用的 Boso 体系
+中, 会出现临界速度.
+
+超导是费米子体系, 它不会发生 BEC. 
+
+BCS 理论的提出, 已经是在超导发现几十年之后了, 所以对超导机理的研究, 是上个世纪上
+半叶的一个物理学中一个很重要的问题. 直到 BCS 理论的提出, 才解决了这个问题.
+
+* Cooper Problem (a 2-Body Problem)
+
+理解一个问题, 通常把一个问题简化到一个简单的问题. 虽然超导是一个复杂的多体问题,
+但是呢, 它最核心的 insight 来自到 Cooper problem 这样一个两体问题. 其实, 虽然我
+们讲, 凝聚态物理, 多体系统, 通常都是一些复杂的多体问题. 但是在这些多体问题中, 有
+很多例子, 它对于多体物理最核心的理解, 是来自于一些简化的少体问题, Cooper problem
+就是一个典型的例子. 还有一个典型的例子, 就是在分数量子 Hall effect 时候, Robert
+Laughlin 提出了对于 fractional quantum Hall effect 的理解, 就是 Laughlin 波函数,
+后来奠定了很多强关联理论的基础. 其实 Laughlin, 如果你去看 Laughlin 当年理解
+fractional quantum Hall effect 的文章, 它的文章最主要的工作是解了一个三体问题,
+解了一个在磁场中有 Coulumb 相互作用电子运动的三体问题, 通过这个三体问题的解, 他
+猜出了 Laughlin 波函数, 这样一个多体波函数. 
+
+Cooper 问题也是这样. Cooper 问题看起来是一个两体问题. 但是从 Cooper 问题的解上面,
+B. C. S. 就提出了 BCS 理论.
+
+首先, 它是 spin- $1/2$ Fermion, 它的 Hamiltonian (这不是 Cooper 在电子系统中讲的
+问题, 但是问题其实是一样的), 考虑两分量的费米气体, 考虑 spin up 和 spin down 之
+间的相互作用
+\begin{align}
+  H = \sum_{\vec{k,\sigma}}(\epsilon_{\vec{k}} - \mu)
+      c^{\dagger}_{\vec{k}\sigma}c_{\vec{k}\sigma} + \frac{g}{V}\sum_{\vec{k}, \vec{k}', \vec{q}}
+      c^{\dagger}_{\vec{k}+\vec{q}/2\uparrow}c^{\dagger}_{-\vec{k}+\vec{q}/2\downarrow}
+      c_{-\vec{k}' + \vec{q}/2\downarrow}c_{\vec{k}'+\vec{q}/2\uparrow}
+\end{align}
+#+BEGIN_QUOTE
+$g$ 的量纲是 $[E\cdot V]$ .
+#+END_QUOTE
+
+** intro: 2-body in vacuum 
+
+首先, 如果我们考虑第一种情况, 如果系统中总共只有两个 particle. 这不是一个多体问
+题, 纯粹是一个两体问题. 这样的体系没有 Fermi surface, 所以它的化学势 $\mu=0$
+. 
+
+
+怎么解呢?
+
+两个粒子, 就写一个两体波波函数. 因为总共只有两个粒子, 所以肯定可以取它的质心坐标
+系, 在质心系里面就把质心的动量设成 $0$ . 这时候, 如果一个粒子的动量是 $\vec{k}$
+, 那么另外一个粒子的动量就一定是 $-\vec{k}$ . 如果一个 spin up 的动量是
+$\vec{k}$ , spin down 的动量呢, 就是 $-\vec{k}$ , 所以, 不失一般性地, 就可以把它
+的波波函数写成(为了简洁起见, 记 $k\equiv (\vec{k}, \uparrow), -k\equiv
+(-\vec{k}, \downarrow)$ 但是要特别注意 $k=-k$ 是永远不会成立的, 因为自旋相反嘛!)
+\begin{align}
+  |\Phi \rangle = \sum_{k} \phi_{k} c_k^{\dagger}c_{-k}^{\dagger}|0\rangle
+\end{align}
+#+BEGIN_QUOTE
+相应地, Hamiltonian 变为
+#+END_QUOTE
+\begin{align}
+  H = \sum_{\vec{k,\sigma}}\epsilon_{\vec{k}}
+      c^{\dagger}_{\vec{k}\sigma}c_{\vec{k}\sigma} + \frac{g}{V}\sum_{\vec{k}, \vec{k}', \vec{q}}
+      c^{\dagger}_{\vec{k}\uparrow}c^{\dagger}_{-\vec{k}\downarrow}
+      c_{-\vec{k}'\downarrow}c_{\vec{k}'\uparrow}
+\end{align}
+如果用这个波函数去解 Schrodinger 方程, 那么我们会得到系数 $\phi_k$ 所满足的方程
+\begin{align}
+  2 \epsilon_{\vec{k}} \phi_{\vec{k}} + \frac{g}{V}\sum_{\vec{k}'}\phi_{\vec{k}'}
+  = E \phi_{\vec{k}}
+\end{align}
+第一项, 是它的动能项, 一个粒子在 $\vec{k}$ , 一个粒子在 $-\vec{k}$ , 所以它的能
+量就是 $2 \epsilon_{\vec{k}}$ . 第一项, 可以在不同的 $\vec{k}$ 和 $-\vec{k}$ 之
+间散射, 就是把所有的不同的 $\vec{k}$ 和 $-\vec{k}$ 相互之间耦合起来. 相当于说,
+如果在这组波函数下面去写 Schrodinger 方程, 相当于在这组基下面对角化一个矩阵, 每
+个基的指标就是 $\vec{k}$ , 所以就会看到能量项是对角项, 而第二项是把所有的不同的
+$\vec{k}$ 的态耦合起来, 这些项就是非对角项. 从这个方程, 可以得到
+\begin{align}
+   \phi_{\vec{k}} = \frac{\frac{g}{V}\sum_{\vec{k}'}\phi_{\vec{k}'}}{E - 2\epsilon_{\vec{k}}}
+\end{align}
+这个方程怎么求解? 两边对 $\vec{k}$ 求和
+\begin{align}
+   \sum_{\vec{k}}\phi_{\vec{k}} = \sum_{\vec{k}}\frac{\frac{g}{V}\sum_{\vec{k}'}\phi_{\vec{k}'}}{E - 2\epsilon_{\vec{k}}}
+\end{align}
+约掉 $\sum_{\vec{k}}\phi_{\vec{k}}$
+\begin{align}
+   \frac{V}{g} = \sum_{\vec{k}}\frac{1}{E - 2\epsilon_{\vec{k}}}
+\end{align}
+出现了求各发散的问题. 这个问题也是来自于 $\vec{k}$ 是没有截断的, $\vec{k}$ 可以
+取到任意高能. 而且不同的 $\vec{k}$ 之间的散射系数, 在取 $\delta$ function 近似的
+条件下, 它是一个常数. 所以同样要用重整化关系
+\begin{align}
+  \frac{m}{4\pi\hbar^2a_s} = \frac{1}{g} + \frac{1}{V}\sum_{\vec{k}}\frac{1}{\hbar^2\vec{k}^2/m}
+\end{align}
+得
+\begin{align}
+  \frac{m}{4\pi\hbar^2a_s} = \frac{1}{V}\left( \sum_{\vec{k}}\frac{1}{E - 2\epsilon_{\vec{k}}}
+                                               + \sum_{\vec{k}}\frac{1}{2\epsilon_{\vec{k}}}\right)
+\end{align}
+用完重整化关系, 得到一个收敛的结果. 把这个结果画出来, right hand side 作为 $E$
+的函数, 当 $E=0$ 时它取 $0$ , 它大体上就是 $\propto\sqrt{-E}$ , 而方程在左边
+
+[[file:./2019-11-14-physics-BCS/fig.jpg]]
+[[file:./2019-11-14-physics-BCS/fig.py][picture code]]
+
+当 $a_s>0$ 的时候, 方程左边是一条在上边的横线, 与 r.h.s. 有一个交点, 这个交点就
+是 2-body energy 的解, 这个交点就是
+\begin{align}
+  E = -\frac{\hbar^2}{ma_s^2}
+\end{align}
+在散射长度大于零的时候, 系统有一个 2-body bound state. 而且 $a_s$ 越大, 2-body
+bound state 越靠近零, bound state 越浅. 如果 $a_s < 0$ , 横线在下面, 这个方程没有
+解. 之所以可以用重整化的模型, 来表达多体物理的基本的模型, 就是因为可以准确地重复
+系统的低能物理, 这就是一个例子.
+
+** Cooper Problem
+
+Cooper Problem 是 2-body problem with a Fermi sea. Fermi sea 的定义
+\begin{align}
+  |FS\rangle = \prod_{|\vec{k}| < k_{\mathrm{F}}} 
+  c^{\dagger}_{\vec{k}, \uparrow} c^{\dagger}_{\vec{k}, \downarrow} 
+   |0 \rangle
+\end{align}
+一样多的 spin up 和 spin down 的粒子各自形成一一样多的 Fermi surface . 要在费米
+面上产生激发, 要放入粒子, 那只能放在费米海外面, 或者在费米海里面拿走粒子, 不管怎
+么样, cost 的 energy 都是非负的, 所以激发能是 
+\begin{align}
+  |\epsilon_{\vec{k}} - \mu|
+\end{align}
+这个时候有化学势, 本来就有粒子填充了, 化学势就是费米能. 
+
+Cooper 问题是再在这个 Fermi sea 上放两个粒子, 这时候它的激发能是什么样子的. 如果
+激发能仍然是正的, 说明 Fermi surface 还是稳定的解, 如果激发能是负的, 就说明假设
+的有问题. Cooper 问题 addres 的是 Fermi surface stability 的问题. 
+
+当我们谈一个多体态是不是稳定的, 就拿一个粒子来测试它, 看放入两个 particle 的能量
+是不是总是正的.
+
+在 Fermi sruface 上面加两个 particle
+
+\begin{align}
+  |\Phi \rangle = \sum_{|\vec{k}| > k_{\mathrm{F}}} \phi_{\vec{k}}  
+   c^{\dagger}_{\vec{k}, \uparrow} c^{\dagger}_{-\vec{k}, \downarrow}
+  |FS\rangle
+\end{align}
+相应地, 得到
+\begin{align}
+  \frac{m}{4\pi\hbar^2a_s} = \frac{1}{V}\left( 
+          \sum_{|\vec{k}|> k_{\mathrm{F}}}\frac{1}{E - 2(\epsilon_{\vec{k}} - \mu)}
+                   + \sum_{\vec{k}}\frac{1}{2\epsilon_{\vec{k}}}\right)
+\end{align}
+这里的 r.h.s 在 $E\to 0$ 的时候, 是往负无穷发散的.
+
+[[file:./2019-11-14-physics-BCS/fig2.jpg]]
+[[file:./2019-11-14-physics-BCS/fig2.py][picture code]]
+
+为什么会有这样一个区别? 是因为两体问题的时候, 两个粒子是加在色散关系底部的. 它的
+态密度是 $\sqrt{E}$ 的关系. 两体问题是加在趋于 $0$ 的地方, 而 Cooper 问题是加在
+$\sqrt{E_{\mathrm{F}}}$ 上的. 它们所处的态密度不一样.
+
+For all $a_s$ 都有一个 $E < 0$ 的 solution. 
+
+这就是一个真空中的两体问题和一个费米面上的两体问题的区别. 真空中的两体问题,
+bound state 的 energy 只是出现在 $a_s < 0$ 的一侧. 而在多体系统中, 一个费米面附
+近的两体问题, 不管 $a_s$ 有多负, 总有一个解在负能的地方, 只不过 $a_s$ 越小,
+$|E|$ 越来越小, 但它总是存在的. 当然, 另外一方面就是如果, 回到 $a_s > 0$ 一边,
+两条线是逐渐靠近的. 也就是说, 当 $a_s > 0$ 的时候, 如果 binding energy 足够大,
+不管是真空中的两体问题, 还是有费米面的两体问题, 结果是趋于一致的. 这个事情怎么理
+解? 就是说 binding energy 的绝对值越大, 说明这两个粒子形成 bound state , 靠得足
+够近. 这个体系, spin up 和 spin down 形成一个 bound state , binding energy 越大,
+它的 bound state size 越小(束缚得越紧, 靠得越近). 如果在真空中放两个 particle,
+它的 size 就 $a_s$ 那么大, 但是如果在多体的环境中放这两个 particle, 如果 bound
+state size 要远远小于粒子间平均距离( $1/k_\mathrm{F}$ ) , 这个 bound state 就不
+大受多体环境的影响, 这个时候, 是真空中的束缚态, 还是多体环境中的束缚态, 其实差别
+不大, 这就是在这个极限下, 为什么这两种解会趋于一致. 但是最主要的事情是, 这两个解
+的差别, 在真空中, 如果散射长度是负的, 这时候是没有 bound state 的, 但是在多体环
+境中, 它永远是存在一个 bound state 的. 这就是 Cooper problem 最主要的意思. 这个
+计算说明, 有吸引相互作用的时候, Fermi surface 是不稳定的, 说明它不可能是一个 Fermi
+liquid , 所以要 reconstruct 一个多体态, 使得这个状态是一个稳定的状态. 但是
+Cooper problem 一方面说明 Fermi surface 是不稳定的, 另一方面也给如何 reconstruct
+这样一个态提供了一些 hit . 这个不稳定不是 single particle 的不稳定, 是一个
+2-body 的不稳定, 所谓的 pairing 的事情. 问题是, 如何把这样一个 pairing 这样一个
+事情, 写到多体的波函数的里面去. 这里要先讲一下 Self-Consistent Mean Field
+Theory. 
+
+* Self-Consistent Mean Field Theory
+
+一般性的, 对于一个多体系统, 怎么做一个平均场, 特别是这个平均场我们强调它是
+self-consistent , 这话什么意思. 这个方法, 在很多模型里面都会用到, 所以我们先撇开
+具体模型, 讲一个最一般性的事情. 假设有
+\begin{align}
+  g \hat{A}^{\dagger} \hat{A}
+\end{align}
+$g$ 是相互作用参数, $\hat{A}$ 是一个算符, 可以是一个单体, 也可以是一个两体算符,
+是任意一个算符都行. 首先
+\begin{align}
+  g \hat{A}^{\dagger} \hat{A} = \langle g \hat{A}^{\dagger}\rangle \hat{A} 
+   + \hat{A}^{\dagger} \langle g \hat{A}\rangle + \left(g \hat{A}^{\dagger} \hat{A}
+    -\langle g \hat{A}^{\dagger}\rangle \hat{A} - 
+   \hat{A} \langle g \hat{A}^{\dagger} \rangle\right) 
+\end{align}
+这是一个等式, 什么都没干! 然后呢, 要 approximation 了! 上式中, 前两项相当于是对
+$\hat{A}^{\dagger}$ 做平均, 再对 $\hat{A}$ 做平均, 然后把残余项(小括号中的)减掉
+了, 小括号小的三项, 相当于某种 fluctuation. 然后呢, 把 fluctuation 做平均.即
+\begin{align}
+  g \hat{A}^{\dagger} \hat{A}
+    -\langle g \hat{A}^{\dagger}\rangle \hat{A} - 
+   \hat{A} \langle g \hat{A}^{\dagger} \rangle
+ \approx \langle g\hat{A}^{\dagger} \hat{A}
+    -\langle g \hat{A}^{\dagger}\rangle \hat{A} - 
+   \hat{A} \langle g \hat{A}^{\dagger} \rangle \rangle
+\end{align}
+
+ 把 $g \hat{A}^{\dagger}
+A$ 做平均
+\begin{align}
+  g \hat{A}^{\dagger} \hat{A} =\frac{(g \hat{A}^{\dagger})(g\hat{A})}{g}
+  \approx \frac{g\langle \hat{A}^{\dagger}\rangle g\langle\hat{A}\rangle}{g}
+\end{align}
+后面两项也平均. 做完平均后, 三项加在一起的结果为
+\begin{align}
+  g \hat{A}^{\dagger} \hat{A}
+    -\langle g \hat{A}^{\dagger}\rangle \hat{A} - 
+   \hat{A} \langle g \hat{A}^{\dagger} \rangle
+ \approx - \frac{g\langle \hat{A}^{\dagger}\rangle g\langle\hat{A}\rangle}{g}
+\end{align}
+代回去, 有
+\begin{align}
+  g \hat{A}^{\dagger} \hat{A} = \langle g \hat{A}^{\dagger}\rangle \hat{A} 
+   + \hat{A}^{\dagger} \langle g \hat{A}\rangle 
+   - \frac{g\langle \hat{A}^{\dagger}\rangle g\langle\hat{A}\rangle}{g}
+\end{align}
+通常定义
+\begin{align}
+  \Delta \equiv \langle g \hat{A} \rangle 
+\end{align}
+这样的东西我们称之为 order parameter , OK?
+\begin{align}
+  \Delta^{*} \equiv \langle g \hat{A}^{\dagger} \rangle
+\end{align}
+所以, 这前说费米系统很多可能的时候, 体系处于一个 ordered state, 就是说 $\Delta
+\neq 0$ . 但是没有 specify $\hat{A}$ , $\hat{A}$ 就是说对什么样的项做平均场. 要
+把 Hamiltonian 或者其中的某一部分写成这样的形式, 做平均场. 但是拿哪一部分出来,
+就是选了不同的 $\hat{A}$ OK? 这样的话 $\hat{A}$ 的意义不一样, 就代表了体系有不同
+的 order. 这接下来的例子中, $\hat{A}$ 就是一个 pairing 的 order . 之前说了, 从
+Cooper 问题中得到的启示, 就是每两个粒子要配对. $\hat{A}$ 怎么选? $\hat{A}$ 的选
+法是人定的, 根据自己对物理体系的理解, 你的物理的 intuition, insight 来决定, 把
+Hamiltonian 里面的什么东西写成这个形式, 拿什么算符来做平均场. BCS 就是根据
+Cooper 问题的启发, 决定选 pairing operator 来做平均场, 最后得到的基态, 就是所谓
+BCS 波函数. 当然也可以选别的算符来作平均场(如, Hubbard Model 中 自旋, spin
+density wave, 反铁磁, 或者是 charge density wave, 这些态的区别是什么? 为什么叫这
+些名字? 就是因为用来做平均场的 $\hat{A}$ 算符不同). 如果 $\hat{A}$ 算符是 spin
+operator , 得出来 $\Delta\neq 0$ , 就说明这个体系有 spin order. 如果选的算符代表
+费米子密度, 如果得出来 $\Delta\neq 0$ , 就说明这个体系有 charge order, 有一个密
+度的序. 如何选择 $\hat{A}$ , 对于 ground state 来讲, 就是能量低. 这就是对于
+order state , 最重要的就是, 选一个什么样的 order. 就像对于 Fermi liquid 自能很重
+要.
+
+* BCS Mean Field Hamiltonian
+
+BCS
+\begin{align}
+  H = \sum_{\vec{k,\sigma}}(\epsilon_{\vec{k}} - \mu)
+      c^{\dagger}_{\vec{k}\sigma}c_{\vec{k}\sigma} + \frac{g}{V}\sum_{\vec{k}, \vec{k}', \vec{q}}
+      c^{\dagger}_{\vec{k}+\vec{q}/2\uparrow}c^{\dagger}_{-\vec{k}+\vec{q}/2\downarrow}
+      c_{-\vec{k}' + \vec{q}/2\downarrow}c_{\vec{k}'+\vec{q}/2\uparrow}
+\end{align}
+怎么用这个方法? 首先, 只关心 $\vec{k}$ 和 $-\vec{k}$ 的 pairing . 就看那些质心动
+量为 $0$ 的散射, 也就是 $\vec{q} = 0$ . 这就已经是一个挑选了, 在相互作用有很多项,
+但是不去考虑质心动量不为 $0$ 的项. 在这些质心动量为 $0$ 的项里面, 将 Hamiltonian
+重新写一下
+\begin{align}
+  H = \sum_{\vec{k,\sigma}}(\epsilon_{\vec{k}} - \mu)
+      c^{\dagger}_{\vec{k}\sigma}c_{\vec{k}\sigma} 
+      + \frac{g}{V}\left(\sum_{\vec{k}}
+      c^{\dagger}_{\vec{k}\uparrow}c^{\dagger}_{-\vec{k}\downarrow}\right)
+      \left(\sum_{\vec{k}'}c_{-\vec{k}'\downarrow}c_{\vec{k}'\uparrow}  \right)
+\end{align}
+在这里, 取 $\hat{A}$ 为
+\begin{align}
+  \hat{A} = \sum_{\vec{k}'}c_{-\vec{k}'\downarrow}c_{\vec{k}'\uparrow}
+\end{align}
+序参量为
+\begin{align}
+  \Delta = \langle \frac{g}{V} \sum_{\vec{k}'}c_{-\vec{k}'\downarrow}c_{\vec{k}'\uparrow}
+           \rangle
+\end{align}
+按照前面的叙述, 做平均场后
+\begin{align}
+  H_{\mathrm{MF}} = \sum_{\vec{k,\sigma}}(\epsilon_{\vec{k}} - \mu)
+      c^{\dagger}_{\vec{k}\sigma}c_{\vec{k}\sigma} 
+      +\Delta^{*} \sum_{\vec{k}}\hat{c}_{-\vec{k},\downarrow} \hat{c}_{\vec{k}, \uparrow}
+      +\Delta \sum_{\vec{k}}\hat{c}^{\dagger}_{\vec{k},\uparrow} 
+       \hat{c}^{\dagger}_{-\vec{k}, \downarrow}
+      - \frac{V}{g}|\Delta|^2
+\end{align}
+平均场做成这样有什么好处? 这是一个二次型的 Hamiltonian , 是可以对角化的. 它可以
+写成一个矩阵的形式 
+\begin{align}
+  H_{\mathrm{MF}} = \sum_{\vec{k}}\left\{
+                     \left(\hat{c}^{\dagger}_{\vec{k}, \uparrow}\quad \hat{c}_{-\vec{k}, \downarrow}\right)
+                     \left(\begin{array}{cc}
+                       \epsilon_{\vec{k}} - \mu & \Delta\\
+                       \Delta^{*} & -(\epsilon_{\vec{k}} - \mu)
+                      \end{array}\right)
+                      \left( \begin{array}{c}
+                           \hat{c}_{\vec{k}, \uparrow} \\
+                           \hat{c}^{\dagger}_{-\vec{k}, \downarrow}
+                       \end{array} \right)
+                     + (\epsilon_{\vec{k}} - \mu)
+                    \right\}
+                     - \frac{V}{g}|\Delta|^2
+\end{align}
+Boguliubov 激发不能够简单地通过 Unitary 变换来对角化, 原因是玻色子的 partical 和
+hole 的算符经过组合以后, 它不再是一个玻色算符. 而费米子是可以的. 插入一个幺正变
+换后, 可得 (过程见于 《厄米矩阵及其幺正对角化》 )
+\begin{align}
+  H_{MF} = \sum_{\vec{k}} \left[ E_{\vec{k}} 
+                                (\alpha_{\vec{k}}^{\dagger}\alpha_{\vec{k}} 
+                                 + \beta_{\vec{k}}^{\dagger}\beta_{\vec{k}}) 
+           + (\epsilon_{\vec{k}} - \mu -E_{\vec{k}} ) \right] 
+           - \frac{V}{g}|\Delta|^2
+\end{align}
+where 
+\begin{align}
+   \left(\begin{array}{c}
+    \alpha_{\vec{k}}\\
+    \beta_{\vec{k}}^{\dagger}
+   \end{array}\right)
+    =  U^{\dagger}
+\left( \begin{array}{c}
+       \hat{c}_k \\
+       \hat{c}^{\dagger}_{-k}
+       \end{array} \right) 
+    =  \left( \begin{array}{cc}
+       u_{\vec{k}} & -v_{\vec{k}} \\
+       v_{\vec{k}} & u_{\vec{k}}
+       \end{array} \right) 
+\left( \begin{array}{c}
+       \hat{c}_{\vec{k}, \uparrow} \\
+       \hat{c}^{\dagger}_{-\vec{k}, \downarrow}
+       \end{array} \right) 
+\end{align}
+\begin{align}
+  u_{\vec{k}}^2 = \frac{1}{2}\left(1 + 
+    \frac{\epsilon_{\vec{k}} - \mu}{E_{\vec{k}}} \right) \\
+  v_{\vec{k}}^2 = \frac{1}{2}\left(1 - 
+    \frac{\epsilon_{\vec{k}} - \mu}{E_{\vec{k}}} \right)
+\end{align}
+
+* BCS wave function 
+
+两个新的准粒子 $\alpha_{\vec{k}}, \beta_{\vec{k}}$ 的激发能都是正的, 就保证了 ground state 是
+quasipartical 的真空. 这个 ground state $|GS\rangle$ , 就是著名的 BCS 波函数 
+\begin{align}
+  |GS \rangle = \prod_{\vec{k}}\left( u_{\vec{k}} + 
+  v_{\vec{k}}c^{\dagger}_{\vec{k}, \uparrow} 
+      c^{\dagger}_{-\vec{k}, \downarrow} \right)|0\rangle
+\end{align}
+可以验证这个 ground state 满足
+\begin{align}
+  \alpha_{\vec{k}} |GS \rangle 
+  =& \left( u_{\vec{k}'}\hat{c}_{\vec{k}',\uparrow} 
+   - v_{\vec{k}'} \hat{c}^{\dagger}_{-\vec{k}',\downarrow} \right)
+   \prod_{\vec{k}}\left( u_{\vec{k}} + 
+   v_{\vec{k}}c^{\dagger}_{\vec{k}, \uparrow} 
+    c^{\dagger}_{-\vec{k}, \downarrow} \right)|0\rangle \\
+  =&\left[ 
+   \prod_{\vec{k}\neq \vec{k}'}\left( u_{\vec{k}} + 
+   v_{\vec{k}}c^{\dagger}_{\vec{k}, \uparrow} 
+    c^{\dagger}_{-\vec{k}, \downarrow} \right) \right]
+   \left( u_{\vec{k}'}\hat{c}_{\vec{k}',\uparrow} 
+   - v_{\vec{k}'} \hat{c}^{\dagger}_{-\vec{k}',\downarrow} \right)
+   \left( u_{\vec{k}'} + 
+   v_{\vec{k}'}c^{\dagger}_{\vec{k}', \uparrow} 
+    c^{\dagger}_{-\vec{k}', \downarrow} \right)|0\rangle \\
+  =& 0
+\end{align}
+同样可以验证
+\begin{align}
+  \beta_{\vec{k}} |GS \rangle = 0
+\end{align}
+因此 $|GS\rangle$ 确实是 quasipartical $\alpha_{\vec{k}}, \beta_{\vec{k}}$ 的真
+空. 所以它在这个理论框架下就是 ground state .  $\alpha_{\vec{k}},
+\beta_{\vec{k}}$ up to quadratic 是给定动量上的本征模式. 所以这个 BCS ground
+state 就是选定的 quasipartical 的 vacuum. 接下来看, quasipartical 干什么, 把产生
+算符作用在 $|GS\rangle$ 上
+\begin{align}
+  \alpha_{\vec{k}'}^{\dagger} |GS\rangle 
+  =\hat{c}_{\vec{k}', \uparrow}^{\dagger} 
+   \prod_{\vec{k}\neq \vec{k}'}\left( u_{\vec{k}} + 
+   v_{\vec{k}}c^{\dagger}_{\vec{k}, \uparrow} 
+    c^{\dagger}_{-\vec{k}, \downarrow} \right) |0\rangle \\
+  \beta_{\vec{k}'}^{\dagger} |GS\rangle 
+  =\hat{c}_{-\vec{k}', \downarrow}^{\dagger} 
+   \prod_{\vec{k}\neq \vec{k}'}\left( u_{\vec{k}} + 
+   v_{\vec{k}}c^{\dagger}_{\vec{k}, \uparrow} 
+    c^{\dagger}_{-\vec{k}, \downarrow} \right) |0\rangle
+\end{align}
+如果两个都作用上
+\begin{align}
+  \alpha_{\vec{k}'}^{\dagger}\beta_{\vec{k}'}^{\dagger}|GS\rangle 
+  = \left( -v_{\vec{k}'} + u_{\vec{k}'} 
+    \hat{c}_{\vec{k}',\uparrow}^{\dagger} \hat{c}_{-\vec{k}',\downarrow} \right)
+   \prod_{\vec{k}\neq \vec{k}'}\left( u_{\vec{k}} + 
+   v_{\vec{k}}c^{\dagger}_{\vec{k}, \uparrow} 
+    c^{\dagger}_{-\vec{k}, \downarrow} \right) |0\rangle \\
+\end{align}
+也就是说, 这个态是 ground state. 这个态是两个东西的叠加, 要么是空的, 要么是双占.
+准粒子的激发是激发了一个单占, 它们的能量要比 $|GS\rangle$ 高 $E_{\vec{k}}$
+. $\alpha_{\vec{k}'}^{\dagger}\beta_{\vec{k}'}^{\dagger}|GS\rangle$ 也是单占和双
+占的叠加, 它的能量要高出两个 $E_{\vec{k}}$ .
+
+BCS Hamiltonian 
+\begin{align}
+  H = \sum_{\vec{k,\sigma}}(\epsilon_{\vec{k}} - \mu)
+      c^{\dagger}_{\vec{k}\sigma}c_{\vec{k}\sigma} 
+      + \frac{g}{V}\left(\sum_{\vec{k}}
+      c^{\dagger}_{\vec{k}\uparrow}c^{\dagger}_{-\vec{k}\downarrow}\right)
+      \left(\sum_{\vec{k}'}c_{-\vec{k}'\downarrow}c_{\vec{k}'\uparrow}  \right)
+\end{align}
+它是说将双占和全空的态耦合在一起, 散射只发生在 spin up 和 spin down 之间. 如果两
+个态都被占据, 那它可以作为散射的初态, 或者它是空的, 可以作为散射的末态.
+
+* A Physical View
+
+去理解一个物理, 要么是简并微扰, 要么是非简并微扰. 如果考虑费米面附近的情况, 它们
+的能量都是一样的, 是一个简并微扰, 这两个态, 是一个 $2\times 2$ 的矩阵, 它有两个
+耦合, 比如
+\begin{align}
+  \left(\begin{array}{cc}
+  \langle\mathrm{oovv}| & \langle\mathrm{vvoo} |
+  \end{array}\right)
+ \left(\begin{array}{cc}
+  0 & \Delta \\
+  \Delta & 0
+  \end{array}\right)
+ \left(\begin{array}{cc}
+  |\mathrm{oovv}\rangle \\
+  |\mathrm{vvoo} \rangle
+  \end{array}\right)
+\end{align}
+$|\mathrm{oova}\rangle$ 代表 $|-\vec{k}_1\downarrow\rangle
+, |\vec{k}_1\uparrow \rangle, |-\vec{k}_2\downarrow\rangle
+, |\vec{k}_2\uparrow\rangle$ 四个态的分别是 occupied, occupied, vacuum, vacuum
+. $|\mathrm{vaoo}\rangle$ 类似. 中间的矩阵表示将 $|\mathrm{oovv}\rangle$ 和
+$|\mathrm{vvoo}\rangle$ 耦合, 而 $|\mathrm{ovvo}\rangle$ $|\mathrm{voov}\rangle$
+与任何其它态都没有耦合, 就不用考虑. 这个耦合使 $|\mathrm{oovv}\rangle$ 和
+$|\mathrm{vvoo}\rangle$ 原本的能量简并解除, 出现了两个不同的新本征态, 能量分别为
+$\pm|\Delta| = \mp \Delta$ (这里还是将 $\Delta$ 的相位取为了 $-\pi$ , 这个相位还
+是个问题) . 而新的波函数为 
+\begin{align}
+  \frac{1}{\sqrt{2}} \left(|\mathrm{oovv}\rangle \pm |\mathrm{vvoo}\rangle\right)
+\end{align}
+所以新的基态是 $\frac{1}{\sqrt{2}}
+\left(|\mathrm{oovv}\rangle + |\mathrm{vvoo}\rangle\right)$ , 是双占和空态的叠加,
+能量降低了 $\Delta$ 那么大. 被往上抬的态, 能量抬高了 $\Delta$ , 也是双占和空态的
+叠加.这与之前的结果相符, 因为这里考虑的是在费米面是的结果, 所以
+$E_{k=k_{\mathrm{F}}} = |\Delta|$ , $u_{|\vec{k}|=k_{\mathrm{F}}}^2 =
+v_{|\vec{k}|= k_{\mathrm{F}}}^2$ .
+
+BCS paring 是一个多体的效应, 是在动量空间里面, 自旋相反, 动量相反的两个态, 要么
+全占, 分么全空. exclude 的是在动量空间中动量相反的两个态有一个被单占, 这些态上的
+能量是高的, (考虑零动量上的散射, 因为体系有空间反射不变性, 零动量上的两个态能量
+才一样, 如果不是零动量的, 这两个态的能量本身就不一样了) 因为它们不能作为散射的初
+态, 也不能作为散射的末态, 所以它不能参与散射过程, 不能从相互作用中获得能量上的好
+处. 而这些态是可以参与散射过程的, 它能够在散射过程中能够获得能量上的 benefit ,
+这些态经过散射后能量降低了, 这才是真正的能量上的 ground state. 
+
+* Summary
+
+通过 BCS mean field theory , 最主要的目的是 construct 一个 ground state, 这个 ground
+state 在这个 Hamiltonian 里面, 激发是正的. 而且有物理上的道理.
+
+* Reference 
+
+- H. Z. 的课.
+

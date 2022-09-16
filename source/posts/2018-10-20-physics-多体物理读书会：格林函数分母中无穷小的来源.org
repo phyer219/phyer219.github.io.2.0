@@ -1,0 +1,100 @@
+#+TITLE: 多体物理读书会：格林函数分母中无穷小的来源
+#+DATE: <2018-10-20>
+#+CATEGORIES: 专业笔记
+#+TAGS: 数学, 物理, 格林函数, 多体物理读书会
+#+HTML: <!-- toc -->
+#+HTML: <!-- more -->
+* 问题陈述
+在格林函数的谱表示中，分母中出现了 \( \mathrm{i}0^{+}\) ，如
+- 推迟格林函数的谱表示
+\begin{align*}
+  G_{AB}^{\mathrm{ret}}(E) = \int _{-\infty}^{+\infty} \mathrm{d}E' \frac{S_{AB}(E')}{E-E'+\mathrm{i}0^{+}}
+\end{align*}
+- 超前格林函数的谱表示
+\begin{align*}
+  G_{AB}^{\mathrm{ret}}(E) = \int _{-\infty}^{+\infty} \mathrm{d}E' \frac{S_{AB}(E')}{E-E'-\mathrm{i}0^{+}}
+\end{align*}
+- 因果格林函数的谱表示
+\begin{align*}
+  G_{AB}^{\mathcal{c}} =& \frac{\hbar}{\Xi} \sum_{n,m} \langle E_{n}\mid B \mid E_{m}\rangle\langle E_{m} \mid A \mid E_{n} \rangle e^{-\beta E_{n}}\cdot\\
+  &\cdot \left[ \frac{e^{\beta(E_{n}-E_{m})}}{E-(E_{n}-E_{m})+\mathrm{i}0^{+}} - \frac{\varepsilon}{E-(E_{n}-E_{m})-\mathrm{i}0^{+}} \right]
+\end{align*}
+除了格林函数的谱表示，\( \mathrm{i}0^{+}\) 也在物理计算中的其它地方出现，比如，库仑势的Fourier Transform 的推导过程中也需要引入\( \mathrm{i}0^{+}\) 来得到最后的结果，即使在开始和结果中没有出现\( \mathrm{i}0^{+}\) 。\\
+以下将对\( \mathrm{i}0^{+}\) 出现的合理性和必要性做出论证。
+* 问题的由来
+假使\(f(t)\) 是一个任意形式的外场脉冲，它在$t<0$时为零，在$t>0$时为有限值，在$t\rightarrow\infty$时为零。它系统的某个量$G(t)$耦合，在$t$时刻给系统的影响为$f(t)G(t)$，所以，当$t\rightarrow\infty$时，也就是外场脉冲作用结束时，对系统的影响的积累为
+-
+\begin{equation}
+  \label{eq:1}
+  A = \int_{-\infty}^{+\infty}\mathrm{d}t\,f(t)G(t) = \int_{0}^{+\infty}\mathrm{d}t\,f(t)G(t)
+\end{equation}
+这个积分是收敛的。\\
+我们想通过施加外场脉冲的方式得到系统本身普遍的性质，这个性质与施加的外场脉冲的形式无关，因此将(\ref{eq:1})作Fouriter Transform
+-
+\begin{equation}
+  \label{eq:2}
+  A = \int_{0}^{+\infty} \mathrm{d}t \cdot \int_{-\infty}^{+\infty}\mathrm{d}\omega e^{\mathrm{i}\omega t}f(\omega) \cdot\int_{-\infty}^{+\infty}\mathrm{d}\omega 'e^{\mathrm{i}\omega 't }G(\omega ')
+\end{equation}
+此时，所有的$t$都在$e$指数上，与外场脉冲$f$和系统的某个量$G$无关，自然想要先把$t$积掉，也就是将(\ref{eq:2})变为
+\begin{equation}
+  \label{eq:3}
+  A =\int_{-\infty}^{+\infty}\mathrm{d}\omega f(\omega) \cdot\int_{-\infty}^{+\infty}\mathrm{d}\omega ' G(\omega ') \cdot  \int_{0}^{+\infty} \mathrm{d}t e^{\mathrm{i}(\omega +\omega ')t}
+\end{equation}
+但是
+\begin{align*}
+  e^{\mathrm{i}(\omega+\omega')t} = \cos [(\omega+\omega')t]+ \mathrm{i}\sin[(\omega+\omega')t]
+\end{align*}
+是一个振荡的三角函数函数，对$t$的积分是不收敛的。原来的积分顺序是先对$\omega$ 和$\omega'$ 积分，再对 $t$ 积分，但是我们想交换积分的顺序，想先对$t$积分。但是交换顺序后发现，对$t$的积分不收敛，但早就已知整个积分是收敛的，所以直接交换积分是不被允许的，它会导致发散的错误的结果。是也是一个不一致收敛不能交换积分顺序的例子。\\
+但是我们可以对其改造，使得其满足一致收敛，而且改造后的积分与原来的积分的值是相等的。这样，经过改造我们就可以交换积分顺序，从而把$t$给积掉。
+* 无穷小的引入
+** 定理
+先不加证明地说明一个结论。
+如果积分
+\begin{align*}
+  \int_{0}^{+\infty}\mathrm{d}tf(t)
+\end{align*}
+收敛，那么将有下面的结论
+\begin{equation}
+  \label{eq:4}
+  \int_{0}^{+\infty}\mathrm{d}t\,f(t) = \lim_{\eta\rightarrow0^{+}}\int_{0}^{+\infty}\mathrm{d}t\,f(t)e^{-\eta t}
+\end{equation}
+** 改造原来的积分但使其结果不变
+我们要求的积分(\ref{eq:2})是收敛地，因此可以用(\ref{eq:4})，所以积分(\ref{eq:2})变为
+\begin{equation}
+  \label{eq:5}
+ A = \lim_{\eta\rightarrow0^{+}}\int_{0}^{+\infty} \mathrm{d}t \cdot \int_{-\infty}^{+\infty}\mathrm{d}\omega e^{\mathrm{i}\omega t}f(\omega) \cdot\int_{-\infty}^{+\infty}\mathrm{d}\omega 'e^{\mathrm{i}\omega ' t }G(\omega ')e^{-\eta t}
+\end{equation}
+这时，积分就满足一致收敛了，那么就可以交换积分顺序，交换积分顺序后也不会出现发散的情况
+\begin{equation}
+  \label{eq:6}
+  A = \int_{-\infty}^{+\infty}\mathrm{d}\omega f(\omega) \cdot\int_{-\infty}^{+\infty}\mathrm{d}\omega ' G(\omega ')\cdot \lim_{\eta\rightarrow0^{+}}\int_{0}^{+\infty} \mathrm{d}t\, e^{\mathrm{i}(\omega +\omega ')t-\eta t}
+\end{equation}
+加入这一因子改造的本质是加入一个衰减因子，当\(\eta\rightarrow0^{+}\) 时，这个衰减因子decay地非常慢，而原来的积分是收敛的，也就是在无穷远处的值应该趋近于零，类似于一个波包，所以可以认为在波包的值不为零时，这个decay对于它的作用是可以忽略的。将$t$的积分算出
+\begin{align*}
+  \lim_{\eta\rightarrow0^{+}}\int_{0}^{+\infty} \mathrm{d}t e^{\mathrm{i}(\omega +\omega ')t-\eta t} = \lim_{\eta\rightarrow0^{+}}\frac{-1}{\mathrm{i}(\omega+\omega'+\mathrm{i}\eta)}
+\end{align*}
+一般就简记为
+\begin{align*}
+  \lim_{\eta\rightarrow0^{+}}\frac{-1}{\mathrm{i}(\omega+\omega'+\mathrm{i}\eta)} \equiv\frac{-1}{\mathrm{i}(\omega+\omega'+\mathrm{i}0^{+})}
+\end{align*}
+* 结论
+所以最终把原来的积分(\ref{eq:1})化为
+\begin{equation}
+  \label{eq:7}
+  \begin{split}
+  A =&  \int_{0}^{+\infty}\mathrm{d}t\,f(t)G(t) \\
+  =&  \int_{0}^{+\infty} \mathrm{d}t \cdot \int_{-\infty}^{+\infty}\mathrm{d}\omega e^{\mathrm{i}\omega t}f(\omega) \cdot\int_{-\infty}^{+\infty}\mathrm{d}\omega 'e^{\mathrm{i}\omega 't }G(\omega ') \\
+  =&\int_{-\infty}^{+\infty}\mathrm{d}\omega f(\omega) \cdot\int_{-\infty}^{+\infty}\mathrm{d}\omega ' G(\omega ')\frac{-1}{\mathrm{i}(\omega+\omega'+\mathrm{i}0^{+})}
+  \end{split}
+\end{equation}
+分母中就出现了无穷小。
+* 附录
+** (\ref{eq:4})式的证明
+** (\ref{eq:3})式不一致收敛的说明
+* 总结
+\( \mathrm{i}0^{+}\) 在中间计算过程中的出现原因有两点：
+1. 数学上的事实： \( \mathrm{i}0^{+}\) 的出现是正确的，不会使得原积分的值发生改变。
+2. 操作上的便利性： \( \mathrm{i}0^{+}\) 的出现能够使得我们交换积分的顺序，从而先把$t$积分掉。
+
+* 致谢
+感谢Peng Zhang 老师对于此问题多次耐心地讲解。

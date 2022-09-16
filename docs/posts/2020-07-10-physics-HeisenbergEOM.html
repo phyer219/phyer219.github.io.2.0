@@ -1,0 +1,123 @@
+<!DOCTYPE html><html class="no-js" lang="zh">
+
+<head>
+<script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+    </script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Long+Cang&family=Noto+Serif+SC&display=swap" rel="stylesheet"> <meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>从冰上的水</title>
+<link rel="apple-touch-icon" sizes="180x180" href="../static/images/apple-touch-icon-next.png?v=6.4.1">
+<link rel="icon" type="image/png" sizes="32x32" href="../static/images/favicon-32x32-next.png?v=6.4.1">
+<link rel="icon" type="image/png" sizes="16x16" href="../static/images/favicon-16x16-next.png?v=6.4.1">
+<link rel="stylesheet" type="text/css" href="../static/css/mystyle.css">    
+
+</head>
+<body>
+    <div class="container">
+        <header>
+            <section class="banner"><img src="../static/images/banner_20220427_tamako-love-story.jpg"></section>
+        </header>
+        <nav class="row">
+    <a class="nav" href="../index.html">首页</a>
+    <a class="nav" href="../category/category.html">分类</a>
+    <a class="nav" href="#">标签</a>
+    <a class="nav" href="#">关于</a>
+</nav>
+        <main>
+            <h1 class="post-title">关于 Heisenberg 运动方程
+            </h1>
+            <section class="post-meta">
+                <p><2020-07-10></p>
+                <p>['物理, Heisenberg equation of motion']</p>
+                <p>专业笔记</p>
+            </section>
+            <section class="post-content">
+                
+<h2>时间演化算符</h2>
+
+<p>时间演化</p>
+
+$$\begin{align}
+  U(t_0 + \mathrm{d}t, t_0) = 1 - \frac{i}{\hbar}Ht
+\end{align}$$
+
+<p>那么</p>
+
+$$\begin{align}
+  U(t + \mathrm{d}t, t_0)  = \left(1 - \frac{i}{\hbar}Ht \right)U(t, t_0) 
+\end{align}$$
+
+<p>所以</p>
+
+$$\begin{align}
+  U(t + \mathrm{d}t, t_0) - U(t + , t_0) =& - \frac{i}{\hbar}\mathrm{d}t U(t, t_0) \\
+    \Downarrow &\\
+  \mathrm{i}\hbar \frac{\partial}{\partial t} U(t, t_0) =& H(t) U(t, t_0)
+\end{align}$$
+
+<p>关键在于如果 Hamiltonian 中含时, 它和演化算符中是同一个 $t$ .
+由此得到最 general 的演化算符的形式</p>
+
+$$\begin{align}
+U(t,t_0) = T \left\{ e^{-\frac{\mathrm{i}}{\hbar}\int _{t_0}^t \mathrm{d}t' H(t')} \right\}
+\end{align}$$
+
+<p>也就是说最 general 的情况下, $[U(t, t_0), H(t)] \neq 0$ .</p>
+<h2>Heisenberg 运动方程为</h2>
+
+
+$$\begin{align}
+  \frac{\mathrm{d}A^H}{\mathrm{d}t} = -\frac{i}{\hbar}
+    U^{\dagger}(t)[A, H(t)] U(t) + U^{\dagger}(t)\frac{\partial A}{\partial t} U(t)
+\end{align}$$
+
+<p>上式中的 $H(t), U(t)$ 也是同一个 $t$ .</p>
+
+<h2>Liouville–von Neumann equation</h2>
+
+<p>密度矩阵的演化满足 Liouville–von Neumann equation</p>
+
+$$\begin{align}
+  \frac{\mathrm{d}}{\mathrm{d}t} \rho(t) 
+  = \frac{\mathrm{i}}{\hbar} [\rho(t), H]
+\end{align}$$
+
+<p>它的 Heisenberg 运动方程类似,
+但要注意差了一个负号, 并且它是在 Schrodinger picture 中的.</p>
+
+<p>密度算符</p>
+
+$$\begin{align}
+  \rho(t) = \sum_n p_n U(t)|n\rangle\langle n| U^{\dagger}(t)
+\end{align}$$
+
+<p>从上式可以看出负号的来源. Heisenberg picture 中的算符是 $U^{\dagger}AU$ , 而密度算符是
+$U|n\rangle\langle n|U^{\dagger}$ , $U$ 和 $U^{\dagger}$ 的位置刚好相反.</p>
+
+<h2>Reference</h2>
+
+<ul>
+<li>J. J. Sakurai, Jim Napolitano, Modern Quantum Mechanics 2nd</li>
+<li>https://en.wikipedia.org/wiki/Heisenberg_picture</li>
+<li>https://en.wikipedia.org/wiki/Density_matrix</li>
+<li>https://physics.stackexchange.com/questions/112984/liouville-von-neumann-equation-can-be-directly-derived-from-heisenberg-picture</li>
+</ul>
+
+            </section>
+        </main>
+        <footer>zqw</footer>
+
+    </div>
+</body>
+</html>

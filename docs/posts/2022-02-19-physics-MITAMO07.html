@@ -1,0 +1,417 @@
+<!DOCTYPE html><html class="no-js" lang="zh">
+
+<head>
+<script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+    </script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Long+Cang&family=Noto+Serif+SC&display=swap" rel="stylesheet"> <meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>从冰上的水</title>
+<link rel="apple-touch-icon" sizes="180x180" href="../static/images/apple-touch-icon-next.png?v=6.4.1">
+<link rel="icon" type="image/png" sizes="32x32" href="../static/images/favicon-32x32-next.png?v=6.4.1">
+<link rel="icon" type="image/png" sizes="16x16" href="../static/images/favicon-16x16-next.png?v=6.4.1">
+<link rel="stylesheet" type="text/css" href="../static/css/mystyle.css">    
+
+</head>
+<body>
+    <div class="container">
+        <header>
+            <section class="banner"><img src="../static/images/banner_20220427_tamako-love-story.jpg"></section>
+        </header>
+        <nav class="row">
+    <a class="nav" href="../index.html">首页</a>
+    <a class="nav" href="../category/category.html">分类</a>
+    <a class="nav" href="#">标签</a>
+    <a class="nav" href="#">关于</a>
+</nav>
+        <main>
+            <h1 class="post-title">Atomic and Optical Physics I, 07 Atoms III: Fine Structure
+            </h1>
+            <section class="post-meta">
+                <p><2022-02-19></p>
+                <p>['Atomic and Optical Physics, fine structure']</p>
+                <p>专业笔记</p>
+            </section>
+            <section class="post-content">
+                
+<h2>Information</h2>
+<ul>
+<li>官方介绍: https://ocw.mit.edu/courses/physics/8-421-atomic-and-optical-physics-i-spring-2014/</li>
+<li>视频列表地址: https://www.youtube.com/playlist?list=PLUl4u3cNGP62FPGcyFJkzhqq9c5cHCK32</li>
+</ul>
+<h2>Helium (last lecture)</h2>
+
+
+$$\begin{align}
+\vec{S} = \vec{S}(1) + \vec{S}(2)
+\end{align}$$
+
+
+<p>All spin operators are symmetric against particle exchange. In other words, if
+you couple to the spin through a magnetic field, you couple to the two electrons
+symmetrically. And therefore, you have the selection rule only symmetric and
+symmetric ( $S \leftrightarrow S$ ) & anti-symmetric and anti-symmetric ( $A \leftrightarrow A$ ) states
+couple. 也就是说 Hamiltonian 中的自旋算符不改变自旋的组态.</p>
+
+<p>Spatial and spin symmetry (S. A) are both good quantum numbers. Formally, all
+observables $\hat{O}$ commute with particle exchange operator (自旋和空间没有耦
+合)</p>
+
+$$\begin{align}
+[P_{ij}, \hat{O}] = 0
+\end{align}$$
+
+
+<p>As long as wavefunctions and operators separate into spin-dependent and
+space-dependent parts</p>
+
+$$\begin{align}
+P_{12} = P_{12}^{\mathrm{space}} P_{12}^{\mathrm{spin}}
+\end{align}$$
+
+<p>and both $P_{12}$ 's are conserved.</p>
+
+<p>Singlets $\leftrightarrow$ Triplets transition requires violation of above assumption.</p>
+
+<quote>#+begin_quote
+Mixing of spin and spatial WF by spin orbit coupling.
+
+Spin-orbital coupling $\propto Z^4$ . Weak for Helium, $2^{3}s$ is VERY long lived
+8000s (It's one of the most longest-lived metastable states you can imagine and
+which you find in atomic physics)
+
+Ne, Ar, Kr, Xe 40s.(longer, because of stronger nuclear charge)
+
+Mg, Ca, Sr have inter-combination lines, are candidate for atomic clocks (kHz
+line width). If the line width is kilohertz, the lifetime is millisecond ...
+#+end_quote</quote>
+
+<p>Decay path: 1 photon M1(we discuss it later in the course), and not 2-photons as
+believed earlier). The decay path requires higher order terms using the Dirac
+equation with coupling to the electromagnetic field.</p>
+
+<h2>Fine Structure</h2>
+
+<p>| Electronic energy | Ryd, $\alpha^2 mc^2$        |
+| Fine structure    | $\alpha^4 mc^2$ , $\alpha^2$ Ryd |
+| Lamb shifts       | $\alpha^5 mc^2$ , GHz       |</p>
+
+<p>Fine structure: $\alpha^4 mc^2$ .
+Exact picture: Dirac equation. The solution of the Dirac equation for the
+hydrogen atom gives us the electronic structure, the same as comes out of the
+Bohr model, but now including the fine structure.</p>
+
+<h3>Fine Structure: 3 contributions</h3>
+
+<ul>
+<li>kinetic</li>
+<li>spin-orbit</li>
+<li>Darwin term</li>
+</ul>
+<p>Pauli approximation to the Dirac equation (expand Dirac equation in power of
+$v/c$ , lowest order):</p>
+
+$$\begin{align}
+H =& mc^{2} + \frac{p^2}{2m} - \frac{e^2}{r} \\
+   & - \frac{p^4}{8m^3c^2}\quad \mathrm{kinetic} \\
+   & + \frac{\hbar^2e^2}{2m^2 c^2}\frac{1}{r^3} \vec{L}\cdot \vec{S} \quad \mathrm{spin-orbit}\\
+   & - \frac{\hbar^2}{8 m^2c^2}\nabla^2 \frac{e^2}{r} \quad \mathrm{Darwin}
+\end{align}$$
+
+
+<h4>Kinetic energy</h4>
+
+
+$$\begin{align}
+E = \sqrt{(mc^2)^2 + (pc)^2}
+\end{align}$$
+
+
+$$\begin{align}
+T = E - mc^2 \approx \frac{p^2}{2m} - \frac{1}{8}\frac{p^4}{m^3c^2}
+\end{align}$$
+
+
+<h4>Spin-orbit interaction</h4>
+<p>insightful: what do we have to add to the Schrodinger
+equation to get it? Spin!</p>
+
+<p>$e^-$</p>
+<ul>
+<li>intrinsic angular moment $\hbar \vec{S}$</li>
+<li>magnetic moment $\mu <code> g\mu_0 \vec{S}$ ( $g </code> 2$ , $\mu_0$ Bohr magneton)</li>
+</ul>
+<p>moving electron "sees" motional magnetic field.</p>
+
+$$\begin{align}
+B_{\mathrm{mot}} = - \frac{\vec{v}}{c}\times \vec{E}
+    = - \frac{\vec{v}}{c}\times \frac{e}{r^3}\vec{r} = \frac{e\hbar}{mc} \frac{1}{r^3}\vec{L}
+\end{align}$$
+
+
+$$\begin{align}
+H_{\mathrm{S.O.}} = - \vec{\mu}\cdot \vec{B}
+ = \frac{e^2 \hbar^2}{m^2 c^2}\frac{1}{r^3}\vec{S}\cdot \vec{L}
+\end{align}$$
+
+
+<quote>#+begin_quote
+relativistic transformations
+\begin{align}
+\vec{\Omega}_{\mathrm{T}} = \frac{1}{2}\frac{\vec{a}\times \vec{v}}{c^2}
+\quad
+\begin{pmatrix}
+= 0, \quad \vec{a} // \vec{v} \\
+\mathrm{Thomas}\, \mathrm{procession}
+\end{pmatrix}
+\end{align}
+according to Lecture 2
+\begin{align}
+\vec{B}_{\mathrm{T}} = \frac{1}{\gamma_e}\vec{\Omega}_{\mathrm{T}},
+ \gamma_e = \frac{e}{mc}, \vec{a} = \frac{e^2}{mr^3}\vec{r}
+\end{align}
+\begin{align}
+\Rightarrow B_{\mathrm{T}} = \frac{1}{2}B_{\mathrm{mot}}
+\end{align}
+
+杨福家碱金属双线一节, 及 Griffiths QM 6.3 节有关于坐标系变换的讨论.
+#+end_quote</quote>
+
+<h4>Darwin term</h4>
+
+<p>electron is "smeared(not localized) out" over Compton wavelength $\frac{\hbar}{mc}$</p>
+
+<p>German word: Zitterbewegung (trembling motion)</p>
+
+<p>fells averaged Coulomb potential $\bar{V(r)}$</p>
+
+<p>small displacement $\vec{s}$</p>
+
+$$\begin{align}
+V(\vec{r} + \vec{s}) = v(\vec{r}) + \vec{\nabla} V\cdot \vec{s}
+ + \frac{1}{2} \sum_{ij} s_{xi}s_{xj} \frac{\partial^2 V}{\partial x_i \partial x_j}
+\end{align}$$
+
+<p>the correction:</p>
+
+$$\begin{align}
+\Delta V = \frac{1}{2}\frac{1}{3}\left(\frac{\hbar}{mc}\right)^2 \nabla^2V
+    = - \frac{1}{6} \frac{e^2\hbar^2}{m^2c^2}\nabla^2 \frac{1}{r}
+\end{align}$$
+
+<p>$\nabla^2\frac{1}{r} \Rightarrow$ only s electrons which have a non-vanishing probability to
+feel the origin of the Coulomb potential.
+Exact coefficition is $\frac{1}{8}$ .</p>
+
+<h4>summary</h4>
+
+<p>|                    | s electrons | $l\neq 0$ | sign |
+| rel KE             | Yes         | Yes     | $-$  |
+| $\vec{L}\cdot \vec{S}$ | No          | Yes     | $+/-$ |
+| Darwin             | Yes         | No      | $+$  |</p>
+
+<p>the Darwin term reduces the binding energy, because it sort of takes a cusp (a
+point of transition between two different states) away from the Coulomb
+interaction.</p>
+
+<p>Spin-orbit is not diagonal in $\vec{L}, \vec{S}$ . So what we have to do is we
+have to introduce now:</p>
+
+$$\begin{align}
+(\vec{L} + \vec{S})^2 = \vec{J}^{2}
+\end{align}$$
+
+
+$$\begin{align}
+\vec{L}\cdot \vec{S} = \frac{1}{2}(\vec{J}^2 - \vec{L}^2 - \vec{S}^2)
+\end{align}$$
+
+<p>So, therefore, the LS interaction is diagonal in the J basis.</p>
+
+<p>加上 Kinetic 和 Darwin 项之后, $^2S_{1/2}, ^2P_{1/2}$ 又重新简并. If we would use
+a non-relativistic approach, and derive the Darwin term, the spin orbit term,
+and the relativistic correction separately, there would be no reason. It would
+just look like a freak(a thing, person, animal, or event that is extremely
+unusual or unlikely, and not like any other…) accident in nature that those two
+levels come out equal. However, it's not a freak accident. *It's a symmetry of
+the Dirac equation.* So all those corrections have a deep connection in
+relativistic physics. And *relativistic physics preserves the degeneracy in $J$*
+.</p>
+
+<p>Fine structure does not lift the degeneracy between $^2S_{1/2}$ and $^2P_{1/2}$
+. When we use the Dirac equation, we can get an exact expression for the fine
+structure:</p>
+
+$$\begin{align}
+E_{\mathrm{F.S.}} = \alpha^2 mc^2 \left(-\frac{\alpha^2}{2n^4}\right)
+     \left(\frac{n}{j+\frac{1}{2}} - \frac{3}{4} \right)
+\end{align}$$
+
+<p>and then the *fine structure only depends on $J$ , and not on $L, S$ separately*
+. So that tells us that eventually the spin of the electron and the fine
+structure really have deep origins in the relativistic nature of the underlying
+physics.</p>
+
+<p>但这个简并只对单电子的系统有效. 见 Demtröder, W. Atoms, Molecules and Photons:
+An Introduction to Atomic-, Molecular- and Quantum Physics. (Springer Berlin
+Heidelberg, 2018)  第 167, 168 页 5.5.4
+Spin-Orbit Coupling and Fine Structure.</p>
+
+<p><p><img src='2022-02-19-physics-MITAMO07/FS_Hydrogen.png' alt='figalt' max-width: 100%><p></p>
+
+<p>So that means at the level of $10^{-4}$ eV, we understand atomic structure. But
+we want to go further. And the next thing we want to discuss is that --- what is
+the exact degeneracy between $^2S_{1/2}$ and $^2P_{1/2}$ which is actually lifted
+when we introduce photons when we allow the electrons to couple to the
+electromagnetic field, that's QED. And that introduces the Lamb shift (the
+nucleus is a point charge, has no structure).</p>
+
+<p>When we bring in the proton. So far we have said there is a point charge, but
+the proton is a particle which has finite size. But also, it has finite angular
+momentum. And then we have HFS.</p>
+
+<p><p><img src='2022-02-19-physics-MITAMO07/RoadMap.png' alt='figalt' max-width: 100%><p></p>
+
+<h2>Lamb Shift (QED)</h2>
+
+<p>The discovery of this lifting of the degeneracy actually opened up the field for
+the development of quantum electrodynamics.</p>
+
+<p>If you fully quantize the electromagnetic field, you have a vector potential
+which describes the vacuum mode. And you have a vector potential, which is the
+operator of the fully-quantized field. And if you now carry out second-order
+perturbation theory in this operator $A$ of the quantized electromagnetic
+field. In other words, you allow the atom or the electron in the atom to couple
+to all the empty modes of the vacuum. Then you obtain the Lamb shift in its full beauty.</p>
+
+
+<p>The nature of the Lamb shift is the coupling to the vacuum modes. But I want to
+capture that now in a semi-classical picture.</p>
+
+<h3>Simple picture due to <a href='https://en.wikipedia.org/wiki/Theodore_A._Welton'>Welton</a> & <a href='https://en.wikipedia.org/wiki/Victor_Weisskopf'>Weisskopf</a></h3>
+
+<p>the vacuum is filled with a zero point energy of the electromagnetic field.</p>
+
+<p>EM modes  have zero point energy $\frac{1}{2}\hbar\omega$ density of modes (per volume
+and frequency interval)</p>
+
+<quote>#+begin_quote
+Now in addition to its own trembling motion, the electron is now shaken by the
+electric field of vacuum. And this leads to an additional smear out. This is the
+Lamb shift.
+#+end_quote</quote>
+
+$$\begin{align}
+\rho(\nu) \mathrm{d}\nu = 8\pi \frac{\nu^2}{c^3}\mathrm{d}\nu
+\end{align}$$
+
+<p>zero point density</p>
+
+$$\begin{align}
+W_0 = \frac{1}{2}h\nu \rho(\nu) = 4\pi\frac{h\nu^3}{c^3} = \frac{1}{8\pi} E_{\nu^2}
+\end{align}$$
+
+<p>So therefore, what we derive from this picture, that the vacuum is filled with
+an oscillating electric field. And this oscillating electric field is
+characterized by a value, by a spectral density</p>
+
+$$\begin{align}
+E_{\nu}^2 = \frac{32\pi^2 h\nu^3}{c^3}
+\end{align}$$
+
+
+<p>What is the effect of such a field on a free electron? And we will later discuss
+that for very high-frequencies, an electron can be regarded as free.</p>
+
+$$\begin{align}
+m \ddot{s_{\nu}} =& e E_{\nu} \cos (2\pi\nu t) \\
+\Rightarrow s_{\nu} =& \frac{e E_{\nu}}{2\pi \nu^2 m}(- \cos(2\pi\nu t))
+\end{align}$$
+
+<p>where $s$ is coordinate of electron.</p>
+
+<p>Of course, the phase is random, so we're not interested in the amplitude . We
+are interested in sort of an average amplitude square or an RMS amplitude.</p>
+
+$$\begin{align}
+\bar{S_{\nu}^2} = \frac{e^2}{32\pi^4m^2\nu^4}E_{\nu}^2 = \frac{c^2h}{\pi^2 m^2 e^3}\frac{1}{\nu}
+\end{align}$$
+
+<p>like Darwin term</p>
+
+$$\begin{align}
+\Delta V = \frac{s_{\nu}^2}{6} \nabla^2 V(r) = \frac{s_{\nu}^2}{6} \cdot 4\pi z\delta(r)
+\end{align}$$
+
+<p>These smear out ( $s_{\nu}^2$ ) of the electron leads to a change of the average Coulomb
+potential. And that means now that we get a change of the binding energy of the
+electron, which is nothing else in perturbation theory than the matrix element
+of the perturbation operator</p>
+
+$$\begin{align}
+\delta W_{\nu} = \frac{2\pi}{3} e^2 s_{\nu}^2 \langle \psi | \delta(r) | \psi\rangle
+\end{align}$$
+
+<p>$\langle \psi | \delta(r) | \psi\rangle$ only affects s electron $\frac{Z^3}{\pi n^3a_0^3}$</p>
+
+<p>integrate over $\nu$</p>
+
+$$\begin{align}
+\delta W = \frac{4}{3\pi}\alpha^3 \frac{Z^4}{n^e}
+    \mathrm{ln} \left[ \frac{\nu_{\mathrm{max}}}{\nu_{\mathrm{min}}} \right]
+\end{align}$$
+
+<p>we have divergences at both ends. So we need a cutoff at a minimum and at a
+maximum frequency. $\nu_{\mathrm{max}} \approx mc^2$ , $\nu_{\mathrm{min}} =$ frequency
+of the orbital electron</p>
+
+$$\begin{align}
+\frac{Z^2}{n^3} 2 \mathrm{Ryd.}
+\end{align}$$
+
+<p>so</p>
+
+$$\begin{align}
+\frac{\nu_{\mathrm{max}}}{\nu_{\mathrm{min}}}
+\approx \frac{n^3}{Z^2\alpha^{2}}
+\end{align}$$
+
+<p>if we apply it to 2s state which is most important because there is the
+degeneracy between $^2S_{1/2}$ and $^2P_{1/2}$ to be lifted, we get a result that
+the energy splitting is now</p>
+
+$$\begin{align}
+\delta W = \frac{1}{6\pi}\alpha^3 \mathrm{ln}\frac{8}{\alpha^2}\approx 1600 \mathrm{MHz}
+\end{align}$$
+
+<p>exact value is 1058 MHz.</p>
+
+<h2>Reference</h2>
+
+<ul>
+<li><a href='https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.103.053002'>S. S. Hodgman, R. G. Dall, L. J. Byron, K. G. H. Baldwin, S. J. Buckman, and A. G. Truscott Phys. Rev. Lett. 103, 053002 – Published 30 July 2009</a></li>
+<li><a href='https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.100.023001'>Phys. Rev. Lett. 100, 023001 – Published 15 January 2008, Experimental Determination of the Helium $2^3P_1–1^1S_0$ Transition Rate</a></li>
+<li><a href='https://en.wikipedia.org/wiki/Zitterbewegung'>Wikipedia: Zitterbewegung</a></li>
+<li><a href='https://en.wikipedia.org/wiki/Theodore_A._Welton'>Wikipedia: Welton</a></li>
+<li><a href='https://en.wikipedia.org/wiki/Victor_Weisskopf'>Wikipedia: Weisskopf</a></li>
+<li>Demtröder, W. Atoms, Molecules and Photons: An Introduction to Atomic-, Molecular- and Quantum Physics. (Springer Berlin Heidelberg, 2018)</li>
+<li><a href='https://en.wikipedia.org/wiki/Fine_structure'>wikipedia: Fine structure</a></li>
+</ul>
+
+            </section>
+        </main>
+        <footer>zqw</footer>
+
+    </div>
+</body>
+</html>

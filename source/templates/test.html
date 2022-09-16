@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>菜鸟教程(runoob.com)</title>
+<style>
+#test {
+  left: 110px;
+  margin: 10px;
+  padding: 10px;
+  width: 300px;
+  position: relative;
+  border: 5px solid black
+}
+</style>
+</head>
+<body>
+
+
+    <style>
+        #ball{
+            color:red;
+            background-color:green;
+            width:50px;
+            position:relative;
+            left: 0;
+            top: 0;
+        }
+        #bar{
+            background-color:gray;
+            width:500px;
+            position: relative;
+            left: 10px;
+        }
+    </style>
+    <div style="margin: auto;background-color: bisque;width: 800px;">
+        <div id="bar" >
+            <div id="ball">
+                ball
+            </div>
+        </div>
+    </div>
+
+
+
+<script>
+function myFunction() {
+  var testDiv = document.getElementById("test");
+  document.getElementById("demo").innerHTML = testDiv.offsetLeft;
+}
+	
+	ov = document.getElementById('ball')
+    bar = document.getElementById('bar')
+	ov.onmousedown = function(ev){
+        // var ev = ev; 
+		ov.style.color='yellow';
+
+        document.onmousemove = function(ev){
+            disX =  ev.clientX - bar.offsetLeft;
+            ov.style.left =  disX + 'px';
+        };
+        document.onmouseup = function(ev){
+            document.onmousemove = null;
+        };
+    };
+</script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,15 @@
+#+TITLE: 诗句
+#+DATE: <2019-10-08>
+#+CATEGORIES: 想说
+#+TAGS: 
+#+HTML: <!-- toc -->
+#+HTML: <!-- more -->
+
+#+BEGIN_QUOTE
+云天收夏色，
+木叶动秋声。
+#+END_QUOTE
+
+#+BEGIN_QUOTE
+晓来寒露滴疏桐。
+#+END_QUOTE

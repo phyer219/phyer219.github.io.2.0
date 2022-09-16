@@ -1,0 +1,74 @@
+#+TITLE: 高斯波包的扩散
+#+DATE: <2021-02-28>
+#+CATEGORIES: 专业笔记
+#+TAGS: wave packet
+#+HTML: <!-- toc -->
+#+HTML: <!-- more -->
+
+* Monochromatic wave
+
+单色波的波函数可以写为
+\begin{align}
+\psi_k(x, t) = \phi_k(x) e^{-\mathrm{i}Et/\hbar}
+= \frac{1}{\sqrt{2\pi}}e^{\mathrm{i}\left[kx - \omega(k) t\right]}
+\end{align}
+phase velocity $v = \omega/k$ . $\omega(k)$ 为色散关系.
+
+* Localized wave packet
+
+一个波包包含不同波长的单色波, 也就是不同的 $k$ 的叠加
+\begin{align}
+\psi(x, 0) = \int_{-\infty}^{\infty} \tilde{\psi}(k) \psi_k(x, 0) \mathrm{d}k
+  = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\infty} e^{\mathrm{i}kx} \tilde{\psi}(k) \mathrm{d}k
+\end{align}
+叠加系数为
+\begin{align}
+ \tilde{\psi}(k) = \langle \psi_k(x, 0) | \psi(x, 0) \rangle = \frac{1}{\sqrt{2\pi}}
+  \int_{-\infty}^{\infty} e^{-\mathrm{i}kx} \psi(x, 0)\mathrm{d}x
+\end{align}
+那么 $t$ 时刻的波函数为
+\begin{align}
+  \psi(x, t) = \int_{-\infty}^{\infty}\tilde{\psi}(k) \psi_k(x, t) \mathrm{d}k
+  = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\infty} e^{\mathrm{i}\left[ kx - \omega(k)t \right]}
+    \tilde{\psi}(k)\mathrm{d}k
+\end{align}
+
+* Gaussian wave packet
+
+高斯波包
+\begin{align}
+  \psi(x, 0) = (\beta\sqrt{\pi})^{-1/2} e^{-\frac{(x - x_0)^2}{2\beta^2}} e^{\mathrm{i}k_0 x}
+\end{align}
+取色散关系为 $\omega(k) = \frac{\hbar k^2}{2\mu}$ 可得 (Mathematica 计算过程:
+[[file:2021-02-28-专业笔
+记-wave_packet_spreading/draft20210120_Gaussian_wave_packet.nb]] )
+\begin{align}
+|\psi(x, t)|^2 = \frac{1}{b(t) \sqrt{\pi}} e^{-\frac{(x - x_0 - v_0t)^2}{b(t)^2}}
+\end{align}
+其中
+\begin{align}
+b(t) = \beta \sqrt{1 + \frac{\hbar^2t^2}{\mu^2\beta^4}}, \quad v_0 = \frac{\hbar k_0}{\mu}
+\end{align}
+可见波包中心按速度 $v_0$ 传播, 宽度越来越宽.
+
+如果 $k$ 集中于 $k_0$ 附近, 那么可以做展开
+\begin{align}
+\omega(k) \approx \omega(k_0) + (k - k_0) \left. \frac{\mathrm{d}\omega}{\mathrm{d}k} \right|_{k_0}
+\end{align}
+那么
+\begin{align}
+  \psi(x, t) \approx \frac{e^{-\mathrm{i}\omega_0t}}{\sqrt{2\pi}} \int_{-\infty}^{\infty}\tilde{\psi}(k)
+     e^{\mathrm{i}k(x - v_{\mathrm{g}}t)} \mathrm{d}k
+\end{align}
+其中
+\begin{align}
+\omega_0 =& \omega(k_0) - k_0 \left. \frac{\mathrm{d}\omega}{\mathrm{d}k} \right|_{k_0}\\
+v_{\mathrm{g}} =& \left. \frac{\mathrm{d}\omega}{\mathrm{d}k} \right|_{k_0}
+\end{align}
+
+* Reference
+
+- Harald Siegfried Friedrich, Theoretical Atomic Physics-Springer (2005) Chap
+  1.4.1
+
+

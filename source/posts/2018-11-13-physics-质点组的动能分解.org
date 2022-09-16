@@ -1,0 +1,118 @@
+#+TITLE: 质点组的动能分解
+#+DATE: <2018-11-13>
+#+CATEGORIES: 专业笔记
+#+TAGS: 物理, 理论力学
+#+HTML: <!-- toc -->
+#+HTML: <!-- more -->
+* 问题
+考虑 $x$ 轴上运动,不受任何力的 $N$ 个质点 $1,2,\cdots,N$ 质量分别为 $m_1 , m_2 ,\cdots,m_N$ 。选择如
+下 $N$ 个量作为广义坐标:
+
+$q_{12}$ 为质点 $12$ 的相对坐标,即 $q_{12} =x_1 -x_2$ ;
+
+$q_{3--12}$ 为质点 $3$ 与“质点 $12$ 的质心”的相对坐标;
+
+$q_{4--123}$ 为质点 $4$ 与“质点 $123$ 的质心”的相对坐标;
+
+$q_{N--123\cdots N-1}$ 为质点 $N$ 与“质点 $123\cdots N-1$ 的质心”的相对坐标;
+
+$Q$ 为所有质点的质心坐标。
+
+利用这组广义坐标写出系统的拉格朗日量 $L$ ,证明 $L$ 可以写成 $N$ 项之和,每项之和一个广义
+坐标或者广义速度相关(即,这些广义坐标之间不存在耦合)。
+
+* 证明一
+
+记
+\begin{align*}
+  M_n=\sum_{i=1}^nm_n
+\end{align*}
+
+由 $q_N = x_N -\frac{m_1x_1+m_2x_2 +\cdots +m_{N-1}x_{N-1}}{M_{N-1}}$ 及 $Q = \frac{m_1x_1+m_2x_2 +\cdots +m_{N}x_{N}}{M_{N}}$ 可解得：
+\begin{align*}
+  x_N = Q +q_N \frac{M_{N-1}}{M_N}
+\end{align*}
+
+同理可解得：
+
+\begin{equation*}
+  \left\{
+    \begin{aligned}
+      x_{N-1} =& Q -q_N \frac{m_N}{M_N}+q_{N-1}\frac{M_{N-2}}{M_{N-1}}\\
+      x_{N-2} =& Q -q_N \frac{m_{N}}{M_{N}} - q_{N-1}\frac{m_{N-1}}{M_{N-1}}+ q_{N-2}\frac{M_{N-3}}{M_{N-2}} \\
+               & \vdots\\
+      x_2 =& Q -q_N \frac{m_{N}}{M_{N}} - q_{N-1}\frac{m_{N-1}}{M_{N-1}} \cdots -q_3 \frac{m_3}{M_3}-q_2 \frac{M_1}{M_2} \\
+      x_1 =&  Q -q_N \frac{m_{N}}{M_{N}} - q_{N-1}\frac{m_{N-1}}{M_{N-1}} \cdots -q_3 \frac{m_3}{M_3}+q_2 \frac{m_2}{M_2}
+    \end{aligned}
+    \right.
+\end{equation*}
+
+拉格朗日量为：
+\begin{align*}
+  L= \frac{1}{2} \left( m_1 \dot{x}_1^2 +m_2 \dot{x}_2^2 + \cdots + m_N\dot{x}_N^2 \right)
+\end{align*}
+
+把变换关系代入拉格朗日量中并展开，广义坐标之间的耦合项为
+\begin{align*}
+  2\dot{Q}\dot{q}_N\left( m_{N}\frac{M_{N-1}}{M_N} - m_{N-1} \frac{m_{N}}{M_{N}} - m_{N-2} \frac{m_N}{M_{N}}-\cdots - m_1 \frac{m_{N}}{M_{N}}\right) = 0
+\end{align*}
+
+同理可得其它耦合项也都为零。
+
+
+* 证明二
+先考虑两粒子的情况：
+
+由
+\begin{equation*}
+  \left\{
+    \begin{aligned}
+      q_{12} =& x_1-x_2 \\
+      Q_{12} =& \frac{m_1x_1 +m_2 x_2}{m_1 +m_2}
+    \end{aligned}
+    \right.
+\end{equation*}
+
+解得
+\begin{equation*}
+  \left\{
+    \begin{aligned}
+      x_1 = \frac{m_2}{m_1+m_2}q_{12} + Q_{12}  \\
+      x_2 = -\frac{m_1}{m_1+m_2}q_{12} + Q_{12}
+    \end{aligned}
+    \right.
+\end{equation*}
+
+拉格朗日量为：
+
+\begin{align*}
+  L_{12} =& \frac{1}{2}\left( m_1 \dot{x}_1^2 +m_2 \dot{x}_2^2 \right) \\
+    =& \frac{1}{2}\left[  \left(\frac{m_1m_2}{m_1 +m_2}\right) \dot{q}_{12}^2   +(m_1+m_2) \dot{Q}^2_{12}  \right]
+\end{align*}
+其中第一项为两个粒子之间相对运动的动能，第二项为质心的动能。没有广义坐之间的标耦合项。
+
+对于三粒子的情况：首先选择 $q_{12}$ , $Q_{12}$ 和 $x_3$ 作为广义坐标，则系统拉氏量为
+\begin{align*}
+  L_{123} =&  \frac{1}{2}\left[  \left(\frac{m_1m_2}{m_1 +m_2}\right) \dot{q}_{12}^2   +(m_1+m_2) \dot{Q}^2_{12}  +m_3 \dot{x}_3^2 \right].
+\end{align*}
+可见上式中后两项的形式和两个质点的拉式量形式相同。换句话说，我们可以把”12的质心”和粒子3理解为两个粒子，质量分别为 $m_1+m_2$ 和 $m_3$ 。
+因此，跟前面讨论的两个粒子的情况类似，我们可以选择此二者的“相对坐标” $q_{3--12}$ 、“质心坐标”
+$Q_{123}$ ,跟 $q_{12}$ 一起作为新的广义坐标。这里 $q_{3--12}$ 和
+$Q_{123}$ 的定义为
+\begin{equation*}
+  \left\{
+    \begin{aligned}
+      q_{3--12} =& Q_{12} -x_3 \\
+      Q_{123} =
+      & \frac{(m_1+m_2)Q_{12} +m_3 x_3}{(m_1+m_2)+m_3}= \frac{m_1x_1+m_2x_2 +m_3 x_3}{m_1+m_2+m_3}
+    \end{aligned}
+    \right.
+\end{equation*}
+注意 $Q_{123}$ 也就是此3个粒子总的质心坐标 $Q$ .根据上面两个粒子情况的讨论可知，此时的拉式量为：
+\begin{align*}
+  L_{12} = \frac{1}{2}\left\{ \left(\frac{m_1m_2}{m_1 +m_2}\right) \dot{q}_{12}^2+ \left[\frac{(m_1+m_2)m_3}{(m_1 +m_2)+m_3}\right] \dot{q}_{3--12}^2   +\left[(m_1+m_2)+m_3\right] \dot{Q}^2_{123}  \right\}
+\end{align*}
+没有广义坐标之间的耦合项。三个粒子的情况由此得证。于 $N$粒子的情况以此类推。
+
+* 致谢
+感谢 Peng Zhang 老师的习题和解答.

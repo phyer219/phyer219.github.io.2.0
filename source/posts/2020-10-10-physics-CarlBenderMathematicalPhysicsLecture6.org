@@ -1,0 +1,205 @@
+#+TITLE: Carl Bender Mathematical Physics Lecture6 Note
+#+DATE: <2020-10-10>
+#+CATEGORIES: 专业笔记
+#+TAGS: Carl Bender, Mathematical Physics, Pade Sequence, Pade Table, Shear Magic
+#+HTML: <!-- toc -->
+#+HTML: <!-- more -->
+
+* Information
+
+- 原出处: https://www.perimeterinstitute.ca/video-library/collection/11/12-psi-mathematical-physics
+
+- 可以看自动生成的字幕: [[https://www.youtube.com/playlist?list=PLzcd6SoIscwjHuWRE38UXWG92uq0Sy4UF]]
+
+- Bilibili:
+  https://www.bilibili.com/video/BV1w4411q7x6?from=search&seid=7852838902448285010 
+
+- Book: Carl M. Bender, Steven A. Orszag, Advanced Mathematical Methods for Scientists and
+ Engineers I Asympotic Methods and Perturbation Theory, 1999
+
+* Keywords
+
+Continued fractions.  Pade sequence. Shear magic. Stieltjes series
+
+* Continued Factions
+
+有一个 $HP(\epsilon)$ 微扰得到一个 asympotic series 形式的结果 $ANS(\epsilon) \sim \sum a_n \epsilon^n$
+, 但是一般只有前几项, 而且收敛半径是 $0$ . 思路上将其转化成 continued
+functions, a sequence of "approximants" , 而这个 sequence 的收敛性比那个
+asympotic series 的收敛性好的多. 之前讲 $e^{ze^{ze^{z\cdots}}}$ 的例子只因为 Bender
+love 这个例子, 因为它太 weird, 它 glorious, 并且鲜为人知. 之后并不会再讨论
+continued exponential. 
+
+下面考虑 continued fractions
+\begin{align}
+  \label{eq:cf}
+  \sum a_n x^n \to \frac{b_0}{1 - \frac{b_1x}{1 - \frac{ b_2x}{1 - b_3 x \cdots}}}
+\end{align}
+idea 是, 我们求得了 (\ref{eq:cf}) 的左边, 但它是发散的. 如果把它转换成
+(\ref{eq:cf}) 右边的 continued fractions 的形式, the sequence of approximants
+you get from the continued fractions might well converge. the sequence of
+approximants 指的是(假设收敛到 $L$ )
+\begin{align}
+  b_0, \frac{b_0}{1 - b_1x}, \frac{b_0}{1 - \frac{b_1x}{ 1 - b_2x}}, \cdots, \to L
+\end{align}
+也就是说, 我们从一个发散的, 但是包含我们所需要的信息的级数, 转化成一个收敛的级数,
+因此我们从其中提取所需要的信息.
+
+* IQ Test
+
+用一个特别的方式来说明这个.
+
+像 IQ 测试一样, 下面数例的下一个数是什么
+\begin{align}
+  1, 5, 61, ??
+\end{align}
+这太难了, 你之前知道就会, 之前不知道就不会. 它们是 Euler numbers. 下面讲一种方法
+来计算它.
+将上面的数列记为(手动加上 $a_0 = 1$ )
+\begin{align}
+  a_0 = 1, a_1= 1, a_2 = 5, a_3 = 61, \cdots
+\end{align}
+我们想将它 transform 成一个更明显, 更好猜的数例 $b_n$
+\begin{align}
+  b_0, b_1, b_2, b_3, \cdots
+\end{align}
+下面分三个步骤进行
+
+** step1
+#+begin_quote
+Given $\{a_n\}$, imagine that (moment problems)
+\begin{align}
+  a_n = \int_{-L}^L \mathrm{d}x\cdot w(x) x^{2n}
+\end{align}
+#+end_quote
+
+** step2
+
+#+begin_quote
+If you have $\{b_n\}$ 
+\begin{align}
+  P_0 (x) =& 1 \\
+  P_1(x) \equiv& x \\
+   P_{n + 1}(x) =& x P_n - b_n P_{n - 1}(x)
+\end{align}
+so (monic)
+\begin{align}
+  P_2(x) =& x^2 - b_1 \\
+  P_3(x) =& x^{3} - (b_1 + b_2) x \\
+  P_4(x) =& x^4 - (b_1 + b_2 + b_3) x^2 + b_3 b_1
+\end{align}
+#+end_quote
+
+** step3
+
+#+begin_quote
+Let's require these polynomials are orthogonal with respect to $w$
+\begin{align}
+  \int_{-L} ^L \mathrm{d}x \cdot w(x) P_n(x) P_m(x) = 0 , \quad n\neq m
+\end{align}
+so
+\begin{align}
+  P_0 \bot P_2 :& a_1 - b_1 = 0 \Rightarrow a_1 = b_1 \\
+  P_1 \bot P_3 :& a_2 - (b_1 + b_2 ) b_1 = 0 \Rightarrow a_2 = b_1(b_1 + b_2) \\
+  P_4 \bot P_o :& a_2 = b_1(b_1 + b_2) \\
+  P_4 \bot P_2 :& a_3 = b_1(b_1 + b_2)^2 + b_1 b_2 b_3
+\end{align}
+
+$\mathscr{P}$
+#+end_quote
+
+* 
+
+发现结果恰好是之前的数例
+\begin{align}
+  a_1 = 1 \to& b_1 = 1 \\
+  a_2 = 5 \to& b_2 = 4 \\
+  a_3 = 61\to& b_3 = 9 \\
+  a_4 = 1385 \to& b_4 = 16
+\end{align}
+If $a_n\sim n!$ , then $b_n \sim n$ . If $a_n \sim (2n)!$ , then $b_n\sim n^2$ . 这里的 $a_n,
+b_n$ 的关系, 就是前面的级数和 continued fractions 的关系. 比如
+\begin{align}
+  E_n(1, 5, 61, 1385, \cdots) \sim (2n)! C^n,\quad \mathrm{as}\, n\to \infty
+\end{align}
+
+* Pade Sequence
+
+There is very deep connetction between continued fractions and orthogonal
+polynomials. 当然, 最简单的方法是直接 Taylor 展开, 如
+\begin{align}
+  \frac{1}{1 - x} =& 1 + x + \mathcal{O}(x^2) \\
+  \frac{1}{1 - \frac{x}{1 - 4x}} =& 1 + x + 5 x^2 + \mathcal{O}(x^2) \\
+  \frac{1}{1 - \frac{x}{1 - \frac{4x}{1 - 9 x}}} =& 1 + x + 5 x^2 + 61 x^3 + \cdots \\
+  \vdots &
+\end{align}
+如果把 continued fractions 有理化, 那么
+\begin{align}
+  b_0 \to& \frac{\mathscr{P}_0}{\mathscr{P}_0} \label{eq:padeStart}\\
+   \frac{b_0}{1 - b_1x}\to& \frac{\mathscr{P}_0}{\mathscr{P}_{1}} \\
+  \frac{b_0}{1 - \frac{b_1 x}{ 1 - b_2x}} \to& \frac{\mathscr{P}_1}{\mathscr{P}_1}\\
+  \frac{b_0}{1 - \frac{b_1 x}{ 1 - \frac{b_2x}{1 - b_3x}}} 
+                   \to& \frac{\mathscr{P}_1}{\mathscr{P}_2} \\
+         \vdots \to& \frac{\mathscr{P}_2}{\mathscr{P}_2} \\
+         \vdots \to& \frac{\mathscr{P}_2}{\mathscr{P}_3} \label{eq:padeEnd}\\
+         \vdots &
+\end{align}
+其中 $\mathscr{P}_n$ 代表 $n$ 阶多项式. 右边叫做 Pade sequence. 更 general 的
+\begin{align}
+  \sum_0^{p+q} a_n x^n = \frac{\mathscr{P}_p}{\mathscr{P}_q} = \mathcal{P}^p_q
+\end{align}
+两边的系数相等. 被称作  Pade approximates. 对于一个级数, 可以写一个 Pade table
+(Bender 在黑板上笔误了上下标标反了)
+|       | $q=1$           | $q=2$           | $q=3$           | $\cdots$ |
+| $p=1$ | $\mathcal{P}^1_1$ | $\mathcal{P}^1_2$ | $\mathcal{P}^1_3$ | $\cdots$ |
+| $p=2$ | $\mathcal{P}^2_1$ | $\mathcal{P}^2_2$ | $\mathcal{P}^2_3$ | $\cdots$ |
+| $p=3$ | $\mathcal{P}^3_1$ | $\mathcal{P}^3_2$ | $\mathcal{P}^3_3$ | $\cdots$ |
+| $\vdots$   | $\vdots$             | $\vdots$             | $\vdots$             | $\ddots$ |
+而前面的 (\ref{eq:padeStart}) ~ (\ref{eq:padeEnd}) 是 Pade table 中(副)对角的部
+分, 称为 main/diagonal Pade sequence. 
+
+总的来说, 我们将一个不收敛的级数, 写成了 Pade sequence 的形式, 而这通常收敛非常
+快, really really rapidly. 
+
+接下来是精辟的评论
+#+begin_quote
+It's the antidote to what they teach you in calsses on quantum field theory and
+on quantum mechanics. Because in a class on quantum mechanics or quantum field
+theory they teach you perturbation theory and without teaching you this. It's
+junk! Because you can't do anything with what you've learned. You calculate a
+bunch of Feynman diagrams, big deal, but you convert that to Pade, and you can
+sum it up. 
+#+end_quote
+
+Pade 不仅收敛地快, 而且 $\mathcal{P}^n_n$ 和 $\mathcal{P}^n_{n + 1}$ 分别从 $L$ 的
+上边和下边逼近, 因此还可以做 Shanks transform, 会收敛地更快. 
+
+之后举了几个例子, 来说明 Pade sequence 比 Taylor series 收敛地更快.
+
+* An Intuitive Explanation 
+
+Pade 是多项式, 它的分母可以有零点. 比如 $\Gamma$ function 有许多 pole, Taylor series
+没有 pole, 但 Pade 可以有. Pade 可以 mock up (模拟) poles. 因此 Pade 是一个 very
+flexible 的表示. 
+
+同时, Taylor series 的收敛区域是一个圆, 它要求圆内所有的点都收敛. 这就限制了它的
+收敛的区域. 而 Pade 就不必, 它的收敛区域可以是整个复平切去割线. Pade 所要求的更
+少, 它的收敛区域不必是一个圆, 因此, 它可以给我们的更多.
+
+#+begin_quote
+Taylor series hate you, because you force them to converge in a full circle. It
+just say 'go away, I'm not working for you today.'
+
+Whereas Pade, you don't force it to converge here, you're not requiring it and
+it doesn't converge, and therefore where it does converge it converges much
+better and much faster than a Taylor series. It's wonderful!  
+#+end_quote
+
+* Summary
+
+讲了如何将发散的级数求和, 给出的方法是将原来发散的级数转化成 Pade sequence. 
+
+* Reference
+
+- https://en.wikipedia.org/wiki/Pad%C3%A9_table
+

@@ -1,0 +1,80 @@
+#+TITLE: 多体物理读书会：3.1节习题
+#+DATE: <2018-10-20>
+#+CATEGORIES: 专业笔记
+#+TAGS: 数学, 物理, 格林函数, 虚时演化, 多体物理读书会
+#+HTML: <!-- toc -->
+#+HTML: <!-- more -->
+* 不对易算子的指数运算 (Baker-Hausdorff theorem)
+ 通过级数展开，容易得到关于算符$A,B$的式子的级数展开
+ -
+ \begin{align*}
+  e^{\lambda A}Be^{-\lambda A} = \sum _{n=0}^{\infty} \alpha_{n}\lambda^{n}
+\end{align*}
+其中
+\begin{align*}
+  \alpha_{0} =& B\, \\
+  \alpha_{n} =& \left[A,\left[A,\cdots[A,B]\cdots\right]\right]\frac{1}{n!}\,,\quad n\ge 1
+\end{align*}
+如果$[A,[A,B]]=0$，那么有
+-
+\begin{align}
+  \label{eq:1}
+    e^{\lambda A}Be^{-\lambda A} = B + \lambda[A,B]
+\end{align}
+由(\ref{eq:1}) 可以证明下式
+-
+\begin{equation}
+  \label{eq:2}
+  \frac{\mathrm{d}}{\mathrm{d}\lambda}\left( e^{\lambda A} e^{\lambda B}\right) = (A+B+\lambda[A,B])\left( e^{\lambda A} e^{\lambda B}\right)
+\end{equation}
+我在证明(\ref{eq:2})时有卡住。
+解决方法为直接对(\ref{eq:2})的左边计算，然后利将结果利用(\ref{eq:1})代换，就得到(\ref{eq:2})的右边的形式
+\begin{align*}
+  \frac{\mathrm{d}}{\mathrm{d}\lambda}\left( e^{\lambda A} e^{\lambda B}\right) =& A e^{\lambda A}e^{\lambda B} +e^{\lambda A}Be^{\lambda B} \\
+  =& A e^{\lambda A}e^{\lambda B}  + (B e^{\lambda A} +\lambda[A,B]e^{\lambda A})e^{\lambda B } \\
+  =& (A+B+\lambda[A,B])\left( e^{\lambda A} e^{\lambda B}\right)
+\end{align*}
+本质上，这就是一个联立方程的问题，强行消元的思路即可。
+最后一问是根据(\ref{eq:2})证明
+-
+\begin{equation}
+  \label{eq:3}
+  e^{A}e^{B} = e^{A+B+\frac{1}{2}[A,B]}
+\end{equation}
+经验：
+1. 其思路是已知导数求原函数的思路。其导数是(\ref{eq:2})，将(\ref{eq:2})的左边看成 $f'(\lambda)$，求$f(\lambda)$即可。
+题目评述：\\
+1. 非对易算符的指数运算并不想当然地简单地满足指数相加。
+* Kubo identity 的证明
+Kubo identity 如下
+-
+\begin{equation}
+  \label{eq:4}
+ \frac{\mathrm{i}}{\hbar}[A(t),\rho] = \rho \int_{0}^{\beta}\mathrm{d} \lambda \dot{A}(t-\mathrm{i}\lambda\hbar)
+\end{equation}
+这个问题看似无从下手，右边是一个看似奇怪的积分，对一个参数$\lambda$从$0$积分积到$\beta$。下手的地方应该是撇开不重要的量，看出式子中最重要的关系。
+- 首先需要注意的是$\dot{A}(t-\mathrm{i}\lambda\hbar)$的含义，是把$(t-\mathrm{i}\hbar)$看成一个整体，$A $对这个整体的导数，因此有以下关系
+\begin{align*}
+  \frac{\mathrm{d}}{\mathrm{d}\lambda}A = \dot{A}(t-\mathrm{i}\lambda\hbar)\cdot (-\mathrm{i}\hbar )
+\end{align*}
+- 为了分析(\ref{eq:4})中的关系，先把(\ref{eq:4})写出其具体的形式，用最基本的量表示出来
+\begin{equation}
+  \nonumber
+  \frac{\mathrm{i}}{\hbar}[ e^{-\frac{1}{\mathrm{i}\hbar}\mathcal{H}t} A e^{\frac{1}{\mathrm{i}\hbar}\mathcal{H}t},e^{-\beta \mathcal{H}}]\frac{1}{\mathrm{Tr}(e^{-\beta \mathcal{H}})} = \frac{1}{\mathrm{Tr}(e^{-\beta \mathcal{H}})}e^{-\beta \mathcal{H}} \int_{0}^{\beta} \mathrm{d}\lambda \frac{1}{-\mathrm{i}\hbar} \frac{\mathrm{d}}{\mathrm{d}\lambda} \left(  e^{-\frac{1}{\mathrm{i}\hbar}\mathcal{H}(t-\mathrm{i}\lambda\hbar)}  A  e^{\frac{1}{\mathrm{i}\hbar}\mathcal{H}(t-\mathrm{i}\lambda\hbar)}  \right)
+\end{equation}
+\begin{align*}
+  \Downarrow
+\end{align*}
+\begin{equation}
+  \label{eq:5}
+  [ e^{-\frac{1}{\mathrm{i}\hbar}\mathcal{H}t} A e^{\frac{1}{\mathrm{i}\hbar}\mathcal{H}t},e^{-\beta \mathcal{H}}] = e^{-\beta \mathcal{H}} \int_{0}^{\beta} \mathrm{d}\lambda  \frac{\mathrm{d}}{\mathrm{d}\lambda} \left(  e^{-\frac{1}{\mathrm{i}\hbar}\mathcal{H}(t-\mathrm{i}\lambda\hbar)}  A  e^{\frac{1}{\mathrm{i}\hbar}\mathcal{H}(t-\mathrm{i}\lambda\hbar)}  \right)
+\end{equation}
+化成(\ref{eq:5})之后，关系就非常明显了。右边的积分已经知道了原函数，那么将上下限代入就可得到最具体的形式，就可以变到左边形式。\\
+经验：
+1. 我首先看到右边的$\dot{A}$和左边的对易子，就想到了Heisenberg运动方程。这样只是盲目地猜测，去试探地计算。试过之后不行，就应该另寻它路了,而不应该在上面纠缠不清。
+2. 比较好的思路是：看到这样的证明，首先应该设法把无关的常数撇开，将式子写成用最基本的量表达的最具体的形式，然后分析其中与证明相关的关键变量。
+题目评述：
+1. Kubo identity 将虚时演化加入到了Heisenberg运动方程中去，将虚时演化与实时演化相结合。
+2. 左边就类似于Heisenberg运动方程中的$[A,H](t)$,右边就类似于$\dot{A}$。
+3. 加入虚时演化后，与于Heisenberg运动方程相比，$[A,H](t)$变成了与密度算符的对易子$[A,\rho](t)$,而原来的$\dot{A}$加入了对虚时的演化。
+4. Kubo identity 与原来的Heisenberg运动方程相比，多出一个负号，不知可否理解为虚时与实时之间相差的$\mathrm{i}$所引起。

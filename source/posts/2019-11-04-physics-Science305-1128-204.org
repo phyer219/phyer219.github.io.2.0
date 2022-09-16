@@ -1,0 +1,349 @@
+#+TITLE: RF 谱看到 Paring Gap 的实验文章 (2004)
+#+DATE: <2019-11-04>
+#+CATEGORIES: 专业笔记
+#+TAGS: 物理, RF谱, 文章, pairing gap, BCS-BEC crossover, 实验
+#+HTML: <!-- toc -->
+#+HTML: <!-- more -->
+
+* Intro
+
+** History and Background
+
+1950s, pairing gap 的谱学观察, 是超导的重大实验进展. 
+
+gap 的测量, 为 investigating 配对粒子的性质提供了 key , 这些配对粒子是金属在低温
+下无摩擦 current 的原因.
+
+开创性的 BCS 理论, 在同时期也发展了起来, 它表明在简并费米海中的两个电子, 可以通
+过有效的吸引相互作用 couple 在一起, 形成 delocalized 的, 具有 Bosonic 性质的复合
+粒子.
+
+BCS Theory 预测低温下的 gap $\propto T_C$ , 这与实验一致.
+
+(推导这个预测, 找到实验文章) 
+
+In general, 超流, 超导物理早已超出了 BCS 理论的 weakcoupling limit .
+
+strong coupling 极限下, Fermion 形成 localized Boson, 可以发生 BEC .
+
+BCS limit 和 BEC limit 由一个 smooth crossover 连接, 三十多年来, 吸引了无数理论
+研究.
+
+配对的形成在 Fermi 系统超流中, 起了关键作用. 而 gap energy 又是 characterize
+paring regime 的 central quantity.
+
+** Exp review
+
+超冷 degenerate Fermi gases 实验的迅速进展, 开启了独特的 testing ground. testing
+ground 用来研究低密度(比 condense matter 系统中低很多)下的配对超流现象.
+
+cold atom 实验中, Feshbach resonances 为 control 2-body coupling strength (in
+gas) 提供了一个 powerful tool.
+
+有了这样的 resonance, 强相互作用 degenerate Fermi gas 最近实现了.
+
+又有一个重大突破! 都是因为有了 Fermion 组成的 molecular dimers 形成 BEC 的
+creation. 突破是 strong coupling 极限下的 BEC 超流.
+
+接下来, 调节 coupling strength, 探索 crossover 到 BCS-type system. 这 BEC-BCS
+crossover 和之前 predict 的共振超流有很大的联系, 也和 resonant interaction 的 Fermi
+gas 的 "universal  behavior" 有联系.
+
+(可以看看引用的 resonance superfluidity 文章)
+
+观察到 atom pair 的 condensation, 以及测量到的 collective oscillations, support
+了我们的期望, 什么期望呢, 在有 resonant interactions 的 fermi gases 中, 在目前可
+得的温度下的实验超流. (那时还有没有观察到直流?)
+
+** Exp Setup
+
+将 Li-6 制备在两个最低的两个态上. 然后 laser cooling and trapping evaporative
+cooling. 磁场从 650G 调到 950 G 的宽共振, 中心在 $B_0\approx 830\mathrm{G}$.
+
+在 $B < B_0$ 的区域, $|1\rangle , |2\rangle$ 之间的散射长度是正的. 这里, 两体物理
+supports 一个 weakly bound molecular 态, binding energy 是 $E_b=\hbar^2/(m a^2)$
+. 形成的这些 molecules 可以 BEC . 
+
+$B=B_0$ 时, 2-body 相互作用共振, $a\to\infty$ , molecular 态的 binding energy 消
+失.
+
+Beyond the resonance , $B>B_0$ , 散射长度变负, 导致一个 effective 吸引. 在这个区
+域, 2-body 的物理不 support 一个 weakly bound molecular level, 这里的配对只能是
+由于 many-body effects. 
+
+* This Exp
+
+** Exp process
+
+实验可以控制 quantum gas 的温度, Fermi energy, 相互作用强度. 实验一开始有
+$4\times 10^5$ 个 paired atoms (BEC 态)! 
+
+通过调 evaporation ramp 的 laser power, 可以调温度.
+
+通过 recompression 来调 $T_\mathrm{F}$ . recompression performed by 升高 trap
+laser power after cooling process. 
+
+通过调磁场来调 interaction strength.
+
+在 evaporative cooling 后进行 entropy 不变的绝热 change.
+
+没有直接测量 deeply degenerate, strongly interacting Fermi gas 的比较好的方法,
+只能测量等熵地变化到 BEC limit 之后的温度 $T'$ .
+
+对于 deeply degenerate Fermi gas, 它真正的温度要比 $T'$ 低很多, 但现在还没有一个
+general 的理论.
+
+** About RF spectroscopy
+
+RF 谱作为研究 ultra cold Fermi gases 的相互作用的强力工具引入!
+
+用 RF 谱测了 K-40 的 molecular binding energies, 那么就有用它观察 paring gap
+energy 的可能性.
+
+用 RF 研究 Li-6 系统中的 interaction effects (up to 750 G).
+
+强相互作用下没有了 mean-field shifts. 这种 effect 可能是由于在那个磁场范围内
+Li-6 的三个态之间的散射过程同时被 unitarity-limited 了!
+
+#+BEGIN_QUOTE
+mean-field shift 指的是, $|1\rangle , |2\rangle$ 如果没有相互作用, $I(\nu)$ 应该
+是在 $\nu=0$ 处有一个 peak. 如果 $|1\rangle , |2\rangle$ 之间有一个小的相互作用,
+那么 $|2\rangle$ 的能量会被 shift 比如 $g_{12}n_1 n_2$, 这个能量就是 mean-field
+shift. 
+#+END_QUOTE
+
+Li-6 的这个性质非常好, 因为它 suppresses 了 mean-field 的 bordening 和 shifts!
+
+** Loss of $|2\rangle$
+
+我们在 ~80 MHz 时 drove 从 $|2\rangle$ 到空的 $|3\rangle$ 上的 RF
+transitions. 并在 weak excitation by 1-s RF pulse 之后 monitored $|2\rangle$ 上
+原子的 loss.
+
+实验经过优化, 得到分辨率为 100 Hz, 对应于 5nK 的 INTERACTION EFFECTS (比
+$T_{\mathrm{F}}$ 低两个数量级还多) .
+
+* Results: Fig 1
+
+** Fig 1
+
+在 $T$ 和 $a$ 不同的区域进行了测量.
+
+在 720 G 实现了 molecular. 在共振区, 选了两个磁场, 因为并不知道精确的 $B_0$ 的位
+置, 可以认为分别高于和低于 $B_0$ , 为 820 G 和 837 G .
+
+$a\ll 0$ 的区域也研究了, 是 $B=$875 G , $a\approx -600 nm$ .
+
+在 $T\approx 6T_{\mathrm{F}} (T_{\mathrm{F}}=15 \mathrm{\mu K})$ 的时候, 谱 take
+in 一个 "hot" thermal sample , 表示 narrow atomic transition line . 就把这个峰的
+位置当作参考位置. 选裸的原子跃迁频率作为参照.
+
+** Inhomogeneity
+
+理论上了研究了谱信号(给了一些参考文献, 可以读).
+
+pairing 过程是清晰双峰结构. 这是因为 paired 和 unpaired 原子共存.
+
+paired 原子的峰的频率变化比 unpaired 峰频率高, 因为 pair breaking 需要能量.
+
+为了理解谱, pair 信号的 homogeneous line shape, 以及 inhomogeneous line 展宽(由
+于在 harmonic trap 中的 density 分布) 都需要考虑.
+
+#+BEGIN_QUOTE
+算的是一个 uniform 的系统. 但实际的系统在 trap 里, 只要 $a_s$ 是有限的, 在 trap
+边界上 $density \to 0$ , 对应的 $k_{\mathrm{F}}\to 0$ ,中间 density 高,
+$k_{\mathrm{F}}$ 可能趋于无穷大. 测的结果是做了 trap average 以后的结果, 这个会
+brodening 这些.
+#+END_QUOTE
+
+作为一种 inhomogeneity 效应, 由于多体而导致的费米子配对, 占据了中的高密度, 而
+unpaired atoms 几乎都在 trap 的低密度边缘 region.
+
+#+BEGIN_QUOTE
+如果 $a_s$ 是一个负的有限的值, 显然外面是弱相互作用区, 里面可能是强相互作用区.
+
+相互作用越强, gap 越大. 比如在 BCS 极限下, $e^{-\pi/2k_{\mathrm{F}}|a|}$ , 在
+trap 中心, 如果 $k_{\mathrm{F}}a~1$ , 属于强相互作用区. 到外面,
+$k_{\mathrm{F}}\to 0$ , 所以外面就变成 gap 非常小. 如果有限温度的话, 外面可能是
+正常相, 因为它的 $T_{\mathrm{C}}$ 非常小.
+
+这就是为什么大家都相做 box potential. 因为它是真正 uniform 的系统.
+#+END_QUOTE
+
+(为什么 pair 占中心)
+
+对应于 pairs 的谱分量, shows 一个很大的 inhomogeneous 展宽, 这个展宽是在
+homogeneous width 的 pair-breaking 信号的基础上展宽.
+
+对于未配对的原子, homogeneous line 很窄, inhomogeneity 都可以忽略.
+
+(这里重点理解)
+
+这些理论解释了为什么一般 RF 谱都是一个 unpaired atoms 的 sharp peak 和 pairs 的
+boredr peak.
+
+** Double peaks
+
+在 $T/T_{\mathrm{F}}=0.5$ 的时候, 观察到了清晰的双峰结构. 在 $B=720 G$ 的分子区,
+sharp 原子峰也从 broad dissociation 信号中分离出来, 这 show 了 molecular binding
+energy.
+
+在 $B\to B_0$ 的时候, peaks 开始 overlap. 在共振区仍然观察到了相对较窄的 atomic
+peak, 它和 pair signal 在一起.
+
+对于远离共振的磁场, 在 900 G 就分辨不出双峰了.
+
+** Disappearance of the Narrow Atomic Peak
+
+在 $T'/T_{\mathrm{F}}$ 时, RF 谱中的 narrow atomic peak 消失了. 这说明几乎所有原
+子都配对了.
+
+在 BEC 侧, dissociation line shape 与更高温度和 $E_{\mathrm{F}}$ 的 trap 下的完
+全相同.
+
+这里, localizd 的 pairs 是 molecules , 大小比粒子平均间距小很多, 所以
+dissociation signal 与 density 无关.
+
+在共振区, pairing 信号与 density 的依赖很明显. 在远离共振区(875 G) 时更明显. 我
+们把这归因于 pair 的大小变得与粒子间距可比或大很多.
+
+另外, 右下的窄 pair signal 表明一个在动量空间中 $k_{\mathrm{F}}$ 以下的 pair
+localization, 因此 pair size 比粒子间距大了.
+
+#+BEGIN_QUOTE
+在 BEC 那边, molecular 的尺寸就是 $a$ 的大小. 从 2-body 的 bound state 的 wave
+function $A e^{-r/a}$ 可以看出, 衰减长度为散射长度. 所以它的 size 就是 a. 所以如
+果它的 size 要是比粒子间平均距离小很多的话, 它的分子分子这间就没有 overlap, 它就
+是一个 well define 的分子. 但是这两个是可比, 或者说 molecular 的 size 比粒子子间平
+均距离还大, 那这实际上并不是 well define 的.
+
+它说的 localization 是说在一个分子里, 这两个原子是不是 loaclize 的. 分子大了以后,
+分子和分子之间都是 overlap 在一起的, 它不是一些 well define, isolated 的
+molecular.
+
+最左边的图, 类似于分子和原子的一个 mixture, 分子就是分子, 原子就是原子, 它们只的
+mix 在一起. 
+
+但是到了中间区域, 所有的分子全都 overlap 在一起, 它不能再看成是一些 well define
+的分子, 所以它就没有一个很 shap 的 threshold.
+#+END_QUOTE
+
+#+BEGIN_QUOTE
+分子寿命越长, threshold 就越 shap. 理想情况, 如果分子寿命无穷长, 它就是突然起来.
+如果分子寿命是个有限寿命的激发, 它就比较平缓.
+
+同样的, 左边这个峰, 它的峰的宽度就跟单粒子激发的寿命有关, 相互作用越弱, 单粒子激
+发越 well define 的一个激发.
+#+END_QUOTE
+
+
+* Results Fig 2
+
+** Fig 2 
+
+为了定量研究从 2-body molecular 到 Fermionic many-body 区域的 crossover, 我们测
+量了 pairing energy (从 720 到 905 G). 
+
+pairing gap $\Delta \nu$ 定义为 pair-signal 的最大值和 bare atomic 共振之差.
+
+在 BEC limit, effective pairing gap 简单地反映出了 molecular 的 binding energy.
+
+磁场增大, 在 BEC-BCS crossover 中, $\Delta \nu$ 与 low-density molecular limit
+的差距越来越大, 并且 smoothly 进入了一个 $h\Delta \nu< E_{\mathrm{F}}$ 的
+density-dependent 的 many-body regime.
+
+** Comparison 
+
+对不同 $E_{\mathrm{F}}$ 下的 pairing energy 的比较, 可以得到更多关于 pairs
+的 nature 的信息.
+
+在 BEC limit, $\Delta \nu$ 单由 $E_b$ 决定, 与 $E_{\mathrm{F}}$ 无关.
+
+在共振幺正区, $E_{\mathrm{F}}$ 是唯一的 energy scale, 我们实际上观察到 effective
+pairing gap 随 $E_{\mathrm{F}}$ 线性上升 $h\Delta\nu\approx 0.2E_{\mathrm{F}}$
+. 在共振区以外, 我们希望系统从一个共振区变到一个 BCS-type 的行为.
+
+
+发现 $\Delta \nu$ 更加依赖于 $E_{\mathrm{F}}$, gap ratio 变得更大. 我们将其解释
+为 pairing 的 BCS 特性上升. 期望是一个指数依赖 $h \Delta \nu/E_{\mathrm{F}}\propto
+e^{-\pi/2k_{\mathrm{F}}|a|}$ .
+
+#+BEGIN_QUOTE
+插图相当于是在零温下取不同 density . 它的结论就是, 在左边的话它的 threshold 接近
+于 binding energy, 而 binding energy 是一个 2-body 的量, 它只与散射长度有关, 与
+density 无关.
+
+如果是幺正极限下, 它的散射长度是 diverge 的. 这个时候 pairing gap 就完全 sacle
+as 它的 $k_{\mathrm{F}}$ 的某个幂次, 所以它就要依赖于 density.
+#+END_QUOTE
+
+#+BEGIN_QUOTE
+蒸发冷却了时候调原子总数 $\to$ 调密度.
+#+END_QUOTE
+
+#+BEGIN_QUOTE
+在幺正区的时候, 两个峰的间距变小了.
+#+END_QUOTE
+
+* Results: Fig 3
+
+** Fig 3
+
+在更进一步的测量中, 我们用了 heating method 来研究 gap 对温度的依赖. 用这种方法,
+允许我们保持其它参数是常数.
+
+(这种方法也有待学习)
+
+在用通常的方法产生 pure molecular BEC 后, 我们绝热地改变条件到 $B=837
+\mathrm{G}, T_{\mathrm{F}}=1.2 \mathrm{\mu K}$ .
+
+然后提升 trap laser 的 power.
+
+对于 fast ramps, 这个 recompression 是非绝热的, 熵会增大. 通过改变 ramp time, 我
+们探索了从最低温到 $T/T_{\mathrm{F}}=0.8$. 
+
+从 RF 谱中可以清楚地看到随温度降低出现了 gap. 随着温度降低, $\Delta \nu$ 明显地
+增加 (为什么). 这与理论对 pairing gap energy 的预期符合地很好.
+
+#+BEGIN_QUOTE
+fast ramp 就是把磁场一下从某一个点扫到另一个点. ramp 就是扫场.
+#+END_QUOTE
+
+* Conclusion 
+
+** Part I
+
+我们的实验条件是对两体共振相互作用的理论分析. 
+
+算出的 RF 谱与我们的实验相符. 这演示了当气体冷却到 $T/T_{\mathrm{F}}\approx 0.5$
+以下时, 双峰如何出现, 以及进一步降温后, atom peak 如何消失.
+
+特别是, 我们弄清了 pseudo gap regime. 在这个 regime 中, 超流形成前就先形成 pair.
+
+根据计算的谱, 在 $T<T_{\mathrm{C}}$ ( $T_{\mathrm{C}}$ 是超流转变温度) 时,
+atomic peak 消失.
+
+随着对有限温 BCS-BEC crossover 的研究 predict 了到超流的相变温度, 在共振时, 比
+pair 形成的温度低了 30% .
+
+** Part II
+
+我们早在 moderate evaporative cooling 之后就观察到了 Fermionic pairing. 
+
+进一步降温后, unpaired atom 信号从我们的谱中消失.
+
+这个观察表明, pairing 甚至占据了 trapped gas 的边缘, 边缘的 density 和
+$E_{\mathrm{F}}$ 很小.
+
+因此, 我们的实验强烈地表明, 共振的超流是在 trap 中心形成.
+
+结合共振 condensation of Fermionic pairs 和 集体激发的衰减, 我们对 pairing gap
+的观察为实验上 resonantly interacting Fermi gas 的超流提供了一个 strong case.
+
+* 总结
+
+多去验证. 比如, 文中说图中两条线的比值是多少, 那不要直接接受, 而是云图中估计一下.
+
+* Reference
+
+- Science 305, 1128 (2004)

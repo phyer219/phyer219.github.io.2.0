@@ -1,0 +1,114 @@
+<!DOCTYPE html><html class="no-js" lang="zh">
+
+<head>
+<script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+    </script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Long+Cang&family=Noto+Serif+SC&display=swap" rel="stylesheet"> <meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>从冰上的水</title>
+<link rel="apple-touch-icon" sizes="180x180" href="../static/images/apple-touch-icon-next.png?v=6.4.1">
+<link rel="icon" type="image/png" sizes="32x32" href="../static/images/favicon-32x32-next.png?v=6.4.1">
+<link rel="icon" type="image/png" sizes="16x16" href="../static/images/favicon-16x16-next.png?v=6.4.1">
+<link rel="stylesheet" type="text/css" href="../static/css/mystyle.css">    
+
+</head>
+<body>
+    <div class="container">
+        <header>
+            <section class="banner"><img src="../static/images/banner_20220427_tamako-love-story.jpg"></section>
+        </header>
+        <nav class="row">
+    <a class="nav" href="../index.html">首页</a>
+    <a class="nav" href="../category/category.html">分类</a>
+    <a class="nav" href="#">标签</a>
+    <a class="nav" href="#">关于</a>
+</nav>
+        <main>
+            <h1 class="post-title">python matplotlib 画图小技巧: 自定义字体
+            </h1>
+            <section class="post-meta">
+                <p><2021-11-10></p>
+                <p>['python, matplotlib, font_manager, mathtext']</p>
+                <p>软件使用</p>
+            </section>
+            <section class="post-content">
+                
+<h2>问题</h2>
+
+<p>在用 <code>matplotlib</code> 画图时, 使用自定义字体. 比如从一个下载好的 <code>.ttf</code> 字体文件加载,
+或者在程序无法找到系统中的字体时, 指定字体文件的位置.</p>
+
+<h2>Method 1</h2>
+
+<pre><code class="language- python">import numpy as np
+import matplotlib.pyplot as plt
+from matplotlib import font_manager
+
+fe = font_manager.FontEntry(fname='/usr/share/fonts/TTF/Times.TTF', name='tnr')
+font_manager.fontManager.ttflist.append(fe)
+
+plt.rcParams['font.family'] = fe.name
+plt.rcParams['mathtext.fontset'] = 'cm'
+
+x = np.linspace(0, 6, 51)
+plt.plot(x, np.sin(x))
+plt.title(r'Sin Function - Method 1')
+plt.xlabel(r'$\theta$')
+plt.ylabel(r'$\sin\theta$')
+plt.savefig('method1.png')</code></pre>
+
+<p><a href='2021-11-10-coding-matplot_fonts/method1.py'>method1.py</a></p>
+
+<h2>Method 2</h2>
+
+<pre><code class="language- python">import numpy as np
+import matplotlib.pyplot as plt
+from matplotlib import font_manager
+
+font_path = '/usr/share/fonts/TTF/Times.TTF'  # Your font path goes here
+font_manager.fontManager.addfont(font_path)
+prop = font_manager.FontProperties(fname=font_path)
+
+plt.rcParams['font.family'] = prop.get_name()
+plt.rcParams['mathtext.fontset'] = 'cm'  # 'cm' (Computer Modern)
+
+x = np.linspace(0, 6, 51)
+plt.plot(x, np.sin(x))
+plt.title(r'Sin Function - Method 2')
+plt.xlabel(r'$\theta$')
+plt.ylabel(r'$\sin\theta$')
+plt.savefig('method2.png')</code></pre>
+
+<p><a href='2021-11-10-coding-matplot_fonts/method2.py'>method2.py</a></p>
+
+<h2>Result</h2>
+
+<p><p><img src='2021-11-10-coding-matplot_fonts/method1.png' alt='figalt' max-width: 100%><p></p>
+
+
+<h2>Reference</h2>
+
+<ul>
+<li>[[https://stackoverflow.com/questions/35668219/how-to-set-up-a-custom-font-with-custom-path-to-matplotlib-global-font]]</li>
+<li><a href='https://matplotlib.org/stable/tutorials/introductory/customizing.html#customizing-with-matplotlibrc-files'>Matplotlib Documentation: A sample matplotlibrc file</a></li>
+<li><a href='https://matplotlib.org/stable/users/dflt_style_changes.html?highlight=math%20font#math-text'>Matplotlib Documentation: Math text</a></li>
+</ul>
+
+            </section>
+        </main>
+        <footer>zqw</footer>
+
+    </div>
+</body>
+</html>

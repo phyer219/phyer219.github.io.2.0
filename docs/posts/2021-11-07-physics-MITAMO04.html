@@ -1,0 +1,333 @@
+<!DOCTYPE html><html class="no-js" lang="zh">
+
+<head>
+<script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+    </script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Long+Cang&family=Noto+Serif+SC&display=swap" rel="stylesheet"> <meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>从冰上的水</title>
+<link rel="apple-touch-icon" sizes="180x180" href="../static/images/apple-touch-icon-next.png?v=6.4.1">
+<link rel="icon" type="image/png" sizes="32x32" href="../static/images/favicon-32x32-next.png?v=6.4.1">
+<link rel="icon" type="image/png" sizes="16x16" href="../static/images/favicon-16x16-next.png?v=6.4.1">
+<link rel="stylesheet" type="text/css" href="../static/css/mystyle.css">    
+
+</head>
+<body>
+    <div class="container">
+        <header>
+            <section class="banner"><img src="../static/images/banner_20220427_tamako-love-story.jpg"></section>
+        </header>
+        <nav class="row">
+    <a class="nav" href="../index.html">首页</a>
+    <a class="nav" href="../category/category.html">分类</a>
+    <a class="nav" href="#">标签</a>
+    <a class="nav" href="#">关于</a>
+</nav>
+        <main>
+            <h1 class="post-title">Atomic and Optical Physics I, 04 Resonance IV: Quantum Theory
+            </h1>
+            <section class="post-meta">
+                <p><2021-11-07></p>
+                <p>['Rabi frequency, adiabatic, Atomic and Optical Physics']</p>
+                <p>专业笔记</p>
+            </section>
+            <section class="post-content">
+                
+<h2>Information</h2>
+<ul>
+<li>官方介绍: https://ocw.mit.edu/courses/physics/8-421-atomic-and-optical-physics-i-spring-2014/</li>
+<li>视频列表地址: https://www.youtube.com/playlist?list=PLUl4u3cNGP62FPGcyFJkzhqq9c5cHCK32</li>
+</ul>
+<h2>Adiabatic condition</h2>
+
+<p>下面推导绝热条件 (Rapid adiabatic passage 中的 adiabatic) 的具体表达式.</p>
+
+<p>Larmor frequency $\Omega_L = \gamma B_{\mathrm{eff}} \gg \dot{\theta}$ . $\theta$ 是
+$B_{\mathrm{eff}}$ 与 $z$ 轴的夹角.</p>
+
+<p>相同的磁场变化速度, 在 $\theta = 2\pi$ 附近时, $\theta$ 变化最明显. 也就是说磁场匀速变化
+时, 在 $\theta = \pi/2$ 时, $\dot{\theta}$ 达到最大值, 而 $B_{\mathrm{eff}}$ 达到最小值,
+因此只要考虑在 $\theta = \pi/2$ 附近的情况即可.</p>
+
+<p>此时</p>
+
+$$\begin{align}
+  B_{z, \mathrm{eff}} = B_0 - \frac{\omega(t)}{\gamma}
+\end{align}$$
+
+
+$$\begin{align}
+\theta \approx \frac{\pi}{2} - \frac{B_{z, \mathrm{eff}}}{B_1}
+\end{align}$$
+
+
+$$\begin{align}
+\dot{\theta} = \frac{\dot{\omega}}{\gamma B_1} = \frac{\dot{\omega}}{\omega_R} \ll \omega_R
+\end{align}$$
+
+<p>也就是说, the change $\Delta\omega$ in one Rabi period has to be samaller than Rabi
+frequency.</p>
+
+$$\begin{align}
+  |\dot{\omega}| \ll \omega_R^2
+\end{align}$$
+
+
+<h2>Quantized spin in a magnetic field</h2>
+
+<p>Hamiltonia</p>
+
+$$\begin{align}
+H = - \vec{\mu}\cdot \vec{B}_0 = - \gamma \hat{L}_z B_0
+\end{align}$$
+
+<p>由 Heisenberg eq of motion 可得</p>
+
+$$\begin{align}
+ \frac{\mathrm{d}}{\mathrm{d}t} \vec{\hat{\mu}}
+     = \frac{i}{\hbar}[\hat{H}, \vec{\hat{\mu}}]
+     = \frac{i}{\hbar}\gamma[\hat{H}, \vec{\hat{L}}]
+     = \gamma \vec{\hat{\mu}} \times \vec{\hat{B}}
+\end{align}$$
+
+<p>这个结果是严格的! 与经典的结果是一致的.</p>
+
+<p>写成期望</p>
+
+$$\begin{align}
+ \frac{\mathrm{d}}{\mathrm{d}t} \langle\vec{\hat{\mu}}\rangle
+     = \gamma \langle\vec{\hat{\mu}}\rangle \times \vec{\hat{B}}
+\end{align}$$
+
+
+<ul>
+<li>valid for any spin</li>
+<li>valid for spin $1/2$ $\Rightarrow$ any two level system</li>
+<li>composite angular momentum (比如原子的总角动量) (unless $B$ field is so strong that it breaks up the coupling of the angular momentum)</li>
+<li>valid for a system of $N$ two-level systems (e.g. Dicke superradiance).</li>
+</ul>
+<h2>Two level system spin $1/2$</h2>
+
+<p>What is the level structure of the electron in magnetic field?</p>
+
+<p>Spin down is lowest state for the electron!</p>
+
+<p>The magnetic moment has to point in the pulse direction( $\vec{B}$ ), which up,
+but the electron has negtive charge, the $\gamma$ factor is *negtive* and that's why
+for electron, the vector of spin and the vector of the magnetic momentum are
+oppsite. (差一负号)</p>
+
+$$\begin{align}
+  \langle \mu_z \rangle = \frac{\gamma\hbar}{2}(P_{\downarrow} - P_{\uparrow}) = - \frac{\gamma\hbar}{2}(2P_e - 1)
+\end{align}$$
+
+
+$$\begin{align}
+P_e(t) = \frac{1}{2} - \frac{1}{\hbar\gamma} \langle\mu_z\rangle
+    = \frac{1}{2} - \frac{1}{2}
+     \left( 1 - 2 \frac{\omega_R^2}{\Omega_R^2}\sin^2 \frac{\Omega_Rt}{2} \right)
+\end{align}$$
+
+<p>最后一个等号利用了经典图像给出的结果. $P_e$ for $P$ excited.</p>
+
+<p>如果取 $P_g(t <code> 0) </code> 1$ , 那么 Rabi transition probability</p>
+
+$$\begin{align}
+P_e(t) = \frac{\omega_R^2}{\Omega_R^2} \sin^2 \frac{\Omega_Rt}{2}
+\end{align}$$
+
+
+<h2>Spin $\frac{1}{2}$ Hamiltonian</h2>
+
+
+$$\begin{align}
+H = \frac{\hbar}{2} \begin{pmatrix}
+         \omega_0  &  \omega_Re^{-\mathrm{i}\omega t}\\
+         \omega_Re^{\mathrm{i}\omega t} & -\omega_0
+    \end{pmatrix}
+\end{align}$$
+
+<p>Question: Can be exactly realized in nature? Or it is an approximation?</p>
+
+<p>Can be exactly realized in nature!</p>
+
+
+$$\begin{align}
+  H_0 =& - \vec{\mu}\cdot \vec{B}_0 = - \gamma \hat{S}_z B_0 \\
+      =&\frac{\hbar}{2}\omega_0 \begin{pmatrix}
+            1 & 0\\
+            0 & -1
+         \end{pmatrix}
+      = \frac{\hbar\omega_0}{2}\sigma_z
+\end{align}$$
+
+<p>$|e\rangle, |g\rangle$ eigenstates with eigenvalues $\pm \frac{\hbar\omega_0}{2}$</p>
+
+<p>Now add rotating fields</p>
+
+$$\begin{align}
+H_1 =& -\vec{\mu} \cdot\vec{B}_1(t)
+   = -\vec{\mu}\cdot \frac{\omega_R}{\gamma}(-\hat{e}_{x}\cos\omega t - \hat{e}_y\sin\omega t) \\
+  =& \omega_R (\hat{S}_x\cos\omega t + \hat{S}_y \sin\omega t)\\
+  =& \frac{\hbar\omega_R}{2}\begin{pmatrix}
+             0   & e^{-\mathrm{i}\omega t} \\
+            e^{\mathrm{i}\omega t} & 0
+          \end{pmatrix}
+\end{align}$$
+
+<p>So $H = H_0 + H_1$ .</p>
+
+<p>We go complex in our Hamiltonian, not because we have approximated a real field
+$\cos \omega t$ by $e^{\mathrm{i}\omega t}$ , but because when we have a rotating field
+and we write down it in Pauli spin matrix, we get imaginary units for the $\sigma_y$
+spin matrix.</p>
+
+<p>Famous dressed atom Hamiltonian describes two-level system *+* one mode of the
+EM field (with arbitrary amplitudes). (8.422 课程会细讲)</p>
+
+<p>Since dressed atom picture in the standard way assumes that the photon number
+$N$ is large. There is a correspondance that in the limit of $N$ being large,
+the Fock state descriptin and the coherent state description fully agree.</p>
+
+<h2>Solution of the Hamiltonian</h2>
+
+<p>Transform to rotating frame. Unitary transofrmation (Rotation operation around
+$\hat{e}_z$ )</p>
+
+$$\begin{align}
+U = \left.e^{\mathrm{i}\frac{S_z}{\hbar}\theta}\right|_{\theta = \omega t} =
+\begin{pmatrix}
+e^{\mathrm{i} \omega t/2} & 0\\
+0 & e^{-\mathrm{i}\omega t/2}
+\end{pmatrix}
+\end{align}$$
+
+<p>Then</p>
+
+$$\begin{align}
+H' = \frac{\hbar}{2}
+\begin{pmatrix}
+\delta  & \omega_R \\
+\omega_R & -\delta
+\end{pmatrix}
+\end{align}$$
+
+<p>is time independent, where $\delta = \omega - \omega_0$ . Care about $U \mathrm{i}\hbar\partial_t
+U^{\dagger}$ result a term $\sim \omega \sigma_z$ .</p>
+
+<p>Solve it (homework # 1). A special case amplitudes</p>
+
+$$\begin{align}
+a_{g} (0) =& 1 \\
+|a_e(t)|^2 =& \frac{\omega_R^2}{\Omega_R^2}\sin^2 \frac{\Omega_Rt}{2}
+\end{align}$$
+
+<p>as derived before.</p>
+
+<h2>Rapid adiabatic passage --- Quantum treatment</h2>
+
+<p>无旋转的磁场时</p>
+
+$$\begin{align}
+H_0 = \frac{\hbar}{2}
+\begin{pmatrix}
+\delta  & 0 \\
+0  & -\delta
+\end{pmatrix}
+\end{align}$$
+
+<p>本征能量如图中虚线</p>
+
+<p><p><img src='2021-11-07-physics-MITAMO04/energy-level.png' alt='figalt' max-width: 100%><p></p>
+
+<p>当加入旋转的磁场时</p>
+
+$$\begin{align}
+H_0 = \frac{\hbar}{2}
+\begin{pmatrix}
+\delta  & \omega_R \\
+\omega_R  & -\delta
+\end{pmatrix}
+\end{align}$$
+
+<p>本征能量为 $\pm\sqrt{\omega_R^2 + \delta^2}$ , 为图中蓝线, avoid the crossing. 所以当我们慢
+慢扫过 $\delta = 0$ 时,
+会保持在蓝线上, spin 被翻转. Landau Zener problem, sweep the system through the
+avoided crossing.</p>
+
+<p>但在 $\delta = 0$ 时会有一定概率从一条蓝线跃迁到另外一条蓝线, 我们不加证明地给出
+probability to jump from one level to the another one</p>
+
+$$\begin{align}
+P_{\mathrm{na}} = e^{- 2\pi \Gamma}
+\end{align}$$
+
+<p>where $\mathrm{na}$ means non-adiabatic, $\Gamma$ is landau-Zener parameter given as</p>
+
+$$\begin{align}
+\Gamma = \left(\frac{\omega_R}{2}\right)^2 \left[ \frac{\mathrm{d}\omega}{\mathrm{d}t} \right]^{-1}
+ = \frac{1}{4}\frac{\omega_R^2}{\dot{\omega}}
+\end{align}$$
+
+<p>因此在之前的 adiabatic 的条件下 $\omega_{R}^2/\dot{\omega} \gg 1$ , 使得 $P_{\mathrm{na}}$
+很小.</p>
+
+<h2>Fast Sweep (没有完全理解)</h2>
+
+<p>另一种极限, if you go much faster than the Rabi frequency, the spin has no
+opportunity to change its orientation.</p>
+
+<p>Let's estimate the result in perturbation. Should we calculate that transition
+probability by using perturbation theory for an incoherent transition or for
+coherent transition?</p>
+
+<p>Coherent!</p>
+
+<p>区别在于</p>
+
+<ul>
+<li>Coherent: population $\dot{a}_2 <code> -\mathrm{i}\frac{H_{12}}{\hbar}$ with $H_{12} </code> \frac{\hbar}{2}\omega_R$ , 那么短时的演化为 $a_2 <code> \frac{1}{2}\omega_R t$ , so $P_2\sim |a_2|^2 </code>\omega_R^2 t_{\mathrm{eff}}^2$ , effective time $t_{\mathrm{eff}}$ (when wave function really changes) of driving the system. Coherent process are always quadratic in time.</li>
+<li>Incoherent: Fermi's Golden Rule $P \sim \frac{\omega_R^2 t_{\mathrm{eff}}}{\mathrm{density\, of\, states}}$</li>
+</ul>
+<p>Q: What is $t_{\mathrm{eff}}$ in LZ?</p>
+
+<ul>
+<li>A. $t_{\mathrm{eff}} \sim \frac{\omega_R}{\dot{\omega}}$</li>
+<li>B. $t_{\mathrm{eff}} \sim \sqrt{\frac{1}{\dot{\omega}}}$</li>
+<li>C. $t_{\mathrm{eff}} \sim \frac{1}{\omega_R}$</li>
+</ul>
+<p>the answer is B. $t_{\mathrm{eff}}$ is the "dephasing" time $\Delta t$ , the time
+during which everything is coherent</p>
+
+$$\begin{align}
+\Delta\omega \cdot \Delta t = \dot{\omega} \Delta t \cdot\Delta t \sim \pi \Rightarrow \Delta t \sim \sqrt{\frac{1}{\dot{\omega}}}
+\end{align}$$
+
+
+<p>Expand $e^{- 2\pi \Gamma}$ (small $\Gamma$ )</p>
+
+$$\begin{align}
+1 - P_{\mathrm{na}} = 2\pi\Gamma \propto \frac{\omega_R^2}{\dot{\omega}}
+\end{align}$$
+
+
+<h2>Reference</h2>
+
+            </section>
+        </main>
+        <footer>zqw</footer>
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,84 @@
+#+TITLE: 波数, 电子伏, 赫兹单位换算
+#+DATE: <2022-02-20>
+#+CATEGORIES: 专业笔记
+#+TAGS: Atomic and Optical Physics
+#+HTML: <!-- toc -->
+#+HTML: <!-- more -->
+
+* Wavenumber
+
+原子物理中一般指 used in spectroscopy 的 wavenumber, 即
+\begin{align}
+\tilde{\nu} = \frac{1}{\lambda}
+\end{align}
+波长的倒数, *没有* $2\pi$ 因子. 常用的单位是 $\mathrm{cm}^{-1}$
+
+* 频率
+
+也是 *没有* $2\pi$ 因子的频率, 对于真空中的光, 即
+\begin{align}
+c = \nu \lambda
+\end{align}
+它与 wavenumber 的关系即为
+\begin{align}
+\nu = c \tilde{\nu}
+\end{align}
+差一光速.
+
+* eV
+
+eV 是能量单位, 即 $1 \mathrm{eV} = 1.602176634 \times 10^{-19} J$ ( $e =
+1.602176634\times 10^{-19} C$ )
+它与 wavenumber 的关系
+\begin{align}
+E = h \nu = h c \tilde{\nu}
+\end{align}
+对于波数为 $1 \mathrm{cm}^{-1}$ 的光子, 其能量为
+\begin{align}
+E = h c \cdot 1 \mathrm{cm}^{-1}
+  =& 6.62607015×10^{−34} \mathrm{J}\cdot \mathrm{Hz}^{−1}
+    \times 299792458 \mathrm{m/s} \times 1 \mathrm{cm}^{-1} \\
+  =& 6.62607015×10^{−34} \times 299792458 \times 10^{2} \mathrm{J} \\
+ = &\frac{6.62607015×10^{−34} \times 299792458 \times 10^{2}}{1.602176634 \times 10^{-19}} \mathrm{eV}
+\end{align}
+即
+\begin{align}
+1 \mathrm{eV} = h c \cdot 1 \mathrm{cm}^{-1} \times
+   \frac{1.602176634 \times 10^{-19}}{6.62607015×10^{−34} \times 299792458 \times 10^{2}}
+   = 8065.54 \times h c \cdot 1 \mathrm{cm}^{-1}
+\end{align}
+8065.54 为 $\frac{e}{100hc}$ 的数值值( $e, h, c$ 取国际单位制 ).
+
+频率与 eV 的关系是类似的, 即
+\begin{align}
+E =& h \nu = h \cdot 1 \mathrm{Hz} = 6.62607015×10^{−34} \mathrm{J} \\
+  =& \frac{6.62607015×10^{−34}}{1.602176634 \times 10^{-19}} \mathrm{eV}
+\end{align}
+\begin{align}
+1 \mathrm{eV} = \frac{1.602176634 \times 10^{-19}}{6.62607015×10^{−34}}
+     \times h \cdot 1 \mathrm{Hz} = 2.41799\times 10^{14} \times h \cdot 1 \mathrm{Hz}
+\end{align}
+$2.41799\times 10^{14}$ 为 $\frac{e}{h}$ 的数值值( $e, h$ 取国际单位制 ).
+
+#+begin_quote
+Example1:
+
+原子发出可见光的跃是 eV 量级相互作用能级的跃迁, 对应于可见光的频率 $10^{14} \mathrm{Hz}$ .
+#+end_quote
+
+#+begin_quote
+Example2:
+
+氢原子 $2^2S_{1/2}$ 与 $2^2P_{1/2}$ 能级的 Lamb shift 为
+$4.4 \times 10^{-6} \mathrm{eV}$ , 对应频率大约为 $10^9 \mathrm{Hz}$ , 即 GHz .
+#+end_quote
+
+* Reference
+
+- [[https://en.wikipedia.org/wiki/Wavenumber][wikipedia: Wavenumber]]
+
+- [[https://en.wikipedia.org/wiki/Planck_constant][wikipedia: Planck constant]]
+
+- [[https://en.wikipedia.org/wiki/Speed_of_light][wikipedia: Speed of light]]
+
+- [[http://wild.life.nctu.edu.tw/class/common/energy-unit-conv-table.html][Energy unit conversion table]]

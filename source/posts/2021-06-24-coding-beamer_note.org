@@ -1,0 +1,9 @@
+#+TITLE: beamer 笔记
+#+DATE: <2021-06-24>
+#+CATEGORIES: 软件使用
+#+TAGS: latex, beamer
+#+HTML: <!-- toc -->
+#+HTML: <!-- more -->
+
+[[file:./2021-06-24-coding-beamer_note/beamer_note.pdf][PDF version]]
+[[file:./2021-06-24-coding-beamer_note/beamer_note.tex][source file]]

@@ -1,0 +1,43 @@
+#+TITLE: Thomas-Fermi Theory
+#+DATE: <2019-10-18>
+#+CATEGORIES: 专业笔记
+#+TAGS: 物理, Thomas-Fermi Theory
+#+HTML: <!-- toc -->
+#+HTML: <!-- more -->
+
+
+*  Sommerfeld Model
+
+Sommerfeld Model 是考虑自由全同电子气体. 那么它的密度是与位置无关的
+
+\begin{align}
+  n_0(\varepsilon_F) = \frac{k_F^3}{3\pi^2}
+\end{align}
+
+* Thomas-Fermi Theory
+
+如果在 Sommerfeld Model 的基础上考虑在原点有一个固定不动的电荷, 那么它的密度就会
+与位置有关.
+
+一个在离原点不远的 $\vec{r}$ 处的试探电荷, 感受到在原点的电荷给它的势能为
+
+\begin{align}
+  E_{\mathrm{pot}}(\vec{r}) = (-e) \phi(\vec{r})
+\end{align}
+
+Thomas-Fermi Model 的假设就是, 单粒子的能量修正假设为
+
+\begin{align}
+  E(\vec{k}) = \frac{\hbar^2 k^2}{2m} - e\phi(\vec{r})
+\end{align}
+
+由于不确定关系, 等式左边给定了动量, 右边给定了位置, 两边是矛盾的. 因此, 只有在
+$\phi(\vec{r})$ 在位置不确定关系的范围内基本不变可以看作常量时, 上式才有意义.
+
+* 待续...
+
+* Reference 
+
+Ashcroft, Mermin, Solid State Physics
+
+Wolfgang Nolting, Fundamentals of Many-body Physics

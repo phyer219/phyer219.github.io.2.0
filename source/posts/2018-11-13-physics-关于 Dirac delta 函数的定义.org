@@ -1,0 +1,46 @@
+#+TITLE: 关于 Dirac delta 函数的定义
+#+DATE: <2018-11-13>
+#+CATEGORIES: 专业笔记
+#+TAGS: 数学, delta函数
+#+HTML: <!-- toc -->
+#+HTML: <!-- more -->
+* 问题
+从 Dirac delta 函数的定义:
+- 对于任意函数 $f(x)$ 都有
+\begin{align*}
+  \int_{-\infty}^{+\infty}f(x) \delta(x) \mathrm{d}x = f(0)
+\end{align*}
+则 $\delta(x)$ 为Dirac dleta 函数.
+
+出发,证明对于任意的函数 $g(x)$ , Dirac delta 函数都有如下性质:
+- 对于任意函数 $g(x)$ ,和任意不包含 $0$ 的区间 $[a,b]$ , Dirac delta 函数 $\delta(x)$ 都有:
+\begin{align*}
+  \int_a^b g(x)\delta(x)  \mathrm{d}x = 0
+\end{align*}
+* 证明
+构造函数:
+\begin{align*}
+  h(x) =
+  \left\{
+  \begin{aligned}
+    A \quad &,x \in [a,b] \\
+    0 \quad&,x \notin [a,b]
+  \end{aligned}
+  \right.
+\end{align*}
+其中 $A$ 是非零常数, 则有
+\begin{align*}
+  \int_{-\infty}^{+\infty}g(x)h(x) \delta(x) \mathrm{d}x =& g(0)h(0) = 0 \\
+  =& \int_a^bAg(x) \delta(x) \mathrm{d}x = A \int_a^b g(x)\delta(x)  \mathrm{d}x
+\end{align*}
+$A$ 不为零,所以
+\begin{align*}
+  \int_a^b g(x)\delta(x)  \mathrm{d}x = 0
+\end{align*}
+得证.
+* 总结
+所以Dirac delta 函数只需要一条定义足以. 其它的性质都可以由定义推出.
+* 致谢
+感谢导师 Ran Qi 的解答.
+
+感谢 Fan Yang 师兄的再次解答.

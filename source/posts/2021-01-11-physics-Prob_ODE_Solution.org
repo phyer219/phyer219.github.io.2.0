@@ -1,0 +1,53 @@
+#+TITLE: 关于微分方程的解的问题(update 07/June/2021)
+#+DATE: <2021-01-11>
+#+CATEGORIES: 专业笔记
+#+TAGS: 问题, 微分方程
+#+HTML: <!-- toc -->
+#+HTML: <!-- more -->
+
+* 问题
+
+将微分方程
+\begin{align}
+\label{eq:inhomo}
+  \mathcal{L} \psi(x) = k^2 \psi(x)
+\end{align}
+的通解 $\phi(k, x)$ 在 $k = 0$ 处级数展开
+\begin{align}
+\phi(k, x) = u_0 + k^2 u_1 + \mathcal{O}(k^4)
+\end{align}
+将展开的结果代回原方程可得
+\begin{align}
+\mathcal{L} u_0 =& 0 \\
+\label{eq:step}
+\mathcal{L} u_1 =& u_0
+\end{align}
+那么 $u_{0}$ 是否是方程
+\begin{align}
+  \label{eq:homo}
+  \mathcal{L} \psi(x) = 0
+\end{align}
+的通解?
+
+* 看起来是
+
+解方程 $(\ref{eq:homo})$ 得到通解, 然后再解 $(\ref{eq:step})$ , 逐阶求解, 就得到
+了 $(\ref{eq:inhomo})$ 的通解.
+
+* Reference
+
+Yu, Z., Thywissen, J. H. & Zhang, S. Supplementary Material: Universal Relations
+for a Fermi Gas Close to a p-wave Interaction Resonance.
+
+* 旧
+#+begin_quote
+将微分方程
+\begin{align}
+  \mathcal{L} \psi(x) = k^2 \psi(x)
+\end{align}
+的通解 $\phi(k, x)$ , 取 $k\to 0$ 时的极限, 能否得
+\begin{align}
+  \mathcal{L} \psi(x) = \psi(x)
+\end{align}
+的全部解?
+#+end_quote

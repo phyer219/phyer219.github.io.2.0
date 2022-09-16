@@ -1,0 +1,69 @@
+#+TITLE: 多体物理读书会：Dirac delta函数从零到正无穷的积分
+#+DATE: <2018-10-21>
+#+CATEGORIES: 专业笔记
+#+TAGS: 数学, delta函数, 多体物理读书会
+#+HTML: <!-- toc -->
+#+HTML: <!-- more -->
+* 问题
+证明积分：
+\begin{equation}
+  \label{eq:1}
+  \int_{0}^{+\infty}\mathrm{d}x \delta (x)f(x) = \frac{1}{2}f(0)
+\end{equation}
+* Dirac delta函数的定义
+** 一般定义
+一般定义为
+\begin{equation}
+  \label{eq:2}
+  \delta (x) =\left\{
+  \begin{array}{ccc}
+    +\infty & ,& x = 0 \\
+    0  &, & x \neq 0
+  \end{array}\right.
+\end{equation}
+且满足
+\begin{equation}
+  \label{eq:3}
+  \int_{-\infty}^{+\infty} \delta(x) \mathrm{d}x = 1
+\end{equation}
+但这不够严格。Dirac delta 函数不是一个函数，它是一个分布。
+** 严格定义
+如果一个分布$\delta(x)$作用在一个test function$f(x)$上，得到的结果是$f(0)$
+\begin{equation}
+  \label{eq:4}
+  \int_{-\infty}^{+\infty}\mathrm{d}x \delta(x)f(x) = f(0)
+\end{equation}
+，那么这个分布就是Dirac delta 函数。
+* 性质
+通过初步的尝试，发现只要证明
+\begin{equation}
+  \label{eq:5}
+  \delta (x) f(x) = \delta (x) f(-x)
+\end{equation}
+即可证明结论(\ref{eq:1})。
+一般来说，$\delta (x)$当然是一个偶函数，但是$f(x)$却是任意一个函数。它们乘在一起是一个偶函数，这是为什么呢？想像一下$\delta(x)$的形状，就得出了答案，因为与$\delta(x)$相乘后$f(x)$在$x\neq 0$时都为零了，所以应该有
+\begin{equation}
+  \label{eq:6}
+  \delta (x) f(x) = \delta (x) f(0)
+\end{equation}
+只要证明了(\ref{eq:6})，就能证明$\delta(x)f(x)$是一个偶函数。\\
+如何验证？能利用的就只有Dirac delta 函数的定义，所以把(\ref{eq:6})右边的$f(0)$移到左边，右边就只剩一个$\delta(x)$，那么验证左边满足Dirac delta 函数的定义，就可以证明(\ref{eq:6})了。\\
+把(\ref{eq:6})右边的$f(0)$移到左边后得到
+\begin{equation}
+  \label{eq:7}
+  \delta(x) \frac{f(x)}{f(0)} = \delta(x)
+\end{equation}
+验证把(\ref{eq:7})的左边是一个Dirac delta 函数，那么根据定义，只要看把它作用到一个test function上，看它的结果就好了
+\begin{equation}
+  \label{eq:8}
+  \begin{split}
+    \int_{-\infty}^{+\infty}\mathrm{d}x\left[\delta(x)\frac{f(x)}{f(0)}\right]g(x) =&     \int_{-\infty}^{+\infty}\mathrm{d}x\delta(x)\left[\frac{f(x)}{f(0)}g(x)\right]\\
+    =&\frac{f(0)}{f(0)}g(0)\\
+    =& g(0)
+  \end{split}
+\end{equation}
+所以(\ref{eq:7})得到了验证。
+* 证明
+(\ref{eq:5})得到了证明，(\ref{eq:1})的证明就显然了，我就懒得写了。
+* 致谢
+感谢Fan Yang师兄提供的巧妙证明。

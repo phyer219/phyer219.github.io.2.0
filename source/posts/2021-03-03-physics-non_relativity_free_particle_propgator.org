@@ -1,0 +1,53 @@
+#+TITLE: 一个简单的积分: 自由粒子的传播子
+#+DATE: <2021-03-03>
+#+CATEGORIES: 专业笔记
+#+TAGS: propagator, free particle
+#+HTML: <!-- toc -->
+#+HTML: <!-- more -->
+
+\begin{align}
+  U(t) =& \langle \vec{x} | e^{-\mathrm{i} H t} | \vec{x}_0\rangle \\
+    =& \int \frac{\mathrm{d}^3\vec{p}}{(2\pi)^3}
+      \langle \vec{x}| e^{-\mathrm{i} \frac{p^2}{2m}t}|\vec{p}\rangle
+          \langle \vec{p} | \vec{x}_0\rangle \\
+    =& \int \frac{\mathrm{d}^3\vec{p}}{(2\pi)^3}
+       e^{-\mathrm{i} \frac{p^2}{2m}t} e^{\mathrm{i}\vec{p}\cdot(\vec{x} - \vec{x}_0)} \\
+    =& \left( \frac{m}{2\pi \mathrm{i}t} \right)^{3/2}
+            e^{\mathrm{i}m\frac{(\vec{x} - \vec{x}_0)^2}{2t}}
+\end{align}
+最后一个等号的过程如下. 记 $|\vec{x} - \vec{x}_0| = \Delta x$
+\begin{align}
+U(t) =& \frac{1}{(2\pi)^2} \int_0^{\infty}\mathrm{d}p\cdot p^2\int_{-1}^1\mathrm{d}\cos\theta\cdot
+       e^{-\mathrm{i} \frac{p^2}{2m}t}e^{\mathrm{i} p\Delta x \cos\theta} \\
+=& \frac{1}{(2\pi)^2} \int_0^{\infty}\mathrm{d}p\cdot p
+       e^{-\mathrm{i} \frac{p^2}{2m}t} \frac{1}{\mathrm{i}\Delta x}
+        [e^{\mathrm{i} p\Delta x} - e^{-\mathrm{i} p\Delta x}]\\
+=& \frac{1}{(2\pi)^2} \int_{-\infty}^{\infty}\mathrm{d}p\cdot p
+       e^{-\mathrm{i} \frac{p^2}{2m}t} \frac{1}{\mathrm{i}\Delta x}
+        e^{\mathrm{i} p\Delta x} \\
+=& \frac{1}{(2\pi)^2} \int_{-\infty}^{\infty}\mathrm{d}p
+       e^{-\mathrm{i} \frac{p^2}{2m}t} \frac{p}{\mathrm{i}\Delta x}\cdot
+          \frac{1}{\mathrm{i}p} \frac{\partial}{\partial\Delta x}
+        e^{\mathrm{i} p\Delta x} \\
+=& \frac{1}{(2\pi)^2} \frac{-1}{\mathrm{i}\Delta x}\frac{\partial}{\partial\Delta x}
+           \int_{-\infty}^{\infty}\mathrm{d}p
+       e^{-\mathrm{i} \frac{p^2}{2m}t} e^{\mathrm{i} p\Delta x} \\
+=& \frac{1}{(2\pi)^2} \frac{-1}{\mathrm{i}\Delta x}\frac{\partial}{\partial\Delta x}
+            \sqrt{\frac{2\pi m}{\mathrm{i}t}} e^{-\frac{\Delta x^{2} m}{2it}}\\
+=& \left( \frac{m}{2\pi \mathrm{i}t} \right)^{3/2}
+            e^{\mathrm{i}m\frac{\Delta x^2}{2t}}
+\end{align}
+
+* 注
+
+记住这个还不是错的, 不用老配方了...
+\begin{align}
+\int_{-\infty}^{\infty} e^{-a x^2 + bx} = \sqrt{\frac{\pi}{a}}e^{\frac{b^2}{4a}}
+\end{align}
+
+* Reference
+
+- Michael E. Peskin, Daniel V. Schroeder - An Introduction To Quantum Field
+  Theory (2018, Westview Press_CRC Press) Chap 2.1
+
+- [[https://physics.stackexchange.com/questions/424587/peskin-schroeder-free-particle-propagation]]

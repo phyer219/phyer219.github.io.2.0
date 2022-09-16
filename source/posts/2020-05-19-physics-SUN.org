@@ -1,0 +1,138 @@
+#+TITLE: 读书笔记: IV.4 Tensors and Representations of Special Unitary Groups
+#+DATE: <2020-05-19>
+#+CATEGORIES: 专业笔记
+#+TAGS: 数学
+#+HTML: <!-- toc -->
+#+HTML: <!-- more -->
+
+
+* $SO(N)$ 与 $SU(N)$ 的对比
+
+在这里, 要对 $SU(N)$ 群做与 $SO(N)$ 群相同的事. 它们的区别如下
+|         | $SO(N)$                    | $SU(N)$                                   |
+|         | 实                         | 复                                        |
+|         | 只有上标                   | 有上标, 有下标                            |
+| Special | $O^T O=1$                   | $U^{\dagger} U = 1$                             |
+|         | $O(N)\to SO(N)$             | $U(N) \to SU(N)$                           |
+|         | $\det O=\pm 1\to \det O = 1$ | $\det U = e^{\mathrm{i}\alpha} \to \det U = 1$ |
+|         |                            |                                           |
+
+
+* $SU(3)$ 群的表示
+
+全对称张量 $\phi^{ijk}$ 生成 $SU(3)$ 的一个 $10$ 维不可约表示.
+\begin{align}
+  \phi^{333},   \phi^{331},   \phi^{332},   \phi^{322},   \phi^{321},   \phi^{311},   \phi^{222},   \phi^{221},   \phi^{111},   \phi^{112}
+\end{align}
+
+* $SU(N)$ 群的下标
+
+从 $SO(N)$ 群的 $O^T O=1$ 到 $SU(N)$ 群的 $U^{\dagger} U = 1$ 就引出了下标
+\begin{align}
+  \psi_i \equiv \psi^{i*}
+\end{align}
+因此
+\begin{align}
+  \zeta^{\dagger}\psi = \zeta^{j*}\psi^j = \zeta_j\psi^j
+\end{align}
+把 $U^{ij}$ 也写成 $U^i_{\,j}$ 的形式, 来保证上标只和下标求和, 下标只和上标求和, 所以
+tensor 之间的变换就写为
+\begin{align}
+  \psi^i \to& \psi'^i = U^i_{\,j} \psi^j \\
+  \psi_i \to& \psi'_i = \psi_j (U^{\dagger})^j_{\,i}
+\end{align}
+总的来说就是: 上标由 $U$ 变换, 下标由 $U^{\dagger}$ 变换.
+#+BEGIN_QUOTE
+Example:
+\begin{align}
+  \phi^{ij}_k \to \phi'^{ij}_k = U^i_{\,l} U^j_{\,m} \phi^{lm}_n (U^{\dagger})^n_{\,k}
+\end{align}
+#+END_QUOTE
+在此记法下, 它们的 trace 为一个上标和一个下标的求和
+\begin{align}
+  \delta^k_{\,j} \phi^{ij}_k \equiv \phi^{ij}_j
+\end{align}
+#+BEGIN_QUOTE
+Exercise:
+\begin{align}
+  \phi^{ij}_j \to U^i_{\,l}U^j_{\,m} \phi^{lm}_n(U^{\dagger})^n_{\,j}
+  =& U^i_{\,l}\delta ^n_{\,m} \phi^{lm}_n  = U^i_{\,l} \phi^{ln}_n
+\end{align}
+#+END_QUOTE
+
+* $SO(N)$ 群的不可约表示
+
+因为上标和下标按不同的方式变换, 所以它们各自有独立的对称性.
+
+书上说
+#+BEGIN_QUOTE
+Thus, in summary, the irreducible representations of $SU(N)$ are realized by traceless
+tensors with definite symmetry properties under permutation of indices.
+
+Convince yourself that for $SU(N)$ , the dimensions of the representations
+defined by the following tensors $\phi^i$ , $\phi^{ij}$ (antisymmetric), $\phi^{ij}$
+(symmetric), $\phi^i_{\,j}$ , and $\phi^{ij}_k$ (antisymmetric in the upper indices) 
+are, respectively, $N , N (N − 1)/2, N (N + 1)/2, N^2 − 1$ and $\frac{1}{2} N (N −
+2)(N + 1)$. 
+#+END_QUOTE
+
+#+BEGIN_QUOTE
+Example:
+
+symmetric traceless representation $S^{ij}_k = S^{ji}_k$ 是 $\frac{1}{2}N(N+1)N-N
+=\frac{1}{2}N(N-1)(N+2)$ 维的. 
+
+先不考虑下标, 目标的对称表示共有 $\frac{1}{2}N(N+1)$ 种, 下标还有 $N$ 种可能, 再
+减去 $N$ 个迹. 这 $N$ 个迹 $S^{ij}_i$ 对应 $N$ 个不同的 $j$ .
+#+END_QUOTE
+
+#+BEGIN_QUOTE
+Exercise:
+说明 antisymmetric traceless representation $A^{ij}_k = - A^{ji}_k$ 是
+$\frac{1}{2}N(N-1)N - N = \frac{1}{2}N(N+1)(N-2)$ 维的.
+#+END_QUOTE
+
+$SU(N)$ 群的不可约表示是由具有确定对称性的无迹张量生成的. (不知道第二句话的意思
+是否是说所有的 $SU(N)$ 群的不可约表示都只有这几个维度, 这里貌似是不加证明地给出
+了这个结论) .
+
+#+BEGIN_QUOTE
+Example:
+
+$SU(5)$ 有 $5, 10, 15, 24, 45$ 维的不可约表示.
+#+END_QUOTE
+
+
+* 上下标之间的移动
+
+前面用到了 $SU(N)$ 的 unitary $U^{\dagger}U = 1$ . 它可以如下表示
+\begin{align}
+  \varepsilon_{i_1i_2\cdots i_N} U^{i_1}_{\,j_1}U^{i_2}_{\,j_2} \cdots U^{i_N}_{\,j_N} = \varepsilon_{j_1j_2\cdots j_N}
+\end{align}
+两边同时乘 $(U^{\dagger})^{j_N}_{p_N}$ 并对 $j_N$ 求和有
+\begin{align}
+    \varepsilon_{i_1i_2\cdots i_N} U^{i_1}_{\,j_1}U^{i_2}_{\,j_2} \cdots U^{i_N}_{\,j_N}(U^{\dagger})^{j_N}_{p_N} =& \varepsilon_{j_1j_2\cdots j_N}(U^{\dagger})^{j_N}_{p_N} \\
+     \Downarrow& \\
+    \varepsilon_{i_1i_2\cdots p_N} U^{i_1}_{\,j_1}U^{i_2}_{\,j_2} \cdots U^{i_{N-1}}_{\,j_{N-1}} =& \varepsilon_{j_1j_2\cdots j_N}(U^{\dagger})^{j_N}_{p_N} 
+\end{align}
+重复上述过程可以把 $U$ 换成 $U^{\dagger}$ .
+#+BEGIN_QUOTE
+Example:
+
+定义
+\begin{align}
+  \phi_{kpq} \equiv \epsilon_{ijpq} \phi^{ij}_k
+\end{align}
+那么它的变换
+\begin{align}
+  \varepsilon_{ijpq} \phi^{ij}_k \to \varepsilon_{ijpq} U^i_{\,l}U^j_{\,m} \phi^{ij}_k (U^{\dagger})^n_{\,k}
+  = (U^{\dagger})^s_{\,p}(U^{\dagger})^t_{\,q}(U^{\dagger})^n_{\,k} \phi_{nst}
+\end{align}
+#+END_QUOTE
+总结一下, 用两个反对称符号, 就可以将 $SU(N)$ 群张量的上下标上下移动. 
+
+* Reference
+
+- A. Zee, Group Theory in a Nutshell for Physicists, 2016, Princeton University Press
+
+- https://en.wikipedia.org/wiki/3D_rotation_group

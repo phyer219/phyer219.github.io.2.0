@@ -1,0 +1,42 @@
+#+TITLE: 研四上学期总结
+#+DATE: <2021-02-28>
+#+CATEGORIES: 想说
+#+TAGS: 总结
+#+HTML: <!-- toc -->
+#+HTML: <!-- more -->
+
+* 序
+
+昨天返校了.
+
+* 课题
+
+已经推导了 d 波和 p 波的分子格林函数. 验证粒子数分布的 tail , 但不符合预期. 计划
+从费曼图和直接推导两种方法对比, 找出原因.
+
+还看了 OPE 的文章.
+
+* 读书
+
+主要是读书会的凝聚态场论, 算是把前几章过了一遍吧.
+
+Taylor 散射: 看到第六章
+
+Carl Bender 微扰公开课的前六节.
+
+格林函数的历史.
+
+Harald Siegfried Friedrich, Theoretical Atomic Physics-Springer (2005) 第一章介
+绍中心势和 Feshbach 共振的部分.
+
+* 业余
+
+midi 键盘, 练了有 22 次.
+
+switch.
+
+raspberry pi.
+
+* 总
+
+按时开学的愿望达成了. 没别的多说的, 希望多加把劲, 科研有所进展. 多么朴实的愿望.

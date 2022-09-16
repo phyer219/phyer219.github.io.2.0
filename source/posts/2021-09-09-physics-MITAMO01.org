@@ -1,0 +1,76 @@
+#+TITLE: Atomic and Optical Physics I, 01 Resonance Note
+#+DATE: <2021-09-09>
+#+CATEGORIES: 专业笔记
+#+TAGS: Resonance, Atomic and Optical Physics
+#+HTML: <!-- toc -->
+#+HTML: <!-- more -->
+
+* Information
+- 官方介绍:
+  https://ocw.mit.edu/courses/physics/8-421-atomic-and-optical-physics-i-spring-2014/
+
+- 视频列表地址: https://www.youtube.com/playlist?list=PLUl4u3cNGP62FPGcyFJkzhqq9c5cHCK32
+
+* 整个课程的介绍
+
+AMO continu redefine itself
+
+* Resonance
+
+The phenomenon of resonance is that you have something which can periodically
+vary, and when you drive it, you see peaked response.
+
+* Quality factor
+
+\begin{align}
+  Q = \frac{f_0}{\Delta f}
+\end{align}
+
+原子物理中, $Q$ 一般非常大.
+
+High quality Oscillator is the tool for discovery.
+
+* Whispering-gallery modes
+
+* Lorentzian shape
+
+\begin{align}
+  \propto \mathrm{Im} \frac{1}{\omega_0 - \omega - \mathrm{i}\frac{\gamma}{2}}
+\end{align}
+\begin{align}
+  \gamma = \Delta\omega , \quad Q = \frac{\omega_0}{\gamma}
+\end{align}
+
+* Unit
+
+angular frequency $\omega$ units: rad/s or $\mathrm{s}^{-1}$
+
+\begin{align}
+  f = \frac{\omega_0}{2\pi}
+\end{align}
+
+#+begin_quote
+Exp:
+
+\begin{align}
+\omega_0 = 2\pi \cdot 1 \mathrm{MHz} = 6.28 \times 10^6 \mathrm{s}^{-1}
+\end{align}
+#+end_quote
+
+$\gamma$ units: $\mathrm{s}^{-1}$, $e^{-\mathrm{i}\omega t - \gamma t}$
+#+begin_quote
+\begin{align}
+\gamma = 10^4 \mathrm{s}^{-1}
+\end{align}
+not
+\begin{align}
+\gamma = 10^4 \mathrm{Hz} \\
+\gamma = 2\pi\times 1.66 \mathrm{Hz}
+\end{align}
+#+end_quote
+
+* Q
+
+Fourier trans of Lorentzian shpe?
+
+* Reference

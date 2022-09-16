@@ -1,0 +1,226 @@
+#+TITLE: Partial Wave Expansion
+#+DATE: <2019-06-05>
+#+CATEGORIES: 专业笔记
+#+TAGS: 物理, 散射, 分波展开, Legendre fucntions, associated Legendre functions, Bessel functions, Spherical Bessel functions
+#+HTML: <!-- toc -->
+#+HTML: <!-- more -->
+
+* Radical Potential 
+
+** Schrodinger EQ
+
+\begin{align}
+  \left[ -\frac{\hbar^2}{2m}\nabla^2 + V(r) -E\right]\psi = 0
+\end{align}
+变形为
+\begin{align}
+  \nabla^2 \psi = \left[ \frac{2m}{\hbar^2} V(r) - k^2 \right]\psi
+\end{align}
+其中 $k^2 = E/\frac{\hbar^2}{2m}$ . 写出 $\nabla^2$ 在球
+坐标系中的形式, 方程变为
+\begin{align}
+  \left[\frac{1}{r^2}\frac{\partial}{\partial r}r^2 \frac{\partial}{\partial r} +
+  \frac{1}{r^2 \sin \theta}\frac{\partial}{\partial \theta}\sin \theta \frac{\partial}{\partial \theta}
+  + \frac{1}{r^2\sin^2 \theta}\frac{\partial^2}{\partial\phi^2} \right] \psi
+  = \left[ \frac{2m}{\hbar^2} V(r) - k^2 \right]\psi
+\end{align}
+
+** Separation of variables 
+
+分离变量, 令
+\begin{align}
+  \psi(r,\theta,\phi) = R(r)\Theta(\theta)\Phi(\phi)
+\end{align}
+代回方程, 并且两边同时除以 $R(r)\Theta(\theta)\Phi(\phi)$ 可得
+\begin{align}
+  \frac{1}{R}\frac{1}{r^2}\frac{\mathrm{d}}{\mathrm{d} r}r^2 \frac{\mathrm{d}}{\mathrm{d} r} R+
+  \frac{1}{\Theta}\frac{1}{r^2 \sin \theta}\frac{\mathrm{d}}{\mathrm{d} \theta}\sin \theta \frac{\mathrm{d}}{\mathrm{d} \theta}\Theta
+  +\frac{1}{\Phi} \frac{1}{r^2\sin^2 \theta}\frac{\mathrm{d}^2}{\mathrm{d}\phi^2}\Phi
+  =  \frac{2m}{\hbar^2} V(r) - k^2
+\end{align}
+所有含有 $\phi$ 的项都在方程左边第三项, 与 $r,\theta$ 没有耦合, 所以
+它一定是一个常数. 因为其它的项中都与 $\theta$ 无关, $\theta$ 改变时其它
+项保持不变. 记这个常数为 $-m^2$ 即
+\begin{align}
+  \frac{1}{\Phi}\frac{\mathrm{d}^2}{\mathrm{d}\phi^2}\Phi = -m^2
+\end{align}
+它的解为
+\begin{align}
+  \Phi (\phi) = e^{\mathrm{i}m\phi}
+\end{align}
+将它代回原方程, 原方程变为
+\begin{align}
+  \frac{1}{R}\frac{1}{r^2}\frac{\mathrm{d}}{\mathrm{d} r}r^2 \frac{\mathrm{d}}{\mathrm{d} r} R+
+  \frac{1}{\Theta}\frac{1}{r^2 \sin \theta}\frac{\mathrm{d}}{\mathrm{d} \theta}\sin \theta \frac{\mathrm{d}}{\mathrm{d} \theta}\Theta
+  - \frac{m^2}{r^2\sin^2 \theta}
+  =  \frac{2m}{\hbar^2} V(r) - k^2
+\end{align}
+$\theta$ 和 $r$ 也没有耦合, 同理可以把与 $\theta$ 有关的项单拎出来, 是一个常数, 记为 $-\lambda$ ,即
+\begin{align}
+    \frac{1}{\Theta}\frac{1}{ \sin \theta}\frac{\mathrm{d}}{\mathrm{d} \theta}\sin \theta \frac{\mathrm{d}}{\mathrm{d} \theta}\Theta
+  - \frac{m^2}{\sin^2 \theta} = -\lambda
+\end{align}
+上述关于 $\theta$ 的方程的解是连带 Legendre 多项式 $P_l^m(\cos\theta)$, 本征值 $\lambda$ 只能取值为 $l(l+1)$ , $l$ 是个
+整数. 
+剩下的只有 $r$ 的方程为
+\begin{align}
+  \frac{1}{R}\frac{1}{r^2}\frac{\mathrm{d}}{\mathrm{d} r}r^2 \frac{\mathrm{d}}{\mathrm{d} r} R
+  = \frac{2m}{\hbar^2} V(r) - k^2 +\frac{l(l + 1)}{r^2}
+\end{align}
+即
+\begin{align}
+  \frac{1}{r^2}\frac{\mathrm{d}}{\mathrm{d} r}r^2 \frac{\mathrm{d}}{\mathrm{d} r} R
+  -\left[ \frac{2m}{\hbar^2} V(r) - k^2 +\frac{l(l + 1)}{r^2}\right]R =0
+\end{align}
+若 $V(r) = 0$ 它的一般解的形式是球 Bessel 函数
+\begin{align}
+  R_l(kr) = a_{lm}j_l(kr) + b_{lm}y_l(kr) 
+\end{align}
+
+** Final Results
+
+$\Theta$ 和 $\Phi$ 的解合在一起, 添加归一化条件为 Spherical harmonics
+$Y_l^m(\theta,\phi)$ ,所以对于 $V(r) = 0$ 的自由粒子, 总的解就是 
+\begin{align}
+  \psi(r,\theta,\phi) = \sum_{l=0}^{\infty} \sum_{m=-l}^l
+  \left[ a_{lm}j_l(kr) + b_{lm}y_l(kr)  \right] Y_l^m(\theta,\phi)
+\end{align}
+
+* Partial Wave Expansion 
+
+** Free Particle
+
+自由粒子只有动能项, Hamiltonian 与角动量 $\vec{L}$ 和角动量 $z$ 分量
+$L_z$ 都对易, 所以它们有共同的本征态, 记为 $|E,l,m\rangle$ , 它在
+动量和坐标表象下的矩阵元分别为
+\begin{align}
+  \langle \vec{k}|E,l,m\rangle =& \frac{\hbar}{\sqrt{mk}}
+          \delta \left( E - \frac{\hbar^2k^2}{2m} \right)
+           Y_l^m(\hat{k})\\
+  \langle \vec{r}|E,l,m\rangle =& \frac{\mathrm{i}^l}{\hbar}
+          \sqrt{\frac{2mk}{\pi}}j_l(kr) Y_l^m(\hat{r})
+\end{align}
+
+** Rayleigh equation
+
+\begin{align}
+  e^{\mathrm{i}\vec{k}\vec{r}} = \sum _{l=0}^{\infty}(2l+1)P_l(\cos \theta)
+  j_l(kr)
+\end{align}
+它等价于
+\begin{align}
+  e^{\mathrm{i}\vec{k}\vec{r}} = 4\pi \sum_{l=0}^{\infty}\sum_{m=-l}^l
+  \mathrm{i}^l Y_l^m(\hat{r})\left[ Y_l^m (\hat{k}) \right]^{*}j_l(kr)
+\end{align}
+Integral representation for $j_l(kr)$
+\begin{align}
+  j_l(kr) = \frac{1}{2\mathrm{i}^l}\int_{-1}^1
+  e^{\mathrm{i}kr\cos \theta}P_l(\cos\theta)\mathrm{d}(\cos\theta)
+\end{align}
+
+
+* Summary
+
+** Summary of A Free Partical in Spherical Coordinate 
+
+自由粒子的 Schrodinger equation 是一个 Helmholtz 方程
+\begin{align}
+  \left(\nabla^2 \psi + k^2 \right)\psi = 0
+\end{align}
+在球坐标系中可以分离变量
+\begin{align}
+  \psi(r,\theta,\phi) = R(r)\Theta(\theta)\Phi(\phi)
+\end{align}
+代回原式得
+\begin{align}
+  \frac{1}{R}\frac{1}{r^2}\frac{\mathrm{d}}{\mathrm{d} r}r^2 \frac{\mathrm{d}}{\mathrm{d} r} R+
+  \frac{1}{\Theta}\frac{1}{r^2 \sin \theta}\frac{\mathrm{d}}{\mathrm{d} \theta}\sin \theta \frac{\mathrm{d}}{\mathrm{d} \theta}\Theta
+  +\frac{1}{\Phi} \frac{1}{r^2\sin^2 \theta}\frac{\mathrm{d}^2}{\mathrm{d}\phi^2}\Phi
+  + k^2 = 0
+\end{align}
+Schrodinger equation 化为三个方程, 分别是
+
+关于 $\phi$ 的方程
+\begin{align}
+  \frac{1}{\Phi}\frac{\mathrm{d}^2}{\mathrm{d}\phi^2}\Phi = -m^2
+\end{align}
+解为
+\begin{align}
+  \Phi (\phi) = \sum_{m=-\infty}^{\infty} e^{\mathrm{i}m\phi}
+\end{align}
+关于 $\theta$ 的方程 ( $x = \cos \theta$ )( associated Legendre equation )
+\begin{align}
+    (1-x^2)\frac{\mathrm{d}^2}{\mathrm{d}x^2}\Theta - 2x \frac{\mathrm{d}}{\mathrm{d}x}
+  \Theta+\left[ l(l + 1) - \frac{m^2}{1-x^2} \right] \Theta = 0
+\end{align}
+解为 associated Legendre function
+\begin{align}
+  \Theta = \sum_{l=|m|}^{\infty}P_l^m(\cos\theta)
+\end{align}
+关于 $r$ 的方程 ( spherical Bessel equation )
+\begin{align}
+  r^2 \frac{\mathrm{d}^2}{\mathrm{d}r^2}R +2r \frac{\mathrm{d}}{\mathrm{d}r}R
+  +\left[ k^2r^2 - l(l + 1 ) \right]R = 0
+\end{align}
+解为 spherical Bessel function
+\begin{align}
+  R = \sum_{l=|m|}^{\infty} a_{lm} j_l(kr) + b_{lm} y_l(kr)
+\end{align}
+总的解为 ( 能量为 $E = \frac{\hbar^2k^2}{2m}$ 的一个本征态 ) (已舍去
+在原点发散的 $y_l(kr)$ ) ( 归一化为 $\delta_{ll'}
+\delta_{mm'} \delta(E-E')$ )
+\begin{align}
+  \psi_k(r,\theta,\phi) = \sum_{l=0}^{\infty}\sum_{m = -l}^l
+     \frac{\mathrm{i}^l}{\hbar}\sqrt{\frac{2mk}{\pi}}  j_l(kr)Y_l^m(\theta,\phi)
+\end{align}
+其中 $Y_l^m(\theta,\phi)$ 为 spherical harmonics
+\begin{align}
+  Y_l^m (\theta,\phi) \equiv \sqrt{\frac{2l+1}{4\pi}\frac{(l-m)!}{(l+m)!}}
+  P_l^m(\cos\theta)e^{\mathrm{i}m\phi}
+\end{align}
+
+** Summary of Some Useful Equations
+
+Closure Relation for spherical Bessel functions 
+\begin{align}
+  \int_0^{\infty} r^2 j_l(k_1r)j_l(k_2r) \mathrm{d}r
+  = \frac{\pi}{2k_1^2}\delta(k_1-k_2)
+\end{align}
+Orthogonality of spherical harmonics
+\begin{align}
+  \int_0^{2\pi} \mathrm{d}\phi \int_0^{\pi}\sin \theta \mathrm{d}\theta
+   \left[ Y_{l_1}^{m_1} (\theta,\phi) \right]^{*}
+   Y_{l_2}^{m_2} (\theta,\phi) =\delta_{l_1l_2} \delta_{m_1m_2}
+\end{align}
+Orthogonality of Legendre Functions
+\begin{align}
+  \int_{-1}^{1} P_l(x)P_m(x) \cdot \mathrm{d}x 
+   = \frac{2 \delta_{lm}}{2l+1}
+\end{align}
+$x \to \infty$ asymptotic behavior of spherical functions
+\begin{align}
+  j_n(x) =& \frac{1}{x}\sin (x - \frac{n\pi}{2}) \\
+  y_n(x) =& - \frac{1}{x}\cos (x - \frac{n\pi}{2})
+\end{align}
+
+* Reference 
+
+梁昆淼编, 刘法,缪国庆修订, 数学物理方法(第四版)
+
+- 11.5 球贝塞尔方程
+
+Arfken, Weber, Harris, Mathematical Methods for Physicists 7ed: 
+
+- Chap 7.5 Series Solutions-Frobenius' Methods
+
+- Example 8.3.1 Legendre Equation
+
+- Chap 14 Bessel Functions
+
+- Chap 15.1 Legendre Polynomials
+
+J. J Sakurai, Jim Napolitano, Modern Quantum Mechanics 2ed:
+
+- Chap 6.4 Phase Shifts and Partial Waves
+
+R. Mehrem, arXiv:0909.0494v4: [[https://arxiv.org/pdf/0909.0494.pdf]]

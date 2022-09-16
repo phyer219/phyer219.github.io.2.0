@@ -1,0 +1,216 @@
+#+TITLE: 松原频率求和(update 11/Aug/2020)
+#+DATE: <2019-11-27>
+#+CATEGORIES: 专业笔记
+#+TAGS: 数学, 物理, 格林函数
+#+HTML: <!-- toc -->
+#+HTML: <!-- more -->
+
+* 问题
+
+在多体的格林函数中, 经常遇到类似如下的求和
+\begin{align}
+  \sum_{\omega_n = \frac{(2n+1)\pi}{\beta}} 
+  \frac{1}{\mathrm{i}\omega_n - \xi_{\vec{k}}}
+\end{align}
+
+* Counter Integral
+
+可以发现, $\omega_n$ 取的值恰好是
+\begin{align}
+  \frac{1}{e^{\mathrm{i}\omega_n\beta} + 1}
+\end{align}
+的 pole . 那么构造一个积分
+\begin{align}
+  \oint_C \frac{1}{z - \xi_{\vec{k}}} 
+  \frac{1}{e^{z\beta} + 1} \mathrm{d}z
+  = 0
+\end{align}
+$C$ 是沿无穷远绕了一圈的大圆. 它的积分值为零可由 Jordan's lemma 得到. 
+由留数定理可得
+\begin{align}
+  \oint_C \frac{1}{z - \xi_{\vec{k}}} 
+  \frac{1}{e^{z\beta} + 1} \mathrm{d}z
+  = 0 = 2\pi \mathrm{i} \left(\mathrm{Res}_1 + \sum \mathrm{Res}_2 \right)
+\end{align}
+由此得到
+\begin{align}
+  \sum \mathrm{Res}_2 = \mathrm{Res}_1 
+\end{align}
+其中 $\mathrm{Res}_{1}$ 表示由第一项的 pole 贡献的留数, 为
+\begin{align}
+  \mathrm{Res}_{1} =& \lim_{z\to\xi_{\vec{k}}} (z - \xi_{\vec{k}})
+  \frac{1}{z - \xi_{\vec{k}}} \frac{1}{e^{z\beta} + 1} \\
+  =& \frac{1}{e^{\xi_{\vec{k}}\beta} + 1} \\
+  =& n_{\mathrm{F}}(\xi_{\vec{k}})
+\end{align}
+它就是费米分布函数. 
+ $\sum\mathrm{Res}_{2}$ 表示由第二项的 pole 贡献的留数, 为
+\begin{align}
+  \sum\mathrm{Res}_{2} = \sum_{\omega_n = \frac{(2n+1)\pi}{\beta}} 
+  \frac{1}{\mathrm{i}\omega_n - \xi_{\vec{k}}}
+  \lim_{z\to\omega_n}\frac{z - \omega_n}{e^{z\beta} + 1}
+\end{align}
+而由洛必达法则有
+\begin{align}
+  \lim_{z\to\omega_n}\frac{z - \omega_n}{e^{z\beta} + 1} 
+  = \lim_{z\to\omega_n}\frac{1}{\beta e^{z\beta}}
+  = -\frac{1}{\beta}
+\end{align}
+所以
+\begin{align}
+  \sum\mathrm{Res}_{2} = -\frac{1}{\beta}
+   \sum_{\omega_n = \frac{(2n+1)\pi}{\beta}} 
+  \frac{1}{\mathrm{i}\omega_n - \xi_{\vec{k}}}
+\end{align}
+最终有
+\begin{align}
+  \sum_{\omega_n = \frac{(2n+1)\pi}{\beta}} 
+  \frac{1}{\mathrm{i}\omega_n - \xi_{\vec{k}}}
+  = \beta n_{\mathrm{F}}
+\end{align}
+费米分布函数的 pole , 恰好就是费米子 Matsubara frequency 的取值.
+
+* Another View
+
+有的书上以另一种观点来说明这个事情, 但本质是一样的. 首先, 将最原始的求和形式化成
+一个 counter integral , counter 是绕着所有的 $\mathrm{i}\omega_n$ 它们都在虚轴上,
+其它地方一正一负就抵消了. 即 
+\begin{align}
+  \frac{1}{\beta} \sum_{\omega_n} F(\mathrm{i}\omega_n) 
+   = \oint \frac{\mathrm{d}z}{2\pi \mathrm{i}} F(z) \frac{1}{e^{\beta z} + 1}
+\end{align}
+注意这里的回路没有包括 $F(z)$ 的 pole 或者 branch cut , 而且 $F(z)$ 的 pole 或者
+branch cut 都在实轴上. 然后加上 null contours , 这包括无穷远和沿实轴上下及虚轴左
+右的积分, 之后去掉没有贡献的点, 就只剩下 $F(z)$ 的 pole 和 branch cut. 最终结果
+上之前的结果是一样的. 具体可以参考 Reference[1]
+
+还有就是, 这样理解的结果比较便于, 就是把 $F(z)$ 的 pole 和 branch cut 的值代入到
+费米分布函数中求和, 就得到了最终的结果, 当然得再乘上一个 $\beta$ 这是由于费米分
+布函数的 pole 的贡献, 乘到这边就从 $\frac{1}{\beta}$ 变成了 $\beta$ . 负号由于
+contour 的绕向相反也抵消了.
+
+* Summary
+
+因此费米子的频率求和
+\begin{align}
+  \sum_{\omega_n = \frac{(2n+1)\pi}{\beta}} 
+  \frac{1}{\mathrm{i}\omega_n - \xi_{\vec{k}}}
+  = \beta n_{\mathrm{F}}(\xi_{\vec{k}})
+\end{align}
+类似地有玻色子的频率求和
+\begin{align}
+  \sum_{\omega_m = \frac{2m\pi}{\beta}} 
+  \frac{1}{\mathrm{i}\omega_m - \xi_{\vec{k}}}
+  = -\beta n_{\mathrm{B}}(\xi_{\vec{k}})
+\end{align}
+以及对于费米子为被减数的求和
+\begin{align}
+   \sum_{\omega_n=\frac{(2n+1)\pi}{\beta}} \frac{1}{\mathrm{i}\Omega_m - \mathrm{i}\omega_n - \xi_{\vec{k}}} 
+  = \beta\left[n_{\mathrm{F}}(\xi_{\vec{k}})-1\right]
+    \quad,\quad \mathrm{where} \quad \Omega_m =\frac{2m\pi}{\beta} 
+\end{align}
+对于玻色子为被减数的求和
+\begin{align}
+   \sum_{\omega_m=\frac{2m\pi}{\beta}} \frac{1}{\mathrm{i}\Omega_n - \mathrm{i}\omega_m - \xi_{\vec{k}}} 
+  = -\beta\left[n_{\mathrm{B}}(\xi_{\vec{k}})+1\right]
+    \quad,\quad \mathrm{where} \quad \Omega_n =\frac{2n\pi}{\beta} 
+\end{align}
+
+* Supplementary
+
+** Intro
+
+对于一个沿无穷远绕一圈 $C$ 的 counter integral , 如果它在无穷远以快于
+$\frac{1}{|z|}$ 的速度趋于 $0$ , 那么它的积值为 $0$ . 即
+\begin{align}
+  \oint_C f(z) \mathrm{d}z = 0 , \quad\quad
+  \mathrm{if} \quad \lim_{|z|\to\infty}f(z) |z| = 0
+\end{align}
+更一般地说, 不必是沿着整个圆圈积分, 沿无穷远的任意一段弧的积分都为 $0$ . 
+
+因为积分变量在无穷远会以 $|z|$ 的形式趋于无穷大. 具体来说, 如果把被积函数 $z$ 
+写成辐角的形式 $|z|e^{\mathrm{i}\theta}$ , 就有
+\begin{align}
+  \oint_C f(z) \mathrm{d}z = \lim_{R\to\infty}\int_0^{2\pi} 
+  f(R e^{\mathrm{i}\theta}) \mathrm{i}Re^{\mathrm{i}\theta} \mathrm{d}\theta
+\end{align}
+可以看出, 如果 f(z) 在无穷远以 $\frac{1}{|z|}$ 的形式趋于 0, 那么
+\begin{align}
+  \lim_{R\to\infty}f(R e^{\mathrm{i}\theta}) \mathrm{i}Re^{\mathrm{i}\theta}
+  = \mathrm{const.}
+\end{align}
+积分值是有限的值. 但是如果
+f(z) 在无穷远以快于 $\frac{1}{|z|}$ 的形式趋于 0 , 那么
+可以看出, 如果 f(z) 在无穷远以 $\frac{1}{|z|}$ 的形式趋于 0, 那么
+\begin{align}
+  \lim_{R\to\infty}f(R e^{\mathrm{i}\theta}) \mathrm{i}Re^{\mathrm{i}\theta}
+  = 0
+\end{align}
+积分值为 $0$ . 
+
+** Jordan's Lemma
+
+Jordan's Lemma 是说, 如果函数 $f(z)$ 在上半平面的无穷远处为 $0$ ,那么有
+\begin{align}
+  \int_{C_1} e^{\mathrm{i}az}f(z) \mathrm{d}z = 0 , \quad\quad \mathrm{if} \quad a>0
+\end{align}
+其中 $C_1$ 是无穷远处的上半平面的半圆弧.
+
+按照前面是思路, 只要证明
+\begin{align}
+  \int_0^{\pi} e^{-aR\sin\theta} \mathrm{d}\theta
+\end{align}
+在 $R\to \infty$ 时以快于或等于 $\frac{1}{R}$ 的形式趋于 $0$ 即可. 因为把指数上的 $z$
+写成 $z = R\cos \theta + \mathrm{i}\sin \theta$ , 再乘上指数上的 $\mathrm{i}$ ,
+只需要考虑正弦部分即可, 因为余弦部分是虚数, 指数上的虚数只代表相位.
+
+指数上的三角函数不好积, 这里并不需要准确积出来, 只要找到一个积分的上限即可. 从三
+角函数的图像上可以找到我们需要的近似. 在 $[0, \pi]$ 之间, 正弦函数是对称的, 所
+以只需要考虑左边一半, 那直接取一个线性的上限近似, 即 $(0, 0)$ 与
+$(\frac{\pi}{2}, 1)$ 两点的连线, 小于正弦函数, 再算上指数上的负号, 这样近似的积
+分的结果是要大于原积分的, 也就找到了积分的上限. 即
+\begin{align}
+  \int_0^{\pi} e^{-aR\sin\theta} \mathrm{d}\theta \le
+  2\int_0^{\frac{2}{\pi}} e^{-aR \frac{2}{\pi}\theta} \mathrm{d}\theta
+  = \frac{\pi}{aR}(1 - e^{-aR})
+\end{align}
+它在 $R\to \infty$ 时, 恰好是以 $\frac{1}{R}$ 的形式趋于零. 这样 Jordan's Lemma
+就得到了证明.
+
+** Summary of Jordan's Lemma 
+
+Jordan's Lemma 中的条件要弱于 intro 中提到的条件. 因为从证明中可以看到, Jordan's
+Lemma 的整个被积函数是以弱于 $\frac{1}{|z|}$ 的形式趋于 $0$ 的. 因为
+$e^{\mathrm{i}az}$ 是 exponential 的形式趋于 $0$ , 而 $f(z)$ 趋于 $0$ 的速度是没
+有限制的, 整体是以比最慢的趋于 $0$ 的速度, 也就是 exponential 的速度, 稍快一点的
+速度趋于 $0$ .
+
+同样的, Jordan's Lemma 中的条件弱, 同样就导致了对它的结果的比较强的限制, 它要在
+整个上半圆上积分, 而 intro 中任意一段弧都可以.
+
+** Supplementary of Contour Integral 
+
+下面说明
+\begin{align}
+  \oint_C \frac{1}{z - \xi_{\vec{k}}} 
+  \frac{1}{e^{z\beta} + 1} \mathrm{d}z
+  = 0
+\end{align}
+它为什么成立. 实际上它是有条件的, 因为它的第一项很明显在无穷远是以
+$\frac{1}{|z|}$ 的形式趋于 $0$ . 但第二项在无穷远处只在右半平面是趋于 $0$ , 在负
+半平面是个常数, 所以要加一项使它在负半平面也趋于 $0$ , 即
+\begin{align}
+  \oint_C \frac{e^{z0^+}}{z - \xi_{\vec{k}}} 
+  \frac{1}{e^{z\beta} + 1} \mathrm{d}z
+  = 0
+\end{align}
+因为
+\begin{align}
+  e^z \propto e^{R\cos\theta}
+\end{align}
+
+* Reference
+
+- [1] Chap 8.3 Piers Coleman, Introduction to Many-Body Physics
+- [2] Arfken, Weber, Harris, Mathematical Methods for Physicists 7ed
+- [3] Mahan, Many-Particle Physics 3ed

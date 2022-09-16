@@ -1,0 +1,64 @@
+#+TITLE: Lorentz Model for an Atom
+#+DATE: <2021-09-10>
+#+CATEGORIES: 专业笔记
+#+TAGS: Lorentz
+#+HTML: <!-- toc -->
+#+HTML: <!-- more -->
+
+* Information
+
+来自 Wolfgang Kettler 的 AMO 课中提到
+
+* Model
+
+原子由一个固定不动正电荷, 和一个质量为 $m$ , 带电为 $q$ 的负电荷组成, 二者由一个劲度系数 $C$
+的弹簧连接. 原子处于外加驱动电场 $E(t) = e^{-\mathrm{i}\omega t}$ 中, 运动时受到与速度成正比的阻尼
+$m\gamma \dot{x}$, 可列出牛顿第二定律的运动方程
+\begin{align}
+  qE(t) - Cx(t) - m\gamma \dot{x}(t) = m \ddot{x}(t)
+\end{align}
+记
+\begin{align}
+  \omega_0 = \sqrt{\frac{C}{m}}
+\end{align}
+上式解得
+\begin{align}
+  x(t) = \frac{q E(t)}{m} \frac{1}{\omega_0^2 - \omega^2 - \mathrm{i}\omega\gamma}
+\end{align}
+是一个 Lorentz shape 的形式.
+
+* Dipole moment
+
+\begin{align}
+  p = q x = \frac{q^{2} E(t)}{m} \frac{1}{\omega_0^2 - \omega^2 - \mathrm{i}\omega\gamma}
+\end{align}
+
+* Polarization
+n is the electrons per volume
+\begin{align}
+  P = np = \frac{n q^{2} E(t)}{m} \frac{1}{\omega_0^2 - \omega^2 - \mathrm{i}\omega\gamma}
+\end{align}
+
+* Susceptibility
+
+\begin{align}
+  \chi = \frac{P}{\epsilon_0E} = \frac{n q^{2} E}{\epsilon_0 m} \frac{1}{\omega_0^2 - \omega^2 - \mathrm{i}\omega\gamma}
+\end{align}
+define plasma frequency
+\begin{align}
+\omega_p = \sqrt{\frac{n q^2}{m\epsilon_0}}
+\end{align}
+so
+\begin{align}
+  \chi = \frac{\omega_p^2}{\omega_0^2 - \omega^2 - \mathrm{i}\omega\gamma}
+\end{align}
+
+* Permittivity
+
+\begin{align}
+\epsilon_r = 1 + \chi = 1 + \frac{\omega_p^2}{\omega_0^2 - \omega^2 - \mathrm{i}\omega\gamma}
+\end{align}
+
+* Reference
+
+- https://physics.byu.edu/faculty/colton/docs/phy442-winter20/lecture-11-Lorentz-oscillator-model.pdf

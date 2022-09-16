@@ -1,0 +1,761 @@
+#+TITLE: Special Functions
+#+DATE: <2019-06-03>
+#+CATEGORIES: 专业笔记
+#+TAGS: 物理, 散射, 分波展开, Legendre fucntions, associated Legendre functions, Bessel functions, Spherical Bessel functions
+#+HTML: <!-- toc -->
+#+HTML: <!-- more -->
+
+* Legendre Polynomials 
+
+** Legendre Equation
+
+Equation
+#+BEGIN_QUOTE
+\begin{align}
+  (1-x^2) P''(x) - 2xP'(x) + \lambda P(x) = 0
+  \label{eq:leq}
+\end{align}
+#+END_QUOTE
+Boundary conditons
+#+BEGIN_QUOTE
+$$\mathrm{Nonsingularity at} x = \pm 1$$
+#+END_QUOTE
+
+** Frobenius' Methods
+
+尝试级数解
+\begin{align}
+  P(x) =& x^{s} (a_0 + a_1 x + a_2 x^2 + \cdots) \\
+       =& \sum_{j=0}^{\infty}a_j x^{s+j}, \quad a_0 \neq 0
+\end{align}
+代回原始方程 \eqref{eq:leq} , 得
+\begin{align}
+  \sum_{j=0}^{\infty}\left[ 
+   a_j (s+j) (s+j-1) x^{s+j-2} - a_j (s+j) (s+j-1) x^{s+j}
+   - 2(s+j)a_j x^{s+j} + \lambda a_j x^{s+j}
+ \right] = 0 
+\end{align}
+$j=0$ 时, 得 $x$ 的最低阶即 $x-2$ ,对应的系数方程为
+\begin{align}
+  a_0 s (s-1) = 0
+\end{align}
+$j=1$ 时
+\begin{align}
+  a_1 (s+1)s = 0
+\end{align}
+并且 $a_0\neq 0$ , 所以
+\begin{align}
+   s(s-1) = 0 \quad \quad \mathrm{(indical\quad equation)}
+\end{align}
+即 $s=0$ 或 $s=1$
+
+*** $s=0$
+
+此时得 recurrence relation 为
+\begin{align}
+  a_{j+2} = \frac{j(j+1)-\lambda}{(j+1)(j+2)}a_j
+\end{align}
+假设 $a_1 = 0$ . 那么所有的奇数项都为 $0$ . 当 $j\to \infty$ 时, 级数
+解 $P(x = \pm 1)$ 不收敛, 不满足边界条件. 使其收敛, $\lambda$ 必须取
+\begin{align}
+  \lambda = l(l+1)
+\end{align}
+其中 $l$ 是偶数. 这样的话, 级数解就在 $l$ 阶截断了.
+
+*** $s=1$
+
+此时得 recurrence relation 为
+\begin{align}
+  a_{j+2} = \frac{(j+1)(j+2) -\lambda}{(j+2)(j+3)} a_j
+\end{align}
+而且必须有 $a_1=0$ 那么此时所有的奇数项都为 $0$ . 此时截断的条件为
+\begin{align}
+  \lambda = (l+1)(l+2)
+\end{align}
+其中 $l$ 是偶数. 
+
+*** 合并
+
+$s=0, a_1 = 0$ 时, 对应的级数解, 都是 $x$ 的偶数次幂. $s = 1$ 时, 对应
+的级数解, 都是 $x$ 的奇数次幂, 其实对应于 $s=0, a_1 \neq 0$ 时解. 两种
+$s$ 的取值, 对应的截断条件也可以合并为
+\begin{align}
+  \lambda = l(l+1)
+\end{align}
+其中 $l$ 是整数.
+合并的 recurrence relation 为
+\begin{align}
+  a_{j+2} = \frac{j(j+1)-\lambda}{(j+1)(j+2)}a_j
+\end{align}
+有 $a_1, a_2$ 两个待定的系数, 这恰好是一个二阶微分方程所需要的!
+
+** Legendre Polynomials
+
+下面是画前七阶 Legendre Polynomials 的图像
+#+BEGIN_SRC python
+import numpy as np
+from matplotlib import pyplot as plt
+def P(N,x):
+    l = N*(N+1)
+    a = np.zeros(N+1)
+    k = N//2
+
+    if N > 0:
+        if N%2 == 0:
+            a[0] = (-1)**k
+            a[1] = 0
+        if N%2 == 1:
+            a[0] = 0
+            a[1] = (-1)**k
+
+        for j in range(N-1):
+            a[j+2] = j*(j+1) - l 
+            a[j+2] = a[j+2] * a[j]
+            a[j+2] = a[j+2] / (j+1)
+            a[j+2] = a[j+2] / (j+2)
+        a = a/a.sum()
+        s = 0
+        for i in range(N+1):
+            s = s + a[i]*x**i
+    else:
+        s =1 
+    return s
+n = 1000
+nn = 8
+x = np.linspace(-1,1,n)
+y = np.zeros(n)
+plt.figure(figsize=(6.0,10.0))    # must before plt.plot(x,y)
+for i in range(nn):
+    for j in range(n):
+        y[j] = P(i,x[j])
+    t = "$P_ { %s }(x)$"%i
+    plt.plot(x,y,label=t)
+plt.xlabel(r"$x$")
+plt.ylabel(r"$P_ { l }(x)$")
+plt.title("Legendre Polynomials")
+plt.legend()
+plt.savefig("./2019-06-03-physics-PartialWaveExpansion/LegenderPolynomials.jpg"\
+    ,writer='imageffmagick', dpi=100)
+#+END_SRC
+
+#+RESULTS:
+: None
+
+[[file:./2019-06-03-physics-PartialWaveExpansion/LegenderPolynomials.jpg]]
+
+下面是用 sympy 输出前七阶 Legendre Polynomials
+#+BEGIN_SRC python :results output 
+from sympy import Rational as R
+from sympy import Symbol
+from sympy import factor
+from sympy import latex
+
+def P(N):
+    l = N*(N+1)
+    a = []
+    k = N//2
+    if N%2 == 0:
+        a.append((-1)**k)
+        a.append(0)
+    if N%2 == 1:
+        a.append(0)
+        a.append((-1)**k) 
+    for j in range(N-1):
+        a.append(j*(j+1) - l )
+        a[j+2] = a[j+2] * a[j]
+        a[j+2] = R( a[j+2] , (j+1) )
+        a[j+2] = R( a[j+2] , (j+2) )
+        
+    c = 0
+    for i in range(N+1):
+        c = c + a[i]
+
+    P = 0
+    x = Symbol('x')
+    for i in range(N+1):
+        a[i] = R(a[i], c) * x**i
+        P = P + a[i]
+    P = latex(P)
+    return P
+
+for i in range(8):
+    print(r'P_%d(x)=&'%i,P(i),"\\\\")
+#+END_SRC
+#+RESULTS:
+: P_0(x)=& 1 \\
+: P_1(x)=& x \\
+: P_2(x)=& \frac{3 x^{2}}{2} - \frac{1}{2} \\
+: P_3(x)=& \frac{5 x^{3}}{2} - \frac{3 x}{2} \\
+: P_4(x)=& \frac{35 x^{4}}{8} - \frac{15 x^{2}}{4} + \frac{3}{8} \\
+: P_5(x)=& \frac{63 x^{5}}{8} - \frac{35 x^{3}}{4} + \frac{15 x}{8} \\
+: P_6(x)=& \frac{231 x^{6}}{16} - \frac{315 x^{4}}{16} + \frac{105 x^{2}}{16} - \frac{5}{16} \\
+: P_7(x)=& \frac{429 x^{7}}{16} - \frac{693 x^{5}}{16} + \frac{315 x^{3}}{16} - \frac{35 x}{16} \\
+结果
+\begin{align*}
+: P_0(x)=& 1 \\
+: P_1(x)=& x \\
+: P_2(x)=& \frac{3 x^{2} - 1}{2} \\
+: P_3(x)=& \frac{x \left(5 x^{2} - 3\right)}{2} \\
+: P_4(x)=& \frac{35 x^{4} - 30 x^{2} + 3}{8} \\
+: P_5(x)=& \frac{x \left(63 x^{4} - 70 x^{2} + 15\right)}{8} \\
+: P_6(x)=& \frac{231 x^{6} - 315 x^{4} + 105 x^{2} - 5}{16} \\
+: P_7(x)=& \frac{x \left(429 x^{6} - 693 x^{4} + 315 x^{2} - 35\right)}{16} \\
+\end{align*}
+
+其中 $a_1$ 和 $a_0$ r 取为, 满足 $P_l(1) = 1$ , 并且 $x$ 的最高次幂的
+系数为正的值.
+ 
+** Orthogonality
+
+Legendre Polynomials 的正交归一性为
+\begin{align}
+  \int_{-1}^{1} P_l(x)P_m(x) \cdot \mathrm{d}x 
+   = \frac{2 \delta_{lm}}{2l+1}
+\end{align}
+
+
+** Associated Legendre Functions
+
+*** Associated Legendre Equation
+
+\begin{align}
+  (1-x^2) P''(x) -2x P'(x) + \left[ 
+  \lambda - \frac{m^2}{1-x^2} \right]P(x) = 0
+\end{align}
+分母中的 $1-x^2$ 是个问题, 尝试通过做变换把它从分母中去掉. 令
+\begin{align}
+  P(x) = (1-x^2)^p \mathcal{P}(x)
+\end{align}
+原式变为
+\begin{align}
+  \mathcal{P}(1-x^2)^{p-1}\left[ -2p(1+x^2)
+   + 4p^2 x^2 +4px^2 +\lambda(1-x^2) -m^2 \right]\\
+   -2x \mathcal{P}'(1-x^2)^p(2p + 1) + \mathcal{P}''(1-x^2)^{p+1} = 0 
+\end{align}
+这和原来的 Legendre equation 有些类似. $\mathcal{P}$ 的系数中有
+$\lambda(1-x^2)$ 而且如果我们能提取出一个 $1-x^2$ 话, 它和 Legendre
+equation 就更像了. 我们还有 $p$ 是可调的, 可以令常数项和 $x^{2}$ 项前
+面的系数差一负号, 就可以提出啦! 即
+\begin{align}
+
+  -2p+4p^2+4p = -(-2p-m^2)
+\end{align}
+得 $p = \frac{m}{2}$ .将它代回, 就可以得到
+\begin{align}
+  (1-x^2)\mathcal{P}''- 2x(m+1)\mathcal{P}' +
+  \left[ \lambda - m(m+1) \right]\mathcal{P} = 0
+\end{align}
+
+*** Frobenius' Methods 
+
+这个变换后的方程就可以由 Frobenius' Methods 得到级数解
+
+尝试级数解
+\begin{align}
+  P(x) =& x^{s} (a_0 + a_1 x + a_2 x^2 + \cdots) \\
+       =& \sum_{j=0}^{\infty}a_j x^{s+j}, \quad a_0 \neq 0
+\end{align}
+代回原始方程 \eqref{eq:leq} , 得
+\begin{align}
+  \sum_{j=0}^{\infty} \left[ 
+   (s+j)(s+j-1)a_jx^{s+j-2} -(s+j)(s+j-1)a_jx^{s+j} \\
+   -2a_j(m+1)(s+j)x^{s+j} + a_j(\lambda -m(m+1))x^{s+j}
+   \right] = 0 
+\end{align}
+$j=0$ 时, 得 $x$ 的最低阶即 $x-2$ ,对应的系数方程为
+\begin{align}
+  a_0 s (s-1) = 0
+\end{align}
+$j=1$ 时
+\begin{align}
+  a_1 (s+1)s = 0
+\end{align}
+并且 $a_0\neq 0$ , 所以得到了和 Legendre equation 一样的 indical
+equation
+\begin{align}
+   s(s-1) = 0 \quad \quad \mathrm{(indical\quad equation)}
+\end{align}
+即 $s=0$ 或 $s=1$
+
+当 $s=0$时, recurrence relation 为
+\begin{align}
+  a_{j+2} = \frac{(j+m)(j+m+1)-\lambda}{(j+1)(j+2)}a_j
+\end{align}
+假设 $a_1 = 0$ . 那么所有的奇数项都为 $0$ . 当 $j\to \infty$ 时, 级数
+解 $P(x = \pm 1)$ 不收敛, 不满足边界条件. 使其收敛, $\lambda$ 必须取
+\begin{align}
+  \lambda = (j+m)(j+m+1)
+\end{align}
+其中 $l$ 是偶数. 这样的话, 级数解就在 $l$ 阶截断了. 与 Legendre
+equation 类似, $s=1$ 时得到的结果是对应的奇数项, 所以 $l$ 取整数就是最
+后的结果. 
+
+**** $\lambda = l(l+1)$ 
+
+在实际问题中, 一般 $\lambda = l(l+1)$ , 此时截断为
+\begin{align}
+  j = l - m 
+\end{align}
+也就是说只有在 $m\le l$ 时才有收敛的解.
+
+* Bessel Functions
+
+** Bessel ODE
+
+#+BEGIN_QUOTE
+\begin{align}
+  x^2 J_{\nu}'' +x J_{\nu}' + (x^2 - \nu^2)J_{\nu} = 0
+\end{align}
+#+END_QUOTE
+
+** Frobenius' Methods and Bessel Functions of the First Kind
+
+尝试级数解
+\begin{align}
+  J_{\nu}(x) =& x^{s} (a_0 + a_1 x + a_2 x^2 + \cdots) \\
+       =& \sum_{j=0}^{\infty}a_j x^{s+j}, \quad a_0 \neq 0
+\end{align}
+代回 Bessel ODE , 得
+\begin{align}
+  \sum_{j = 0}^{\infty} \left[ 
+  (s+j)(s+j-1) + (s+j) -\nu^2
+  \right]  a_j x^j + a_{j}x^{j+2} = 0
+\end{align}
+$j=0$ 时, 得 $x$ 的最低阶即 $x$ ,对应的系数方程为
+\begin{align}
+( s^2 - \nu^2 ) a_0 = 0
+\end{align}
+并且 $a_0\neq 0$ , 所以
+\begin{align}
+   (s+\nu)(s-\nu) = 0 \quad \quad \mathrm{(indical\quad equation)}
+\end{align}
+得 
+\begin{align}
+  s = \pm \nu
+\end{align}
+$j=1$ 时
+\begin{align}
+  (s+1+\nu)(s+1-\nu)a_1 = 0
+\end{align}
+由于 $s = \pm \nu$ , 所以 $a_1 = 0$
+
+以下先讨论 $\nu = n$ 是整数的情况
+
+*** $s = n$
+
+此时得 recurrence relation 为
+\begin{align}
+  a_{j+2} = - \frac{1}{(j+2)(2n +j + 2)} a_j
+\end{align}
+任意系数为
+\begin{align}
+  a_{2p} = (-1)^p \frac{a_0 n!}{2^{2p}p! (n+p)!}
+\end{align}
+Bessel ODE 的解为
+\begin{align}
+  J_n(x) = \sum_{s=0}^{\infty} \frac{(-1)^s}{s!(n+s)!}
+  \left( \frac{x}{2} \right)^{n+2s}
+\end{align}
+上式中按习惯取 $a_0 = \frac{1}{2^n n!}$ .
+
+*** $s = -n$
+
+此时得 recurrence relation 为
+\begin{align}
+  a_{j+2} =  \frac{1}{(j+2)(2n -j - 2)} a_j
+\end{align}
+当 $j = 2n-2$ 时上式发散, 并且不满足级数是从 $x^{-n}$ 开始的假设. 因此
+$s = -n$ 不给出解.
+
+$\nu = n$ 是整数的情况给出了 Bessel 的一个解, 称为 Bessel function of
+first kink. 且有以下性质
+\begin{align}
+ J_{-n}(x) = (-1)^n J_n(x)
+\end{align}
+
+
+
+*** code 
+
+下面是画前3阶 Bessel functions of the first kind 的图像
+#+BEGIN_SRC python :results output
+import numpy as np
+from matplotlib import pyplot as plt
+import time
+
+start = time.process_time()
+
+def J(n,x,up=10):
+    J = 0
+    for s in range(up):
+        js = (-1)**s
+        js = js/(np.math.factorial(s))
+        js = js/(np.math.factorial(s+n))
+        js = js*(x/2)**(n+2*s)
+        J = J + js
+    return J
+
+
+N = 1000
+x = np.linspace(1e-8,30,N)
+up =100
+def pltj(J,n,x,N):
+    j = np.zeros(N)
+    for i in range(N):
+        j[i] = J(n,x[i],up = up)
+    return j
+
+for i in range(4):
+    l = r"$J _ { %d } (x)$" %i
+    plt.plot( x, pltj(J,i,x,N), label = l)
+
+plt.plot(x, 1/np.sqrt(x),label=r"$x^{-1/2}$") 
+
+plt.ylim(-.5,1.)
+plt.xlabel("x")
+plt.ylabel(r"$J_n(x)$")
+plt.legend()
+plt.title("Bessel Functions")
+
+end = time.process_time()
+print('time is',end-start)
+plt.savefig("./2019-06-03-physics-PartialWaveExpansion/BFF.jpg"\
+    ,writer='imageffmagick', dpi=100)
+#+END_SRC
+
+#+RESULTS:
+: time is 0.765683398
+
+[[file:./2019-06-03-physics-PartialWaveExpansion/BFF.jpg]]
+
+可以看出它在 $x=0$ 处没有发散.
+
+** the Bessel Functions of the Second Kind
+
+*** Definition
+
+Bessel ODE 是一个二阶微分方程, 它应该有两个独立的解. 上面 $\nu$ 取整数
+的时候只给出了一个解. 它的另一个解由 Neumann functions 给出, 定义如下
+\begin{align}
+  Y_{\nu}(x) = \frac{\cos (\nu\pi) J_{\nu}(x)-J_{-\nu(x)}}{\sin(\nu\pi)}
+\end{align}
+当 $\nu$ 不整数的时候, 上式就是 Bessel functions of the first kind 的
+线性组合. 当 $\nu = n$ 取整数的时候, 它应取极限
+\begin{align}
+  Y_n(x) = \lim_{\nu\to n}Y_{\nu}(x)
+\end{align}
+它在 $x = 0$ 处是发散的. 它就是 Bessel Functions 的第二个解, Bessel
+functions of the second kind . 这里不详细讨论它. 
+
+** Hankel Functions
+
+Hankel Functions 曾经也常被叫做 Bessel functions of the third kind
+. 它由 Bessel functions of the first kind and the second kind 的线性
+组合定义
+\begin{align}
+  H_{\nu}^{(1)} = J_{\nu}(x) + \mathrm{i}Y_{\nu}(x) \\
+  H_{\nu}^{(2)} = J_{\nu}(x) - \mathrm{i}Y_{\nu}(x) 
+\end{align}
+
+** Modified Bessel Functions
+
+*** MOdified Bessel equation
+
+\begin{align}
+  \rho^2 \frac{\mathrm{d}^2}{\mathrm{d}\rho^2}P_{\nu}(k\rho)
+   + \rho \frac{\mathrm{d}}{\mathrm{d}\rho}P_{\nu}(k\rho)
+   - (k^2\rho^2 + \nu^2) P_{\nu} P_{\nu}(k\rho) = 0
+\end{align}
+它与 Bessel ODE 
+\begin{align}
+  x^2 J_{\nu}'' +x J_{\nu}' + (x^2 - \nu^2)J_{\nu} = 0
+\end{align}
+相比, 在于 $k^2\rho^2$ 前面的符号变了. 
+
+*** Modified Bessel Functions of the First Kind
+
+它的解只须做代换 $k\to
+\mathrm{i}k$ 即可得到, 即 modified Bessel functions of the first kind
+\begin{align}
+  I_{\nu}(x) = \mathrm{i}^{-\nu}J_{\nu}(\mathrm{i}x)
+  = \sum_{s=0}^{\infty} \frac{1}{s!\Gamma(s+\nu+1)}
+   \left( \frac{x}{2} \right)^{\nu+2s}
+\end{align}
+它的系数都是正的, 没有振荡. 它有 
+\begin{align}
+  I_n(x) = I_{-n}(x)
+\end{align}
+
+*** Code
+
+下面是画前3阶 modified Bessel functions of the first kind 的图像
+#+BEGIN_SRC python :results output
+import numpy as np
+from matplotlib import pyplot as plt
+import time
+
+start = time.process_time()
+
+def J(n,x,up=10):
+    J = 0
+    for s in range(up):
+        js = 1/(np.math.factorial(s))
+        js = js/(np.math.factorial(s+n))
+        js = js*(x/2)**(n+2*s)
+        J = J + js
+    return J
+
+
+N = 1000
+x = np.linspace(1e-8,3,N)
+up =100
+def pltj(J,n,x,N):
+    j = np.zeros(N)
+    for i in range(N):
+        j[i] = J(n,x[i],up = up)
+    return j
+
+for i in range(4):
+    l = r"$I _ { %d } (x)$" %i
+    plt.plot( x, pltj(J,i,x,N), label = l)
+
+
+plt.xlabel("x")
+plt.ylabel(r"$I_n(x)$")
+plt.legend()
+plt.title("Modified Bessel Functions")
+
+end = time.process_time()
+print('time is',end-start)
+plt.savefig("./2019-06-03-physics-PartialWaveExpansion/MBFF.jpg"\
+    ,writer='imageffmagick', dpi=100)
+#+END_SRC
+
+#+RESULTS:
+: time is 0.721994943
+
+[[file:./2019-06-03-physics-PartialWaveExpansion/MBFF.jpg]]
+
+*** Modified Bessel Functions of the Second Kind
+
+modified Bessel functions of the second kind 有时也叫做 Whittaker
+functions , 定义如下
+
+\begin{align}
+  K_{\nu}(x) = \frac{\pi}{2}\frac{I_{-\nu}(x)-I_{\nu}(x)}{\sin(\nu\pi)}
+\end{align}
+
+
+moddified Bessel function 对于 Bessel function 的关系, 就像 $\sinh$ 对
+于 $\sin$ 的关系, 所以有时它们也叫做 hyperbolic Bessel functions .
+
+** Spherical Bessel Functions
+
+对于球对称的问题, 经常会遇到径向方程
+\begin{align}
+  r^2 \frac{\mathrm{d}^2 R}{\mathrm{d}r^2} + 2r \frac{\mathrm{d}R}{\mathrm{d}r}
+  +[k^2r^2 - l(l + 1)]R = 0
+\end{align}
+这个方程和 Bessel ODE 很像, 区别在于 $l(l+1)$ , 而不是一个数的平方. 但
+是只要做如下变量代换
+\begin{align}
+  R(kr) = \frac{Z(kr)}{\sqrt{kr}}
+\end{align}
+就可以化为 Bessel ODE 的形式
+\begin{align}
+  r^2 \frac{\mathrm{d}^2 Z}{\mathrm{d}r^2} + r \frac{\mathrm{d}Z}{\mathrm{d}r}
+  +\left[ k^2r^2 -\left( l + \frac{1}{2} \right) \right]Z = 0
+\end{align}
+那么它的解就可以写出
+\begin{align}
+  R(kr) = \frac{C}{\sqrt{kr}}J_{l+1/2}(kr)
+\end{align}
+它就是 Spherical Functions . $C$ 是一个任意常数, 因为方程是齐次的
+
+*** Definition
+
+取定常数 $C$ , Spherical Functions 定义如下
+\begin{align}
+  j_n(x) =& \sqrt{\frac{\pi}{2x}}J_{n+1/2}(x) \\
+  y_n(x) =& \sqrt{\frac{\pi}{2x}}Y_{n+1/2}(x) \\
+  h_n^{(1)}(x) =& j_n(x) +\mathrm{i}y_n(x) \\
+  h_n^{(2)}(x) =& j_n(x) -\mathrm{i}y_n(x) \\
+\end{align}
+
+*** Some Examples
+
+\begin{align}
+  j_0(x) =& \quad\frac{1}{x}\sin x \\
+  y_0(x) = & - \frac{1}{x}\cos x
+\end{align}
+
+\begin{align}
+  j_1(x) =&\quad \frac{1}{x^2}\sin x - \frac{1}{x}\cos x \\
+  y_1(x) =&-\frac{1}{x^2}\cos x -\frac{1}{x}\sin x
+\end{align}
+
+\begin{align}
+  j_2(x) = & \quad\left( \frac{3}{x^3} - \frac{1}{x} \right)\sin x 
+                -\frac{3}{x^2}\cos x \\
+  y_2(x) = & -\left( \frac{3}{x^3} -\frac{1}{x} \right)\cos x
+           - \frac{3}{x^2}\sin x
+\end{align}
+
+\begin{align}
+  j_3(x) = &\quad \left( \frac{15}{x^4} - \frac{6}{x^2} \right)\sin x
+            +\left( - \frac{15}{x^3} + \frac{1}{x} \right) \cos x \\
+  y_3(x) = & -\left( \frac{15}{x^4} -\frac{6}{x^2} \right) \cos x
+            +\left( -\frac{15}{x^3} + \frac{1}{x} \right) \sin x
+\end{align}
+
+*** Asymptotic Forms
+
+as $x \to \infty$ 
+\begin{align}
+  j_n(x) =& \frac{1}{x}\sin (x - \frac{n\pi}{2}) \\
+  y_n(x) =& - \frac{1}{x}\cos (x - \frac{n\pi}{2})
+\end{align}
+
+*** Closure Relation
+
+Closure Relation for spherical Bessel functions
+\begin{align}
+  \int_0^{\infty} r^2 j_l(k_1r)j_l(k_2r) \mathrm{d}r
+  = \frac{\pi}{2k_1^2}\delta(k_1-k_2)
+\end{align}
+
+* Spherical Harmonics
+
+** Associated Legendre Functions
+
+\begin{align}
+  P_l^m(x) = (-1)^m \frac{\mathrm{d}^m}{\mathrm{d}x^m}P_l(x)
+\end{align}
+
+** Spherical Harmonics 
+
+\begin{align}
+  Y_l^m (\theta,\phi) \equiv \sqrt{\frac{2l+1}{4\pi}\frac{(l-m)!}{(l+m)!}}
+  P_l^m(\cos\theta)e^{\mathrm{i}m\phi}
+\end{align}
+它们在整个球面上是正交归一的
+\begin{align}
+  \int_0^{2\pi} \mathrm{d}\phi \int_0^{\pi}\sin \theta \mathrm{d}\theta
+   \left[ Y_{l_1}^{m_1} (\theta,\phi) \right]^{*}
+   Y_{l_2}^{m_2} (\theta,\phi) =\delta_{l_1l_2} \delta_{m_1m_2}
+\end{align}
+
+
+
+* Summary
+
+Legendre equation and its orthogonality
+\begin{align}
+  (1-x^2) P''(x) - 2xP'(x) + \lambda P(x) = 0
+\end{align}
+\begin{align}
+  \int_{-1}^{1} P_l(x)P_m(x) \cdot \mathrm{d}x 
+   = \frac{2 \delta_{lm}}{2l+1}
+\end{align}
+associated Legendre equation
+\begin{align}
+  (1-x^2) P''(x) -2x P'(x) + \left[ 
+  \lambda - \frac{m^2}{1-x^2} \right]P(x) = 0
+\end{align}
+解为
+\begin{align}
+  P_l^m(x) = (-1)^m \frac{\mathrm{d}^m}{\mathrm{d}x^m}P_l(x)
+\end{align}
+Spherical Harmonics
+\begin{align}
+  Y_l^m (\theta,\phi) \equiv \sqrt{\frac{2l+1}{4\pi}\frac{(l-m)!}{(l+m)!}}
+  P_l^m(\cos\theta)e^{\mathrm{i}m\phi}
+\end{align}
+orthogonality
+\begin{align}
+  \int_0^{2\pi} \mathrm{d}\phi \int_0^{\pi}\sin \theta \mathrm{d}\theta
+   \left[ Y_{l_1}^{m_1} (\theta,\phi) \right]^{*}
+   Y_{l_2}^{m_2} (\theta,\phi) =\delta_{l_1l_2} \delta_{m_1m_2}
+\end{align}
+Bessel ODE
+\begin{align}
+  x^2 J_{\nu}'' +x J_{\nu}' + (x^2 - \nu^2)J_{\nu} = 0
+\end{align}
+the Bessel functions of the first kind
+\begin{align}
+ J_{-n}(x) = (-1)^n J_n(x)
+\end{align}
+Neumann functions ( the Bessel functions of the second kind )
+\begin{align}
+  Y_{\nu}(x) = \frac{\cos (\nu\pi) J_{\nu}(x)-J_{-\nu(x)}}{\sin(\nu\pi)}
+\end{align}
+\begin{align}
+  Y_n(x) = \lim_{\nu\to n}Y_{\nu}(x)
+\end{align}
+Hankel Functions, 曾经也常被叫做 Bessel functions of the third kind
+. 它由 Bessel functions of the first kind and the second kind 的线性组
+合定义 
+\begin{align}
+  H_{\nu}^{(1)} = J_{\nu}(x) + \mathrm{i}Y_{\nu}(x) \\
+  H_{\nu}^{(2)} = J_{\nu}(x) - \mathrm{i}Y_{\nu}(x) 
+\end{align}
+MOdified Bessel equation
+\begin{align}
+  \rho^2 \frac{\mathrm{d}^2}{\mathrm{d}\rho^2}P_{\nu}(k\rho)
+   + \rho \frac{\mathrm{d}}{\mathrm{d}\rho}P_{\nu}(k\rho)
+   - (k^2\rho^2 + \nu^2) P_{\nu} P_{\nu}(k\rho) = 0
+\end{align}
+$k^2\rho^2$ 前面的符号变了
+Modified Bessel Functions of the First Kind
+\begin{align}
+  I_n(x) = I_{-n}(x)
+\end{align}
+它没有振荡. 它的另一个解为
+Modified Bessel Functions of the Second Kind
+\begin{align}
+  K_{\nu}(x) = \frac{\pi}{2}\frac{I_{-\nu}(x)-I_{\nu}(x)}{\sin(\nu\pi)}
+\end{align}
+Spherical Bessel Functions
+\begin{align}
+  r^2 \frac{\mathrm{d}^2 R}{\mathrm{d}r^2} + 2r \frac{\mathrm{d}R}{\mathrm{d}r}
+  +[k^2r^2 - l(l + 1)]R = 0
+\end{align}
+\begin{align}
+  j_n(x) =& \sqrt{\frac{\pi}{2x}}J_{n+1/2}(x) \\
+  y_n(x) =& \sqrt{\frac{\pi}{2x}}Y_{n+1/2}(x) \\
+  h_n^{(1)}(x) =& j_n(x) +\mathrm{i}y_n(x) \\
+  h_n^{(2)}(x) =& j_n(x) -\mathrm{i}y_n(x) \\
+\end{align}
+asymptotic as $x\to\infty$
+\begin{align}
+  j_n(x) =& \frac{1}{x}\sin (x - \frac{n\pi}{2}) \\
+  y_n(x) =& - \frac{1}{x}\cos (x - \frac{n\pi}{2})
+\end{align}
+Closure Relation for spherical Bessel functions 
+\begin{align}
+  \int_0^{\infty} r^2 j_l(k_1r)j_l(k_2r) \mathrm{d}r
+  = \frac{\pi}{2k_1^2}\delta(k_1-k_2)
+\end{align}
+
+
+* Reference 
+
+梁昆淼编, 刘法,缪国庆修订, 数学物理方法(第四版)
+
+- 11.5 球贝塞尔方程
+
+Arfken, Weber, Harris, Mathematical Methods for Physicists 7ed: 
+
+- Chap 7.5 Series Solutions-Frobenius' Methods
+
+- Example 8.3.1 Legendre Equation
+
+- Chap 14 Bessel Functions
+
+- Chap 15.1 Legendre Polynomials
+
+J. J Sakurai, Jim Napolitano, Modern Quantum Mechanics 2ed:
+
+- Chap 6.4 Phase Shifts and Partial Waves
+
+R. Mehrem, arXiv:0909.0494v4: [[https://arxiv.org/pdf/0909.0494.pdf]]

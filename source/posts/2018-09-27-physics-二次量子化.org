@@ -1,0 +1,399 @@
+#+TITLE: 二次量子化笔记 (update 06/Dec/2019)
+#+DATE: <2018-09-27>
+#+CATEGORIES: 专业笔记
+#+TAGS: 物理, 量子力学, 二次量子化
+#+HTML: <!-- toc -->
+#+HTML: <!-- more -->
+* 单体力学量
+
+** 本征表象
+
+$N$ 个粒子组成的系统，对于单个粒子的力学量 $\hat{f}$ ，其第 $i$ 个本征值为 $f_i$ ，本征态为 $\mid i \rangle$ ，即
+\begin{align*}
+\hat{f} \mid i \rangle = f_i \mid i \rangle
+\end{align*}
+那么这 $N$ 个粒子就是：
+\begin{align*}
+\hat{F} = \sum_i f_i \hat{n_i} = \sum_i f_i a_i^{\dagger}a_i
+\end{align*}
+$a_i^{\dagger}$ 是 $f$ 的本征表象中的产生算符。
+
+** 非本征表象
+
+若要写出非本征表象下的形式，则应对 $a_i^{\dagger}$ 做表象变换。 $a_i^{\dagger}$ 的表象变换可让 $a_i^{\dagger}$ 作用在真空态上如下导出：
+\begin{align*}
+a_i^{\dagger} \mid 0 \rangle = \mid i \rangle = \sum_{\alpha} \mid \alpha \rangle\langle \alpha \mid i \rangle = \sum_{\alpha} a_{\alpha}^{\dagger}\mid 0 \rangle \langle \alpha \mid i \rangle
+\end{align*}
+
+所以可得:
+\begin{align*}
+a_i^{\dagger}   = \sum_{\alpha} a_{\alpha}^{\dagger}\ \langle \alpha \mid i \rangle
+\end{align*}
+如此看来, 产生算符的表象变换类似于一个右矢, 而消灭算符的表象变换类似于一个左矢. 便于记忆可以认为将 $a_i^{\dagger} \mid 0\rangle$ 简记为了 $a_i^{\dagger}$ ,将  $a_{\alpha}^{\dagger} \mid 0\rangle$ 简记为了 $a_{\alpha}^{\dagger}$. 产生算符作用在右矢空态上才不为零.
+
+那么:
+\begin{align*}
+\hat{F} =& \sum_i f_i a_i^{\dagger}a_i \\
+=& \sum_i \sum_{\alpha \beta} f_i \cdot a_{\alpha}^{\dagger}\langle \alpha \mid i \rangle \cdot \langle i \mid \beta \rangle a_{\beta} \\
+=& \sum_i \sum_{\alpha \beta}  \cdot a_{\alpha}^{\dagger}\langle \alpha \mid f_i\mid i \rangle \cdot \langle i \mid \beta \rangle a_{\beta} \\
+=& \sum_i \sum_{\alpha \beta}  \cdot a_{\alpha}^{\dagger}\langle \alpha \mid \hat{f}\mid i \rangle \cdot \langle i \mid \beta \rangle a_{\beta} \\
+=& \sum_{\alpha \beta}   a_{\alpha}^{\dagger}\langle \alpha \mid \hat{f} \mid \beta \rangle a_{\beta} \\
+=& \sum_{\alpha \beta}  \langle \alpha \mid \hat{f} \mid \beta \rangle a_{\alpha}^{\dagger} a_{\beta}
+\end{align*}
+
+我为了便于理解, 直接将产生消灭算符看成是多体表象中的基矢, 产生算符是右矢, 消灭算符是左矢. 那么, 一切就都说得通了:
+\begin{align*}
+\hat{F} \sim \sum_{\alpha \beta}  \langle \alpha \mid \hat{f} \mid \beta \rangle \cdot \mid \alpha \rangle \langle \beta \mid
+\end{align*}
+为什么是这样, 我也不知道.
+
+* 二体力学量
+
+** 本征表象
+
+同样的, $N$ 个粒子组成的系统, 于单个粒子的力学量 $\hat{f}$ ，其第 $i$ 个本征值为 $f_i$ ，本征态为 $\mid i \rangle$ ，即
+\begin{align*}
+\hat{f} \mid i \rangle = f_i \mid i \rangle
+\end{align*}
+考虑两个粒子间的相互作用,  假设分别在态 $\mid i \rangle$  和 态 $\mid j \rangle$ 上 ,其相互作用的算符为:
+\begin{align*}
+\hat{u} = \hat{u}(\hat{f}_i, \hat{f}_j)
+\end{align*}
+即有:
+\begin{align*}
+\hat{u}(\hat{f}_i, \hat{f}_j) \mid i,j\rangle = u_{ij} \mid i,j \rangle
+\end{align*}
+其中:
+\begin{align*}
+\mid i,j \rangle = \mid i \rangle \otimes \mid j \rangle = \mid i \rangle  \mid j \rangle
+\end{align*}
+表示态 $\mid i \rangle$  和 态 $\mid j \rangle$ 上各有一个粒子.
+
+那么这 $N$ 个粒子之间所有的两两相互作用就是：
+\begin{align*}
+\hat{U} = \frac{1}{2} \sum_{i\ne j} u_{ij} \hat{n}_i \hat{n}_j + \frac{1}{2}\sum_i u_{ii} \hat{n}_i(\hat{n}_i - 1)
+\end{align*}
+第一项表示单粒子态 $\mid i \rangle$ 上有 $n_i$ 个粒子, 单粒子态 $\mid j \rangle$ 上有 $n_j$ 个粒子,  $n_i$ 个粒子和 $n_j$ 个粒子之间的两两相互作用一共是 $u_{ij} n_i n_j$, 然后就是对所有的态求和. 第二项是第一项中没有考虑的相同的态上不同粒子之间的相互作用. 每对粒子之间的相互作用都算了两次, 所以要除以二.
+
+还可以写成另一种形式.
+\begin{align*}
+\hat{U} = \frac{1}{2} \sum_{i j} u_{ij} (\hat{n}_i \hat{n}_j - \delta_{ij} \hat{n}_i)
+\end{align*}
+第二项是考虑的相同的态上不同粒子之间的相互作用, 因为第一项中计算了两次, 所以要减去一次. 这个形式可以用对易关系进化简:
+\begin{align*}
+\hat{n}_i \hat{n}_j - \delta_{ij} \hat{n}_i =& a_i^{\dagger}a_i a_j^{\dagger}a_j -\delta_{ij} a_i^{\dagger}a_i \\
+=& a_i^{\dagger}a_i a_j^{\dagger}a_j -\delta_{ij} a_i^{\dagger}a_j\\
+=& a_i^{\dagger}a_i a_j^{\dagger}a_j -[a_i,a_j^{\dagger}]_{\mp} a_i^{\dagger}a_j \\
+=& a_i^{\dagger} (a_i a_j^{\dagger}-[a_i,a_j^{\dagger}]_{\mp})a_j \\
+=& a_i^{\dagger} (\pm a_j^{\dagger}a_i )a_j \\
+=& a_i^{\dagger} a_j^{\dagger} (\pm a_i a_j) \\
+=& a_i^{\dagger} a_j^{\dagger}  a_j a_i
+\end{align*}
+
+所以:
+\begin{align*}
+\hat{U} = \frac{1}{2} \sum_{i j} u_{ij} a_i^{\dagger} a_j^{\dagger}  a_j a_i
+\end{align*}
+
+** 非本征表象
+
+与单体力学量类似的, 直接对本征表象的结果做表象变换:
+\begin{align*}
+\hat{U} =& \frac{1}{2} \sum_{i j} \sum_{\alpha \beta \gamma \delta}u_{ij} a_i^{\dagger} a_j^{\dagger}  a_j a_i  \\
+=& \frac{1}{2} \sum_{i j}\sum_{\alpha \beta \gamma \delta} u_{ij} \cdot a_{\alpha}^{\dagger}\langle \alpha \mid i \rangle\cdot a_{\beta}^{\dagger}\langle \beta\mid j \rangle\cdot   \langle j \mid \gamma \rangle  a_{\gamma} \cdot \langle i\mid \delta \rangle a_{\delta} \\
+=& \frac{1}{2} \sum_{i j}\sum_{\alpha \beta \gamma \delta} u_{ij} \cdot a_{\alpha}^{\dagger}a_{\beta}^{\dagger} a_{\gamma}  a_{\delta}\langle \alpha \mid i \rangle\cdot \langle \beta\mid j \rangle\cdot   \langle j \mid \gamma \rangle  \cdot \langle i\mid \delta \rangle  \\
+=& \frac{1}{2} \sum_{i j} \sum_{\alpha \beta \gamma \delta} a_{\alpha}^{\dagger}a_{\beta}^{\dagger} a_{\gamma}  a_{\delta}\cdot \langle \alpha \mid\langle \beta\mid\cdot \left( u_{ij}\mid i \rangle \mid j \rangle   \langle j \mid \langle i\mid\right)\cdot \mid\gamma \rangle \mid \delta \rangle  \\
+=& \frac{1}{2} \sum_{i j} \sum_{\alpha \beta \gamma \delta} a_{\alpha}^{\dagger}a_{\beta}^{\dagger} a_{\gamma}  a_{\delta}\cdot \langle \alpha \mid\langle \beta\mid\cdot \left( \hat{u}\mid i \rangle \mid j \rangle   \langle j \mid \langle i\mid\right)\cdot \mid\gamma \rangle \mid \delta \rangle  \\
+=& \frac{1}{2}  \sum_{\alpha \beta \gamma \delta} a_{\alpha}^{\dagger}a_{\beta}^{\dagger} a_{\gamma}  a_{\delta}\cdot \langle \alpha \mid\langle \beta\mid \hat{u}\mid\gamma \rangle \mid \delta \rangle
+\end{align*}
+
+同样, 直接将产生消灭算符看成是多体表象中的基矢:
+\begin{align*}
+\hat{U} \sim \frac{1}{2}  \sum_{\alpha \beta \gamma \delta} \mid\alpha \rangle \mid \beta \rangle \langle \gamma \mid\langle \delta\mid\cdot \langle \alpha \mid\langle \beta\mid \hat{u}\mid\gamma \rangle \mid \delta \rangle
+= \frac{1}{2}  \sum_{\alpha \beta \gamma \delta} \mid\alpha , \beta \rangle \langle \gamma ,\delta\mid\cdot \langle \alpha, \beta\mid \hat{u}\mid\gamma , \delta \rangle
+\end{align*}
+
+* 例: 场算符
+
+** 引言
+
+考虑坐标表象中两体相互作用势为 $u(\vec{r}_1, \vec{r}_2)$ 的多体 Hamiltonian 的二
+次量子化形式为
+\begin{align}
+  \hat{H} = -\frac{\hbar^2}{2m}\int \mathrm{d} \vec{r}\cdot \hat{\psi}^{\dagger}(\vec{r})
+             \nabla^2 \hat{\psi}(\vec{r}) + \frac{1}{2} \int \mathrm{d} \vec{r}_1 \int \mathrm{d} \vec{r}_2
+             \cdot \hat{\psi}^{\dagger}(\vec{r}_1) \hat{\psi}^{\dagger}(\vec{r}_2) u(\vec{r}_1, \vec{r}_2)
+              \hat{\psi}(\vec{r}_2) \hat{\psi}(\vec{r}_1)
+\end{align}
+其中 $\hat{\psi}(\vec{r}), \hat{\psi}^{\dagger}(\vec{r})$ 是场算符, 也就是坐标表
+象下的湮灭算符和产生产生算符. 
+
+第二项很明显就是二体算符在本征表象中的二次量子化形
+式, 本征表象嘛, $u(\vec{r}_1, \vec{r}_2)$ 是一个数, 放在中间或者其它地方都无所谓.
+
+问题在于第一项的动能项. 只有一重求和, 按之前总结的应该是在本征表象中的表示, 但是
+中间夹的不是本征值, 而是一个 $\nabla^2$ 算符. 那它是对谁作用呢? 是对它后面的场算
+符作用吗? 对场算符求梯度? 是什么意义?
+
+** 动能算符 
+
+真相是: 动能的本征表象不是坐标表象, 而是动量表象, 在动量表象下它的本征值是
+$\vec{p}^2/(2m)$ 是一个数. 在坐标表象下, 它不是本征表象! 所以动能 $\hat{T}$
+在坐标表象下的二次量子化形式(也就是用场算符表示动能项)应该是
+\begin{align}
+  \hat{T} = \int \mathrm{d} \vec{r}_3 \int \mathrm{d} \vec{r}_4 \cdot
+            \hat{\psi}^{\dagger}(\vec{r}_3)  \hat{\psi}(\vec{r}_4)
+            \langle \vec{r}_3 | \hat{T} | \vec{r}_4 \rangle 
+\end{align}
+而
+\begin{align}
+  \langle \vec{r}_3 | \hat{T} | \vec{r}_4 \rangle  = -\frac{\hbar^2}{2m} 
+   \nabla^2_{\vec{r}_3} \delta(\vec{r}_3 - \vec{r}_4)                  
+\end{align}
+所以
+\begin{align}
+  \hat{T} = -\frac{\hbar^2}{2m} \int \mathrm{d} \vec{r}_3 \int \mathrm{d} \vec{r}_4 \cdot
+            \hat{\psi}^{\dagger}(\vec{r}_3)  \hat{\psi}(\vec{r}_4)
+               \nabla^2_{\vec{r}_3} \delta(\vec{r}_3 - \vec{r}_4)
+\end{align}
+交换一下顺序有
+\begin{align}
+  \hat{T} = -\frac{\hbar^2}{2m} \int \mathrm{d} \vec{r}_3  \cdot
+            \hat{\psi}^{\dagger}(\vec{r}_3)  \nabla^2_{\vec{r}_3} 
+            \int \mathrm{d} \vec{r}_4 \cdot\hat{\psi}(\vec{r}_4) \delta(\vec{r}_3 - \vec{r}_4)
+\end{align}
+积掉 $\delta$ 函数后
+\begin{align}
+  \hat{T} =  \int \mathrm{d} \vec{r}  \cdot \hat{\psi}^{\dagger}(\vec{r})  
+             \left(-\frac{\hbar^2}{2m}\nabla^2 \right) 
+            \hat{\psi}(\vec{r}) 
+\end{align}
+其中 $\nabla^2$ 是对后面的 $\hat{\psi}(\vec{r})$ 作用. $\nabla^{2}$ 对场算符作用的意义, 把场算符写到动
+量本征基下就很明显了 (因为动量表象是动能的本征表象) (有些书中把这个作为场算符的定义)
+\begin{align}
+  \hat{\psi}(\vec{r}) = \frac{1}{\sqrt{V}} \sum_{\vec{k}} 
+   e^{\mathrm{i} \vec{k}\cdot \vec{r}} \hat{a}_{\vec{k}}
+\end{align}
+它的意义就是对动量本征波函数作用. 代加后作用的结果就是
+\begin{align}
+  \hat{T} = \sum_{\vec{k}}\frac{\hbar^2k^2}{2m}  \hat{a}^{\dagger}_{\vec{k}} \hat{a}_{\vec{k}}
+\end{align}
+这正是一个算符在它的本征表象下的二次量子化的形式. 其中利用了 (采用了箱归一化条件)
+\begin{align}
+  \delta_{\vec{k}, \vec{k}'} = \frac{1}{V} \int \mathrm{d} \vec{r} \cdot
+  e^{\mathrm{i} (\vec{k} - \vec{k}')\cdot \vec{r}}
+\end{align}
+当遇到 $\nabla^2$ 作用到 $\delta$ 函数上时, 也经常用到
+\begin{align}
+  \delta(\vec{r}_3 - \vec{r}_4) = \frac{1}{V} \sum_{\vec{k}}e^{\mathrm{i} \vec{k}\cdot(\vec{r}_3- \vec{r}_4)}
+\end{align}
+这样的话就可以具体计算 $\nabla^2$ 对 $\delta$ 函数的作用结果. 其本质还是把它变换到了动能的
+本征表象, 也就是动量表象.
+
+** 动能算符的另一种形式
+
+动能算符有时也写为
+\begin{align}
+  \hat{T} = \frac{\hbar^2}{2m}\int \mathrm{d} \vec{r} \cdot \left[ \nabla \hat{\psi}^{\dagger}(\vec{r}) \right]
+            \left[ \nabla \hat{\psi}(\vec{r}) \right]
+\end{align}
+其正确性可以将场算符在动量表象写开
+\begin{align}
+  \hat{\psi}(\vec{r}) = \frac{1}{\sqrt{V}} \sum_{\vec{k}} 
+   e^{-\mathrm{i} \vec{k}\cdot \vec{r}} \hat{a}_{\vec{k}}
+\end{align}
+类似的可以写出 $\hat{\psi}^{\dagger}(\vec{r})$ 的形式. 代回后就变成了动能在它的本征表象
+下的二次量子化形式
+\begin{align}
+  \hat{T} = \sum_{\vec{k}} \frac{\hbar^2k^2}{2m} \hat{a}^{\dagger}_{\vec{k}} \hat{a}_{\vec{k}}
+\end{align}
+
+** 用场算符表示波函数
+
+任意一个态用场算符表示为
+\begin{align}
+  | \Phi \rangle = \int \mathrm{d}\vec{r}_1 \cdot |\vec{r}_1\rangle 
+                    \langle \vec{r}_1 | \Phi \rangle
+\end{align}
+而
+\begin{align}
+  \langle \vec{r}_1 | \Phi \rangle = \phi(\vec{r}_{1})
+\end{align}
+就是态 $| \Phi \rangle$ 在坐标表象的表示, 也就是它的波函数. 所以
+\begin{align}
+  | \Phi \rangle =&  \int \mathrm{d}\vec{r}_1 \cdot \phi(\vec{r}_1) 
+                   | \vec{r}_1 \rangle \\
+                 =& \int \mathrm{d}\vec{r}_1 \cdot \phi(\vec{r}_1) 
+                   \cdot \hat{\psi}^{\dagger}(\vec{r}_1)| 0 \rangle
+\end{align}
+物理意义也很明确, 就是不同位置上产生一个粒子, 然后按波函数叠加.
+
+** +动能算符作用在态上(之前不恰当的理解)+
+
+#+BEGIN_QUOTE
+动能算符在坐标空间中应该有
+\begin{align}
+  \label{eq:kinCoor}
+  \langle \vec{r} | \hat{T} | \Phi \rangle = - \frac{\hbar^2}{2m} 
+         \nabla^2 \langle \vec{r} | \Phi \rangle
+        = - \frac{\hbar^2}{2m} \nabla^2 \phi(\vec{r})
+\end{align}
+
+验证二次量子化的结果, 将 $\hat{T}$ 用二次量子化的形式写出有
+\begin{align}
+  \langle \vec{r}_4 | \hat{T} | \Phi \rangle =& -\frac{\hbar^2}{2m}
+             \langle \vec{r}_4 | \int \mathrm{d} \vec{r} \cdot
+            \hat{\psi}^{\dagger}(\vec{r})  \hat{\psi}(\vec{r})
+             \nabla^2_{\vec{r}} \cdot
+             | \Phi \rangle \\
+\end{align}
+将波函数在坐标空间展开可得 
+\begin{align}
+  \langle \vec{r}_4 | \hat{T} | \Phi \rangle = -\frac{\hbar^2}{2m}
+             \langle \vec{r}_4 | \int \mathrm{d} \vec{r} \cdot
+            \hat{\psi}^{\dagger}(\vec{r})  \hat{\psi}(\vec{r})
+             \nabla^2_{\vec{r}} \cdot
+              \int \mathrm{d}\vec{r}_1 \cdot \phi(\vec{r}_1) 
+                   \cdot | \vec{r}_1 \rangle 
+\end{align}
+其中 $\hat{\psi}^{\dagger}(\vec{r})  \hat{\psi}(\vec{r})$ 是一个粒子数算符, 将它
+向左作用在态 $\langle \vec{r}_4|$ 上, 得到一个 Dirac 函数. 因为 $\langle
+\vec{r}_4|$ 只有在 $\vec{r} = \vec{r}_4$ 时, 它才有一个粒子, 是 $1$ , 在其它的坐
+标上, 粒子数为 $0$ 即
+\begin{align}
+  \langle  \vec{r}_4| \hat{\psi}^{\dagger}(\vec{r})  \hat{\psi}(\vec{r}) 
+  = \langle \vec{r}_4| \delta(\vec{r} - \vec{r}_4)
+\end{align}
+所以代入原式, 并用 Dirac 函数积掉 $\vec{r}$ 后, 得
+\begin{align}
+  \langle \vec{r}_4 | \hat{T} | \Phi \rangle = -\frac{\hbar^2}{2m}
+             \langle \vec{r}_4 |
+             \nabla^2_{\vec{r}_4} \cdot
+              \int \mathrm{d}\vec{r}_1 \cdot \phi(\vec{r}_1) 
+                   \cdot | \vec{r}_1 \rangle 
+\end{align}
+把两边的态矢做内积, 得到 $\langle \vec{r}_4 |\vec{r}_1\rangle =
+\delta(\vec{r}_1-\vec{r}_4)$ 然后把 $\vec{r}_1$ 积掉, 得
+\begin{align}
+  \langle \vec{r}_4 | \hat{T} | \Phi \rangle = -\frac{\hbar^2}{2m}
+               \nabla^2_{\vec{r}_4}  \phi(\vec{r}_4) 
+\end{align}
+与我们期待的 $(\ref{eq:kinCoor})$ 式相同. 说明二次量子化的表达形式是自洽的. 
+#+END_QUOTE
+
+* 例: 费米子接触势
+
+** 坐标表象
+
+
+
+考虑两分量 $(\uparrow, \downarrow)$ 的费米子接触势, 其在坐标表象的二次量子化形式为
+\begin{align}
+  \hat{H} = \int \mathrm{d} \vec{r}\cdot \left\{\sum_{\sigma} \left[ \hat{\psi}_{\sigma}^{\dagger}(\vec{r})
+             \left( -\frac{\hbar^2}{2m}\nabla^2 - \mu\right) 
+             \hat{\psi}_{\sigma}(\vec{r}) \right]
+              + g\hat{\psi}_{\uparrow}^{\dagger}(\vec{r}) \hat{\psi}_{\downarrow}^{\dagger}(\vec{r})
+              \hat{\psi}_{\downarrow}(\vec{r}) \hat{\psi}_{\uparrow}(\vec{r}) \right\}
+\end{align}
+第一项就是直接用场算符写出, 只不过多了自旋指标, 并且考虑了化学势. 
+
+另外需要注意的是 $\hat{\psi}^{\dagger}(\vec{r}) \hat{\psi}(\vec{r})$ 是有量纲的,
+它的量纲是粒子数密度, 也就是体积的倒数. 这从
+\begin{align}
+  \hat{\psi}(\vec{r}) = \frac{1}{\sqrt{V}} \sum_{\vec{k}} 
+   e^{-\mathrm{i} \vec{k}\cdot \vec{r}} \hat{a}_{\vec{k}}
+\end{align}
+也可以看出.
+
+考虑第二项, 接触势的意思为
+\begin{align}
+  u(\vec{r}_1, \vec{r}_2)  = g \delta(\vec{r}_1 - \vec{r}_2)
+\end{align}
+$\delta(\vec{r}_1 - \vec{r}_2)$ 的量纲为体积的倒数, 那么 $g$ 的量纲就为
+$[g]=[E]\cdot L^3$ , 为能量与体积的乘积. 将上式代入下式 
+\begin{align}
+   \hat{V} = \frac{1}{2} \int \mathrm{d} \vec{r}_1 \int \mathrm{d} \vec{r}_2
+             \cdot \hat{\psi}^{\dagger}(\vec{r}_1) \hat{\psi}^{\dagger}(\vec{r}_2) u(\vec{r}_1, \vec{r}_2)
+              \hat{\psi}(\vec{r}_2) \hat{\psi}(\vec{r}_1)
+\end{align}
+由于考虑了两种自旋, 所以上式还应有一重对自旋的求和. 由于是接触势, 由 Pauli 不相
+容原理可知, 只有自旋相反的粒子之间才有相互作用, 所以积掉 Dirac Delta 函数后
+\begin{align}
+   \hat{V} = \frac{1}{2} \int \mathrm{d} \vec{r} \cdot
+             \left[
+               g \cdot \hat{\psi}_{\uparrow}^{\dagger}(\vec{r}) \hat{\psi}_{\downarrow}^{\dagger}(\vec{r}) 
+              \hat{\psi}_{\downarrow}(\vec{r}) \hat{\psi}_{\uparrow}(\vec{r}) \right. \\
+              + g \cdot \hat{\psi}_{\downarrow}^{\dagger}(\vec{r}) \hat{\psi}_{\uparrow}^{\dagger}(\vec{r}) 
+              \hat{\psi}_{\uparrow}(\vec{r}) \hat{\psi}_{\downarrow}(\vec{r}) \\
+              + 0 \cdot \hat{\psi}_{\uparrow}^{\dagger}(\vec{r}) \hat{\psi}_{\uparrow}^{\dagger}(\vec{r}) 
+              \hat{\psi}_{\uparrow}(\vec{r}) \hat{\psi}_{\uparrow}(\vec{r}) \\ \left.
+              + 0 \cdot \hat{\psi}_{\downarrow}^{\dagger}(\vec{r}) \hat{\psi}_{\downarrow}^{\dagger}(\vec{r}) 
+              \hat{\psi}_{\downarrow}(\vec{r}) \hat{\psi}_{\downarrow}(\vec{r})
+             \right]          
+\end{align}
+前两项是相等的(差两个对易子, 都是 $-1$ , 相乘为 $1$ ), 所以
+\begin{align}
+  \hat{V}= g\int \mathrm{d} \vec{r} \cdot
+           \hat{\psi}_{\uparrow}^{\dagger}(\vec{r}) \hat{\psi}_{\downarrow}^{\dagger}(\vec{r})
+           \hat{\psi}_{\downarrow}(\vec{r}) \hat{\psi}_{\uparrow}(\vec{r})
+\end{align}
+所以就得到了我们想要的结果.
+
+** 动量表象
+
+动量表象是动能的本征表象, 所以
+\begin{align}
+  \hat{T} = \sum_{\vec{k}, \sigma}(\epsilon_{\vec{k}} - \mu) c_{\vec{k},\sigma}^{\dagger} c_{\vec{k},\sigma}
+\end{align}
+其中 $\epsilon_{\vec{k}} = \frac{\hbar^2 k^2}{2m}$ .
+
+势能在动量表象中为(类似坐标表象中, 将自旋给定, 乘上一个 $2$ )
+\begin{align}
+  \hat{V} = 2 \cdot \frac{1}{2} \sum_{\vec{k}_1, \vec{k}_2, \vec{k}_3, \vec{k}_4} 
+           \langle \vec{k}_4, \vec{k}_3| \hat{u}(\vec{r}_1, \vec{r}_2) 
+           | \vec{k}_2, \vec{k}_1\rangle c^{\dagger}_{\vec{k}_4, \uparrow}c^{\dagger}_{\vec{k}_3, \downarrow}
+            c_{\vec{k}_2, \downarrow}c_{\vec{k}_1, \uparrow}
+\end{align}
+而
+\begin{align}
+  &\langle \vec{k}_4, \vec{k}_3| \hat{u}(\vec{r}_1, \vec{r}_2) | \vec{k}_2, \vec{k}_1\rangle \\
+  =& \int \mathrm{d}\vec{r}_1 \int \mathrm{d} \vec{r}_2
+    \langle \vec{k}_4|\langle \vec{k}_3|\hat{u}(\vec{r}_1, \vec{r}_2) 
+     |\vec{r}_1\rangle \vec{r}_2\rangle\langle \vec{r}_2| \langle \vec{r}_1|
+      \vec{k}_2\rangle| \vec{k}_1\rangle \\
+=& \int \mathrm{d}\vec{r}_1 \int \mathrm{d} \vec{r}_2
+    \langle \vec{k}_4|\langle \vec{k}_3|g \delta(\vec{r}_2 - \vec{r}_2)
+     |\vec{r}_1\rangle \vec{r}_2\rangle\langle \vec{r}_2| \langle \vec{r}_1|
+      \vec{k}_2\rangle| \vec{k}_1\rangle \\
+=& g\int \mathrm{d}\vec{r}_1 \int \mathrm{d} \vec{r}_2  \delta(\vec{r}_2 - \vec{r}_2)
+    \langle \vec{k}_4|\vec{r}_1\rangle \langle \vec{k}_3|\vec{r}_2\rangle
+       \langle \vec{r}_2|\vec{k}_2\rangle  \langle \vec{r}_1| \vec{k}_1\rangle \\
+=& \frac{g}{V^2}\int \mathrm{d}\vec{r}_1 \int \mathrm{d} \vec{r}_2  \delta(\vec{r}_2 - \vec{r}_2)
+    e^{\mathrm{i}(\vec{k}_1\cdot \vec{r}_1 + \vec{k}_2 \vec{r}_2 -\vec{k}_3\cdot \vec{r}_2 - \vec{k}_4\cdot \vec{r}_1)} \\
+=& \frac{g}{V}\delta_{\vec{k}_1 + \vec{k}_2, \vec{k}_3 + \vec{k}_4}
+\end{align}
+最后一个等号后的 Dirac 函数表示动量守恒. 其中利用了
+\begin{align}
+  \int \mathrm{d} \vec{r}\cdot e^{\mathrm{i}(\vec{k}_1 - \vec{k}_2)\vec{r}} =& V \delta_{\vec{k}_1, k_2} \\
+  \langle \vec{r} | \vec{k} \rangle = \frac{1}{\sqrt{V}} e^{\mathrm{i}\vec{k}\cdot \vec{r}}
+\end{align}
+所以最终得到
+\begin{align}
+  \hat{H} = \sum_{\vec{k}, \sigma}(\epsilon_{\vec{k}} - \mu) c_{\vec{k},\sigma}^{\dagger} c_{\vec{k},\sigma}
+           + \frac{g}{V} \sum_{\vec{k}, \vec{k}', \vec{q}} c^{\dagger}_{\vec{k}+\frac{\vec{q}}{2}, \uparrow}
+            c^{\dagger}_{-\vec{k}+\frac{\vec{q}}{2}, \downarrow}
+            c_{-\vec{k}' + \frac{\vec{q}}{2}, \downarrow} c_{\vec{k}'+\frac{\vec{q}}{2}, \uparrow}
+\end{align}
+势能中, 本来是对四个动量求和, 但由于前面得到的动量守恒的条件, 只剩下三个求和. 将
+求和指标换一下, 即为上式.
+
+* 致谢
+
+- Qiang Han 老师的课件提供的主要思路.
+- J. J. Sakurai & Jim Napolitano 的 Modern Quantum Mechanics 一书提供的二体力学
+  量在本征表象的二次量子化化简过程.  
+- R. K. Pathria & Paul D. Beale, Statistical Mechanics 3ed, Chap 11.1
+- https://physics.stackexchange.com/questions/223138/kinetic-energy-operator-in-second-quantization-formalism
+- http://www.phys.ens.fr/~mora/lecture-second-quanti.pdf
+- 06/Dec/2019 update 时 F. Y. 的讨论
+  

@@ -1,0 +1,117 @@
+#+TITLE: 多体物理读书会：3.2节 双时格林函数
+#+DATE: <2018-10-19>
+#+CATEGORIES: 专业笔记
+#+TAGS: 物理, 格林函数, 多体物理读书会
+#+HTML: <!-- toc -->
+#+HTML: <!-- more -->
+* 三种格林函数的定义
+- Retarted Grenn's Function
+\begin{align*}
+G_{AB}^{\mathrm{ret}}(t,t') \equiv \langle\langle A(t);B(t')\rangle\rangle ^{\mathrm{ret}}=-\mathrm{i}\theta(t-t')\langle [A(t),B(t')]_{-\varepsilon}\rangle
+\end{align*}
+- Advanced Grenn's Function
+\begin{align*}
+  G_{AB}^{\mathrm{adv}}(t,t') \equiv \langle\langle A(t);B(t')\rangle\rangle^{\mathrm{adv}}=\mathrm{i}\theta(t'-t)\langle [A(t),B(t')]_{-\varepsilon}\rangle
+\end{align*}
+- Causal Grenn's Function
+\begin{align*}
+  G_{AB}^{\mathrm{c}} \equiv& \langle\langle A(t):B(t')\rangle\rangle^{\mathrm{c}}=-\mathrm{i}\langle T_{\varepsilon}(A(t)B(t'))\rangle \\
+  =& -\mathrm{i}\left[\theta(t-t')A(t)B(t')-\varepsilon B(t')A(t)\right]
+\end{align*}
+- 在解格林函数运动方程时，常用的是推迟和超前格林函数，而diagram techniques中常用因果格林函数。
+- 根据定义就可以验证它们之间的关系：$G_{AB}^{\mathrm{ret}}(t,t')=\varepsilon G_{BA}^{\mathrm{adv}}(t,t')$
+* 谱密度的定义
+- Spectral Density
+\begin{align*}
+  S_{AB}(t,t') = \frac{1}{2\pi}\langle [A(t),B(t')]_{-\varepsilon}\rangle
+\end{align*}
+- 谱密度所包含的与格林函数完全相同的信息。
+* 关联函数的定义
+- 为了证明格林函数和谱密度对于时间是各向同性(homogeneous in time)的，也就是它们的值只与$t-t'$有关，而与$t$和$t'$的具体位置无关，定义关联函数为
+\begin{align*}
+  \langle A(t)B(t')\rangle\\
+  \langle B(t')A(t)\rangle
+\end{align*}
+这样，只须证明关联函数对于时间的各向同性，即可证明格林函数和谱密度对于时间的各向同性。
+* 运动方程
+- 时间表象的equation of motion，对格林函数的定义式求时间的偏层数即可得到
+\begin{align*}
+  i\hbar \frac{\partial}{\partial t}G_{AB}^{\alpha}(t,t') = \hbar\delta(t-t')\langle [A,B]_{-\varepsilon}\rangle +\langle\langle[A,H]_{-}(t);B(t')\rangle\rangle^{\alpha}
+\end{align*}
+- 将其变换到能量表象
+\begin{align*}
+  E\langle\langle A;B \rangle\rangle_{E}^{\alpha} = \hbar\langle [A,B]_{\varepsilon}\rangle +\langle\langle [A,H]_{-};B\rangle\rangle _{E}^{\alpha}
+\end{align*}
+格林函数在$t-t'=\pm \infty$ 时为零？
+* 谱表示
+- 谱密度的谱表示
+\begin{align*}
+  S_{AB}(E) =& \frac{\hbar}{\Xi}\sum_{n,m}\langle E_{n}\mid B\mid E_{m} \rangle \langle E_{m} \mid A \mid E_{n}\rangle e^{-\beta E_{n}}\cdot  \\
+  &\cdot (e^{\beta E} -\varepsilon)\delta [E-(E_{n}-E_{m})]
+\end{align*}
+- 推迟格林函数的谱表示
+\begin{align*}
+  G_{AB}^{\mathrm{ret}}(E) = \int _{-\infty}^{+\infty} \mathrm{d}E' \frac{S_{AB}(E')}{E-E'+\mathrm{i}0^{+}}
+\end{align*}
+- 超前格林函数的谱表示
+\begin{align*}
+  G_{AB}^{\mathrm{ret}}(E) = \int _{-\infty}^{+\infty} \mathrm{d}E' \frac{S_{AB}(E')}{E-E'-\mathrm{i}0^{+}}
+\end{align*}
+- 因果格林函数的谱表示
+\begin{align*}
+  G_{AB}^{\mathcal{c}} =& \frac{\hbar}{\Xi} \sum_{n,m} \langle E_{n}\mid B \mid E_{m}\rangle\langle E_{m} \mid A \mid E_{n} \rangle e^{-\beta E_{n}}\cdot\\
+  &\cdot \left[ \frac{e^{\beta(E_{n}-E_{m})}}{E-(E_{n}-E_{m})+\mathrm{i}0^{+}} - \frac{\varepsilon}{E-(E_{n}-E_{m})-\mathrm{i}0^{+}} \right]
+\end{align*}
+* 谱定理
+- 谱定理描述了关联函数和谱密度之间的关系
+\begin{align*}
+  \langle B(t')A(t)\rangle = \frac{1}{\hbar}\int_{-\infty}^{+\infty}\mathrm{d}E \frac{S_{AB}^{(\varepsilon)}(E)}{e^{\beta E}-\varepsilon}e^{-\frac{\mathrm{i}}{\hbar}E(t-t')} +\frac{1}{2}(1+\varepsilon)D
+\end{align*}
+- 其中的常数$D$可以由以下式子求得
+\begin{align*}
+  \lim _{E\rightarrow0} EG_{AB}^{(\varepsilon)}
+\end{align*}
+* Exact Expressions
+- 判定近似的方法之一
+\begin{align*}
+  \left(G_{AB}^{\mathrm{ret,adv}}(t,t')\right) ^{*} = \varepsilon G_{A^{\dagger}B^{\dagger}}^{\mathrm{ret,adv}}(t,t')
+\end{align*}
+也就是说，对易格林函数是实的，反对易格林函数是虚的。
+- 判定近似的方法之二
+\begin{align*}
+  \lim _{E\rightarrow\infty}G_{AB}^{\alpha}(E) \approx \frac{\hbar}{E}\langle [A,B]_{-\varepsilon}\rangle
+\end{align*}
+- Sepctral Monments 的定义
+\begin{align*}
+  M_{AB}^{\alpha} = \frac{1}{\hbar}\int_{-\infty}^{+\infty} \mathrm{d} E\, E^{n} S_{AB}(E)
+\end{align*}
+* Kramers-Kronig relations
+-
+\begin{align*}
+  \mathrm{Re} G_{AB}^{
+  \begin{matrix}
+    \mathrm{ret}\\
+    \mathrm{adv}
+  \end{matrix}
+} (E) = \mp \frac{1}{\pi}\mathcal{P} \int_{-\infty}^{+\infty}\mathrm{d}\bar{E} \frac{\mathrm{Im}G_{AB}^{
+  \begin{matrix}
+    \mathrm{ret}\\
+    \mathrm{adv}
+  \end{matrix}}(\bar{E})}{E - \bar{E}}
+\end{align*}
+\begin{align*}
+  \mathrm{Im} G_{AB}^{
+  \begin{matrix}
+    \mathrm{ret}\\
+    \mathrm{adv}
+  \end{matrix}
+} (E) = \pm \frac{1}{\pi}\mathcal{P} \int_{-\infty}^{+\infty}\mathrm{d}\bar{E} \frac{\mathrm{Re}G_{AB}^{
+  \begin{matrix}
+    \mathrm{ret}\\
+    \mathrm{adv}
+  \end{matrix}}(\bar{E})}{E - \bar{E}}
+\end{align*}
+- K-K关系说明，格林函数的实部和虚部是不独立的，只要求其实部或者虚部，就可求得格林函数的全部信息。
+
+* 注
+1. 格林函数符号 $\langle\langle\rangle\rangle$在$\LaTeX$中可以引用MnSymbol包用 \llangle 打出。

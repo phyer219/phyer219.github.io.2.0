@@ -1,0 +1,237 @@
+\documentclass{ctexart}
+\usepackage{amsmath}
+
+\title{固体物理和固体理论}
+\author{ZQW}
+
+
+\begin{document}
+
+\maketitle
+
+
+\section{Sommerfeld Theory}
+
+
+
+
+
+
+
+
+\section{Bravais 格子}
+
+Bravais 格子的判别方法:
+
+站在任意格点上, 通过周围格子的方位与距离关系, 不能知道在不同的格点上!
+
+例如, honeycomb 格子就可以通过周围格子的方位与距离关系判断出两种
+不同的格点, 因此 honeycomb 格子不是 Bravais 格子.
+
+\section{倒格子}
+
+\subsection{Definition of Reciprocal Lattice}
+
+Aschroft 书 86 页给出了倒格子的定义:
+
+The set of all wave vectors $\vec{K}$ that yield plaves with the
+periodicity of a given Bravais lattice is known as the reciprocal
+lattice.
+
+倒格子基矢就是为周期性而生, 为 Bravais 格子而生! 倒格子能够产生周期性的平面波.
+
+Aschroft 书86页:
+
+such a set of $\vec{K}$ is called a reciprocal lattice only if
+the set of vectors $\vec{R}$ is a Bravais lattice.
+
+为 Bravais 而生!
+
+\subsection{More Details about Reciprocal Lattice}
+
+一般的平面波:
+\begin{align*}
+  e^{\mathrm{i}\vec{k}\cdot \vec{r}}
+\end{align*}
+没有周期性. 如果让它有 Bravais 格子的周期性, 应该有什么要求呢? 假设 $\vec{K}$
+满足我们的要求, 那 $\vec{K}$ 应该满足:
+\begin{align*}
+  e^{\mathrm{i} \vec{K}\cdot(\vec{r}+\vec{R})} = e^{\mathrm{i}\vec{K}\cdot \vec{r}}
+\end{align*}
+也就是
+\begin{align*}
+  \vec{K} \cdot \vec{R} = 2\pi \cdot \mathrm{integer}
+\end{align*}
+写成分量的形式:
+\begin{align*}
+  \vec{K} = k_1 \vec{b}_1 + k_2 \vec{b}_2 +k_3 \vec{b}_3 \\
+  \vec{R} = n_1 \vec{a}_1 + n_2 \vec{a}_2 +n_3 \vec{a}_3
+\end{align*}
+它们的基底正交, 归一到 $2\pi$ , 即
+\begin{align*}
+  \vec{b}_i \cdot \vec{a}_j = 2\pi \delta_{ij}
+\end{align*}
+
+$\vec{R}$ 是正格子的k格点, 所以 $n_i$ 都得是整数. 若要任意的 $\vec{K}, \vec{R}$
+ 都满足
+\begin{align*}
+  \vec{K} \cdot \vec{R} = 2\pi \cdot \mathrm{integer}
+\end{align*}
+那么 $k_i$ 也必须都是整数, 就刚好取到倒格子的格点.
+
+倒格子格点产生的平面波具有正格子的周期性!
+
+
+
+
+
+
+
+\section{Bloch定理}
+
+\subsection{Definition}
+
+单电子在 Bravais 格子中的 Hamiltonian :
+\begin{align*}
+  H = - \frac{\hbar^2}{2m}\nabla ^2 + U(\vec{r}), \quad U(\vec{r}+\vec{R}) = U (\vec{r})
+\end{align*}
+的本征态可以选为
+\begin{align*}
+  \psi_{n\vec{k}} (\vec{r}) = e^{\mathrm{i}\vec{k} \cdot \vec{r}} u_{n\vec{k}}(\vec{r}),
+  \quad u_{n\vec{k}} (\vec{r}+\vec{R}) = u_{n\vec{k}}(\vec{r})
+\end{align*}
+是一个相位乘上一个周期函数的形式.
+
+因为 Hamiltonian 具有平移对称性, 所以平移操作与 Hamiltonian 对易, 具有共同本征态.
+$e^{\mathrm{i}\vec{k}\cdot \vec{r}}$ 就是平移操作作用在波函数上所得出的本征值!
+
+\subsection{The Born-von Karman Boundary Condition}
+
+假设总的格点数为 $N = N_1N_2N_3$ , 并且满足周期性边界条件, 那么
+\begin{align*}
+  \psi(\vec{r}+ N_i \vec{a}_i) = \psi(\vec{r}), \quad i = 1, 2, 3
+\end{align*}
+则
+\begin{align*}
+  e^{\mathrm{i} N_i \vec{k}\cdot \vec{a}_i} = 1
+\end{align*}
+所以
+\begin{align*}
+  \vec{k} = \sum_{i=1}^3 \frac{m_i}{N_i}\vec{b}_i =\sum_{i=1}^3 m_i\frac{\vec{b}_i}{N_i} , \quad m_i\, \mathrm{integral}
+\end{align*}
+$\vec{k}$ 的取值把倒格子基矢又进行了细分, 正好细分成正格子的格点个数. 所以有 Ashcroft 书 136 页的话:
+
+the number of allowed wave vectors in a primitive cell of the reciprocal lattice is equal to
+the number of sites in the crystal.
+
+在一个倒格子中允许的波矢的个数就是正格子的格点的个数.
+
+\subsection{A Proof of Bloch's theorem}
+
+假设系统满足 Born-von Karman 边界条件.
+
+由于体系有周期性, 可以考虑在 $\vec{k}$ 空间求解 Schrodinger 方程.
+
+任何波函数都可以按平面波展开. 满足周期性边界条件的波函数,
+可以用有限个分立的平面波展开(由部分离散的 Fourier Transform 可知). 即
+\begin{align*}
+  \psi(\vec{r}) = \sum_{\vec{k}} c_{\vec{k}} e^{\mathrm{i}\vec{k}\cdot \vec{r}}
+\end{align*}
+离散的 $\vec{k}$ 能取到的值如定义中那样. 这里的 $\vec{k}$ 的离散来自于
+周期性的边界条件, 与所有的格点的数目 $N$ 有关.
+
+周期势 $U(\vec{r})$ 也可以按平面波展开. 由于具有周期性, 也是用有限个分立
+的平面波展开. 即
+\begin{align*}
+  U(\vec{r}) = \sum_{\vec{K}} U_{\vec{K}} e^{\mathrm{i} \vec{K}\cdot \vec{r}}
+\end{align*}
+离散能取的值就是倒格子的格点. 这里的 $\vec{K}$ 的离散来自于 Bravais 格子
+的周期性, 与 Bravais 格子有关.
+
+注意这里出现的两个不同的周期性. 边界条件导致的周期性和 Bravais 格子的周期性.
+它们分别导致了 $\vec{k}$ 和 $\vec{K}$ 取值的离散.
+
+然后将展开的结果代入 Schrodinger 方程中有
+\begin{align*}
+  \left[ -\frac{\hbar^2}{2m}\nabla^2 + \sum_{\vec{K}} U_{\vec{K}} e^{\mathrm{i} \vec{K}\cdot \vec{r}} \right]
+  \sum_{\vec{k}} c_{\vec{k}} e^{\mathrm{i}\vec{k}\cdot \vec{r}} = \mathcal{E} \sum_{\vec{k}} c_{\vec{k}} e^{\mathrm{i}\vec{k}\cdot \vec{r}}\\
+  \Downarrow \\
+  \sum_{\vec{k}}\left\{ \left( -\frac{\hbar^2}{2m}k^2 -\mathcal{E} \right)c_{\vec{k}} +\sum_{\vec{K}}U_{\vec{K}}c_{\vec{k}-\vec{K}} \right\}
+  e^{\mathrm{i}\vec{k}\cdot \vec{r}} = 0
+\end{align*}
+因为 $\vec{k}$ 对于 $\vec{r}$ 积分是正交的, 所以两边左乘 $e^{\mathrm{i}\vec{k}'\cdot \vec{r}}$
+然后对 $\vec{r}$ 积分可得
+\begin{align*}
+  \sum_{\vec{k}} \left\{ \left( -\frac{\hbar^2}{2m}k^2 -\mathcal{E} \right) c_{\vec{k}} +
+  \sum_K U_{\vec{K}} c_{\vec{k}-\vec{K}} \right\} \delta_{\vec{k},\vec{k}'} = 0 \\
+  \Downarrow \\
+   \left( -\frac{\hbar^2}{2m}k^2 -\mathcal{E} \right) c_{\vec{k}} +
+  \sum_K U_{\vec{K}} c_{\vec{k}-\vec{K}}  = 0
+\end{align*}
+通过周期性, 对 $\vec{k}$ 空间的 Schrodinger 方程进行了化简. 发现波函数 $\psi$ 在 $\vec{k}$
+空间的展开系数并不是全部耦合在一起的, 只有相差 $\vec{K}$ 才会相互耦合.
+
+现在可以将一开始的展开化简
+\begin{align*}
+  \psi(\vec{r}) = \sum_{\vec{k}} c_{\vec{k}} e^{\mathrm{i}\vec{k}\cdot \vec{r}}
+\end{align*}
+为
+\begin{align*}
+  \psi(\vec{r}) = \sum_{\vec{k}\in F.B.Z.} \psi_{\vec{k}}(\vec{r}), \quad
+  \psi_{\vec{k}}(\vec{r}) = \sum_{\vec{K}} c_{\vec{k}-\vec{K}}e^{\mathrm{i}(\vec{k}-\vec{K})\cdot \vec{r}}
+\end{align*}
+而 $\psi_{\vec{k}}(\vec{r})$ 是本征态. 变换一下形式就是 Bloch's Theorem 定义
+中的形式
+\begin{align*}
+  \psi_{\vec{k}}(\vec{r}) = e^{\mathrm{i}\vec{k}\cdot \vec{r}} \sum_{\vec{K}}c_{\vec{k}-\vec{K}}e^{-\mathrm{i}\vec{K}\cdot \vec{r}}
+\end{align*}
+
+\subsection{讨论}
+
+因为晶体不具有完全的平移对称性, 只是具有具有沿格矢的平移对称性, 所以
+动量 $\vec{p}$ 不是一个好的量子数. 这里的 $\vec{k}$ 不是常说的那个"动量".
+
+$\vec{p}$ 和 $\vec{k}$ 是相似的. 前者表征完全的平移对称性, 而后者表征晶体
+中的平移对称性.
+
+\subsection{Band Index}
+
+将 Bloch 波函数代回到 Schrodinger 方程中进行化简得到
+\begin{align*}
+  \left( \frac{\hbar^2}{2m}\left( \frac{1}{\mathrm{i}}\nabla +\vec{k} \right)^2
+  + U(\vec{r})\right)u_{\vec{k}}(r) = \mathcal{E}_{\vec{k}}(\vec{r}) u_{\vec{k}}(\vec{r})\\
+  \mathrm{Boundary Condition:} \quad u_{\vec{k}}(\vec{r}) = u_{\vec{k}}(\vec{r}+\vec{R})
+\end{align*}
+一个在周期性边界条件下的本征值问题, 它应该有分立的本征值, 用指标 $n$ 来标记,
+这就是 Band Index !
+
+当 $\vec{k}$ 的间隔非常小的时候, 是趋于连续的. 由上述方程也可以看出 $\vec{k}$
+作为方程的参数, 其解的 $n$ 值固定的时候, 是 $\vec{k}$ 的函数.
+
+
+\section{参考文献}
+
+Neil W. Ashcroft, N David Mermin, Solid State Physics
+
+黄昆, 韩汝琦, 固体物理学
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

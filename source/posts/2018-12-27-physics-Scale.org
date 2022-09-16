@@ -1,0 +1,27 @@
+#+TITLE: Scale
+#+DATE: <2018-12-27>
+#+CATEGORIES: 专业笔记
+#+TAGS: 物理, scale, 冷原子
+#+HTML: <!-- toc -->
+#+HTML: <!-- more -->
+
+* 常见能标 (Energy Scale)
+
+| Frequency                 | Temperature                             | Physics                             | Energy                | 理解                                                     |
+| $10^{14} \mathrm{Hz}$     | $4800 \mathrm{K}$                       | Coulomb Energy / Laser              | $1 \mathrm{eV}$       | 可见光波段； 原子发光                                    |
+| $10^{11} \mathrm{Hz}$     | $4.8 \mathrm{K}$                        | Fine Structure                      | $10^{-3} \mathrm{eV}$ | 精细结构； 自旋轨道耦合； 能量要小三个数量级             |
+| $10^{8\sim9} \mathrm{Hz}$ | $4.8\sim48 \mathrm{mK}$                 | Hyperfine Structure / Zeeman Energy | $10^{-6} \mathrm{eV}$ | 超精细结构； 电子角动量与核自旋耦合； 又小两到三个数量级 |
+| $10^{6\sim8} \mathrm{Hz}$ | $48 \mathrm{\mu K}\sim 4.8 \mathrm{mK}$ | Vander Walls Energy                 |                       | 范德瓦尔斯相互作用: 再小两个数量级                       |
+| $10^3 \mathrm{Hz}$        | $48 \mathrm{nK}$                        | Kinetic Energy / Ultrcold Atom      |                       | 冷原子； 比可见光小十一个量级; $\mathrm{nK}$ 量级        |
+
+* 常数
+
+| $k = 1.38 \times 10^{-23} \mathrm{J/K}$     |
+| $\hbar = 1.05 \times 10^{-34} \mathrm{J/s}$ |
+| $h =6.626 \times 10^{-34} \mathrm{J/s}$     |
+
+* 致谢
+
+感谢 Hui Zhai 老师的讲课
+
+* Time and Length Scale

@@ -1,0 +1,35 @@
+#+TITLE: Cold Atom 实验时间线
+#+DATE: <2019-10-30>
+#+CATEGORIES: 专业笔记
+#+TAGS: 物理, cold atom, 实验
+#+HTML: <!-- toc -->
+#+HTML: <!-- more -->
+
+|    Year | Experiment                                                            | Paper                                                                                                          |
+|    2002 | 利用 Feshback Resonance 实现 Stongly interacting Degenerate Feimi Gas | Science 298, 2179 (2002) - O’Hara et al.                                                                      |
+|    2003 | 实现 Molecular BEC                                                    | Science 302, 2101 (2003) - S. Jochim et al.  (Austira Li-6)                                                    |
+|         |                                                                       | Nature 426, 537 (2003) - M. Greiner, C. A. Regal, D. S. Jin (JILA K-40)                                        |
+|         |                                                                       | Phys. Rev. Lett. 91, 250401 (2003) - M. W. Zwierlein et al. (MIT Li-6)                                         |
+|    2004 | BCS-BEC Crossover 的探索                                              | Phys. Rev. Lett. 92.120401 (2004) - M. Bartenstein et al. (Austira Li-6)                                       |
+|         | (Condensation of Atom Pairs)                                          | Phys. Rev. Lett. 92.040403 (2004) - C. A. Regal, M. Greiner, D. S. Jin (JILA K-40)                             |
+|         | (Condensation of Atom Pairs)                                          | Phys. Rev. Lett. 92.120403 (2004) - M. W. Zwierlein et al. (MIT Li-6)                                          |
+|         | (Collective Oscillations)                                             | Phys. Rev. Lett. 92.150402 (2004) - J. Kinast, S. L. Hemmer, M. E. Gehm, A. Turlapov, J. E. Thomas (Duke Li-6) |
+|         | (Collective Oscillations)                                             | Phys. Rev. Lett. 92.203201 (2004) - M. Bartenstein et al. (Austira Li-6)                                       |
+|    2004 | 在 Stongly interacting Feimi Gas 中观察到 Pairing Gap                 | Science 305, 1128 (2004) - R. Grimm, C. Chin et al                                                             |
+|         |                                                                       |                                                                                                                |
+|         |                                                                       |                                                                                                                |
+|         |                                                                       |                                                                                                                |
+|         |                                                                       |                                                                                                                |
+|         |                                                                       |                                                                                                                |
+|         |                                                                       |                                                                                                                |
+|         |                                                                       |                                                                                                                |
+|         |                                                                       |                                                                                                                |
+|         |                                                                       |                                                                                                                |
+|         |                                                                       |                                                                                                                |
+|         |                                                                       |                                                                                                                |
+|         |                                                                       |                                                                                                                |
+| 待续... | M-S-UP/DOWN 插入行 不加S是移动行                                      |                                                                                                                |
+
+* Reference
+
+-  R. Grimm, C. Chin et al, Science 305, 1128 (2004)

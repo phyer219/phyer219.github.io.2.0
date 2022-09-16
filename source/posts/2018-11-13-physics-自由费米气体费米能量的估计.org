@@ -1,0 +1,28 @@
+#+TITLE: 自由费米气体费米能量的估计
+#+DATE: <2018-11-13>
+#+CATEGORIES: 专业笔记
+#+TAGS: 物理, 费米能， 自由费米气体
+#+HTML: <!-- toc -->
+#+HTML: <!-- more -->
+自由费米气体， 假设处在体积为 $V$ 的正方体中, 采用周期性边界条件, 总共有 $N$ 个费米子. 那么粒子数密度为:
+\begin{align*}
+  n = \frac{N}{V}
+\end{align*}
+总的粒子数 $N$ 在动量空间中可以表示成:
+\begin{align*}
+  N =   2 \cdot\frac{\frac{4\pi}{3}k_F^3}{\Delta k}
+\end{align*}
+$2$ 表示一个态上可以占据自旋相反的两个电子. 分子为费米球的体积.
+$\Delta k$ 为动量空间中的体积元,为:
+\begin{align*}
+  \Delta k = \frac{(2 \pi )^3}{V}
+\end{align*}
+所以最终的结果为:
+\begin{align*}
+  n = 2 \cdot \frac{1}{V}\frac{\frac{4\pi}{3}k_F^3}{\frac{(2 \pi )^3}{V}} = \frac{k_{F}^3}{3 \pi^2}
+\end{align*}
+费米能量为:
+\begin{align*}
+   \varepsilon_F = \frac{\hbar^2 k_F^2}{2m}
+\end{align*}
+所以对于费米气体 $n, k_F, \varepsilon _F$ 具有相同的信息, 三者并不独立.

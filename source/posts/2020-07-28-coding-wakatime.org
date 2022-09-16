@@ -1,0 +1,100 @@
+#+TITLE: 坎坷的 wakatime-mode
+#+DATE: <2020-07-28>
+#+CATEGORIES: 软件使用
+#+TAGS: emacs, wakatime
+#+HTML: <!-- toc -->
+#+HTML: <!-- more -->
+
+(许久没有更新折腾类的了.)
+
+* ailien invasion
+
+最近按照 《Python编程：从入门到实践 - 2016》 一书重复了 ailien invasion 这一
+project (见 https://github.com/phyer219/alien_invasion ) ! 本身是个写游戏的项目.
+但是很多方法都可以借鉴到其它的 project 中. 对于我这种没有正经地学过写程序的人来
+说(我不想回忆本科时上的那门程序设计课...), 收获还是颇丰的!
+
+- 对类的应用
+
+- 要给每个函数写 docstring
+
+- 把不同功能的函数放到不同的文件里
+
+- 写一些程序后, 要进行重构(Refactoring), 降低一些函数的长度. 使程序的结构清晰.
+
+感谢这本书的作者和翻译者. 这样完整且标准的去重复这样的 project 的机会真的难得!
+
+得益于 ailien invasion , 又用了一天的时间把正在做的课题用 python 重新算了一遍.
+经过修改一些 bug 后, 和之前的 fortran 符合得很好, 我终于能够对自己写的 fortran
+程序的正确性很有信心了!
+
+* VS Code 
+
+就我目前所处的 emacs 学习曲线的阶段来说, 还是 VS Code / Atom 这类的编辑器写这种
+project 比较合适. 它的特点是 
+
+- 程序分散在不同的文件里, 要频繁来回切换, 反复修改.
+
+- 总的代码量并不大.
+
+- 要时常查看函数的 docstring .
+
+VS Code 新插件 Pylance 真的方便. (期间遇到问题, 才知道 VS Code 有好多分支, code,
+vscodium ...)
+
+但写 tex , emacs + auctex 的效率还是无敌的! 
+
+* wakatime-mode
+
+用了 VS Code, 不免要看看有哪些好玩的插件. 于是就发现了 wakatime. 统计你在不同去
+的 project, 不同的时间段, 不同的编辑器上花费的时间的插件. 好玩! 好玩在展示统计结
+果的界面, 真好看! 我此时认为统计的主要魅力就在于那些漂亮的图表!
+
+昨天发现 wakatime 还有 emacs 的插件, 那岂不美哉! 
+
+但是无论怎么搞, 它都会报错
+#+BEGIN_SRC lisp
+error "WakaTime Error 104 Invalid API Key. Set your api key with: (custom-set-variables '(wakatime-api-key \"XXXX\")) 
+#+END_SRC
+
+几个小时没有解决(折腾这种事容易上头, 这还是近几个月来少见地上头了) . 回头一看 VS
+code 竟然也 Invalid API Key 了, 在 atom 也是 Invalid API Key . 然后换了系统, 换
+了账号, 都是 Invalid API Key . 而其它类似的插件是可以正常连接的. 此时, 我已基本
+断定, 这个报错的原因极有可能是服务器出了问题. 于是没有再理.
+
+今天早上一看, 昨天果是它们的服务器的问题, VS Code 和 atom 都正常了. emacs 仍然是
+Invalid API Key. 我打开 dashboard 一看, 让我震惊的是 dashboard 上竟然显示了我昨
+天在 atom 和 emacs 上的活动! 也就是说, 虽然 wakatime-mode 报错 Invalid API Key,
+但是实际是 dashboard 已经收到信号了. 这是谎报的!
+
+经过一波测试, 断定是 emacs 的 wakatime-mode 插件的 bug! 于是找到插件对应的
+wakatime-mode.elc , 定位到 Error 104 对应的语句
+#+BEGIN_SRC lisp
+    (set-process-sentinel process
+      `(lambda (process signal)
+         (when (memq (process-status process) '(exit signal))
+           (kill-buffer (process-buffer process))
+           (let ((exit-status (process-exit-status process)))
+             (when (and (not (= 0 exit-status)) (not (= 102 exit-status)))
+               (cond
+                 ((= exit-status 103) (error "WakaTime Error (%s) Config file parse error. Check your ~/.wakatime.cfg file." exit-status))
+                 ((= exit-status 104) (error "WakaTime Error (%s) Invalid API Key. Set your api key with: (custom-set-variables '(wakatime-api-key \"XXXX\"))" exit-status))
+                 ((= exit-status 105) (error "WakaTime Error (%s) Unknown wakatime-cli error. Please check your ~/.wakatime.log file and open a new issue at https://github.com/wakatime/wakatime-mode" exit-status))
+                 ((= exit-status 106) (error "WakaTime Error (%s) Malformed heartbeat error. Please check your ~/.wakatime.log file and open a new issue at https://github.com/wakatime/wakatime-mode" exit-status))
+                 (t (error "WakaTime Error (%s) Make sure this command runs in a Terminal: %s" exit-status (wakatime-client-command nil)))
+               )
+             )
+           )
+         )
+      )
+    )
+#+END_SRC
+
+果断删除了
+#+BEGIN_SRC lisp
+ ((= exit-status 104) (error "WakaTime Error (%s) Invalid API Key. Set your api key with: (custom-set-variables '(wakatime-api-key \"XXXX\"))" exit-status))
+#+END_SRC
+再测试一波, dashboard 能统计到 emacs 的活动, emacs 的 wakatime-mode 也不再报错.
+完美解决.
+
+对我来说是解决了, 如果有能力的话, 还是把这个 bug 报给开发都比较好. 我还是算了...

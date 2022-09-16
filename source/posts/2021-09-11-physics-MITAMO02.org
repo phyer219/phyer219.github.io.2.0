@@ -1,0 +1,106 @@
+#+TITLE: Atomic and Optical Physics I, 02 ResonanceII: Larmor Procession Note
+#+DATE: <2021-09-11>
+#+CATEGORIES: 专业笔记
+#+TAGS: Resonance, Atomic and Optical Physics
+#+HTML: <!-- toc -->
+#+HTML: <!-- more -->
+
+* Information
+- 官方介绍:
+  https://ocw.mit.edu/courses/physics/8-421-atomic-and-optical-physics-i-spring-2014/
+
+- 视频列表地址: https://www.youtube.com/playlist?list=PLUl4u3cNGP62FPGcyFJkzhqq9c5cHCK32
+
+* Fourier limit?
+
+* Lorentz model for an atom
+
+见另一独立的
+
+* Larmor Procession
+
+经典磁矩可以假想电流得到
+\begin{align}
+  \vec{\mu} = I \vec{S}
+\end{align}
+其中 $I$ 为环形电流, $\vec{S}$ 为环形电流围成的面积. 若是带电 $-e$ 电子, 则
+\begin{align}
+  \mu = \frac{-e}{2\pi r / v} \cdot \pi r^2 = \frac{-e}{2m} \cdot m v r = -\frac{e}{2m} L
+\end{align}
+写成矢量形式, 并定义旋磁比 gyromagnetic ratio $\gamma = -\frac{e}{2m}$
+\begin{align}
+  \vec{\mu} = \gamma \vec{L}
+\end{align}
+磁矩在磁场中受到的力矩为
+\begin{align}
+  \vec{\tau} = \vec{\mu} \times \vec{B}
+\end{align}
+那么角动量的变化就是力矩
+\begin{align}
+  \dot{\vec{L}} = \vec{\mu}\times \vec{B} = -\gamma \vec{B} \times \vec{L}
+\end{align}
+可知, $\vec{L}$ 变化的方向与 $\vec{B}$ 和 $\vec{L}$ 都垂直, 且大小不变, 也就是说
+在绕 $B$ 进动. 而 $-\gamma \vec{B}$ 是频率的量纲, 是进动的频率, Larmor 频率
+\begin{align}
+  \Omega_L = \frac{e}{2m}B
+\end{align}
+定义 Bohr magneton 为轨道角动量为 $L = - \hbar$ 时对应的磁矩
+\begin{align}
+  \mu_B = \gamma \cdot (-\hbar) =\frac{e\hbar}{2m_e} \approx 2\pi \times 1.4 \hbar \mathrm{MHz /G}
+\end{align}
+但是电子自旋的 gyromagnetic ratio 是经典值的 $g_s = -g_e = 2$ 倍. 即
+如, 电子的 gyromagnetic ratio is
+\begin{align}
+|\gamma_e| \approx 2 \times \frac{e}{2m_e} = 2\pi \times 2.8 \mathrm{MHz /G}
+\end{align}
+
+如果自旋 $z$ 分量的
+量子数为 $m_s$ , 那么对应的磁矩为
+\begin{align}
+\mu_z = g_s\cdot \frac{-e}{2 m_e}\cdot m_s\hbar  = - g_s \mu_B m_s
+\end{align}
+总的来说, $L = \hbar, S = \frac{1}{2}\hbar$ 的电子, 对应的磁矩都是 $\mu_B$ , 但是磁矩的方
+向与角动量的方向相反.
+
+The angular precession frequency has an important physical meaning: It is the
+angular cyclotron frequency, the resonance frequency of an ionized plasma being
+under the influence of a static finite magnetic field, when we superimpose a
+high frequency electromagnetic field.
+
+* Rotating Coordinate Trans
+
+\begin{align}
+\left.\frac{\mathrm{d}}{\mathrm{d}t}\right|_{\mathrm{rot}}
+ = \left.\frac{\mathrm{d}}{\mathrm{d}t}\right|_{\mathrm{inertial}}
+   - \vec{\Omega}\times
+\end{align}
+#+begin_quote
+Exp:
+
+\begin{align}
+\dot{\mathrm{L}}_{\mathrm{rot}} = \dot{\mathrm{L}}_{\mathrm{inertial}}
+  - \Omega\times \vec{L} = \gamma \vec{L} (\vec{B} + \frac{\vec{\Omega}}{\gamma})
+\end{align}
+#+end_quote
+If choose rotating frequency
+\begin{align}
+\vec{\Omega} = \Omega_L = - \gamma \vec{B}
+\end{align}
+then
+\begin{align}
+ \vec{B}_{\mathrm{rot}} = 0
+\end{align}
+so, you can transform away the effect of a magnetic field by going to rotating
+fram at the Larmor frequency.
+
+* Reference
+
+- 杨福家, 原子物理学, 第四版
+
+- [[https://en.wikipedia.org/wiki/Gyromagnetic_ratio][Wikipedia: Gyromagnetic ratio]]
+
+- [[https://en.wikipedia.org/wiki/Spin_magnetic_moment][Spin magnetic moment]]
+
+- [[https://en.wikipedia.org/wiki/G-factor_(physics)][G-factor]]
+
+- Foot, C. J. Atomic physics. (Oxford University Press, 2005).

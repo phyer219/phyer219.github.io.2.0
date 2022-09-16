@@ -1,0 +1,50 @@
+#+TITLE: magnetic dipole
+#+DATE: <2022-05-20>
+#+CATEGORIES: 专业笔记
+#+TAGS: SO(3), group theory
+#+HTML: <!-- toc -->
+#+HTML: <!-- more -->
+
+\begin{align}
+\vec{B} = \frac{\mu_0}{4\pi} \left[
+   3\hat{r}(\vec{m}\cdot \hat{r}) -\vec{m}\right] \frac{1}{r^3}
+\end{align}
+
+* Demo
+
+[[file:2022-05-20-physics-magnetic_dipole/code.py][code]]
+
+#+begin_src python
+import matplotlib.pyplot as plt
+import numpy as np
+
+
+n = 30
+x = np.linspace(-30, 30.1, n)
+y = np.linspace(-30, 30.1, n)
+bx = np.zeros([n, n])
+by = np.zeros([n, n])
+
+mu = [0, 1]
+
+
+def field(x, y):
+    r = np.sqrt(x**2 + y**2)
+    vx = (3*(mu[0]*x+mu[1]*y) * x/(r**2) - mu[0]) / r**3
+    vy = (3*(mu[0]*x+mu[1]*y) * y/(r**2) - mu[1]) / r**3
+    return vx, vy
+
+
+X, Y = np.meshgrid(x, y)
+vx, vy = field(X, Y)
+
+
+plt.streamplot(x, y, vx, vy)
+plt.savefig('magnetic-dipole.png')
+#+end_src
+
+[[file:2022-05-20-physics-magnetic_dipole/magnetic-dipole.png]]
+
+* Reference
+
+- [[https://en.wikipedia.org/wiki/Magnetic_dipole][wikipedia: Magnetic diopole]]

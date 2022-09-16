@@ -1,0 +1,42 @@
+#+TITLE: Wigner D-matrix
+#+DATE: <2022-06-07>
+#+CATEGORIES: 专业笔记
+#+TAGS: SO(3), group theory, Wigner D-matrix, spherical harmonic
+#+HTML: <!-- toc -->
+#+HTML: <!-- more -->
+
+* Wigner D-matrix
+
+\begin{align}
+R(\alpha, \beta, \gamma) = e^{-\mathrm{i}\alpha J_{z}}
+             e^{-\mathrm{i}\beta J_{y}}
+             e^{-\mathrm{i}g J_{z}}
+\end{align}
+
+\begin{align}
+D^l_{m' m} (\alpha, \beta, \gamma)  \langle l, m'| R(\alpha, \beta, \gamma) |l, m\rangle
+\end{align}
+
+$D^l_{m' m}(R)$ 是旋转操作 $R$ 在一组基底 $|l, m\rangle$ 下的表示的矩阵元( $l$ 是固定
+的, 也就是说 $1=\sum_m |l, m\rangle\langle l, m|$ ).
+
+$D^l(R)$ 是 $SO(3)$ 群元 $R$ 在不可约表示 $l$ 中的表示矩阵.
+
+* Relation to spherical harmonics
+
+\begin{align}
+Y_{l, m}^{*} (\theta, \phi) = \langle l, m | \theta, \phi \rangle
+=& \langle l, m | R(\phi, \theta, \gamma) | \theta = 0, \phi = 0 \rangle \\
+=&\sum_{m'} \langle l, m | R(\phi, \theta, \gamma) |l, m'\rangle\langle l, m' | \theta = 0, \phi = 0 \rangle \\
+=&\sum_{m'} \langle l, m | R(\phi, \theta, \gamma) |l, m'\rangle \delta_{m', 0}\sqrt{\frac{2l + 1}{4\pi}} \\
+=&\langle l, m | R(\phi, \theta, \gamma) |l, 0\rangle \sqrt{\frac{2l + 1}{4\pi}} \\
+=& D^l_{m, 0}(\phi, \theta, \gamma) \sqrt{\frac{2l + 1}{4\pi}}
+\end{align}
+
+* Reference
+
+- [[https://en.wikipedia.org/wiki/Wigner_D-matrix#Relation_to_spherical_harmonics_and_Legendre_polynomials][wikipedia: Wigner D-matrix]]
+
+- [[https://en.wikipedia.org/wiki/Spherical_harmonics][wikipedia: Spherical harmonics]]
+
+- [[https://physics.stackexchange.com/questions/665947/rotations-of-spherical-harmonics-and-wigner-d-matrices]]

@@ -1,0 +1,109 @@
+#+TITLE: Cold Atom Physics Note: Spin Dependent Interaction
+#+DATE: <2019-04-17>
+#+CATEGORIES: 专业笔记
+#+TAGS: 物理, Cold Atoms, 散射, Zero-Range Models, Pseudopotential, Renomalizable Contact Potential
+#+HTML: <!-- toc -->
+#+HTML: <!-- more -->
+
+* 问题
+
+两个全同 Boson , 它们的自旋都是 $1$ , 即 $f_1 =1, f_2= 1$. 它们的总自
+旋可以是 $F = 0, 1, 2$. 如果它们之间的相互作用是一个李黄杨
+Pseudopotential, 那么当 $F = 1$ 时它们的自旋波函数是反对称的
+(Supplementary 中有证明), 那么它们
+的轨道波函数就必须是反对称的. 这意味着当两个原子相碰的时候波函数必须为
+零. 那这个接触相互作用就对它没有作用了. 所以它们之间的相互作用可以在不
+同的 $F$ 子空间分别写出. 不同的子空间对应着不同的散射长度. 即
+\begin{align}
+  V = \frac{2\pi\hbar^2}{m}\delta^3(\vec{r})
+  \frac{\partial}{\partial r} r \sum_{F= 0,2}a_F \mathcal{P}_{F}
+\end{align}
+其中 $F=0$ 的求和项由前面的分析可以知道是 $0$ .
+
+* 投影算符
+
+下面要求的是投影算符 $\mathcal{P}$ 的具体形式. 它可以用算符 $f_1\cdot
+f_2$ 来表示. 对于 $f_1 = f_2 = 1$ 的情况有
+\begin{align*}
+  \vec{f}_1 \cdot \vec{f}_2 =& \frac{1}{2}
+    \left[ (\vec{f}_1 + \vec{f}_2)^2 -\vec{f}_1^2 -\vec{f}^2 \right]\\
+   =& \frac{F(F+1)}{2} - f(f+1)
+\end{align*}
+当 $F = 0$ 时 $\vec{f}_1 \cdot \vec{f}_2 = -2$ , 当 $F=2$ 时 $\vec{f}_1 \cdot
+\vec{f}_2 =1$ , 即
+\begin{align}
+  \vec{f}_1 \cdot \vec{f}_2 = -2 \mathcal{P}_0 + \mathcal{P}_2
+\end{align}
+又有
+\begin{align}
+  \mathcal{P}_0 + \mathcal{P}_2 = 1
+\end{align}
+其中 $1$ 表示单位算符. 联立以上二式可得
+\begin{align*}
+  \mathcal{P}_0 =& \frac{1}{3} - \frac{1}{3}\vec{f}_1 \cdot \vec{f}_2 \\
+  \mathcal{P}_2 =& \frac{2}{3} + \frac{1}{3}\vec{f}_1 \cdot \vec{f}_2
+\end{align*}
+
+* 密度密度相互作用和自旋交换相互作用
+
+用以上结果可以重写李黄杨 Pseudopotential
+
+\begin{align*}
+  V =& \frac{2\pi\hbar^2}{m}\delta^3(\vec{r})
+  \frac{\partial}{\partial r} r \sum_{F= 0,2}
+  (a_0 \mathcal{P}_0 + a_2 \mathcal{P}_2) \\
+   =&  \frac{2\pi\hbar^2}{m}\delta^3(\vec{r})
+  \frac{\partial}{\partial r} r \sum_{F= 0,2}
+  \left( \frac{a_0+a_2}{3} + \frac{a_2-a_0}{3}
+  \vec{f}_1 \cdot \vec{f}_2 \right) \\
+  =&   \frac{2\pi\hbar^2}{m}\delta^3(\vec{r})
+  \frac{\partial}{\partial r} r \sum_{F= 0,2}
+  \left( a_n + a_s
+  \vec{f}_1 \cdot \vec{f}_2 \right) 
+\end{align*}
+$a_n$ 代表密度密度相互作用, $a_s$ 代表自旋交换相互作用.
+
+* Supplementary
+
+两个自旋为 $1$ 的角动量偶合. 它们各自的态用 $| f,f_z\rangle$ 来标记,
+偶合后构成一个新的 9 维 Hilbert 空间, 即
+\begin{align}
+  \mathcal{H} = \mathcal{H}_1 \otimes \mathcal{H}_2
+  = \{ |1\rangle ,|0\rangle , |-1 \rangle \} \otimes
+   \{ |1\rangle ,|0\rangle , |-1 \rangle \}
+\end{align}
+在新的 Hilbert 空间中, 好量子数是 $F, F_z$ .因此, 在旧的直积基底下写出
+算符 $\vec{F}^2, F_z$ 的一个 $9\times 9$ 的矩阵, 然后将其对角化, 即可
+得到偶合后的本征态, 而且是在直积基底下写出的, 可以方便地观察交换两个粒
+子的自旋是对称还是反对称的. 算符 $\vec{F}^2$ 可以如下写出
+\begin{align*}
+  \vec{F}^2 =& (\vec{f}_1+ \vec{f}_2)^2 \\
+   =& \vec{f}_1^2 +\vec{f}_2^2 + 2 \vec{f}_1\cdot \vec{f}_2  \\
+   =& \vec{f}_1^2 +\vec{f}_2^2 + 2 f_{1z}f_{2z} +f_1^ + f_2^- 
+     +f_1^ - f_2^ + 
+\end{align*}
+幸运的是, $F_z$ 是好量子数, 所以新的本征态只会偶合 $F_z$ 相等的态. 所以
+可以分别对角化 $F_z = -2,-1,0,1,2$ 对应的子空间的矩阵. 下面以 $F_z=0$
+为例, 求出新的本征态.
+
+在直积空间的子空间 $|1,-1 \rangle , |-1,1 \rangle |0,0 \rangle$ 中,
+$\vec{F}^2$ 的矩阵为
+\begin{align}
+  \vec{F}^2 =
+  \begin{pmatrix}
+   2 & 0 & 2 \\
+   0 & 2 & 2 \\
+   2 & 2 & 4 \\
+  \end{pmatrix}
+\end{align}
+对角化后的本征值和本征向量为
+\begin{align*}
+  F(F+1) =& 6 , \quad |F=2,F_z=0\rangle =1\cdot |1,-1 \rangle
+   +1\cdot |-1,1 \rangle + 2\cdot|0,0 \rangle \\
+  F(F+1) =& 2 , \quad |F=1,F_z=0\rangle =-1\cdot |1,-1 \rangle
+   +1\cdot |-1,1 \rangle + 0\cdot|0,0 \rangle \\
+  F(F+1) =& 0 , \quad |F=0,F_z=0\rangle =-1\cdot |1,-1 \rangle
+   -1\cdot |-1,1 \rangle + 1\cdot|0,0 \rangle 
+\end{align*}
+可以看出, $F=0,2$ 的两个本征态是交换对称的, 而 $F=1$ 的本征态是交换反
+对称的.

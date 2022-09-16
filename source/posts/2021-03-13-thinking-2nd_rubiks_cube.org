@@ -1,0 +1,10 @@
+#+TITLE: Second Order Rubik's Cube Fun
+#+DATE: <2021-03-13>
+#+CATEGORIES: 想说
+#+TAGS: Rubik's Cube
+#+HTML: <!-- toc -->
+#+HTML: <!-- more -->
+
+[[file:2021-03-13-thinking-2nd_rubiks_cube/2nd_cube.png]]
+
+Draw by [[https://www.geogebra.org/][Geogebra]] : [[file:2021-03-13-thinking-2nd_rubiks_cube/2nd_cube.ggb]]

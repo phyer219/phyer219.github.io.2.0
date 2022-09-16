@@ -1,0 +1,89 @@
+#+TITLE: Carl Bender Mathematical Physics Lecture1 Note
+#+DATE: <2019-03-03>
+#+CATEGORIES: 专业笔记
+#+TAGS: 数学物理方法, 数学, 物理, 微扰, Carl Bender
+#+HTML: <!-- toc -->
+#+HTML: <!-- more -->
+
+* Information
+
+- Vidoes: [[https://www.youtube.com/playlist?list=PLzcd6SoIscwjHuWRE38UXWG92uq0Sy4UF]]
+
+- Book: Carl M. Bender, Steven A. Orszag, Advanced Mathematical Methods for Scientists and
+ Engineers I Asympotic Methods and Perturbation Theory, 1999
+
+* 1
+
+** 微扰求解 Hard Problem 的步骤
+1. 使某一项成为微扰 $\epsilon$
+2. 将无微扰的解加上修正后代回方程, 逐项对应求解
+3. 将所有的项加进来.
+
+
+#+BEGIN_QUOTE
+1. Convert the original problem into a perturbation problem by introducing the small parameter $\epsilon$ .
+2. Assume an expression for the answer in the form of a perturbation series and compute the coefficients of that series.
+3. Recover the answer to the original problem by summing the perturbation series for the appropriate value of $\epsilon$ .
+#+END_QUOTE
+
+** Symbols
+
+#+BEGIN_QUOTE
+- $\sim$ : 'is asympotic to'
+\begin{align*}
+  f(x) \sim g(x) \quad (x \to x_0)
+\end{align*}
+means
+\begin{align*}
+  \lim_{x\to x_0} \frac{f(x)}{g(x)} = 1
+\end{align*}
+#+END_QUOTE
+
+#+BEGIN_QUOTE
+- $\ll$ : 'is negligible compared with'
+\begin{align*}
+  f(x) \ll g(x) \quad (x \to x_0)
+\end{align*}
+means
+\begin{align*}
+  \lim_{x\to x_0} \frac{f(x)}{g(x)} = 0
+\end{align*}
+#+END_QUOTE
+
+** Method of Dominant Balance
+
+求方程
+\begin{align*}
+  \epsilon x^5 +x = 1
+\end{align*}
+的解在 $\epsilon \to 0$ 时, 行为.
+
+- Neglect 1
+\begin{align*}
+  \epsilon x^5 \sim -x
+\end{align*}
+得到
+\begin{align*}
+  x \sim \frac{(-1)^{1/4}}{\epsilon^{1/4}}
+\end{align*}
+是复平面上四个在无穷远的解. $1$ 相比无穷大, 可以忽略, 不矛盾.
+
+- Neglect $x$
+\begin{align*}
+  \epsilon x^5 \sim 1
+\end{align*}
+得到
+\begin{align*}
+  x \sim \frac{1^{1/5}}{\epsilon^{1/5}}
+\end{align*}
+这里无穷大的 $x$ 相比于 $1$ 是不可忽略的. 矛盾
+
+- Neglect $\epsilon x^5$
+\begin{align*}
+  x \sim 1
+\end{align*}
+那么
+\begin{align*}
+  \epsilon x^5 \sim \epsilon\cdot 1 \ll 1
+\end{align*}
+可以忽略.

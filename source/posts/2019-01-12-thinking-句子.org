@@ -1,0 +1,24 @@
+#+TITLE: 句子
+#+DATE: <2019-01-12>
+#+CATEGORIES: 想说
+#+TAGS: 句子
+#+HTML: <!-- toc -->
+#+HTML: <!-- more -->
+
+----------------------------------------------------
+
+Apart from the trivial constant functions then, singularities
+ are a fact of life, and we must learn to live with them.
+
+-----Arfken, Weber, and Harris, Mathematical Methods
+ for Physicists 7th ed, page 490
+
+----------------------------------------------------
+
+The shell has no recycle bin or trashcan. After you remove a
+ file, it's gone forever.
+
+-----Richard Blum, Christine Bresnahan, Linux Command Line and
+ Shell Scripting Bible 3rd ed, page 114
+
+-----------------------------------------------------

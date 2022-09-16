@@ -1,0 +1,26 @@
+#+TITLE: 最简单的调用网站api的程序
+#+DATE: <2022-07-31>
+#+CATEGORIES: 软件使用
+#+TAGS: python, api
+#+HTML: <!-- toc -->
+#+HTML: <!-- more -->
+
+在 themoviedb 上注册账号，申请自己的应用，获得一个 api 。之后就可以利用网站的资源进行开发了。下面是一个最简短的例子。（如果长时间没有反应，那就是
+api.themoviedb.org 被污染了，可以手动找到 ip，然后修改 host 文件）
+
+#+begin_src python
+import requests
+v3auth = '?api_key=你的api_key'
+q = '&query=' + 'lycoris'
+r = requests.get('https://api.themoviedb.org/3/search/tv'+v3auth+q)
+print(r.status_code)
+for i in r.json()['results']:
+    print(i)
+#+end_src
+返回结果如下：
+#+begin_src python
+200
+{'backdrop_path': '/cPqA1G5odxY7uVJ0i81z5E2tSSW.jpg', 'first_air_date': '2022-07-02', 'genre_ids': [16, 10759, 35], 'id': 154494, 'name': 'Lycoris Recoil', 'origin_country': ['JP'], 'original_language': 'ja', 'original_name': 'リコリス・リコイル', 'overview': "For these peaceful days――there’s a secret behind it all. A secret organization that prevents crimes: “DA - Direct Attack”. And their group of all-girl agents: “Lycoris”. This peaceful everyday life is all thanks to these young girls. The elite Chisato Nishikigi is the strongest Lycoris agent of all time. Alongside is Takina Inoue, the talented but mysterious Lycoris. They work together at one of its branches–Café LycoReco. Here, the orders this café takes range from coffee and sweets to childcare, shopping, teaching Japanese to foreign students, etc. It's mostly tasks unbefitting of Lycoris. The free-spirited and optimistic pacifist, Chisato. And the cool-headed and efficient Takina. The chaotic everyday lives of this mismatched duo begin!", 'popularity': 112.401, 'poster_path': '/dfGf0Ti3BEKpBpVCVtEXKTjQjNR.jpg', 'vote_average': 7.7, 'vote_count': 10}
+#+end_src
+
+其他 api 可以参考官方的手册。

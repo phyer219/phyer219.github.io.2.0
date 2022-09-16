@@ -1,0 +1,306 @@
+#+TITLE: 多体系统的密度算符, 密度矩阵, 多体系统的单体密度算符, 密度矩阵小结
+#+DATE: <2022-01-01>
+#+CATEGORIES: 专业笔记
+#+TAGS: density matrix, reduced dnesity matrix
+#+HTML: <!-- toc -->
+#+HTML: <!-- more -->
+
+新年快乐!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+* Signle particle
+
+单粒子的情况, 参考 Sakurai & Napolitano 中的讨论, 以及 Wolfgang Ketterle 的 AMO
+公开课第五讲.
+
+* Many body system Density operator $\hat{\rho}_N$, Density matrix $\rho_N$
+
+对于一个 $N$ 粒子的多体纯态 $|\Psi_{\mathrm{N-particles}}\rangle$ , 其 density operator 定
+义为
+\begin{align}
+\hat{\rho}_N \equiv |\Psi_{\mathrm{N-particles}}\rangle\langle\Psi_{\mathrm{N-particles}}|
+\end{align}
+选取一组基底, 写出 density opertor 在此基底下的表示矩阵, 即为 density
+operator. 例如有一组正交归一的单粒子本征态 $\{| \alpha\rangle\}$ , 系统的基底选取为 $N$ 个单
+粒子态的直积 (Negele & Orland Eq.(1.27))
+\begin{align}
+|\alpha_1 , \alpha_2, \cdots, \alpha_N) \equiv |\alpha_1\rangle \otimes |\alpha_2\rangle \otimes \cdots\otimes |\alpha_N\rangle
+\end{align}
+需要注意:
+- 1. 这里等式左边不是 $|\rangle$ , 而是 $|)$ . 区别在于后者没有对费米子或是玻色子做反
+  对
+- 2. $N$ 是多体系统总的粒子数, 而不是单粒子本征态 $\{| \alpha\rangle\}$ 的个数.
+称或者是对称化处理. 它的完备性可以写为
+\begin{align}
+\sum_{\alpha_1, \cdots,\alpha_N}|\alpha_1 , \alpha_2, \cdots, \alpha_N) (\alpha_1 , \alpha_2, \cdots, \alpha_N| = 1
+\end{align}
+因此在这样一组基底下, density opertor 的矩阵表示, 也就是 density matrix 可以写为
+\begin{align}
+&\rho_N(\alpha_1 , \alpha_2, \cdots, \alpha_N ;\alpha_1' , \alpha_2', \cdots, \alpha_N')\\
+=& (\alpha_1 , \alpha_2, \cdots, \alpha_N| \hat{\rho}_N |\alpha_1' , \alpha_2', \cdots, \alpha_N') \\
+    =& (\alpha_1 , \alpha_2, \cdots, \alpha_N| \Psi_{\mathrm{N-particles}}\rangle\langle\Psi_{\mathrm{N-particles}}
+                      |\alpha_1' , \alpha_2', \cdots, \alpha_N')
+\end{align}
+一种特殊的情况是将基底选为空间坐标, 就可以写成多体波函数的形式
+\begin{align}
+ \rho_N(r_1 , r_2, \cdots, r_N ;r_1' , r_2', \cdots, r_N')
+= \Psi_{\mathrm{N-particles}}(r_1 , r_2, \cdots, r_N)
+   \Psi^{*}_{\mathrm{N-particles}}(r_1' , r_2', \cdots, r_N')
+\end{align}
+其中波函数为 (Negele & Orland Eq.(1.49))
+\begin{align}
+\Psi_{\mathrm{N-particles}}(r_1 , r_2, \cdots, r_N)
+ = (r_1 , r_2, \cdots, r_N| \Psi_{\mathrm{N-particles}}\rangle
+\end{align}
+如果我们对 $\rho_N$ 求 trace, 也就是对取 $r_1' = r_1, r_2' = r_2, \cdots, r_N' = r_N$ , 再
+对所有这些指标求和, 会发现结果是 $1$ , 从多体波函数
+$\Psi_{\mathrm{N-particles}}(r_1 , r_2, \cdots, r_N)$ 的归一化也可以看出这一点.
+
+#+begin_quote
+Example: 2 Fermions
+
+$2$ spin $1/2$ Fermions, 一个在 spin up, 一个在 spin down, 并且空间波函数是交换
+对称的. 考虑其自旋部分的 density opertor.
+
+因为 Fermion 总的波函数是交换反对称的, 而这里已经假设空间波函数是交换对称的, 所
+以自旋部分只能是交换反对称的. 反对称化(只有单个粒子处于的态正交时才能够这样反对
+称化, 详见 Negele, J. W. & Orland)后的 $2$ 粒子态的自旋部分为(也就是自旋单态)
+\begin{align}
+|\Psi_{\mathrm{2-particles}} \rangle
+  = \frac{1}{\sqrt{2}}(|\uparrow\rangle \otimes |\downarrow\rangle - |\downarrow\rangle\otimes|\uparrow\rangle)
+\end{align}
+选取单粒子态基底为 $\{|\uparrow\rangle, |\downarrow\rangle\}$ . 在此基底下, spin up 和 spin down 表示为
+\begin{align}
+|\uparrow\rangle \sim& \begin{pmatrix} \langle\uparrow|\uparrow\rangle \\\langle\downarrow|\uparrow\rangle  \end{pmatrix}
+  = \begin{pmatrix} 1 \\0  \end{pmatrix} \\
+|\downarrow\rangle \sim& \begin{pmatrix} \langle\downarrow|\uparrow\rangle \\\langle\downarrow|\uparrow\rangle  \end{pmatrix}
+  = \begin{pmatrix} 0 \\1  \end{pmatrix}
+\end{align}
+其中 $\sim$ 表示 'represented by' (参见 Sakurai & Napolitano).
+
+直积
+\begin{align}
+|\uparrow \downarrow ) = |\uparrow\rangle \otimes |\downarrow\rangle &\sim \begin{pmatrix} 1 \\0  \end{pmatrix}\otimes
+        \begin{pmatrix} 0 \\1  \end{pmatrix}
+  = \begin{pmatrix} 1\times 0 \\1\times 1\\ 0\times 0\\0\times 1  \end{pmatrix}
+  = \begin{pmatrix} 0 \\1\\  0\\0 \end{pmatrix} \\
+|\downarrow \uparrow) = |\downarrow\rangle\otimes|\uparrow\rangle& \sim\begin{pmatrix} 0 \\0\\  1\\0 \end{pmatrix}
+\end{align}
+也就是说
+\begin{align}
+|\Psi_{\mathrm{2-particles}} \rangle
+  \sim\begin{pmatrix} (\uparrow \uparrow |\Psi_{\mathrm{2-particles}} \rangle\\
+                   (\uparrow \downarrow |\Psi_{\mathrm{2-particles}} \rangle\\
+                   (\downarrow \uparrow |\Psi_{\mathrm{2-particles}} \rangle\\
+                   (\downarrow \downarrow |\Psi_{\mathrm{2-particles}} \rangle
+    \end{pmatrix}
+=\frac{1}{\sqrt{2}}\left(\begin{pmatrix} 0 \\1\\ 0\\0 \end{pmatrix}
+             - \begin{pmatrix} 0 \\ 0 \\ 1\\0  \end{pmatrix}\right)
+= \frac{1}{\sqrt{2}}\begin{pmatrix} 0 \\1\\ -1\\0 \end{pmatrix}
+\end{align}
+也可以这样算, 比如
+\begin{align}
+(\uparrow \uparrow |\Psi_{\mathrm{2-particles}} \rangle = \langle \uparrow |\otimes \langle\uparrow|\Psi_{\mathrm{2-particles}} \rangle
+= \frac{1}{\sqrt{2}} (\langle \uparrow |\otimes \langle\uparrow|)\cdot(|\uparrow\rangle \otimes |\downarrow\rangle - |\downarrow\rangle\otimes|\uparrow\rangle)
+\end{align}
+其中
+\begin{align}
+\langle \uparrow |\otimes \langle\uparrow|\cdot|\uparrow\rangle \otimes |\downarrow\rangle = \langle\uparrow|\uparrow \rangle\langle\uparrow|\downarrow\rangle = 0
+\end{align}
+如此这般, 所有的项都可以算出来.
+
+Density operator and density matrix
+\begin{align}
+\hat{\rho}_N =& |\Psi_{\mathrm{2-particles}} \rangle\langle\Psi_{\mathrm{2-particles}} |\sim
+\rho \\
+=&
+\frac{1}{2} \begin{pmatrix} 0 \\1\\ -1\\0 \end{pmatrix}
+\begin{pmatrix} 0 &1 & -1 &0 \end{pmatrix}
+= \frac{1}{2} \begin{pmatrix} 0 & 0 & 0 & 0 \\
+                       0& 1 & -1 & 0\\
+                       0& -1 & 1 & 0\\
+                       0& 0 & 0 & 0 \end{pmatrix}
+\end{align}
+很明显, 它的迹是 $1$ .
+#+end_quote
+
+* Reduced density matrix
+
+按照 C. N. Yang 1962 中单体密度算符的定义
+\begin{align}
+\langle j | \rho_1 | i\rangle \equiv \mathrm{Sp} \, a_j \rho a_i^{\dagger}
+\end{align}
+其中 $i, j$ 表示单粒子态.
+
+用这篇博客里的符号来表达就是
+\begin{align}
+\rho_1(\alpha; \alpha') \equiv \sum_{\alpha_2, \alpha_3,\cdots \alpha_N} (\alpha_2, \alpha_3, \cdots \alpha_N |\hat{a}_{\alpha}
+                  \hat{\rho}_N \hat{a}_{\alpha'}^{\dagger}| \alpha_2, \alpha_3, \cdots, \alpha_N)
+\end{align}
+也就是
+\begin{align}
+\rho_1(\alpha, \alpha')=& \sum_{\alpha_2, \alpha_3,\cdots \alpha_N}
+           (\alpha_2, \alpha_3, \cdots \alpha_N |\hat{a}_{\alpha} |\Psi_{\mathrm{N-particles}}\rangle
+           \langle\Psi_{\mathrm{N-particles}}|\hat{a}_{\alpha'}^{\dagger}| \alpha_2, \alpha_3, \cdots, \alpha_N) \\
+     =& \langle \Psi_{\mathrm{N-particles}} |\hat{a}_{\alpha'}^{\dagger} \hat{a}_{\alpha}
+           | \Psi_{\mathrm{N-particles}}\rangle
+\end{align}
+现在, 有一个问题, 我们想知道 $\rho_1(\alpha; \alpha')$ 与 $\rho_N(\alpha_1, \alpha_2,\cdots, \alpha_N; \alpha_1',
+\alpha_{2}',\cdots \alpha_N')$ 的关系. 注意
+\begin{align}
+\langle\Psi_{\mathrm{N-particles}}|\hat{a}_{\alpha'}^{\dagger}| \alpha_2, \alpha_3, \cdots, \alpha_N)
+\neq \langle\Psi_{\mathrm{N-particles}}|\sqrt{n_{\alpha'} +1}| \alpha', \alpha_2, \alpha_3, \cdots, \alpha_N)
+\end{align}
+其中 $n_{\alpha'}$ 表示 $\alpha_2, \alpha_3, \cdots, \alpha_N$ 中有多少个与 $\alpha'$ 相同的态. 产生算符应
+该作用在对称化过的态上, 即
+\begin{align}
+\hat{a}_{\alpha'}^{\dagger}| \alpha_2, \alpha_3, \cdots, \alpha_N\rangle = \sqrt{n_{\alpha'} +1}| \alpha', \alpha_2, \alpha_3, \cdots, \alpha_N\rangle
+\end{align}
+二者之间的关系为 (Negele & Orland Eq.(1.46))
+\begin{align}
+|\alpha_1, \alpha_2, \alpha_3, \cdots, \alpha_N\rangle = \frac{1}{\sqrt{N! \prod_\alpha n_{\alpha}!}}
+  \sum_P\zeta^P |\alpha_{P1} , \alpha_{P2}, \alpha_{P3}, \cdots , \alpha_{PN} )
+\end{align}
+其中 $P$ 表示置换, $\zeta = \pm 1$ (Boson $+1$ , Fermion $-1$ ) . 因此有
+\begin{align}
+   &\langle\Psi_{\mathrm{N-particles}}| \alpha_1, \alpha_2, \alpha_3, \cdots, \alpha_N\rangle \\
+  =& \frac{1}{\sqrt{N! \prod_\alpha n_{\alpha}!}}
+  \sum_P\zeta^P\langle\Psi_{\mathrm{N-particles}}|\alpha_{P1} , \alpha_{P2}, \alpha_{P3}, \cdots , \alpha_{PN}) \\
+=& \frac{1}{\sqrt{N! \prod_\alpha n_{\alpha}!}}
+  \sum_P\zeta^P\cdot \zeta^P\langle\Psi_{\mathrm{N-particles}}|\alpha_{1} , \alpha_{2}, \alpha_{3}, \cdots , \alpha_{N}) \\
+=& \frac{1}{\sqrt{N! \prod_\alpha n_{\alpha}!}}
+  N! \langle\Psi_{\mathrm{N-particles}}|\alpha_{1} , \alpha_{2}, \alpha_{3}, \cdots , \alpha_{N}) \\
+=& \sqrt{\frac{N!}{ \prod_\alpha n_{\alpha}!}}
+  \langle\Psi_{\mathrm{N-particles}}|\alpha_{1} , \alpha_{2}, \alpha_{3}, \cdots , \alpha_{N})
+\end{align}
+同理
+\begin{align}
+   &\langle\Psi_{\mathrm{N-particles}}| \alpha_1, \alpha_2, \alpha_3, \cdots, \alpha_N\rangle \\
+=&\langle\Psi_{\mathrm{N-particles}}|\frac{1}{\sqrt{n_{\alpha_1}}}\hat{a}^{\dagger}_{\alpha_1} |\alpha_2, \alpha_3, \cdots, \alpha_N\rangle \\
+=& \frac{1}{\sqrt{n_{\alpha_1}}}\sqrt{\frac{(N - 1)!}{\frac{1}{n_{\alpha_1}} \prod_\alpha n_{\alpha}!}}
+  \langle\Psi_{\mathrm{N-particles}}|\hat{a}^{\dagger}_{\alpha_1}|\alpha_{2}, \alpha_{3}, \cdots , \alpha_{N}) \\
+=& \sqrt{\frac{(N - 1)!}{ \prod_\alpha n_{\alpha}!}}
+   \langle\Psi_{\mathrm{N-particles}}|\hat{a}^{\dagger}_{\alpha_1}|\alpha_{2}, \alpha_{3}, \cdots , \alpha_{N})
+\end{align}
+这样就得到
+\begin{align}
+\sqrt{N}\langle\Psi_{\mathrm{N-particles}}|\alpha_{1} , \alpha_{2}, \alpha_{3}, \cdots , \alpha_{N})
+= \langle\Psi_{\mathrm{N-particles}}|\hat{a}^{\dagger}_{\alpha_1}|\alpha_{2}, \alpha_{3}, \cdots , \alpha_{N})
+\end{align}
+
+因此我们就知道了  $\rho_1(\alpha, \alpha')$ 与 $\rho_N(\alpha_1, \alpha_2,\cdots, \alpha_N; \alpha_1',
+\alpha_{2}',\cdots \alpha_N')$ 的关系, 即
+\begin{align}
+\rho_1(\alpha; \alpha') =& \sum_{\alpha_2, \alpha_3,\cdots \alpha_N}
+           (\alpha_2, \alpha_3, \cdots \alpha_N |\hat{a}_{\alpha} |\Psi_{\mathrm{N-particles}}\rangle
+           \langle\Psi_{\mathrm{N-particles}}|\hat{a}_{\alpha'}^{\dagger}| \alpha_2, \alpha_3, \cdots, \alpha_N) \\
+  = & N \sum_{\alpha_2, \alpha_3,\cdots \alpha_N}
+           (\alpha, \alpha_2, \alpha_3, \cdots \alpha_N |\Psi_{\mathrm{N-particles}}\rangle
+           \langle\Psi_{\mathrm{N-particles}}|\alpha', \alpha_2, \alpha_3, \cdots, \alpha_N) \\
+  = & N \sum_{\alpha_2, \alpha_3,\cdots \alpha_N} \rho_N(\alpha, \alpha_2,\cdots, \alpha_N; \alpha', \alpha_{2},\cdots \alpha_N)
+\end{align}
+也就是说, 多体系统的单体密度矩, 就是将多体系统的密度矩阵求偏迹 (Partial trace),
+只留下一对指标. 如果我们对 $\rho_1(\alpha, \alpha')$ 求 trace, 会发现
+\begin{align}
+\sum_{\alpha} \rho_1(\alpha; \alpha) = N
+\end{align}
+此即 C. N. Yang 1962 中的 Eq.(4) .
+
+我们可以 inductive 地定义多体系统的两体算符, 三体算符等等.
+
+#+begin_quote
+Example 1: 3 Bosons
+
+$2$ 个本征态, $\{|\alpha\rangle , |\beta\rangle\}$ , 3 个 Boson, 全都处于 $|\alpha\rangle$ 态. 在 $\{|\alpha\rangle
+, |\beta\rangle\}$ 基底下
+\begin{align}
+|\Psi_{\mathrm{3-particles}} \rangle &= \frac{1}{\sqrt{3! 3!}} \cdot 3! |\alpha, \alpha, \alpha) \\
+  &\sim (1, 0, 0, 0, 0, 0, 0, 0)^T
+\end{align}
+density opertor and density matrix
+\begin{align}
+\hat{\rho}_3 \sim \begin{pmatrix}
+            1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+            0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+            0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+            0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+            0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+            0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+            0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+            0 & 0 & 0 & 0 & 0 & 0 & 0 & 0
+           \end{pmatrix}
+\end{align}
+
+\begin{align}
+\hat{\rho}_1 \sim 3  \begin{pmatrix}
+            1 & 0\\
+            0 & 0\\
+         \end{pmatrix}
+\end{align}
+可以发现 $\rho_1$ 的对角元表示每个本征态上的粒子数
+#+end_quote
+
+#+begin_quote
+Example 2: 3 Bosons
+
+$2$ 个本征态, $\{|\alpha\rangle , |\beta\rangle\}$ , 3 个 Boson (记为 $A, B, C$ ), 两个处于 $|\alpha\rangle$ 态,
+一个处于 $|\beta\rangle$ 在 $\{|\alpha\rangle , |\beta\rangle\}$ 基底下(如果我没算错的话)
+\begin{align}
+\hat{\rho}_3 \sim\rho_3=  \frac{2!}{3!}\begin{pmatrix}
+            0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+            0 & 1 & 1 & 0 & 1 & 0 & 0 & 0 \\
+            0 & 1 & 1 & 0 & 1 & 0 & 0 & 0 \\
+            0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+            0 & 1 & 1 & 0 & 1 & 0 & 0 & 0 \\
+            0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+            0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+            0 & 0 & 0 & 0 & 0 & 0 & 0 & 0
+           \end{pmatrix}
+\end{align}
+两体密度矩阵
+\begin{align}
+\hat{\rho}_2 \sim\rho_2 = 3(3-1)\mathrm{Tr}_C\rho_{3}
+          = 3(3-1)\frac{2!}{3!}\begin{pmatrix}
+            1 & 0 & 0 & 0 \\
+            0 & 1 & 1 & 0 \\
+            0 & 1 & 1 & 0 \\
+            0 & 0 & 0 & 0 \\
+           \end{pmatrix}
+\end{align}
+单体密度矩阵
+\begin{align}
+\hat{\rho}_1 \sim\rho_1 = 3\mathrm{Tr}_{BC}\rho_{3}
+          = 3\frac{2!}{3!}\begin{pmatrix}
+            2 & 0 \\
+            0 & 1 \\
+           \end{pmatrix}
+\end{align}
+#+end_quote
+再次验证了 $\rho_1$ 的对角元表示每个本征态上的粒子数. 此即 Hui Zhai 书上的 Eq.(3.7)
+\begin{align}
+\rho(\vec{r}, \vec{r}') = \sum_i N_i \psi_i^{*} (\vec{r}) \psi_i(\vec{r}')
+\end{align}
+
+
+* Mixed state
+
+上述内容均在纯态中讨论, 可以容易地推广到混合态.
+
+* Reference
+
+- J. J. Sakurai & Jim Napolitano, Modern Quantum Mechanics, second edition. Chap
+  3.4, dneisyt operators and pure versus mixed ensembles
+
+- MIT Open Courses: [[https://ocw.mit.edu/courses/physics/8-421-atomic-and-optical-physics-i-spring-2014/][Atomic and Optical Physics I]]
+
+- Negele, J. W. & Orland, H. Quantum many-particle systems. (Perseus Books,
+  1998). Chapter 1
+
+- $|\rangle\langle|$ 对应 [[eww:https://en.wikipedia.org/wiki/Outer_product][Outer product]] , $\otimes$ 对应 [[https://en.wikipedia.org/wiki/Tensor_product][Tensor product of linear maps]]
+
+- Yang, C. N. Concept of Off-Diagonal Long-Range Order and the Quantum Phases of
+  Liquid He and of Superconductors. Rev. Mod. Phys. 34, 694–704 (1962). 文章中
+  $\mathrm{Sp}$ 即为迹 $\mathrm{Tr}$ , 参见 [[https://de.wikipedia.org/wiki/Spur_(Mathematik)][Spur]] .
+
+- [[https://en.wikipedia.org/wiki/Partial_trace][Partial trace]]
+
+- Zhai, H. Ultracold atomic physics. (Cambridge University Press, 2020).

@@ -1,0 +1,155 @@
+#+TITLE: Radial symmetric potential and special functions summary(update 28/Feb/2021)
+#+DATE: <2021-01-18>
+#+CATEGORIES: 专业笔记
+#+TAGS: symmetric potential, special functions, summary
+#+HTML: <!-- toc -->
+#+HTML: <!-- more -->
+
+* SO(3) Symmetric potential
+
+粒子在具有 SO(3) 球对称性的势中运动的定态 Schrodinger 方程为
+\begin{align}
+  \left( -\frac{\hbar^2}{2\mu} \nabla^2 + V(r) \right)\psi(\vec{r}) = E \psi(\vec{r})
+\end{align}
+其中 $\nabla^2$ 为
+\begin{align}
+  \nabla^2 = \frac{\partial^2}{\partial r^2} + \frac{2}{r} \frac{\partial}{\partial r} - \frac{1}{r^2} \frac{\hat{L}^2}{\hbar^2}
+\end{align}
+SO(3) 群有 $2l + 1$ 维的不可约表示. 由不可约表示的维度, 可得出它的能级至少有
+$2l + 1$ 重的简并. $Y_{l,m}(\theta, \phi)$ 给出了 $SO(3)$ 群的所有不可约表示. 波函数可
+以写成
+\begin{align}
+\psi(\vec{r}) = f_l(r) Y_{l,m} (\theta, \phi)
+\end{align}
+其中 $Y_{l,m}(\theta, \phi)$ 满足
+\begin{align}
+\hat{\Pi} Y_{l,m}(\theta, \phi) = ( - 1)^l Y_{l,m}(\theta, \phi)
+\end{align}
+代回原来的方程有
+\begin{align}
+\left[ -\frac{\hbar^2}{2\mu}\left(
+        \frac{\mathrm{d}^2}{\mathrm{d}r^2} + \frac{2}{r} \frac{\mathrm{d}}{\mathrm{d}r} \right)
+       + \frac{l(l + 1)}{r^2} \frac{\hbar^2}{2\mu} + V(r)
+\right] f_l (r) = E f_l (r)
+\end{align}
+如果做代换
+\begin{align}
+  \psi(\vec{r}) = \frac{\phi_l(r)}{r} Y_{l,m}(\theta, \phi)
+\end{align}
+那么径向的方程就等价成了一个一维问题
+\begin{align}
+  \left( -\frac{\hbar^2}{2\mu}\frac{\mathrm{d}^2}{\mathrm{d}r^2}
+   + \frac{l(l + 1)}{r^2} \frac{\hbar^2}{2\mu} + V(r) \right) \phi_l(r) = E \phi_l(r)
+\end{align}
+不用说, 径向方程是正交归一的, 也可以验证
+\begin{align}
+  \langle \psi_{l,m} | \psi_{l', m'} \rangle = \delta_{l,l'} \delta_{m, m'} \int_0^{\infty} r^2 \mathrm{d}r\cdot
+   \frac{\phi_l^{ * }(r)}{r} \frac{\phi_{l'}(r)}{r}
+  = \delta_{l,l'} \delta_{m, m'} \int_0^{\infty} \mathrm{d}r\cdot
+   \phi_l^{ * }(r) \phi_{l'}(r)
+\end{align}
+
+* Boundary Condition
+
+假设 $\phi$ 在 $r \to 0$ 时的行为为 $r^{\alpha}$ . 如果 $V(r)$ 趋于 $0$ 的速度比
+$r^{-2}$ 要慢, 那么将 $\phi_l (r) \propto r^{\alpha}$ 代回径向方程就可以得到
+\begin{align}
+  -\frac{\mathrm{d}^2}{\mathrm{d}r^2} + l(l + 1) r^{\alpha - 2} = k^2 r^{\alpha} \\
+  \left[ - \alpha(\alpha - 1) + l(l + 1)\right] r^{\alpha - 2} = k^2r^a
+\end{align}
+等式右边相对于左边在 $r\to 0$ 时可以忽略, 可得 $\alpha = l + 1$ 或者 $\alpha = - l$ . 但
+$\alpha = -l $ 时, $\psi\propto r^{-l-1}$ 会使得波函数发散, 无法归一化, 因此
+\begin{align}
+  \phi_l(0) = 0 \quad\mathrm{for}\quad  \mathrm{all} \quad l\\
+  \phi_l(r) \propto r^{l+1} \quad \mathrm{for} \quad r \to 0
+\end{align}
+
+* Radially Symmetric Harmonic Oscillator
+
+此时的势能为
+\begin{align}
+  V(r) = \frac{\mu}{2} \omega^2 r^2
+\end{align}
+由于 $r \to \infty$ 时, $V(r) \to \infty$ , 所以解只存在 bound states
+\begin{align}
+E_{n, l} = \left( 2n + l +\frac{3}{2} \right)\hbar\omega
+\end{align}
+波函数是 generalized Laguerre $L_n^{\alpha}(x)$ 多项式的形式
+\begin{align}
+\phi_{n, l} = 2(\sqrt{\pi}\beta)^{-1/2} \left[ \frac{2^{n + l} n!}{(2n + 2l + 1)!!} \right]
+  \left( \frac{r}{\beta} \right)^{l+1} L_n^{l + 1/2} \left(\frac{r^2}{\beta^2}\right) e^{-\frac{r^2}{2\beta^2}}
+\end{align}
+其中
+\begin{align}
+  \beta = \sqrt{\frac{\hbar}{\mu\omega}}
+\end{align}
+
+* Short ranged
+
+短程力, 也就是说当 $r > r_0$ 时, $V(r) = 0$
+
+** Bound states
+
+当 $E < 0$ 时, 在 $r > r_0$ 处的解为 modified Bessel functions, 舍去发散的解, 只
+剩下
+\begin{align}
+  \phi_-(r) = \sqrt{\kappa r} K_{l+1/2}(\kappa r)
+\end{align}
+如果在 $r > r_0$ 处为 Coulomb 势, 也就是
+\begin{align}
+V(r) = - \frac{C}{r}, \quad r > r_0
+\end{align}
+那么它在 $r > r_0$ 处的解是 Whittaker functions
+\begin{align}
+  \phi_-(r) = W_{\gamma, l+1/2}(2 \kappa r)
+\end{align}
+其中 $\gamma = \frac{\mu C}{\hbar^2\kappa}$
+
+** Unbound states
+
+当 $E > 0$ 时, 在 $r > r_0$ 处的解有两个, 是 Spherical Bessel 和 Neumann
+functions
+\begin{align}
+\phi_s(r) = k r j_l(kr) \\
+\phi_c(r) = kr n_l(kr)
+\end{align}
+它们的渐近行为为
+\begin{align}
+\phi_s(r) = \sin \left(kr - \frac{l \pi}{2} \right) \left[ 1 + \mathcal{O}\left( \frac{1}{r} \right) \right] \\
+\phi_c(r) = \cos \left(kr - \frac{l \pi}{2} \right) \left[ 1 + \mathcal{O}\left( \frac{1}{r} \right) \right]
+\end{align}
+可以写成相移的形式
+\begin{align}
+  \phi(r) \propto \sin \left( kr - \frac{l\pi}{2} + \delta_l \right)
+\end{align}
+相称表征了波函数相对于 regular 解的 shift.
+如果在 $r > r_0$ 处为 Coulomb 势, 也就是
+\begin{align}
+V(r) = - \frac{C}{r}, \quad r > r_0
+\end{align}
+那么对应的结果为 regular Coulomb function 和 irregular Coulomb function
+\begin{align}
+\phi_s(r) = F_l(\eta, kr) \\
+\phi_c(r) = G_l(\eta, kr), \quad r > r_0
+\end{align}
+其中
+\begin{align}
+\eta = - \frac{\mu C}{\hbar^2 k}
+\end{align}
+渐近行为为
+\begin{align}
+F_l(\eta, kr) \to \sin\left( kr - \eta \ln 2kr - \frac{l\pi}{2} + \sigma_l \right),\quad \mathrm{for} \quad r\to\infty \\
+G_l(\eta, kr) \to \cos\left( kr - \eta \ln 2kr - \frac{l\pi}{2} + \sigma_l \right),\quad \mathrm{for} \quad r\to\infty
+\end{align}
+类似地, 也可以写成相移的形式.
+
+* Reference
+
+- Harald Siegfried Friedrich, Theoretical Atomic Physics-Springer (2005) Chap
+  1.2, 1.3
+
+* 后记
+
+昨天返校, 今天终于把从上学期就想整理的东西草草整理了.
+
+

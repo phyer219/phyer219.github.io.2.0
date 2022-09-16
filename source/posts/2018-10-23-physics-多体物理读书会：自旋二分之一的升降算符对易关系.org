@@ -1,0 +1,39 @@
+#+TITLE: 多体物理读书会：自旋二分之一的升降算符对易关系
+#+DATE: <2018-10-21>
+#+CATEGORIES: 专业笔记
+#+TAGS: 物理, 升降算符, 多体物理读书会
+#+HTML: <!-- toc -->
+#+HTML: <!-- more -->
+* 问题
+对于自旋$\frac{1}{2}$，有如下对易关系
+-
+\begin{equation}
+  \label{eq:1}
+  [S^{\mp},S^{\pm}] = \mp2 \hbar S ^{z}
+\end{equation}
+-
+\begin{equation}
+  \label{eq:2}
+  [S^{\pm},S^{z}] = \mp \hbar S^{\pm}
+\end{equation}
+* 数学证明
+这是trival的，懒得证明啦！
+* 物理理解
+** 对于($\ref{eq:1}$)
+首先，升降算符乘在一起是\(\mid S^{z}=\pm \frac{1}{2}\rangle\) 的本征态
+\begin{align*}
+  S^{+}\mid -\frac{1}{2}\rangle =& \hbar \sqrt{\left(\frac{1}{2}+\frac{1}{2}\right)\left(\frac{1}{2}-\frac{1}{2}+1\right)}\mid -\frac{1}{2} \rangle = \hbar \mid \frac{1}{2}\rangle \\
+  S^{+}\mid \frac{1}{2}\rangle  =& 0\\
+  S^{-}S^{+}\mid - \frac{1}{2}\rangle  =& \hbar^{2} \mid -\frac{1}{2}\rangle\\
+  S^{-}S^{+}\mid  \frac{1}{2} \rangle=&0
+\end{align*}
+所以
+\begin{align*}
+  [S^{-},S^{+}] = S^{-}S^{+} - S^{+}S^{-}
+\end{align*}
+右边的两项中，对于\(\mid \frac{1}{2}\rangle\) 只有第二项不为零，作用结果是\(-\hbar^{2}\) 。对于\(\mid- \frac{1}{2}\rangle\) 只有第1项不为零，作用结果是\(\hbar^{2}\) 。综合看来结果就是\(-\hbar^{2}\cdot \frac{2}{\hbar} S^{z}= -2\hbar S^{z}\)
+** 对于($\ref{eq:2}$)
+\begin{align*}
+  [S^{+},S^{z}] = S^{+}S^{z} - S^{z}S^{+}
+\end{align*}
+只对\(\mid -\frac{1}{2}\rangle\) 作用不为零，而且最算符最后的作用是升了一下，所以\(S^{+}\) 不变。升完之后的\(S^{z}\) 要比没升的大$\hbar$ ，所以总的结果是\( -\hbar S^{+}\)

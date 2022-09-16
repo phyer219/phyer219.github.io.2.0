@@ -1,0 +1,727 @@
+#+TITLE: 欢迎来到 Emacs 主义至上教室(lisp note -_-)
+#+DATE: <2021-01-20>
+#+CATEGORIES: 软件使用
+#+TAGS: lisp, emacs
+#+HTML: <!-- toc -->
+#+HTML: <!-- more -->
+
+* Intro
+
+#+begin_src lisp
+  i i i i i i i       ooooo    o        ooooooo   ooooo   ooooo
+  I I I I I I I      8     8   8           8     8     o  8    8
+  I  \ `+' /  I      8         8           8     8        8    8
+   \  `-+-'  /       8         8           8      ooooo   8oooo
+    `-__|__-'        8         8           8           8  8
+        |            8     o   8           8     o     8  8
+  ------+------       ooooo    8oooooo  ooo8ooo   ooooo   8
+
+Welcome to GNU CLISP 2.49.93+ (2018-02-18) <http://clisp.org/>
+#+end_src
+
+交互式的(类似 ipython), 在 terminal 中输入 =ecl= (Embeddable Common Lisp) . 没有
+的话则需要安装. 也可以用 =clisp=
+
+此为快速入门笔记.
+
+* Common Lisp Syntax
+
+** Form
+
+lisp 的语法比较特别, 表达式用括号括起来, 括号中第一部分是函数, 剩余部分是函数的
+参数. 当然也可以直接是一个 data. 如
+
+#+begin_src lisp
+> 1
+
+1
+> (+ 2 3)
+
+5
+> (+ 2 3 4)
+
+9
+> (+)
+
+0
+> (/ (- 7 1) (- 4 2))
+
+3
+#+end_src
+
+** Evaluation 
+
+lisp 默认对 =(+ 1 1)= 是要求值的. 如果要避免求值, 可以用 =quote= .
+
+#+begin_src lisp
+> (quote (+ 3 5))
+
+(+ 3 5)
+#+end_src
+='= 为 =quote= 的简写
+
+#+begin_src lisp
+> '(+ 3 5)
+
+(+ 3 5)
+#+end_src
+
+** Data
+
+*** integer, string
+
+在其它语言中常见.
+
+*** symbol
+
+无论怎输入, 都会被转换成大写. symbol 不对自身求值, 一般加 ='= 引用
+#+begin_src lisp
+> 'Good
+
+GOOD
+#+end_src
+
+*** list
+
+#+begin_src lisp
+> (list 'hello (+ 3 6) "good")
+
+(HELLO 9 "good")
+#+end_src
+
+=list= 函数来创建列表. build lists
+
+#+begin_src lisp
+> (list '(+ 1 1) (+ 1 1))
+
+((+ 1 1) 2)
+#+end_src
+
+空列表有两种表示方式
+#+begin_src lisp
+> ()
+
+NIL
+> nil
+
+NIL 
+#+end_src
+
+** List Operations 
+
+=cons= build lists
+
+#+begin_src lisp
+> (cons 'a '(b c d))
+
+(A B C D)
+#+end_src
+
+上述例子第二个实参是一个 list . 
+
+list 是将几个元素加到 =nil= 空表的快捷方式, 如
+
+#+begin_src lisp
+> (cons 'a (cons 'b nil))
+
+(A B)
+> (list 'a 'b)
+
+(A B)
+#+end_src
+
+=car= 返回 list 的第一个元素, =cdr= 返回第一个元素之后的所有元素, 如
+
+#+begin_src lisp
+> (car '(a b c))
+
+A
+> (cdr '(a b c))
+
+(B C)
+#+end_src
+
+取第三个元素有两种方法, 如
+
+#+begin_src lisp
+> (car (cdr (cdr '(a b c d))))
+
+C
+> (third '(a b c d))
+
+C
+#+end_src
+
+** Truth 
+
+*** True and False
+symbol =t= 表示逻辑真的默认值. 它是一个 symbol, 因此它会自身求值. 逻辑假由 =nil=
+来表示.
+
+The function =listp= returns true if its argument is a list:
+
+#+begin_src lisp
+> (listp '(a b c))
+
+T
+> (listp 2)
+
+NIL
+#+end_src
+
+像 =listp= 这样返回结果为真或假的函数, 称为 predicate, 这类函数通常以 p 结尾.
+
+The function =null= returns true of the empty list. The function =not= returns
+true if its argument is false. 如
+
+#+begin_src lisp
+> (null nil)
+
+T
+> (not nil)
+
+T
+#+end_src
+
+上述例子中, 第一个 =nil= 表示 empty list, 因此返回 True. 第二个 =nil= 表示逻辑假,
+因此返回 True. 但由于 =nil= 既可表示 empty list, 也可表示逻辑假, 因此上述两个表
+达式在功能上等价的. 
+
+*** if 
+
+#+begin_src lisp
+> (if (listp '(a b c))
+      (+ 1 2)
+      (+ 5 6))
+
+3
+> (if (listp 2)
+      (+ 1 2)
+      (+ 5 6))
+
+11
+#+end_src
+
+if 函数的第一个参量是 test 表达式, 即要判断真假的对象. 第二个 then 表达式. 第三
+个是 else 表达式, 是可选参数, 默认是 =nil= . 如
+
+#+begin_src lisp
+> (if (listp 27)
+      (+ 1 2))
+
+NIL
+#+end_src
+
+除了 =nil= 以外的所有东西, 都视为 True, 如
+#+begin_src lisp
+> (if 27 1 2)
+
+1
+#+end_src
+
+*** AND and OR
+
+逻辑与, 或. =and= , 求到第一个为 False 后, 就不对后面的表达式求值了, 直接返回
+=nil= 如果所有值为真, 那么它就会返回最后一个参数(而不是返回 True). 也就是说它比
+较懒, 知道结果了, 就不继续求值了. 
+. or 运算时, 有一个 False 后, 就不对后面的表达式求值了.
+
+#+begin_src lisp
+> (and t (+ 1 2))
+
+3
+#+end_src
+
+** Functions
+
+定义 function, 第一个实参是函数名字, 第二个是用列表表示的参数, 第三个是一个或多
+个组成函数体的表达式. 如
+#+begin_src lisp
+> (and t (+ 1 2))
+
+3
+> (defun our-third (x)
+   (car (cdr (cdr x))))
+
+OUR-THIRD
+> (our-third '(a b c d e f))
+
+C
+#+end_src
+又如
+#+begin_src lisp
+> (defun sum-greater (x y z)
+   (> (+ x y) z))
+
+SUM-GREATER
+> (sum-greater 1 4 3)
+
+T
+> (sum-greater 2 5 9)
+
+NIL
+#+end_src
+
+** Recursion
+
+下面的函数是递归的一个例子
+
+#+begin_src lisp
+> (defun our-member (obj lst)
+   (if (null lst)
+       nil
+   (if (eql (car lst) obj)
+       lst
+       (our-member obj (cdr lst)))))
+
+OUR-MEMBER
+> (our-member 'b '(a b c))
+
+(B C)
+> (our-member 'z '(a b c))
+
+NIL
+#+end_src
+
+函数 =our-member= 用来判断 =obj= 是否是列表 =lst= 中的成员.
+
+首先判断 =lst= 是否为空, 如果为空, 那当然就返回 =nil= . 如果不空, 那么就用函数
+=eql= 判断 =lst= 的第一个成员是否与 =obj= 相同, 相同的话输出当前的 =lst= , 如果
+不同, 只有当 =obj= 是其它列表成员时, 它才可能是 =lst= 的成员, 于是就就递归调用,
+并把除掉第一个成员后的 =lst= 传递给递归调用的自己. 
+
+** Input and Output
+
+*** output
+
+common lisp 最普遍的输出函数是 =format= . 第一个实参是输出到哪里, =t= 表示默认的
+的地方. 第二个实参是字符模板, 剩下的实参是要插入到模板的对象. 如
+
+#+begin_src lisp
+> (format t "~A plus ~A equals ~A. ~%" 2 3 (+ 2 3))
+2 plus 3 equals 5. 
+NIL
+#+end_src
+
+=~A= 表示被填入的位置, =~%= 表示换行.
+
+*** input
+
+#+begin_src lisp
+> (defun askem (string)
+   (format t "~A" string)
+   (read))
+
+ASKEM
+> (askem "How old are you?")
+How old are you?15
+
+15
+#+end_src
+这个函数首先输出参量 =string= , 返回通过 =read= 输入得到的值. 当函数 =read= 没有
+实参时, 它会读取默认的位置. 函数 =askem= 有两个表达式, 它会返回最后一个表达式的
+值. 
+
+** Variables
+
+*** local variable
+
+=let= 可以引入局部变量, 如
+
+#+begin_src lisp
+> (let ((x 1) (y 2))
+     (+ x y))
+
+3
+#+end_src
+
+上述例子分别把 =1= 和 =2= 赋值给 =x= 和 =y= , 赋值只在 =let= 函数值内有效. 之后
+是表达式, 求值的结果作为 =let= 的返回值.
+
+#+begin_src lisp
+>  (defun ask-number ()
+   (format t "Please enter a number. ")
+   (let ((val (read)))
+     (if (numberp val)
+         val
+          (ask-number))))
+
+ASK-NUMBER
+> (ask-number)
+Please enter a number. a
+Please enter a number. (ho hum)
+Please enter a number. 19
+#+end_src
+
+=numberp= 是一个 predicate, 判断是否是一个数. 这也是递归调用的一个例子.
+
+*** global variable
+
+由 =defparameter= 来定义全局变量, 由 =defconstant= 定义全局常量, 由 =boundp= 判
+断某个符号是否为一个全局变量或常量. 如
+
+#+begin_src lisp
+> (defparameter *glob* 99)
+
+*GLOB*
+> (defconstant limit (+ *glob* 1))
+
+LIMIT
+> (boundp '*glob*)
+
+T
+#+end_src
+
+** Assignment 
+
+=setf= 来给变量赋值. 如
+
+#+begin_src lisp
+> (setf *glob* 98)
+
+98
+> (let ((n 10))
+    (setf n 2)
+    n)
+
+2
+#+end_src
+
+如果一个 symbol 不是局部变量的名字, 那么 =setf= 把这个 symbol 设置为全局变量. 如
+
+#+begin_src lisp
+> (setf x (list 'a 'b 'c))
+
+(A B C)
+#+end_src
+
+也就是说 =setf= 也可以用来创建全局变量, 不过还是推荐用 =defparameter= 来创建, 这
+样比较明确.
+
+=setf= 还有一个用法. 第一个实参可以是表达式, 这样第二个实参直接传给表达式中. 如
+
+#+begin_src lisp
+> (setf (car x) 'n)
+
+N
+> x
+
+(N B C)
+#+end_src
+
+以下两种表达方式是等价的
+
+#+begin_src lisp
+> (setf a 'b
+        c 'd
+        e 'f)
+
+F
+> a
+
+B
+> c
+
+D
+> e
+
+F
+#+end_src
+
+#+begin_src lisp
+> (setf a 'b)
+
+B
+> (setf c 'd)
+
+D
+> (setf e 'f)
+
+F
+#+end_src
+
+** Functional Programming
+
+Lisp 的主流范式是函数式编程. 中心思想是: 执行一个函数是得到它的返回值. 如
+
+#+begin_src lisp
+> (setf lst '(c a r a t))
+
+(C A R A T)
+> (remove 'a lst)
+
+(C R T)
+> lst
+
+(C A R A T)
+#+end_src
+
+=remove= 函数是移除列表中的指定元素. 但只是返回移除之后的结果, 原来的列表还是原
+来的列表. 如果真的想要移除, 可以如下操作
+
+#+begin_src lisp
+> (setf lst (remove 'a lst))
+
+(C R T)
+#+end_src
+
+函数式编程意味着避免使用如 =setf= 一样的函数. 它的优点之一是允许 interactive
+testing. 
+
+** Iteration
+
+如
+#+begin_src lisp
+> (defun show-squares (start end)
+    (do ((i start (+ i 1)))
+        ((> i end) 'done)
+      (format t "~A ~A~%" i (* i i)))) 
+
+SHOW-SQUARES
+> (show-squares 2 5)
+2 4
+3 9
+4 16
+5 25
+DONE
+#+end_src
+
+=do= 的第一个表达式是 =(variable initial update)= , 标明变量 =i= , 初值, 更新规
+则. 第二个表达式是结束的条件. 剩下的是循环体.
+
+上述函数也可以用递归来写, 但是不太自然
+
+#+begin_src lisp
+> (defun show-squares (i end)
+     (if (> i end)
+       'done
+       (progn
+         (format t "~A ~A~%" i (* i i))
+         (show-squares (+ i 1) end))))
+
+SHOW-SQUARES
+> (show-squares 2 5)
+2 4
+3 9
+4 16
+5 25
+DONE
+#+end_src
+
+新的函数 =progn= 接受任意数量的表达式, 依次求值, 并返回最后一个表达式的值.
+
+用 =dolist= 来遍历列表元素会更加简单
+
+#+begin_src lisp
+> (defun our-length (lst)
+    (let ((len 0))
+      (dolist (obj lst)
+        (setf len (+ len 1)))
+     len))
+
+OUR-LENGTH
+> (our-length (list 'a 'b 'c))
+
+3
+#+end_src
+
+上述例子的递归版本为
+
+#+begin_src lisp
+> (defun our-length (lst)
+    (if (null lst)
+        0
+        (+ (our-length (cdr lst)) 1)))
+
+OUR-LENGTH
+> (our-length (list 'a 'b 'c 'd))
+
+4
+> (our-length 'nil)
+
+0
+> (our-length '(a b c))          
+
+3
+#+end_src
+
+它更容易理解, 但由于不是 tail-recursive 的形式, 效率不是那么高.
+
+** Functions as Objects
+
+=function= 是一个特殊的操作符号, 如果把函数的名字传给function, 它会返回相关关联
+的对象, 如
+
+#+begin_src lisp
+> (function +)
+
+#<compiled-function + 0x55e01ee95b10>
+#+end_src
+
+=#'= (sharp-quote)作为 function 的缩写, 如
+
+#+begin_src lisp
+> #' +
+
+#<compiled-function + 0x55e01ee95b10>
+#+end_src
+
+=apply= 可以接受函数作为第一个实参, 第二个列表作为函数的实参. 如
+
+#+begin_src lisp
+> (apply #'+ '(1 2 3))
+
+6
+#+end_src
+
+=funcall= 做相同的事情, 但不需要把实参包装成列表
+
+#+begin_src lisp
+> (funcall #'+ 1 2 3)
+
+6
+#+end_src
+
+*** lambda
+
+=lambda= 不是一个操作符, 而只是一个符号. 早期由于函数在内部是用列表表示的, 因此
+将函数的第一个元素标记为 =lambda= 加以区分. 如
+
+#+begin_src lisp
+> (lambda (x) (+ x 100))
+
+#<bytecompiled-function 0x55726dfbe0f0>
+#+end_src
+
+(书上说现在可以省略 =lambda= , 但是我这里省略了会报错, 或许我的版本不够新?)
+
+=lambda= 表达式是一个列表, 包含符号 =lambda= , 接着是形参列表, 以及由零个或多个
+表达式所组成的函数体. 如
+
+#+begin_src lisp
+> (lambda (x y))
+
+#<bytecompiled-function 0x5652ca53c0f0>
+> (lambda (x y)
+    (+ x y))
+
+#<bytecompiled-function 0x5652ca53c050>
+> ((lambda (x) (+ x 100)) 1)
+
+101
+> (funcall #'(lambda (x) (+ x 100)) 
+          1) 
+
+101
+#+end_src
+
+** Types
+
+变量没有类型, 数值才有类型, 且可有多个类型. 如 =27= 的类型, 依普遍性增加顺序为
+=fixnum= , =integer= , =rational= , =real= , =number= , =atom= , =t= . =t= 是所
+有类型的 supertype, 所以每个对象都属于 =t= 类型. 如用 =typep= 来判断某个数值是否
+为某个类型
+
+#+begin_src lisp
+> (typep 27 'integer)
+
+T
+> (typep 27 't)
+
+T
+> (typep 27 'rational)
+
+T
+> (typep 27 'fixnum)
+
+T
+#+end_src
+
+* ...
+
+赶在因疫情突然决定明天回家之前整理完此篇. 不禁感叹世事无常, 还是要好好珍惜眼前的
+人和事啊! 
+
+* Elisp
+
+** Hello wolrd
+
+elisp 要在 emacs 中执行. 一个 hello world 的例子. 在 emacs 中 =M-x=
+=lisp-interaction-mode= 切换到 lisp 交互主模式, 写入 
+
+#+begin_src elisp
+(message "hello world")
+#+end_src
+
+光标切到行尾, =C-j= 即可运行. 另外也可以在 =org-mode= 中, 插入 =elisp= 代码块,
+然后 =C-c= =C-c= 运行. (原 org 文件可以显示结果, hexo 不渲染执行结果) .
+
+#+begin_src elisp
+(message "hello world")
+#+end_src
+
+#+RESULTS:
+: hello world
+
+** Doc string
+
+函数可以加 doc string, 将光标移到函数上, 用 =C-h= =f= 查看. 如 
+
+#+begin_src elisp
+(defun hello-world (name)
+"Say hello to user whose name is NAME"
+(message "Hello, %s!" name))
+
+(hello-world 'Emacser)
+#+end_src
+
+#+RESULTS:
+: Hello, Emacser!
+
+变量也可以加 doc string, 可用 =C-h=  =v= 查看. 如声明变量
+#+begin_src elisp
+(defvar foo "I'm foo!"
+  "A demo variable")
+foo
+#+end_src
+
+#+RESULTS:
+: I'm foo
+
+** Some functions
+
+函数 =eq= 用来判断变量是否为某个值. 如( =elisp= 和 =lisp= 语法还是有些不同, 如
+=format= ) 
+
+#+begin_src elisp
+(defun eq-example()
+  "A demo for function eq"
+  (let ((a 1) (b 'x)) 
+   (format "%s, %s, %s, %s" 
+    (eq a 1) (eq a 2) (eq b 'x) (eq b 'y))))
+
+(eq-example)
+#+end_src
+
+#+RESULTS:
+: t, nil, t, nil
+
+
+#+begin_src elisp
+system-type
+#+end_src
+
+#+RESULTS:
+: gnu/linux
+
+
+
+* Reference
+
+- Book: ANSI Common LISP by Paul Graham (z-lib.org)
+
+- https://acl.readthedocs.io/en/latest/zhCN/ch2-cn.html
+
+- http://smacs.github.io/elisp/01-hello-world.html
+
+- https://www.emacswiki.org/emacs/

@@ -1,0 +1,72 @@
+<!DOCTYPE html><html class="no-js" lang="zh">
+
+<head>
+<script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+    </script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Long+Cang&family=Noto+Serif+SC&display=swap" rel="stylesheet"> <meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>从冰上的水</title>
+<link rel="apple-touch-icon" sizes="180x180" href="../static/images/apple-touch-icon-next.png?v=6.4.1">
+<link rel="icon" type="image/png" sizes="32x32" href="../static/images/favicon-32x32-next.png?v=6.4.1">
+<link rel="icon" type="image/png" sizes="16x16" href="../static/images/favicon-16x16-next.png?v=6.4.1">
+<link rel="stylesheet" type="text/css" href="../static/css/mystyle.css">    
+
+</head>
+<body>
+    <div class="container">
+        <header>
+            <section class="banner"><img src="../static/images/banner_20220427_tamako-love-story.jpg"></section>
+        </header>
+        <nav class="row">
+    <a class="nav" href="../index.html">首页</a>
+    <a class="nav" href="../category/category.html">分类</a>
+    <a class="nav" href="#">标签</a>
+    <a class="nav" href="#">关于</a>
+</nav>
+        <main>
+            <h1 class="post-title">Tan 的 Lambda function 中的积分
+            </h1>
+            <section class="post-meta">
+                <p><2021-09-08></p>
+                <p>['Principal value']</p>
+                <p>专业笔记</p>
+            </section>
+            <section class="post-content">
+                
+
+$$\begin{align}
+  I = \int \mathrm{d}^3k \left[ \frac{1}{(\vec{k} - \vec{k}_0)^{2}}
+    + \frac{1}{(\vec{k} + \vec{k}_0)^{2}}
+    - \frac{2}{k^2} \right]
+   = 0
+\end{align}$$
+
+
+<p>Mahtematica 可以直接得到</p>
+<pre><code class="language- mathematica">Integrate[k^2 (1/(k^2+k0^2- 2 k k0 x)-2/k^2+1/(k^2+k0^2+2 k k0 x)),{x,-1,1},{k,0, \[Infinity]}]</code></pre>
+<p>太失败了, 是一开始想复杂, 根本没有奇异性...</p>
+
+<h2>Reference</h2>
+
+<ul>
+<li>Tan, S. Energetics of a strongly correlated Fermi gas. Annals of Physics 323, 2952–2970 (2008).</li>
+</ul>
+
+            </section>
+        </main>
+        <footer>zqw</footer>
+
+    </div>
+</body>
+</html>

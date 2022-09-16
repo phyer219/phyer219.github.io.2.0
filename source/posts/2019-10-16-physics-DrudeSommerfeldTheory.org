@@ -1,0 +1,138 @@
+#+TITLE: Drude Model and the Sommerfeld Theory of Metals
+#+DATE: <2019-10-16>
+#+CATEGORIES: 专业笔记
+#+TAGS: 物理, Drude Model
+#+HTML: <!-- toc -->
+#+HTML: <!-- more -->
+
+* Drude Model
+
+** 物理图像
+
+金属元素的原子聚在一起形成金属时, 价电子分离出来, 并且在金属中自由的游荡, 而金属
+离子保持完好, 扮演着不动的正电荷粒子的角色. 一个原子总共有 $Z_{\alpha}$ 个电子.
+总电量是 $-Z_{\alpha}e$ (取 $e$ 是正数). 价电子有 $Z$ 个. $Z_{\alpha}-Z$ 个电子
+相对紧地束缚在原子核周围, 称为 core electrons. 
+
+Drude Model 的几个基本假设:
+
+1. 在碰撞之间, 电子与其它电子以及离子实的相互作用都被忽略(也就是忽略了长程库伦相
+   互作用). 前者为 independent electron approximation, 后者为 free electron
+   approximation.  
+2. 碰撞是瞬时的, 突然地改变电子的速度. 碰撞为电子与离子实的碰撞. 两次碰撞的平均
+   时间间隔为 $\tau$ , 它有 relaxation time, collision time, mean free time 几种
+   不同的叫法. 那么电子发生碰撞的概率是 $\frac{1}{\tau}$ .
+3. 电子只通过碰撞来达到与环境的热平衡. 电子在碰撞后, 速度与碰撞前的速度完全无关,
+   而时随机地得到一个与碰撞周围的温度相匹配的温度.
+
+** 主要结论
+
+*** current density $\vec{j}$ 和电场强度 $\vec{E}$ 之间的线性关系
+
+Ohm's 定律 
+\begin{align*}
+  V =& I \cdot R \\
+    &\Downarrow \\
+  \vec{E} =& \rho \cdot \vec{j}
+\end{align*}
+为什么要从第一式变到第二式. 因为 $R$ 与导体的形状有关系. 而 $\rho$ 只与导体的成
+份有关系, 更加普适. 这是很重要的思想. 给导体加上电场在导体中, 能产生多大的电流,
+就是 $\rho$ 的意义, 用来描述导体的导电性的大小. 
+
+从更加微观的意义上考虑 current density
+\begin{align}
+  \vec{j} = -ne \vec{v}
+\end{align}
+$\vec{j}$ 从量纲上考虑是单位面积单位时间的电荷量. 电子的速度 $\vec{v}$ 是长度比
+上时间. $n$ 是单位体积. 三者相乘就单位面积单位时间的电量.
+
+$\vec{v}$ 是一个平均速度. 通过假设推导 $\vec{v}$ . $\vec{v}$ 的产生原因是
+$\vec{E}$ 的存在. 因为无电场时, 没有电流, 即 $\vec{v}=0$ . 
+
+考虑 $\vec{E}$ 对 $\vec{v}$ 的影响. 受到的力产生的加速度为
+\begin{align}
+  \vec{a} = -\frac{e \vec{E}}{m}
+\end{align}
+
+考虑电子两次碰撞之间的时间 $\tau$ 内产生的加速后的平均速度为
+\begin{align}
+  \vec{v}_{\mbox{avg}} = 0 - \frac{e \vec{E}\tau}{m}
+\end{align}
+
+所以
+\begin{align}
+  \vec{j} = \frac{ne^2\tau}{m}\vec{E}
+\end{align}
+微观量就可以由宏观可测的量推出
+\begin{align}
+  \tau = \frac{m}{\rho ne^2}
+\end{align}
+
+*** 电子的运动方程
+
+假设电子在 $t$ 时刻的平均动量为 $\vec{p}(t)$ , 外场给电子的力为 $\vec{f}(t)$ .
+
+在 $\Delta t$ 时间内没有发生碰撞的电子, 对平均动量的贡献为
+
+\begin{align}
+  \vec{p}(t) + \int_t^{t+ \Delta t}\vec{f}(t)\mathrm{d}t
+\end{align}
+
+将第二项展开到 $\Delta t$ 的二阶(假设 $\vec{f}(t)$ 的原函数为 $\vec{F}(t)$ )
+\begin{align}
+  \int_t^{t+ \Delta t}\vec{f}(t)\mathrm{d}t
+  =& \vec{F}(t+ \Delta t) - \vec{F}(t) \\
+  =& \vec{F}(t) + \vec{F}'(t)\Delta t + \mathcal{O}(\Delta t)^2 - \vec{F}(t)\\
+  =& \vec{f}(t)\Delta t + \mathcal{O}(\Delta t)^2
+\end{align}
+
+所以
+
+\begin{align}
+  \vec{p}(t) + \int_t^{t+ \Delta t}\vec{f}(t)\mathrm{d}t
+  = \vec{p}(t) + \vec{f}(t)\Delta t + \mathcal{O}(\Delta t)^2
+\end{align}
+
+
+在 $\Delta t$ 时间内发生碰撞的电子. 根据假设, 碰撞后, 它的平均动量为 $\vec{0}$
+. 所以它的经过不路 $\Delta t$ 时间的受力后, 平均动量的量级为(可见碰撞后的电子速
+度取为碰撞周围达到热平衡的条件是很重要的)
+\begin{align}
+  \vec{f}(t)\Delta t + \mathcal{O}(\Delta t)^2
+\end{align}
+
+那么在 $\Delta t$ 时间后, 它的平均动量变为 
+
+\begin{align}
+  \vec{p}(t + \Delta t) = \left( 1 - \frac{\Delta t}{\tau} \right)
+  \left[ \vec{p}(t) + \vec{f}(t)\delta t + \mathcal{O}(\Delta t)^2 \right]
+  + \frac{\Delta t}{\tau}\left[ \vec{f}(t)\delta t + \mathcal{O}(\Delta t)^2 \right]
+\end{align}
+
+舍去 $\mathcal{O}(\Delta t)^2$ , 取 $\Delta t \to 0$ 后, 得到电子的运动
+方程
+
+\begin{align}
+  \frac{\mathrm{d}}{\mathrm{d}t} \vec{p}(t) = - \frac{\vec{p}(t)}{\tau} + \vec{f}(t)
+\end{align}
+
+* The Sommerfeld Theory of Metals
+
+与 Drude Model 的主要区别在于将电子作为全同费米子来处理, 考虑 Fermi-Dirac 分布. 
+
+又名 Free Electron Model ,Drude-Sommerfeld Model.
+
+* 总结
+
+随着学习的不断加深, 越来越要重视清晰的物理图像. 中学的物理由于物理图像都是日常生
+活中的图像, 与经验相符, 所以已经自然而然地存在于经验当中, 所以重点在于学习用数学
+来描述物理图像.
+
+本科的学习不够深入, 只知道物理图像是必要的, 也没有体会到物理图像的重要性. 现在学
+习的图像都很抽象, 之前似乎陷在数学之中了. 以后要非常重视清晰的物理图像.
+
+* Reference 
+
+Ashcroft, Mermin, Solid State Physics
+
+[[https://en.wikipedia.org/wiki/Drude_model]]

@@ -1,0 +1,203 @@
+#+TITLE: Feynman Path Integral Note
+#+DATE: <2019-04-24>
+#+CATEGORIES: 专业笔记
+#+TAGS: 物理, path integral
+#+HTML: <!-- toc -->
+#+HTML: <!-- more -->
+
+* Propagators
+
+** Heisenberg 表象中的态的内积
+
+Propagator 可以看作是 Heisenberg 表象中的态的内积, 即
+\begin{align}
+  \langle x_N, t_N | x_0 , t_0 \rangle
+  = [\langle x_N | U(t_N, 0)]
+   \cdot[ U(0,t_0)| x_0 \rangle]
+\end{align}
+
+** 演化算符的矩阵元
+
+Propagator 可以看作是演化算符的矩阵元, 即
+\begin{align}
+  \langle x_N, t_N | x_0 , t_0 \rangle
+  = \langle x_N | U(t_N, t_0) | x_0 \rangle
+\end{align}
+物理意义解释为: $t_0$ 时刻处于 $|x_0\rangle$ , 然后演化到 $t_N$ 时刻,
+这时在态 $| x_N\rangle$ 上的投影, 即在态 $| x_N\rangle$ 上的概率振幅,
+就是 Propagator .
+
+* Feynman's Path Interal
+
+** 核心思路
+
+算得了 Propagator , 就知道了体系的演化, 问题就得到了解决. 所以是目标就
+是计算 Propagator .
+
+一个基本的假设是
+\begin{align}
+    \langle x_N, t_N | x_0 , t_0 \rangle \quad \mathrm{corresponds\quad to }
+  \quad e^{\frac{\mathrm{i}}{\hbar}S(0,N)}
+\end{align}
+其中 $S$ 是作用量
+\begin{align}
+  S(N,0) =
+   \int_{t_0}^{t_N}\mathrm{d}t \cdot L(x, \dot{x}) 
+\end{align}
+$L$ 是经典的拉氏量. 但是 $L$ 是 $x$ 和 $\dot{x}$ 的函数. 所以只有选定
+一个路径后, $S(N,0)$ 才有明确定义. 怎么办呢?
+
+解决方法是, 插入完备基. 在 Heisenberg 表象中, 每个时刻的位置的本征态都
+可以看作是一组完备基. 即
+\begin{align}
+  \int \mathrm{d}^3 x\cdot |\vec{x},t\rangle \langle \vec{x},t |
+  = 1
+\end{align}
+在 $t_0$ 和 $t_N$ 之间插入无穷多组完备基, 也就是
+\begin{align*}
+  &\langle x_N, t_N | x_0 , t_0 \rangle \\
+   =&
+   \int\mathrm{d}^3 x_{N-1}\cdots
+   \int\mathrm{d}^3 x_1 \cdot
+   \langle x_N, t_N |\vec{x}_{N-1},t_{N-1}\rangle
+   \langle \vec{x}_{N-1},t_{N-1} |
+   \cdots |\vec{x}_1, t_1\rangle
+   \langle \vec{x}_1, t_1 | x_0 , t_0 \rangle
+\end{align*}
+其中 $N\to \infty$ . 这样相当于对于所有的路径都作了计算, 也就是
+\begin{align}
+      \langle x_N, t_N | x_0 , t_0 \rangle \quad \sim
+  \quad \sum_{\mathrm{all\,paths}} e^{\frac{\mathrm{i}}{\hbar}S(N,0)}
+\end{align}
+对于无穷短间隔内的 Propagator , 将其假设为
+\begin{align}
+  \langle x +\Delta x , t + \Delta t |x , t \rangle
+  = \frac{1}{\omega(\Delta t)}
+   e^{\frac{\mathrm{i}}{\hbar}S}
+\end{align}
+其中 $\omega(\Delta t)$ 是只与 $\Delta t$ 的大小有关的一个归一化系数.
+
+这样, 就得到了 Feynman 的 Path Integral 的表达式
+\begin{align*}
+  &\langle x_N, t_N | x_0 , t_0 \rangle \\
+  =& \lim_{N\to \infty}\frac{1}{[\omega(\Delta t)]^{N-1}}\cdot
+   \int\mathrm{d}^3 x_{N-1}\cdots
+   \int\mathrm{d}^3 x_1 \cdot e^{\frac{\mathrm{i}}{\hbar}S(N,0)}\\
+  =&\int_{x_1}^{x_N}\mathcal{D}[x(t)] \cdot e^{\frac{\mathrm{i}}{\hbar}S(N,0)}\\
+\end{align*}
+第二个等号采用了新的记号
+\begin{align}
+  \int_{x_1}^{x_N} \mathcal{D}[x(t)]\equiv \lim_{N\to \infty}\frac{1}{[\omega(\Delta t)]^{N-1}}\cdot
+   \int\mathrm{d}^3 x_{N-1}\cdots
+   \int\mathrm{d}^3 x_1 
+\end{align}
+
+** 归一化系数
+
+下面来求归一化因子 $\omega(\Delta t)$ (假设它与势无关), 可以用自由粒子
+的拉氏量. 然后, 利用完备基的正交归一性
+\begin{align}
+  \lim_{\Delta t\to 0}   \langle x +\Delta x , t + \Delta t |x , t \rangle
+  = \delta (\Delta x)
+\end{align}
+那么
+\begin{align}
+  \lim_{\Delta t\to 0}\frac{1}{\omega(\Delta t)}
+   e^{\frac{\mathrm{i}}{\hbar}S} = \delta (\Delta x)
+\end{align}
+下面先把 $S$ 算出来
+\begin{align}
+  S = \int_t^{t+\Delta t} \mathrm{d} t' \cdot \left[
+  \frac{m}{2}\left(\frac{\Delta x}{\Delta t}\right)^2  \right]
+  = \frac{m (\Delta x) ^2}{2\Delta t}
+\end{align}
+上式中由于是自由粒子, 所以粒子是直线运动, 速度为 $\Delta x/\Delta t$ .
+将算出来的 $S$ 代回原式并对 $\Delta x$ 在全空间积分得
+\begin{align}
+  \frac{1}{\omega(\Delta t)} \cdot\int \mathrm{d}\Delta x \cdot
+  e^{\frac{\mathrm{im (\Delta x)^2}}{2 \hbar \Delta t}}
+  =\frac{1}{\omega(\Delta t)} \sqrt{\pi\frac{2\hbar \Delta t}{m}}
+  =1
+\end{align}
+即求得归一化系数为
+\begin{align}
+  \frac{1}{\omega (\Delta t)} = \sqrt{\frac{m}{2\pi \hbar\Delta t}}
+\end{align}
+
+* Classical Limit
+
+当 $\hbar \to 0$ 时, 只有经典轨道有贡献. 所谓经典轨道, 即满足 Hamilton
+原理的路径
+\begin{align}
+  \delta S = 0
+\end{align}
+. 这是因为, 不满足 Hamilton 原理的作用量 $\delta S \neq 0$ , 而 $\hbar
+\to 0$ , 所以作用量即使有很小的改变, 它对应的相位也会有很大的改变, 那么它在对
+所有路径求和时, 相位会相干相消. 而只有满足 Hamilton 原理的路径, 它有微
+小的改变时, 它的相位不会相消. 作用量在 $[-\hbar \pi, \hbar\pi]$ 内都会
+有贡献.
+
+一个周期内的相位都会相消, 只有作用量取平稳值的时候没有其它相位与它相消.
+
+* Equivalence to Schrodinger's Wave Mechanics
+
+考虑从 Propagator 对时间的微分入手, 将从 $t_0, x_0$ 到任意时刻 $t, x$ 的
+Propagator 在 $t-\Delta t$ 处展开
+\begin{align}
+  \langle x, t| x_0, t_0 \rangle = \langle x, t-\Delta t | x_0 ,t_0 \rangle
+  + \Delta t \frac{\partial}{\partial t}
+  \langle x, t-\Delta t | x_0 ,t_0 \rangle + \mathcal{O}[(\Delta t)^2]
+\end{align}
+同时, 也可以用 Path Integral 的方法计算 Propagator 然后再对应 $\Delta
+t$ 的一阶项. 这样就用 Path Integral 求得 Propagator 对时间的一阶导数.
+
+可以考虑在离 $|x, t\rangle$ 无穷近的地方插入一组完备基
+\begin{align}
+  \langle x, t| x_0, t_0 \rangle = \sqrt{\frac{\lambda}{\pi}}
+  \int_{-\infty}^{+\infty} \mathrm{d}\Delta x \cdot e^{-\lambda (\Delta x)^2 }
+  \cdot e^{-\frac{\mathrm{i} V \Delta t}{\hbar}} \cdot
+  \langle x- \Delta x, t- \Delta t| x_0, t_0 \rangle
+\end{align}
+其中拉氏量已代为 $L = \frac{m}{2}\left( \frac{\Delta x}{ \Delta t}
+\right)^2 - V$ , 为了简便记 $\lambda = \frac{m}{2\mathrm{i}\hbar
+\Delta t}\sim \frac{1}{\Delta t}$ . 
+将上式最后一项在 $\langle x, t- \Delta t |$ 附近展开
+\begin{align*}
+  \langle x- \Delta x, t- \Delta t| x_0, t_0 \rangle
+  =& \langle x, t- \Delta t| x_0, t_0 \rangle + \mathrm{Linear\, term}\\
+  &+ \frac{(\Delta x)^2}{2}\cdot \frac{\partial^2}{\partial x^2}
+  \langle x, t- \Delta t| x_0, t_0 \rangle + \mathcal{O}[(\Delta x)^3]
+\end{align*}
+上式中的线性项及其它奇数次幂项由于是奇函数, 积分后都为零, 所以不加考虑.
+
+代回积分式中, 并将 $e^{-\frac{\mathrm{i} V\Delta t}{\hbar}}$ 也按
+$\Delta t$ 进行 Taylor 展开, 可得
+\begin{align*}
+  \langle x, t| x_0, t_0 \rangle =  \langle x, t-\Delta t | x_0 ,t_0 \rangle
+  + \left[\frac{1}{2}\frac{\partial^2}{\partial x^2} \cdot \frac{1}{2}\frac{1}{\lambda}
+   -\frac{\mathrm{i}}{\hbar}V \Delta t\right] \langle x, t- \Delta t| x_0, t_0 \rangle
+  + \mathcal{O}[(\Delta t)^3]
+\end{align*}
+注意式其中 $\frac{1}{\lambda}\sim t$ . 其中利用了积分公式
+\begin{align}
+  \int_{-\infty}^{+\infty}\mathrm{d} x\cdot e^{-\lambda x^2}
+  =& \sqrt{\frac{\pi}{\lambda}} \\
+  \int_{-\infty}^{+\infty}\mathrm{d} x\cdot x^2e^{-\lambda x^2}
+  =& -\frac{\partial}{\partial \lambda}\sqrt{\frac{\pi}{\lambda}} 
+  = \frac{1}{2}\sqrt{\frac{\pi}{\lambda^3}}
+\end{align}
+比较两种展开的一阶项可得
+\begin{align}
+  \mathrm{i}\hbar \frac{\partial}{\partial t}\langle x, t- \Delta t| x_0, t_0 \rangle
+  =\left[ -\frac{\hbar^2}{2m}\frac{\partial^2}{\partial x^2}
+  +V\right]\langle x, t- \Delta t| x_0, t_0 \rangle
+\end{align}
+此即 Schrodinger Equation !
+
+* Reference
+
+J. J Sakurai, Jim Napolitano, Modern Quantum Mechanics 2ed:
+- Chap 2.6 Propagators and Feynman Path Integral
+
+R. Shankar, Principles of Quantum Mechanics 2ed:
+- Chap 8 The Path Integral Formulation of Quantum Theory

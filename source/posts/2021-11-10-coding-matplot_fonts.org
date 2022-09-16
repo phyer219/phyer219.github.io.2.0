@@ -1,0 +1,71 @@
+#+TITLE: python matplotlib 画图小技巧: 自定义字体
+#+DATE: <2021-11-10>
+#+CATEGORIES: 软件使用
+#+TAGS: python, matplotlib, font_manager, mathtext
+#+HTML: <!-- toc -->
+#+HTML: <!-- more -->
+
+* 问题
+
+在用 =matplotlib= 画图时, 使用自定义字体. 比如从一个下载好的 =.ttf= 字体文件加载,
+或者在程序无法找到系统中的字体时, 指定字体文件的位置.
+
+* Method 1
+
+#+begin_src python
+import numpy as np
+import matplotlib.pyplot as plt
+from matplotlib import font_manager
+
+fe = font_manager.FontEntry(fname='/usr/share/fonts/TTF/Times.TTF', name='tnr')
+font_manager.fontManager.ttflist.append(fe)
+
+plt.rcParams['font.family'] = fe.name
+plt.rcParams['mathtext.fontset'] = 'cm'
+
+x = np.linspace(0, 6, 51)
+plt.plot(x, np.sin(x))
+plt.title(r'Sin Function - Method 1')
+plt.xlabel(r'$\theta$')
+plt.ylabel(r'$\sin\theta$')
+plt.savefig('method1.png')
+#+end_src
+
+[[file:2021-11-10-coding-matplot_fonts/method1.py][method1.py]]
+
+* Method 2
+
+#+begin_src python
+import numpy as np
+import matplotlib.pyplot as plt
+from matplotlib import font_manager
+
+font_path = '/usr/share/fonts/TTF/Times.TTF'  # Your font path goes here
+font_manager.fontManager.addfont(font_path)
+prop = font_manager.FontProperties(fname=font_path)
+
+plt.rcParams['font.family'] = prop.get_name()
+plt.rcParams['mathtext.fontset'] = 'cm'  # 'cm' (Computer Modern)
+
+x = np.linspace(0, 6, 51)
+plt.plot(x, np.sin(x))
+plt.title(r'Sin Function - Method 2')
+plt.xlabel(r'$\theta$')
+plt.ylabel(r'$\sin\theta$')
+plt.savefig('method2.png')
+#+end_src
+
+[[file:2021-11-10-coding-matplot_fonts/method2.py][method2.py]]
+
+* Result
+
+[[file:2021-11-10-coding-matplot_fonts/method1.png]]
+
+
+* Reference
+
+- [[https://stackoverflow.com/questions/35668219/how-to-set-up-a-custom-font-with-custom-path-to-matplotlib-global-font]]
+
+- [[https://matplotlib.org/stable/tutorials/introductory/customizing.html#customizing-with-matplotlibrc-files][Matplotlib Documentation: A sample matplotlibrc file]]
+
+- [[https://matplotlib.org/stable/users/dflt_style_changes.html?highlight=math%20font#math-text][Matplotlib Documentation: Math text]]

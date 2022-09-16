@@ -1,0 +1,57 @@
+#+TITLE: 多体物理读书会：多体物理读书会: 3.1.6 谱密度
+#+DATE: <2018-11-12>
+#+CATEGORIES: 专业笔记
+#+TAGS: 物理, 格林函数, 多体物理读书会, 谱密度
+#+HTML: <!-- toc -->
+#+HTML: <!-- more -->
+* 单粒子谱 (single particle spectroscopy)
+** Photoemission (PES)
+1. 能量为 $\hbar \omega$ 的光子被固体部分占据的能带 (partially filled energy band) 中的电子吸收.
+2. 电子吸收能量后跑出固体.
+3. 分析跑出光电子的动能, 得到能带中占据态的信息.
+- 研究的对象是能带. 能带中减少一个电子. 跃迁算符为 $Z_{-1} = a_{\alpha}$.
+** Iverse Photoemission (IPE)
+1. 将电子注入到固体中, 降落到部分占据的能带 (partially filled energy band) 中的非占据态.
+2. 电子释放能量为 $\hbar \omega$ 的光子.
+3. 分析释放的光子,得到能带中非占据态的信息.
+- 研究的对象是能带. 能带中增加一个电子. 跃迁算符为 \(Z_{+1}=a_{\$\beta}^{\dagger}\).
+PES 和 IPE 是两种互补的谱(complementary spectroscopies).
+* 二粒子谱 (two particle spectroscopy)
+** Auger Electron Spectroscopy (AES)
+1. 固体中原子的内层电子态有空穴.
+2. 电子从部分占据的能带 (partially filled energy band) 跃迁到这个内层电子态.
+3. 释放的能量传递给部分占据的能带 (partially filled energy band)中的另一个电子.
+4. 另一个电子跑出固体.
+5. 分析跑出的电子的动能, 得到未占据未占据能态的能带结构信息.
+- 研究的对象是能带, 能带中少了两个电子 ,跃迁算符为 $Z_{-2} = a_{\alpha}a_{\beta}$.
+** Appearance Potential Spectroscopy (APS)
+1. 电子降落到带中的非占据态.
+2. 释放的能量传递给内层电子(非价电子)
+3. 内层电子得到能量, 激发到能带中的另一个态上.
+4. 分析什么?
+AES 和 APS 是两种互补的二粒子谱(complementary two-particle spectroscopies).
+- 研究的对象是能带, 能带中多了两个电子 ,跃迁算符为 $Z_{+2} = a_{\beta}^{\dagger}a_{\alpha}^{\dagger}$.
+* 强度
+\begin{align*}
+  I_r(E) = \frac{1}{\Xi}\sum_{mn}e^{-\beta E_n} \mid \langle E_m Z_r \mid E_n \rangle \mid^2 \delta (E-(E_m-E_n))
+\end{align*}
+强度由三部分组成:
+1. 占据概率
+2. 跃迁概率
+3. Dirac delta函数
+* 跃迁算符与强度的性质
+对于互补的谱有:
+\begin{align*}
+  Z_r = Z_{-r}^{\dagger}
+\end{align*}
+\begin{align*}
+  I_r(E) = e^{\beta E} I_{-r}(-E)
+\end{align*}
+所以互补的谱不是相互独立的. 因此就引出了谱密度的定义:
+\begin{align*}
+  \frac{1}{\hbar} S_r^{\pm} (E) = I_{-r} (E) \mp I_r(-E) = \left( e^{-\beta E} \pm 1 \right)
+\end{align*}
+变换到时间表示下就是格林函数中常见的谱密度:
+\begin{align*}
+  S_{AB}^{(\varepsilon)}(t,t') =\frac{1}{2 \pi} \langle \left[ \hat{A}(t),\hat{B}(t') \right]_{-\varepsilon}\rangle
+\end{align*}

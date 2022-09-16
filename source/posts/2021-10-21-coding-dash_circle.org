@@ -1,0 +1,58 @@
+#+TITLE: python matplotlib 画图小技巧: 虚线的圆与虚线的五角星
+#+DATE: <2021-10-21>
+#+CATEGORIES: 软件使用
+#+TAGS: python, matplotlib, marker, dashed
+#+HTML: <!-- toc -->
+#+HTML: <!-- more -->
+
+* 问题一:
+
+在散点图上, 用一个虚线的圆圈标出某个数据点
+
+#+begin_src python
+import numpy as np
+import matplotlib.pyplot as plt
+import matplotlib.path as mpath
+
+x = np.linspace(0, 6, 20)
+y = np.sin(x)
+plt.plot(x, y, ls='none', marker='o', mfc='none')
+
+plt.plot(x[10], y[10], marker='o', mfc='none', ms=20)
+plt.plot(x[10], y[10], marker=mpath.Path.unit_regular_star(20),
+         ms=25, mfc='none', mec='white')
+plt.savefig('./fig1.png')
+#+end_src
+
+[[file:2021-10-21-coding-dash_circle/code1.py][code]]
+
+[[file:2021-10-21-coding-dash_circle/fig1.png]]
+
+* 问题二:
+
+画一个金色的的虚线边框的五角星
+
+#+begin_src python
+import matplotlib.pyplot as plt
+
+plt.plot([1], [1], marker=(5, 1, 0), markersize=30, mfc='none', mec='k', mew=1)
+
+for i in range(4):
+    plt.plot([1], [1], marker='o', markersize=30-5*i,
+             mfc='none', mec='w', mew=1)
+
+plt.plot([1], [1], marker=(5, 1, 0), markersize=30, mfc='gold', mec='k', mew=0)
+plt.savefig('fig2.png')
+#+end_src
+
+[[file:2021-10-21-coding-dash_circle/code2.py][code]]
+
+[[file:2021-10-21-coding-dash_circle/fig2.png]]
+
+* Reference
+
+- YK Yang 的讨论
+
+- [[https://stackoverflow.com/questions/38316746/how-to-draw-a-marker-with-dashed-dotted-edge-in-matplotlib/69658923#69658923]]
+
+- [[https://matplotlib.org/stable/gallery/shapes_and_collections/marker_path.html][Marker Path]]

@@ -1,0 +1,131 @@
+\documentclass{ctexart}
+\usepackage{amsmath}
+\title{复变函数}
+\author{ZQW}
+
+
+\begin{document}
+\maketitle
+
+\section{解析函数}
+\section{解析( Anlyticity )}
+
+\subsection{惯用记法}
+
+任意复数 $z$ 记为
+\begin{align*}
+  z = x + \mathrm{i}y
+\end{align*}
+
+复函数 $f(z)$ 记为
+\begin{align*}
+  f(z) = u(x,y) +\mathrm{i} v(x,y)
+\end{align*}
+
+例如
+\begin{align*}
+  f(z) = z + z^2 = x + \mathrm{i}y + (x + \mathrm{i}y)^2 = x + x^2 - y^2 + \mathrm{i}(y + 2xy)
+\end{align*}
+其中
+\begin{align*}
+  u(x,y) =& x + x^2 - y^2 \\
+  v(x,y) =& y + 2xy
+\end{align*}
+
+\subsection{导数}
+
+由于
+\begin{align*}
+  f(z) = f(x,\mathrm{i}y)
+\end{align*}
+可以看成是一个二元函数.
+那么有类似于一般的二元函数梯度
+\begin{align*}
+  \nabla g(x,y) = \frac{\partial}{\partial x} g(x,y) \vec{i}+ \frac{\partial}{\partial y} g(x,y) \vec{j}
+\end{align*}
+的定义, 复函数的导数包含两个正交的方向上的导数
+\begin{align*}
+  \frac{\partial}{\partial x} f(x,\mathrm{i}y) =&\frac{\partial u}{\partial x} + \mathrm{i}\frac{\partial v}{\partial x}\\
+  \frac{\partial}{\partial y} f(x,\mathrm{i}y) =&\frac{\partial u}{\partial \mathrm{i}y} + \mathrm{i} \frac{\partial v}{\partial \mathrm{i}y}
+                                               =- \mathrm{i}\frac{\partial u}{\partial y} +\frac{\partial v}{\partial y}
+\end{align*}
+解析 ( Anlyticity ) 函数的定义是满足以下柯西-黎曼条件 (Cauchy-Riemann conditions)
+\begin{align*}
+  \frac{\partial u}{\partial x} =&\quad \frac{\partial v}{\partial y} \\
+  \frac{\partial u}{\partial y} =& -\frac{\partial v}{\partial x}
+\end{align*}
+的复函数. 可以看出, 对于解析函数, 在 $x$ 方向和在 $\mathrm{i}y$ 方向上的导数是一样的.
+
+\subsection{解析函数一定可以写在 $z$ 的函数}
+
+一个复函数, 即可以看成是 $(x,y)$ 的函数, 也可以看成是 $(z,z^{*})$ 的函数.
+因为这是两组独立的变量, 变换关系是
+\begin{align*}
+  \left\{
+  \begin{array}{c}
+    z = x + \mathrm{i} y \\
+    z^{*} = x - \mathrm{i}y
+      \end{array}
+  \right.
+  \quad  \quad  \quad  \quad
+    \left\{
+  \begin{array}{c}
+    x = \frac{1}{2}(z + z^{* }) \\
+    y = \frac{1}{2\mathrm{i}} (z - z^{*})
+          \end{array}
+  \right.
+\end{align*}
+
+所以, 复函数更加普遍的定义应该写成 $f(z,z^{* })$ , 但是对于解析函数有
+\begin{align*}
+  \frac{\partial}{\partial z^{* }}f(x, y) =& \frac{\partial f}{\partial x}\frac{\partial x}{\partial z^{* }}
+               +\frac{\partial f}{\partial y}\frac{\partial y}{\partial z^{* }} \\
+        =& \left(\frac{\partial u}{\partial x} + \mathrm{i}\frac{\partial v}{\partial x}\right)\left(\frac{1}{2}\right)
+               + \left(\frac{\partial u}{\partial y} +\mathrm{i}\frac{\partial v}{\partial y}\right)\left(-\frac{1}{2\mathrm{i}}\right) \\
+          =&0
+\end{align*}
+所以解析函数不包含 $z^{* }$ .
+
+
+\section{留数定理}
+
+假设一函数函数可以写成
+\begin{align*}
+  g(z) = \frac{f(z)}{z - z_0}
+\end{align*}
+的形式, 其中 $f(z)$ 没有奇点. 那么它在 $z = z_0$ 处有奇点.对任意包含 $z_0$ 点的路径 $C$ 逆时针积分
+\begin{align*}
+  \oint_{C}\frac{f(z)}{z -z_0} \mathrm{d}z
+\end{align*}
+与在奇点附近上一个无穷小的圆的积分是相等的
+\begin{align*}
+  \oint_{C_0}\frac{f(z)}{z -z_0} \mathrm{d}z
+\end{align*}
+用振幅和辐角来表示　$z-z_{0} = r e^{\mathrm{i}\phi}$ , 因为在圆上积分, 所以 $r$ 是常数, 那么有
+\begin{align*}
+  \oint_{C_0}\frac{f(z)}{z -z_0} \mathrm{d}z &= \int_0^{2\pi}\frac{f(z)}{r e^{\mathrm{i}\phi}} \mathrm{i}re^{\mathrm{i}\phi}\mathrm{d}\phi \\
+          &=\mathrm{i}\int_0^{2\pi} f(z_0) \mathrm{d}\phi \\
+           &= \mathrm{i} 2\pi f(z_{0})
+\end{align*}
+所以最终就有
+\begin{align*}
+  \oint_{C}g(z)\mathrm{d}z = \oint_{C}\frac{f_z}{z -z_0}\mathrm{d}z = 2\pi \mathrm{i} f(z_0) = 2\pi \mathrm{i}\cdot g(z)(z-z_{0})|_{z=z_0}
+\end{align*}
+$g(z)(z-z_0)|_{z=z_0}$ 就是留数, 去掉奇点留下的数.
+
+推广到多个奇点的情况
+\begin{align*}
+  \oint_C g(z) \mathrm{d}z = 2\pi \mathrm{i} \sum_{k=1}^N \mathrm{Res}[g(z_k)]
+\end{align*}
+
+\section{参考文献}
+
+Jim, Napolitano, March 9, 2013, Notes on Complex Analysis in Physics
+
+http://www.rpi.edu/dept/phys/Courses/PHYS6520/Spring2018/NotesOnComplexAnalysis.pdf
+
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

@@ -1,0 +1,36 @@
+#+TITLE: Atomic and Optical Physics I, 08 Atoms IV: Hyperfine Structure
+#+DATE: <2022-02-23>
+#+CATEGORIES: 专业笔记
+#+TAGS: Atomic and Optical Physics, hyperfine structure
+#+HTML: <!-- toc -->
+#+HTML: <!-- more -->
+
+* Information
+- 官方介绍:
+  https://ocw.mit.edu/courses/physics/8-421-atomic-and-optical-physics-i-spring-2014/
+
+- 视频列表地址:
+  https://www.youtube.com/playlist?list=PLUl4u3cNGP62FPGcyFJkzhqq9c5cHCK32
+
+* Hyperfine
+
+
+
+* Reference
+
+- [[https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.103.053002][S. S. Hodgman, R. G. Dall, L. J. Byron, K. G. H. Baldwin, S. J. Buckman, and
+  A. G. Truscott Phys. Rev. Lett. 103, 053002 – Published 30 July 2009]]
+
+- [[https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.100.023001][Phys. Rev. Lett. 100, 023001 – Published 15 January 2008, Experimental
+  Determination of the Helium $2^3P_1–1^1S_0$ Transition Rate]]
+
+- [[https://en.wikipedia.org/wiki/Zitterbewegung][Wikipedia: Zitterbewegung]]
+
+- [[https://en.wikipedia.org/wiki/Theodore_A._Welton][Wikipedia: Welton]]
+
+- [[https://en.wikipedia.org/wiki/Victor_Weisskopf][Wikipedia: Weisskopf]]
+
+- Demtröder, W. Atoms, Molecules and Photons: An Introduction to Atomic-,
+  Molecular- and Quantum Physics. (Springer Berlin Heidelberg, 2018)
+
+- [[https://en.wikipedia.org/wiki/Fine_structure][wikipedia: Fine structure]]

@@ -1,0 +1,149 @@
+#+TITLE: 几种数值积分方法
+#+DATE: <2019-10-07>
+#+CATEGORIES: 专业笔记
+#+TAGS: 物理, 数值积分
+#+HTML: <!-- toc -->
+#+HTML: <!-- more -->
+
+* Gaussian Quadrature 
+
+
+适用于积分区间内平滑的积分.
+
+
+Computes the sample points and weights for Gauss-Legendre quadrature. The sample points are the roots of the n-th degree Legendre polynomial
+. These sample points and weights correctly integrate polynomials of
+degree or less over the interval with weight function . 
+\begin{align}
+  \int_{-1}^1 f(x)\mathrm{d}x = \sum_{i=1}^n w_i f(x_i)
+\end{align}
+其中 $x_i$ 是 $n$ 阶 Legendre 多项式的根.   $x_i$ 和权重 $w_i$ 可以由 scipy.special.roots_ legendre 生成:
+#+BEGIN_QUOTE
+Computes the sample points and weights for Gauss-Legendre
+quadrature. The sample points are the roots of the n-th degree
+Legendre polynomial 
+. These sample points and weights correctly integrate polynomials of
+degree or less over the interval with weight function . 
+#+END_QUOTE
+
+积分区间不在 $[-1, 1]$ , 可以通过换换元来转换
+
+\begin{align}
+  \int_a^b f(x) \mathrm{d}x = \frac{b-a}{2}\int_{-1}^1 f(\frac{b-a}{2}t + \frac{b+a}{2})\mathrm{d}t
+\end{align}
+
+#+BEGIN_SRC python
+  from scipy.special import roots_legendre as leg
+  def gauquad(f, a, b, n=50):
+      '''
+      定义 Gaussian quadrature 积分
+      函数 f 的积分区间为 [a,b]
+      取 n 个 Legendre 的根
+      def Gaussian quadrature integration
+      integrate function f from a to b
+      take n Legendre roots
+      '''
+      ft = lambda t: f( (b-a)*t/2 +(a+b)/2 ) * (b-a)/2
+      x, w = leg(n)
+      I = 0
+      for i in range(n):
+          I = I + w[i]*ft(x[i])
+      err = 0                     # 为了与 scipy.integrate 中积分函数的输出一致, 多一个 err 参数.
+      return I,err
+#+END_SRC
+
+* Cauchy Principal Value (CPV) Gaussian Quadrature
+
+CPV 用 Gaussian quadrature 时不能给出正确的结果. 这时可以将函数的积部
+分和偶部分分开算.
+
+计算积分
+\begin{align}
+  \mathcal{P}\int_{-a}^af(x) \mathrm{d}x = \lim_{r\to 0^+}\left[
+   \int_{-a}^{-r} f(x)\mathrm{d}x +\int_{r}^af(x)\mathrm{d}x
+   \right]
+\end{align}
+其中 $0$ 为奇点.
+
+关于奇点的 Odd 部分
+\begin{align}
+  g(x) = \frac{1}{2}\left[ f(x)-f(-x) \right]
+\end{align}
+Even 部分
+\begin{align}
+  h(x) = \frac{1}{2}\left[ f(x) + f(-x)\right]
+\end{align}
+总的积分
+\begin{align}
+  \mathcal{P}\int_{-a}^a f(x) \mathrm{d}x = \lim_{r\to 0^+} 
+   \int_r^a \left[ f(x) + f(-x)\right] \mathrm{d}x
+\end{align}
+
+如果奇点不是 $0$ , 也可以通过换元转化成上式的形式.
+** code
+#+BEGIN_SRC python
+from scipy import integrate
+from scipy.integrate import fixed_quad
+def sgq(f, a, b, sp, n=10):
+    """带有主值积分的积分.
+    Singular Gaussian quadrature."""
+    diffa = sp - a
+    diffb = b - sp
+    def ff(t):
+        ff = f(t+sp) + f(-t+sp)
+        return ff
+    if diffa<diffb:
+        sgq1, err = gauquad(ff, 0, sp-a, n=rootNum)
+        sgq2, err = gauquad(f, 2*sp-a, b, n=rootNum)
+    else:
+        sgq1, err = gauquad(ff, 0, b-sp, n=rootNum)
+        sgq2, err = gauquad(f, a, 2*sp-b, n=rootNum)
+    sgq = sgq1 + sgq2
+    return sgq, err
+#+END_SRC
+
+* Tanh-Sinh Quadrature
+对于端点发散的情况, 可以用 Tanh-Sinh quadrature (Double Exponential)
+方法. 
+对于积分
+\begin{align}
+  \int_{-1}^1 f(x)\mathrm{d}x
+\end{align}
+通过换元
+\begin{align}
+  x = \tanh \left( \frac{1}{2}\pi \sinh t \right)
+\end{align}
+将积分区间 $x\in [-1, 1]$ 换为 $t\in (-\infty, +\infty)$ .
+\begin{align}
+  \int_{-1}^1 f(x)\mathrm{d}x = \int_{-\infty}^{+\infty}f[x(t)] w(t)\mathrm{d}t
+\end{align}
+其中
+\begin{align}
+  w(t) = \frac{\mathrm{d}}{\mathrm{d}t}x(t) 
+  =\frac{ \frac{1}{2}\pi \cosh t}{\cosh^2\left( \frac{1}{2}\pi \sinh t \right)}
+\end{align}
+权重 $w(t)$ 是一个以原点为中心的钟形函数, 因此可以抵消原来在端点的发散.
+
+然后将积分离散化, 将积分区间作适当截断, 做数值计算.
+#+BEGIN_SRC python
+def ts(f, a, b, n=51):
+    """Tanh-sinh quadrature 方法.
+    适用于端点发散的情况."""
+    up = 4
+    h = 2*up / (n-1)
+    t = np.linspace(-up, up, n, endpoint=True)
+    x = np.tanh(1/2*np.pi*np.sinh(t))
+    w = 1/2*h*np.pi*np.cosh(t)
+    w = w/(np.cosh(1/2*np.pi*np.sinh(t))**2)
+    gc = 0
+    for i in range(n):
+        p = (x[i]*(b-a) + a + b)/2
+        gc = gc + f(p)*w[i]
+    err = 0
+    gc = gc * (b-a)/2
+    return gc, err
+#+END_SRC
+
+* Reference
+
+[[https://www.win.tue.nl/casa/meetings/seminar/previous/_abstract021106_files/Improper_integral1.pdf]]

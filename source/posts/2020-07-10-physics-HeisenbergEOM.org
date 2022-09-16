@@ -1,0 +1,64 @@
+#+TITLE: 关于 Heisenberg 运动方程
+#+DATE: <2020-07-10>
+#+CATEGORIES: 专业笔记
+#+TAGS: 物理, Heisenberg equation of motion
+#+HTML: <!-- toc -->
+#+HTML: <!-- more -->
+
+* 时间演化算符
+
+时间演化
+\begin{align}
+  U(t_0 + \mathrm{d}t, t_0) = 1 - \frac{i}{\hbar}Ht
+\end{align}
+那么
+\begin{align}
+  U(t + \mathrm{d}t, t_0)  = \left(1 - \frac{i}{\hbar}Ht \right)U(t, t_0) 
+\end{align}
+所以
+\begin{align}
+  U(t + \mathrm{d}t, t_0) - U(t + , t_0) =& - \frac{i}{\hbar}\mathrm{d}t U(t, t_0) \\
+    \Downarrow &\\
+  \mathrm{i}\hbar \frac{\partial}{\partial t} U(t, t_0) =& H(t) U(t, t_0)
+\end{align}
+关键在于如果 Hamiltonian 中含时, 它和演化算符中是同一个 $t$ .
+由此得到最 general 的演化算符的形式
+\begin{align}
+U(t,t_0) = T \left\{ e^{-\frac{\mathrm{i}}{\hbar}\int _{t_0}^t \mathrm{d}t' H(t')} \right\}
+\end{align}
+也就是说最 general 的情况下, $[U(t, t_0), H(t)] \neq 0$ .
+* Heisenberg 运动方程为
+
+\begin{align}
+  \frac{\mathrm{d}A^H}{\mathrm{d}t} = -\frac{i}{\hbar}
+    U^{\dagger}(t)[A, H(t)] U(t) + U^{\dagger}(t)\frac{\partial A}{\partial t} U(t)
+\end{align}
+上式中的 $H(t), U(t)$ 也是同一个 $t$ .
+
+* Liouville–von Neumann equation
+
+密度矩阵的演化满足 Liouville–von Neumann equation
+\begin{align}
+  \frac{\mathrm{d}}{\mathrm{d}t} \rho(t) 
+  = \frac{\mathrm{i}}{\hbar} [\rho(t), H]
+\end{align}
+它的 Heisenberg 运动方程类似,
+但要注意差了一个负号, 并且它是在 Schrodinger picture 中的.
+
+密度算符
+\begin{align}
+  \rho(t) = \sum_n p_n U(t)|n\rangle\langle n| U^{\dagger}(t)
+\end{align}
+从上式可以看出负号的来源. Heisenberg picture 中的算符是 $U^{\dagger}AU$ , 而密度算符是
+$U|n\rangle\langle n|U^{\dagger}$ , $U$ 和 $U^{\dagger}$ 的位置刚好相反.
+
+* Reference
+
+- J. J. Sakurai, Jim Napolitano, Modern Quantum Mechanics 2nd
+
+- https://en.wikipedia.org/wiki/Heisenberg_picture
+
+- https://en.wikipedia.org/wiki/Density_matrix
+
+- https://physics.stackexchange.com/questions/112984/liouville-von-neumann-equation-can-be-directly-derived-from-heisenberg-picture
+

@@ -1,0 +1,23 @@
+#+TITLE: Tan 的 Lambda function 中的积分
+#+DATE: <2021-09-08>
+#+CATEGORIES: 专业笔记
+#+TAGS: Principal value
+#+HTML: <!-- toc -->
+#+HTML: <!-- more -->
+
+\begin{align}
+  I = \int \mathrm{d}^3k \left[ \frac{1}{(\vec{k} - \vec{k}_0)^{2}}
+    + \frac{1}{(\vec{k} + \vec{k}_0)^{2}}
+    - \frac{2}{k^2} \right]
+   = 0
+\end{align}
+
+Mahtematica 可以直接得到
+#+begin_src mathematica
+Integrate[k^2 (1/(k^2+k0^2- 2 k k0 x)-2/k^2+1/(k^2+k0^2+2 k k0 x)),{x,-1,1},{k,0, \[Infinity]}]
+#+end_src
+太失败了, 是一开始想复杂, 根本没有奇异性...
+
+* Reference
+
+- Tan, S. Energetics of a strongly correlated Fermi gas. Annals of Physics 323, 2952–2970 (2008).

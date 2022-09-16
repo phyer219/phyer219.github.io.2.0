@@ -1,0 +1,179 @@
+#+TITLE: Manjaro-18-Gnome 装机备忘
+#+DATE: <2018-11-11>
+#+CATEGORIES: 软件使用
+#+TAGS: manjaro, linux
+#+HTML: <!-- toc -->
+#+HTML: <!-- more -->
+
+* 基本安装
+
+** 刻盘
+
+- 使用ultroiso，刻录方式应选择raw
+
+** 配置安装源
+
+*** 添加中国镜像
+
+生成可用中国镜像站列表:
+
+#+BEGIN_SRC shell
+sudo pacman-mirrors -i -c China -m rank
+#+END_SRC
+
+出现镜像列表后勾选所需要的镜像.
+
+然后刷新缓存:
+
+#+BEGIN_SRC shell
+sudo pacman -Syy
+#+END_SRC
+
+参见: [[http://mirrors.ustc.edu.cn/help/manjaro.html]]
+
+*** 添加 archlinuxcn 仓库
+
+在 `/etc/pacman.conf` 文件末尾添加两行：
+
+#+BEGIN_SRC shell
+[archlinuxcn]
+Server = https://mirrors.ustc.edu.cn/archlinuxcn/$arch
+#+END_SRC
+
+刷新
+#+begin_src shell
+sudo pacman -Syy
+#+end_src
+
+之后安装 archlinuxcn-keyring 包导入 GPG key.
+
+
+参见: [[https://mirror.tuna.tsinghua.edu.cn/help/archlinuxcn]]
+*** yaourt 配置
+
+- 安装 yaourt
+
+#+BEGIN_SRC shell
+sudo pacman -S yaourt
+
+#+END_SRC
+- 安装 base-devel
+
+#+BEGIN_SRC shell
+sudo pacman -S base-devel
+
+#+END_SRC
+
+参见: [[https://wiki.archlinux.org/index.php/Arch_User_Repository_(%25E7%25AE%2580%25E4%25BD%2593%25E4%25B8%25AD%25E6%2596%2587)]]
+
+
+*** snap
+
+**** 连不上网
+
+#+BEGIN_SRC shell
+systemctl start snapd.service
+#+END_SRC
+
+** 中文输入法
+
+*** 安装
+
+#+BEGIN_SRC shell
+sudo pacman -S fcitx
+sudo pacman -S fcitx -configtool   ----配置工具
+sudo pacman -S fcitx-sogoupinyin    ----可选安装，fcitx默认已有中文输入
+#+END_SRC
+
+*** 配置文件
+
+在 =~/.xprofile= 中添加以下内容
+
+#+BEGIN_SRC shell
+export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
+export XMODIFIERS=@im=fcitx
+#+END_SRC
+
+
+参见: [[https://wiki.archlinux.org/index.php/Fcitx_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)#.E5.AE.89.E8.A3.85]]
+
+* 软件安装
+
+** tex
+
+安装以下三个包, 中文编写应该没有问题.
+
+texlive-most
+
+texlive-lang
+
+texlive-latexextra
+
+** evince 中文
+
+evince 可能中文显示不好. 安装 xpdf 后会解决
+
+** hexo
+
+*** 安装 Hexo
+
+#+BEGIN_SRC shell
+sudo npm install -g hexo-cli
+#+END_SRC
+
+*** 复制旧的文件过来
+
+*** 添加site map
+
+**** 执行命令安装sitemap
+
+#+BEGIN_SRC shell
+npm install hexo-generator-sitemap --save
+#+END_SRC
+
+**** 在Hexo站点配置文件 _config.yml 中加入 sitemap 插件
+
+#+BEGIN_SRC shell
+# Extensions
+plugins: hexo-generator-sitemap
+#+END_SRC
+
+**** 执行命令生成sitemap文件
+
+#+BEGIN_SRC
+hexo clean
+hexo g
+#+END_SRC
+
+** emacs
+
+*** 右alt不能当meta
+
+搜索：优化-键盘和鼠标-其它布局选项
+
+** 坚果云
+
+*** 无托盘图标：
+
+搜索：优化-扩展-topicons plus（没有的话安装gnome-shell-extension-topicons-plus-git）
+
+** teamviewer
+
+*** 不能连网：
+
+#+BEGIN_SRC shell
+sudo teamviewer --daemon start
+teamviewer
+#+END_SRC
+
+
+
+* 问题合集
+** shadowsocks-qt5连上, 但是浏览器连不上
+
+原来是 ss-qt5 里边没改端口. 汗...
+
+
+* 注
+善用 arch 的 wiki , 一般问题都可以得到解决.

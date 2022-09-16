@@ -1,0 +1,138 @@
+#+TITLE: SO(3) generators in 3 dimentiona representation in cartesian and spherical basis
+#+DATE: <2022-05-17>
+#+CATEGORIES: 专业笔记
+#+TAGS: SO(3), group theory
+#+HTML: <!-- toc -->
+#+HTML: <!-- more -->
+
+* Demo
+
+[[file:2022-05-17-physics-SO3_spherical_cartesian_basis/code.py][code]]
+
+#+begin_src python
+from sympy import pprint
+from sympy import Matrix
+from sympy import I
+from sympy import sqrt
+
+jx_cartesian = Matrix([[0, 0, 0],
+                       [0, 0, I],
+                       [0, -I, 0]])
+jy_cartesian = Matrix([[0, 0, I],
+                       [0, 0, 0],
+                       [-I, 0, 0]])
+jz_cartesian = Matrix([[0, I, 0],
+                       [-I, 0, 0],
+                       [0, 0, 0]])
+
+print('==== SO(3) generators in cartesian representation is ===')
+print('jx_cartesian:')
+pprint(jx_cartesian)
+print('jy_cartesian:')
+pprint(jy_cartesian)
+print('jz_cartesian:')
+pprint(jz_cartesian)
+print('========================================================')
+print('we want to change bisis to a representation which jz are diagonalized.')
+print('the eigenvaluses and eigenvectors of jz are:')
+pprint(jz_cartesian.eigenvects())
+print(('note: we need to choose proper coefficients and order of eigenvectors'
+       + ' to ensure the results is the right form which we are familiar'
+       + ' with in quantum mechanics.'))
+
+u = Matrix([[-1/sqrt(2), 0, 1/sqrt(2)],
+            [I/sqrt(2), 0, I/sqrt(2)],
+            [0, 1, 0]])
+
+print('so use transorm u**(-1) j u go to spherical representation:')
+pprint(u)
+print('the results are:')
+pprint('jx_spherical:')
+pprint(u**(-1) * jx_cartesian * u)
+pprint('jy_spherical:')
+pprint(u**(-1) * jy_cartesian * u)
+pprint('jz_spherical:')
+pprint(u**(-1) * jz_cartesian * u)
+print('========================================================')
+
+# p, d = jz_cartesian.diagonalize()
+
+#+end_src
+
+#+begin_src
+==== SO(3) generators in cartesian representation is ===
+jx_cartesian:
+⎡0  0   0⎤
+⎢        ⎥
+⎢0  0   ⅈ⎥
+⎢        ⎥
+⎣0  -ⅈ  0⎦
+jy_cartesian:
+⎡0   0  ⅈ⎤
+⎢        ⎥
+⎢0   0  0⎥
+⎢        ⎥
+⎣-ⅈ  0  0⎦
+jz_cartesian:
+⎡0   ⅈ  0⎤
+⎢        ⎥
+⎢-ⅈ  0  0⎥
+⎢        ⎥
+⎣0   0  0⎦
+========================================================
+we want to change bisis to a representation which jz are diagonalized.
+the eigenvaluses and eigenvectors of jz are:
+⎡⎛       ⎡⎡-ⅈ⎤⎤⎞  ⎛      ⎡⎡0⎤⎤⎞  ⎛      ⎡⎡ⅈ⎤⎤⎞⎤
+⎢⎜       ⎢⎢  ⎥⎥⎟  ⎜      ⎢⎢ ⎥⎥⎟  ⎜      ⎢⎢ ⎥⎥⎟⎥
+⎢⎜-1, 1, ⎢⎢1 ⎥⎥⎟, ⎜0, 1, ⎢⎢0⎥⎥⎟, ⎜1, 1, ⎢⎢1⎥⎥⎟⎥
+⎢⎜       ⎢⎢  ⎥⎥⎟  ⎜      ⎢⎢ ⎥⎥⎟  ⎜      ⎢⎢ ⎥⎥⎟⎥
+⎣⎝       ⎣⎣0 ⎦⎦⎠  ⎝      ⎣⎣1⎦⎦⎠  ⎝      ⎣⎣0⎦⎦⎠⎦
+note: we need to choose proper coefficients and order of eigenvectors to ensure the results is the right form which we are familiar with in quantum mechanics.
+so use transorm u**(-1) j u go to spherical representation:
+⎡-√2       √2 ⎤
+⎢────  0   ── ⎥
+⎢ 2        2  ⎥
+⎢             ⎥
+⎢√2⋅ⅈ     √2⋅ⅈ⎥
+⎢────  0  ────⎥
+⎢ 2        2  ⎥
+⎢             ⎥
+⎣ 0    1   0  ⎦
+the results are:
+jx_spherical:
+⎡    √2    ⎤
+⎢0   ──  0 ⎥
+⎢    2     ⎥
+⎢          ⎥
+⎢√2      √2⎥
+⎢──  0   ──⎥
+⎢2       2 ⎥
+⎢          ⎥
+⎢    √2    ⎥
+⎢0   ──  0 ⎥
+⎣    2     ⎦
+jy_spherical:
+⎡      -√2⋅ⅈ         ⎤
+⎢ 0    ──────    0   ⎥
+⎢        2           ⎥
+⎢                    ⎥
+⎢√2⋅ⅈ          -√2⋅ⅈ ⎥
+⎢────    0     ──────⎥
+⎢ 2              2   ⎥
+⎢                    ⎥
+⎢       √2⋅ⅈ         ⎥
+⎢ 0     ────     0   ⎥
+⎣        2           ⎦
+jz_spherical:
+⎡1  0  0 ⎤
+⎢        ⎥
+⎢0  0  0 ⎥
+⎢        ⎥
+⎣0  0  -1⎦
+========================================================
+>>>
+#+end_src
+
+* Reference
+
+- [[https://www.physicsforums.com/threads/representation-of-angular-momentum-matrix-in-cartesian-and-spherical-basis.418710/]]

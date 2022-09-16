@@ -1,0 +1,236 @@
+#+TITLE: Hello org-mode
+#+DATE: <2018-10-18>
+#+CATEGORIES: 软件使用
+#+TAGS: emacs, org-mode
+#+HTML: <!-- toc -->
+#+HTML: <!-- more -->
+
+#+LATEX_COMPILER: xelatex
+#+LATEX_HEADER: \usepackage{ctex}
+
+
+* 符号说明
+- =M= : Mate 键
+- =S= : Shift 键
+- =C= : Ctrl 键
+* 视图优化
+- 使列表有缩进: =M-x org-indent-mode=
+
+
+* 插入代码
+** 行间代码(org9.2 更新后, 默认以下方法不可行, 新方法 =C-c C-= , 见 [[https://emacs.stackexchange.com/questions/46988/why-do-easy-templates-e-g-s-tab-in-org-9-2-not-work]]) 
+在空白行输入
+#+BEGIN_SRC org-mode
+< s TAB
+#+END_SRC
+或者
+#+BEGIN_SRC org-mode
+< e TAB
+#+END_SRC
+** 行内代码
+将代码夹在两个 "=" 之间
+* $\LaTeX$ 公式
+** cdlatex 插件以简化输入
+想要插入 "'" 或者 "`" 时, 可以先按 =C-q= 之后再输入
+** 特殊的行内公式语法
+只有在下列情况下,美元符号 "$" 才被认为是行内公式的标志:
+- 是封闭的. 也就是开关的结尾各有一个美元符号.
+- 行内公式不能出现两个以上的断行.
+- 行内公式的美元符号要和正文之间有空格, 或者是英文标点.
+
+
+
+* 链接
+
+都采用两个方括号. 对于 Hexo, 只有放在与文章文件名同名的文件夹下才可以正常访问.
+
+** 网页链接示例
+#+BEGIN_SRC shell
+[[https://phyer219.github.io/]]
+#+END_SRC
+效果为
+
+https://phyer219.github.io/
+
+** 图片示例
+
+#+BEGIN_SRC shell
+[[file:./2018-10-18-coding-Hello org-mode/cpho.jpeg]]
+#+END_SRC
+效果为
+
+[[file:./2018-10-18-coding-Hello org-mode/cpho.jpeg]]
+
+** 文件示例
+
+*** pdf文件
+
+#+BEGIN_SRC shell
+[[file:./2018-10-18-coding-Hello org-mode/Friedel Oscillations1.pdf]]
+#+END_SRC
+效果为
+
+[[file:./2018-10-18-coding-Hello org-mode/Friedel Oscillations1.pdf]]
+
+*** python程序
+
+#+BEGIN_SRC shell
+[[file:./2018-10-18-coding-Hello org-mode/plot.py]]
+#+END_SRC
+效果为
+
+[[file:./2018-10-18-coding-Hello org-mode/plot.py]]
+
+*** 内部链接
+
+如
+
+=[[*pdf文件]]=
+
+效果为
+
+[[*pdf文件]]
+
+* 列表
+
+** Description list
+
+- 项目一 :: 内容
+
+- 项目二 :: 内容
+
+** 抽屉(Drawers)
+
+- Note taken on [2021-02-05 五 22:26] \\
+  ( =C-c= =C-z= )note here 这个功能不错. 可以标记什么时候做的 note.
+
+:example:
+内容
+:END:
+
+
+
+* Tags                                                                 :标签:
+
+=C-c= =C-q=
+
+* 表格                                                                :table:
+
+- 将内容移到下一行: M-down
+- 在光标上面插入一行: M-S-up
+
+** 表格示例
+
+| name             | phone | age |
+|------------------+-------+-----|
+| Peter            |  1234 |  17 |
+|------------------+-------+-----|
+| <3>              |       |     |
+| Alice            |  2345 |  18 |
+| Bob              |  3456 |  16 |
+| Cindy            |       |     |
+| a very long line |       |     |
+
+** table.el
+
+=C-c= =~= 插入 table.el
+
+=C-c= ='= 进行编辑
+
++-----+-----+-----+
+|     |     |     |
++-----+-----+-----+
+|     |     |     |
++-----+-----+-----+
+|     |     |     |
++-----+-----+-----+
+
+
+* 内容示例
+** python 代码块示例
+#+BEGIN_SRC python :results output
+import matplotlib.pyplot as plt
+import numpy as np
+x = np.linspace(-2,2,1000)
+f = np.e**(-(1/(1-x**2)))
+y = np.piecewise(x,[x<=-1,x>-1],[0,1])*np.piecewise(x,[x<=1,x>1],[1,0])*f
+plt.plot(x,y)
+plt.show()
+#+END_SRC
+
+#+RESULTS:
+
+#+BEGIN_SRC python :results output
+import matplotlib.pyplot as plt
+import numpy as np
+
+c = 2
+d = 3
+x = np.linspace(c-1,d+1,1000)
+f = np.e**(-((1/(x-c))+(1/(d-x))))
+y = np.piecewise(x,[x<=c,x>c],[0,1])*np.piecewise(x,[x<=d,x>d],[1,0])*f 
+plt.plot(x,y)
+plt.show()
+#+END_SRC
+
+** 手册上的例子(release 9.4)
+
+*** page13
+
+**** Lord of the Rings
+My favorite scenes are (in this order)
+1. The attack of the Rohirrim
+2. Eowyn's fight with the witch king
++ this was already my favorite scene in the book
++ I really like Miranda Otto.
+3. Peter Jackson being shot by Legolas
+- on DVD only
+He makes a really funny face when it happens.
+But in the end, no individual scenes matter but the film as a whole.
+Important actors in this film are:
+- Elijah Wood :: He plays Frodo
+- Sean Astin :: He plays Sam, Frodo's friend. I still remember him
+very well from his role as Mikey Walsh in /The Goonies/.
+
+* Properties(e.g. CD Collection)
+:PROPERTIES:
+:Title:    Goldberg Variations
+:Composer: J.S. Bach
+:END:
+
+* Column view
+:COLUMNS: %25ITEM %9Approved(Approved?){X} %Owner %11Status \
+%10Time_Estimate{:} %CLOCKSUM %CLOCKSUM_T
+:Owner_ALL:
+Tammy Mark Karl Lisa Don
+:Status_ALL:
+"In progress" "Not started yet" "Finished" ""
+:Approved_ALL: "[ ]" "[X]"
+
+
+=C-c= =C-x= =p= 添加 properties.
+
+* Date and times
+
+=C-c .=
+
+<2021-02-06 六>
+
+** Deadline
+
+=C-c C-d=
+
+DEADLINE: <2021-02-06 六>
+
+** Schedule
+
+=C-c C-s=
+
+SCHEDULED: <2021-02-06 六>
+
+
+
+
+
+
+

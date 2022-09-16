@@ -1,0 +1,504 @@
+#+TITLE: 由 rf current 的定义推导其格林函数的表达形式
+#+DATE: <2020-05-02>
+#+CATEGORIES: 专业笔记
+#+TAGS: 物理, rf current, linear repsonse, Green's Function
+#+HTML: <!-- toc -->
+#+HTML: <!-- more -->
+
+* 问题描述
+
+通过计算, 探究 rf current, 也就是粒子数对时间的导数, 与 Green's function 的关系. 
+
+* Hamiltonian
+
+考虑不同 hyperfine state 上的 Fermi 原子. 不同的 hyperfine state 用希腊字母下
+标表示( e.g. $\sigma, \alpha, \beta$ ) 它的 internal nergy 为 $E_{\sigma}$ , 受到的 external
+trapping potential 为 $V_{T,\sigma}(\vec{r})$ 它们之间的相互作用势为 $V_{\alpha,
+\beta}(\vec{r}, \vec{r}')$. 其中两个 hyperfine state $e, g$ 由外场 $\Omega(\vec{r}, t)$
+couple. 整个系统的 Hamiltonia 为
+\begin{align}
+  \hat{H}_{C} = \hat{H}_{0C} + \hat{H}_{L}(t)
+\end{align}
+第一项是系统本身的项
+\begin{align}
+  \hat{H}_{0C} =& \int \mathrm{d}^3r \sum_{\sigma} \hat{\psi}_{\sigma}^{\dagger}(\vec{r})\left( 
+    -\frac{\hbar^2\nabla^2}{2m_{\sigma}} + E_{\sigma} + V_{T,\sigma}(\vec{r})
+  \right)\hat{\psi}_{\sigma}(\vec{r}) \\
+  &+ \frac{1}{2}\sum_{\alpha,\beta} \int \mathrm{d}^3r \int \mathrm{d}^3r'\cdot
+   \hat{\psi}_{\alpha}^{\dagger}(\vec{r})\hat{\psi}_{\beta}^{\dagger}(\vec{r}')
+   V_{\alpha,\beta}(\vec{r},\vec{r}')
+   \hat{\psi}_{\beta}(\vec{r}')\hat{\psi}_{\alpha}(\vec{r})
+\end{align}
+第二项是外场对 $e, g$ 的 couple
+\begin{align}
+  \hat{H}'_{L}(t) = \int \mathrm{d}^3 r \left[ 
+   \hbar\Omega(\vec{r}, t) \hat{\psi}_{e}^{\dagger}(\vec{r})\hat{\psi}_{g}(\vec{r}) + \mathrm{h.c.} 
+  \right]
+\end{align}
+这里的二次量子化形式可以理解成, 对 $e, g$ 来说, 它是非本征表象的单体算符, 而对
+$\vec{r}$ 来说它是本征表象的单体算符.
+
+下标 $C$ 代表 canonical ,正则系宗, 因为 $H'_{L}(t)$ 使得粒子数不守恒.
+
+把时间演化全都放到算符上, 也就是在 Heisenberg picture, rf current 定义为 $e$ 态
+上的粒子数随时间的变化
+\begin{align}
+  \frac{\mathrm{d}}{\mathrm{d}t}\langle\Psi|\hat{N}_{e}(t)|\Psi\rangle
+\end{align}
+其中粒子数算符为对粒子数密度算符的积分
+\begin{align}
+  \hat{N}_e(t) = \int \mathrm{d}^3r \cdot \hat{\psi}_e^{\dagger}(\vec{r}, t) \hat{\psi}_e(\vec{r}, t)
+\end{align}
+
+* Heisenberg 运动方程
+
+根据 Heisenberg picture 的运动方程
+\begin{align}
+  \mathrm{i}\hbar\frac{\mathrm{d}}{\mathrm{d}t}\left[\hat{\psi}_e^{\dagger}(\vec{r}, t) \hat{\psi}_e(\vec{r}, t)\right]
+  = \left[\hat{\psi}_e^{\dagger}(\vec{r}) \hat{\psi}_e(\vec{r}) , \hat{H}_{0C} + \hat{H}'_{L}(t)\right](t)
+\end{align}
+其中关于 $\hat{H}_{0C}$ 的对易子为零, 只有 couple 项 $\hat{H}'_{L}$ 才会对粒子数
+密度的演化有影响. 下面进行计算
+\begin{align}
+  &\left[\hat{\psi}_e^{\dagger}(\vec{r}) \hat{\psi}_e(\vec{r}) , \hat{H}'_{L}(t)\right] \\
+ =&\int \mathrm{d}^3 r'\left\{ \hbar\Omega(\vec{r}',t)\left[\hat{\psi}_e^{\dagger}(\vec{r}) \hat{\psi}_e(\vec{r}) , \hat{\psi}_{e}^{\dagger}(\vec{r}')\hat{\psi}_{g}(\vec{r}')  \right]
+  + \hbar\Omega^{*}(\vec{r}',t)\left[\hat{\psi}_e^{\dagger}(\vec{r}) \hat{\psi}_e(\vec{r}) , \hat{\psi}_g^{\dagger}(\vec{r}')\hat{\psi}_e(\vec{r}')  \right]\right\}
+\end{align}
+先算第一项
+\begin{align}
+  \hbar\Omega(\vec{r}',t)\left[\hat{\psi}_e^{\dagger}(\vec{r}) \hat{\psi}_e(\vec{r}) , \hat{\psi}_{e}^{\dagger}(\vec{r}')\hat{\psi}_{g}(\vec{r}')  \right]
+  = \hbar\Omega(\vec{r}',t)&\left\{\left[\hat{\psi}_e^{\dagger}(\vec{r}) \hat{\psi}_e(\vec{r}) , \hat{\psi}_{e}^{\dagger}(\vec{r}')  \right]\hat{\psi}_{g}(\vec{r}')\right. \\
+   &\left. +\hat{\psi}_{e}^{\dagger}(\vec{r}') \left[\hat{\psi}_e^{\dagger}(\vec{r}) \hat{\psi}_e(\vec{r}) , \hat{\psi}_{g}(\vec{r}')  \right] \right\}
+\end{align}
+对于 Fermion 有
+\begin{align}
+  \left[\hat{\psi}_e^{\dagger}(\vec{r}) \hat{\psi}_e(\vec{r}) , \hat{\psi}_{e}^{\dagger}(\vec{r}')  \right]
+  =&  \hat{\psi}_e^{\dagger}(\vec{r}) \left\{ \hat{\psi}_e(\vec{r}) , \hat{\psi}_{e}^{\dagger}(\vec{r}')  \right\}
+    -\left\{\hat{\psi}_e^{\dagger}(\vec{r})  , \hat{\psi}_{e}^{\dagger}(\vec{r}')  \right\}\hat{\psi}_e(\vec{r}) \\
+  =&  \hat{\psi}_e^{\dagger}(\vec{r}) \cdot \delta(\vec{r}-\vec{r}') - 0\cdot \hat{\psi}_e(\vec{r})  
+  = \hat{\psi}_e^{\dagger}(\vec{r})\delta(\vec{r}-\vec{r}')
+\end{align}
+式中 $\{ A,B \} = AB + BA$ 为反对易子.
+\begin{align}
+  \left[\hat{\psi}_e^{\dagger}(\vec{r}) \hat{\psi}_e(\vec{r}) , \hat{\psi}_{g}(\vec{r})  \right]
+  = 0
+\end{align}
+所以
+\begin{align}
+  \hbar\Omega(\vec{r}',t)\left[\hat{\psi}_e^{\dagger}(\vec{r}) \hat{\psi}_e(\vec{r}) , \hat{\psi}_{e}^{\dagger}(\vec{r}')\hat{\psi}_{g}(\vec{r}')  \right]
+  = \hbar\Omega(\vec{r}',t)\hat{\psi}_e^{\dagger}(\vec{r})\hat{\psi}_{g}(\vec{r}')\delta(\vec{r} - \vec{r}')
+\end{align}
+同理
+\begin{align}
+  \hbar\Omega^{ * }(\vec{r}',t)\left[\hat{\psi}_e^{\dagger}(\vec{r}) \hat{\psi}_e(\vec{r}) , \hat{\psi}_g^{\dagger}(\vec{r}')\hat{\psi}_e(\vec{r}')  \right]
+  = - \hbar\Omega^{ * }(\vec{r}',t)\hat{\psi}_g^{\dagger}(\vec{r}')\hat{\psi}_e(\vec{r})\delta(\vec{r} - \vec{r}')
+\end{align}
+那么算得所需要的对易关系为
+\begin{align}
+  &\left[\hat{\psi}_e^{\dagger}(\vec{r}) \hat{\psi}_e(\vec{r}) , \hat{H}'_{L}(t)\right] \\
+ =&\int \mathrm{d}^3 r'\left\{ \hbar\Omega(\vec{r}',t)\hat{\psi}_e^{\dagger}(\vec{r})\hat{\psi}_{g}(\vec{r}')\delta(\vec{r} - \vec{r}') 
+  - \hbar\Omega^{*}(\vec{r}',t)\hat{\psi}_g^{\dagger}(\vec{r}')\hat{\psi}_e(\vec{r})\delta(\vec{r} - \vec{r}') \right\} \\
+ = &\hbar\Omega(\vec{r},t)\hat{\psi}_e^{\dagger}(\vec{r})\hat{\psi}_{g}(\vec{r})
+  - \hbar\Omega^{*}(\vec{r},t)\hat{\psi}_g^{\dagger}(\vec{r})\hat{\psi}_e(\vec{r})
+\end{align}
+所以 $e$ 态上粒子数随时间的变化在 Heisenberg 表象中为
+\begin{align}
+  \frac{\mathrm{d}}{\mathrm{d}t}\langle\Psi|\hat{N}_{e}(t)|\Psi\rangle
+  =& \int \mathrm{d}^3r\langle \Psi \left|\frac{\mathrm{d}}{\mathrm{d}t}\left[\hat{\psi}_e^{\dagger}(\vec{r}, t)  \hat{\psi}_e(\vec{r}, t)\right]\right|\Psi\rangle \\
+  =& \frac{1}{\mathrm{i}\hbar}\int \mathrm{d}^3r\langle \Psi \left|\left[\hat{\psi}_e^{\dagger}(\vec{r}) \hat{\psi}_e(\vec{r}) , \hat{H}'_{L}(t)\right](t)\right|\Psi\rangle \\
+  =& \frac{1}{\mathrm{i}\hbar}\int \mathrm{d}^3r\cdot
+     \left[ \hbar\Omega(\vec{r},t)\langle\hat{\psi}_e^{\dagger}(\vec{r}, t)\hat{\psi}_{g}(\vec{r}, t)\rangle
+    - \hbar\Omega^{*}(\vec{r},t)\langle\hat{\psi}_g^{\dagger}(\vec{r}, t)\hat{\psi}_e(\vec{r}, t)\rangle \right]
+\end{align}
+其中 $\langle \rangle$ 是 $\langle\Psi||\Psi\rangle$ 的简写.
+
+* 线性响应
+
+现在已经通过 Heisenberg 运动方程, 将原来问题中算符导数的平均, 变成了对关联函数的
+平均. 接下来已经不能严格求解了, 要将 couple $\hat{H}'_{L}(t)$ 作为微扰, 在相互作用
+表象中进行线性近似.
+
+以下讨论都是在相互作用表象.
+
+在相互作用表象中, 一个态矢的演化由演化算符给出(取 $t_0=0$ )
+\begin{align}
+  |\Psi(t)\rangle = U(t) |\Psi\rangle
+\end{align}
+其中
+\begin{align}
+  U(t) = T \left\{ e^{\frac{1}{\mathrm{i}\hbar}\int_0^t \mathrm{d}t'\cdot \hat{H}_{L}(t')} \right\}
+\end{align}
+这里 $\hat{H}_L(t) = e^{\frac{\mathrm{i}}{\hbar}\hat{H}_{0C}(t)} \hat{H}'_L(t)
+e^{-\frac{\mathrm{i}}{\hbar}\hat{H}_{0C}(t)}$ , 也就是 $\hat{H}'_L(t)$ 去掉 $'$ 后,
+表示它在相互作用表象中.
+
+对于一个相互作用表象中的算符 $\hat{O}(t) =
+e^{\frac{\mathrm{i}}{\hbar}\hat{H}_{0C}(t)} \hat{O}
+e^{-\frac{\mathrm{i}}{\hbar}\hat{H}_{0C}(t)}$ , 它在 $t$ 时刻的期望为 
+\begin{align}
+  \langle\Psi(t)| \hat{O} |\Psi(t)\rangle = \langle U^{\dagger} (t) \hat{O}(t) U(t)\rangle
+\end{align}
+其中 $\langle \rangle$ 是 $\langle\Psi(0)| |\Psi(0)\rangle$ 的简写. 把演化算符的表达式代入, 按 $\hat{H}_{L}(t)$ 的展开, 得
+\begin{align}
+  \langle\Psi(t)| \hat{O}(t)|\Psi(t) \rangle = \langle \hat{O}(t) \rangle + \langle \hat{O} \rangle_{1\mathrm{st}} +
+  \langle \hat{O} \rangle_{2\mathrm{nd}} + \cdots
+\end{align}
+其中
+\begin{align}
+  \langle \hat{O} \rangle_{1\mathrm{st}} =& \frac{1}{\mathrm{i}\hbar}\int_0^t\mathrm{d}t'
+  \langle\left[\hat{O}(t), \hat{H}_L(t')  \right]\rangle \\
+  = & \frac{1}{\mathrm{i}\hbar}\int_0^{\infty}\mathrm{d}t' \cdot
+   \theta(t - t')\langle\left[\hat{O}(t), \hat{H}_L(t')  \right]\rangle \\
+  =& \int_0^{\infty} \mathrm{d}t' \cdot \chi(t, t')
+\end{align}
+这里定义了
+\begin{align}
+  \chi(t, t') = \frac{1}{i\hbar}\theta(t - t')\langle\left[\hat{O}(t), \hat{H}_L(t')  \right]\rangle
+\end{align}
+
+* 应用线性响应, 并扔掉两项
+
+rf current 在相互作用表象中可以写成
+\begin{align}
+  &\frac{\mathrm{d}}{\mathrm{d}t}\langle\Psi(t)|\hat{N}_{e}(t)|\Psi(t)\rangle \\
+  =& \frac{1}{\mathrm{i}\hbar}\int \mathrm{d}^3r\cdot
+     \left[ \hbar\Omega(\vec{r},t)\langle\Psi(t)|\hat{\psi}_e^{\dagger}(\vec{r}, t)\hat{\psi}_{g}(\vec{r},t)|\Psi(t)\rangle
+    - \hbar\Omega^{*}(\vec{r},t)\langle\Psi(t)|\hat{\psi}_g^{\dagger}(\vec{r}, t)\hat{\psi}_e(\vec{r}, t)|\Psi(t)\rangle \right]
+\end{align}
+利用线性响应的结果计算两项均值. 第一项
+\begin{align}
+  &\hbar\Omega(\vec{r},t)\langle\Psi(t)|\hat{\psi}_e^{\dagger}(\vec{r}, t)\hat{\psi}_{g}(\vec{r}, t)|\Psi(t)\rangle_{1\mathrm{st}} \\
+ =& \frac{1}{\mathrm{i}\hbar} \int_0^{\infty}\mathrm{d}t'\cdot \hbar\Omega(\vec{r}, t)\theta(t - t')
+    \langle\left[\hat{\psi}_e^{\dagger}(\vec{r}, t)\hat{\psi}_{g}(\vec{r}, t), \hat{H}_L(t')  \right]\rangle 
+\end{align}
+将 $\hat{H}_{L}(t')$ 的具体形式
+\begin{align}
+  \hat{H}_{L}(t') = \int \mathrm{d}^3 r' \left[ 
+   \hbar\Omega(\vec{r}', t') \hat{\psi}_{e}^{\dagger}(\vec{r}', t')\hat{\psi}_{g}(\vec{r}', t') + \mathrm{h.c.} 
+  \right]
+\end{align}
+代入后
+\begin{align}
+  &\hbar\Omega(\vec{r},t)\langle\Psi(t)|\hat{\psi}_e^{\dagger}(\vec{r}, t)\hat{\psi}_{g}(\vec{r}, t)|\Psi(t)\rangle_{1\mathrm{st}} \\
+ =& \frac{\hbar}{\mathrm{i}} \int_0^{\infty}\mathrm{d}t'\int \mathrm{d}^3 r'\cdot \theta(t - t')\Omega(\vec{r}, t)\Omega(\vec{r}', t')
+    \langle\left[\hat{\psi}_e^{\dagger}(\vec{r}, t)\hat{\psi}_{g}(\vec{r}, t),  \hat{\psi}_{e}^{\dagger}(\vec{r}', t')\hat{\psi}_{g}(\vec{r}', t') \right]\rangle \\
++& \frac{\hbar}{\mathrm{i}} \int_0^{\infty}\mathrm{d}t'\int \mathrm{d}^3 r'\cdot \theta(t - t')\Omega(\vec{r}, t)\Omega^{*}(\vec{r}', t')
+    \langle\left[\hat{\psi}_e^{\dagger}(\vec{r}, t)\hat{\psi}_{g}(\vec{r}, t),  \hat{\psi}_g^{\dagger}(\vec{r}', t')\hat{\psi}_e(\vec{r}', t') \right]\rangle 
+\end{align}
+同理, 第二项
+\begin{align}
+  &-\hbar\Omega(\vec{r},t)\langle\Psi(t)|\hat{\psi}_e^{\dagger}(\vec{r}, t)\hat{\psi}_{g}(\vec{r}, t)|\Psi(t)\rangle_{1\mathrm{st}} \\
+ =&- \frac{\hbar}{\mathrm{i}} \int_0^{\infty}\mathrm{d}t'\int \mathrm{d}^3 r'\cdot \theta(t - t')\Omega^{*}(\vec{r}, t)\Omega(\vec{r}', t')
+    \langle\left[\hat{\psi}_g^{\dagger}(\vec{r}, t)\hat{\psi}_e(\vec{r}, t),  \hat{\psi}_{e}^{\dagger}(\vec{r}', t')\hat{\psi}_{g}(\vec{r}', t') \right]\rangle \\
+-& \frac{\hbar}{\mathrm{i}} \int_0^{\infty}\mathrm{d}t'\int \mathrm{d}^3 r'\cdot \theta(t - t')\Omega^{ * }(\vec{r}, t)\Omega^{*}(\vec{r}', t')
+    \langle\left[\hat{\psi}_g^{\dagger}(\vec{r}, t)\hat{\psi}_e(\vec{r}, t),  \hat{\psi}_g^{\dagger}(\vec{r}', t')\hat{\psi}_e(\vec{r}', t') \right]\rangle 
+\end{align}
+所以 $\frac{\mathrm{d}}{\mathrm{d}t}\langle\Psi(t)|\hat{N}_{e}(t)|\Psi(t)\rangle$ 中的一阶项中出现
+了如下四项
+\begin{align}
+  &\Omega(\vec{r}, t)\Omega(\vec{r}', t')
+    \langle\left[\hat{\psi}_e^{\dagger}(\vec{r}, t)\hat{\psi}_{g}(\vec{r}, t),  \hat{\psi}_{e}^{\dagger}(\vec{r}', t')\hat{\psi}_{g}(\vec{r}', t') \right]\rangle \\
+  &\Omega(\vec{r}, t)\Omega^{*}(\vec{r}', t')
+    \langle\left[\hat{\psi}_e^{\dagger}(\vec{r}, t)\hat{\psi}_{g}(\vec{r}, t),  \hat{\psi}_g^{\dagger}(\vec{r}', t')\hat{\psi}_e(\vec{r}', t') \right]\rangle \\
+  -&\Omega^{*}(\vec{r}, t)\Omega(\vec{r}', t')
+    \langle\left[\hat{\psi}_g^{\dagger}(\vec{r}, t)\hat{\psi}_e(\vec{r}, t),  \hat{\psi}_{e}^{\dagger}(\vec{r}', t')\hat{\psi}_{g}(\vec{r}', t') \right]\rangle \\
+  -&\Omega^{ * }(\vec{r}, t)\Omega^{*}(\vec{r}', t')
+    \langle\left[\hat{\psi}_g^{\dagger}(\vec{r}, t)\hat{\psi}_e(\vec{r}, t),  \hat{\psi}_g^{\dagger}(\vec{r}', t')\hat{\psi}_e(\vec{r}', t') \right]\rangle 
+\end{align}
+上面四项中, 第一项和第四项互为复共轭, 第二项和第三项互为复共轭. 
+
+在第一项和第四项中出现了同一个态上有两个产生或湮灭算符的形式, 比如
+$\hat{\psi}_e\hat{\psi}_e$ . 书上的推导把它们扔掉了, 它说
+#+BEGIN_QUOTE
+become zero unless the state possesses some special correlations requiring a
+non-trivial many-body state. 
+#+END_QUOTE
+在 rf 谱中, 它就是零
+#+BEGIN_QUOTE
+when taking the expectation values,RF spectroscopy where the species labeled by e is in the normal state:
+then this type of terms is certainly zero. 
+#+END_QUOTE
+但是
+#+BEGIN_QUOTE
+But in general one should keep in mind that terms of the form
+$\hat{\psi}^{\dagger}_{\sigma}(\vec{r}, t)\hat{\psi}^{\dagger}_{\sigma}(\vec{r}, t)$ exist as well and
+might be relevant since they basically describe correlations within each
+species. 
+#+END_QUOTE
+扔掉这两项后, 就变成了
+\begin{align}
+  &\frac{\mathrm{d}}{\mathrm{d}t}\langle\Psi(t)|\hat{N}_{e}(t)|\Psi(t)\rangle_{1\mathrm{st}} \\
+  =& -\int \mathrm{d}^3r \int \mathrm{d}r'\int_0^{\infty} \mathrm{d}t' \cdot\theta(t - t')
+    \left\{\Omega(\vec{r}, t)\Omega^{*}(\vec{r}', t')
+    \langle\left[\hat{\psi}_e^{\dagger}(\vec{r}, t)\hat{\psi}_{g}(\vec{r}, t),  \hat{\psi}_g^{\dagger}(\vec{r}', t')\hat{\psi}_e(\vec{r}', t') \right]\rangle 
+    + \mathrm{h.c.} \right\}
+\end{align}
+
+* Rotating Wave Approximation
+
+现在做一个 trick. 原因在书上(待会补充)
+
+上面在相互作用表象中的算符, 都是由 $\hat{H}_{0C}$ 演化的. 是巨正则系统, 没有化学
+势. 现在定义一个新的 $\hat{H}_{0}$ , 让它包含化学势, 也就是
+\begin{align}
+  \hat{H}_{0} = \hat{H}_{0C} - \hat{H}_{\mu}
+\end{align}
+其中
+\begin{align}
+  \hat{H}_{\mu} = \int \mathrm{d}^3r\sum_{\sigma}\hat{\psi}_{\sigma}^{\dagger}(\vec{r})( \mu_{\sigma} + E_{\sigma})\hat{\psi}_{\sigma}(\vec{r})
+\end{align}
+\begin{align}
+  \hat{H}_{0} =& \int \mathrm{d}^3r \sum_{\sigma} \hat{\psi}_{\sigma}^{\dagger}(\vec{r})\left( 
+    -\frac{\hbar^2\nabla^2}{2m_{\sigma}} - \mu_{\sigma} + V_{T,\sigma}(\vec{r})
+  \right)\hat{\psi}_{\sigma}(\vec{r}) \\
+  &+ \frac{1}{2}\sum_{\alpha,\beta} \int \mathrm{d}^3r \int \mathrm{d}^3r'\cdot
+   \hat{\psi}_{\alpha}^{\dagger}(\vec{r})\hat{\psi}_{\beta}^{\dagger}(\vec{r}')
+   V_{\alpha,\beta}(\vec{r},\vec{r}')
+   \hat{\psi}_{\beta}(\vec{r}')\hat{\psi}_{\alpha}(\vec{r})
+\end{align}
+这样的话就有
+\begin{align}
+  \hat{\psi}_{\sigma}^{\dagger}(\vec{r}, t) =  e^{\frac{\mathrm{i}}{\hbar}\hat{H}_0t}
+    \left[ e^{\frac{\mathrm{i}}{\hbar}\hat{H}_{\mu}t} \hat{\psi}_{\sigma}^{\dagger}(\vec{r}) 
+    e^{\frac{-\mathrm{i}}{\hbar}\hat{H}_{\mu}t} \right] e^{\frac{-\mathrm{i}}{\hbar}\hat{H}_0t}
+\end{align}
+由 Heisenberg 运动方程可知
+\begin{align}
+   \mathrm{i}\hbar \frac{\mathrm{d}}{\mathrm{d}t}\left[ 
+   e^{\frac{\mathrm{i}}{\hbar}\hat{H}_{\mu}t} \hat{\psi}_{\sigma}^{\dagger}(\vec{r}) 
+    e^{\frac{-\mathrm{i}}{\hbar}\hat{H}_{\mu}t} \right] 
+  = \left[\hat{\psi}_{\sigma}^{\dagger}(\vec{r}) , \hat{H}_{\mu} \right] 
+  = -(\mu_{\sigma} + E_{\sigma})\hat{\psi}_{\sigma}^{\dagger}(\vec{r})
+\end{align}
+所以
+\begin{align}
+   e^{\frac{\mathrm{i}}{\hbar}\hat{H}_{\mu}t} \hat{\psi}_{\sigma}^{\dagger}(\vec{r}) 
+    e^{\frac{-\mathrm{i}}{\hbar}\hat{H}_{\mu}t} 
+  = \hat{\psi}_{\sigma}^{\dagger} e^{\frac{\mathrm{i}}{\hbar}(\mu_{\sigma} + E_{\sigma} )t}
+\end{align}
+下面的 $\hat{\psi}_{\sigma}^{\dagger}(\vec{r}, t)$ 重新定义为
+\begin{align}
+  \hat{\psi}_{\sigma}^{\dagger}(\vec{r}, t) \equiv e^{\frac{\mathrm{i}}{\hbar}(\mu_{\sigma}+ E_{\sigma} )t}
+     e^{\frac{\mathrm{i}}{\hbar}\hat{H}_0t}
+     \hat{\psi}_{\sigma}^{\dagger}(\vec{r}) 
+\end{align}
+那么 (之前的产生煙灭算符都应该带下标 $C$ 的, 下次复习的时候再添吧) 
+\begin{align}
+  \hat{\psi}_{\sigma C}^{\dagger}(\vec{r}, t) = e^{\frac{\mathrm{i}}{\hbar}(\mu_{\sigma} + E_{\sigma} )t}
+     \hat{\psi}_{\sigma}^{\dagger}(\vec{r}, t)
+\end{align}
+对于偶合, 假设是如下振动
+\begin{align}
+  \Omega(\vec{r}, t) = \Omega(\vec{r}) \sin (\omega_Lt) = \Omega(\vec{r}) 
+              \frac{e^{\mathrm{i}\omega_Lt} - e^{-\mathrm{i}\omega_Lt}}{2 \mathrm{i}}
+\end{align}
+将这些结果带入之前得到的 rf current 的线性响应近似的结果
+\begin{align}
+  &\frac{\mathrm{d}}{\mathrm{d}t}\langle\Psi(t)|\hat{N}_{e}(t)|\Psi(t)\rangle_{1\mathrm{st}} \\
+  =& -\int \mathrm{d}^3r \int \mathrm{d}r'\int_0^{\infty} \mathrm{d}t' \cdot\theta(t - t')
+    \left\{\Omega(\vec{r}, t)\Omega^{*}(\vec{r}', t')
+    \langle\left[\hat{\psi}_{eC}^{\dagger}(\vec{r}, t)\hat{\psi}_{gC}(\vec{r}, t),  \hat{\psi}_{gC}^{\dagger}(\vec{r}', t')\hat{\psi}_{eC}(\vec{r}', t') \right]\rangle 
+    + \mathrm{h.c.} \right\}
+\end{align}
+中, 会出现以下关于 $t$ 的振动项
+\begin{align}
+  \left(e^{\mathrm{i}\omega_Lt} - e^{-\mathrm{i}\omega_Lt} \right) 
+e^{\frac{\mathrm{i}}{\hbar}[(E_e - E_g) - (\mu_g  - \mu_e)]t}
+ = e^{\mathrm{i}[\omega_L + \frac{E_e - E_g}{\hbar} - \frac{\mu_g  - \mu_e}{\hbar}]t} 
+  - e^{-\mathrm{i}[\omega_L - \frac{E_e - E_g}{\hbar} + \frac{\mu_g  - \mu_e}{\hbar}]t}
+\end{align}
+做旋波近似, 略去 $\omega_L + \frac{E_e - E_g}{\hbar}$ 的高频率, 将 detuning 记为
+\begin{align}
+  \tilde{\delta} = \delta + \frac{\mu_g  - \mu_e}{\hbar} = \omega_L - \frac{E_e - E_g}{\hbar} + \frac{\mu_g  - \mu_e}{\hbar}
+\end{align}
+做完旋波近似后, 关于 $t$ 的振动项只剩下
+\begin{align}
+  - e^{-\mathrm{i}\tilde{\delta}t}
+\end{align}
+同样对关于 $t'$ 的振动项做完旋波近似后剩下
+\begin{align}
+  - e^{\mathrm{i}\tilde{\delta}t'}
+\end{align}
+还有两个 $\frac{1}{2\mathrm{i}}$ , 所以做完旋波近似后
+\begin{align}
+  &\frac{\mathrm{d}}{\mathrm{d}t}\langle\Psi(t)|\hat{N}_{e}(t)|\Psi(t)\rangle_{1\mathrm{st}, \mathrm{rwa}} \\
+  =& -\frac{1}{4}\int \mathrm{d}^3r \int \mathrm{d}^3r'\int_0^{\infty} \mathrm{d}t' \cdot\theta(t - t')
+    \left\{\Omega(\vec{r})\Omega^{*}(\vec{r}')e^{ - \mathrm{i}\tilde{\delta}(t - t')}
+    \langle\left[\hat{\psi}_{e}^{\dagger}(\vec{r}, t)\hat{\psi}_{g}(\vec{r}, t),  \hat{\psi}_{g}^{\dagger}(\vec{r}', t')\hat{\psi}_{e}(\vec{r}', t') \right]\rangle 
+    + \mathrm{h.c.} \right\}
+\end{align}
+
+* rf 谱动量守恒
+
+#+BEGIN_QUOTE
+The speciality of RF spectroscopy is that the wavelength of the RF field is
+large compared to other length scales in the system, typically much larger than
+the cloud of atoms. Related to this, the corresponding momentum is negligible
+compared to, e.g., typical scales of the Fermi momentum, and in the above
+formulas can be set to zero. Furthermore, the intensity of the RF field over the
+cloud can be taken as uniform in the scale of the cloud, which makes the
+coupling parameter to be simply a constant.
+#+END_QUOTE
+
+对于 rf 脉冲, 它的动量相对原子的动量可以忽略. rf 场的波长相对原子云的波长很大,
+可以认为它的均匀的. 也就是
+\begin{align}
+  \Omega (\vec{r}) = \Omega
+\end{align}
+
+变换到动量表象
+\begin{align}
+  \hat{\psi}(\vec{r}) = \frac{1}{\sqrt{\mathcal{V}}}
+    \sum_{\vec{k}}\hat{c}_{\vec{k}}^{\dagger} e^{\mathrm{i}\vec{k}\cdot \vec{r}}
+\end{align}
+这样就有
+\begin{align}
+  &\frac{\mathrm{d}}{\mathrm{d}t}\langle\Psi(t)|\hat{N}_{e}(t)|\Psi(t)\rangle_{1\mathrm{st}, \mathrm{rwa}} \\
+  =& -\frac{|\Omega|^2}{4}\int \mathrm{d}^3r \int \mathrm{d}^3r'\int_0^{t} \mathrm{d}t' 
+    \sum_{\vec{k}\vec{k}'\vec{l}\vec{l}'}
+    e^{\mathrm{i}(\vec{l} - \vec{k})\cdot \vec{r}}
+    e^{\mathrm{i}(\vec{k}' - \vec{l}')\cdot \vec{r}'}
+    \left\{e^{ - \mathrm{i}\tilde{\delta}(t - t')}
+    \langle\left[\hat{c}_{ke}^{\dagger}(t)\hat{c}_{lg}(t), \hat{c}_{l'g}^{\dagger}(t')\hat{c}_{k'e}(t') \right]\rangle 
+    + \mathrm{h.c.} \right\}
+\end{align}
+将空间部分积掉是 $\delta$ 函数, 然后求和掉 $\vec{l}', \vec{l}'$ 结果为
+\begin{align}
+  &\frac{\mathrm{d}}{\mathrm{d}t}\langle\Psi(t)|\hat{N}_{e}(t)|\Psi(t)\rangle_{1\mathrm{st}, \mathrm{rwa}} \\
+  =& -\frac{|\Omega|^2}{4}\int_0^{t} \mathrm{d}t' 
+    \sum_{\vec{k}\vec{k}'}
+      \left\{e^{ - \mathrm{i}\tilde{\delta}(t - t')}
+    \langle\left[\hat{c}_{ke}^{\dagger}(t)\hat{c}_{kg}(t), \hat{c}_{k'g}^{\dagger}(t')\hat{c}_{k'e}(t') \right]\rangle 
+    + \mathrm{h.c.} \right\}
+\end{align}
+
+* 写成格林函数
+
+#+BEGIN_QUOTE
+The correlators above could in principle be non-zero for $k \neq k'$ and/or $l\neq
+l'$ if the state possesses some non-trivial correlations between different
+momentum states of the same species. However, this is not the case, for
+instance, for the normal state or for the BCS state, and many other typical
+many-body states. So, in our example that aims to treat such states, we
+assume $k=k'$ and $l=l'$ .
+#+END_QUOTE
+
+对于 normal state 和 BCS 态来说,  $k \neq k'$ 的态是不存在的, 所以就有 
+\begin{align}
+  &\frac{\mathrm{d}}{\mathrm{d}t}\langle\Psi(t)|\hat{N}_{e}(t)|\Psi(t)\rangle_{1\mathrm{st}, \mathrm{rwa}} \\
+  =& -\frac{|\Omega|^2}{4}\int_0^{t} \mathrm{d}t' 
+    \sum_{\vec{k}}
+      \left\{e^{ - \mathrm{i}\tilde{\delta}(t - t')}
+    \langle\left[\hat{c}_{ke}^{\dagger}(t)\hat{c}_{kg}(t), \hat{c}_{kg}^{\dagger}(t')\hat{c}_{ke}(t') \right]\rangle 
+    + \mathrm{h.c.} \right\}
+\end{align}
+推迟格林函数的定义
+\begin{align*}
+G_{AB}^{\mathrm{ret}}(t,t') =-\mathrm{i}\theta(t-t')\langle [A(t),B(t')]_{-\varepsilon}\rangle
+\end{align*}
+因此 $|e\rangle,|g\rangle$ 之间的推迟格林函数为
+\begin{align}
+  G_{eg}(k, t - t') = -\mathrm{i}\theta(t-t')\langle\left[\hat{c}_{ke}^{\dagger}(t)\hat{c}_{kg}(t), \hat{c}_{kg}^{\dagger}(t')\hat{c}_{ke}(t')\right]\rangle
+\end{align}
+所以
+\begin{align}
+  &\frac{\mathrm{d}}{\mathrm{d}t}\langle\Psi(t)|\hat{N}_{e}(t)|\Psi(t)\rangle_{1\mathrm{st}, \mathrm{rwa}} \\
+  =& -\frac{|\Omega|^2}{4}\int_0^{+\infty} \mathrm{d}t' 
+    \sum_{\vec{k}}
+      \left\{e^{ - \mathrm{i}\tilde{\delta}(t - t')}
+      \mathrm{i} G_{eg}(k, t - t') 
+    + \mathrm{h.c.} \right\}
+\end{align}
+做变量代换 $t - t' \to t$ , $\mathrm{d}t'\to -\mathrm{d}t$ ,
+ $t'\in[0, +\infty] \to t\in[t, -\infty]$ 有
+\begin{align}
+  &\frac{\mathrm{d}}{\mathrm{d}t}\langle\Psi(t)|\hat{N}_{e}(t)|\Psi(t)\rangle_{1\mathrm{st}, \mathrm{rwa}} \\
+  =& -\frac{|\Omega|^2}{4}\int_{-\infty}^{t} \mathrm{d}t 
+    \sum_{\vec{k}}
+      \left\{e^{ - \mathrm{i}\tilde{\delta}t}
+      \mathrm{i} G_{eg}(k, t) 
+    + \mathrm{h.c.} \right\}
+\end{align}
+而格林函数在能量表象为
+\begin{align}
+  G_{AB}(\omega) = \int_{-\infty}^{+\infty} \mathrm{d}(t - t') G_{AB}(t - t')e^{\mathrm{i}\omega(t - t')}
+\end{align}
+所以, 当取极限时 $t\to\infty$ 时
+\begin{align}
+  &\frac{\mathrm{d}}{\mathrm{d}t}\langle\Psi(t)|\hat{N}_{e}(t)|\Psi(t)\rangle_{1\mathrm{st}, \mathrm{rwa}, t\to\infty} \\
+  =& -\frac{|\Omega|^2}{4}\int_{-\infty}^{+\infty} \mathrm{d}t 
+    \sum_{\vec{k}}
+      \left\{e^{ - \mathrm{i}\tilde{\delta}t}
+      \mathrm{i} G_{eg}(k, t) 
+    + \mathrm{h.c.} \right\} \\
+  =& -\frac{|\Omega|^2}{4}
+    \sum_{\vec{k}}
+      \left\{
+      \mathrm{i} G_{eg}(k, -\tilde{\delta}) 
+    + \mathrm{h.c.} \right\} 
+\end{align}
+而
+\begin{align}
+  \mathrm{i} G_{eg}(k, -\tilde{\delta}) 
+    + \mathrm{h.c.}
+  =&   \mathrm{i} G_{eg}(k, -\tilde{\delta}) 
+    -\mathrm{i} G_{eg}^{*}(k, -\tilde{\delta}) 
+  = \mathrm{i}\left[ 2\mathrm{i} \mathrm{Im}G_{eg}(k, -\tilde{\delta})  \right] \\
+  =& -2\mathrm{Im}G_{eg}(k, -\tilde{\delta})
+\end{align}
+所以
+\begin{align}
+  &\frac{\mathrm{d}}{\mathrm{d}t}\langle\Psi(t)|\hat{N}_{e}(t)|\Psi(t)\rangle_{1\mathrm{st}, \mathrm{rwa}, t\to\infty} \\
+  =& \frac{|\Omega|^2}{2}
+    \sum_{\vec{k}}
+    \mathrm{Im}G_{eg}(k, -\tilde{\delta})
+\end{align}
+这里 $\tilde{\delta} = \delta + \frac{\mu_g  - \mu_e}{\hbar} = \omega_L - \frac{E_e - E_g}{\hbar} +
+\frac{\mu_g  - \mu_e}{\hbar}$ . 如果 $E_e - E_g = \mu_g - \mu_e$ , 那么 $\tilde{\delta} = \omega_L$ .
+
+
+* 初末两个态没有相互作用
+
+#+BEGIN_QUOTE
+e and g are only coupled by the field. In this case, the state of the system
+before the perturbation is a product of states for the species e and g which
+means the four-operator correlators can be factorized to parts that contain only
+e operators or g operators.
+#+END_QUOTE
+在将 rf 脉冲作为微扰引入前, $|e\rangle ,|g\rangle$ 两个态没有相互作用, 因此四算符的关联函数
+可以拆成两个二算符关联函数的乘积, 也就是
+\begin{align}
+  \langle \hat{c}_{ke}^{\dagger}(t)\hat{c}_{kg}(t) \hat{c}_{k'g}^{\dagger}(t')\hat{c}_{k'e}(t') \rangle
+ =   \langle \hat{c}_{ke}^{\dagger}(t)\hat{c}_{k'e}(t') \rangle
+     \langle \hat{c}_{kg}(t) \hat{c}_{k'g}^{\dagger}(t') \rangle
+\end{align}
+
+#+BEGIN_QUOTE
+The correlators above could in principle be non-zero for $k \neq k'$ and/or $l\neq
+l'$ if the state possesses some non-trivial correlations between different
+momentum states of the same species. However, this is not the case, for
+instance, for the normal state or for the BCS state, and many other typical
+many-body states. So, in our example that aims to treat such states, we
+assume $k=k'$ and $l=l'$ .
+#+END_QUOTE
+
+对于 normal state 和 BCS 态来说,  $k \neq k'$ 的态是不存在的, 所以就有 
+\begin{align}
+  &\frac{\mathrm{d}}{\mathrm{d}t}\langle\Psi(t)|\hat{N}_{e}(t)|\Psi(t)\rangle_{1\mathrm{st}, \mathrm{rwa}} \\
+  =& -\frac{|\Omega|^2}{4}\int_0^{t} \mathrm{d}t' 
+    \sum_{\vec{k}}
+      \left\{e^{ - \mathrm{i}\tilde{\delta}(t - t')}
+    \left[
+   \langle \hat{c}_{ke}^{\dagger}(t)\hat{c}_{ke}(t') \rangle\langle \hat{c}_{kg}(t) \hat{c}_{kg}^{\dagger}(t') \rangle
+-  \langle \hat{c}_{kg}^{\dagger}(t')\hat{c}_{kg}(t) \rangle \langle \hat{c}_{ke}(t')\hat{c}_{ke}^{\dagger}(t) \rangle
+  \right]
+      + \mathrm{h.c.} \right\}
+\end{align}
+
+
+
+* Reference
+
+- Phys. Scr. 91 (2016) 043006 ,Päivi Törmä ,Physics of ultracold Fermi gases revealed by spectroscopies
+
+- Torma P.,Klaus Sengstock K, Quantum Gas Experiments Exploring Many-Body States

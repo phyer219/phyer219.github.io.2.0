@@ -1,0 +1,145 @@
+<!DOCTYPE html><html class="no-js" lang="zh">
+
+<head>
+<script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+    </script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Long+Cang&family=Noto+Serif+SC&display=swap" rel="stylesheet"> <meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>从冰上的水</title>
+<link rel="apple-touch-icon" sizes="180x180" href="../static/images/apple-touch-icon-next.png?v=6.4.1">
+<link rel="icon" type="image/png" sizes="32x32" href="../static/images/favicon-32x32-next.png?v=6.4.1">
+<link rel="icon" type="image/png" sizes="16x16" href="../static/images/favicon-16x16-next.png?v=6.4.1">
+<link rel="stylesheet" type="text/css" href="../static/css/mystyle.css">    
+
+</head>
+<body>
+    <div class="container">
+        <header>
+            <section class="banner"><img src="../static/images/banner_20220427_tamako-love-story.jpg"></section>
+        </header>
+        <nav class="row">
+    <a class="nav" href="../index.html">首页</a>
+    <a class="nav" href="../category/category.html">分类</a>
+    <a class="nav" href="#">标签</a>
+    <a class="nav" href="#">关于</a>
+</nav>
+        <main>
+            <h1 class="post-title">Fourier transform 总结
+            </h1>
+            <section class="post-meta">
+                <p><2018-09-07></p>
+                <p>['Fourier, 数学']</p>
+                <p>专业笔记</p>
+            </section>
+            <section class="post-content">
+                <h2>总的分类</h2>
+
+<p>根据变量的连续与否，F.T.总共有三种。</p>
+
+<ul>
+<li>完全离散</li>
+</ul>
+<p>\begin{align*}
+  \sum_l e^{-i\frac{2\pi}{N}k'l} e^{i\frac{2\pi}{N}kl}=N\delta_{kk'}
+\end{align*}</p>
+
+<ul>
+<li>部分离散</li>
+</ul>
+<p>\begin{align*}
+  \int_{-\infty}^{\infty} e^{-ik'x} e^{ikx} \mathrm{d}x = L \delta_{kk'}
+\end{align*}</p>
+
+<ul>
+<li>完全连续</li>
+</ul>
+<p>\begin{align*}
+  \int_{-\infty}^{\infty} e^{-ikx} e^{ik'x} \mathrm{d}x = 2\pi \delta (x-x')
+\end{align*}</p>
+
+<h2>部分离散</h2>
+
+<h3>动量本征函数</h3>
+
+<p>\begin{align*}
+\frac{\hbar}{i} \frac{\mathrm{d}}{\mathrm{d}x} \psi <code> p \psi\quad \Longrightarrow\quad \psi </code> e^{i\frac{p}{\hbar}x}
+\end{align*}</p>
+
+<h3>归一化</h3>
+
+<p>\begin{align*}
+\langle e^{ikx} \mid e^{ikx'} \rangle <code> \int_{-\infty}^{\infty} e^{-ikx} e^{ikx'} \mathrm{d}k </code> \int_{-\infty}^{\infty} e^{ik(x'-x)} \mathrm{d}k = 2\pi \delta(x-x')
+\end{align*}</p>
+
+<h3>周期为 $L$</h3>
+
+<p>$f(x)$ 是周期函数</p>
+
+<p>\begin{align*}
+f(x+L) = f(x)
+\end{align*}</p>
+
+<p>将 $x$ 从 $2\pi$ 拉伸到 $L$</p>
+
+<p>\begin{align*}
+x \rightarrow x \cdot \frac{2\pi}{L}​
+\end{align*}</p>
+
+<p>相应归一化到 $L$</p>
+
+<p>\begin{align*}
+\langle e^{ikx \cdot \frac{2\pi}{L}} \mid e^{ikx' \cdot \frac{2\pi}{L}} \rangle <code> \int_{-\infty}^{\infty} e^{-ikx \cdot \frac{2\pi}{L}} e^{ikx' \cdot \frac{2\pi}{L}} \mathrm{d}k </code> L \delta(x-x')
+\end{align*}</p>
+
+<p>Fourier展开系数由下式求得</p>
+
+<p>\begin{align*}
+f(x)<code> \frac{1}{L} \sum_k \mid e^{ikx \cdot \frac{2\pi}{L}} \rangle \langle e^{ikx \cdot \frac{2\pi}{L}} \mid f(x) \rangle </code> \sum_k e^{ikx \cdot \frac{2\pi}{L}} C_k
+\end{align*}</p>
+
+<p>\begin{align*}
+C_k = \frac{1}{L} \int_{-\infty}^{\infty} f(x) e^{-ikx \cdot \frac{2\pi}{L}} \mathrm{d}x
+\end{align*}</p>
+
+<h2>完全连续</h2>
+
+<p>当周期 $L \rightarrow \infty​$ 时，$\frac{2\pi}{L} \rightarrow 0​$ ，指数上的 $k\frac{2\pi}{L}​$ 由原来离散的取值 $\frac{2\pi}{L}, 2\frac{2\pi}{L}, 3\frac{2\pi}{L}, \cdots​$ 变成连续的变量，记为新的 $k​$ ，且 $\mathrm{d}k = \frac{2\pi}{L}​$ 。</p>
+
+<p>则Fourier展开变为</p>
+
+<p>\begin{align*}
+f(x) <code> \lim_{L\rightarrow \infty} \frac{1}{2 \pi}\frac{2\pi}{L} \sum_k \mid e^{ikx\cdot\frac{2\pi}{L}}\rangle\langle e^{ikx\cdot\frac{2\pi}{L}}\mid f(x) \rangle </code> \int_{-\infty}^{\infty} \mathrm{d}k \frac{1}{2\pi}\mid e^{ikx\cdot\frac{2\pi}{L}}\rangle\langle e^{ikx\cdot\frac{2\pi}{L}}\mid f(x) \rangle \\\\=\frac{1}{2\pi} \int _{-\infty}^{\infty}\mathrm{d}k\int _{-\infty}^{\infty}\mathrm{d}x' e^{ikx}\cdot e^{-ikx'}f(x')
+\end{align*}</p>
+
+<p>也就是</p>
+
+<p>\begin{align*}
+f(x) = \frac{1}{2\pi} \int_{-\infty}^{\infty} \mathrm{d}k \int_{-\infty}^{\infty} \mathrm{d}x' e^{ik(x-x')} f(x')
+\end{align*}</p>
+
+<h2>完全离散</h2>
+
+<p>类似群论中的不可约表示。</p>
+
+<p>\begin{align*}
+\sum_l e^{-i\frac{2\pi}{N}k'l} e^{i\frac{2\pi}{N}kl}=N\delta_{kk'}
+\end{align*}</p>
+
+            </section>
+        </main>
+        <footer>zqw</footer>
+
+    </div>
+</body>
+</html>

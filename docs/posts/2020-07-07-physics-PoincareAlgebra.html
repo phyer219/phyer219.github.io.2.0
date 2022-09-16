@@ -1,0 +1,376 @@
+<!DOCTYPE html><html class="no-js" lang="zh">
+
+<head>
+<script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+    </script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Long+Cang&family=Noto+Serif+SC&display=swap" rel="stylesheet"> <meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>从冰上的水</title>
+<link rel="apple-touch-icon" sizes="180x180" href="../static/images/apple-touch-icon-next.png?v=6.4.1">
+<link rel="icon" type="image/png" sizes="32x32" href="../static/images/favicon-32x32-next.png?v=6.4.1">
+<link rel="icon" type="image/png" sizes="16x16" href="../static/images/favicon-16x16-next.png?v=6.4.1">
+<link rel="stylesheet" type="text/css" href="../static/css/mystyle.css">    
+
+</head>
+<body>
+    <div class="container">
+        <header>
+            <section class="banner"><img src="../static/images/banner_20220427_tamako-love-story.jpg"></section>
+        </header>
+        <nav class="row">
+    <a class="nav" href="../index.html">首页</a>
+    <a class="nav" href="../category/category.html">分类</a>
+    <a class="nav" href="#">标签</a>
+    <a class="nav" href="#">关于</a>
+</nav>
+        <main>
+            <h1 class="post-title">庞加莱代数
+            </h1>
+            <section class="post-meta">
+                <p><2020-07-07></p>
+                <p>['数学, Poincare Algebra, Relativistic Quantum Machinics, Lorentz Transformation']</p>
+                <p>专业笔记</p>
+            </section>
+            <section class="post-content">
+                
+<h2>说明</h2>
+
+<p>'可以证明' 在本文中的意思是, 可以证明但是我懒不想写证明或者我不会证明. Weinberg
+的书真的太强了, 一句话也不多余, 一句话也不欠缺. 我只能把已经看明白的写出来, 并试
+着验算一些结果. 更加详细的过程记于活页手稿 $21$ .</p>
+
+<h2>Lorentz Transformation</h2>
+
+<p>假设取光速 $c<code>1$ 在所有惯性系中都是不变的, $x^{\mu}$ 是惯性系中的坐标 ( $x^0</code>t$ 是
+时间坐标, $x^1, x^2, x^3$ 是空间坐标). 那么可以得到在任意两个惯性系中有 </p>
+
+$$\begin{align}
+  \eta_{\mu\nu} \mathrm{d}x'^{\mu} \mathrm{d}x'^{\nu}
+  =  \eta_{\mu\nu} \mathrm{d}x^{\mu} \mathrm{d}x^{\nu}
+\end{align}$$
+
+<p>其中</p>
+
+$$\begin{align}
+  \eta = \left(
+  \begin{array}{cccc}
+    -1  &  0  & 0 & 0 \\
+    0   &  1    & 0 & 0 \\
+    0  &  0    & 1 & 0 \\
+    0  &  0    & 0 & 1
+  \end{array}
+ \right)
+\end{align}$$
+
+<p>#+BEGIN_QUOTE
+由一个例子说明上式的合理性.</p>
+
+<p>在垂直于 $y$ 方向上放两面相距为 $l$ 的镜子, 在 $xOy$ 平面内, 一束光从一面镜子射
+出, 出射的方向与 $z$ 轴垂直, 到达另一面镜子后反射, 再回到第一面镜子上. 在相对镜
+子静止的参考系中, 光走过的路程为 $c\Delta t = 2\sqrt{(\frac{\Delta x}{2})^2 + l^2}$ . 在另
+一个沿 $x$ 方向相对匀速运动的惯性系中, 光走过的路程为 $c\Delta t' = 2\sqrt{(\frac{\Delta
+x'}{2})^2 + l^2}$ , 由这两式可得 $- (c \Delta t)^2 + (\Delta x)^2 = - (c \Delta t')^2 + (\Delta x')^2$ .
+#+END_QUOTE</p>
+
+<p>可以证明, 不同惯性系之间的 Lorentz 变换(沿 $x_1$ 方向)可以写为</p>
+
+$$\begin{align}
+  x'^{\mu} = \Lambda ^{\mu}_{\,\nu} x^{\nu}
+\end{align}$$
+
+<p>其中 $\Lambda ^{\mu}_{\,\nu}$ 满足</p>
+
+$$\begin{align}
+  \eta_{\mu\nu} \Lambda^{\mu}_{\,\,\rho}\Lambda^{\nu}_{\,\,\sigma} = \eta_{\rho\sigma}
+\end{align}$$
+
+<p>将上式的两边同时左乘 $\eta^{\tau\rho}$ 可以得到 $\Lambda$ 的逆为</p>
+
+$$\begin{align}
+(\Lambda^{-1}) ^{\rho} _{\,\,\nu} = \Lambda_{\nu}^{\,\,\rho} \equiv \eta_{\nu\mu} \eta^{\rho\sigma} \Lambda^{\mu}_{\,\,\sigma}
+\end{align}$$
+
+
+
+<p>#+BEGIN_QUOTE
+Exercise: </p>
+
+<p>沿 $x$ 方向的 Lorentz transformation 可以写为</p>
+
+$$\begin{align}
+  \Lambda = \left(
+  \begin{array}{cccc}
+    \gamma  &  \beta \gamma  & 0 & 0 \\
+    \beta\gamma &  \gamma    & 0 & 0 \\
+    0  &  0    & 1 & 0 \\
+    0  &  0    & 0 & 1
+  \end{array}
+ \right)
+\end{align}$$
+
+<p>其中 $\beta <code> \frac{v}{c}$, $\gamma </code> \frac{1}{\sqrt{1- \beta^2}}$ . 
+验证其逆变换为</p>
+
+$$\begin{align}
+  \Lambda^{-1} = \left(
+  \begin{array}{cccc}
+    \gamma  & -\beta \gamma  & 0 & 0 \\
+   -\beta\gamma &  \gamma    & 0 & 0 \\
+    0  &  0    & 1 & 0 \\
+    0  &  0    & 0 & 1
+  \end{array}
+ \right)
+\end{align}$$
+
+<p>验证 $\Lambda$ 满足</p>
+
+$$\begin{align}
+  \eta_{\mu\nu} \Lambda^{\mu}_{\,\,\rho}\Lambda^{\nu}_{\,\,\sigma} = \eta_{\rho\sigma}
+\end{align}$$
+
+<p>#+END_QUOTE</p>
+
+
+<p>Lorentz tranformation 构成 Lorentz group. </p>
+
+<h2>Poincare Group</h2>
+
+<p>在 Lorentz transformation 的基础上, 再加上时间与空间平移, 就构成了 Poincare
+group. 它的变换为</p>
+
+$$\begin{align}
+  x'^{\mu} = \Lambda ^{\mu}_{\,\nu} x^{\nu} + a^{\mu}
+\end{align}$$
+
+<p>在量子力学中, 它对应一个幺正变换</p>
+
+$$\begin{align}
+  \Psi \to U(\Lambda, a) \Psi
+\end{align}$$
+
+
+<p>#+BEGIN_QUOTE
+Exercise:</p>
+
+<p>由定义 $x^{\mu} \to x'^{\mu} \to x''^{\mu}$ 验证如果作用两次, 其结果为</p>
+
+$$\begin{align}
+U(\bar{\Lambda}, \bar{a})U(\Lambda, a) = U(\bar{\Lambda}\Lambda, \bar{\Lambda}a + \bar{a})
+\end{align}$$
+
+<p>#+END_QUOTE</p>
+
+<p>#+BEGIN_QUOTE
+Exercise:</p>
+
+<p>由上面的结果验证</p>
+
+$$\begin{align}
+U^{-1}(\Lambda, a) = U(\Lambda^{-1}, -\Lambda^{-1}a)
+\end{align}$$
+
+<p>#+END_QUOTE</p>
+
+<h2>The Poincare Algebra</h2>
+
+<h3>生成元</h3>
+
+<p>李群的标准作法, 考虑在 identity 附近的的变换</p>
+
+$$\begin{align}
+  \Lambda^{\mu}_{\,\,\nu} = \delta^{\mu}_{\,\,\nu} + \omega^{\mu}_{\,\,\nu}, \quad \quad a^{\mu} = \epsilon^{\mu}
+\end{align}$$
+
+<p>它应当满足 $\eta_{\mu\nu} \Lambda^{\mu}_{\,\,\rho}\Lambda^{\nu}_{\,\,\sigma} = \eta_{\rho\sigma}$ , 也就是</p>
+
+$$\begin{align}
+  \eta_{\rho\sigma} =& \eta_{\mu\nu} (\delta^{\mu}_{\,\,\rho} + \omega^{\mu}_{\,\,\rho})
+  (\delta^{\nu}_{\,\,\sigma} + \omega^{\nu}_{\,\,\sigma}) \\
+  = & \eta_{\rho\sigma} + \eta_{\rho\nu} \omega ^{\nu}_{\,\,\sigma} + \eta_{\mu\sigma} \omega ^{\mu}_{\,\,\rho} +\mathcal{O}(\omega^{2}) \\
+  = & \eta_{\rho\sigma} +  \omega _{\rho\sigma} + \omega_{\sigma\rho} + \mathcal{O}(\omega^{2})
+\end{align}$$
+
+<p>采用了 $\eta_{\mu\nu} , \eta^{\mu\nu}$ 可以将上标变成下标, 下标变成上标的规定, 也就是</p>
+
+$$\begin{align}
+\omega_{\sigma\rho} \equiv& \eta_{\mu\sigma} \omega^{\mu} _{\,\,\rho} \\
+\omega^{\mu} _{\,\,\rho}  \equiv& \eta^{\mu\sigma} \omega_{\sigma\rho}
+\end{align}$$
+
+<p>所以由 $\eta_{\mu\nu} \Lambda^{\mu}_{\,\,\rho}\Lambda^{\nu}_{\,\,\sigma} = \eta_{\rho\sigma}$ 可以得到
+$\omega_{\mu\nu}$ 是反对称的, 也就是</p>
+
+$$\begin{align}
+  \omega_{\mu\nu} = - \omega_{\nu\mu}
+\end{align}$$
+
+<p>那么, 相互独立的 $\omega_{\rho\sigma}$ 有 $6$ 个, 再加上四个 $\epsilon^{\mu}$ , 一共有 $10$ 个参
+数. 对应到量子力学中, 无穷小的变换对应的幺正算符就可以写成 $\omega_{\rho\sigma}$ 和 $\epsilon_{\rho}$
+的线性组合再加上 $1$ </p>
+
+$$\begin{align}
+  U(1 + \omega, \epsilon) = 1 + \frac{1}{2}\mathrm{i}\omega_{\rho\sigma} J^{\rho\sigma} - \mathrm{i}\epsilon_{\rho} P^{\rho} + \cdots
+\end{align}$$
+
+<p>要使 $U(1 + \omega, \epsilon)$ 是幺正的, 那么 $J^{\rho\sigma}$ 和 $P^{\rho}$ 就必须是厄米的, 也就
+是</p>
+
+$$\begin{align}
+  J^{\rho\sigma\dagger} = J^{\rho\sigma}, \quad\quad P^{\rho\dagger} = P^{\rho}
+\end{align}$$
+
+<p>$\omega_{\rho\sigma}$ 是反对称的, $J^{\rho\sigma}$ 也可以取成反对称</p>
+
+$$\begin{align}
+  J^{\rho\sigma} = - J^{\rho\sigma}
+\end{align}$$
+
+<p>其实, $P^1, P^2, P^3$ 就是动量算符, $P^{0}$ 就是能量, 也就是 Hamiltonian, $J^{23},
+J^{31}, J^{12}$ 就是角动量算符.</p>
+
+<h3>生成元如何变换</h3>
+
+<p>李群的性质反应在对易关系上. 因此计算</p>
+
+$$\begin{align}
+  U(\Lambda, a) U(1 + \omega, \epsilon) U^{-1}(\Lambda, a)
+\end{align}$$
+
+<p>如果将 $U(1 + \omega, \epsilon)$ 直接展开, 可以得到</p>
+
+$$\begin{align}
+  &U(\Lambda, a) U(1 + \omega, \epsilon) U^{-1}(\Lambda, a) \\
+ =& 1  + \frac{1}{2}\mathrm{i}\omega_{\rho\sigma} U(\Lambda, a) J^{\rho\sigma} U^{-1}(\Lambda, a)
+  - \mathrm{i}\epsilon_{\rho}U(\Lambda, a) P^{\rho} U^{-1}(\Lambda, a)
+\end{align}$$
+
+<p>如果先把三个作用合并, 再展开, 可以得到</p>
+
+$$\begin{align}
+  &U(\Lambda, a) U(1 + \omega, \epsilon) U^{-1}(\Lambda, a) \\
+ =& 1  + \frac{1}{2}\mathrm{i}\Lambda_{\rho}^{\,\,\mu} \omega_{\mu\nu}\Lambda_{\sigma}^{\,\,\nu}J^{\rho\sigma}
+  - \mathrm{i} \Lambda_{\rho}^{\,\,\mu} \epsilon_{\mu} P^{\rho}
+  + \mathrm{i} \Lambda_{\rho}^{\,\,\mu} \omega_{\mu\nu}\Lambda_{\sigma}^{\,\,\nu} a^{\sigma} P^{\rho}
+\end{align}$$
+
+<p>#+BEGIN_QUOTE
+Exercise:</p>
+
+<p>下面验证上式</p>
+
+$$\begin{align}
+  & U(\Lambda, a) U(1 + \omega, \epsilon) U^{-1}(\Lambda, a) \\
+  =& U(1 + \Lambda\omega\Lambda^{-1}, \Lambda\epsilon - \Lambda\omega\Lambda^{-1}a)\\
+  = & 1 + \frac{1}{2}\mathrm{i}(\Lambda\omega\Lambda^{-1})_{\rho\sigma} J^{\rho\sigma} - \mathrm{i}(\Lambda\epsilon - \Lambda\omega\Lambda^{-1}a)_{\rho} P^{\rho} \\
+ =& 1  + \frac{1}{2}\mathrm{i}\Lambda_{\rho\mu} \omega^{\mu}_{\,\,\nu}\Lambda_{\sigma}^{\,\,\nu}J^{\rho\sigma}
+  - \mathrm{i} \Lambda_{\rho\mu} \epsilon^{\mu} P^{\rho}
+  + \mathrm{i} \Lambda_{\rho\mu} \omega^{\mu}_{\,\,\nu}\Lambda_{\sigma}^{\,\,\nu} a^{\sigma} P^{\rho} \\
+ =& 1  + \frac{1}{2}\mathrm{i}\Lambda_{\rho}^{\,\,\mu} \omega_{\mu\nu}\Lambda_{\sigma}^{\,\,\nu}J^{\rho\sigma}
+  - \mathrm{i} \Lambda_{\rho}^{\,\,\mu} \epsilon_{\mu} P^{\rho}
+  + \mathrm{i} \Lambda_{\rho}^{\,\,\mu} \omega_{\mu\nu}\Lambda_{\sigma}^{\,\,\nu} a^{\sigma} P^{\rho}
+\end{align}$$
+
+<p>#+END_QUOTE
+对比上面两种展开的系数. 首先对应 $\omega_{\rho\sigma}$ 的系数得</p>
+
+$$\begin{align}
+  U(\Lambda, a) J^{\rho\sigma}U^{-1}(\Lambda, a) = \Lambda_{\mu}^{\,\,\rho} \Lambda_{\nu}^{\,\,\sigma}
+    (J^{\mu\nu} + a^{\nu} P^{\mu} - a^{\mu}P^{\nu})
+\end{align}$$
+
+<p>对应 $\epsilon_{\rho}$ 的系数得</p>
+
+$$\begin{align}
+  U(\Lambda, a) P^{\rho}U^{-1}(\Lambda, a) = \Lambda_{\mu}^{\,\,\rho}P^{\mu}
+\end{align}$$
+
+
+<h3>对易关系</h3>
+
+<p>将上面两个式子中的 $U(\Lambda, a) = U(1 + \omega, \epsilon)$ 也在单位元处展开 </p>
+
+$$\begin{align}
+  U(\Lambda, a) =& 1 + \frac{1}{2}\mathrm{i}\omega_{\rho\sigma} J^{\rho\sigma} - \mathrm{i}\epsilon_{\rho} P^{\rho}\\
+  U^{-1}(\Lambda, a) =& 1 - \frac{1}{2}\mathrm{i}\omega_{\rho\sigma} J^{\rho\sigma} + \mathrm{i}\epsilon_{\rho} P^{\rho}
+\end{align}$$
+
+<p>保留到一阶项</p>
+
+$$\begin{align}
+  U(\Lambda, a) J^{\rho\sigma}U^{-1}(\Lambda, a) =& J^{\rho\sigma} 
+     +\frac{1}{2}\mathrm{i}\omega_{\mu\nu} [J^{\mu\nu}, J^{\rho\sigma}]
+     - \mathrm{i}\epsilon_{\mu} [P^{\mu}, J^{\rho\sigma}] \\
+=& \\
+ \Lambda_{\mu}^{\,\,\rho} \Lambda_{\nu}^{\,\,\sigma}
+    (J^{\mu\nu} + a^{\nu} P^{\mu} - a^{\mu}P^{\nu}) = & J^{\rho\sigma}
+  + \omega_{\mu\nu}\eta^{\nu\rho}J^{\mu\sigma} + \omega_{\mu\nu}\eta^{\nu\sigma} J^{\rho\mu}
+  - \epsilon_{\mu}\eta^{\mu\rho}P^{\sigma} + \epsilon_{\mu} \eta^{\mu\sigma} P^{\rho}
+\end{align}$$
+
+<p>对应 $\omega_{\mu\nu}$ 的系数可得</p>
+
+$$\begin{align}
+  \mathrm{i}[J^{\mu\nu}, J^{\rho\sigma}] = 
+   \eta^{\nu\rho} J^{\mu\sigma} - \eta^{\mu\rho} J^{\nu\sigma} - \eta^{\sigma\mu} J^{\rho\nu} + \eta^{\sigma\nu} J^{\rho\mu} 
+\end{align}$$
+
+<p>对应 $\epsilon_{\mu}$ 的系数得</p>
+
+$$\begin{align}
+  \mathrm{i}[P^{\mu}, J^{\rho\sigma}] = \eta^{\mu\rho} P^{\sigma} - \eta^{\mu\sigma} P^{\rho}
+\end{align}$$
+
+<p>同理对 $U(\Lambda, a) P^{\rho}U^{-1}(\Lambda, a) = \Lambda_{\mu}^{\,\,\rho}P^{\mu}$ 展开可以得到</p>
+
+$$\begin{align}
+[P^{\mu}, P^{\rho}] = 0
+\end{align}$$
+
+<p>所以至此就得到了庞加莱代数的所有对易关系</p>
+
+$$\begin{align}
+  \mathrm{i}[J^{\mu\nu}, J^{\rho\sigma}] =& 
+   \eta^{\nu\rho} J^{\mu\sigma} - \eta^{\mu\rho} J^{\nu\sigma} - \eta^{\sigma\mu} J^{\rho\nu} + \eta^{\sigma\nu} J^{\rho\mu}  \\
+  \mathrm{i}[P^{\mu}, J^{\rho\sigma}] =& \eta^{\mu\rho} P^{\sigma} - \eta^{\mu\sigma} P^{\rho} \\
+    [P^{\mu}, P^{\rho}] =& 0
+\end{align}$$
+
+<p>#+BEGIN_QUOTE
+Exercise:</p>
+
+<p>验证动量和角动量 $\vec{P} <code> \{P^1, P^2, P^{3} \}, \vec{J} </code> \{J^{23}, J^{31}, J^{12}\}$ 是守恒量, 也就是它们和 $H
+<code> P^0$ 对易. 而 boost three-vector $K </code> \{J^{01}, J^{02}, J^{03}\}$ 不是守恒量. 
+#+END_QUOTE
+#+BEGIN_QUOTE
+Exercise:</p>
+
+<p>从庞加莱代数的对易关系得到量子力学中常见的动量与角动量之间的对易关系. 
+#+END_QUOTE</p>
+
+
+<h2>Reference</h2>
+
+<ul>
+<li>Steven Weinberg, The Quantum Theory of Fields Foundations Vol. 1(1995, Cambridge University Press)</li>
+<li>A. Zee, Group Theory in a Nutshell for Physicists (2016, Princeton University Press)</li>
+<li>Tom Lancaster, Stephen J. Blundell, Quantum Field Theory for the Gifted Amateur (2014, Oxford University Press)</li>
+</ul>
+
+            </section>
+        </main>
+        <footer>zqw</footer>
+
+    </div>
+</body>
+</html>

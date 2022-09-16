@@ -1,0 +1,295 @@
+#+TITLE: Rotating Wave Approximation
+#+DATE: <2020-04-22>
+#+CATEGORIES: 专业笔记
+#+TAGS: 物理, Rotating Wave Approximation, Atom Light Interaction
+#+HTML: <!-- toc -->
+#+HTML: <!-- more -->
+
+* Hamiltonian
+
+考虑碱金属原子的基态 $|^2S_{1/2}\rangle$ 和两个激发态 $|^2P_{1/2}\rangle, |^2P_{3/2}\rangle$
+之间的跃迁. 
+
+如果不考虑精细结构, 两个激发态 $|^2P_{1/2}\rangle, |^2P_{3/2}\rangle$ 是简并的.
+那么它的 Hamiltonian 在基底 $|^2S_{1/2}\rangle, |^2P_{1/2}\rangle, |^2P_{3/2}\rangle$ 下可以写为
+\begin{align}
+  \left( 
+  \begin{array}{ccc}
+   E_{\mathrm{ex}}  &  0  & 0 \\
+   0 &  E_{\mathrm{ex}}  &   0 \\
+    0 & 0 & 0
+  \end{array}   
+   \right)
+\end{align}
+其中, 选取了基态 $|^2S_{1/2}\rangle$ 能量为 $0$ , 激发态能量为 $E_{\mathrm{ex}}$ .
+
+两个激发态可以由 spin-orbital coupling 项
+$\frac{A_{\mathrm{fs}}}{\hbar^2}\hat{\vec{L}}\cdot\hat{\vec{S}}$ 解除简并
+\begin{align}
+  \hat{\vec{L}}\cdot\hat{\vec{S}} 
+  &= \frac{1}{2}\left[(\hat{\vec{L}}+\hat{\vec{S}} )^2 - \hat{\vec{L}}^2 - \hat{\vec{S}}^2\right] \\
+  &= \frac{1}{2}\left[\hat{\vec{J}} ^2 - \hat{\vec{L}}^2 - \hat{\vec{S}}^2\right] 
+\end{align}
+所以
+\begin{align}
+  \frac{A_{\mathrm{fs}}}{\hbar^2}\hat{\vec{L}}\cdot\hat{\vec{S}} |^2S_{1/2}\rangle
+  =&0|^2S_{1/2}\rangle \\
+  \frac{A_{\mathrm{fs}}}{\hbar^2}\hat{\vec{L}}\cdot\hat{\vec{S}} |^2P_{1/2}\rangle
+  =& \frac{A_{\mathrm{fs}}}{2} |^2P_{1/2}\rangle\\
+  \frac{A_{\mathrm{fs}}}{\hbar^2}\hat{\vec{L}}\cdot\hat{\vec{S}} |^2P_{3/2}\rangle
+  =&- A_{\mathrm{fs}}|^2P_{3/2}\rangle
+\end{align}
+那么它的 Hamiltonian 在基底 $|^2S_{1/2}\rangle, |^2P_{1/2}\rangle, |^2P_{3/2}\rangle$ 下可以写为
+\begin{align}
+  H_{\mathrm{at}} = \left( 
+  \begin{array}{ccc}
+   E_{\mathrm{ex}} + \frac{A_{\mathrm{fs}}}{2} &  0  & 0 \\
+   0 &  E_{\mathrm{ex}} - A_{\mathrm{fs}} &   0 \\
+    0 & 0 & 0
+  \end{array}   
+   \right)
+\end{align}
+
+在偶极近似下, 光会通过偶极相互作用
+$\hat{H}_{\mathrm{d}} = \hat{\vec{d}}\cdot\hat{\vec{E}} = d_jE^0_j \cos(\phi_j - \omega
+t)$ (对相同的指标求和)将基态与激发态耦合在一起. 由于 $|^2S_{1/2}\rangle$ 是偶宇称的态,
+$|^2P_{1/2}\rangle, |^2P_{3/2}\rangle$ 是奇宇称的态, 而偶极相互作用只耦合不同宇称的态, 所以它
+在基底 $|^2S_{1/2}\rangle, |^2P_{1/2}\rangle, |^2P_{3/2}\rangle$ 下可以写为
+\begin{align}
+  H_{\mathrm{d}} = \left( 
+  \begin{array}{ccc}
+   0 &  0  &   V \\
+   0 &  0  &   V \\
+   V^{*} &  V^{*}  &   0
+  \end{array}   
+   \right)
+\end{align}
+其中 $V = \langle^2P_{1/2}|d_j|^2S_{1/2}\rangle E^0_j \cos(\phi_j - \omega t) =
+\langle^2P_{3/2}|d_j|^2S_{1/2}\rangle E^0_j \cos(\phi_j - \omega t) \equiv \langle \mathrm{ex}|d_j|\mathrm{g}\rangle
+E^0_j \cos(\phi_j - \omega t)$  
+
+所以总的 Hamiltonian 在基底 $|^2S_{1/2}\rangle, |^2P_{1/2}\rangle, |^2P_{3/2}\rangle$ 下可以写为
+\begin{align}
+  H = H_{\mathrm{at}} + H_{\mathrm{d}} =
+  \left( 
+  \begin{array}{ccc}
+   E_{\mathrm{ex}} + \frac{A_{\mathrm{fs}}}{2} &  0  & 0 \\
+   0 &  E_{\mathrm{ex}} - A_{\mathrm{fs}} &   0 \\
+    0 & 0 & 0
+  \end{array}   
+   \right)
+  +\left( 
+  \begin{array}{ccc}
+   0 &  0  &   V \\
+   0 &  0  &   V \\
+   V^{*} &  V^{*}  &   0
+  \end{array}   
+   \right)
+\end{align}
+
+* Rotating Wave Approximation
+
+** 对 Hamiltonian 作变换
+
+对 Hamiltonian 做一个幺正变换
+\begin{align}
+  U =   \left( 
+  \begin{array}{ccc}
+   e^{-\mathrm{i}\omega t} &  0  &   0 \\
+   0 &  e^{-\mathrm{i}\omega t}  &   0 \\
+   0 &  0  &   1
+  \end{array}   
+   \right)
+\end{align}
+\begin{align}
+  U^{\dagger}H U = U^{\dagger}H_{\mathrm{at}} U  + U^{\dagger}H_{\mathrm{d}} U 
+ = H_{\mathrm{at}} + 
+\left( 
+  \begin{array}{ccc}
+   0 &  0  &   V e^{\mathrm{i}\omega t} \\
+   0 &  0  &   V e^{\mathrm{i}\omega t} \\
+   V^{*}e^{-\mathrm{i}\omega t} &  V^{*}e^{-\mathrm{i}\omega t}  &   0
+  \end{array}   
+   \right)
+\end{align}
+其中
+\begin{align}
+  V e^{\mathrm{i}\omega t} = &
+ \langle \mathrm{ex}|d_j|\mathrm{g}\rangle E^0_j \cos(\phi_j - \omega t) e^{\mathrm{i}\omega t}\\
+= &\langle \mathrm{ex}|d_j|\mathrm{g}\rangle 
+  E^0_j \frac{1}{2}(e^{\mathrm{i}(\phi_j-\omega t)} + e^{-\mathrm{i}(\phi_j-\omega t)}) 
+  e^{\mathrm{i}\omega t} \\
+= &\langle \mathrm{ex}|d_j|\mathrm{g}\rangle 
+  E^0_j \frac{1}{2}e^{\mathrm{i}\phi_j}(1 + e^{2\mathrm{i}\omega t}) 
+\end{align}
+如果略去高频项 $e^{2\mathrm{i}\omega t}$ , 并记 $E_j \equiv E_j^0 e^{\mathrm{i}\phi_j}$ 那么
+记  
+\begin{align}
+   U^{\dagger}H_{\mathrm{d}} U 
+ \approx 
+\left( 
+  \begin{array}{ccc}
+   0 &  0  &   V_r \\
+   0 &  0  &   V_r \\
+   V_r^{*} &  V_r^{*}  &   0
+  \end{array}   
+   \right)
+\end{align}
+
+** 对 $\mathrm{i}\hbar \frac{\partial}{\partial t}$ 作变换
+
+做一个幺正变换相当于选了一组基底, 幺正变换不会改变本征能量. 但是这个幺正变换是含
+时的, 会对时间演化产生影响, 它的时间演化为
+\begin{align}
+  \left(U^{\dagger} \mathrm{i}\hbar \frac{\partial}{\partial t} U \right) \left(U^{\dagger}|\psi\rangle \right) =  
+    \left(U^{\dagger} H U \right) \left(U^{\dagger}|\psi\rangle \right)
+\end{align}
+计算时间演化的幺正变换 $\left(U^{\dagger} \mathrm{i}\hbar \frac{\partial}{\partial t} U \right)$ 
+
+\begin{align}
+   \frac{\partial}{\partial t} U \left(U^{\dagger}|\psi\rangle \right)
+  = &   \frac{\partial}{\partial t}  \left( 
+  \begin{array}{ccc}
+   e^{-\mathrm{i}\omega t} &  0  &   0 \\
+   0 &  e^{-\mathrm{i}\omega t}  &   0 \\
+   0 &  0  &   1
+  \end{array}   
+   \right)\left(U^{\dagger}|\psi\rangle \right) \\
+  = &   
+     \left[ 
+  \begin{array}{c}
+    \\ \\  \\
+   \end{array}   
+   \right.
+   \left( 
+  \begin{array}{ccc}
+   -\mathrm{i}\omega   &  0  &   0 \\
+   0 &  -\mathrm{i}\omega    &   0 \\
+   0 &  0  &   0
+  \end{array}   
+   \right)U + U\frac{\partial}{\partial t}
+     \left. 
+  \begin{array}{c}
+    \\ \\  \\
+   \end{array}   
+   \right]
+  \left(U^{\dagger}|\psi\rangle \right) 
+\end{align}
+所以新的时间演化为
+\begin{align}
+  \mathrm{i}\hbar \frac{\partial}{\partial t} \left(U^{\dagger}|\psi\rangle \right) =  
+    H_r \left(U^{\dagger}|\psi\rangle \right)
+\end{align}
+其中
+\begin{align}
+  H_r =&  U^{\dagger} H U -    \left( 
+  \begin{array}{ccc}
+   \hbar\omega   &  0  &   0 \\
+   0 &  \hbar\omega  &   0 \\
+   0 &  0  &   0
+  \end{array}   
+   \right) \\
+  =&\left( 
+  \begin{array}{ccc}
+   E_{\mathrm{ex}} + \frac{A_{\mathrm{fs}}}{2}- \hbar\omega &  0  & 0 \\
+   0 &  E_{\mathrm{ex}} - A_{\mathrm{fs}} - \hbar\omega &   0 \\
+    0 & 0 & 0
+  \end{array}   
+   \right)
+  +\left( 
+  \begin{array}{ccc}
+   0 &  0  &   V_r \\
+   0 &  0  &   V_r \\
+   V_r^{*} &  V_r^{*}  &   0
+  \end{array}   
+   \right)
+\end{align}
+如果记 $\Delta_{\mathrm{ex2}} \equiv E_{\mathrm{ex}} + \frac{A_{\mathrm{fs}}}{2}- \hbar\omega$ ,
+$\Delta_{\mathrm{ex1}} \equiv E_{\mathrm{ex}} + A_{\mathrm{fs}}- \hbar\omega$ 那么
+\begin{align}
+  H_r =\left( 
+  \begin{array}{ccc}
+   \Delta_{\mathrm{ex2}} &  0  & 0 \\
+   0 &  \Delta_{\mathrm{ex1}}  &   0 \\
+    0 & 0 & 0
+  \end{array}   
+   \right)
+  +\left( 
+  \begin{array}{ccc}
+   0 &  0  &   V_r \\
+   0 &  0  &   V_r \\
+   V_r^{*} &  V_r^{*}  &   0
+  \end{array}   
+   \right)
+\end{align}
+
+* 用 Dirac 表象来理解 Rotating Wave Approximation
+
+回到我们做 Rotating Wave Approximation 之前的 Hamiltonian
+
+\begin{align}
+  H = H_{\mathrm{at}} + H_{\mathrm{d}} =
+  \left( 
+  \begin{array}{ccc}
+   E_{\mathrm{ex}} + \frac{A_{\mathrm{fs}}}{2} &  0  & 0 \\
+   0 &  E_{\mathrm{ex}} - A_{\mathrm{fs}} &   0 \\
+    0 & 0 & 0
+  \end{array}   
+   \right)
+  +\left( 
+  \begin{array}{ccc}
+   0 &  0  &   V \\
+   0 &  0  &   V \\
+   V^{*} &  V^{*}  &   0
+  \end{array}   
+   \right)
+\end{align}
+如果打入的光的频率对应的能量 $\hbar\omega$ 很接近 $E_{\mathrm{ex}}$ , 那么 $\Delta_{\mathrm{ex2}}$ 和
+$\Delta_{\mathrm{ex2}}$ 可以看做是一个微扰, 所以可以将 Hamiltonian 写成 $H = H_0 +
+V_\mathrm{p}$ (添加下标 $p$ 代表 perturbation, 以区别于 $V = \langle
+\mathrm{ex}|d_j|\mathrm{g}\rangle E^0_j \cos(\phi_j - \omega t)$ )的形式
+
+\begin{align}
+  H = H_0 + V_{\mathrm{p}} =
+  \left( 
+  \begin{array}{ccc}
+   \hbar\omega &  0  & 0 \\
+   0 &  \hbar\omega &   0 \\
+    0 & 0 & 0
+  \end{array}   
+   \right)
+  +\left( 
+  \begin{array}{ccc}
+   \Delta_{\mathrm{ex2}} &  0  &   V \\
+   0 &  \Delta_{\mathrm{ex1}}  &   V \\
+   V^{*} &  V^{*}  &   0
+  \end{array}   
+   \right)
+\end{align}
+所以在 Dirac 表象中, 它的演化方程为
+\begin{align}
+  \mathrm{i}\hbar\frac{\partial}{\partial t}|\psi^D(t) \rangle = V_{\mathrm{p}}^D(t) |\psi^D(t) \rangle
+\end{align}
+其中上标 $D$ 代表 Dirac 表象. $|\psi^D(t)\rangle = U_0^{\dagger}(t)| \psi(t)\rangle$ 是 Schrodinger 表象中
+的态矢去掉 $H_0$ 的演化. $V_{\mathrm{p}}^D(t) = U_0^{\dagger}(t) V_p U_0(t)$ 是 Dirac 表象中
+的微扰项. 而根据 Dirac 表象的定义 $U_0(t)$ 为 $H_0$ 对应的时间演化为
+\begin{align}
+  U_0 = e^{-\frac{\mathrm{i}}{\hbar}H_0t} = 
+  \left( 
+  \begin{array}{ccc}
+   e^{-\mathrm{i}\omega t} &  0  &   0 \\
+   0 &  e^{-\mathrm{i}\omega t}  &   0 \\
+   0 &  0  &   1
+  \end{array}   
+   \right)
+\end{align}
+就是之前进行用到过的幺正变换. 所以如果我们在这里同样地略掉高频项, 就有
+$V_{\mathrm{p}}^D(t) = H_{r}$ 与之前的结果相符.
+
+* Reference 
+
+- [1] H. Z. 的 lecture
+- [2] 博客中的 Term Symbol, 多体物理读书会:3.1节 Dirac表象中的演化算符-diagram
+  techniques的起点, 定态微扰论总结 (update 18/Apr/2020)   
+
+
