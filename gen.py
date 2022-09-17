@@ -88,8 +88,8 @@ class PostsList:
                 else:
                     f.writelines(line)
 
-    def post_link(self, link_theme, post):
-        post_url =  './posts/' + post.file_root + '.html'
+    def post_link(self, link_theme, post, link_base='./'):
+        post_url =  link_base + 'posts/' + post.file_root + '.html'
         link_html = link_theme.replace(r'{post-url}', post_url)
         link_html = link_html.replace(r'{post-title}', post.meta['title'][0])
         date = '.'.join([str(i) for i in self.get_date(post)])
@@ -153,7 +153,8 @@ class PostsList:
                             key)
                             f.writelines(new_line_cat)
                             for post in self.cat_set[key]:
-                                new_line_post = self.post_link(post_line, post)
+                                new_line_post = self.post_link(post_line, post,
+                                link_base='../')
                                 f.writelines(new_line_post)
                 else:
                     f.writelines(line)
