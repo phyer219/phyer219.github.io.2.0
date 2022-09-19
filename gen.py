@@ -107,7 +107,8 @@ class PostsList:
         html = self.post_theme.replace(r'{main}', post.html)
         html = html.replace(r'{title}', post.meta['title'][0])
         html = html.replace(r'{post-date}', post.meta['date'][0])
-        html = html.replace(r'{post-tags}', str(post.meta['tags']))
+        if 'tags' in post.meta.keys():
+            html = html.replace(r'{post-tags}', str(post.meta['tags']))
         html = html.replace(r'{post-category}', str(post.meta['categories'][0]))
 
         with open(self.output_path + 'posts/' 
@@ -119,7 +120,8 @@ class PostsList:
         html = self.post_theme.replace(r'{main}', post.html)
         html = html.replace(r'{title}', post.meta['title'][0])
         html = html.replace(r'{post-date}', post.meta['date'][0])
-        html = html.replace(r'{post-tags}', str(post.meta['tags']))
+        if 'tags' in post.meta.keys():
+            html = html.replace(r'{post-tags}', str(post.meta['tags']))
         html = html.replace(r'{post-category}', str(post.meta['categories'][0]))
 
         with open(self.output_path + 'posts/' 

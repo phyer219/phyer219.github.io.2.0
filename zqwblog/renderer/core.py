@@ -1,4 +1,4 @@
-from .extractor import OrgExtractor
+from .extractor import MdExtractor, OrgExtractor
 from .blockparser import OrgBlockParser
 from .renderer import HTMLRenderer
 from .filter import OrgFilter
@@ -54,13 +54,18 @@ class MdPost:
         self.html = ''
 
     def gen_html(self):
+        p = Processor(extractor=MdExtractor(),
+                      filter=OrgFilter(),
+                      renderer=HTMLRenderer(),
+                      parser=OrgBlockParser())
+        p.run(self)
         self.html = markdown.markdown(self.ori_str)
 
-        info = re.search(r'^(?P<year>\d{4})-(?P<month>\d{2})-(?P<day>\d{2})-(?P<category>[a-z]*)-(?P<url_title>.*)$', self.file_root)
+        # info = re.search(r'^(?P<year>\d{4})-(?P<month>\d{2})-(?P<day>\d{2})-(?P<category>[a-z]*)-(?P<url_title>.*)$', self.file_root)
 
-        self.meta['title'] = [info.group('url_title')]
-        self.meta['date'] = ['<' +info.group('year') + '-'+info.group('month')+'-'
-        +info.group('day')+'>']
-        print(self.meta['date'])
-        self.meta['tags'] = ['mdtags']
-        self.meta['categories'] = [info.group('category')]
+        # self.meta['title'] = [info.group('url_title')]
+        # self.meta['date'] = ['<' +info.group('year') + '-'+info.group('month')+'-'
+        # +info.group('day')+'>']
+        # print(self.meta['date'])
+        # self.meta['tags'] = ['mdtags']
+        # self.meta['categories'] = [info.group('category')]
