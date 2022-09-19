@@ -15,6 +15,8 @@ class Extractor:
     Post.ori_str = "* a first level title"
     Post.meta = {'title': 'a title demo'}
     """
+    def __init__(self):
+        self.extractors = []
     def addExtractor(self, pattern, name):
         def extractor(post):
             lines = post.ori_str.split('\n')
@@ -42,7 +44,7 @@ class Extractor:
 
 class OrgExtractor(Extractor):
     def __init__(self):
-        self.extractors = []
+        super().__init__()
         self.addExtractor(r'#\+TITLE\:(?P<val>.*)', 'title')
         self.addExtractor(r'#\+DATE\:(?P<val>.*)', 'date')
         self.addExtractor(r'#\+CATEGORIES\:(?P<val>.*)', 'categories')
@@ -67,7 +69,7 @@ class OrgExtractor(Extractor):
 
 class MdExtractor(Extractor):
     def __init__(self):
-        self.extractors = []
+        super().__init__()
         self.addExtractor(r'^title\:(?P<val>.*)', 'title')
         self.addExtractor(r'^date\:(?P<val>.*)', 'date')
         self.addExtractor(r'^categories\:(?P<val>.*)', 'categories')
