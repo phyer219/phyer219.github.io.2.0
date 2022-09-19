@@ -60,8 +60,11 @@ class MdExtractor(Extractor):
     def prettify_meta(self, post):
         for k in post.meta.keys():
             if k == 'date':
-                date = post.meta[k][0]
-                date = date.split(r'/')
-                date = '-'.join(date)
-                date = date.join(['<', '>'])
-                post.meta[k][0] = date
+                post.meta[k][0] = self.prettify_meta_date(post.meta[k][0])
+                
+    def prettify_meta_date(self, old_date):
+        """return a standard date form, for example: <2000-02-20>"""
+        date = old_date.split(r'/')
+        date = '-'.join(date)
+        date = date.join(['<', '>'])
+        return date
