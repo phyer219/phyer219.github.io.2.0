@@ -49,6 +49,22 @@ class OrgExtractor(Extractor):
         self.addExtractor(r'#\+TAGS\:(?P<val>.*)', 'tags')
         self.addExtractor(r'#\+HTML\:(?P<val>.*)', 'html')
 
+    def prettify_meta(self, post):
+        for k in post.meta.keys():
+            if k == 'tags':
+                post.meta[k] = self.prettify_meta_tags(post.meta[k][0])
+    
+    def prettify_meta_tags(self, old_tags: str) -> list:
+        """
+        'BEC, Tc'
+        ==>
+        ['BEC', 'Tc']
+        """
+        tags = old_tags.split(',')
+        tags = [tag.strip() for tag in tags]
+        return tags
+
+
 class MdExtractor(Extractor):
     def __init__(self):
         self.extractors = []
@@ -61,10 +77,27 @@ class MdExtractor(Extractor):
         for k in post.meta.keys():
             if k == 'date':
                 post.meta[k][0] = self.prettify_meta_date(post.meta[k][0])
+            if k == 'tags':
+                post.meta[k] = self.prettify_meta_tags(post.meta[k][0])
                 
-    def prettify_meta_date(self, old_date):
-        """return a standard date form, for example: <2000-02-20>"""
+    def prettify_meta_date(self, old_date: str) -> str:
+        """
+        old_date in form of: "2000/02/20"
+        return a standard date form, for example: "<2000-02-20>"
+        """
         date = old_date.split(r'/')
         date = '-'.join(date)
         date = date.join(['<', '>'])
         return date
+    
+    def prettify_meta_tags(self, old_tags: str) -> list:
+        """
+        '[物理, 光学]'
+        ==>
+        ['物理', '光学']
+        """
+        tags = old_tags.strip('[')
+        tags = tags.strip(']')
+        tags = tags.split(',')
+        tags = [tag.strip() for tag in tags]
+        return tags
