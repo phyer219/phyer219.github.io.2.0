@@ -57,10 +57,13 @@ class PostsList:
         gen_index():
         ->
         gen_categories():
+        ->
+        gen_about():
         """
         self.scan_posts()
         self.gen_index()
         self.gen_categories()
+        self.gen_about()
 
     def init_output(self):
         """
@@ -102,25 +105,37 @@ class PostsList:
         for p in dir_list:
             if os.path.isfile(posts_source + p):
                 (file_root, file_extension) = os.path.splitext(p)
-                if file_extension == '.org':
-                    self.add_post(file_root, file_extension)
-                elif file_extension == '.md':
-                    self.add_post(file_root, file_extension)
+                if file_extension in ('.org', '.md'):
+                    post = self.render_post(file_root, file_extension)
+                    self.item_list.append(post)
         self.item_list.sort(key=lambda p: (p.meta['date'][0]), reverse=True)
 
     
-    def add_post(self, file_root, file_extension):
+    def render_post(self, file_root, file_extension):
+        """According the file type, use different render,
+           render it and generate the html file,
+           finaly return a Post
 
+        Args:
+            file_root (_str_): post file name with extension
+            file_extension (_str_): extension
+            for example:
+                file_root = "2020-05-18-physics-Functional"
+                file_extension = "org"
+
+        Raises:
+            RuntimeError: unsuported post source file type
+        """
         post_source = self.source_path + 'posts/' + file_root + file_extension
         if file_extension == '.org':
             post = OrgPost(post_source)
-            post.gen_html()
-            self.gen_org_post_page(post)
         elif file_extension == '.md':
             post = MdPost(post_source)
-            post.gen_html()
-            self.gen_md_post_page(post)
-        self.item_list.append(post)
+        else:
+            raise RuntimeError(f'unsupported soure file type: {post_source:s}')
+        post.gen_html()
+        self.gen_post_page(post)
+        return post
 
     def gen_index(self):
         with open(self.output_path + 'index.html', 'w') as f:
@@ -147,7 +162,7 @@ class PostsList:
         day = int(date[9:11])
         return year, month, day
 
-    def gen_org_post_page(self, post):
+    def gen_post_page(self, post, export_to='posts/'):
         html = self.post_theme.replace(r'{main}', post.html)
         html = html.replace(r'{title}', post.meta['title'][0])
         html = html.replace(r'{post-date}', post.meta['date'][0])
@@ -155,24 +170,16 @@ class PostsList:
             html = html.replace(r'{post-tags}', str(post.meta['tags']))
         html = html.replace(r'{post-category}', str(post.meta['categories'][0]))
 
-        with open(self.output_path + 'posts/' 
+        with open(self.output_path + export_to
                   + post.file_root + '.html', 'w') as f:
             f.write(html)
         self.move_post_dir(post)
 
-    def gen_md_post_page(self, post):
-        html = self.post_theme.replace(r'{main}', post.html)
-        html = html.replace(r'{title}', post.meta['title'][0])
-        html = html.replace(r'{post-date}', post.meta['date'][0])
-        if 'tags' in post.meta.keys():
-            html = html.replace(r'{post-tags}', str(post.meta['tags']))
-        html = html.replace(r'{post-category}', str(post.meta['categories'][0]))
-
-        with open(self.output_path + 'posts/' 
-                  + post.file_root + '.html', 'w') as f:
-            f.write(html)
-        self.move_post_dir(post)
-
+    def gen_about(self):
+        os.mkdir(self.output_path + 'about/')
+        post = MdPost(self.source_path + 'about/index.md')
+        post.gen_html()
+        self.gen_post_page(post, export_to='about/')
     def move_post_dir(self, post):
         posts_source = self.source_path + 'posts/'
         if post.file_root in os.listdir(posts_source):
