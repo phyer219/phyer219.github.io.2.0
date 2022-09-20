@@ -91,6 +91,11 @@ class CategoryTheme(PageTheme):
     name = 'category'
     path_rel = 'category/'
 
+class TagsTheme(PageTheme):
+    base = '../'
+    name = 'tags'
+    path_rel = 'tags/'
+
 clean_dir(OUT_ROOT)
 shutil.copytree(SOURCE_ROOT+'static', OUT_ROOT+'static')
 
@@ -102,3 +107,5 @@ ca = CategoryTheme(out_root=OUT_ROOT, source_root=SOURCE_ROOT)
 ca.run()
 pl = PostListTheme(out_root=OUT_ROOT, source_root=SOURCE_ROOT)
 pl.run()
+tg = TagsTheme(out_root=OUT_ROOT, source_root=SOURCE_ROOT)
+tg.run()

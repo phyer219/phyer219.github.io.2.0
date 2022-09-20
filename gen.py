@@ -58,11 +58,14 @@ class PostsList:
         ->
         gen_categories():
         ->
+        gen_tags():
+        ->
         gen_about():
         """
         self.scan_posts()
         self.gen_index()
         self.gen_categories()
+        self.gen_tags()
         self.gen_about()
 
     def init_output(self):
@@ -80,6 +83,7 @@ class PostsList:
         shutil.copytree(self.theme_path + 'static', self.output_path + 'static')
         os.mkdir(self.output_path + 'posts')
         os.mkdir(self.output_path + 'categories')
+        os.mkdir(self.output_path + 'tags')
         with open (self.output_path + 'CNAME', 'w') as f:
             f.write('zqw.ink')
 
@@ -94,6 +98,8 @@ class PostsList:
             self.post_list_theme = f.read()
         with open(self.theme_path + 'category/category.html', 'r') as f:
             self.category_theme = f.read()
+        with open(self.theme_path + 'tags/tags.html', 'r') as f:
+            self.tags_theme = f.read()
 
     def scan_posts(self):
         """
@@ -153,7 +159,7 @@ class PostsList:
         for line in file_theme.splitlines():
             if re.search(r'{post-url}', line): 
                 line_theme = line
-        html_line_list = [self.post_link(line_theme, p, link_base=link_base) for p in self.item_list]
+        html_line_list = [self.post_link(line_theme, p, link_base=link_base) for p in post_list]
         html_line_list = '\n'.join(html_line_list)
         with open(out_path, 'w') as f:
             f.write(file_theme.replace(line_theme, html_line_list))
@@ -216,7 +222,6 @@ class PostsList:
         cate_list = []
         for c in self.cat_set.keys():
             h = html_line_theme.replace('{post-categories}', c)
-            print("$$$$$$$$$$$$$$$$$$$$$$$$$$$$", '../categories/' + c + '.html')
             h = h.replace('{category-url}', '../categories/' + c + '.html')
             cate_list.append(h)
 
@@ -228,28 +233,39 @@ class PostsList:
         with open(self.output_path + 'categories/index.html', 'w') as f:
             f.write(self.category_theme.replace(html_line_theme, '\n'.join(cate_list)))
 
-        
-        # with open(self.output_path + 'category/index.html', 'w') as f:
-        #     for line in self.category_theme.splitlines():
-        #         if re.search(r'{post-categories}', line):
-        #             cat_line = line
-        #             continue
-        #         if re.search(r'{post-title}', line):
-        #             post_line = line
-        #             for key in self.cat_set.keys():
-        #                     new_line_cat = cat_line.replace(r'{post-categories}',
-        #                     key)
-        #                     f.writelines(new_line_cat)
-        #                     for post in self.cat_set[key]:
-        #                         new_line_post = self.post_link(post_line, post,
-        #                         link_base='../')
-        #                         f.writelines(new_line_post)
-        #         else:
-        #             f.writelines(line)
+
+
+    def gen_tags(self):
+        self.tag_set = {}
+        for post in self.item_list:
+            if 'tags' in post.meta.keys():
+                tag = post.meta['tags'][0]
+                if tag not in self.tag_set.keys():
+                    self.tag_set[tag] = []
+                self.tag_set[tag].append(post)
+
+        for line in self.tags_theme.splitlines():
+            if re.search(r'{post-tags}', line):
+                html_line_theme = line
+
+        tag_list = []
+        for c in self.tag_set.keys():
+            h = html_line_theme.replace('{post-tags}', c)
+            h = h.replace('{tag-url}', '../tags/' + c + '.html')
+            tag_list.append(h)
+
+            self.gen_post_list_html(post_list=self.tag_set[c],
+                                    file_theme=self.post_list_theme, 
+                                    out_path=self.output_path + 'tags/' + c + '.html',
+                                    link_base='../')
+        print('$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$', tag_list)
+        with open(self.output_path + 'tags/index.html', 'w') as f:
+            f.write(self.tags_theme.replace(html_line_theme, '\n'.join(tag_list)))
+
 
 pl = PostsList(SOURCE_PATH, OUTPUT_PATH, THEME_PATH)
 pl.run()
-
+print('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%', pl.tag_set['hexo'])
 
 def s():
     os.chdir(OUTPUT_PATH)
