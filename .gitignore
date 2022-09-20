@@ -2,8 +2,6 @@ __pycache__/
 *.py[cod]
 *$py.class
 /**/#*#
-*.csv
-*.jpg
 # docs/_build/
 
 /build/
@@ -18,5 +16,3 @@ __pycache__/
 *.blg
 
 *.pyc
-*.pdf
-*.json
