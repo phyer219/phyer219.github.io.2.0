@@ -12,7 +12,10 @@
     };
     </script>
 <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><link rel="preconnect" href="https://fonts.googleapis.com">
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/styles/default.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Long+Cang&family=Noto+Serif+SC&display=swap" rel="stylesheet"> <meta charset="utf-8">
 <meta name="viewport" content="width=device-width">
@@ -537,11 +540,11 @@ username@servername:/var/www/remote\_dir/（远程目录）
 
 <p><code>/etc/group</code> 存放了用户组信息, 格式为</p>
 
-<pre><code class="language- shell">组名:口令:组标识号:组内用户列表</code></pre>
+<pre><code class="language-shell">组名:口令:组标识号:组内用户列表</code></pre>
 
 <p>添加用户组用命令 <code>groupadd</code> , 帮助如下</p>
 
-<pre><code class="language- shell">> groupadd -h
+<pre><code class="language-shell">> groupadd -h
 用法：groupadd [选项] 组
 
 选项:
@@ -558,7 +561,7 @@ username@servername:/var/www/remote\_dir/（远程目录）
 
 <p>删除用户组 <code>groupdel</code> , 帮助如下</p>
 
-<pre><code class="language- shell">> groupdel -h
+<pre><code class="language-shell">> groupdel -h
 用法：groupdel [选项] 组
 
 选项:
@@ -573,13 +576,13 @@ username@servername:/var/www/remote\_dir/（远程目录）
 
 <p><code>/etc/passwd</code> 存放了用户信息, 格式为</p>
 
-<pre><code class="language- shell">用户名:口令:用户标识号:组标识号:注释性描述:主目录:登录Shell</code></pre>
+<pre><code class="language-shell">用户名:口令:用户标识号:组标识号:注释性描述:主目录:登录Shell</code></pre>
 
 <p>可修改此文件来修改默认的 shell.</p>
 
 <p>添加用户 <code>useradd</code> </p>
 
-<pre><code class="language- shell">> useradd -h
+<pre><code class="language-shell">> useradd -h
 用法：useradd [选项] 登录名
       useradd -D
       useradd -D [选项]

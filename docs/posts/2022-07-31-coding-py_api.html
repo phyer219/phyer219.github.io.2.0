@@ -12,7 +12,10 @@
     };
     </script>
 <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><link rel="preconnect" href="https://fonts.googleapis.com">
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/styles/default.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Long+Cang&family=Noto+Serif+SC&display=swap" rel="stylesheet"> <meta charset="utf-8">
 <meta name="viewport" content="width=device-width">
@@ -48,7 +51,7 @@
 <p>在 themoviedb 上注册账号，申请自己的应用，获得一个 api 。之后就可以利用网站的资源进行开发了。下面是一个最简短的例子。（如果长时间没有反应，那就是
 api.themoviedb.org 被污染了，可以手动找到 ip，然后修改 host 文件）</p>
 
-<pre><code class="language- python">import requests
+<pre><code class="language-python">import requests
 v3auth = '?api_key=你的api_key'
 q = '&query=' + 'lycoris'
 r = requests.get('https://api.themoviedb.org/3/search/tv'+v3auth+q)
@@ -56,7 +59,7 @@ print(r.status_code)
 for i in r.json()['results']:
     print(i)</code></pre>
 <p>返回结果如下：</p>
-<pre><code class="language- python">200
+<pre><code class="language-python">200
 {'backdrop_path': '/cPqA1G5odxY7uVJ0i81z5E2tSSW.jpg', 'first_air_date': '2022-07-02', 'genre_ids': [16, 10759, 35], 'id': 154494, 'name': 'Lycoris Recoil', 'origin_country': ['JP'], 'original_language': 'ja', 'original_name': 'リコリス・リコイル', 'overview': "For these peaceful days――there’s a secret behind it all. A secret organization that prevents crimes: “DA - Direct Attack”. And their group of all-girl agents: “Lycoris”. This peaceful everyday life is all thanks to these young girls. The elite Chisato Nishikigi is the strongest Lycoris agent of all time. Alongside is Takina Inoue, the talented but mysterious Lycoris. They work together at one of its branches–Café LycoReco. Here, the orders this café takes range from coffee and sweets to childcare, shopping, teaching Japanese to foreign students, etc. It's mostly tasks unbefitting of Lycoris. The free-spirited and optimistic pacifist, Chisato. And the cool-headed and efficient Takina. The chaotic everyday lives of this mismatched duo begin!", 'popularity': 112.401, 'poster_path': '/dfGf0Ti3BEKpBpVCVtEXKTjQjNR.jpg', 'vote_average': 7.7, 'vote_count': 10}</code></pre>
 
             </section>

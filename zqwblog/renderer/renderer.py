@@ -21,7 +21,7 @@ class Renderer:
 class HTMLRenderer(Renderer):
     def __init__(self):...
     def render_code(self, block):
-        before = f'<pre><code class="language-{block.bmeta["lang"]:s}">'
+        before = f'<pre><code class="language-{block.bmeta["lang"].strip():s}">'
         end = '</code></pre>'
         block.data = before + block.data + end
         return None

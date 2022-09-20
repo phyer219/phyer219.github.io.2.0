@@ -64,6 +64,7 @@ class PageTheme():
     def load_head_modules(self):
         mods = []
         mods.append(load_module(path=self.source_root+'head/mathjax.html', base=self.base))
+        mods.append(load_module(path=self.source_root+'head/highlightjs.html', base=self.base))
         mods.append(load_module(path=self.source_root+'head/fonts.html', base=self.base))
         mods.append(load_module(path=self.source_root+'head/meta.html', base=self.base))
         mods.append(load_module(path=self.source_root+'head/style.html', base=self.base))

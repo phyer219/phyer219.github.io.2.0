@@ -12,7 +12,10 @@
     };
     </script>
 <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><link rel="preconnect" href="https://fonts.googleapis.com">
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/styles/default.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Long+Cang&family=Noto+Serif+SC&display=swap" rel="stylesheet"> <meta charset="utf-8">
 <meta name="viewport" content="width=device-width">
@@ -59,14 +62,14 @@ pointer, 也叫 NULL , "nil" .</p>
 
 <p>指针声明的方式是, 在一个已经存在的数据类型前加一个 <code>*</code>. 如</p>
 
-<pre><code class="language- c">int *ip;</code></pre>
+<pre><code class="language-c">int *ip;</code></pre>
 
 <p>声明了一个名为 <code>ip</code> 的 pointer 指向一个整数.</p>
 
 <p>创建一个指针的方法是用算符 <code>&</code> (address-of) . 顾名思义, 它作用到一个变量后, 得到它
 的地址. 如</p>
 
-<pre><code class="language- c">int *ip;
+<pre><code class="language-c">int *ip;
 int x;
 x = 42;
 ip = &x;</code></pre>
@@ -78,13 +81,13 @@ ip = &x;</code></pre>
 <p>使用 pointer 的方法是使用算符 <code>*</code> , 它叫做 dereference operator. 它作用在一个指针
 上, 得到的结果是它指向的内存地址中的值.</p>
 
-<pre><code class="language- c">printf("%d %d\n", x, *ip);</code></pre>
+<pre><code class="language-c">printf("%d %d\n", x, *ip);</code></pre>
 
 <p>会输出 <code>42 42</code> .</p>
 
 <p>也可以</p>
 
-<pre><code class="language- c">*ip = 37;</code></pre>
+<pre><code class="language-c">*ip = 37;</code></pre>
 <p>此时, 这块内存中的值就变成了 <code>37</code> .</p>
 
 <h2>Memory allocation and deallocation</h2>
@@ -95,7 +98,7 @@ ip = &x;</code></pre>
 
 <p>基本的内存分配函数是</p>
 
-<pre><code class="language- c">(void *) malloc(size_t numbytes);</code></pre>
+<pre><code class="language-c">(void *) malloc(size_t numbytes);</code></pre>
 
 <p>它的意思是分出一定数量的内存空间, 并返回一个指向它的指针. 由于  malloc 不知道你
 想要什么类型的指针, 它返回的是 pointer to void, 也就是指向一块数据类型不明的区域.</p>
@@ -103,7 +106,7 @@ ip = &x;</code></pre>
 <p>常用的是把它和内置算符 <code>sizeof()</code> 放在一起用. <code>sizeof()</code> 返回特定数据类型的比特
 数. 如</p>
 
-<pre><code class="language- c">int *ip;
+<pre><code class="language-c">int *ip;
 ip = (int *) malloc(sizeof(int));</code></pre>
 
 <p>这将分配出 1 个 <code>int</code> 大小的内存, 将其指针给 <code>ip</code> .</p>
@@ -112,7 +115,7 @@ ip = (int *) malloc(sizeof(int));</code></pre>
 
 <p>分配单个整型大小的内存没什么用, 有用的是 allocate arrays. 实际上, 指针可以当作一
 个 array 用. 如</p>
-<pre><code class="language- c">int *ip;
+<pre><code class="language-c">int *ip;
 ip = (int *) malloc( sizeof(int)*10 ); // allocate 10 ints
 ip[6] = 42; // set the 7th element to 42
 ip[10] = 99; // WRONG: array only has 10 elements
@@ -122,7 +125,7 @@ ip[10] = 99; // WRONG: array only has 10 elements
 
 <p>如果有以下 code</p>
 
-<pre><code class="language- c">int *ip;
+<pre><code class="language-c">int *ip;
 ip = (int *) malloc( sizeof(int)*10 ); // allocate 10 ints
 ... (use the array, etc.)
 ip = (int *) malloc( sizeof(int)*100 ); // allocate 100 ints
@@ -135,7 +138,7 @@ ints 内存是被分配的, 但程序再也无法使用这些内存了.</p>
 <p>解决方法是, 在 C 或者 C++ 中, 当被分配的内存用完后, 可以通过 <code>free()</code> 来释放内存.
 如</p>
 
-<pre><code class="language- c    int *ip;">ip = (int *) malloc( sizeof(int)*10 ); // allocate 10 ints
+<pre><code class="language-c    int *ip;">ip = (int *) malloc( sizeof(int)*10 ); // allocate 10 ints
 ... (use the array, etc.)
 free(ip); // de-allocate old array
 ip = (int *) malloc( sizeof(int)*100 ); // allocate 100 ints
@@ -150,7 +153,7 @@ automatic garbage collection , 但是 C 和 C++ 没有这种机制. 所以你在
 <p>pointers 可以用 array 的指标, 或者说, 一个数组的名字本质上就是一个 constant
 pointer.</p>
 
-<pre><code class="language- c">int *p;
+<pre><code class="language-c">int *p;
 int a[10];
 p = (int*) malloc(sizeof(int)*20);
 p[2] = 100; // set 3rd element in alloc'd array to 100
@@ -189,19 +192,19 @@ a[2] = 200; // set 3rd element in regulary array to 200
 方法是 call-by-reference. 这也意味着函数中对数组的修改, 会直接修改原来的数组.</p>
 
 <p>因此, 下面的声明是等价的</p>
-<pre><code class="language- c">int func(int A[]);
+<pre><code class="language-c">int func(int A[]);
 int func(int *A);</code></pre>
 
 <h2>How to dynamically allocate a 2D array in C?</h2>
 
 <p>有四种方法能够动态的给一个二维数组赋值. 比如</p>
-<pre><code class="language- c">  1  2  3  4
+<pre><code class="language-c">  1  2  3  4
   5  6  7  8
   9  10 11 12</code></pre>
 
 <h3>1. Using a single pointer</h3>
 
-<pre><code class="language- c">#include <stdio.h>
+<pre><code class="language-c">#include <stdio.h>
 #include <stdlib.h>
 
 int main()
@@ -226,7 +229,7 @@ int main()
 
 <h3>2. Using an array of pointers</h3>
 
-<pre><code class="language- c">#include <stdio.h>
+<pre><code class="language-c">#include <stdio.h>
 #include <stdlib.h>
 
 int main()
@@ -255,7 +258,7 @@ return 0;
 
 <h3>3. Using pointer to a pointer</h3>
 
-<pre><code class="language- c">#include <stdio.h>
+<pre><code class="language-c">#include <stdio.h>
 #include <stdlib.h>
 
 int main()
@@ -284,7 +287,7 @@ return 0;
 
 <h3>4. Using double pointer and one malloc call</h3>
 
-<pre><code class="language- c">#include<stdio.h>
+<pre><code class="language-c">#include<stdio.h>
 #include<stdlib.h>
 
 int main()
@@ -317,7 +320,7 @@ int main()
 <h2>Memory leak</h2>
 
 <p>下面的 code 可以演示内存泄漏</p>
-<pre><code class="language- c">include <stdio.h>
+<pre><code class="language-c">include <stdio.h>
  #include <stdlib.h>
 
  void f(void)
