@@ -161,22 +161,16 @@ class PostsList:
         post_url =  link_base + 'posts/' + post.file_root + '.html'
         link_html = link_theme.replace(r'{post-url}', post_url)
         link_html = link_html.replace(r'{post-title}', post.meta['title'][0])
-        date = '.'.join([str(i) for i in self.get_date(post)])
-        link_html = link_html.replace(r'{post-date}', str(date))
+        date = '.'.join([str(i) for i in post.meta['date']])
+        link_html = link_html.replace(r'{post-date}', date)
         return link_html
-
-    def get_date(self, post):
-        date = post.meta['date'][0]
-        year = int(date[1:5])
-        month = int(date[6:8])
-        day = int(date[9:11])
-        return year, month, day
 
     def gen_post_page(self, post, export_to='posts/'):
         """input a Post, using theme to generate a html file"""
         html = self.post_theme.replace(r'{main}', post.html)
         html = html.replace(r'{title}', post.meta['title'][0])
-        html = html.replace(r'{post-date}', post.meta['date'][0])
+        date = '.'.join([str(i) for i in post.meta['date']])
+        html = html.replace(r'{post-date}', date)
         if 'tags' in post.meta.keys():
             html = html.replace(r'{post-tags}', str(post.meta['tags']))
         html = html.replace(r'{post-category}', str(post.meta['categories'][0]))

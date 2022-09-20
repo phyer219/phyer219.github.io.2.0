@@ -1,4 +1,5 @@
 import re
+import time
 
 
 class Extractor:
@@ -53,9 +54,20 @@ class OrgExtractor(Extractor):
 
     def prettify_meta(self, post):
         for k in post.meta.keys():
+            if k == 'date':
+                post.meta[k] = self.prettify_meta_date(post.meta[k][0])
             if k == 'tags':
                 post.meta[k] = self.prettify_meta_tags(post.meta[k][0])
-    
+    def prettify_meta_date(self, old_date: str) -> list:
+        """
+        old_date in form of: "<2000-02-20>"
+        return a list of int, for example: [2000, 2, 20]
+        """
+        year = int(old_date[1:5])
+        month = int(old_date[6:8])
+        day = int(old_date[9:11])
+        return [year, month, day]
+
     def prettify_meta_tags(self, old_tags: str) -> list:
         """
         'BEC, Tc'
@@ -78,18 +90,17 @@ class MdExtractor(Extractor):
     def prettify_meta(self, post):
         for k in post.meta.keys():
             if k == 'date':
-                post.meta[k][0] = self.prettify_meta_date(post.meta[k][0])
+                post.meta[k] = self.prettify_meta_date(post.meta[k][0])
             if k == 'tags':
                 post.meta[k] = self.prettify_meta_tags(post.meta[k][0])
                 
-    def prettify_meta_date(self, old_date: str) -> str:
+    def prettify_meta_date(self, old_date: str) -> list:
         """
         old_date in form of: "2000/02/20"
-        return a standard date form, for example: "<2000-02-20>"
+        return a list of int, for example: [2000, 2, 20]
         """
-        date = old_date.split(r'/')
-        date = '-'.join(date)
-        date = date.join(['<', '>'])
+        date = old_date[:10].split(r'/')# [:10] somte times, md maybe 2000/02/20 20:00 
+        date = [int(d) for d in date]
         return date
     
     def prettify_meta_tags(self, old_tags: str) -> list:

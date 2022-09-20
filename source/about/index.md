@@ -1,6 +1,6 @@
 ---
 title: 关于
-date: 2018-09-07 20:24:29
+date: 2018/09/07
 categories: other
 tags: other
 ---
