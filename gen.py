@@ -152,6 +152,12 @@ class PostsList:
                     f.writelines(line)
 
     def post_link(self, link_theme, post, link_base='./'):
+        """create a link html
+        
+        link_theme = "...{post-url}...{post-title}...{post-date}"
+        ==>
+        return link_html = "...path...title...xxxx.x.x" (e.g. 2020.1.1)
+        """
         post_url =  link_base + 'posts/' + post.file_root + '.html'
         link_html = link_theme.replace(r'{post-url}', post_url)
         link_html = link_html.replace(r'{post-title}', post.meta['title'][0])
@@ -167,6 +173,7 @@ class PostsList:
         return year, month, day
 
     def gen_post_page(self, post, export_to='posts/'):
+        """input a Post, using theme to generate a html file"""
         html = self.post_theme.replace(r'{main}', post.html)
         html = html.replace(r'{title}', post.meta['title'][0])
         html = html.replace(r'{post-date}', post.meta['date'][0])
@@ -180,11 +187,14 @@ class PostsList:
         self.move_post_dir(post)
 
     def gen_about(self):
+        """generate about file"""
         os.mkdir(self.output_path + 'about/')
         post = MdPost(self.source_path + 'about/index.md')
         post.gen_html()
         self.gen_post_page(post, export_to='about/')
+
     def move_post_dir(self, post):
+        """check is post has a directory, if has, move it to the output_path"""
         posts_source = self.source_path + 'posts/'
         if post.file_root in os.listdir(posts_source):
             shutil.copytree(posts_source + post.file_root,
