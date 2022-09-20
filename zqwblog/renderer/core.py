@@ -59,4 +59,4 @@ class MdPost:
                       renderer=HTMLRenderer(),
                       parser=OrgBlockParser())
         p.run(self)
-        self.html = markdown.markdown(self.ori_str)
+        self.html = markdown.markdown(self.ori_str, extensions=['tables'])
