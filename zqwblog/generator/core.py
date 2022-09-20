@@ -172,8 +172,21 @@ class WebSite:
         date = '.'.join([str(i) for i in post.meta['date']])
         html = html.replace(r'{post-date}', date)
         if 'tags' in post.meta.keys():
-            html = html.replace(r'{post-tags}', str(post.meta['tags']))
+            for line in html.splitlines():
+                if re.search(r'{post-tags}', line):
+                    html_line_theme = line
+            tags_html = []
+            for t in post.meta['tags']:
+                th = html_line_theme.replace(r'{post-tags}', t)
+                th = th.replace(r'{post-tags-url}', '../tags/' + t + '.html')
+                tags_html.append(th)
+            tags_html = ', '.join(tags_html)
+            html = html.replace(html_line_theme, tags_html)
+        
         html = html.replace(r'{post-category}', str(post.meta['categories'][0]))
+
+        html = html.replace(r'{post-category-url}',
+                            '../categories/' + str(post.meta['categories'][0] +'.html'))
 
         with open(self.output_path + export_to
                   + post.file_root + '.html', 'w') as f:

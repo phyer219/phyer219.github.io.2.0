@@ -42,9 +42,11 @@
             <h1 class="post-title">{title}
             </h1>
             <section class="post-meta">
-                <p>{post-date}</p>
-                <p>{post-tags}</p>
-                <p>{post-category}</p>
+                <p>发表于:{post-date}</p>
+                <p>分类:<a href="{post-category-url}">{post-category}</a></p>
+                <p>标签:
+                    <a href="{post-tags-url}">{post-tags}</a>
+                </p>
             </section>
             <section class="post-content">
                 {main}
