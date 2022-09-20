@@ -1,0 +1,91 @@
+<!DOCTYPE html><html class="no-js" lang="zh">
+
+<head>
+<script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+    </script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Long+Cang&family=Noto+Serif+SC&display=swap" rel="stylesheet"> <meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>从冰上的水</title>
+<link rel="apple-touch-icon" sizes="180x180" href="../static/images/apple-touch-icon-next.png?v=6.4.1">
+<link rel="icon" type="image/png" sizes="32x32" href="../static/images/favicon-32x32-next.png?v=6.4.1">
+<link rel="icon" type="image/png" sizes="16x16" href="../static/images/favicon-16x16-next.png?v=6.4.1">
+<link rel="stylesheet" type="text/css" href="../static/css/mystyle.css">    
+
+</head>
+<body>
+    <div class="container">
+        <header>
+            <section class="banner"><img src="../static/images/banner_20220427_tamako-love-story.jpg"></section>
+        </header>
+        <nav class="row">
+    <a class="nav" href="../index.html">首页</a>
+    <a class="nav" href="../category/category.html">分类</a>
+    <a class="nav" href="#">标签</a>
+    <a class="nav" href="../about/index.html">关于</a>
+</nav>
+        <main>
+            <h1 class="post-title">scipy.integrate.quad 是如何取点的
+            </h1>
+            <section class="post-meta">
+                <p><2021-09-16></p>
+                <p>['python', 'quadrature']</p>
+                <p>软件使用</p>
+            </section>
+            <section class="post-content">
+                
+<p>探究 <code>scipy.integrate.quad</code> 取点的方式</p>
+
+<pre><code class="language- python">import numpy as np
+from scipy import integrate
+import matplotlib.pyplot as plt
+
+nodes = []
+
+
+def foo(x):
+    nodes.append(x)
+    return np.exp(x) + np.sin(10*x)**2 + np.exp(x)**100
+
+
+result = integrate.quad(foo, -1, 1, epsrel=1e-125, limit=2, full_output=1)
+n = np.linspace(1, len(nodes), len(nodes))
+print(len(nodes))
+print(len(nodes)/21)
+print(result[2]['neval'])
+plt.plot(n, nodes, '*')
+plt.grid()
+plt.title('limit = 2')
+plt.xlabel(r"$i$")
+plt.ylabel("position of $i$th node")
+plt.savefig('fig.png')</code></pre>
+
+<p><a href='2021-09-16-scipy_integrate/code.py'>code</a></p>
+
+<p><p><img src='2021-09-16-scipy_integrate/fig.png' alt='figalt' max-width: 100%><p></p>
+
+<h2>Reference</h2>
+
+<ul>
+<li><a href='https://docs.scipy.org/doc/scipy/reference/reference/generated/scipy.integrate.quad.html#scipy.integrate.quad'>scipy.integrate.quad</a></li>
+<li><a href='https://en.wikipedia.org/wiki/QUADPACK'>wikipedia: QUADPACK</a></li>
+<li><a href='https://en.wikipedia.org/wiki/Adaptive_quadrature'>wikipedia: Adaptive quadrature</a></li>
+</ul>
+
+            </section>
+        </main>
+        <footer>zqw</footer>
+
+    </div>
+</body>
+</html>

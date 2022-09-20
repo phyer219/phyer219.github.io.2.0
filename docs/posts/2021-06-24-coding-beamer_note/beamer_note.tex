@@ -1,0 +1,173 @@
+\documentclass[xetex, mathserif, UTF8]{beamer}
+
+\usetheme{Rochester}
+\usecolortheme{dolphin}
+
+% \usepackage[heading=false]{ctex}
+\usepackage{xeCJK}
+% soem symbol packages
+\usepackage{amsmath}
+\usepackage{fontawesome5}
+\usepackage{halloweenmath}
+\usepackage{bclogo}
+\usepackage{tikzsymbols}
+
+\usepackage{tikz}
+
+\usepackage{layout}
+%\setbeamertemplate{footline}[frame number]
+
+\title{Beamer Note}
+\author{ZQW}
+
+\begin{document}
+
+
+\section{CoverPage}
+\frame{\titlepage}
+
+\begin{frame}
+  \frametitle{Outline}
+  \tableofcontents
+\end{frame}
+
+\section{Theme}\label{sec:theme}
+
+\begin{frame}
+  \frametitle{Layout}
+  \layout
+\end{frame}
+
+\begin{frame}
+  \frametitle{Theme}
+  \begin{itemize}
+  \item Rochester
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Color Theme}
+  \begin{itemize}
+  \item dolphin
+  \end{itemize}
+\end{frame}
+
+
+\section{Symbol Packages}\label{sec:sym_pkg}
+
+\begin{frame}
+  \frametitle{Symbol Packages}
+  \begin{itemize}
+  \item amsmath
+  \item fontawesome5
+  \item halloweenmath
+  \item bclogo
+  \end{itemize}
+\end{frame}
+
+
+\subsection{fontawesome5}\label{sec:ft5}
+\begin{frame}
+  \frametitle{fontawesome5 https://www.ctan.org/pkg/fontawesome}
+  \faAmazon \quad \textbackslash faAmazon
+
+  \faAndroid \quad \textbackslash faAndroid
+
+  \faBell \quad \textbackslash faBell
+
+  \faWeixin \quad \textbackslash faWeixin
+
+  \faWindows \quad \textbackslash faWindows
+
+  https://mirrors.aliyun.com/CTAN/fonts/fontawesome/doc/fontawesome.pdf
+\end{frame}
+
+\subsection{halloweenmath}\label{sec:halloween}
+\begin{frame}
+  \frametitle{halloweenmath https://www.ctan.org/pkg/halloweenmath}
+  $\mathleftghost$ \quad \$\textbackslash mathleftghost\$
+
+  $\mathbat$ \quad \$\textbackslash mathbat\$
+
+  $\mathwitch$ \quad \$\textbackslash mathwitch\$
+
+  $\bigpumpkin$ \quad \$\textbackslash bigpumpkin\$
+
+  $\bigskull$ \quad \$\textbackslash bigskull\$
+
+  $\xrightwitchonbroom{abc\dots z}$
+
+  $\xrightflutteringbat{abc\dots z}$
+
+  \begin{align*}
+    G \xrightswishingghost{h_{1}+\dots+h_{n}}\bigpumpkin_{t=1}^{n} S_{t}
+  \end{align*}
+  https://mirrors.bfsu.edu.cn/CTAN/macros/latex/contrib/halloweenmath/halloweenmath-man.pdf
+\end{frame}
+
+\subsection{bclogo}\label{sec:bclogo}
+\begin{frame}
+  \frametitle{bclogo https://www.ctan.org/pkg/bclogo}
+  \bcbook \quad \textbackslash bcbook
+
+  \bcfleur \quad \textbackslash bcfleur
+  https://mirrors.bfsu.edu.cn/CTAN/graphics/bclogo/doc/bclogo-doc.pdf
+\end{frame}
+
+
+\subsection{tikzsymbols}\label{sec:tikzsymbols}
+\begin{frame}
+  \frametitle{tikzsymbols https://www.ctan.org/pkg/tikzsymbols}
+  \fryingpan \quad \textbackslash fryingpan
+
+  \Vomey[1.5][green] \quad \textbackslash Vomey[1.5][green]
+
+  \SchrodingersCat{1} \quad \textbackslash Schrodingerscat\{1\}
+
+  \dCooley[-3][cyan] \quad \textbackslash dCooley[-3][cyan]
+
+  \BasicTree[5]{orange!95!black}{orange!80!black}{orange!70!black}{leaf} \\
+  \textbackslash BasicTree[5]\{orange!95!black\}\{orange!80!black\}\{orange!70!black\}\{leaf\}
+
+  https://mirrors.bfsu.edu.cn/CTAN/graphics/pgf/contrib/tikzsymbols/tikzsymbols.pdf
+\end{frame}
+
+
+
+\begin{frame}
+  \frametitle{Add a textbox overtop an image}
+  https://tex.stackexchange.com/questions/8920/add-a-textbox-overtop-an-image-in-a-beamer-slide
+\end{frame}
+
+\begin{frame}
+  \frametitle{A tool for arch: tllocalmgr}
+\end{frame}
+
+\begin{frame}
+  \frametitle{CTAN Comprehensive TEX Archive Network https://ctan.org/}
+\end{frame}
+
+\begin{frame}
+  \frametitle{关于中文}
+  \begin{itemize}
+  \item ctex
+  \item xeCJK
+  \end{itemize}
+  https://ctan.org/pkg/ctex
+  https://tex.stackexchange.com/questions/17611/how-does-one-type-chinese-in-latex
+  https://ctan.org/pkg/xecjk
+  http://tug.ctan.org/macros/xetex/latex/xecjk/xeCJK.pdf
+  https://jdhao.github.io/2018/03/29/latex-chinese.zh/
+\end{frame}
+
+\begin{frame}
+  \frametitle{Resources}
+  \begin{itemize}
+  \item EmacsWiki: AUCTeX https://www.emacswiki.org/emacs/AUCTeX
+  \item CTAN: Comprehensive TEX Archive Network https://ctan.org/
+  \item http://tug.ctan.org/macros/latex/contrib/beamer/doc/beameruserguide.pdf
+  \end{itemize}
+\end{frame}
+
+\end{document}

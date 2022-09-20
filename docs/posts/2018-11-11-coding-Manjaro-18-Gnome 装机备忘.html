@@ -1,0 +1,227 @@
+<!DOCTYPE html><html class="no-js" lang="zh">
+
+<head>
+<script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+    </script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Long+Cang&family=Noto+Serif+SC&display=swap" rel="stylesheet"> <meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>从冰上的水</title>
+<link rel="apple-touch-icon" sizes="180x180" href="../static/images/apple-touch-icon-next.png?v=6.4.1">
+<link rel="icon" type="image/png" sizes="32x32" href="../static/images/favicon-32x32-next.png?v=6.4.1">
+<link rel="icon" type="image/png" sizes="16x16" href="../static/images/favicon-16x16-next.png?v=6.4.1">
+<link rel="stylesheet" type="text/css" href="../static/css/mystyle.css">    
+
+</head>
+<body>
+    <div class="container">
+        <header>
+            <section class="banner"><img src="../static/images/banner_20220427_tamako-love-story.jpg"></section>
+        </header>
+        <nav class="row">
+    <a class="nav" href="../index.html">首页</a>
+    <a class="nav" href="../category/category.html">分类</a>
+    <a class="nav" href="#">标签</a>
+    <a class="nav" href="../about/index.html">关于</a>
+</nav>
+        <main>
+            <h1 class="post-title">Manjaro-18-Gnome 装机备忘
+            </h1>
+            <section class="post-meta">
+                <p><2018-11-11></p>
+                <p>['manjaro', 'linux']</p>
+                <p>软件使用</p>
+            </section>
+            <section class="post-content">
+                
+<h2>基本安装</h2>
+
+<h3>刻盘</h3>
+
+<ul>
+<li>使用ultroiso，刻录方式应选择raw</li>
+</ul>
+<h3>配置安装源</h3>
+
+<h4>添加中国镜像</h4>
+
+<p>生成可用中国镜像站列表:</p>
+
+<p>#+BEGIN_SRC shell
+sudo pacman-mirrors -i -c China -m rank
+#+END_SRC</p>
+
+<p>出现镜像列表后勾选所需要的镜像.</p>
+
+<p>然后刷新缓存:</p>
+
+<p>#+BEGIN_SRC shell
+sudo pacman -Syy
+#+END_SRC</p>
+
+<p>参见: [[http://mirrors.ustc.edu.cn/help/manjaro.html]]</p>
+
+<h4>添加 archlinuxcn 仓库</h4>
+
+<p>在 `/etc/pacman.conf` 文件末尾添加两行：</p>
+
+<p>#+BEGIN_SRC shell
+[archlinuxcn]
+Server = https://mirrors.ustc.edu.cn/archlinuxcn/$arch
+#+END_SRC</p>
+
+<p>刷新</p>
+<pre><code class="language- shell">sudo pacman -Syy</code></pre>
+
+<p>之后安装 archlinuxcn-keyring 包导入 GPG key.</p>
+
+
+<p>参见: [[https://mirror.tuna.tsinghua.edu.cn/help/archlinuxcn]]</p>
+<h4>yaourt 配置</h4>
+
+<ul>
+<li>安装 yaourt</li>
+</ul>
+<p>#+BEGIN_SRC shell
+sudo pacman -S yaourt</p>
+
+<p>#+END_SRC</p>
+<ul>
+<li>安装 base-devel</li>
+</ul>
+<p>#+BEGIN_SRC shell
+sudo pacman -S base-devel</p>
+
+<p>#+END_SRC</p>
+
+<p>参见: [[https://wiki.archlinux.org/index.php/Arch_User_Repository_(%25E7%25AE%2580%25E4%25BD%2593%25E4%25B8%25AD%25E6%2596%2587)]]</p>
+
+
+<h4>snap</h4>
+
+<h5>连不上网</h5>
+
+<p>#+BEGIN_SRC shell
+systemctl start snapd.service
+#+END_SRC</p>
+
+<h3>中文输入法</h3>
+
+<h4>安装</h4>
+
+<p>#+BEGIN_SRC shell
+sudo pacman -S fcitx
+sudo pacman -S fcitx -configtool   ----配置工具
+sudo pacman -S fcitx-sogoupinyin    ----可选安装，fcitx默认已有中文输入
+#+END_SRC</p>
+
+<h4>配置文件</h4>
+
+<p>在 <code>~/.xprofile</code> 中添加以下内容</p>
+
+<p>#+BEGIN_SRC shell
+export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
+export XMODIFIERS<code>@im</code>fcitx
+#+END_SRC</p>
+
+
+<p>参见: [[https://wiki.archlinux.org/index.php/Fcitx_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)#.E5.AE.89.E8.A3.85]]</p>
+
+<h2>软件安装</h2>
+
+<h3>tex</h3>
+
+<p>安装以下三个包, 中文编写应该没有问题.</p>
+
+<p>texlive-most</p>
+
+<p>texlive-lang</p>
+
+<p>texlive-latexextra</p>
+
+<h3>evince 中文</h3>
+
+<p>evince 可能中文显示不好. 安装 xpdf 后会解决</p>
+
+<h3>hexo</h3>
+
+<h4>安装 Hexo</h4>
+
+<p>#+BEGIN_SRC shell
+sudo npm install -g hexo-cli
+#+END_SRC</p>
+
+<h4>复制旧的文件过来</h4>
+
+<h4>添加site map</h4>
+
+<h5>执行命令安装sitemap</h5>
+
+<p>#+BEGIN_SRC shell
+npm install hexo-generator-sitemap --save
+#+END_SRC</p>
+
+<h5>在Hexo站点配置文件 _config.yml 中加入 sitemap 插件</h5>
+
+<p>#+BEGIN_SRC shell
+# Extensions
+plugins: hexo-generator-sitemap
+#+END_SRC</p>
+
+<h5>执行命令生成sitemap文件</h5>
+
+<p>#+BEGIN_SRC
+hexo clean
+hexo g
+#+END_SRC</p>
+
+<h3>emacs</h3>
+
+<h4>右alt不能当meta</h4>
+
+<p>搜索：优化-键盘和鼠标-其它布局选项</p>
+
+<h3>坚果云</h3>
+
+<h4>无托盘图标：</h4>
+
+<p>搜索：优化-扩展-topicons plus（没有的话安装gnome-shell-extension-topicons-plus-git）</p>
+
+<h3>teamviewer</h3>
+
+<h4>不能连网：</h4>
+
+<p>#+BEGIN_SRC shell
+sudo teamviewer --daemon start
+teamviewer
+#+END_SRC</p>
+
+
+
+<h2>问题合集</h2>
+<h3>shadowsocks-qt5连上, 但是浏览器连不上</h3>
+
+<p>原来是 ss-qt5 里边没改端口. 汗...</p>
+
+
+<h2>注</h2>
+<p>善用 arch 的 wiki , 一般问题都可以得到解决.</p>
+
+            </section>
+        </main>
+        <footer>zqw</footer>
+
+    </div>
+</body>
+</html>

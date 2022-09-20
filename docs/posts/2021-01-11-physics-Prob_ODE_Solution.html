@@ -1,0 +1,108 @@
+<!DOCTYPE html><html class="no-js" lang="zh">
+
+<head>
+<script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+    </script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Long+Cang&family=Noto+Serif+SC&display=swap" rel="stylesheet"> <meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>从冰上的水</title>
+<link rel="apple-touch-icon" sizes="180x180" href="../static/images/apple-touch-icon-next.png?v=6.4.1">
+<link rel="icon" type="image/png" sizes="32x32" href="../static/images/favicon-32x32-next.png?v=6.4.1">
+<link rel="icon" type="image/png" sizes="16x16" href="../static/images/favicon-16x16-next.png?v=6.4.1">
+<link rel="stylesheet" type="text/css" href="../static/css/mystyle.css">    
+
+</head>
+<body>
+    <div class="container">
+        <header>
+            <section class="banner"><img src="../static/images/banner_20220427_tamako-love-story.jpg"></section>
+        </header>
+        <nav class="row">
+    <a class="nav" href="../index.html">首页</a>
+    <a class="nav" href="../category/category.html">分类</a>
+    <a class="nav" href="#">标签</a>
+    <a class="nav" href="../about/index.html">关于</a>
+</nav>
+        <main>
+            <h1 class="post-title">关于微分方程的解的问题(update 07/June/2021)
+            </h1>
+            <section class="post-meta">
+                <p><2021-01-11></p>
+                <p>['问题', '微分方程']</p>
+                <p>专业笔记</p>
+            </section>
+            <section class="post-content">
+                
+<h2>问题</h2>
+
+<p>将微分方程</p>
+
+$$\begin{align}
+\label{eq:inhomo}
+  \mathcal{L} \psi(x) = k^2 \psi(x)
+\end{align}$$
+
+<p>的通解 $\phi(k, x)$ 在 $k = 0$ 处级数展开</p>
+
+$$\begin{align}
+\phi(k, x) = u_0 + k^2 u_1 + \mathcal{O}(k^4)
+\end{align}$$
+
+<p>将展开的结果代回原方程可得</p>
+
+$$\begin{align}
+\mathcal{L} u_0 =& 0 \\
+\label{eq:step}
+\mathcal{L} u_1 =& u_0
+\end{align}$$
+
+<p>那么 $u_{0}$ 是否是方程</p>
+
+$$\begin{align}
+  \label{eq:homo}
+  \mathcal{L} \psi(x) = 0
+\end{align}$$
+
+<p>的通解?</p>
+
+<h2>看起来是</h2>
+
+<p>解方程 $(\ref{eq:homo})$ 得到通解, 然后再解 $(\ref{eq:step})$ , 逐阶求解, 就得到
+了 $(\ref{eq:inhomo})$ 的通解.</p>
+
+<h2>Reference</h2>
+
+<p>Yu, Z., Thywissen, J. H. & Zhang, S. Supplementary Material: Universal Relations
+for a Fermi Gas Close to a p-wave Interaction Resonance.</p>
+
+<h2>旧</h2>
+<quote>#+begin_quote
+将微分方程
+\begin{align}
+  \mathcal{L} \psi(x) = k^2 \psi(x)
+\end{align}
+的通解 $\phi(k, x)$ , 取 $k\to 0$ 时的极限, 能否得
+\begin{align}
+  \mathcal{L} \psi(x) = \psi(x)
+\end{align}
+的全部解?
+#+end_quote</quote>
+
+            </section>
+        </main>
+        <footer>zqw</footer>
+
+    </div>
+</body>
+</html>

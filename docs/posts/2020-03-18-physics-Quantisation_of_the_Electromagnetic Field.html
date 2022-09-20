@@ -1,0 +1,80 @@
+<!DOCTYPE html><html class="no-js" lang="zh">
+
+<head>
+<script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+    </script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Long+Cang&family=Noto+Serif+SC&display=swap" rel="stylesheet"> <meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>从冰上的水</title>
+<link rel="apple-touch-icon" sizes="180x180" href="../static/images/apple-touch-icon-next.png?v=6.4.1">
+<link rel="icon" type="image/png" sizes="32x32" href="../static/images/favicon-32x32-next.png?v=6.4.1">
+<link rel="icon" type="image/png" sizes="16x16" href="../static/images/favicon-16x16-next.png?v=6.4.1">
+<link rel="stylesheet" type="text/css" href="../static/css/mystyle.css">    
+
+</head>
+<body>
+    <div class="container">
+        <header>
+            <section class="banner"><img src="../static/images/banner_20220427_tamako-love-story.jpg"></section>
+        </header>
+        <nav class="row">
+    <a class="nav" href="../index.html">首页</a>
+    <a class="nav" href="../category/category.html">分类</a>
+    <a class="nav" href="#">标签</a>
+    <a class="nav" href="../about/index.html">关于</a>
+</nav>
+        <main>
+            <h1 class="post-title">量子光学读书会01电磁场的量子化
+            </h1>
+            <section class="post-meta">
+                <p><2020-03-18></p>
+                <p>['物理', '量子光学读书会', '电磁场的量子化']</p>
+                <p>专业笔记</p>
+            </section>
+            <section class="post-content">
+                <h2>---</h2>
+<!-- toc -->
+
+<!-- more -->
+
+<p>3.11 日 DRJ 主讲.</p>
+<h3>2.1 电磁场的量子化</h3>
+<p>选取 Coulomb gauge, 由 Maxwell equations 可以得到关于矢势 $\vec{A}$ 的波动方程
+$$
+\nabla^2 \vec{A}(\vec{r},t) = \frac{1}{c^2} \frac{\partial^2 \vec{A}(\vec{r}, t)}{\partial t^2}
+$$
+选取基底和适当的单位, 解可以写为
+$$
+A(\vec{r},t) = \sum_k \sqrt{\frac{\hbar}{2\omega_k\varepsilon_0}} \left[ a_k \vec{u}_k(\vec{r}) e^{-\mathrm{i}\omega_k t} + a_k^{\dagger} \vec{u}_k^*(\vec{r}) e^{\mathrm{i}\omega_k t}\right]
+$$
+电磁场的经典 Hamiltonian 为
+$$
+H = \frac{1}{2} \int (\varepsilon_0 \vec{E}^2 + \mu_0\vec{H}^2) \,\mathrm{d}^3\vec{r}
+$$
+将 $\vec{A}$ 代入, 然后做对应 $a_k \to \hat{a}_k$ , 并满足 Boson 对应关系, 最后得到量子化的电磁场
+$$
+H = \sum_k \hbar\omega_k \left( a_k^{\dagger} a_k + \frac{1}{2} \right)
+$$</p>
+<h2>2.2 Fock 表象</h2>
+<h1>参考</h1>
+<ul>
+<li>D.F. Walls, Gerard J. Milburn, Quantum Optics, Springer (2008)</li>
+</ul>
+            </section>
+        </main>
+        <footer>zqw</footer>
+
+    </div>
+</body>
+</html>

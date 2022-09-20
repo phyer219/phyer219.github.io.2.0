@@ -1,0 +1,628 @@
+<!DOCTYPE html><html class="no-js" lang="zh">
+
+<head>
+<script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+    </script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Long+Cang&family=Noto+Serif+SC&display=swap" rel="stylesheet"> <meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>从冰上的水</title>
+<link rel="apple-touch-icon" sizes="180x180" href="../static/images/apple-touch-icon-next.png?v=6.4.1">
+<link rel="icon" type="image/png" sizes="32x32" href="../static/images/favicon-32x32-next.png?v=6.4.1">
+<link rel="icon" type="image/png" sizes="16x16" href="../static/images/favicon-16x16-next.png?v=6.4.1">
+<link rel="stylesheet" type="text/css" href="../static/css/mystyle.css">    
+
+</head>
+<body>
+    <div class="container">
+        <header>
+            <section class="banner"><img src="../static/images/banner_20220427_tamako-love-story.jpg"></section>
+        </header>
+        <nav class="row">
+    <a class="nav" href="../index.html">首页</a>
+    <a class="nav" href="../category/category.html">分类</a>
+    <a class="nav" href="#">标签</a>
+    <a class="nav" href="../about/index.html">关于</a>
+</nav>
+        <main>
+            <h1 class="post-title">Linux使用笔记(update 28/Jan/2021)
+            </h1>
+            <section class="post-meta">
+                <p><2018-09-07></p>
+                <p>['Linux']</p>
+                <p>软件使用</p>
+            </section>
+            <section class="post-content">
+                
+<h2>常用命令</h2>
+
+<p>1. 显示已安装的软件包列表：<code>dpkg -l</code>
+2. gbk编码访问bbs：<code>luit -encoding gbk telnet bbs.xxx.xxx.xx</code>\\
+3. 列出块设备：<code>lsblk</code>
+4. 打印当前系统的全部相关信息：<code>uname -a</code>
+5. 显示已执行命令：<code>history</code>
+6. 打开pdf文件：<code>evince test.pdf</code>
+7. 查看ip：<code>ip addr show</code></p>
+
+<h2>Note of /*Linux Command Line and Shell Scripting*/</h2>
+
+<p><code>man</code> mannual</p>
+
+<p><code>pwd</code> present working directory</p>
+
+<p><code>cd</code> change directory</p>
+
+<p>The single dot ( . ) to represent the current directory The double dot (
+.. ) to represent the parent directory</p>
+
+<p>cd ../../etc</p>
+
+<p><code>ls</code> list</p>
+
+<p><code>ls -F</code> The -F parameter flags the directories with a forward slash ( /
+), to help identify them in the listing, it flags executable files (like</p>
+<h2>).</h2>
+
+<p><code>ls -R</code> recursive</p>
+
+<p><code>ls -a</code> all</p>
+
+<p>文件名上的单引号: 有空格或需要转义的字符</p>
+
+<p>常用组合: <code>ls -alF</code></p>
+
+<p><code>ls -l</code> long listing format.</p>
+
+<p>The file type --- such as directory ( d ), file ( - ), linked file ( l
+), character device ( c ), or block device ( b ) The file permissions
+(see Chapter 6) The number of file hard links (See the section "Linking
+Files" in Chapter 7.) The file owner usernameThe file primary group name
+The file byte size The last time the file was modified The filename or
+directory name</p>
+
+<h2>) to</h2>
+<p>represent any number of characters</p>
+
+<p>$ ls -l my\_scr[ai]pt -rw-rw-r--- 1 christine christine 0 May 21 13:25
+my\_scrapt -rwxrw-r--- 1 christine christine 54 May 21 11:26 my\_script</p>
+
+<p>$ ls -l f[a-i]ll -rw-rw-r--- 1 christine christine 0 May 21 13:44 fall
+-rw-rw-r--- 1 christine christine 0 May 21 13:44 fell -rw-rw-r--- 1
+christine christine 0 May 21 13:44 fill</p>
+
+<p>$ ls -l f[!a]ll -rw-rw-r--- 1 christine christine 0 May 21 13:44 fell
+-rw-rw-r--- 1 christine christine 0 May 21 13:44 fill -rw-rw-r--- 1
+christine christine 0 May 21 13:44 full</p>
+
+<p><code>touch</code> : change file timestamps</p>
+
+<p>cp test\_one test\_two ls -l test\_* -rw-rw-r--- 1 christine christine 0
+May 21 14:35 test\_one -rw-rw-r--- 1 christine christine 0 May 21 15:15
+test\_two</p>
+
+<p>It is best to add the -i option to force the shell to ask whether you
+want to overwrite a file:</p>
+
+<p>cp -i test\_one /home/christine/Documents/</p>
+
+<p>If you need to copy a file with a long source object name to your
+present working directory, the single dot can simplify the task: $ cp -i
+/etc/NetworkManager/NetworkManager.conf .</p>
+
+<p>cp -R Scripts/ Mod\_Scripts</p>
+
+<p>You can also use wildcard metacharacters in your cp commands: $ cp
+*script Mod\_Scripts/</p>
+
+<p><code>mv</code> You can use the mv command to move a file's location and rename it,
+all in one easy step:</p>
+
+<p>mv /home/christine/Pictures/fzll /home/christine/fall</p>
+
+<p>To create several directories and subdirectories at the same time, you
+need to add the -p parameter: $ mkdir -p New\_Dir/Sub\_Dir/Under\_Dir</p>
+
+<p>rm -ri My\_Dir</p>
+
+<p>tree hexo -L 1 hexo ├── \_config.yml ├── db.json ├── hexo-org-cache ├──
+node\_modules ├── package.json ├── package-lock.json ├── public ├──
+scaffolds ├── source └── themes</p>
+
+<p>file my\_file my\_file: ASCII text</p>
+
+<p>file Mathematica\_11.0.0\_Keygen.exe Mathematica\_11.0.0\_Keygen.exe:
+PE32 executable (console) Intel 80386, for MS Windows</p>
+
+<p>cat -n test1 1 hello 2 3 This is a test file. 4 5 6 That we'll use to $
+test the cat command.</p>
+
+<p><code>more</code> 用 q 退出 <code>less</code></p>
+
+<p>The tail command displays the last lines in a file (the file's "tail").
+By default, it shows the last 10 lines in the file.</p>
+
+<p>tail -n 2 log\_file line19 Last line - line20</p>
+
+<p><code>tail</code> <code>head</code></p>
+
+<p>The -f parameter is a pretty cool feature of the tail command. It allows
+you to peek inside a file as the file is being used by other processes.
+The tail command stays active and continues to display new lines as they
+appear in the text file. This is a great way to monitor the system log
+files in real-time mode.</p>
+
+<h4>More bash Shell Commands</h4>
+<p>    :PROPERTIES:
+    :CUSTOM_ID: more-bash-shell-commands
+    :END:</p>
+
+<h5>ps</h5>
+<p>     :PROPERTIES:
+     :CUSTOM_ID: ps
+     :END:</p>
+
+<p>By default, the ps command shows only the processes that belong to the
+current user and that are running on the current terminal.</p>
+
+<p><code>ps -ef</code> (all full)</p>
+
+<h5>top</h5>
+<p>     :PROPERTIES:
+     :CUSTOM_ID: top
+     :END:</p>
+
+<p>if your load averages start getting over 2, things are getting busy on
+your system.</p>
+
+<p><code>kill</code> <code>killall http*</code></p>
+
+<p>自己可以安装 gotop</p>
+
+<h5>mount</h5>
+<p>     :PROPERTIES:
+     :CUSTOM_ID: mount
+     :END:</p>
+
+<p>mount -t type device directory</p>
+
+<p>vfat: Windows long filesystem ntfs: Windows advanced filesystem used in
+Windows NT, XP, and Vista iso9660: The standard CD-ROM filesystem</p>
+
+<p>umount /home/rich/mnt</p>
+
+<h5>df</h5>
+<p>     :PROPERTIES:
+     :CUSTOM_ID: df
+     :END:</p>
+
+<h5>du</h5>
+<p>     :PROPERTIES:
+     :CUSTOM_ID: du
+     :END:</p>
+
+<p>disk usage</p>
+
+<p>-c : Produces a grand total of all the files listed -h : Prints sizes in
+human-readable form, using K for kilobyte, M for megabyte, and G for
+gigabyte -s : Summarizes each argument</p>
+
+<h5>sort</h5>
+<p>     :PROPERTIES:
+     :CUSTOM_ID: sort
+     :END:</p>
+
+<p><code>sort -n</code></p>
+
+<h5>grep</h5>
+<p>     :PROPERTIES:
+     :CUSTOM_ID: grep
+     :END:</p>
+
+<p>grep import fft.py import numpy as np import matplotlib.pyplot as plt
+from scipy import integrate</p>
+
+<h5>gzip</h5>
+<p>     :PROPERTIES:
+     :CUSTOM_ID: gzip
+     :END:</p>
+
+<h5>tar</h5>
+<p>     :PROPERTIES:
+     :CUSTOM_ID: tar
+     :END:</p>
+
+<p>tar -cvf test.tar test/ test2/ 打包</p>
+
+<p>tar -xvf 解包</p>
+
+<h4>understand shell</h4>
+<p>    :PROPERTIES:
+    :CUSTOM_ID: understand-shell
+    :END:</p>
+
+<p>cat /etc/passwd [...]
+christine:x:1000:1000:Christine,,,:/home/christine:/bin/bash</p>
+
+<p>On a single line, you can designate a list of commands to be run one
+after another.</p>
+
+<p><code>ls ; ls -lh</code></p>
+
+<p><code>(ls ; cd /etc ; ls ; echo $BASH_SUBSHELL)</code> 在新的 shell 运行,
+运行完不改变工作路径</p>
+
+<p><code>ls ; cd /etc ; ls ; echo $BASH_SUBSHELL</code> 在本 shell 运行, 运行完到了
+<code>/etc</code> 路径</p>
+
+<h5>jobs</h5>
+<p>     :PROPERTIES:
+     :CUSTOM_ID: jobs
+     :END:</p>
+
+<p>jobs command displays any user's processes (jobs) currently running in
+background mode:</p>
+
+<h5>type</h5>
+<p>     :PROPERTIES:
+     :CUSTOM_ID: type
+     :END:</p>
+
+<h5>which</h5>
+<p>     :PROPERTIES:
+     :CUSTOM_ID: which
+     :END:</p>
+
+<p>type cd cd is a shell builtin</p>
+
+<p>Using the type -a command shows both types for each of the two commands.
+Note that the which command shows only the external command file.</p>
+
+<h5>history</h5>
+<p>     :PROPERTIES:
+     :CUSTOM_ID: history
+     :END:</p>
+
+<p>Command history is kept in the hidden .bash\_history file, which is
+located in the user's home directory</p>
+
+<p>You can force the command history to be written to the .bash\_history
+file before leaving a shell session. In order to force this write, use
+the -a option on the history command: history -a</p>
+
+<p>!20 type -a pwd pwd is a shell builtin pwd is /bin/pwd</p>
+
+<p>Command number 20 was pulled from command history. Notice that similar
+to executing the last command in history, the bash shell first displays
+the command it is recalling from the shell's history. After the command
+is displayed, it is executed.</p>
+
+<p><code>!!</code> 上一条命令</p>
+
+<h5>alias</h5>
+<p>     :PROPERTIES:
+     :CUSTOM_ID: alias
+     :END:</p>
+
+<p><code>alias -p</code></p>
+
+<p>alias li='ls -li'</p>
+
+<h4>Using Linux Environment Variables</h4>
+<p>    :PROPERTIES:
+    :CUSTOM_ID: using-linux-environment-variables
+    :END:</p>
+
+<p><code>env</code> or the <code>printenv</code></p>
+
+<h5>echo</h5>
+<p>     :PROPERTIES:
+     :CUSTOM_ID: echo
+     :END:</p>
+
+<p>You can also use the echo command to display a variable's value. When
+referencing an environment variable in this case, you must place a
+dollar sign ( $ ) before the environmentvariable name</p>
+
+<p>echo $HOME</p>
+
+<p>The dollar sign before a variable name allows the variable to be passed
+as a command parameter: ls $HOME</p>
+
+<h5>set</h5>
+<p>     :PROPERTIES:
+     :CUSTOM_ID: set
+     :END:</p>
+
+<p>The set command displays all variables defined for a specific process,
+including both local and global environment variables and user-defined
+variables</p>
+
+<p>echo my\_variable my\_variable=Hello echo my\_variable</p>
+
+<p>If you need to assign a string value that contains spaces, you need to
+use a single or double quotation mark to delineate the beginning and the
+end of the string:</p>
+
+<p>my\_variable="Hello World"</p>
+
+<p>Notice that for the local variable you defined, you used lowercase
+letters, while the system environment variables you've seen so far have
+all used uppercase letters.</p>
+
+<h5>export</h5>
+<p>     :PROPERTIES:
+     :CUSTOM_ID: export
+     :END:</p>
+
+<p><code>export my_variable</code></p>
+
+<p>This is done by using the export command and the variable name minus the
+dollar sign</p>
+
+<h5>unset</h5>
+<p>     :PROPERTIES:
+     :CUSTOM_ID: unset
+     :END:</p>
+
+<p>unset my\_variable</p>
+
+<p>If you are doing anything with the variable, use the dollar sign. If you
+are doing anything to the variable, don't use the dollar sign.</p>
+
+<p>echo $PATH</p>
+
+<p><code>PATH</code>$PATH:/home/christine/Scripts= 添加 PATH 环境变量</p>
+
+<p>It is a better idea to create a file ending with .sh in the
+/etc/profile.d directory. In that file, place all your new or modified
+global environment variable settings.</p>
+
+
+<h2>软件</h2>
+
+<p>1. 黑客帝国：cmatrix
+2. 小火车：sl
+3. 格言：fortune
+4. 不断输出字符：yes</p>
+
+<h3>play</h3>
+
+<p>方法1：</p>
+
+<p>#+BEGIN_EXAMPLE
+     ffplay xxx.avi
+#+END_EXAMPLE</p>
+
+<p>方法2：</p>
+
+<p>#+BEGIN_EXAMPLE
+    mplayer -vo caca video.avi 
+#+END_EXAMPLE</p>
+
+<p>注：参数caca表示彩色字符模式，aa表示黑白字符模式。</p>
+
+<h3>w3m</h3>
+<p>   :PROPERTIES:
+   :CUSTOM_ID: w3m
+   :END:</p>
+
+<p>sudo apt-get install w3m w3m-img w3m www.zhihu.com</p>
+
+<h3>telnet</h3>
+<p>   :PROPERTIES:
+   :CUSTOM_ID: telnet
+   :END:</p>
+
+<p>#+BEGIN_EXAMPLE
+    telnet towel.blinkenlights.nl
+#+END_EXAMPLE</p>
+
+<h3>Host</h3>
+<p>   :PROPERTIES:
+   :CUSTOM_ID: host
+   :END:</p>
+
+<p>#+BEGIN_EXAMPLE
+    127.0.0.1   localhost
+    127.0.1.1   dx-PC</p>
+
+<p>    # The following lines are desirable for IPv6 capable hosts
+    ::1     ip6-localhost ip6-loopback
+    fe00::0 ip6-localnet
+    ff00::0 ip6-mcastprefix
+    ff02::1 ip6-allnodes
+    ff02::2 ip6-allrouters
+#+END_EXAMPLE</p>
+
+<p>#+BEGIN_EXAMPLE
+    sudo gedit /etc/hosts
+    sudo /etc/init.d/networking restart
+#+END_EXAMPLE</p>
+
+<h4>matlab</h4>
+<p>    :PROPERTIES:
+    :CUSTOM_ID: matlab
+    :END:</p>
+
+<h5>运行命令行界面</h5>
+<p>     :PROPERTIES:
+     :CUSTOM_ID: 运行命令行界面
+     :END:</p>
+
+<p>#+BEGIN_EXAMPLE
+    ./matlab -nodisplay
+#+END_EXAMPLE</p>
+
+<h5>添加环境变量</h5>
+<p>     :PROPERTIES:
+     :CUSTOM_ID: 添加环境变量
+     :END:</p>
+
+<p><code>cd /etc</code></p>
+
+<p><code>sudo gedit profile</code></p>
+
+<p>添加</p>
+
+<p><code>\# add matlab path</code></p>
+
+<p><code>export PATH</code>$PATH:/usr/local/MATLAB/R2018a/bin=</p>
+
+<p>保存</p>
+
+<h4>mathematica</h4>
+
+<p>退出： <code>ctrl D</code></p>
+
+<p>在linux下一般用scp这个命令来通过ssh传输文件。</p>
+
+<p>1、从服务器上下载文件 scp username@servername:/path/filename
+/var/www/local\_dir（本地目录）</p>
+
+<p>例如scp root@192.168.0.101:/var/www/test.txt
+把192.168.0.101上的/var/www/test.txt
+的文件下载到/var/www/local\_dir（本地目录）</p>
+
+<p>2、上传本地文件到服务器 scp /path/filename username@servername:/path</p>
+
+<p>例如scp /var/www/test.php root@192.168.0.101:/var/www/
+把本机/var/www/目录下的test.php文件上传到192.168.0.101这台服务器上的/var/www/目录中</p>
+
+<p>3、从服务器下载整个目录 scp -r
+username@servername:/var/www/remote\_dir/（远程目录）
+/var/www/local\_dir（本地目录）</p>
+
+<p>例如:scp -r root@192.168.0.101:/var/www/test /var/www/</p>
+
+<p>4、上传目录到服务器 scp -r local\_dir username@servername:remote\_dir
+例如：scp -r test root@192.168.0.101:/var/www/
+把当前目录下的test目录上传到服务器的/var/www/ 目录</p>
+
+<h3>好玩的</h3>
+
+<h4>ASSIC码电影：</h4>
+
+<p>1. 在线观看<code>telnet towel.blinkenlights.nl</code></p>
+
+<h2>根目录</h2>
+
+<h3><code>/etc</code></h3>
+
+<p>即 et cetera. 这下面放的都是一堆零零碎碎的东西. 比如</p>
+
+<ul>
+<li><code>/etc/fstab</code> 存放开机自动挂载的分区.</li>
+<li><code>/etc/group</code> 存放所有的用户组</li>
+<li><code>/etc/passwd</code> 存放所有的用户信息</li>
+<li><code>/etc/issue</code> 存放欢迎信息(可借此查看发行版信息)</li>
+</ul>
+<h3><code>/bin</code> </h3>
+
+<h2>权限管理</h2>
+
+<h3>用户与用户组</h3>
+
+<h4>用户组</h4>
+
+<p><code>/etc/group</code> 存放了用户组信息, 格式为</p>
+
+<pre><code class="language- shell">组名:口令:组标识号:组内用户列表</code></pre>
+
+<p>添加用户组用命令 <code>groupadd</code> , 帮助如下</p>
+
+<pre><code class="language- shell">> groupadd -h
+用法：groupadd [选项] 组
+
+选项:
+  -f, --force                   如果组已经存在则成功退出
+                                并且如果 GID 已被使用则取消 -g
+  -g, --gid GID                 为新组使用 GID
+  -h, --help                    显示此帮助信息并退出
+  -K, --key KEY=VALUE           不使用 /etc/login.defs 中的默认值
+  -o, --non-unique              允许创建有重复 GID 的组
+  -p, --password PASSWORD       为新组使用此加密过的密码
+  -r, --system                  创建一个系统账户
+  -R, --root CHROOT_DIR         chroot 到的目录
+  -P, --prefix PREFIX_DIR       directory prefix</code></pre>
+
+<p>删除用户组 <code>groupdel</code> , 帮助如下</p>
+
+<pre><code class="language- shell">> groupdel -h
+用法：groupdel [选项] 组
+
+选项:
+  -h, --help                    显示此帮助信息并退出
+  -R, --root CHROOT_DIR         chroot 到的目录
+  -P, --prefix PREFIX_DIR       prefix directory where are located the /etc/* files
+  -f, --force                   即便是用户的主组也继续删除</code></pre>
+
+<p>更改用户组的属性 <code>groupmod</code> .</p>
+
+<h4>用户</h4>
+
+<p><code>/etc/passwd</code> 存放了用户信息, 格式为</p>
+
+<pre><code class="language- shell">用户名:口令:用户标识号:组标识号:注释性描述:主目录:登录Shell</code></pre>
+
+<p>可修改此文件来修改默认的 shell.</p>
+
+<p>添加用户 <code>useradd</code> </p>
+
+<pre><code class="language- shell">> useradd -h
+用法：useradd [选项] 登录名
+      useradd -D
+      useradd -D [选项]
+
+选项：
+      --badnames                do not check for bad names
+  -b, --base-dir BASE_DIR       新账户的主目录的基目录
+      --btrfs-subvolume-home    use BTRFS subvolume for home directory
+  -c, --comment COMMENT         新账户的 GECOS 字段
+  -d, --home-dir HOME_DIR       新账户的主目录
+  -D, --defaults                显示或更改默认的 useradd 配置
+  -e, --expiredate EXPIRE_DATE  新账户的过期日期
+  -f, --inactive INACTIVE       新账户的密码不活动期
+  -g, --gid GROUP               新账户主组的名称或 ID
+  -G, --groups GROUPS           新账户的附加组列表
+  -h, --help                    显示此帮助信息并退出
+  -k, --skel SKEL_DIR           使用此目录作为骨架目录
+  -K, --key KEY=VALUE           不使用 /etc/login.defs 中的默认值
+  -l, --no-log-init             不要将此用户添加到最近登录和登录失败数据库
+  -m, --create-home             创建用户的主目录
+  -M, --no-create-home          不创建用户的主目录
+  -N, --no-user-group           不创建同名的组
+  -o, --non-unique              允许使用重复的 UID 创建用户
+  -p, --password PASSWORD       加密后的新账户密码
+  -r, --system                  创建一个系统账户
+  -R, --root CHROOT_DIR         chroot 到的目录
+  -P, --prefix PREFIX_DIR       prefix directory where are located the /etc/* files
+  -s, --shell SHELL             新账户的登录 shell
+  -u, --uid UID                 新账户的用户 ID
+  -U, --user-group              创建与用户同名的组</code></pre>
+
+<p>(不知道 <code>-p</code> 参数是如何用的, 最终还是要 <code>passwd USERNAME</code> 来设置密码)</p>
+
+<h2>Reference</h2>
+
+<ul>
+<li>Linux Command Line and Shell Scripting</li>
+<li><a href='https://www.runoob.com/linux/linux-user-manage.html'>鸟哥</a></li>
+</ul>
+
+            </section>
+        </main>
+        <footer>zqw</footer>
+
+    </div>
+</body>
+</html>

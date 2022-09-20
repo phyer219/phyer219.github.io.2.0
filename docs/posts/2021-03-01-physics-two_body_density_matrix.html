@@ -1,0 +1,119 @@
+<!DOCTYPE html><html class="no-js" lang="zh">
+
+<head>
+<script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+    </script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Long+Cang&family=Noto+Serif+SC&display=swap" rel="stylesheet"> <meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>从冰上的水</title>
+<link rel="apple-touch-icon" sizes="180x180" href="../static/images/apple-touch-icon-next.png?v=6.4.1">
+<link rel="icon" type="image/png" sizes="32x32" href="../static/images/favicon-32x32-next.png?v=6.4.1">
+<link rel="icon" type="image/png" sizes="16x16" href="../static/images/favicon-16x16-next.png?v=6.4.1">
+<link rel="stylesheet" type="text/css" href="../static/css/mystyle.css">    
+
+</head>
+<body>
+    <div class="container">
+        <header>
+            <section class="banner"><img src="../static/images/banner_20220427_tamako-love-story.jpg"></section>
+        </header>
+        <nav class="row">
+    <a class="nav" href="../index.html">首页</a>
+    <a class="nav" href="../category/category.html">分类</a>
+    <a class="nav" href="#">标签</a>
+    <a class="nav" href="../about/index.html">关于</a>
+</nav>
+        <main>
+            <h1 class="post-title">two body density matrix
+            </h1>
+            <section class="post-meta">
+                <p><2021-03-01></p>
+                <p>['two body', 'density matrix']</p>
+                <p>专业笔记</p>
+            </section>
+            <section class="post-content">
+                
+<p>两体密度矩阵</p>
+
+$$\begin{align}
+        \rho(\mathbf{r}, \mathbf{r}'; \mathbf{r}_1)
+         \equiv \langle \Psi |
+         \psi^{\dagger}(\mathbf{r}) \psi^{\dagger}(\mathbf{r}_1)
+                         \psi(\mathbf{r}_1) \psi(\mathbf{r'})
+                | \Psi \rangle
+            = \phi^*(\mathbf{r}, \mathbf{r}_1)\phi(\mathbf{r}_1, \mathbf{r}')
+    \end{align}$$
+
+<p>其中 $|\Psi\rangle$ 是两体态</p>
+
+$$\begin{align}
+        | \Psi \rangle = \int \mathrm{d} \mathbf{r}_3
+                         \int \mathrm{d} \mathbf{r}_4\cdot
+                         \phi (\mathbf{r}_3, \mathbf{r}_4)\cdot
+                \psi^{\dagger}(\mathbf{r}_3) \psi^{\dagger}(\mathbf{r}_4)
+                | 0 \rangle
+\end{align}$$
+
+
+$$\begin{align}
+        \langle \Psi| = \int \mathrm{d} \mathbf{r}_5
+                         \int \mathrm{d} \mathbf{r}_6\cdot
+                         \phi^{*} (\mathbf{r}_5, \mathbf{r}_6)\cdot
+                \langle 0 |\psi(\mathbf{r}_6) \psi(\mathbf{r}_5)
+\end{align}$$
+
+<p>所以</p>
+
+$$\begin{align}
+  \rho(\mathbf{r}, \mathbf{r}'; \mathbf{r}_1)
+   = &\int \mathrm{d} \mathbf{r}_3 \int \mathrm{d} \mathbf{r}_4
+     \int \mathrm{d} \mathbf{r}_5\int \mathrm{d} \mathbf{r}_6\cdot
+        \phi^{*} (\mathbf{r}_5, \mathbf{r}_6)\phi (\mathbf{r}_3, \mathbf{r}_4)\\
+  &\langle 0 |
+       \psi(\mathbf{r}_6) \psi(\mathbf{r}_5)\cdot
+         \psi^{\dagger}(\mathbf{r}) \psi^{\dagger}(\mathbf{r}_1)
+                         \psi(\mathbf{r}_1) \psi(\mathbf{r'})\cdot
+                \psi^{\dagger}(\mathbf{r}_3) \psi^{\dagger}(\mathbf{r}_4)
+    |0\rangle \\
+   =&\int \mathrm{d} \mathbf{r}_3 \int \mathrm{d} \mathbf{r}_4
+     \int \mathrm{d} \mathbf{r}_5\int \mathrm{d} \mathbf{r}_6\cdot
+        \phi^{*} (\mathbf{r}_5, \mathbf{r}_6)\phi (\mathbf{r}_3, \mathbf{r}_4)\\
+  &\left[ \delta (\mathrm{r} - \mathrm{r}_{5}) \delta(\mathrm{r}_1 - \mathrm{r}_{6})
+         -\delta (\mathrm{r} - \mathrm{r}_6) \delta(\mathrm{r}_1 - \mathrm{r}_5) \right]\cdot
+    \left[ \delta (\mathrm{r}' - \mathrm{r}_3) \delta(\mathrm{r}_1 - \mathrm{r}_4)
+         -\delta (\mathrm{r}' - \mathrm{r}_4) \delta(\mathrm{r}_1 - \mathrm{r}_3) \right]
+\end{align}$$
+
+<p>so</p>
+
+$$\begin{align}
+        \rho(\mathbf{r}, \mathbf{r}'; \mathbf{r}_1)
+        = \sharp \phi^*(\mathbf{r}, \mathbf{r}_1)\phi(\mathbf{r}_1, \mathbf{r}')
+\end{align}$$
+
+
+
+<h2>Reference</h2>
+
+<ul>
+<li>Harald Siegfried Friedrich, Theoretical Atomic Physics-Springer (2005) Chap 1.4.1</li>
+</ul>
+
+            </section>
+        </main>
+        <footer>zqw</footer>
+
+    </div>
+</body>
+</html>

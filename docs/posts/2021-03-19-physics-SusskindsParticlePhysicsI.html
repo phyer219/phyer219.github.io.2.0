@@ -1,0 +1,504 @@
+<!DOCTYPE html><html class="no-js" lang="zh">
+
+<head>
+<script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+    </script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Long+Cang&family=Noto+Serif+SC&display=swap" rel="stylesheet"> <meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>从冰上的水</title>
+<link rel="apple-touch-icon" sizes="180x180" href="../static/images/apple-touch-icon-next.png?v=6.4.1">
+<link rel="icon" type="image/png" sizes="32x32" href="../static/images/favicon-32x32-next.png?v=6.4.1">
+<link rel="icon" type="image/png" sizes="16x16" href="../static/images/favicon-16x16-next.png?v=6.4.1">
+<link rel="stylesheet" type="text/css" href="../static/css/mystyle.css">    
+
+</head>
+<body>
+    <div class="container">
+        <header>
+            <section class="banner"><img src="../static/images/banner_20220427_tamako-love-story.jpg"></section>
+        </header>
+        <nav class="row">
+    <a class="nav" href="../index.html">首页</a>
+    <a class="nav" href="../category/category.html">分类</a>
+    <a class="nav" href="#">标签</a>
+    <a class="nav" href="../about/index.html">关于</a>
+</nav>
+        <main>
+            <h1 class="post-title">Susskind's Particle Pyhsics I: Basic Concepts Note
+            </h1>
+            <section class="post-meta">
+                <p><2021-03-19></p>
+                <p>['physics', 'Particle Physics', 'Susskind', 'Quantum Field Theory', 'Stimulated Emission', 'Group Velocity', 'Phase Velocity']</p>
+                <p>专业笔记</p>
+            </section>
+            <section class="post-content">
+                
+<h2>Information</h2>
+<ul>
+<li>官方介绍: https://theoreticalminimum.com/courses/particle-physics-1-basic-concepts/2009/fall</li>
+<li>视频列表地址: https://www.youtube.com/watch?v<code>2eFvVzNF24g&list</code>PLaTmJYdn8i5zI1To7uSg75eNA_AKXGUl0</li>
+<li>把主要内容整理一下.</li>
+</ul>
+<h2>Lecture 1: Particles and Light</h2>
+
+<h3>Wave Properties</h3>
+
+
+$$\begin{align}
+\boxed{\frac{\lambda}{T} = c}
+\end{align}$$
+
+
+$$\begin{align}
+f = \frac{1}{T} \quad \boxed{\lambda f = c}
+\end{align}$$
+
+
+$$\begin{align}
+\omega = 2\pi f = \boxed{2\pi \frac{c}{\lambda} = \omega}
+\end{align}$$
+
+
+<h3>Photon Properties</h3>
+
+
+$$\begin{align}
+\boxed{E_{\mathrm{phton}} = \hbar\omega}
+\end{align}$$
+
+
+$$\begin{align}
+E_{\mathrm{ray}} = n \hbar \omega
+\end{align}$$
+
+
+$$\begin{align}
+p = \frac{E}{c}
+\end{align}$$
+
+
+<h2>Lecture 2: Review of Quantum Mechanics & Harmonic Oscillator</h2>
+
+<h3>Periodic Boundary Condition</h3>
+
+<p>In order to make momentum conseved, we need periodic boundary condition, so</p>
+
+$$\begin{align}
+\lambda = \frac{L}{N}
+\end{align}$$
+
+<p>$\lambda$ is discrete.</p>
+
+$$\begin{align}
+p = \frac{h}{\lambda} = \frac{h}{L}N
+\end{align}$$
+
+
+<h3>Harmonic Oscillator</h3>
+
+
+$$\begin{align}
+  E &= n \hbar\omega\\
+  a^{+ }|n \rangle &= \sqrt{n + 1} | n+ 1 \rangle \\
+  a^{- }|n \rangle &= \sqrt{n } | n - 1\rangle \\
+  a^{+ }a^{- } &\sim n \\
+  a^{- }a^{+ } &\sim n + 1
+\end{align}$$
+
+
+<h2>Lecture 3: Field Operators</h2>
+
+<h3>Field operator</h3>
+
+<p>In periodic boundary conditions, a plane wave</p>
+
+$$\begin{align}
+  e^{\mathrm{i}kL}, \quad, k = n\frac{2\pi}{L}
+\end{align}$$
+
+<p>One particle with momentum $k_7$</p>
+
+$$\begin{align}
+  |0, 0, 0, 0, 0, 0, 1, 0, 0, \cdots \rangle
+\end{align}$$
+
+<p>Classical version of Fourier coefficient of field</p>
+
+$$\begin{align}
+  \psi(x) &= \sum_k \alpha(k) e^{\mathrm{i} kx} \\
+  \psi^{ * }(x) = \sum_k \alpha^{ * }(k) e^{- \mathrm{i}k x}
+\end{align}$$
+
+<p>quantum version</p>
+
+$$\begin{align}
+  \psi^{ -}(x) &= \sum_k \alpha^{- }(k) e^{\mathrm{i} kx} \\
+  \psi^{ + }(x) &= \sum_k \alpha^{ + }(k) e^{- \mathrm{i}k x}
+\end{align}$$
+
+<p>Let</p>
+
+$$\begin{align}
+  |0\rangle \equiv& |0, 0, 0, 0, 0, 0\cdots \rangle\\
+  |k_i\rangle \equiv& |0, 0, 0, \cdots , 1, 0, 0\cdots \rangle ,
+    \quad\mathrm{one} \quad \mathrm{in}\quad i \mathrm{th}
+\end{align}$$
+
+<p>Create a particle at position $x$</p>
+
+$$\begin{align}
+  \psi^{+ }(x) |0\rangle = \sum_k e^{-\mathrm{i} k x} a^{+ }(k)| 0 \rangle
+   = \sum_k e^{-\mathrm{i} k x} | k \rangle
+\end{align}$$
+
+
+<h3>Possible  Reaction & Stimulated Emission</h3>
+
+<p><p><img src='2021-03-19-physics-SusskindsParticlePhysicsI/reaction.png' alt='figalt' max-width: 100%><p></p>
+
+<p>A particle comes in, and when it hits the target. The target happens to be
+localized at position $x$ . That particle disappears. And then two particles
+emitted from the same spot. How would we describe this reaction?</p>
+
+$$\begin{align}
+  \Psi^{\dagger}(x) \Psi^{\dagger}(x) \Psi(x)|\rangle
+\end{align}$$
+
+<p>If that a particle with momentum $k_i$ is absorbed at position $x$ . What is the
+final state? What is the various probabilities for this final state to have this
+or that momentum?</p>
+
+<p>A photon comes in, hits an atom localized at a point and from that point two
+photons go off</p>
+
+$$\begin{align}
+  \Psi^{\dagger}(x) \Psi^{\dagger}(x) \Psi(x)|k_{\mathrm{i}}\rangle
+  =& \sum_{l,m} a^{\dagger}(l) e^{-\mathrm{i}lx} a^{\dagger}(m) e^{-\mathrm{i}mx}
+    \sum_k a(k) e^{\mathrm{i}kx} |k_{\mathrm{i}}\rangle \\
+  =& \sum_{l,m} a^{\dagger}(l) e^{-\mathrm{i}lx} a^{\dagger}(m) e^{-\mathrm{i}mx}
+      e^{\mathrm{i}k_{\mathrm{i}}x} |0\rangle \\
+  =& \sum_{l,m} e^{\mathrm{i}(k_{\mathrm{i}} - l - m)}|l, m\rangle
+\end{align}$$
+
+<p>本来想用这个说明 stimulated emission, 因为 $l = m$ 时会有 factor $\sqrt{2}$ ,
+产生相同动量的两个粒子的概率会增加. 但是翻车了, 因为 $l \neq m$ 时, 同样也会有一个
+$2$ , 因为 $l <code> 1, m </code> 2$ 和 $l <code> 2, m </code> 1$ 都会有贡献.</p>
+
+<p>然后用另一个例子说明 stimulated emission. Supposing we have a particle which can
+decay and emit a photon.</p>
+
+$$\begin{align}
+  \Psi^{\dagger}(x) |0\rangle = \sum_k e^{-\mathrm{i} kx}|k\rangle
+\end{align}$$
+
+<p>equal probability for all $k$ .</p>
+
+<p>If there pre-exist a particle</p>
+
+$$\begin{align}
+  \Psi^{\dagger}(x) |l\rangle = \sum_k e^{-\mathrm{i} kx} a^+(k)|l\rangle
+\end{align}$$
+
+<p>if $k\neq l$</p>
+
+$$\begin{align}
+  \Psi^{\dagger}(x) |l\rangle = \sum_k e^{-\mathrm{i} kx} |k, l\rangle
+\end{align}$$
+
+<p>equal probability. But if $k = l$</p>
+
+$$\begin{align}
+  e^{-\mathrm{i} kx} \sqrt{2}|k, k\rangle
+\end{align}$$
+
+<p>There are no photons present then just decays with coefficient $1$ , that's
+spontaneous emission. The presence of particles of a give type will increase the
+probability that out decay takes places with the final momentum being the same
+as the momentum already there. This is stimulated emission. Bosons!</p>
+
+<h3>Density of $x$</h3>
+
+
+$$\begin{align}
+  \Psi^{\dagger}(x) \Psi(x)
+\end{align}$$
+
+
+$$\begin{align}
+  \frac{1}{L}\int  \Psi^{\dagger}(x) \Psi(x) \cdot\mathrm{d}x = \frac{1}{L} = \mathrm{Number}
+  \quad \mathrm{of} \quad \mathrm{particles}
+\end{align}$$
+
+
+<h2>Lecture 4: Scattering Process</h2>
+
+<h3>Simplest Quantum Field</h3>
+
+<p>The simplest quantum field, be a function of only one coordinate namely $x$ .</p>
+
+$$\begin{align}
+  \Psi (x, t) =& \sum_k a^-(k) e^{\mathrm{i}kx} e^{\mathrm{i}\omega(k)t}
+   \quad \mathrm{(Definition)} \\
+  \Psi^{\dagger} (x, t) =& \sum_k a^-(k) e^{-\mathrm{i}kx} e^{\mathrm{i}\omega(k)t}
+\end{align}$$
+
+<p>Find the wave equation for $\Psi$ .</p>
+
+$$\begin{align}
+  \frac{\partial}{\partial t} \Psi &= \mathrm{i} \omega(k) \Psi \\
+  \frac{\partial}{\partial x} \Psi &= \mathrm{i} k \Psi \\
+  \frac{\partial^2}{\partial x^2} \Psi &= - k^2 \Psi \\
+\end{align}$$
+
+<p>so</p>
+
+$$\begin{align}
+  \mathrm{i}\frac{\partial}{\partial t} \Psi = \frac{\omega}{k}\frac{\partial^2}{\partial x^2} \Psi
+\end{align}$$
+
+<p>if $\omega = \frac{k^2}{2m}$ , a non-relativitic particle</p>
+
+$$\begin{align}
+  \mathrm{i}\frac{\partial}{\partial t} \Psi = \frac{1}{2m}\frac{\partial^2}{\partial x^2} \Psi
+\end{align}$$
+
+<p>$\Psi$ is an operator.</p>
+
+<h3>A Model: Scattering</h3>
+
+<p><p><img src='2021-03-19-physics-SusskindsParticlePhysicsI/scattering.png' alt='figalt' max-width: 100%><p></p>
+
+<p>A particle absorbed by a fixed target and emitted by the target instantly. This
+process is energy conserved but momentum not conserved. Averaging or integrating
+over all possiable time (set $x_0 = 0$)</p>
+
+$$\begin{align}
+ \langle k_f | g \int \mathrm{d}t\cdot \Psi^{\dagger}(0, t) \Psi(0, t) | k_i \rangle
+  = 2 \pi g \delta (\omega_f - \omega_i)
+\end{align}$$
+
+<p>where $g$ is coupling constant. There is connection between the fact that
+conservation of eneryg and the fact there's no preference of any specified time.</p>
+
+<h2>Lecture 5: Fermion</h2>
+
+<h3>Phase Velocity & Group Velocity</h3>
+
+
+$$\begin{align}
+\omega = \sqrt{k^2 + m^2}
+\end{align}$$
+
+<p>for massless $m = 0$</p>
+
+$$\begin{align}
+ v_{\mathrm{p}} &= \frac{\omega}{k} = 1 \\
+ v_{\mathrm{g}} &= \frac{\mathrm{d}\omega}{\mathrm{d}k} = 1
+\end{align}$$
+
+<p>but if $m \neq 0$</p>
+
+$$\begin{align}
+ v_{\mathrm{p}} &= \frac{\omega}{k} = \sqrt{1 + \frac{m^2}{k^2}} > 1\\
+ v_{\mathrm{g}} &= \frac{\mathrm{d}\omega}{\mathrm{d}k}
+      = \sqrt{\frac{k^2}{k^2 + m^2}} < 1
+\end{align}$$
+
+<p>$1$ is the speed of light. So phase velocity carries nothing.</p>
+
+<h3>Fermion</h3>
+
+
+$$\begin{align}
+  c^{+ } |0 \rangle &= |1\rangle\\
+  c^{+ } |1 \rangle &= 0\\
+  c^{- } |0 \rangle &= 0\\
+  c^{0 } |1 \rangle &= |0\rangle\\
+\end{align}$$
+
+
+$$\begin{align}
+  \boxed{c^{+ } c^{ -} |0 \rangle  = 0 } \\
+  \boxed{c^{- } c^{ +} |0 \rangle  = |0\rangle }
+\end{align}$$
+
+
+<h3>Ground state</h3>
+
+<p>Boson: Bose condensate.</p>
+
+<p>Fermion: Fermi sphere</p>
+
+<h3>Dirac Equation</h3>
+
+<p>move speed of light( $\omega <code> k$ , $c </code> 1$ ), carry electric charge, only move to
+one direction
+filed $\Psi$</p>
+
+$$\begin{align}
+  \Psi = e^{\mathrm{i}(k x - \omega t)} = e^{\mathrm{i} k (x - t)}
+\end{align}$$
+
+<p>so</p>
+
+$$\begin{align}
+  \frac{\partial \Psi}{\partial t} = - \frac{\partial \Psi}{\partial x}, \quad (\mathrm{i}\omega = \mathrm{i}k)
+\end{align}$$
+
+<p>describe both positive and negative energy. Negative is filled.</p>
+
+<h2>Lecture 6: Dirac Equation & Higgs Boson</h2>
+
+<p>Move right field</p>
+
+$$\begin{align}
+   \frac{\partial \Psi}{\partial t} = - \frac{\partial \Psi}{\partial x}
+\end{align}$$
+
+<p>Move left field</p>
+
+$$\begin{align}
+  \frac{\partial \Psi}{\partial t} =  \frac{\partial \Psi}{\partial x} ,\quad (\omega = -k)
+\end{align}$$
+
+
+$$\begin{align}
+  \dot{\Psi} \equiv \begin{pmatrix} \dot{\Psi}_R \\ \dot{\Psi}_L \end{pmatrix}
+   = - \begin{pmatrix} 1 &0 \\0 & -1 \end{pmatrix}
+    \begin{pmatrix} \frac{\partial \Psi_R}{\partial x} \\\frac{\partial \Psi_L}{\partial x} \end{pmatrix}
+  \equiv - \alpha \frac{\partial}{\partial x} \Psi
+\end{align}$$
+
+
+$$\begin{align}
+  \omega = \alpha k
+\end{align}$$
+
+<p>we want (not massless) $\omega <code> \sqrt{k^2 + m^2}$ , so let $\omega </code> \alpha k + \beta m$</p>
+
+$$\begin{align}
+  \omega^2 = k^2 + m^2 = (\alpha k + \beta m)^2 \Rightarrow \alpha^2 = 1, \beta^2 = 1, \alpha\beta + \beta\alpha = 0
+\end{align}$$
+
+<p>so $\beta$ can be</p>
+
+$$\begin{align}
+  \beta = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}
+\end{align}$$
+
+<p>so</p>
+
+$$\begin{align}
+  \mathrm{i} \begin{pmatrix} \dot{\Psi}_R \\ \dot{\Psi}_L \end{pmatrix}
+  = - \mathrm{i} \alpha \frac{\partial}{\partial x}\Psi + \beta m \Psi
+\end{align}$$
+
+
+$$\begin{align}
+  \mathrm{i}\dot{\Psi}_R =& -\mathrm{i}\partial_x \Psi_R + m\Psi_L \\
+  \mathrm{i}\dot{\Psi}_L =& \mathrm{i}\partial_x \Psi_L + m\Psi_R
+\end{align}$$
+
+<p>For a particle at rest ( $k = 0$ )</p>
+
+$$\begin{align}
+  \mathrm{i} \frac{\partial}{\partial t} \Psi
+   \equiv \mathrm{i} \begin{pmatrix} \dot{\Psi}_R \\\dot{\Psi}_L \end{pmatrix}= \beta m \Psi
+   \equiv m \begin{pmatrix} \Psi_L \\ \Psi_R \end{pmatrix}
+\end{align}$$
+
+
+<p>$\Psi_L$ and $\Psi_R$ are coupled. We can decouple them by $\Psi_+ = \Psi_L + \Psi_R$ ,
+$\Psi_- = \Psi_L - \Psi_R$</p>
+
+$$\begin{align}
+  \mathrm{i}\dot{\Psi}_+ &= m\Psi_+ \\
+  \mathrm{i}\dot{\Psi}_- &= -m\Psi_-
+\end{align}$$
+
+
+<h3>Dirac Equation in 3 Dimensions</h3>
+
+<p>Let</p>
+
+$$\begin{align}
+  \omega =& \sqrt{k_1^2 + k_2^2 + k_3^2 + m^2} \\
+  \omega =& \alpha k + \beta m = \alpha_1 k_1 + \alpha_2k_2 + \alpha_3 k_3 + \beta m
+\end{align}$$
+
+<p>so</p>
+
+$$\begin{align}
+\beta = \begin{pmatrix} I & 0 \\ 0 & -I \end{pmatrix}, \quad
+\alpha_i   = \begin{pmatrix} 0 & \sigma_i \\ \sigma_i & 0 \end{pmatrix}
+\end{align}$$
+
+<p>where $I$ is $2\times 2$ identity matrix, $\sigma_i$ is Pauli matrix.</p>
+
+$$\begin{align}
+  \mathrm{i}\frac{\partial }{\partial t} \Psi_p = - i (\alpha_i)_{pq} \frac{\partial}{\partial x^i}\Psi_q
+    + \beta_q m \Psi_q
+\end{align}$$
+
+
+<h2>Lecture 7: Angular Momentum</h2>
+
+<p>Angular momentum</p>
+<ul>
+<li>Orbital</li>
+<li>Spin</li>
+</ul>
+
+$$\begin{align}
+  [x_i , x_j] &= 0 \\
+  [p_i , p_j] &= 0 \\
+  [x, p_x] &= \mathrm{i}\hbar \\
+  [x_i, p_j] &= \mathrm{i}\hbar\delta_{ij} \\
+  [L_x, L_y] &= \mathrm{i}\hbar L_z
+\end{align}$$
+
+
+$$\begin{align}
+  L_+ &= L_x + \mathrm{i} L_y \\
+  L_- &= L_x - \mathrm{i} L_y \\
+\end{align}$$
+
+
+$$\begin{align}
+  [L_{+} , L_z] &= - L_{ +} \\
+  [L_{- }, L_z] &= + L_-
+\end{align}$$
+
+
+<h2>Lecture 8: Spin</h2>
+
+<p>Review spin.</p>
+
+<h2>Lecture 9: Interaction</h2>
+
+<p>Diagrams but abstract.</p>
+
+<h2>Lecture 10: Path Integral</h2>
+
+<p>Abstract.</p>
+
+<h2>Reference</h2>
+
+            </section>
+        </main>
+        <footer>zqw</footer>
+
+    </div>
+</body>
+</html>

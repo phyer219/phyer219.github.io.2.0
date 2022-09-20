@@ -1,0 +1,297 @@
+<!DOCTYPE html><html class="no-js" lang="zh">
+
+<head>
+<script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+    </script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Long+Cang&family=Noto+Serif+SC&display=swap" rel="stylesheet"> <meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>从冰上的水</title>
+<link rel="apple-touch-icon" sizes="180x180" href="../static/images/apple-touch-icon-next.png?v=6.4.1">
+<link rel="icon" type="image/png" sizes="32x32" href="../static/images/favicon-32x32-next.png?v=6.4.1">
+<link rel="icon" type="image/png" sizes="16x16" href="../static/images/favicon-16x16-next.png?v=6.4.1">
+<link rel="stylesheet" type="text/css" href="../static/css/mystyle.css">    
+
+</head>
+<body>
+    <div class="container">
+        <header>
+            <section class="banner"><img src="../static/images/banner_20220427_tamako-love-story.jpg"></section>
+        </header>
+        <nav class="row">
+    <a class="nav" href="../index.html">首页</a>
+    <a class="nav" href="../category/category.html">分类</a>
+    <a class="nav" href="#">标签</a>
+    <a class="nav" href="../about/index.html">关于</a>
+</nav>
+        <main>
+            <h1 class="post-title">Some Integrals
+            </h1>
+            <section class="post-meta">
+                <p><2019-05-31></p>
+                <p>['数学', '积分']</p>
+                <p>专业笔记</p>
+            </section>
+            <section class="post-content">
+                
+<h2>List of Ingtegrals</h2>
+
+<p>For $a,b \in \mathbb{R}$ and $a>0 , b>0$</p>
+
+
+$$\begin{align}
+        \int_0^{+\infty} \frac{e^{-\lambda k^2}}{a+b k^2}\mathrm{d}k
+        = \frac{e^{\frac{a\lambda}{b}}\pi}{2\sqrt{ab}}\mathrm{Erfc}
+           \left(\sqrt{\frac{a\lambda}{b}} \right)
+\end{align}$$
+
+
+$$\begin{align}
+        \mathcal{P}\int_{-\infty}^{\infty} \frac{e^{-k^2}}{1-k} \mathrm{d}k 
+        = \frac{\pi}{e}\mathrm{erfi}(1) 
+        = \frac{\pi}{e}\cdot \frac{2}{\sqrt{\pi}} \int_0^1 e^{u^2}\mathrm{d}u
+\end{align}$$
+
+
+<h2>Integral I</h2>
+
+<p>推导下面的积分 ( $\Omega < 0$ )</p>
+
+
+$$\begin{align}
+  \frac{1}{2\pi^2}\int_0^{\infty}\frac{ k^2e^{-2k^2 / \bar{\Lambda}_s^2} }
+     {\Omega-\frac{k^2}{M} } \mathrm{d}k
+  = -\frac{M \bar{\Lambda}_s}{4\pi\sqrt{2\pi}} +\frac{M\sqrt{-M\Omega}}{4\pi}
+    e^{-M\Omega \frac{2}{ \bar{\Lambda}_s^2}}
+    \mathrm{Erfc}\left(\frac{\sqrt{-2M\Omega}}{\bar{\Lambda}_s}\right)
+\end{align}$$
+
+
+<h3>去掉分子</h3>
+
+<p>利用</p>
+
+$$\begin{align}
+  \frac{ k^2 }
+     {\Omega-\frac{k^2}{M} } = -M(1-\frac{\Omega}{\Omega - \frac{k^2}{M}})
+\end{align}$$
+
+<p>第一项高斯积分可以积出</p>
+
+$$\begin{align}
+    &\frac{1}{2\pi^2}\int_0^{\infty}\mathcal{P}\frac{ k^2e^{-2k^2 / \bar{\Lambda}_s^2} }
+     {\Omega-\frac{k^2}{M} } \mathrm{d}k \\
+    = & -\frac{M \bar{\Lambda}_s}{4\pi\sqrt{2\pi}} +\frac{M\Omega}{4\pi^2}
+     \int_{-\infty}^{ +\infty} \mathrm{d}k\cdot \frac{ k^2e^{-2k^2 / \bar{\Lambda}_s^2} }
+     {\Omega-\frac{k^2}{M} }
+\end{align}$$
+
+
+<h3>第二项</h3>
+
+<p>第二项利用</p>
+
+$$\begin{align}
+  \frac{1}{\Omega - \frac{k^2}{M}}
+  = - \int_0^{\infty}e^{(\Omega - k^2/M)t}\mathrm{d}t
+\end{align}$$
+
+<p>之后关于 $k$ 的积分是高斯积分, 可以积掉, 所以原积分第二项化为</p>
+
+$$\begin{align}
+  -\frac{M\Omega}{4\pi^2}\int_0^{\infty} \mathrm{d}t\cdot
+  \frac{\sqrt{\pi}}{\sqrt{ \frac{2}{ \bar{\Lambda}_s^2}  +\frac{t}{M}}}e^{\Omega t}
+\end{align}$$
+
+
+<h3>化为 Error Function</h3>
+
+<p>第二项做换元</p>
+
+$$\begin{align}
+  u = \sqrt{-M\Omega} \sqrt{\frac{2}{ \bar{\Lambda}_s^2} +\frac{t}{M}}
+\end{align}$$
+
+
+<p>第二项积分化为</p>
+
+$$\begin{align}
+  \frac{M\sqrt{-M\Omega}}{2\pi\sqrt{\pi}} e^{-M\Omega \frac{2}{\bar{\Lambda}_s^2}}
+   \int_{\sqrt{-\frac{2M\Omega}{\bar{\Lambda}_s^2} }}^{\infty} e^{-t^2}\cdot\mathrm{d}t
+\end{align}$$
+
+
+<h3>Error Function</h3>
+
+<p>利用 Error Function 的定义, 原积分化为</p>
+
+
+$$\begin{align}
+  \frac{1}{2\pi^2}\int_0^{\infty}\frac{ k^2e^{-2k^2 / \bar{\Lambda}_s^2} }
+     {\Omega-\frac{k^2}{M} } \mathrm{d}k
+  = -\frac{M \bar{\Lambda}_s}{4\pi\sqrt{2\pi}} +\frac{M\sqrt{-M\Omega}}{4\pi}
+    e^{-M\Omega \frac{2}{ \bar{\Lambda}_s^2}}
+    \mathrm{Erfc}\left(\frac{\sqrt{-2M\Omega}}{\bar{\Lambda}_s^2}\right)
+\end{align}$$
+
+<p>其中</p>
+
+$$\begin{align}
+  \mathrm{Erfc}(x) = 1 - \mathrm{Erf}(x) = \frac{2}{\sqrt{\pi}}
+  \int_x^{\infty} e^{-t^2}\mathrm{d}t
+\end{align}$$
+
+
+
+
+<h2>Integral... </h2>
+
+<p>推导下面的积分 ( $\Omega < 0$ )</p>
+
+
+$$\begin{align}
+  \frac{1}{2\pi^2}\int_0^{\infty}\frac{ k^2e^{-2k^2 / \bar{\Lambda}_s^2} }
+     {\Omega-\frac{k^2}{M} } \mathrm{d}k
+  = -\frac{M \bar{\Lambda}_s}{4\pi\sqrt{2\pi}} +\frac{M\sqrt{-M\Omega}}{4\pi}
+    e^{-M\Omega \frac{2}{ \bar{\Lambda}_s^2}}
+    \mathrm{Erfc}\left(\frac{\sqrt{-2M\Omega}}{\bar{\Lambda}_s}\right)
+\end{align}$$
+
+
+<h3>去掉分子</h3>
+
+<p>利用</p>
+
+$$\begin{align}
+  \frac{ k^2 }
+     {\Omega-\frac{k^2}{M} } = -M(1-\frac{\Omega}{\Omega - \frac{k^2}{M}})
+\end{align}$$
+
+<p>第一项高斯积分可以积出</p>
+
+$$\begin{align}
+    &\frac{1}{2\pi^2}\int_0^{\infty}\mathcal{P}\frac{ k^2e^{-2k^2 / \bar{\Lambda}_s^2} }
+     {\Omega-\frac{k^2}{M} } \mathrm{d}k \\
+    = & -\frac{M \bar{\Lambda}_s}{4\pi\sqrt{2\pi}} +\frac{M\Omega}{4\pi^2}
+     \int_{-\infty}^{ +\infty} \mathrm{d}k\cdot \frac{ k^2e^{-2k^2 / \bar{\Lambda}_s^2} }
+     {\Omega-\frac{k^2}{M} }
+\end{align}$$
+
+
+<h3>第二项</h3>
+
+<p>第二项利用</p>
+
+$$\begin{align}
+  \frac{1}{\Omega - \frac{k^2}{M}}
+  = - \int_0^{\infty}e^{(\Omega - k^2/M)t}\mathrm{d}t
+\end{align}$$
+
+<p>之后关于 $k$ 的积分是高斯积分, 可以积掉, 所以原积分第二项化为</p>
+
+$$\begin{align}
+  -\frac{M\Omega}{4\pi^2}\int_0^{\infty} \mathrm{d}t\cdot
+  \frac{\sqrt{\pi}}{\sqrt{ \frac{2}{ \bar{\Lambda}_s^2}  +\frac{t}{M}}}e^{\Omega t}
+\end{align}$$
+
+
+<h3>化为 Error Function</h3>
+
+<p>第二项做换元</p>
+
+$$\begin{align}
+  u = \sqrt{-M\Omega} \sqrt{\frac{2}{ \bar{\Lambda}_s^2} +\frac{t}{M}}
+\end{align}$$
+
+
+<p>第二项积分化为</p>
+
+$$\begin{align}
+  \frac{M\sqrt{-M\Omega}}{2\pi\sqrt{\pi}} e^{-M\Omega \frac{2}{\bar{\Lambda}_s^2}}
+   \int_{\sqrt{-\frac{2M\Omega}{\bar{\Lambda}_s^2} }}^{\infty} e^{-t^2}\cdot\mathrm{d}t
+\end{align}$$
+
+
+<h3>Error Function</h3>
+
+<p>利用 Error Function 的定义, 原积分化为</p>
+
+
+$$\begin{align}
+  \frac{1}{2\pi^2}\int_0^{\infty}\frac{ k^2e^{-2k^2 / \bar{\Lambda}_s^2} }
+     {\Omega-\frac{k^2}{M} } \mathrm{d}k
+  = -\frac{M \bar{\Lambda}_s}{4\pi\sqrt{2\pi}} +\frac{M\sqrt{-M\Omega}}{4\pi}
+    e^{-M\Omega \frac{2}{ \bar{\Lambda}_s^2}}
+    \mathrm{Erfc}\left(\frac{\sqrt{-2M\Omega}}{\bar{\Lambda}_s^2}\right)
+\end{align}$$
+
+<p>其中</p>
+
+$$\begin{align}
+  \mathrm{Erfc}(x) = 1 - \mathrm{Erf}(x) = \frac{2}{\sqrt{\pi}}
+  \int_x^{\infty} e^{-t^2}\mathrm{d}t
+\end{align}$$
+
+
+<h3>与 Mathematica 的结果一致</h3>
+
+<p><p><img src='./2019-05-15-physics-PAR99/int.png' alt='figalt' max-width: 100%><p>
+其中</p>
+
+$$\begin{align}
+  \mathrm{Erfc}(x) = 1 - \mathrm{Erf}(x) = \frac{2}{\sqrt{\pi}}
+  \int_x^{\infty} e^{-t^2}\mathrm{d}t
+\end{align}$$
+
+
+$$\begin{align}
+  \mathrm{Erfi}(z) = -\mathrm{i}\cdot\mathrm{Erf}(\mathrm{i}z)
+\end{align}$$
+
+
+
+
+
+<h2>Supplementary </h2>
+
+<h3>Error function , Dawnson Function</h3>
+
+<h3>Hilbert Transformation </h3>
+
+<h2>Reference and Acknowledge </h2>
+
+<h3>Math StackExchange</h3>
+
+<ul>
+<li>[[https://math.stackexchange.com/questions/3231991/an-integration-about-error-function]]</li>
+<li>[[https://math.stackexchange.com/questions/3245061/compute-an-integral-about-error-function-int-infty-infty-frace-k2]]</li>
+</ul>
+<h3>James Stewart, Calculus 8th ed</h3>
+
+<ul>
+<li>9.5 Linear Equations</li>
+</ul>
+<h3>同济大学数学系, 高等数学上册, 第六版</h3>
+<p> </p>
+<ul>
+<li>7.4 一阶线性微分方程</li>
+</ul>
+<h3>Ran Qi 老师的超冷原子物理课</h3>
+
+            </section>
+        </main>
+        <footer>zqw</footer>
+
+    </div>
+</body>
+</html>
