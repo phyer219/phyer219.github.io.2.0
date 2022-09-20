@@ -89,6 +89,11 @@ section.post-content{
     /* flex-flow: row wrap; */
 }
 
+section.post-meta{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
 h1.post-title{
     display: flex;
     /* flex-flow: row wrap; */
