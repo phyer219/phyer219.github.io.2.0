@@ -239,10 +239,10 @@ class PostsList:
         self.tag_set = {}
         for post in self.item_list:
             if 'tags' in post.meta.keys():
-                tag = post.meta['tags'][0]
-                if tag not in self.tag_set.keys():
-                    self.tag_set[tag] = []
-                self.tag_set[tag].append(post)
+                for tag in post.meta['tags']:
+                    if tag not in self.tag_set.keys():
+                        self.tag_set[tag] = []
+                    self.tag_set[tag].append(post)
 
         for line in self.tags_theme.splitlines():
             if re.search(r'{post-tags}', line):
