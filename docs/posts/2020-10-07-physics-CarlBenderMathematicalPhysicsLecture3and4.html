@@ -66,9 +66,9 @@ Generic summation machines.  </p>
 <h2>Shanks Transform</h2>
 
 <p>Shanks Transform 的作用是</p>
-<quote>#+begin_quote
+<blockquote>#+begin_quote
 Accelerate the convergence of a series that was already converging.
-#+end_quote</quote>
+#+end_quote</blockquote>
 <p>例如</p>
 
 $$\begin{align}
@@ -79,9 +79,9 @@ $$\begin{align}
 <p><p><img src='./2020-10-07-physics-CarlBenderMathematicalPhysicsLecture3and4/log2.jpg' alt='figalt' max-width: 100%><p></p>
 
 <p>Shanks Transform 能够让收敛变得更快.</p>
-<quote>#+begin_quote
+<blockquote>#+begin_quote
 Mr. Shanks syas, let's make a model of this series.
-#+end_quote</quote>
+#+end_quote</blockquote>
 <p>把这种振荡的级数 model 一下.假设级数 $S_N$ 有如下的形式</p>
 
 $$\begin{align}
@@ -115,14 +115,14 @@ code: [[file:./2020-10-07-专业笔
 
 <p>对于 Shanks transform, 有同学提问, 如何证明它能够对这样级数加速收敛,  Bender 如
 是回答</p>
-<quote>#+begin_quote
+<blockquote>#+begin_quote
 Some summation theory partially rigorous but mostly not. It is very powerful and
 works in places where people cannot even justify why it is working.
-#+end_quote</quote>
+#+end_quote</blockquote>
 <p>并说它在这门课所要教的是</p>
-<quote>#+begin_quote
+<blockquote>#+begin_quote
 Cutting-edge mathematical physics. Very useful mathematical physics.
-#+end_quote</quote>
+#+end_quote</blockquote>
 
 <h2>Richardson Extrapolation</h2>
 
@@ -144,10 +144,10 @@ $$\begin{align}
 
 <p>也就是说, 计算到第 $1000$ 项, 也只达到 $\frac{1}{1000}$ 的精确度. 如果想到精确到
 小数点后面十几位, 计算量就变得相当大.</p>
-<quote>#+begin_quote
+<blockquote>#+begin_quote
 Richardson extrapolation is a technique for extrapolating a sequence $S_N$ to
 the limit of that sequence. 
-#+end_quote</quote>
+#+end_quote</blockquote>
 <p>与 Shanks transform 类似的做法, 对这种收敛形式的级数 makes a model</p>
 
 $$\begin{align}
@@ -198,9 +198,9 @@ $$\begin{align}
 \end{align}$$
 
 <p>首先, 用 (\ref{eq:zeta1}) 来说明</p>
-<quote>#+begin_quote
+<blockquote>#+begin_quote
 Some divergent series REALLY sum up to infinity -- this is perfectly OK!
-#+end_quote</quote>
+#+end_quote</blockquote>
 <p>(\ref{eq:zeta1}) 可以对应物理图像, 将质量均匀的砖一块一块地摞, 最多能伸出多远.
 如图 
 file:./2020-10-07-physics-CarlBenderMathematicalPhysicsLecture3and4/zeta1.gif
@@ -274,14 +274,14 @@ $$\begin{align}
 
 <p>接下来构造一种普适的方法 $\mathcal{S}(a_0 + a_1 + a_2 + \cdots) = S$. 但是不给出具体的
 操作过程, 只给出它应该满足的两条性质 </p>
-<quote>#+begin_quote
+<blockquote>#+begin_quote
 - prop #1 : $\mathcal{S}(a_0 + a_1 + a_2 + \cdots) = a_0 + \mathcal{S}(a_1 + a_2 + a_3 +
   \cdots)$ 
 
 - prop #2: linearity
     $\mathcal{S}\left(\sum(\alpha a_n + \beta b_n)\right) = \alpha \mathcal{S} (\sum a_n)+ \beta
   \mathcal{S}(\sum b_n)$
-#+end_quote</quote>
+#+end_quote</blockquote>
 <p>例如, 我们还是将它用在级数</p>
 
 $$\begin{align}

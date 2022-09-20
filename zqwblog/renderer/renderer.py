@@ -26,8 +26,8 @@ class HTMLRenderer(Renderer):
         block.data = before + block.data + end
         return None
     def render_quote(self, block):
-        before = '<quote>'
-        end = '</quote>'
+        before = '<blockquote>'
+        end = '</blockquote>'
         block.data = before + block.data + end
         return None
     def render_math(self, block):

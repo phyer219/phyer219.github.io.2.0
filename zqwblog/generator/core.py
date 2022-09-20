@@ -105,7 +105,9 @@ class WebSite:
                 if file_extension in ('.org', '.md'):
                     post = self.render_post(file_root, file_extension)
                     self.item_list.append(post)
-        self.item_list.sort(key=lambda p: (p.meta['date'][0]), reverse=True)
+
+        self.item_list.sort(key=lambda p: (p.meta['date'][0]*10000+p.meta['date'][1]*100+
+                      p.meta['date'][2]), reverse=True)
 
     def render_post(self, file_root, file_extension):
         """According the file type, use different render,
