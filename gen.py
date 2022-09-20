@@ -73,11 +73,15 @@ class PostsList:
         copy the static file in theme to the output path
         ->
         generate the directories where the output file saves.
+        ->
+        generate CNAME
         """
         clean_dir(self.output_path)
         shutil.copytree(self.theme_path + 'static', self.output_path + 'static')
         os.mkdir(self.output_path + 'posts')
         os.mkdir(self.output_path + 'category')
+        with open (self.output_path + 'CNAME', 'w') as f:
+            f.write('zqw.ink')
 
     def load_theme(self):
         """load the theme files.
