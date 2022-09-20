@@ -79,7 +79,7 @@ class PostsList:
         clean_dir(self.output_path)
         shutil.copytree(self.theme_path + 'static', self.output_path + 'static')
         os.mkdir(self.output_path + 'posts')
-        os.mkdir(self.output_path + 'category')
+        os.mkdir(self.output_path + 'categories')
         with open (self.output_path + 'CNAME', 'w') as f:
             f.write('zqw.ink')
 
@@ -90,6 +90,8 @@ class PostsList:
             self.post_theme = f.read()
         with open(self.theme_path + 'index.html', 'r') as f:
             self.index_theme = f.read()
+        with open(self.theme_path + 'category/post_list.html', 'r') as f:
+            self.post_list_theme = f.read()
         with open(self.theme_path + 'category/category.html', 'r') as f:
             self.category_theme = f.read()
 
@@ -143,20 +145,20 @@ class PostsList:
     def gen_index(self):
         self.gen_post_list_html(post_list=self.item_list,
                                 file_theme=self.index_theme, 
-                                out_path=self.output_path + 'index.html')
+                                out_path=self.output_path + 'index.html',
+                                link_base='./')
 
-    def gen_post_list_html(self, post_list, file_theme, out_path):
+    def gen_post_list_html(self, post_list, file_theme, out_path, link_base):
         """generage a html, which contain a post list"""
         for line in file_theme.splitlines():
             if re.search(r'{post-url}', line): 
                 line_theme = line
-        html_line_list = [self.post_link(line_theme, p) for p in self.item_list]
+        html_line_list = [self.post_link(line_theme, p, link_base=link_base) for p in self.item_list]
         html_line_list = '\n'.join(html_line_list)
         with open(out_path, 'w') as f:
-            f.write(self.index_theme.replace(line_theme, html_line_list))
+            f.write(file_theme.replace(line_theme, html_line_list))
 
-
-    def post_link(self, link_theme, post, link_base='./'):
+    def post_link(self, link_theme, post, link_base):
         """create a link html
         
         link_theme = "...{post-url}...{post-title}...{post-date}"
@@ -199,7 +201,6 @@ class PostsList:
             shutil.copytree(posts_source + post.file_root,
                             self.output_path + 'posts/' + post.file_root)
 
-
     def gen_categories(self):
         self.cat_set = {}
         for post in self.item_list:
@@ -208,23 +209,43 @@ class PostsList:
                 self.cat_set[cat] = []
             self.cat_set[cat].append(post)
 
-        with open(self.output_path + 'category/index.html', 'w') as f:
-            for line in self.category_theme.splitlines():
-                if re.search(r'{post-categories}', line):
-                    cat_line = line
-                    continue
-                if re.search(r'{post-title}', line):
-                    post_line = line
-                    for key in self.cat_set.keys():
-                            new_line_cat = cat_line.replace(r'{post-categories}',
-                            key)
-                            f.writelines(new_line_cat)
-                            for post in self.cat_set[key]:
-                                new_line_post = self.post_link(post_line, post,
-                                link_base='../')
-                                f.writelines(new_line_post)
-                else:
-                    f.writelines(line)
+        for line in self.category_theme.splitlines():
+            if re.search(r'{post-categories}', line):
+                html_line_theme = line
+
+        cate_list = []
+        for c in self.cat_set.keys():
+            h = html_line_theme.replace('{post-categories}', c)
+            print("$$$$$$$$$$$$$$$$$$$$$$$$$$$$", '../categories/' + c + '.html')
+            h = h.replace('{category-url}', '../categories/' + c + '.html')
+            cate_list.append(h)
+
+            self.gen_post_list_html(post_list=self.cat_set[c],
+                                    file_theme=self.post_list_theme, 
+                                    out_path=self.output_path + 'categories/' + c + '.html',
+                                    link_base='../')
+
+        with open(self.output_path + 'categories/index.html', 'w') as f:
+            f.write(self.category_theme.replace(html_line_theme, '\n'.join(cate_list)))
+
+        
+        # with open(self.output_path + 'category/index.html', 'w') as f:
+        #     for line in self.category_theme.splitlines():
+        #         if re.search(r'{post-categories}', line):
+        #             cat_line = line
+        #             continue
+        #         if re.search(r'{post-title}', line):
+        #             post_line = line
+        #             for key in self.cat_set.keys():
+        #                     new_line_cat = cat_line.replace(r'{post-categories}',
+        #                     key)
+        #                     f.writelines(new_line_cat)
+        #                     for post in self.cat_set[key]:
+        #                         new_line_post = self.post_link(post_line, post,
+        #                         link_base='../')
+        #                         f.writelines(new_line_post)
+        #         else:
+        #             f.writelines(line)
 
 pl = PostsList(SOURCE_PATH, OUTPUT_PATH, THEME_PATH)
 pl.run()

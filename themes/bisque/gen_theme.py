@@ -76,12 +76,17 @@ class PostTheme(PageTheme):
     path_rel = 'posts/'
 
 
-class IndexTheme(PostTheme):
+class IndexTheme(PageTheme):
     base = './'
     name = 'index'
     path_rel = ''
 
-class CategoryTheme(PostTheme):
+class PostListTheme(PageTheme):
+    base = '../'
+    name = 'post_list'
+    path_rel = 'category/'
+
+class CategoryTheme(PageTheme):
     base = '../'
     name = 'category'
     path_rel = 'category/'
@@ -95,3 +100,5 @@ id = IndexTheme(out_root=OUT_ROOT, source_root=SOURCE_ROOT)
 id.run()
 ca = CategoryTheme(out_root=OUT_ROOT, source_root=SOURCE_ROOT)
 ca.run()
+pl = PostListTheme(out_root=OUT_ROOT, source_root=SOURCE_ROOT)
+pl.run()
