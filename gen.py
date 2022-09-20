@@ -114,7 +114,6 @@ class PostsList:
                     self.item_list.append(post)
         self.item_list.sort(key=lambda p: (p.meta['date'][0]), reverse=True)
 
-    
     def render_post(self, file_root, file_extension):
         """According the file type, use different render,
            render it and generate the html file,
@@ -203,7 +202,7 @@ class PostsList:
                 self.cat_set[cat] = []
             self.cat_set[cat].append(post)
 
-        with open(self.output_path + 'category/category.html', 'w') as f:
+        with open(self.output_path + 'category/index.html', 'w') as f:
             for line in self.category_theme.splitlines():
                 if re.search(r'{post-categories}', line):
                     cat_line = line
