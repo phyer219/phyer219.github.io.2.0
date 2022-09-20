@@ -141,14 +141,20 @@ class PostsList:
         return post
 
     def gen_index(self):
-        with open(self.output_path + 'index.html', 'w') as f:
-            for line in self.index_theme.splitlines():
-                if re.search(r'{post-url}', line):
-                    for post in self.item_list:
-                        new_line = self.post_link(line, post)
-                        f.writelines(new_line)
-                else:
-                    f.writelines(line)
+        self.gen_post_list_html(post_list=self.item_list,
+                                file_theme=self.index_theme, 
+                                out_path=self.output_path + 'index.html')
+
+    def gen_post_list_html(self, post_list, file_theme, out_path):
+        """generage a html, which contain a post list"""
+        for line in file_theme.splitlines():
+            if re.search(r'{post-url}', line): 
+                line_theme = line
+        html_line_list = [self.post_link(line_theme, p) for p in self.item_list]
+        html_line_list = '\n'.join(html_line_list)
+        with open(out_path, 'w') as f:
+            f.write(self.index_theme.replace(line_theme, html_line_list))
+
 
     def post_link(self, link_theme, post, link_base='./'):
         """create a link html
