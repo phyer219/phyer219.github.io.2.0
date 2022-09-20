@@ -1,0 +1,22 @@
+__pycache__/
+*.py[cod]
+*$py.class
+/**/#*#
+*.csv
+*.jpg
+# docs/_build/
+
+/build/
+*.egg-info/
+/dist/
+
+*.log
+
+*.aux
+*.bbl
+*.out
+*.blg
+
+*.pyc
+*.pdf
+*.json
