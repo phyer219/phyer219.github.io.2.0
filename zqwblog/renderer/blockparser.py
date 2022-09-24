@@ -45,11 +45,12 @@ class SignleLineBlocksParser(BlocksParser):
     pattern = ''
     def run(self, post):
         for b in post.blocks:
-            match = re.search(self.pattern, b.data)
-            if match and not b.protect:
-                b.btype = self.btype
-                b.data = match.group('data')
-                b.block_meta = deepcopy(match.groupdict())
+            if not b.protect:
+                match = re.search(self.pattern, b.data)
+                if match:
+                    b.btype = self.btype
+                    b.data = match.group('data')
+                    b.block_meta = deepcopy(match.groupdict())
 
 
 class OrgMathBlocksParser(BlocksParser):
@@ -123,6 +124,39 @@ class OrgQuoteBlocksParser(BlocksParser):
         post.blocks = news
         news = []
         return None
+
+class OrgTableBlocksParser(BlocksParser):
+    protect = True
+    btype = 'table'
+    def start(self, block):
+        return re.search(r'^\|', block.data)
+    def end(self, block):
+        return re.search(r'^(?!\|)', block.data) 
+    def run(self, post):
+        inside = False
+        temp = []
+        news = []
+        for b in post.blocks:
+            if inside:
+                if self.end(b):
+                    inside = False
+                    data = temp
+                    temp = []
+                    nb = Block(self.btype, data)
+                    nb.protect = self.protect
+                    news.append(b)
+                    news.append(nb)
+                else:
+                    temp.append(b.data.split(r'|'))
+            elif self.start(b):
+                inside = True
+                temp.append(b.data.split(r'|'))
+            else:
+                news.append(b)
+        post.blocks = news
+        news = []
+        return None
+
 class OrgParagraphBlocksParser(BlocksParser):
     protect = False
     btype = 'paragraph'
@@ -220,9 +254,11 @@ class OrgBlockParser:
         self.blocksparsers.append(OrgMathBlocksParser())
         self.blocksparsers.append(OrgCodeBlocksParser())
         self.blocksparsers.append(OrgQuoteBlocksParser())
+        self.blocksparsers.append(OrgTableBlocksParser())
         self.blocksparsers.append(OrgHeadingBlocksParser())
         self.blocksparsers.append(OrgListBlocksParser())
         self.blocksparsers.append(OrgParagraphBlocksParser())
+
 
     
     def run(self, post):

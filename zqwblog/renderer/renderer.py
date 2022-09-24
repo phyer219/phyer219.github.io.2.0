@@ -30,6 +30,14 @@ class HTMLRenderer(Renderer):
         end = '</blockquote>'
         block.data = before + block.data + end
         return None
+    def render_table(self, block):
+        """block.date is 2D list, which save the table content"""
+        before = '<table>\n<tr>\n<td>'
+        end = '</td>\n</tr>\n</table>'
+        content = ["</td>\n<td>".join(row) for row in block.data]
+        content = "</td>\n</tr>\n<tr>\n<td>".join(content)
+        block.data = before + content + end
+        return None
     def render_math(self, block):
         before = '\n$$'
         end = '$$\n'

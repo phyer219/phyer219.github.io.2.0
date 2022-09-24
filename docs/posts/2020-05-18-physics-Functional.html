@@ -197,12 +197,38 @@ f(x)}$ 是一致的.</p>
 
 <p>为什么要将对 $\epsilon$ 的一阶项定义为泛函导数的积分, 而不是直接定义成泛函层数, 可以借
 助 Simons 书中将泛函理解成多变量函数在变量无穷多时的极限, 泛函导数对应成多变量函
-数对某个变量的偏微分. 也就是
-| 多变量函数                                            | functional                                                                                                             |   |
-| $F(f_1, f_2, \cdots , f_n)$                                  | $F[f(x)]$                                                                                                              |   |
-| $\frac{\partial F}{\partial f_i}$                                    | $\frac{\delta F}{\delta f(x)}$                                                                                                 |   |
-| $\mathrm{d}F <code> \sum_{i</code>1}^n \frac{\partial F}{\partial f_i}\mathrm{d}f$ | $\left[\frac{\mathrm{d} F[f + \epsilon \eta]}{\mathrm{d}\epsilon}\right] _{\epsilon<code>0} </code> \int  \frac{\delta F[f]}{\delta f(x_1)} \eta (x_1)\mathrm{d}x_1$  |   |</p>
+数对某个变量的偏微分. 也就是</p>
 
+<table>
+<tr>
+<td></td>
+<td> 多变量函数                                            </td>
+<td> functional                                                                                                             </td>
+<td>   </td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td> $F(f_1, f_2, \cdots , f_n)$                                  </td>
+<td> $F[f(x)]$                                                                                                              </td>
+<td>   </td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td> $\frac{\partial F}{\partial f_i}$                                    </td>
+<td> $\frac{\delta F}{\delta f(x)}$                                                                                                 </td>
+<td>   </td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td> $\mathrm{d}F = \sum_{i=1}^n \frac{\partial F}{\partial f_i}\mathrm{d}f$ </td>
+<td> $\left[\frac{\mathrm{d} F[f + \epsilon \eta]}{\mathrm{d}\epsilon}\right] _{\epsilon=0} = \int  \frac{\delta F[f]}{\delta f(x_1)} \eta (x_1)\mathrm{d}x_1$  </td>
+<td>   </td>
+<td></td>
+</tr>
+</table>
 <p>因此, 类比一阶导数, 可以根据 Taylor 展开的 $\epsilon$ 的二阶项定义泛函的二阶导数
 $\frac{\delta^2 F[f]}{\delta f(x_1)\delta f(x_2)}$ 为</p>
 

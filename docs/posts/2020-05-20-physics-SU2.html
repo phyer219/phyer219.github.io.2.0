@@ -62,14 +62,52 @@ to change, or make sb/sth change into sth different
 那么 isomorphic 的意思就是 equal change, 相同的变换, 也就是同构.
 选 traceless hermitean 的 Pauli 矩阵 $\sigma_1, \sigma_2, \sigma_3$ 做为 $SU(2)$ 群的基底, 对于
 一个 $SO(3)$ 的自然表示基底中的一个 vector $\vec{V} = (x, y, z)$ , 它们是对应的
-|                | SO(2)                                    | SU(2)                                                                                                                            |
-| basis          | $(\hat{e}_x, \hat{e}_y, \hat{e}_z)$       | $(\sigma_1, \sigma_2, \sigma_3)$                                                                                                                |
-|                | 三维空间中的 vector: $\vec{V}<code>(x, y, z)$ | 任意 traceless hermitean $2\times 2$ matrix: $X </code> \left(\begin{array}{cc} z&x-\mathrm{i}y \\ x+ \mathrm{i}y & -z \end{array}\right)$ |
-| transformation | $\vec{V}' <code> R \vec{V}$                   | $X' </code> U^{\dagger} XU$                                                                                                                  |
-| element        | $R$                                      | $U$                                                                                                                              |
-| invariant      | $V <code> x^2 + y^2 + z^2$                       | $\det X </code> -(x^2 + y^2 + z^2)$                                                                                                       |
-上表在说明 $SU(2)$ 和 $SO(3)$ isomorphic. 而 locally 是说并不是真的 isomorphic ,
-因为 $SU(2)$ 中元素 $U$ 和 $-U$ 对应 $SO(3)$ 中的同一个 $R$ . 因此 $SU(2)$
+上表在说明 $SU(2)$ 和 $SO(3)$ isomorphic. 而 locally 是说并不是真的 isomorphic ,</p>
+<table>
+<tr>
+<td></td>
+<td>                </td>
+<td> SO(2)                                    </td>
+<td> SU(2)                                                                                                                            </td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td> basis          </td>
+<td> $(\hat{e}_x, \hat{e}_y, \hat{e}_z)$       </td>
+<td> $(\sigma_1, \sigma_2, \sigma_3)$                                                                                                                </td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>                </td>
+<td> 三维空间中的 vector: $\vec{V}=(x, y, z)$ </td>
+<td> 任意 traceless hermitean $2\times 2$ matrix: $X = \left(\begin{array}{cc} z&x-\mathrm{i}y \\ x+ \mathrm{i}y & -z \end{array}\right)$ </td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td> transformation </td>
+<td> $\vec{V}' = R \vec{V}$                   </td>
+<td> $X' = U^{\dagger} XU$                                                                                                                  </td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td> element        </td>
+<td> $R$                                      </td>
+<td> $U$                                                                                                                              </td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td> invariant      </td>
+<td> $V = x^2 + y^2 + z^2$                       </td>
+<td> $\det X = -(x^2 + y^2 + z^2)$                                                                                                       </td>
+<td></td>
+</tr>
+</table>
+<p>因为 $SU(2)$ 中元素 $U$ 和 $-U$ 对应 $SO(3)$ 中的同一个 $R$ . 因此 $SU(2)$
 covers $SO(3)$ twice.</p>
 
 <h2>Lie algebra of $SU(2)$</h2>
