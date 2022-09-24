@@ -29,8 +29,8 @@
 <body>
     <div class="container">
         <header>
-            <section class="banner"><img src="../static/images/banner_20220427_tamako-love-story.jpg"></section>
-        </header>
+    <section class="banner"><img src="../static/images/banner.jpg"></section>
+</header>
         <nav class="row">
     <a class="nav" href="../index.html">首页</a>
     <a class="nav" href="../categories/index.html">分类</a>
@@ -416,18 +416,21 @@ from django.shortcuts import render</p>
 (.sabafun)[root@cloud templates]# ls
 poetry</code></p>
 <p>编写模板文件 poetry/templates/poetry/poetry.html</p>
-<p><code>html
-&lt;body&gt;                                                                        
+<p>```html</p>
+<body>                                                                        
 {% for item in shijing_list %}                                                
-&lt;center&gt;                                                                      
+<center>                                                                      
 第{{ item.fixed_id }}篇：                                                     
-&lt;h1&gt;                                                                          
+<h1>                                                                          
   {{ item.chapter }}·{{ item.section }}·{{ item.title }}                      
-&lt;/h1&gt;                                                                         
-&lt;h2&gt;{{ item.content }}&lt;/h2&gt;                                                   
+</h1>                                                                         
+<h2>{{ item.content }}</h2>                                                   
 {% endfor %}                                                                  
-&lt;/center&gt;                                                                     
-&lt;/body&gt;</code></p>
+</center>                                                                     
+</body>
+<pre><code>
+</code></pre>
+<p>```</p>
 <p>shijing_list 就是通过 render() 函数传递过来的字典的键。重启 httpd 从本地访问 IP/poetry，就看到如下界面了！</p>
 <p><img alt="image-20200204210647475" src="./2020-02-03-physics-Django/image-20200204210647475.png" /></p>
 <h1>后续操作</h1>
@@ -1053,18 +1056,22 @@ poetry.commit()                                      # 提交更改             
 poetry</code></p>
 <p>```html
 (.sabafun)[root@cloud sabafun]# emacs poetry/templates/poetry/poetry.html</p>
-<p><body>                                                                      <br />
-{% for item in shijing_list %}                                                </p>
-<p><center>                                                                    <br />
-第{{ item.fixed_id }}篇：                                                   <br />
-<h1>                                                                        <br />
-  {{ item.chapter }}·{{ item.section }}·{{ item.title }}                    <br />
-</h1>                                                                       <br />
-<h2>{{ item.content }}</h2>                                                 <br />
-{% endfor %}                                                                <br />
-</center>                                                                   <br />
-</body>                                                                     <br />
-```</p>
+<body>                                                                        
+{% for item in shijing_list %}                                                
+
+
+<center>                                                                      
+第{{ item.fixed_id }}篇：                                                     
+<h1>                                                                          
+  {{ item.chapter }}·{{ item.section }}·{{ item.title }}                      
+</h1>                                                                         
+<h2>{{ item.content }}</h2>                                                   
+{% endfor %}                                                                  
+</center>                                                                     
+</body>
+<pre><code>
+</code></pre>
+<p>```</p>
 <p>```python
 (.sabafun)[root@cloud sabafun]# emacs poetry/views.py</p>
 <p>from django.shortcuts import render</p>
@@ -1085,7 +1092,7 @@ poetry</code></p>
 </ol>
             </section>
         </main>
-        <footer>zqw</footer>
+        <footer>© 2018 - 2022 ZQW</footer>
 
     </div>
 </body>

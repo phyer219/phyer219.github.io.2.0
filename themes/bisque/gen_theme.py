@@ -57,7 +57,11 @@ class PageTheme():
         self.mod_body = load_module(path=self.source_root+'body/'+ self.name +'_body.html', base=self.base)
         html = self.mod_body
         nav = load_module(path=self.source_root+'body/nav.html', base=self.base)
+        footer = load_module(path=self.source_root+'body/footer.html', base=self.base)
+        header = load_module(path=self.source_root+'body/header.html', base=self.base)
         html = html.replace('{nav}', nav)
+        html = html.replace('{footer}', footer)
+        html = html.replace('{header}', header)
         html = html.replace('{base}', base)
         return html
 
