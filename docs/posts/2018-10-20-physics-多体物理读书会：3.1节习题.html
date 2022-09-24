@@ -46,9 +46,6 @@
             <section class="post-meta">
                 <p>发表于:2018.10.20 ||</p>
                 <p>分类:<a href="../categories/专业笔记.html">专业笔记</a> ||</p>
-                <p>标签:
-                    <a href="../tags/数学.html">数学</a>,                     <a href="../tags/物理.html">物理</a>,                     <a href="../tags/格林函数.html">格林函数</a>,                     <a href="../tags/虚时演化.html">虚时演化</a>,                     <a href="../tags/多体物理读书会.html">多体物理读书会</a>
-                </p>
             </section>
             <section class="post-content">
                 <h2>不对易算子的指数运算 (Baker-Hausdorff theorem)</h2>
@@ -107,6 +104,11 @@ $$\begin{align}
 <li>为了分析(\ref{eq:4})中的关系，先把(\ref{eq:4})写出其具体的形式，用最基本的量表示出来 \begin{equation} \nonumber \frac{\mathrm{i}}{\hbar}[ e^{-\frac{1}{\mathrm{i}\hbar}\mathcal{H}t} A e^{\frac{1}{\mathrm{i}\hbar}\mathcal{H}t},e^{-\beta \mathcal{H}}]\frac{1}{\mathrm{Tr}(e^{-\beta \mathcal{H}})} <code> \frac{1}{\mathrm{Tr}(e^{-\beta \mathcal{H}})}e^{-\beta \mathcal{H}} \int_{0}^{\beta} \mathrm{d}\lambda \frac{1}{-\mathrm{i}\hbar} \frac{\mathrm{d}}{\mathrm{d}\lambda} \left(  e^{-\frac{1}{\mathrm{i}\hbar}\mathcal{H}(t-\mathrm{i}\lambda\hbar)}  A  e^{\frac{1}{\mathrm{i}\hbar}\mathcal{H}(t-\mathrm{i}\lambda\hbar)}  \right) \end{equation} \begin{align*} \Downarrow \end{align*} \begin{equation} \label{eq:5} [ e^{-\frac{1}{\mathrm{i}\hbar}\mathcal{H}t} A e^{\frac{1}{\mathrm{i}\hbar}\mathcal{H}t},e^{-\beta \mathcal{H}}] </code> e^{-\beta \mathcal{H}} \int_{0}^{\beta} \mathrm{d}\lambda  \frac{\mathrm{d}}{\mathrm{d}\lambda} \left(  e^{-\frac{1}{\mathrm{i}\hbar}\mathcal{H}(t-\mathrm{i}\lambda\hbar)}  A  e^{\frac{1}{\mathrm{i}\hbar}\mathcal{H}(t-\mathrm{i}\lambda\hbar)}  \right) \end{equation} 化成(\ref{eq:5})之后，关系就非常明显了。右边的积分已经知道了原函数，那么将上下限代入就可得到最具体的形式，就可以变到左边形式。\\ 经验： 1. 我首先看到右边的$\dot{A}$和左边的对易子，就想到了Heisenberg运动方程。这样只是盲目地猜测，去试探地计算。试过之后不行，就应该另寻它路了,而不应该在上面纠缠不清。 2. 比较好的思路是：看到这样的证明，首先应该设法把无关的常数撇开，将式子写成用最基本的量表达的最具体的形式，然后分析其中与证明相关的关键变量。 题目评述： 1. Kubo identity 将虚时演化加入到了Heisenberg运动方程中去，将虚时演化与实时演化相结合。 2. 左边就类似于Heisenberg运动方程中的$[A,H](t)$,右边就类似于$\dot{A}$。 3. 加入虚时演化后，与于Heisenberg运动方程相比，$[A,H](t)$变成了与密度算符的对易子$[A,\rho](t)$,而原来的$\dot{A}$加入了对虚时的演化。 4. Kubo identity 与原来的Heisenberg运动方程相比，多出一个负号，不知可否理解为虚时与实时之间相差的$\mathrm{i}$所引起。</li>
 </ul>
 
+            </section>
+            <section class="post-meta">
+                <p>标签:
+                    <a href="../tags/数学.html">数学</a>,                     <a href="../tags/物理.html">物理</a>,                     <a href="../tags/格林函数.html">格林函数</a>,                     <a href="../tags/虚时演化.html">虚时演化</a>,                     <a href="../tags/多体物理读书会.html">多体物理读书会</a>
+                </p>
             </section>
         </main>
         <footer>© 2018 - 2022 ZQW</footer>

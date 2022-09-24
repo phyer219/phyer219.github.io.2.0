@@ -117,3 +117,13 @@ code{
     overflow-x: auto;
     overflow-y: hidden;
 }
+
+table
+{
+    width: 100%;
+    border-collapse:collapse;
+}
+table,th, td
+{
+    border: 3px solid gray;
+}
