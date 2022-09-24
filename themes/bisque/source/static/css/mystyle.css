@@ -127,3 +127,6 @@ table,th, td
 {
     border: 3px solid gray;
 }
+blockquote{
+    color: grey;
+}

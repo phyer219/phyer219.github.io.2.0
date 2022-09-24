@@ -78,8 +78,7 @@ $$\begin{align}
   y'' + Q(x) y = 0
 \end{align}$$
 
-<blockquote>#+begin_quote
-证明:
+<blockquote>证明:
 
 令 $y = U(x)z(x)$ . 代入 (\ref{eq:2ndODE}) 得
 \begin{align}
@@ -93,8 +92,7 @@ find a $U$ 使得 $z'$ 的项消失, 也就是 $U$ 满足
 \begin{align}
   U(x) = e^{-\int^x \frac{a(s)}{2}\mathrm{d}s}
 \end{align}
-可以加上一个常数, 但是是无所谓.
-#+end_quote</blockquote>
+可以加上一个常数, 但是是无所谓.</blockquote>
 <p>而 (\ref{eq:SchEQ}) 是一个 very very hard problem. 为什么 very very hard?</p>
 
 <h2>Why So Hard?</h2>
@@ -102,8 +100,7 @@ find a $U$ 使得 $z'$ 的项消失, 也就是 $U$ 满足
 <p>first order linear equation $y' + a(x)y = b(x)$ 是一个 routine standard EASY
 problem, 因为它可以 用 integrating factor 来解. 下面说明, (\ref{eq:SchEQ})为什么
 它 so hard</p>
-<blockquote>#+begin_quote
-如果这个问题好解的话, 只有下面一种方法.
+<blockquote>如果这个问题好解的话, 只有下面一种方法.
 
 采用简化的符号 $D\equiv \frac{\mathrm{d}}{\mathrm{d}x}$ .
 因此 $y' + a(x)y = b(x)$ 变为
@@ -165,8 +162,7 @@ nonlinear equations) , 那么
 用积分变换也没有办法, 因为它不会改变问题的难度, 只会改变问题的形式, principle of conservation of
 effort :)
 
-只有当你放弃等号的时候, 才会 reduce the problem!
-#+end_quote</blockquote>
+只有当你放弃等号的时候, 才会 reduce the problem!</blockquote>
 <p>(Bender 在视频的 8:15 时说 I should take sort of 5 minutes and explain to you
 why it's diffcult, 然后在 26:43 时说完了 🤣 )</p>
 
@@ -212,8 +208,7 @@ $$\begin{align}
 \end{align}$$
 
 <p>一共有 $2n$ 重积分. 下面证明这个积分是收敛的.</p>
-<blockquote>#+begin_quote
-证明: 
+<blockquote>证明: 
 
 有定理
 if $| f(x) | < M$ when $M\in(a, b)$ , then $| \int_a^b f(x) \mathrm{d}x |\le | a - b |
@@ -228,12 +223,9 @@ M$
 \begin{align}
   \sum \frac{k^n}{(2n)!}\epsilon^n
 \end{align}
-它的收敛半径 radius of convergence 是无穷大(忘了怎么求收敛半径了).
-#+end_quote</blockquote>
+它的收敛半径 radius of convergence 是无穷大(忘了怎么求收敛半径了).</blockquote>
 <p>讲到这里, Bender 假装很激动地说:</p>
-<blockquote>#+begin_quote
-Boys, we are powerful! We can do anything! :)
-#+end_quote</blockquote>
+<blockquote>Boys, we are powerful! We can do anything! :)</blockquote>
 
 <p>但是, $x$ 不能是无穷大, 也就是 we can't solve the Schrodinger equation on an
 infinite domain.  We can only solve it on a finite domain for finite $x$ . 但实
@@ -261,10 +253,8 @@ $$\begin{align}
 
 <p>它(看似)不收敛. 是的, 它确实不收敛, 收敛半径是 $0$ . 之后用提到用费曼图作微扰和
 这个是一样的, 它不收敛</p>
-<blockquote>#+begin_quote
-You've been cheated! ... Everything you've been taught is garbage unless we can
-make sense out of this.
-#+end_quote</blockquote>
+<blockquote>You've been cheated! ... Everything you've been taught is garbage unless we can
+make sense out of this.</blockquote>
 <p>它不收敛的原因是 $\epsilon=0$ 处有 singularity. $\epsilon$ 由正变负时, 会使阱原有的 bound
 states 消失(如图), 都 tunnels 出去了. We have Hawking radiation. Something abrupt.
 [[file:./2020-10-01-physics-CarlBenderMathematicalPhysicsLecture2/unharmonic.gif]]</p>
@@ -288,10 +278,8 @@ $$\begin{align}
    \right)
 \end{align}$$
 
-<blockquote>#+begin_quote
-I look at this problem and I say 'oh, god! That's a hard problem to sovle! I
-think I'll use perturbation theory.'
-#+end_quote</blockquote>
+<blockquote>I look at this problem and I say 'oh, god! That's a hard problem to sovle! I
+think I'll use perturbation theory.'</blockquote>
 
 $$\begin{align}
   E_{\mp}(\epsilon) = \frac{a + b \pm\sqrt{(a - b)^2 + 4 \epsilon^2 c^2}}{2}
@@ -301,22 +289,14 @@ $$\begin{align}
 连接. 当 $\epsilon$ 从 $1$ 出发, 经过一个 singularites, 跨越一次 branch cut 回到 $1$
 (如图),它就从一个本征能量到了另一个本征能量.
 <p><img src='./2020-10-01-physics-CarlBenderMathematicalPhysicsLecture2/singularities.png' alt='figalt' max-width: 100%><p></p>
-<blockquote>#+begin_quote
-Remember this: quantum mechanics is not quantized. Because if I'am allowed to
+<blockquote>Remember this: quantum mechanics is not quantized. Because if I'am allowed to
 vary $\epsilon$ into the complexs plane, you smoothly go from one energy level to the
-other energy level.
-#+end_quote</blockquote>
-<blockquote>#+begin_quote
-Quantizations comes from counting the sheets in a Riemann surface.
-#+end_quote</blockquote>
-<blockquote>#+begin_quote
-Different energy levels are not independent numbers like you know.
-#+end_quote</blockquote>
-<blockquote>#+begin_quote
-If we enlarge our way of thinking about problem by doing perturbation theory and
+other energy level.</blockquote>
+<blockquote>Quantizations comes from counting the sheets in a Riemann surface.</blockquote>
+<blockquote>Different energy levels are not independent numbers like you know.</blockquote>
+<blockquote>If we enlarge our way of thinking about problem by doing perturbation theory and
 by introducing this magnificient parameter because, it gives a whole new way of
-thinking about the world!
-#+end_quote</blockquote>
+thinking about the world!</blockquote>
 <p>不同的基本粒子(如电子, $\mu$ 子), 它们都是对同一微扰参数的 analytic continuation.</p>
 
 <h2>Summary</h2>

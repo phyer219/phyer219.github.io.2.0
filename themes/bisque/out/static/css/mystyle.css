@@ -118,8 +118,15 @@ code{
     overflow-y: hidden;
 }
 
-
-table, th, td
+table
 {
-    border: 1px solid black;
+    width: 100%;
+    border-collapse:collapse;
+}
+table,th, td
+{
+    border: 3px solid gray;
+}
+blockquote{
+    color: grey;
 }

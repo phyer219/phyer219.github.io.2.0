@@ -101,7 +101,28 @@ class OrgQuoteBlocksParser(BlocksParser):
         return re.search(r'#\+begin_quote', block.data)
     def end(self, block):
         return re.search(r'#\+end_quote', block.data)   
-
+    def run(self, post):
+        inside = False
+        temp = []
+        news = []
+        for b in post.blocks:
+            if inside:
+                if self.end(b):
+                    inside = False
+                    data = '\n'.join(temp)
+                    temp = []
+                    nb = Block(self.btype, data)
+                    nb.protect = self.protect
+                    news.append(nb)
+                else:
+                    temp.append(b.data)
+            elif self.start(b):
+                inside = True
+            else:
+                news.append(b)
+        post.blocks = news
+        news = []
+        return None
 class OrgParagraphBlocksParser(BlocksParser):
     protect = False
     btype = 'paragraph'
