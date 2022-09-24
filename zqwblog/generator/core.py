@@ -139,17 +139,23 @@ class WebSite:
         self.gen_post_list_html(post_list=self.item_list,
                                 file_theme=self.index_theme,
                                 out_path=self.output_path + 'index.html',
-                                link_base='./')
+                                link_base='./',
+                                page_title='首页|从冰上的水',
+                                post_list_name="")
 
-    def gen_post_list_html(self, post_list, file_theme, out_path, link_base):
+    def gen_post_list_html(self, post_list, file_theme, out_path, link_base,
+                           page_title, post_list_name):
         """generage a html, which contain a post list"""
         for line in file_theme.splitlines():
             if re.search(r'{post-url}', line):
                 line_theme = line
         html_line_list = [self.post_link(line_theme, p, link_base=link_base) for p in post_list]
         html_line_list = '\n'.join(html_line_list)
+        res = file_theme.replace(r"{page-title}", page_title)
+        res = res.replace(r'{post-list-name}', post_list_name)
+        res = res.replace(line_theme, html_line_list)
         with open(out_path, 'w') as f:
-            f.write(file_theme.replace(line_theme, html_line_list))
+            f.write(res)
 
     def post_link(self, link_theme, post, link_base):
         """create a link html
@@ -187,6 +193,7 @@ class WebSite:
 
         html = html.replace(r'{post-category-url}',
                             '../categories/' + str(post.meta['categories'][0] +'.html'))
+        html = html.replace(r"{page-title}", post.meta['title'][0])
 
         with open(self.output_path + export_to
                   + post.file_root + '.html', 'w') as f:
@@ -228,10 +235,14 @@ class WebSite:
             self.gen_post_list_html(post_list=self.cat_set[c],
                                     file_theme=self.post_list_theme,
                                     out_path=self.output_path + 'categories/' + c + '.html',
-                                    link_base='../')
+                                    link_base='../',
+                                    page_title="分类:"+c,
+                                    post_list_name="分类:"+c)
 
         with open(self.output_path + 'categories/index.html', 'w') as f:
-            f.write(self.category_theme.replace(html_line_theme, '\n'.join(cate_list)))
+            res = self.category_theme.replace(r"{page-title}", '分类|从冰上的水')
+            res = res.replace(html_line_theme, '\n'.join(cate_list))
+            f.write(res)
 
     def gen_tags(self):
         self.tag_set = {}
@@ -255,6 +266,10 @@ class WebSite:
             self.gen_post_list_html(post_list=self.tag_set[c],
                                     file_theme=self.post_list_theme,
                                     out_path=self.output_path + 'tags/' + c + '.html',
-                                    link_base='../')
+                                    link_base='../',
+                                    page_title="标签:"+c,
+                                    post_list_name="标签:"+c)
         with open(self.output_path + 'tags/index.html', 'w') as f:
-            f.write(self.tags_theme.replace(html_line_theme, '\n'.join(tag_list)))
+            res = self.tags_theme.replace(r"{page-title}", "标签|从冰上的水")
+            res = res.replace(html_line_theme, '\n'.join(tag_list))
+            f.write(res)
