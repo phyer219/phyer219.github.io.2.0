@@ -1,9 +1,6 @@
 import os
 import shutil
-
-
-SOURCE_ROOT = './source/'
-OUT_ROOT = './out/'
+from ..util import clean_dir
 
 
 def load_module(path, base):
@@ -11,15 +8,6 @@ def load_module(path, base):
         html = f.read()
     html = html.replace('{base}', base)
     return html
-
-
-def clean_dir(dir):
-    for f in os.listdir(dir):
-        path = os.path.join(dir, f)
-        try:
-            shutil.rmtree(path)
-        except OSError:
-            os.remove(path)
 
 
 class PageTheme():
@@ -33,11 +21,20 @@ class PageTheme():
         self.check_path()
 
     def run(self):
+        """
+        a page:
+        head
+        body
+        """
+        self.html = ["""<!DOCTYPE html><html class="no-js" lang="zh">\n"""]
+
+        self.html.append(self.get_head())
+        self.html.append(self.get_body())
+
+        self.html.append("""\n</html>""")
+        self.html = '\n'.join(self.html)
         with open(self.path + self.name + '.html', 'w') as f:
-            f.write("""<!DOCTYPE html><html class="no-js" lang="zh">\n""")
-            f.write(self.get_head())
-            f.write(self.get_body())
-            f.write("""\n</html>""")
+            f.write(self.html)
 
     def check_path(self):
         self.path = self.out_root + self.path_rel
@@ -101,16 +98,34 @@ class TagsTheme(PageTheme):
     name = 'tags'
     path_rel = 'tags/'
 
-clean_dir(OUT_ROOT)
-shutil.copytree(SOURCE_ROOT+'static', OUT_ROOT+'static')
 
-pt = PostTheme(out_root=OUT_ROOT, source_root=SOURCE_ROOT)
-pt.run()
-id = IndexTheme(out_root=OUT_ROOT, source_root=SOURCE_ROOT)
-id.run()
-ca = CategoryTheme(out_root=OUT_ROOT, source_root=SOURCE_ROOT)
-ca.run()
-pl = PostListTheme(out_root=OUT_ROOT, source_root=SOURCE_ROOT)
-pl.run()
-tg = TagsTheme(out_root=OUT_ROOT, source_root=SOURCE_ROOT)
-tg.run()
+
+
+
+class BlogTheme:
+    def __init__(self, out_root, source_root):
+        self.out_root = out_root
+        self.source_root = source_root
+    def run(self):
+        clean_dir(self.out_root)
+        shutil.copytree(self.source_root+'static', self.out_root+'static')
+        self.genPost()
+        self.genIndex()
+        self.genCate()
+        self.genPostList()
+        self.genTags()
+    def genPost(self):
+        pt = PostTheme(out_root=self.out_root, source_root=self.source_root)
+        pt.run()
+    def genIndex(self):
+        id = IndexTheme(out_root=self.out_root, source_root=self.source_root)
+        id.run()
+    def genCate(self):
+        ca = CategoryTheme(out_root=self.out_root, source_root=self.source_root)
+        ca.run()
+    def genPostList(self):
+        pl = PostListTheme(out_root=self.out_root, source_root=self.source_root)
+        pl.run()
+    def genTags(self):
+        tg = TagsTheme(out_root=self.out_root, source_root=self.source_root)
+        tg.run()
