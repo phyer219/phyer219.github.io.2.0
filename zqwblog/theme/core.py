@@ -1,12 +1,12 @@
 import os
+from ..util import clean_dir, load_file
+
 import shutil
-from ..util import clean_dir
 
 
-def load_module(path, base):
-    with open(path, 'r') as f:
-        html = f.read()
-    html = html.replace('{base}', base)
+def load_module(path: str, page_theme) -> str:
+    html = load_file(page_theme.source_root + path)
+    html = html.replace('{base}', page_theme.base)
     return html
 
 
@@ -15,9 +15,9 @@ class PageTheme():
     name = ''
     path_rel = ''
 
-    def __init__(self, out_root, source_root):
-        self.out_root = out_root
-        self.source_root = source_root
+    def __init__(self, blog_theme):
+        self.out_root = blog_theme.out_root
+        self.source_root = blog_theme.source_root
         self.check_path()
 
     def run(self):
@@ -41,8 +41,7 @@ class PageTheme():
         if not os.path.exists(self.path):
             os.mkdir(self.path)
 
-
-    def get_head(self, head_source='./head/'):
+    def get_head(self):
         head_modules = self.load_head_modules()
         html = '\n<head>\n'
         for m in head_modules:
@@ -50,25 +49,24 @@ class PageTheme():
         html += '\n</head>\n'
         return html
 
-    def get_body(self, base='./'):
-        self.mod_body = load_module(path=self.source_root+'body/'+ self.name +'_body.html', base=self.base)
+    def get_body(self):
+        self.mod_body = load_module('body/' + self.name + '_body.html', self)
         html = self.mod_body
-        nav = load_module(path=self.source_root+'body/nav.html', base=self.base)
-        footer = load_module(path=self.source_root+'body/footer.html', base=self.base)
-        header = load_module(path=self.source_root+'body/header.html', base=self.base)
+        nav = load_module('body/nav.html', self)
+        footer = load_module('body/footer.html', self)
+        header = load_module('body/header.html', self)
         html = html.replace('{nav}', nav)
         html = html.replace('{footer}', footer)
         html = html.replace('{header}', header)
-        html = html.replace('{base}', base)
         return html
 
     def load_head_modules(self):
         mods = []
-        mods.append(load_module(path=self.source_root+'head/mathjax.html', base=self.base))
-        mods.append(load_module(path=self.source_root+'head/highlightjs.html', base=self.base))
-        mods.append(load_module(path=self.source_root+'head/fonts.html', base=self.base))
-        mods.append(load_module(path=self.source_root+'head/meta.html', base=self.base))
-        mods.append(load_module(path=self.source_root+'head/style.html', base=self.base))
+        mods.append(load_module('head/mathjax.html', self))
+        mods.append(load_module('head/highlightjs.html', self))
+        mods.append(load_module('head/fonts.html', self))
+        mods.append(load_module('head/meta.html', self))
+        mods.append(load_module('head/style.html', self))
         return mods
 
 
@@ -83,15 +81,18 @@ class IndexTheme(PageTheme):
     name = 'index'
     path_rel = ''
 
+
 class PostListTheme(PageTheme):
     base = '../'
     name = 'post_list'
     path_rel = 'category/'
 
+
 class CategoryTheme(PageTheme):
     base = '../'
     name = 'category'
     path_rel = 'category/'
+
 
 class TagsTheme(PageTheme):
     base = '../'
@@ -99,14 +100,12 @@ class TagsTheme(PageTheme):
     path_rel = 'tags/'
 
 
-
-
-
 class BlogTheme:
     def __init__(self, out_root, source_root):
         self.out_root = out_root
         self.source_root = source_root
-    def run(self):
+
+    def generate_theme(self):
         clean_dir(self.out_root)
         shutil.copytree(self.source_root+'static', self.out_root+'static')
         self.genPost()
@@ -114,18 +113,32 @@ class BlogTheme:
         self.genCate()
         self.genPostList()
         self.genTags()
+
+    def load_theme(self):
+        """load the theme files.
+        """
+        self.post = load_file(self.out_root + 'posts/post.html')
+        self.index = load_file(self.out_root + 'index.html')
+        self.post_list = load_file(self.out_root + 'category/post_list.html')
+        self.category = load_file(self.out_root + 'category/category.html')
+        self.tags = load_file(self.out_root + 'tags/tags.html')
+
     def genPost(self):
-        pt = PostTheme(out_root=self.out_root, source_root=self.source_root)
+        pt = PostTheme(self)
         pt.run()
+
     def genIndex(self):
-        id = IndexTheme(out_root=self.out_root, source_root=self.source_root)
+        id = IndexTheme(self)
         id.run()
+
     def genCate(self):
-        ca = CategoryTheme(out_root=self.out_root, source_root=self.source_root)
+        ca = CategoryTheme(self)
         ca.run()
+
     def genPostList(self):
-        pl = PostListTheme(out_root=self.out_root, source_root=self.source_root)
+        pl = PostListTheme(self)
         pl.run()
+
     def genTags(self):
-        tg = TagsTheme(out_root=self.out_root, source_root=self.source_root)
+        tg = TagsTheme(self)
         tg.run()

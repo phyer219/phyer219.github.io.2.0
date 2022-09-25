@@ -1,10 +1,11 @@
+import markdown
+import os
+
 from .extractor import MdExtractor, OrgExtractor
 from .blockparser import OrgBlockParser
 from .renderer import HTMLRenderer
 from .filter import OrgFilter
-import markdown
-import re
-import os
+from ..util import load_file
 
 
 class Processor:
@@ -22,15 +23,14 @@ class Processor:
         self.renderer.run(post)
         self.filter.run(post, self.renderer)
 
-        
 
 class OrgPost:
     def __init__(self, file_path):
-        with open(file_path, 'r') as f:
-            self.ori_str = f.read()
+        self.ori_str = load_file(file_path)
         self.file_path = file_path
         root_extension = os.path.split(file_path)[-1]
-        (self.file_root, self.file_extension) = os.path.splitext(root_extension)
+        (self.file_root,
+         self.file_extension) = os.path.splitext(root_extension)
         self.meta = {}
         self.html = ''
 
@@ -49,7 +49,8 @@ class MdPost:
             self.ori_str = f.read()
         self.file_path = file_path
         root_extension = os.path.split(file_path)[-1]
-        (self.file_root, self.file_extension) = os.path.splitext(root_extension)
+        (self.file_root,
+         self.file_extension) = os.path.splitext(root_extension)
         self.meta = {}
         self.html = ''
 
