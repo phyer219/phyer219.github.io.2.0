@@ -1,8 +1,41 @@
-from ..renderer.core import OrgPost, MdPost
-from ..util import clean_dir
 import os
 import shutil
 import re
+
+from ..renderer.core import OrgPost, MdPost
+from ..util import clean_dir
+
+
+def post_link(link_theme, post, link_base):
+    """create a link html
+
+    link_theme = "...{post-url}...{post-title}...{post-date}"
+    ==>
+    return link_html = "...path...title...xxxx.x.x" (e.g. 2020.1.1)
+    """
+    post_url = link_base + 'posts/' + post.file_root + '.html'
+    link_html = link_theme.replace(r'{post-url}', post_url)
+    link_html = link_html.replace(r'{post-title}', post.meta['title'][0])
+    date = '.'.join([str(i) for i in post.meta['date']])
+    link_html = link_html.replace(r'{post-date}', date)
+    return link_html
+
+
+def gen_post_list_html(post_list, file_theme, out_path, link_base,
+                       page_title, post_list_name):
+    """generage a html, which contain a post list"""
+    line_theme = ''
+    for line in file_theme.splitlines():
+        if re.search(r'{post-url}', line):
+            line_theme = line
+    html_line_list = [post_link(line_theme, p, link_base=link_base)
+                      for p in post_list]
+    html_line_list = '\n'.join(html_line_list)
+    res = file_theme.replace(r"{page-title}", page_title)
+    res = res.replace(r'{post-list-name}', post_list_name)
+    res = res.replace(line_theme, html_line_list)
+    with open(out_path, 'w') as f:
+        f.write(res)
 
 
 class WebSite:
@@ -65,7 +98,8 @@ class WebSite:
         generate CNAME
         """
         clean_dir(self.output_path)
-        shutil.copytree(self.theme_path + 'static', self.output_path + 'static')
+        shutil.copytree(self.theme_path + 'static',
+                        self.output_path + 'static')
         os.mkdir(self.output_path + 'posts')
         os.mkdir(self.output_path + 'categories')
         os.mkdir(self.output_path + 'tags')
@@ -106,8 +140,7 @@ class WebSite:
                     post = self.render_post(file_root, file_extension)
                     self.item_list.append(post)
 
-        self.item_list.sort(key=lambda p: (p.meta['date'][0]*10000+p.meta['date'][1]*100+
-                      p.meta['date'][2]), reverse=True)
+        self.item_list.sort(key=lambda p: (str(p.meta['date'])), reverse=True)
 
     def render_post(self, file_root, file_extension):
         """According the file type, use different render,
@@ -136,40 +169,12 @@ class WebSite:
         return post
 
     def gen_index(self):
-        self.gen_post_list_html(post_list=self.item_list,
-                                file_theme=self.index_theme,
-                                out_path=self.output_path + 'index.html',
-                                link_base='./',
-                                page_title='首页|从冰上的水',
-                                post_list_name="")
-
-    def gen_post_list_html(self, post_list, file_theme, out_path, link_base,
-                           page_title, post_list_name):
-        """generage a html, which contain a post list"""
-        for line in file_theme.splitlines():
-            if re.search(r'{post-url}', line):
-                line_theme = line
-        html_line_list = [self.post_link(line_theme, p, link_base=link_base) for p in post_list]
-        html_line_list = '\n'.join(html_line_list)
-        res = file_theme.replace(r"{page-title}", page_title)
-        res = res.replace(r'{post-list-name}', post_list_name)
-        res = res.replace(line_theme, html_line_list)
-        with open(out_path, 'w') as f:
-            f.write(res)
-
-    def post_link(self, link_theme, post, link_base):
-        """create a link html
-
-        link_theme = "...{post-url}...{post-title}...{post-date}"
-        ==>
-        return link_html = "...path...title...xxxx.x.x" (e.g. 2020.1.1)
-        """
-        post_url = link_base + 'posts/' + post.file_root + '.html'
-        link_html = link_theme.replace(r'{post-url}', post_url)
-        link_html = link_html.replace(r'{post-title}', post.meta['title'][0])
-        date = '.'.join([str(i) for i in post.meta['date']])
-        link_html = link_html.replace(r'{post-date}', date)
-        return link_html
+        gen_post_list_html(post_list=self.item_list,
+                           file_theme=self.index_theme,
+                           out_path=self.output_path + 'index.html',
+                           link_base='./',
+                           page_title='首页|从冰上的水',
+                           post_list_name="")
 
     def gen_post_page(self, post, export_to='posts/'):
         """input a Post, using theme to generate a html file"""
@@ -177,6 +182,7 @@ class WebSite:
         html = html.replace(r'{title}', post.meta['title'][0])
         date = '.'.join([str(i) for i in post.meta['date']])
         html = html.replace(r'{post-date}', date)
+        html_line_theme = ''
         if 'tags' in post.meta.keys():
             for line in html.splitlines():
                 if re.search(r'{post-tags}', line):
@@ -188,11 +194,13 @@ class WebSite:
                 tags_html.append(th)
             tags_html = ', '.join(tags_html)
             html = html.replace(html_line_theme, tags_html)
-        
-        html = html.replace(r'{post-category}', str(post.meta['categories'][0]))
 
-        html = html.replace(r'{post-category-url}',
-                            '../categories/' + str(post.meta['categories'][0] +'.html'))
+        html = html.replace(r'{post-category}',
+                            str(post.meta['categories'][0]))
+
+        post_category_url = '../categories/'
+        post_category_url += str(post.meta['categories'][0] + '.html')
+        html = html.replace(r'{post-category-url}', post_category_url)
         html = html.replace(r"{page-title}", post.meta['title'][0])
 
         with open(self.output_path + export_to
@@ -222,6 +230,7 @@ class WebSite:
                 self.cat_set[cat] = []
             self.cat_set[cat].append(post)
 
+        html_line_theme = ''
         for line in self.category_theme.splitlines():
             if re.search(r'{post-categories}', line):
                 html_line_theme = line
@@ -232,12 +241,13 @@ class WebSite:
             h = h.replace('{category-url}', '../categories/' + c + '.html')
             cate_list.append(h)
 
-            self.gen_post_list_html(post_list=self.cat_set[c],
-                                    file_theme=self.post_list_theme,
-                                    out_path=self.output_path + 'categories/' + c + '.html',
-                                    link_base='../',
-                                    page_title="分类:"+c,
-                                    post_list_name="分类:"+c)
+            out_file = self.output_path + 'categories/' + c + '.html'
+            gen_post_list_html(post_list=self.cat_set[c],
+                               file_theme=self.post_list_theme,
+                               out_path=out_file,
+                               link_base='../',
+                               page_title="分类:"+c,
+                               post_list_name="分类:"+c)
 
         with open(self.output_path + 'categories/index.html', 'w') as f:
             res = self.category_theme.replace(r"{page-title}", '分类|从冰上的水')
@@ -253,6 +263,7 @@ class WebSite:
                         self.tag_set[tag] = []
                     self.tag_set[tag].append(post)
 
+        html_line_theme = ''
         for line in self.tags_theme.splitlines():
             if re.search(r'{post-tags}', line):
                 html_line_theme = line
@@ -263,12 +274,13 @@ class WebSite:
             h = h.replace('{tag-url}', '../tags/' + c + '.html')
             tag_list.append(h)
 
-            self.gen_post_list_html(post_list=self.tag_set[c],
-                                    file_theme=self.post_list_theme,
-                                    out_path=self.output_path + 'tags/' + c + '.html',
-                                    link_base='../',
-                                    page_title="标签:"+c,
-                                    post_list_name="标签:"+c)
+            out_file = self.output_path + 'tags/' + c + '.html'
+            gen_post_list_html(post_list=self.tag_set[c],
+                               file_theme=self.post_list_theme,
+                               out_path=out_file,
+                               link_base='../',
+                               page_title="标签:"+c,
+                               post_list_name="标签:"+c)
         with open(self.output_path + 'tags/index.html', 'w') as f:
             res = self.tags_theme.replace(r"{page-title}", "标签|从冰上的水")
             res = res.replace(html_line_theme, '\n'.join(tag_list))
