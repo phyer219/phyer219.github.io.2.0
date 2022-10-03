@@ -149,11 +149,11 @@ def sgq(f, a, b, sp, n=10):
         ff = f(t+sp) + f(-t+sp)
         return ff
     if diffa<diffb:
-        sgq1, err <code> gauquad(ff, 0, sp-a, n</code>rootNum)
-        sgq2, err <code> gauquad(f, 2*sp-a, b, n</code>rootNum)
+        sgq1, err = gauquad(ff, 0, sp-a, n=rootNum)
+        sgq2, err = gauquad(f, 2*sp-a, b, n=rootNum)
     else:
-        sgq1, err <code> gauquad(ff, 0, b-sp, n</code>rootNum)
-        sgq2, err <code> gauquad(f, a, 2*sp-b, n</code>rootNum)
+        sgq1, err = gauquad(ff, 0, b-sp, n=rootNum)
+        sgq2, err = gauquad(f, a, 2*sp-b, n=rootNum)
     sgq = sgq1 + sgq2
     return sgq, err
 #+END_SRC</p>
@@ -195,7 +195,7 @@ def ts(f, a, b, n=51):
     适用于端点发散的情况."""
     up = 4
     h = 2*up / (n-1)
-    t <code> np.linspace(-up, up, n, endpoint</code>True)
+    t = np.linspace(-up, up, n, endpoint=True)
     x = np.tanh(1/2*np.pi*np.sinh(t))
     w = 1/2*h*np.pi*np.cosh(t)
     w = w/(np.cosh(1/2*np.pi*np.sinh(t))**2)

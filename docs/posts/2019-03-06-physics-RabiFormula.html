@@ -50,143 +50,185 @@
             <section class="post-content">
                 <h2>Statement of the Problem</h2>
 
-<p>二能级系统的 Hamiltonian
-\begin{align*}
+<p>二能级系统的 Hamiltonian</p>
+
+$$\begin{align*}
   H = H_0 + V
-\end{align*}
-$H_0$ 的两个本征态为 $|1\rangle ,\,|2\rangle$ . 在这两个
-本征态组成的 Hilbert 空间写出 Hamiltonian 的矩阵形式
-\begin{align*}
+\end{align*}$$
+
+<p>$H_0$ 的两个本征态为 $|1\rangle ,\,|2\rangle$ . 在这两个
+本征态组成的 Hilbert 空间写出 Hamiltonian 的矩阵形式</p>
+
+$$\begin{align*}
   H = \pmatrix{E_1 & 0 \\0 &  E_2} +
       \pmatrix{0 & V_{12} \\ V_{21} & 0}
-\end{align*}
-其中 $V_{12}<code>V_{21}^{*} </code> \gamma e^{\mathrm{i}\omega t}$
+\end{align*}$$
+
+<p>其中 $V_{12}=V_{21}^{*} = \gamma e^{\mathrm{i}\omega t}$
 在 Dirac Representation 中,
 $t$ 时刻处于态 $|\psi(t) \rangle_D = c_1(t) |1\rangle +c_2(t)|2\rangle$ ,且
- $c_1(0) <code> 1, \quad c_2(0) </code> 0$</p>
+ $c_1(0) = 1, \quad c_2(0) = 0$</p>
 
 <p>其中$|\psi(t) \rangle_D = e^{-\frac{1}{\mathrm{i}\hbar}H_0t}|\psi(t)\rangle$ ,
 求 $c_1(t),\quad c_2(t)$</p>
 
 <h2>Dirac Representation</h2>
 
-<p>\begin{align*}
+
+$$\begin{align*}
   \mathrm{i}\hbar\frac{\partial}{\partial t}c_1(t) &=
   \mathrm{i}\hbar \frac{\partial}{\partial t} \langle 1 |\psi(t)\rangle_D \\
   &= \langle 1|\cdot\mathrm{i}\hbar \frac{\partial}{\partial t} |\psi(t)\rangle_D
-\end{align*}</p>
+\end{align*}$$
 
-<p>而 Dirac Representation 中的运动方程
-\begin{align*}
+
+<p>而 Dirac Representation 中的运动方程</p>
+
+$$\begin{align*}
   \mathrm{i}\hbar \frac{\partial}{\partial t} |\psi(t)\rangle _D
   = V_D |\psi(t)\rangle_D
-\end{align*}
-所以
-\begin{align*}
+\end{align*}$$
+
+<p>所以</p>
+
+$$\begin{align*}
   \mathrm{i}\hbar\frac{\partial}{\partial t}c_1(t) &=
   \langle 1 |V_D |\psi(t)\rangle_D
-\end{align*}</p>
+\end{align*}$$
 
-<p>插入一组完备基
-\begin{align*}
+
+<p>插入一组完备基</p>
+
+$$\begin{align*}
   \mathrm{i}\hbar\frac{\partial}{\partial t}c_1(t) =&
   \langle 1 |V_D \cdot \left(
   |1 \rangle\langle 1| + |2\rangle\langle 2|
   \right)  \cdot |\psi(t)\rangle_D \\
   =&e^{\frac{\mathrm{i}}{\hbar}(E_1-E_1)t}V_{11}
   c_1(t) +e^{\frac{\mathrm{i}}{\hbar}(E_1-E_2)t}V_{12} c_2(t)
-\end{align*}
-其中
-\begin{align*}
+\end{align*}$$
+
+<p>其中</p>
+
+$$\begin{align*}
   V_{11}=& \langle 1| V_D |1\rangle \\
   V_{12}=& \langle 1 |V_D | 2\rangle
-\end{align*}
- 同理可得 $c_2(t)$ 的微分方程</p>
+\end{align*}$$
+
+<p> 同理可得 $c_2(t)$ 的微分方程</p>
 
 <p>若记 $(E_n-E_m)/\hbar =\omega_{nm}$
-, 则最终得到一个微分方程组
-\begin{align*}
+, 则最终得到一个微分方程组</p>
+
+$$\begin{align*}
   \mathrm{i}\hbar\dot{c}_1 =  V_{11} c_1
       + e^{\mathrm{i}\omega_{12}t}V_{12} c_2 \\
   \mathrm{i}\hbar  \dot{c}_2 =e^{\mathrm{i}\omega_{21}t} V_{21} c_1 +
       V_{22} c_2
-\end{align*}</p>
+\end{align*}$$
+
 
 <h2>求解微分方程组</h2>
 
 <h3>化简</h3>
 
-<p>对于这个问题, $V_{11} <code> V_{22} </code>0$ , $V_{12}<code>V_{21}^{*} </code> \gamma e^{\mathrm{i}\omega t}$ ,所以
-\begin{align*}
+<p>对于这个问题, $V_{11} = V_{22} <code>0$ , $V_{12}</code>V_{21}^{*} = \gamma e^{\mathrm{i}\omega t}$ ,所以</p>
+
+$$\begin{align*}
   \mathrm{i}\hbar\dot{c}_1 =
       e^{\mathrm{i}\omega_{12}t}V_{12} c_2 \\
     \mathrm{i}\hbar\dot{c}_2 =e^{\mathrm{i}\omega_{21}t} V_{21} c_1
-\end{align*}
-即
-\begin{align*}
+\end{align*}$$
+
+<p>即</p>
+
+$$\begin{align*}
   \mathrm{i}\hbar\dot{c}_1 =&
        \gamma e^{\mathrm{i}(\omega-\omega_{21})t} c_2 \tag{1}\\
     \mathrm{i}\hbar\dot{c}_2 =&\gamma e^{-\mathrm{i}(\omega-\omega_{21})t}  c_1\tag{2}
-\end{align*}</p>
+\end{align*}$$
+
 
 <h3>求解</h3>
 
-<p>$(2)$ 移项得
-\begin{align*}
+<p>$(2)$ 移项得</p>
+
+$$\begin{align*}
   c_1 =\frac{\mathrm{i}\hbar}{\gamma}e^{\mathrm{i}(\omega-\omega_{21})t} \dot{c}_2
-\end{align*}
-两边对 $t$ 求导
-\begin{align*}
+\end{align*}$$
+
+<p>两边对 $t$ 求导</p>
+
+$$\begin{align*}
   \dot{c}_1 =\frac{\mathrm{i}\hbar}{\gamma}e^{\mathrm{i}(\omega-\omega_{21})t}
   [\mathrm{i}(\omega-\omega_{21})\dot{c}_2 +\ddot{c}_2] \tag{3}
-\end{align*}
-将 $(1)$ 式代入 $(3)$ 式得
-\begin{align*}
+\end{align*}$$
+
+<p>将 $(1)$ 式代入 $(3)$ 式得</p>
+
+$$\begin{align*}
   \frac{\gamma}{\mathrm{i}\hbar} e^{\mathrm{i}(\omega-\omega_{21})t} c_2
   =\frac{\mathrm{i}\hbar}{\gamma}e^{\mathrm{i}(\omega-\omega_{21})}
   [\mathrm{i}(\omega-\omega_{21})\dot{c}_2 +\ddot{c}_2]
-\end{align*}
-整理成标准形式
-\begin{align*}
+\end{align*}$$
+
+<p>整理成标准形式</p>
+
+$$\begin{align*}
   \ddot{c}_2 + \mathrm{i}(\omega-\omega_{21})\dot{c}_2 + \frac{\gamma^2}{\hbar^2}c_2 =0
-\end{align*}
-其解的形式为
-\begin{align*}
+\end{align*}$$
+
+<p>其解的形式为</p>
+
+$$\begin{align*}
   c_2(t) = e^{-\frac{\mathrm{i}}{2}(\omega-\omega_{21})t}
   \left(Ae^{\mathrm{i}\Omega t} + B e^{-\mathrm{i}\Omega t} \right) \tag{4}
-\end{align*}
-其中
-\begin{align*}
+\end{align*}$$
+
+<p>其中</p>
+
+$$\begin{align*}
   \Omega = \sqrt{\frac{(\omega-\omega_{21})^2}{4}+\frac{\gamma^2}{\hbar^2}}
-\end{align*}
-$(4)$ 式代入 $(2)$ 式得
-\begin{align*}
+\end{align*}$$
+
+<p>$(4)$ 式代入 $(2)$ 式得</p>
+
+$$\begin{align*}
   c_1(t)=\frac{\mathrm{i}\hbar}{\gamma}e^{\mathrm{i}(\omega-\omega_{21})t}
   \cdot e^{-\frac{\mathrm{i}}{2}(\omega-\omega_{21})t}\left[
   -\frac{i}{2}(\omega-\omega_{21})\left(Ae^{\mathrm{i}\Omega t} + B e^{-\mathrm{i}\Omega t} \right)
   + \mathrm{i}\Omega\left(Ae^{\mathrm{i}\Omega t} - B e^{-\mathrm{i}\Omega t} \right)\right]\tag{5}
-\end{align*}
-将初值条件  $c_1(0) <code> 1, \quad c_2(0) </code> 0$ 代入 $(4), (5)$ 式得
-\begin{align*}
+\end{align*}$$
+
+<p>将初值条件  $c_1(0) = 1, \quad c_2(0) = 0$ 代入 $(4), (5)$ 式得</p>
+
+$$\begin{align*}
   A+B =& 0 \\
   \frac{\mathrm{i}\hbar}{\gamma}\cdot \mathrm{i}\Omega(A-B) =&1
-\end{align*}
-解得
-\begin{align*}
+\end{align*}$$
+
+<p>解得</p>
+
+$$\begin{align*}
   A =& -\frac{\gamma}{2\hbar\Omega} \\
   B =& \frac{\gamma}{2\hbar\Omega}
-\end{align*}
-将系数 $A,\,B$ 的结果代入 $(4) ,\,(5)$ 式得
-\begin{align*}
+\end{align*}$$
+
+<p>将系数 $A,\,B$ 的结果代入 $(4) ,\,(5)$ 式得</p>
+
+$$\begin{align*}
   c_2(t) =& -\frac{\mathrm{i}\gamma}{\hbar\Omega} e^{-\frac{\mathrm{i}}{2}(\omega-\omega_{21})t} \sin(\Omega t) \\
   c_1(t) =&-\frac{\mathrm{i}}{2\Omega}(\omega-\omega_{21})e^{\frac{\mathrm{i}}{2}(\omega-\omega_{21})t}\sin (\Omega t)
              + e^{\frac{\mathrm{i}}{2}(\omega-\omega_{21})t}\cos (\Omega t)
-\end{align*}
-取模方有
-\begin{align*}
+\end{align*}$$
+
+<p>取模方有</p>
+
+$$\begin{align*}
   |c_2(t)|^2 = \frac{1}{1+\frac{\hbar^2(\omega-\omega_{21})^2}{4\gamma^2}}\sin^2\left(
   \Omega t \right)
-\end{align*}</p>
+\end{align*}$$
+
 
 <h2>Results</h2>
 
@@ -229,12 +271,12 @@ line, = ax.plot(t,c2(1))</p>
 #    ax.text(1+0.1*i,1,'x')
     return line</p>
 
-<p>ani <code> animation.FuncAnimation(fig</code>fig, func=animata, \
+<p>ani = animation.FuncAnimation(fig<code>fig, func</code>animata, \
                               frames<code>400, interval</code>20)</p>
 
 <p>ax.set_xlabel('$t$')
 ax.set_ylabel('$|c_2(t)|^2$')
-ax.set_title('Plot of $|c_2(t)|^2$ at $\omega <code> \omega_{21}$ to $\omega </code>5 \omega_{21}$')</p>
+ax.set_title('Plot of $|c_2(t)|^2$ at $\omega = \omega_{21}$ to $\omega =5 \omega_{21}$')</p>
 
 <p>ax.set_yticks([0,0.2,0.5,1])</p>
 
@@ -254,7 +296,7 @@ plt.show()</p>
 
 <h2>总结</h2>
 
-<p>如果取 $\hbar <code> 1$ , 记 detuning $\Delta </code> \omega-\omega_{21}$ , 那么对于一个二能级系统的(含时)
+<p>如果取 $\hbar = 1$ , 记 detuning $\Delta = \omega-\omega_{21}$ , 那么对于一个二能级系统的(含时)
 微扰</p>
 
 $$\begin{align}

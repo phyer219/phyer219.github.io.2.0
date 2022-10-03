@@ -113,12 +113,12 @@ pre{
     display: flex;
     width: 100%;
 }
-code{
-    display: flex;
-    width: 100%;
-    overflow-x: auto;
-    overflow-y: hidden;
-}
+/* code{ */
+/*     display: flex; */
+/*     width: 100%; */
+/*     overflow-x: auto; */
+/*     overflow-y: hidden; */
+/* } */
 
 table
 {

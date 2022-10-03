@@ -69,13 +69,15 @@ $$\begin{align}
 <h2>投影算符</h2>
 
 <p>下面要求的是投影算符 $\mathcal{P}$ 的具体形式. 它可以用算符 $f_1\cdot
-f_2$ 来表示. 对于 $f_1 <code> f_2 </code> 1$ 的情况有
-\begin{align*}
+f_2$ 来表示. 对于 $f_1 = f_2 = 1$ 的情况有</p>
+
+$$\begin{align*}
   \vec{f}_1 \cdot \vec{f}_2 =& \frac{1}{2}
     \left[ (\vec{f}_1 + \vec{f}_2)^2 -\vec{f}_1^2 -\vec{f}^2 \right]\\
    =& \frac{F(F+1)}{2} - f(f+1)
-\end{align*}
-当 $F <code> 0$ 时 $\vec{f}_1 \cdot \vec{f}_2 </code> -2$ , 当 $F=2$ 时 $\vec{f}_1 \cdot
+\end{align*}$$
+
+<p>当 $F = 0$ 时 $\vec{f}_1 \cdot \vec{f}_2 = -2$ , 当 $F=2$ 时 $\vec{f}_1 \cdot
 \vec{f}_2 =1$ , 即</p>
 
 $$\begin{align}
@@ -88,17 +90,20 @@ $$\begin{align}
   \mathcal{P}_0 + \mathcal{P}_2 = 1
 \end{align}$$
 
-<p>其中 $1$ 表示单位算符. 联立以上二式可得
-\begin{align*}
+<p>其中 $1$ 表示单位算符. 联立以上二式可得</p>
+
+$$\begin{align*}
   \mathcal{P}_0 =& \frac{1}{3} - \frac{1}{3}\vec{f}_1 \cdot \vec{f}_2 \\
   \mathcal{P}_2 =& \frac{2}{3} + \frac{1}{3}\vec{f}_1 \cdot \vec{f}_2
-\end{align*}</p>
+\end{align*}$$
+
 
 <h2>密度密度相互作用和自旋交换相互作用</h2>
 
 <p>用以上结果可以重写李黄杨 Pseudopotential</p>
 
-<p>\begin{align*}
+
+$$\begin{align*}
   V =& \frac{2\pi\hbar^2}{m}\delta^3(\vec{r})
   \frac{\partial}{\partial r} r \sum_{F= 0,2}
   (a_0 \mathcal{P}_0 + a_2 \mathcal{P}_2) \\
@@ -110,8 +115,9 @@ $$\begin{align}
   \frac{\partial}{\partial r} r \sum_{F= 0,2}
   \left( a_n + a_s
   \vec{f}_1 \cdot \vec{f}_2 \right) 
-\end{align*}
-$a_n$ 代表密度密度相互作用, $a_s$ 代表自旋交换相互作用.</p>
+\end{align*}$$
+
+<p>$a_n$ 代表密度密度相互作用, $a_s$ 代表自旋交换相互作用.</p>
 
 <h2>Supplementary</h2>
 
@@ -127,15 +133,17 @@ $$\begin{align}
 <p>在新的 Hilbert 空间中, 好量子数是 $F, F_z$ .因此, 在旧的直积基底下写出
 算符 $\vec{F}^2, F_z$ 的一个 $9\times 9$ 的矩阵, 然后将其对角化, 即可
 得到偶合后的本征态, 而且是在直积基底下写出的, 可以方便地观察交换两个粒
-子的自旋是对称还是反对称的. 算符 $\vec{F}^2$ 可以如下写出
-\begin{align*}
+子的自旋是对称还是反对称的. 算符 $\vec{F}^2$ 可以如下写出</p>
+
+$$\begin{align*}
   \vec{F}^2 =& (\vec{f}_1+ \vec{f}_2)^2 \\
    =& \vec{f}_1^2 +\vec{f}_2^2 + 2 \vec{f}_1\cdot \vec{f}_2  \\
    =& \vec{f}_1^2 +\vec{f}_2^2 + 2 f_{1z}f_{2z} +f_1^ + f_2^- 
      +f_1^ - f_2^ + 
-\end{align*}
-幸运的是, $F_z$ 是好量子数, 所以新的本征态只会偶合 $F_z$ 相等的态. 所以
-可以分别对角化 $F_z <code> -2,-1,0,1,2$ 对应的子空间的矩阵. 下面以 $F_z</code>0$
+\end{align*}$$
+
+<p>幸运的是, $F_z$ 是好量子数, 所以新的本征态只会偶合 $F_z$ 相等的态. 所以
+可以分别对角化 $F_z = -2,-1,0,1,2$ 对应的子空间的矩阵. 下面以 $F_z=0$
 为例, 求出新的本征态.</p>
 
 <p>在直积空间的子空间 $|1,-1 \rangle , |-1,1 \rangle |0,0 \rangle$ 中,
@@ -150,16 +158,18 @@ $$\begin{align}
   \end{pmatrix}
 \end{align}$$
 
-<p>对角化后的本征值和本征向量为
-\begin{align*}
-  F(F+1) <code>& 6 , \quad |F</code>2,F_z<code>0\rangle </code>1\cdot |1,-1 \rangle
+<p>对角化后的本征值和本征向量为</p>
+
+$$\begin{align*}
+  F(F+1) =& 6 , \quad |F=2,F_z=0\rangle =1\cdot |1,-1 \rangle
    +1\cdot |-1,1 \rangle + 2\cdot|0,0 \rangle \\
-  F(F+1) <code>& 2 , \quad |F</code>1,F_z<code>0\rangle </code>-1\cdot |1,-1 \rangle
+  F(F+1) =& 2 , \quad |F=1,F_z=0\rangle =-1\cdot |1,-1 \rangle
    +1\cdot |-1,1 \rangle + 0\cdot|0,0 \rangle \\
-  F(F+1) <code>& 0 , \quad |F</code>0,F_z<code>0\rangle </code>-1\cdot |1,-1 \rangle
+  F(F+1) =& 0 , \quad |F=0,F_z=0\rangle =-1\cdot |1,-1 \rangle
    -1\cdot |-1,1 \rangle + 1\cdot|0,0 \rangle 
-\end{align*}
-可以看出, $F<code>0,2$ 的两个本征态是交换对称的, 而 $F</code>1$ 的本征态是交换反
+\end{align*}$$
+
+<p>可以看出, $F<code>0,2$ 的两个本征态是交换对称的, 而 $F</code>1$ 的本征态是交换反
 对称的.</p>
 
             </section>

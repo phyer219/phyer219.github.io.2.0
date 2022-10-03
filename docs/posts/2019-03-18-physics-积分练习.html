@@ -50,49 +50,63 @@
             <section class="post-content">
                 <h2>问题</h2>
 
-<p>做积分
-\begin{align*}
+<p>做积分</p>
+
+$$\begin{align*}
   A =& \int_{-1}^1 \mathrm{d}x \int_0^1 \mathrm{d}p \cdot \delta (\omega-\delta+\frac{1}{2}p^2+\frac{1}{2}q^{2}-pqx)p^2 \\
     =& \int_{-1}^1 \mathrm{d}x \int_0^1 \mathrm{d}p \cdot \delta (\frac{1}{2}p^2-pqx+g)p^2
-\end{align*}
-\begin{align*}
+\end{align*}$$
+
+
+$$\begin{align*}
   B =& \int_{-1}^1 \mathrm{d}x \int_0^1 \mathrm{d}p \cdot \mathcal{P} \frac{p^2}{\omega-\delta+\frac{1}{2}p^2+\frac{1}{2}q^{2}-pqx}\\
     =& \int_{-1}^1 \mathrm{d}x \int_0^1 \mathrm{d}p \cdot \mathcal{P} \frac{p^2}{\frac{1}{2}p^2-pqx+g}\\
-\end{align*}
-其中 $g= \omega-\delta+\frac{1}{2}q^2$</p>
+\end{align*}$$
+
+<p>其中 $g= \omega-\delta+\frac{1}{2}q^2$</p>
 
 
 <h2>结果</h2>
 <h3>Dirac Delta 部分</h3>
-<p>\begin{align*}
+
+$$\begin{align*}
   A = \int_{-1}^1\mathrm{d}x \cdot \frac{1}{|r_1-r_2|}\left\{ \theta(-g)\theta(\frac{1+2g}{2q}-x)r_1^2
      +\theta(g)\theta(x-\frac{\sqrt{2g}}{q})\theta(x)\left[ \theta( \frac{1+2g}{2q}-x) r_1^2 +r_2^2\right] \right\}
-\end{align*}
-其中
-\begin{align*}
+\end{align*}$$
+
+<p>其中</p>
+
+$$\begin{align*}
   r_1 =& qx + \sqrt{(qx)^2-2g}\\
   r_2 =& qx - \sqrt{(qx)^2-2g}
-\end{align*}</p>
+\end{align*}$$
+
 
 <h3>Cauchy Principal Value 部分</h3>
 
-<p>化简主值部分
-\begin{align*}
+<p>化简主值部分</p>
+
+$$\begin{align*}
   \frac{p^2}{\frac{1}{2}p^2-pqx+g} =2 + \frac{-2g}{\frac{1}{2}p^2-pqx+g} + 2qx \frac{p}{\frac{1}{2}p^2-pqx+g}
-\end{align*}
-则
-\begin{align*}
+\end{align*}$$
+
+<p>则</p>
+
+$$\begin{align*}
   B =&\int_{-1}^1 \mathrm{d}x \cdot \left\{ 2 + \left[ \theta(g)\theta(\frac{\sqrt{2g}}{q}-x)\left( \frac{-4g}{2g-(qx)^2} \arctan t|_{\frac{-qx}{\sqrt{2g-(qx)^2}}}
      ^{\frac{1-qx}{\sqrt{2g-(qx)^2}}}
-      + 2qx\ln\left[ \frac{1}{2}p^2-qxp + g \right]_{p<code>0}^{p</code>1}  \right)\right]\right. \\
+      + 2qx\ln\left[ \frac{1}{2}p^2-qxp + g \right]_{p=0}^{p=1}  \right)\right]\right. \\
       &\left. + \left[ \theta(-g) +\theta(g)\theta(x-\frac{\sqrt{2g}}{q}) \right]\cdot
       \left\{ \frac{-2g}{r_1-r_2}\ln \left|\frac{r_2(1-r_1)}{r_1(1-r_2)}\right| +\frac{2qx}{r_1-r_2}\left(
       r_1\ln\left|\frac{1-r_1}{r_1}\right|-r_2\ln\left|\frac{1-r_2}{r_2} \right| \right)\right\} \right\}
-\end{align*}</p>
+\end{align*}$$
+
 <h2>特例</h2>
-<p>\begin{align*}
+
+$$\begin{align*}
   \int_{-1}^1 \mathrm{d}x \int_0^1\mathrm{d}p \cdot \mathcal{P} \frac{p}{p^2-x^2} =\ln 4
-\end{align*}</p>
+\end{align*}$$
+
 
             </section>
             <section class="post-meta">

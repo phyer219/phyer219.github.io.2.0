@@ -620,7 +620,7 @@ function node_weight(n) result(r)
   implicit none
   integer :: n, i, iter, k
   real(kind=rkind) :: r(2, n), x, f, df, dx
-  real(kind<code>rkind), parameter :: pi </code> acos(-1._rkind)
+  real(kind=rkind), parameter :: pi = acos(-1._rkind)
   real(kind=rkind), allocatable :: p0(:), p1(:)
   real(kind=rkind), allocatable :: tmp(:)</p>
 
@@ -629,14 +629,14 @@ function node_weight(n) result(r)
   p1 = [1._rkind, 0._rkind]
   do i = 2, n
      tmp = ((2*i - 1)*[p1, 0._rkind] - (i - 1)*[0._rkind, 0._rkind, p0]) / i
-     p0 <code> p1; p1 </code> tmp
+     p0 = p1; p1 = tmp
   end do
   
   ! 这个函数将 n 阶的情况的 根存在 r(1,:) 中, 权重存在 r(2, :) 中
   do i = 1, n
      x = cos(pi*(i - .25_rkind) / (n + .5_rkind))
      do iter = 1, 10
-        f <code> p1(1); df </code> 0._rkind
+        f = p1(1); df = 0._rkind
         do k = 2, size(p1)
            df = f + x*df        ! 得到的是 P_n'(x_0) 的值
            f = p1(k) + x*f      ! 得到的是 P_n(x_0) 的值

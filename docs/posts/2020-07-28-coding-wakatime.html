@@ -116,7 +116,7 @@ wakatime-mode.elc , 定位到 Error 104 对应的语句
          (when (memq (process-status process) '(exit signal))
            (kill-buffer (process-buffer process))
            (let ((exit-status (process-exit-status process)))
-             (when (and (not (<code> 0 exit-status)) (not (</code> 102 exit-status)))
+             (when (and (not (= 0 exit-status)) (not (= 102 exit-status)))
                (cond
                  ((= exit-status 103) (error "WakaTime Error (%s) Config file parse error. Check your ~/.wakatime.cfg file." exit-status))
                  ((= exit-status 104) (error "WakaTime Error (%s) Invalid API Key. Set your api key with: (custom-set-variables '(wakatime-api-key \"XXXX\"))" exit-status))

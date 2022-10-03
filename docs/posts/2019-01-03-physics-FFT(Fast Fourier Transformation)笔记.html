@@ -50,31 +50,39 @@
             <section class="post-content">
                 <h2>问题</h2>
 
-<p>函数 $f(t)$ 的 Fourier Transform 为
-\begin{align*}
+<p>函数 $f(t)$ 的 Fourier Transform 为</p>
+
+$$\begin{align*}
   \mathcal{F}(\omega) = \int_{-\infty} ^{\infty} f(t) e^{-\mathrm{i} \omega t} \mathrm{d}t
-\end{align*}
-假函数 $f(t)$ 它只在 $t \in (0, T)$ 之间有取值, 那么上式就变为
-\begin{align*}
+\end{align*}$$
+
+<p>假函数 $f(t)$ 它只在 $t \in (0, T)$ 之间有取值, 那么上式就变为</p>
+
+$$\begin{align*}
   \mathcal{F}(\omega) = \int_{0} ^{T} f(t) e^{-\mathrm{i} \omega t} \mathrm{d}t
-\end{align*}
-如此做 Fourier Transform , 需要算积分.</p>
+\end{align*}$$
+
+<p>如此做 Fourier Transform , 需要算积分.</p>
 
 <h2>DFT (Discreate Fourier Transform)</h2>
 
 <p>如果用计算机进行数值上的计算, 会对积分进行离散化, 那么就变成了离散的 Fourier Transform .</p>
 
-<p>假设将积分均匀地分成 $N$ 份, 那么就有
-\begin{align*}
+<p>假设将积分均匀地分成 $N$ 份, 那么就有</p>
+
+$$\begin{align*}
   \mathcal{F}(\omega) =& \int_{0} ^{T} f(t) e^{-\mathrm{i} \omega t} \mathrm{d}t \\
 \approx& \sum_{n=0}^{N-1} f\left( \frac{T}{N}n \right) e^{-\mathrm{i}\omega \frac{T}{N}n} \cdot \frac{T}{N} \\
-\end{align*}
-如果 $e$ 指数上面是 $\mathrm{i}2\pi$ 的形式, 计算将会变得简单. 所以对上式进行如下操作 ( 进行求和近似后 $\mathcal{F}(\omega)$
- 记为 $F(\omega)$ )
-\begin{align*}
-  F(\omega) <code>& \sum_{n</code>0}^{N-1} f\left( \frac{T}{N}n \right) e^{-\mathrm{i}\omega \frac{T}{N}n} \cdot \frac{T}{N} \\
-<code>&\frac{T}{N} \sum_{n</code>0}^{N-1} f\left( \frac{T}{N}n \right) e^{-\mathrm{i}2\pi \frac{1}{2\pi}\omega \frac{T}{N}n}
-\end{align*}</p>
+\end{align*}$$
+
+<p>如果 $e$ 指数上面是 $\mathrm{i}2\pi$ 的形式, 计算将会变得简单. 所以对上式进行如下操作 ( 进行求和近似后 $\mathcal{F}(\omega)$
+ 记为 $F(\omega)$ )</p>
+
+$$\begin{align*}
+  F(\omega) =& \sum_{n=0}^{N-1} f\left( \frac{T}{N}n \right) e^{-\mathrm{i}\omega \frac{T}{N}n} \cdot \frac{T}{N} \\
+=&\frac{T}{N} \sum_{n=0}^{N-1} f\left( \frac{T}{N}n \right) e^{-\mathrm{i}2\pi \frac{1}{2\pi}\omega \frac{T}{N}n}
+\end{align*}$$
+
 
 <h2>精髓</h2>
 
@@ -85,29 +93,38 @@
 
 <p>我觉得接下来是 FFT 最关键的一步. 这也是我之前对于 FFT 不明白的地方.</p>
 
-<p>首先假设 $\omega$ 的间距是 $\Delta \omega$ . 那么原式就变为
-\begin{align*}
-  F(m \Delta\omega) <code> \frac{T}{N} \sum_{n</code>0}^{N-1} f\left( \frac{T}{N}n \right)
+<p>首先假设 $\omega$ 的间距是 $\Delta \omega$ . 那么原式就变为</p>
+
+$$\begin{align*}
+  F(m \Delta\omega) = \frac{T}{N} \sum_{n=0}^{N-1} f\left( \frac{T}{N}n \right)
   e^{-\mathrm{i}2\pi \frac{1}{2\pi} m\Delta\omega \frac{T}{N}n}
-\end{align*}
-其中 $m = 0, 1, 2, \cdots N-1$ . FFT 让
-\begin{align*}
+\end{align*}$$
+
+<p>其中 $m = 0, 1, 2, \cdots N-1$ . FFT 让</p>
+
+$$\begin{align*}
  \frac{1}{2\pi}  \Delta \omega T =1
-\end{align*}
-这样的话, $\Delta \omega$ 就选定了
-\begin{align*}
+\end{align*}$$
+
+<p>这样的话, $\Delta \omega$ 就选定了</p>
+
+$$\begin{align*}
   \Delta \omega = \frac{2\pi}{T}
-\end{align*}</p>
+\end{align*}$$
+
 
 <h2>结论</h2>
 
-<p>这样选取 $\Delta\omega$ 的结果就使原式变成了
-\begin{align*}
-  F(m \Delta\omega) <code> \frac{T}{N} \sum_{n</code>0}^{N-1} f\left( \frac{T}{N}n \right)
+<p>这样选取 $\Delta\omega$ 的结果就使原式变成了</p>
+
+$$\begin{align*}
+  F(m \Delta\omega) = \frac{T}{N} \sum_{n=0}^{N-1} f\left( \frac{T}{N}n \right)
   e^{-\mathrm{i}\frac{2\pi}{N} m n}
-\end{align*}
-这实际上就变成了一个矩阵算
-\begin{align*}
+\end{align*}$$
+
+<p>这实际上就变成了一个矩阵算</p>
+
+$$\begin{align*}
   \left(
   \begin{array}{c}
     F (0)\\
@@ -140,8 +157,9 @@
     f \left( (N-1)\frac{T}{N} \right)\\
   \end{array}
  \right)
-\end{align*}
-可以发现, 对于给定 $N$ ,任何函数的 Fourier Transform 的变换矩阵都是一样的. 这使得 Fourier Transform  的数值计算大大简化.</p>
+\end{align*}$$
+
+<p>可以发现, 对于给定 $N$ ,任何函数的 Fourier Transform 的变换矩阵都是一样的. 这使得 Fourier Transform  的数值计算大大简化.</p>
 
 <h2>简的可以手算的例子</h2>
 
@@ -154,15 +172,18 @@
 <p>参考书上的例子, 拿一个 $N = 4$ 的例子, 进行手算, 然后与程序给出的结果对比, 便能够验证上面的猜想</p>
 
 <p> $N = 4$ 的例子:
-假设函数 $f(t)$ 离散化之后的四个数值为 $\{1, 1, 0, 0\}$ , 也就是说
-\begin{align*}
+假设函数 $f(t)$ 离散化之后的四个数值为 $\{1, 1, 0, 0\}$ , 也就是说</p>
+
+$$\begin{align*}
   f\left(\frac{0T}{4}\right) = 1 \\
   f\left(\frac{T}{4}\right) = 1\\
   f\left(\frac{2T}{4}\right) = 0\\
   f\left(\frac{3T}{4}\right) = 0
-\end{align*}
-那么
-\begin{align*}
+\end{align*}$$
+
+<p>那么</p>
+
+$$\begin{align*}
   \frac{4}{T}F(0\cdot\Delta\omega) &= 1\cdot f\left(\frac{0T}{4}\right) + 1\cdot f\left(\frac{T}{4}\right) + 1\cdot f\left(\frac{2T}{4}\right) + 1\cdot f\left(\frac{3T}{4}\right) \\
                   &= 1\cdot 1 + 1\cdot 1 +1 \cdot 0 + 1\cdot 0\\
                   &= 2\\
@@ -178,9 +199,11 @@
                 + e^{-\mathrm{i}\frac{2\pi}{4}\cdot 3\times 2}\cdot f\left(\frac{2T}{4}\right) + e^{-\mathrm{i}\frac{2\pi}{4}\cdot 3\times 3}\cdot f\left(\frac{3T}{4}\right)\\
                   & =   1\cdot 1 + (\mathrm{i})\cdot 1 +( - 1) \cdot 0 + (-\mathrm{i})\cdot 0\\
                   &= 1 + \mathrm{i}
-\end{align*}
-也就是
-\begin{align*}
+\end{align*}$$
+
+<p>也就是</p>
+
+$$\begin{align*}
   \left(
     \begin{array}{c}
        2 \\
@@ -205,42 +228,42 @@
        0 \\
        0
     \end{array}
-  \right)\end{align*}
-然后用 Numpy 中的 numpy.fft.fft() 函数计算
-#+BEGIN_SRC python :results output
-import numpy as np
+  \right)\end{align*}$$
+
+<p>然后用 Numpy 中的 <code>numpy.fft.fft()</code> 函数计算</p>
+<pre><code class="language-python">import numpy as np
 f = ([1,1,0,0])
 F = np.fft.fft(f)
-print(F)
-#+END_SRC</p>
+print(F)</code></pre>
 
-<p>#+RESULTS:
-: [2.+0.j 1.-1.j 0.+0.j 1.+1.j]</p>
-
-<p>输出结果为
-#+BEGIN_SRC python
-: [2.+0.j 1.-1.j 0.+0.j 1.+1.j]
-#+END_SRC
-验证了前面对于 FFT 的原理理解.</p>
+<p>输出结果为</p>
+<pre><code class="language-python">: [2.+0.j 1.-1.j 0.+0.j 1.+1.j]</code></pre>
+<p>验证了前面对于 FFT 的原理理解.</p>
 
 <h2>输出结果分析</h2>
 
 <h3>输出的对称性</h3>
 
-<p>变换矩阵中的元素
-\begin{align*}
+<p>变换矩阵中的元素</p>
+
+$$\begin{align*}
   e^{-\mathrm{i}\frac{2\pi}{N}mn}
-\end{align*}
-当 $n$ 给定的时候, 有
-\begin{align*}
-  e^{-\mathrm{i}n \frac{2\pi}{N}(N-m)} <code> e^{-\mathrm{i}n 2\pi}e^{-\mathrm{i}n \frac{2\pi}{N}(-m)} </code>  e^{\mathrm{i}n \frac{2\pi}{N}m}
+\end{align*}$$
+
+<p>当 $n$ 给定的时候, 有</p>
+
+$$\begin{align*}
+  e^{-\mathrm{i}n \frac{2\pi}{N}(N-m)} = e^{-\mathrm{i}n 2\pi}e^{-\mathrm{i}n \frac{2\pi}{N}(-m)} =  e^{\mathrm{i}n \frac{2\pi}{N}m}
   = \left( e^{-\mathrm{i}n \frac{2\pi}{N}m} \right)^{* }
-\end{align*}
-也就是说同一列中, $m$ 的元素和 $N-m$ 的元素是互为复共轭的. 那么就可以得出
-\begin{align*}
+\end{align*}$$
+
+<p>也就是说同一列中, $m$ 的元素和 $N-m$ 的元素是互为复共轭的. 那么就可以得出</p>
+
+$$\begin{align*}
   F(m\Delta\omega) = F^{* }\left((N-m)\Delta\omega\right) \\
   \mid F(m\Delta\omega)\mid = \mid F\left((N-m)\Delta\omega\right)\mid
-\end{align*}</p>
+\end{align*}$$
+
 
 <p>很明显, 手算的例子符合这一结论.</p>
 
@@ -254,41 +277,53 @@ print(F)
 
 <p>对于满足周期为 $T$ ,即 $f(t+T) = f(t)$ 的函数 $f(t)$ ,展开成三角函数的形式为</p>
 
-<p>\begin{align*}
-  f(t) <code> \frac{a_0}{2} +\sum_{n</code>1}^{\infty}\left[ a_n \cos (n\omega t) +b_n \sin(n\omega t) \right]
-\end{align*}
-其中 $\omega=\frac{2\pi}{T}$ . 由于三角函数正交且归一到半个周期上, 所以展开系数为
-\begin{align*}
+
+$$\begin{align*}
+  f(t) = \frac{a_0}{2} +\sum_{n=1}^{\infty}\left[ a_n \cos (n\omega t) +b_n \sin(n\omega t) \right]
+\end{align*}$$
+
+<p>其中 $\omega=\frac{2\pi}{T}$ . 由于三角函数正交且归一到半个周期上, 所以展开系数为</p>
+
+$$\begin{align*}
   a_n = \frac{2}{T} \int_{0}^{T} f(t)\cos (n\omega t) \mathrm{d} t \\
   b_n = \frac{2}{T} \int_{0}^{T} f(t)\sin (n\omega t) \mathrm{d} t
-\end{align*}</p>
+\end{align*}$$
 
-<p>如果把三角函数用 $e$ 指数代换
-\begin{align*}
-  f(t) <code>& \frac{a_0}{2} +\sum_{n</code>1}^{\infty}\left[ a_n \frac{e^{\mathrm{i}n\omega t} + e^{-\mathrm{i}n\omega t}}{2}
+
+<p>如果把三角函数用 $e$ 指数代换</p>
+
+$$\begin{align*}
+  f(t) =& \frac{a_0}{2} +\sum_{n=1}^{\infty}\left[ a_n \frac{e^{\mathrm{i}n\omega t} + e^{-\mathrm{i}n\omega t}}{2}
    +b_n \frac{e^{\mathrm{i}n\omega t} - e^{-\mathrm{i}n\omega t}}{2\mathrm{i}}
    \right] \\
-      <code>& \frac{a_0}{2} +\sum_{n</code>1}^{\infty}\left[
+      =& \frac{a_0}{2} +\sum_{n=1}^{\infty}\left[
        e^{\mathrm{i}n\omega t} \frac{a_n-\mathrm{i}b_n}{2} +e^{-\mathrm{i}n\omega t} \frac{a_n +\mathrm{i}b_n}{2}
    \right] \\
-      <code>& \sum_{n </code>-\infty}^{\infty}e^{\mathrm{i}n\omega t} \frac{a_n -\mathrm{i}b_n}{2}
-\end{align*}
-最后一个等号利用了 $a_n <code>a_{-n}, b_n </code> -b_{-n}, b_0 =0$ .
-而
-\begin{align*}
+      =& \sum_{n =-\infty}^{\infty}e^{\mathrm{i}n\omega t} \frac{a_n -\mathrm{i}b_n}{2}
+\end{align*}$$
+
+<p>最后一个等号利用了 $a_n = a_{-n}, b_n = -b_{-n}, b_0 = 0$ .
+而</p>
+
+$$\begin{align*}
   \frac{a_n -\mathrm{i}b_n}{2} =& \frac{2}{T} \int_{0}^{T} f(t)\frac{\cos (n\omega t) - \mathrm{i}\sin(n\omega t)}{2} \mathrm{d} t \\
                    =& \frac{1}{T} \int_{0}^{T} f(t)e^{-\mathrm{i}n\omega t} \mathrm{d} t
-\end{align*}
-若令
-\begin{align*}
+\end{align*}$$
+
+<p>若令</p>
+
+$$\begin{align*}
   \frac{a_n - \mathrm{i}b_n}{2}T = \mathcal{F}_n
-\end{align*}
-则有
-\begin{align*}
+\end{align*}$$
+
+<p>则有</p>
+
+$$\begin{align*}
   \mathcal{F}_n = & \int_{0} ^{T} f(t) e^{-\mathrm{i} n \omega t} \mathrm{d}t \\
-  f(t) <code> & \frac{1}{T} \sum_{n</code>-\infty}^{\infty} \mathcal{F}_n e^{\mathrm{i}n\omega t}
-\end{align*}
-这也和之前 Fourier Transform 总结中的一致.</p>
+  f(t) = & \frac{1}{T} \sum_{n=-\infty}^{\infty} \mathcal{F}_n e^{\mathrm{i}n\omega t}
+\end{align*}$$
+
+<p>这也和之前 Fourier Transform 总结中的一致.</p>
 
 <h3>输出结果中有价值的部分</h3>
 
@@ -300,14 +335,15 @@ print(F)
 
 <h3>三角函数的例子</h3>
 
-<p>用 Numpy 中的 numpy.fft.fft() 函数计算三角函数
-\begin{align*}
-  f(t) = \sin(17t) +3 \sin (57t) + 2 \sin(97t)
-\end{align*}
-的 Fourier Transform</p>
+<p>用 Numpy 中的 numpy.fft.fft() 函数计算三角函数</p>
 
-<p>#+BEGIN_SRC python :results output
-import numpy as np
+$$\begin{align*}
+  f(t) = \sin(17t) +3 \sin (57t) + 2 \sin(97t)
+\end{align*}$$
+
+<p>的 Fourier Transform</p>
+
+<pre><code class="language-python">import numpy as np
 import matplotlib.pyplot as plt
 N = 1024  #离散化成N个点
 T =8*np.pi #输入T的值
@@ -319,10 +355,9 @@ plt.plot(tf, np.abs(F[:N//2+1])) #以 \omega 为横轴, 以 F 为纵轴画图. �
 plt.xlabel("$\omega$")
 plt.ylabel("$F(\omega)$")
 plt.title("The Results of FFT")
-plt.show()
-#+END_SRC</p>
+plt.show()</code></pre>
 
-<p>#+RESULTS:</p>
+<p>结果</p>
 
 <p><p><img src='./2019-01-03-physics-FFT(Fast Fourier Transformation)笔记/sin.png' alt='figalt' max-width: 100%><p></p>
 
@@ -330,18 +365,21 @@ plt.show()
 
 <h3>高斯函数的例子</h3>
 
-<p>用 Numpy 中的 numpy.fft.fft() 函数高斯函数
-\begin{align*}
-  f_1(t) = e^{-t^{2}}
-\end{align*}
-和
-\begin{align*}
-  f_2(t) = e^{-10t^{2}}
-\end{align*}
-的 Fourier Transform</p>
+<p>用 Numpy 中的 numpy.fft.fft() 函数高斯函数</p>
 
-<p>#+BEGIN_SRC python :results output
-import numpy as np
+$$\begin{align*}
+  f_1(t) = e^{-t^{2}}
+\end{align*}$$
+
+<p>和</p>
+
+$$\begin{align*}
+  f_2(t) = e^{-10t^{2}}
+\end{align*}$$
+
+<p>的 Fourier Transform</p>
+
+<pre><code class="language-python">import numpy as np
 import matplotlib.pyplot as plt
 N = 512  #离散化成N个点
 T =30 #输入T的值
@@ -350,9 +388,9 @@ f1 = np.exp(-t**2) #f(t)的表达式
 f2 = np.exp(-10*t**2)
 F1 = np.fft.fft(f1) #进行FFT
 F2 = np.fft.fft(f2) #进行FFT
-tf = np.linspace(0,N*np.pi/T,N//2 + 1) #设置 \omega 坐标轴,</p>
+tf = np.linspace(0,N*np.pi/T,N//2 + 1) #设置 \omega 坐标轴,
 
-<p>plt.subplot(211) #两行一列, 第一个图
+plt.subplot(211) #两行一列, 第一个图
 plt.plot(tf, np.abs(F1[:N//2+1])) #以 \omega 为横轴, 以 F1 为纵轴画图. 由于对称性只取前(N/2+1 个点)
 plt.ylabel("$F_1(\omega)$")
 plt.subplot(212) #两行一列, 第二个图
@@ -360,12 +398,10 @@ plt.plot(tf, np.abs(F2[:N//2+1])) #
 plt.xlabel("$\omega$")
 plt.ylabel("$F_2(\omega)$")
 plt.suptitle("The Results of FFT")
-plt.show()
-#+END_SRC</p>
+plt.show()</code></pre>
 
-<p>#+RESULTS:</p>
-
-<p><p><img src='./2019-01-03-physics-FFT(Fast Fourier Transformation)笔记/gau.png' alt='figalt' max-width: 100%><p></p>
+<p>结果为
+<p><img src='./2019-01-03-physics-FFT(Fast Fourier Transformation)笔记/gau.png' alt='figalt' max-width: 100%><p></p>
 
 <p>这也符合预期, 原来更尖的高斯函数, 变换之后变得更平.</p>
 

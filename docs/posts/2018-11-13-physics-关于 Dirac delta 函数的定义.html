@@ -51,15 +51,28 @@
                 <h2>问题</h2>
 <p>从 Dirac delta 函数的定义:</p>
 <ul>
-<li>对于任意函数 $f(x)$ 都有 \begin{align*} \int_{-\infty}^{+\infty}f(x) \delta(x) \mathrm{d}x = f(0) \end{align*} 则 $\delta(x)$ 为Dirac dleta 函数.</li>
+<li>对于任意函数 $f(x)$ 都有</li>
 </ul>
+
+$$\begin{align*}
+  \int_{-\infty}^{+\infty}f(x) \delta(x) \mathrm{d}x = f(0)
+\end{align*}$$
+
+<p>则 $\delta(x)$ 为Dirac dleta 函数.</p>
+
 <p>出发,证明对于任意的函数 $g(x)$ , Dirac delta 函数都有如下性质:</p>
 <ul>
-<li>对于任意函数 $g(x)$ ,和任意不包含 $0$ 的区间 $[a,b]$ , Dirac delta 函数 $\delta(x)$ 都有: \begin{align*} \int_a^b g(x)\delta(x)  \mathrm{d}x = 0 \end{align*}</li>
+<li>对于任意函数 $g(x)$ ,和任意不包含 $0$ 的区间 $[a,b]$ , Dirac delta 函数 $\delta(x)$ 都有:</li>
 </ul>
+
+$$\begin{align*}
+  \int_a^b g(x)\delta(x)  \mathrm{d}x = 0
+\end{align*}$$
+
 <h2>证明</h2>
-<p>构造函数:
-\begin{align*}
+<p>构造函数:</p>
+
+$$\begin{align*}
   h(x) =
   \left\{
   \begin{aligned}
@@ -67,17 +80,22 @@
     0 \quad&,x \notin [a,b]
   \end{aligned}
   \right.
-\end{align*}
-其中 $A$ 是非零常数, 则有
-\begin{align*}
-  \int_{-\infty}^{+\infty}g(x)h(x) \delta(x) \mathrm{d}x <code>& g(0)h(0) </code> 0 \\
-  <code>& \int_a^bAg(x) \delta(x) \mathrm{d}x </code> A \int_a^b g(x)\delta(x)  \mathrm{d}x
-\end{align*}
-$A$ 不为零,所以
-\begin{align*}
+\end{align*}$$
+
+<p>其中 $A$ 是非零常数, 则有</p>
+
+$$\begin{align*}
+  \int_{-\infty}^{+\infty}g(x)h(x) \delta(x) \mathrm{d}x =& g(0)h(0) = 0 \\
+  =& \int_a^bAg(x) \delta(x) \mathrm{d}x = A \int_a^b g(x)\delta(x)  \mathrm{d}x
+\end{align*}$$
+
+<p>$A$ 不为零,所以</p>
+
+$$\begin{align*}
   \int_a^b g(x)\delta(x)  \mathrm{d}x = 0
-\end{align*}
-得证.</p>
+\end{align*}$$
+
+<p>得证.</p>
 <h2>总结</h2>
 <p>所以Dirac delta 函数只需要一条定义足以. 其它的性质都可以由定义推出.</p>
 <h2>致谢</h2>

@@ -140,7 +140,7 @@ $$\begin{align}
 
 <h4>合并</h4>
 
-<p>$s<code>0, a_1 </code> 0$ 时, 对应的级数解, 都是 $x$ 的偶数次幂. $s = 1$ 时, 对应
+<p>$s=0, a_1 = 0$ 时, 对应的级数解, 都是 $x$ 的偶数次幂. $s = 1$ 时, 对应
 的级数解, 都是 $x$ 的奇数次幂, 其实对应于 $s=0, a_1 \neq 0$ 时解. 两种
 $s$ 的取值, 对应的截断条件也可以合并为</p>
 
@@ -258,8 +258,9 @@ from sympy import latex</p>
 : P_5(x)=& \frac{63 x^{5}}{8} - \frac{35 x^{3}}{4} + \frac{15 x}{8} \\
 : P_6(x)=& \frac{231 x^{6}}{16} - \frac{315 x^{4}}{16} + \frac{105 x^{2}}{16} - \frac{5}{16} \\
 : P_7(x)=& \frac{429 x^{7}}{16} - \frac{693 x^{5}}{16} + \frac{315 x^{3}}{16} - \frac{35 x}{16} \\
-结果
-\begin{align*}
+结果</p>
+
+$$\begin{align*}
 : P_0(x)=& 1 \\
 : P_1(x)=& x \\
 : P_2(x)=& \frac{3 x^{2} - 1}{2} \\
@@ -268,7 +269,8 @@ from sympy import latex</p>
 : P_5(x)=& \frac{x \left(63 x^{4} - 70 x^{2} + 15\right)}{8} \\
 : P_6(x)=& \frac{231 x^{6} - 315 x^{4} + 105 x^{2} - 5}{16} \\
 : P_7(x)=& \frac{x \left(429 x^{6} - 693 x^{4} + 315 x^{2} - 35\right)}{16} \\
-\end{align*}</p>
+\end{align*}$$
+
 
 <p>其中 $a_1$ 和 $a_0$ r 取为, 满足 $P_l(1) = 1$ , 并且 $x$ 的最高次幂的
 系数为正的值.
@@ -447,7 +449,7 @@ $$\begin{align}
   (s+1+\nu)(s+1-\nu)a_1 = 0
 \end{align}$$
 
-<p>由于 $s <code> \pm \nu$ , 所以 $a_1 </code> 0$</p>
+<p>由于 $s = \pm \nu$ , 所以 $a_1 = 0$</p>
 
 <p>以下先讨论 $\nu = n$ 是整数的情况</p>
 
@@ -522,7 +524,7 @@ up =100
 def pltj(J,n,x,N):
     j = np.zeros(N)
     for i in range(N):
-        j[i] <code> J(n,x[i],up </code> up)
+        j[i] = J(n,x[i],up = up)
     return j</p>
 
 <p>for i in range(4):
@@ -646,7 +648,7 @@ up =100
 def pltj(J,n,x,N):
     j = np.zeros(N)
     for i in range(N):
-        j[i] <code> J(n,x[i],up </code> up)
+        j[i] = J(n,x[i],up = up)
     return j</p>
 
 <p>for i in range(4):

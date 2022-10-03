@@ -57,9 +57,9 @@ class OrgMathBlocksParser(BlocksParser):
     protect = True
     btype = 'math'
     def start(self, block):
-        return re.search(r'\\begin\{align\}', block.data)
+        return re.search(r'\\begin\{align\*?\}', block.data)
     def end(self, block):
-        return re.search(r'\\end\{align\}', block.data)
+        return re.search(r'\\end\{align\*?\}', block.data)
 
 
 class OrgCodeBlocksParser(BlocksParser):
@@ -68,7 +68,7 @@ class OrgCodeBlocksParser(BlocksParser):
     def start(self, block):
         return re.search(r'#\+begin_src(?P<lang>.*?$)', block.data)
     def end(self, block):
-        return re.search(r'#\+end_src', block.data)        
+        return re.search(r'#\+end_src', block.data)
     def run(self, post):
         inside = False
         temp = []
@@ -259,8 +259,6 @@ class OrgBlockParser:
         self.blocksparsers.append(OrgListBlocksParser())
         self.blocksparsers.append(OrgParagraphBlocksParser())
 
-
-    
     def run(self, post):
         lines = post.ori_str.split('\n')
         post.blocks = [Block('line', l) for l in lines]

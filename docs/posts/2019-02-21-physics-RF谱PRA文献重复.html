@@ -51,174 +51,226 @@
                 
 <h2>Model 部分</h2>
 
-<p>Hamiltonian 为
-\begin{align*}
+<p>Hamiltonian 为</p>
+
+$$\begin{align*}
   H =& \sum_{k,\sigma}\varepsilon_{k,\sigma} a_{k,\sigma}^{\dagger} a_{k,\sigma}
   + \sum_k (\varepsilon_{k,b}+\delta)b_k^{\dagger}b_k  \\
   & + \frac{\lambda}{\sqrt{\Omega}} \sum_{p,q}(b_{p+q}^{\dagger}a_{p,1}a_{q,2}+\mathrm{H.c.})
-\end{align*}
-前两项是原子和分子态的能量, 最后一项是态 1, 2 和分子态之间的耦合项. 其中
-\begin{align*}
+\end{align*}$$
+
+<p>前两项是原子和分子态的能量, 最后一项是态 1, 2 和分子态之间的耦合项. 其中</p>
+
+$$\begin{align*}
   \varepsilon_{k,\sigma} =& \frac{\hbar^2 k^2}{2m} - \mu_{\sigma} \\
   \varepsilon_{k,b} =& \frac{\hbar^2 k^2}{4m} - \mu_1 -\mu_2 \\
-  \mu_1 <code>& \mu_3 </code> \mu ,\quad \mu_2 =0
-\end{align*}
-将耦合部分简记为
-\begin{align*}
-  \Lambda = \sum_{p,q}(b_{p+q}^{\dagger}a_{p,1}a_{q,2}+\mathrm{H.c.})
-\end{align*}</p>
+  \mu_1 =& \mu_3 = \mu ,\quad \mu_2 =0
+\end{align*}$$
 
-<p>微扰为
-\begin{align*}
+<p>将耦合部分简记为</p>
+
+$$\begin{align*}
+  \Lambda = \sum_{p,q}(b_{p+q}^{\dagger}a_{p,1}a_{q,2}+\mathrm{H.c.})
+\end{align*}$$
+
+
+<p>微扰为</p>
+
+$$\begin{align*}
   V = \sum_k(a_{k,2}^{\dagger}a_{k,3} e^{-\mathrm{i} \omega't}+a_{k,3}^{\dagger}a_{k,2}e^{\mathrm{i}\omega't})
-\end{align*}</p>
+\end{align*}$$
+
 
 <h2>Sum rules 部分</h2>
 
 <h3>假设</h3>
 
-<p>假设系统的基态为 1 和 3 态的费米海
-\begin{align*}
-  |GS\rangle <code> |F \rangle </code> \prod_{k< k_F}  a_{k,1}^{\dagger} a_{k,3}^{\dagger} |0\rangle
-\end{align*}</p>
+<p>假设系统的基态为 1 和 3 态的费米海</p>
+
+$$\begin{align*}
+  |GS\rangle = |F \rangle = \prod_{k< k_F}  a_{k,1}^{\dagger} a_{k,3}^{\dagger} |0\rangle
+\end{align*}$$
+
 
 <h3>Transition rate form 3 to 2</h3>
 
-<p>\begin{align*}
+
+$$\begin{align*}
   I(\omega) =& 2\pi \sum_f |\langle GS |V |f \rangle|^2 \delta(\omega+\mu -E_f +E_0) \\
             =& 2 \sum_f |\langle GS |V |f \rangle|^2 \mathrm{Im}\frac{1}{\omega +\mu -E_f +E_0 -\mathrm{i}0^{ +}} \\
             \propto &\mathrm{Im} \sum_f \langle GS |V \frac{1}{\omega +\mu -E_f +E_0 -\mathrm{i}0^{ +}} |f \rangle\langle f| V^{\dagger} |GS\rangle  \\
             =& \mathrm{Im}  \langle GS |V \frac{1}{\omega +\mu -H +E_0 -\mathrm{i}0^{ +}}  V^{\dagger} |GS\rangle  \\
             =& \mathrm{Im}  \langle GS |V \frac{1}{\omega - \bar{H}} V^{\dagger} |GS\rangle
-\end{align*}
-其中
-\begin{align*}
+\end{align*}$$
+
+<p>其中</p>
+
+$$\begin{align*}
   \bar{H} = H -E_0 -\mu
-\end{align*}
-第二个等号用到了 Dirac Identity
-\begin{align*}
+\end{align*}$$
+
+<p>第二个等号用到了 Dirac Identity</p>
+
+$$\begin{align*}
   \frac{1}{x - x_0 \pm \mathrm{i}0^+} = \mathcal{P}\frac{1}{x-x_0} \mp \mathrm{i}\pi\delta(x-x_0)
-\end{align*}</p>
+\end{align*}$$
+
 
 <h2>零温公式推导</h2>
 
-<p>考虑中间态 $|n\rangle$ 有两种
-\begin{align*}
+<p>考虑中间态 $|n\rangle$ 有两种</p>
+
+$$\begin{align*}
   |q \rangle =& a_{q,2}^{\dagger} a_{q,3}| F\rangle \quad(q< k_F)\\
   |p,q \rangle =& b_{p+q}^{\dagger} a_{p,1} a_{q_3}|F \rangle \quad(p,q< k_F)
-\end{align*}
-耦合作用到中间态上的结果为
-\begin{align*}
+\end{align*}$$
+
+<p>耦合作用到中间态上的结果为</p>
+
+$$\begin{align*}
   \Lambda |q \rangle =&  \sum_p |p,q\rangle \\
   \Lambda |p,q\rangle =& |q \rangle
-\end{align*}
-作用是在两种中间态之间切换,
-则 $\bar{H}$ 在空间中的矩阵元为
-\begin{align*}
-  \langle q |\bar{H} |q \rangle <code>& \varepsilon_{q,2} -\varepsilon_{q,3} - \mu </code> 0 \\
+\end{align*}$$
+
+<p>作用是在两种中间态之间切换,
+则 $\bar{H}$ 在空间中的矩阵元为</p>
+
+$$\begin{align*}
+  \langle q |\bar{H} |q \rangle =& \varepsilon_{q,2} -\varepsilon_{q,3} - \mu = 0 \\
   \langle p,q|\bar{H} |p,q \rangle =& \delta + \varepsilon_{p+q,b} - \varepsilon_{p,1}-\varepsilon_{q,3}-\mu \\
-  \langle q| \bar{H}|p,q\rangle  <code>& \langle p,q |\bar{H} | q\rangle </code> \lambda/\sqrt{\Omega}
-\end{align*}
-Transition rate form 3 to 2 在上述空间中为
-\begin{align*}
+  \langle q| \bar{H}|p,q\rangle  =& \langle p,q |\bar{H} | q\rangle = \lambda/\sqrt{\Omega}
+\end{align*}$$
+
+<p>Transition rate form 3 to 2 在上述空间中为</p>
+
+$$\begin{align*}
   I(\omega) \propto \mathrm{Im}\sum_{n,n'} \langle GS| V | n \rangle \langle n| \frac{1}{\omega-\bar{H}} | n'\rangle \langle n' V^{\dagger}|GS\rangle
-\end{align*}
-将耦合 $\lambda/\sqrt{\Omega}\Lambda$ 看作小量,即 $\bar{H}= \bar{H_0}+\lambda/\sqrt{\Omega}\Lambda$ , 可做如下展开
-\begin{align*}
+\end{align*}$$
+
+<p>将耦合 $\lambda/\sqrt{\Omega}\Lambda$ 看作小量,即 $\bar{H}= \bar{H_0}+\lambda/\sqrt{\Omega}\Lambda$ , 可做如下展开</p>
+
+$$\begin{align*}
   \frac{1}{\omega-\bar{H}} &=\frac{1}{\omega - \bar{H_0}-\lambda/\sqrt{\Omega}\Lambda}\\
   =& \frac{1}{\omega - \bar{H_0}}\cdot \left( \frac{1}{1- \frac{\lambda}{\sqrt{\Omega}}\frac{1}{\omega-\bar{H_0}}\Lambda} \right) \\
   =& \frac{1}{\omega - \bar{H_0}}\cdot \sum_m \left( \frac{\lambda}{\sqrt{\Omega}}\frac{1}{\omega-\bar{H_0}}\Lambda \right)^m \\
-\end{align*}
-而且将微扰 $V$ 的表达式代入有
-\begin{align*}
+\end{align*}$$
+
+<p>而且将微扰 $V$ 的表达式代入有</p>
+
+$$\begin{align*}
   \langle GS| V |n\rangle = \sum_q e^{\mathrm{i}\omega't}\delta_{n,q}\\
   \langle n'| V |GS\rangle = \sum_{q'} e^{-\mathrm{i}\omega't}\delta_{n',q'}\\
-\end{align*}
-所以
-\begin{align*}
+\end{align*}$$
+
+<p>所以</p>
+
+$$\begin{align*}
   I(\omega) \propto& \mathrm{Im}\sum_{q,q'} \langle q| \frac{1}{\omega-\bar{H}} | q'\rangle \\
   =&\mathrm{Im}\sum_{q,q'} \langle q|\frac{1}{\omega - \bar{H_0}}\cdot \sum_m \left( \frac{\lambda}{\sqrt{\Omega}}\frac{1}{\omega-\bar{H_0}}\Lambda \right)^m | q'\rangle \\
-\end{align*}
-由前面得出的耦合 $\Lambda$ 作用在中间态上的结果可知, 耦合作用奇数次会由于正交性使结果为 $0$ ( $\bar{H_0}$ 为本征态), 所以 $m$ 只能取偶数.
-而且不同的 $|q\rangle$ 也是正交的, 所以
-\begin{align*}
+\end{align*}$$
+
+<p>由前面得出的耦合 $\Lambda$ 作用在中间态上的结果可知, 耦合作用奇数次会由于正交性使结果为 $0$ ( $\bar{H_0}$ 为本征态), 所以 $m$ 只能取偶数.
+而且不同的 $|q\rangle$ 也是正交的, 所以</p>
+
+$$\begin{align*}
   I(\omega) \propto& \mathrm{Im}\sum_q \langle q|\frac{1}{\omega - \bar{H_0}}\cdot \sum_m \left( \frac{\lambda}{\sqrt{\Omega}}\frac{1}{\omega-\bar{H_0}}\Lambda \right)^{2m} | q\rangle \\
                  =& \mathrm{Im}\sum_q \langle q|\frac{1}{\omega - \bar{H_0}}\cdot \sum_m \left( \frac{\lambda^2}{\Omega}\frac{1}{\omega-\bar{H_0}}\Lambda\frac{1}{\omega-\bar{H_0}}\Lambda \right)^m | q\rangle \\
                  =& \mathrm{Im}\sum_q \langle q|\frac{1}{\omega - \bar{H_0}}\cdot \frac{1}{1-  \frac{\lambda^2}{\Omega}\frac{1}{\omega-\bar{H_0}}\Lambda\frac{1}{\omega-\bar{H_0}}\Lambda } | q\rangle \\
                  =& \mathrm{Im}\sum_q \langle q|\frac{1}{\frac{1}{\omega - \bar{H_0}}-  \frac{\lambda^2}{\Omega}\Lambda\frac{1}{\omega-\bar{H_0}}\Lambda } | q\rangle \\
                  =& \mathrm{Im}\sum_{q< q_F}\frac{1}{\omega+ \mu +\varepsilon_{q,3}-\varepsilon_{q,2}-\lambda^2 \theta(q,\omega)}
-\end{align*}
-其中
-\begin{align*}
+\end{align*}$$
+
+<p>其中</p>
+
+$$\begin{align*}
   \theta(q,\omega) = \frac{1}{\Omega} \sum_{p< k_F} \frac{1}{\omega+ \mu  + \varepsilon_{q,3}+\varepsilon_{p,1} - \varepsilon_{p+q,b}-\delta}
-\end{align*}</p>
+\end{align*}$$
+
 
 <h2>零温数值</h2>
 
 <h3>化简公式</h3>
 
-<p>\begin{align*}
+
+$$\begin{align*}
   \mu + \varepsilon_{q,3} -\varepsilon_{q,2} = 0
-\end{align*}
-所以
-\begin{align*}
+\end{align*}$$
+
+<p>所以</p>
+
+$$\begin{align*}
   I(\omega) \propto & \mathrm{Im} \sum_{q< q_{F}} \frac{1}{\omega -\lambda^2 \theta(q,\omega)} \\
   =& \sum_{q< k_F} \frac{\lambda^2\mathrm{Im}\theta(q,\omega)}{\left[
   \omega - \lambda^2 \mathrm{Re}\theta(q,\omega) \right]^2
   + \left[ \lambda^2 \mathrm{Im}\theta(q,\omega) \right]^2}
-\end{align*}</p>
+\end{align*}$$
 
-<p>而
-\begin{align*}
+
+<p>而</p>
+
+$$\begin{align*}
   \theta(q,\omega) =& \frac{1}{\Omega}\sum_{p< k_F} \frac{1}{\omega + \frac{\hbar^2}{4m}\left(
    p-q\right)^2-\delta}
-\end{align*}</p>
+\end{align*}$$
+
 
 <h3>无量纲化</h3>
 
-<p>对以下量进行无量纲化:
-\begin{align*}
+<p>对以下量进行无量纲化:</p>
+
+$$\begin{align*}
   \tilde{\omega} = \frac{\omega}{\varepsilon_F} ;\quad
   \tilde{\delta} = \frac{\delta}{\varepsilon_F} ;\quad
   \tilde{p} = \frac{p}{k_F} ;\quad \\
   \tilde{q} = \frac{q}{k_F}; \quad
   \tilde{\lambda}^2 = \frac{\lambda^2}{\Omega \varepsilon_F^2}
-\end{align*}</p>
+\end{align*}$$
 
-<p>原式就变为
-\begin{align*}
+
+<p>原式就变为</p>
+
+$$\begin{align*}
   \theta(\tilde{q},\tilde{\omega}) =& \frac{1}{\Omega \varepsilon_F} \sum_{\tilde{p}< 1}
   \frac{1}{\tilde{\omega} + \frac{1}{2}(\tilde{p}-\tilde{q})^2 -\tilde{\delta} } \\
   =&\frac{1}{\Omega\varepsilon_F}(B+ \mathrm{i}A)
-\end{align*}
-其中
-\begin{align*}
+\end{align*}$$
+
+<p>其中</p>
+
+$$\begin{align*}
   A =& \pi \sum_{\tilde{p}< 1}  \delta\left( \tilde{\omega}-\tilde{\delta} +
   \frac{1}{2}(\tilde{p}-\tilde{q})^2 \right) \\
   B =& \sum_{\tilde{p} < 1} \mathcal{P}\frac{1}{\tilde{\omega}-\tilde{\delta} +
   \frac{1}{2}(\tilde{p}-\tilde{q})^2 }
-\end{align*}
-Transition rate 就记为:
-\begin{align*}
+\end{align*}$$
+
+<p>Transition rate 就记为:</p>
+
+$$\begin{align*}
   \varepsilon_F I(\tilde{\omega}) =\sum_{\tilde{q}< 1} \frac{ \tilde{\lambda}^2A}{\left(
   \tilde{\omega} -\tilde{\lambda}^2 B\right)^2+\tilde{\lambda}^4 A^2}
-\end{align*}</p>
+\end{align*}$$
+
 
 <h3>数值处理</h3>
 
-<p>Dirac Delta 函数和主值分别用其极限形式:
-\begin{align*}
+<p>Dirac Delta 函数和主值分别用其极限形式:</p>
+
+$$\begin{align*}
   \delta(x) =& \frac{1}{\pi} \lim_{b\to 0}\frac{b}{b^2+x^2} \\
   \mathcal{P}\frac{1}{x} =& \lim_{b\to 0}\frac{x}{b^2+x^2}
-\end{align*}
-计算中 $b=0.0001$ .</p>
+\end{align*}$$
+
+<p>计算中 $b=0.0001$ .</p>
 
 <p>求和近似为从 $0$ 到 $1$ 的积分.</p>
 
-<p>数值取值为
-\begin{align*}
+<p>数值取值为</p>
+
+$$\begin{align*}
   \tilde{\lambda} = 1
-\end{align*}</p>
+\end{align*}$$
+
 
 <h3>结果</h3>
 
@@ -321,40 +373,52 @@ I_omega = np.linspace(0,0,N)</p>
 <h2>零温解析</h2>
 
 <h3>推导回顾</h3>
-<p>原公式为:
-\begin{align*}
+<p>原公式为:</p>
+
+$$\begin{align*}
   I(\omega) \propto
                   \mathrm{Im}\sum_{q< q_F}\frac{1}{\omega+ \mu +\varepsilon_{q,3}-\varepsilon_{q,2}-\lambda^2 \theta(q,\omega)}
-\end{align*}
-其中
-\begin{align*}
+\end{align*}$$
+
+<p>其中</p>
+
+$$\begin{align*}
   \theta(q,\omega) = \frac{1}{\Omega} \sum_{p< k_F} \frac{1}{\omega+ \mu  + \varepsilon_{q,3}+\varepsilon_{p,1} - \varepsilon_{p+q,b}-\delta}
-\end{align*}
-进行化简, 首先在这个系统中有如下关系
-\begin{align*}
+\end{align*}$$
+
+<p>进行化简, 首先在这个系统中有如下关系</p>
+
+$$\begin{align*}
   \mu + \varepsilon_{q,3} -\varepsilon_{q,2} = 0
-\end{align*}
-所以原式可以化为:
-\begin{align*}
+\end{align*}$$
+
+<p>所以原式可以化为:</p>
+
+$$\begin{align*}
   I(\omega) \propto  \sum_{q< k_F} \frac{\lambda^2\mathrm{Im}\theta(q,\omega)}{\left[
   \omega - \lambda^2 \mathrm{Re}\theta(q,\omega) \right]^2
   + \left[ \lambda^2 \mathrm{Im}\theta(q,\omega) \right]^2}
-\end{align*}
-其中
-\begin{align*}
+\end{align*}$$
+
+<p>其中</p>
+
+$$\begin{align*}
   \theta(q,\omega) =& \frac{1}{\Omega}\sum_{p< k_F} \frac{1}{\omega + \frac{\hbar^2}{4m}\left(
    p-q\right)^2-\delta}
-\end{align*}</p>
+\end{align*}$$
 
 
-<p>对以下量进行无量纲化:
-\begin{align*}
+
+<p>对以下量进行无量纲化:</p>
+
+$$\begin{align*}
   \tilde{\omega} = \frac{\omega}{\varepsilon_F} ;\quad
   \tilde{\delta} = \frac{\delta}{\varepsilon_F} ;\quad
   \tilde{p} = \frac{p}{k_F} ;\quad \\
   \tilde{q} = \frac{q}{k_F}; \quad
   \tilde{\lambda}^2 = \frac{\lambda^2}{\Omega \varepsilon_F^2}
-\end{align*}</p>
+\end{align*}$$
+
 
 <p>原式就变为</p>
 
@@ -375,38 +439,45 @@ $$\begin{align}
 
 <h3>解析计算</h3>
 
-<p>求和化积分
-\begin{align*}
+<p>求和化积分</p>
+
+$$\begin{align*}
   A \approx& \pi \frac{Vk^3_F}{(2\pi)^3} \int_{|\tilde{p}| < 1}\mathrm{d}^3\tilde{p} \cdot \delta\left( \tilde{\omega}-\tilde{\delta} +
   \frac{1}{2}(\tilde{p}-\tilde{q})^2 \right) =\pi \frac{Vk^3_F}{(2\pi)^3} a\\
   B \approx& \frac{Vk^3_F}{(2\pi)^3} \int_{|\tilde{p}| < 1}\mathrm{d}^3\tilde{p} \cdot\mathcal{P}\frac{1}{\tilde{\omega}-\tilde{\delta} +
   \frac{1}{2}(\tilde{p}-\tilde{q})^2 } = \frac{Vk^3_F}{(2\pi)^3} b
-\end{align*}
-解析的计算积分 $a$ 和 $b$
-\begin{align*}
+\end{align*}$$
+
+<p>解析的计算积分 $a$ 和 $b$</p>
+
+$$\begin{align*}
   a =&2\pi \int_{-1}^{1}\mathrm{d}x \int_0^1\mathrm{d}\tilde{p} \cdot \delta\left( \tilde{\omega}-\tilde{\delta} +
   \frac{\tilde{p}^2}{2} +\frac{\tilde{q}^2}{2} -\tilde{p}\tilde{q}x \right) \tilde{p}^2\\
   b =&2\pi\int_{-1}^{1}\mathrm{d}x \int_0^1\mathrm{d}\tilde{p} \cdot\mathcal{P}\frac{1}{\tilde{\omega}-\tilde{\delta} +
   \frac{\tilde{p}^2}{2} +\frac{\tilde{q}^2}{2} -\tilde{p}\tilde{q}x }\tilde{p}^2
-\end{align*}</p>
+\end{align*}$$
+
 
 <p>积分 $a$ 是一个对 $\delta$ 函数在 $[0,1]$ 区间内的积分. 所以要对 $\delta$ 函数内的
 部分分情况讨论.</p>
 
 <p>如果 $\tilde{\omega}-\tilde{\delta} +
   \frac{\tilde{p}^2}{2} +\frac{\tilde{q}^2}{2} -\tilde{p}\tilde{q}x = 0$
-没有根, 那么积分 $a=0$ . 如果有根, 记两个根为 $r_1, r_2$ , 那么积分 $a$ 化为
-\begin{align*}
+没有根, 那么积分 $a=0$ . 如果有根, 记两个根为 $r_1, r_2$ , 那么积分 $a$ 化为</p>
+
+$$\begin{align*}
   a =&2\pi\int_{-1}^{1}\mathrm{d}x \int_0^1\mathrm{d}\tilde{p}  \cdot \delta\left[ (\tilde{p}-r_1)(\tilde{p}-r_2) \right] \tilde{p}^2 \\
     =&2\pi\frac{1}{|r_1-r_2|} \int_{-1}^{1}\mathrm{d}x \int_0^1\mathrm{d}\tilde{p} \cdot \left[ \delta(\tilde{p}-r_1)
     +\delta(\tilde{p}-r_2) \right] \tilde{p}^2
-\end{align*}</p>
+\end{align*}$$
+
 
 <p>积分 $b$ 是一个对主值的积分,也需要分情况讨论.</p>
 
 <p>如果 $\tilde{\omega}-\tilde{\delta} +\frac{\tilde{p}^2}{2} +\frac{\tilde{q}^2}{2} -\tilde{p}\tilde{q}x =0$
-没有根, 那么它就可以当做普通的积分
-\begin{align*}
+没有根, 那么它就可以当做普通的积分</p>
+
+$$\begin{align*}
     b =&\int_0^1\mathrm{d}\tilde{p} \cdot \frac{1}{\tilde{\omega}-\tilde{\delta} +
   \frac{1}{2}(\tilde{p}-\tilde{q})^2 } \\
       =&\frac{1}{\tilde{\omega}-\tilde{\delta}} \int_0^1 \mathrm{d}\tilde{p} \cdot
@@ -414,13 +485,16 @@ $$\begin{align}
       =&\frac{1}{\tilde{\omega}-\tilde{\delta}} \cdot \left[ \arctan(t)
         \right]_{t==\frac{-\tilde{q}}{ \sqrt{2(\tilde{\omega} -\tilde{\delta})} }}
           ^{t=\frac{1-\tilde{q}}{ \sqrt{2(\tilde{\omega} -\tilde{\delta})} }}
-\end{align*}
-如有两个根 $r_1, r_2$ 那么
-\begin{align*}
+\end{align*}$$
+
+<p>如有两个根 $r_1, r_2$ 那么</p>
+
+$$\begin{align*}
     b =&\int_0^1\mathrm{d}\tilde{p} \cdot \mathcal{P} \frac{1}{(\tilde{p}-r_1)(\tilde{p}-r_2)} \\
       =&\frac{1}{r_1-r_2}\int_0^1\mathrm{d}\tilde{p} \cdot\left[ \mathcal{P}
           \frac{1}{\tilde{p}-r_1}-\mathcal{P}\frac{1}{\tilde{p}-r_2}\right]
-\end{align*}</p>
+\end{align*}$$
+
 
 <p>两个根 $r_1, r_2$ 是否在积分区间 $[0,1]$ 之间也会对积分 $a, b$ 的结果有影响.</p>
 
@@ -437,40 +511,50 @@ $\tilde{p}, \tilde{\omega}$ 取不同的值时, 根的情况如图</p>
 
 <p><p><img src='./2019-02-21-physics-RF谱RPA文献重复/root.png' alt='figalt' max-width: 100%><p></p>
 
-<p>no root 时
-\begin{align*}
+<p>no root 时</p>
+
+$$\begin{align*}
   a =&0 \\
   b = &\frac{1}{\tilde{\omega}-\tilde{\delta}} \cdot \left[ \arctan(t)
         \right]_{t==\frac{-\tilde{q}}{ \sqrt{2(\tilde{\omega} -\tilde{\delta})a} }}
           ^{t=\frac{1-\tilde{q}}{ \sqrt{2(\tilde{\omega} -\tilde{\delta})} }}
-\end{align*}</p>
+\end{align*}$$
 
-<p>$r_1, r_2 \in [0,1]$ 时
-\begin{align*}
+
+<p>$r_1, r_2 \in [0,1]$ 时</p>
+
+$$\begin{align*}
   a =& \frac{1}{ \sqrt{2(\tilde{\delta}-\tilde{\omega})} } \\
   b =& \frac{1}{r_1-r_2} \ln \frac{ (1-r_1)r_2 }{ (1-r_2)r_1 }
-\end{align*}</p>
+\end{align*}$$
 
-<p>$r_1\in [0,1]$ 和 $r_2 \in [0,1]$ 时
-\begin{align*}
+
+<p>$r_1\in [0,1]$ 和 $r_2 \in [0,1]$ 时</p>
+
+$$\begin{align*}
   a =& \frac{1}{2 \sqrt{2(\tilde{\delta}-\tilde{\omega})} } \\
   b =& \frac{1}{r_1-r_2} \ln \frac{ -(1-r_1)r_2 }{ (1-r_2)r_1 }
-\end{align*}</p>
+\end{align*}$$
 
-<p>$r_1, r_2 \notin [0,1]$ 时
-\begin{align*}
+
+<p>$r_1, r_2 \notin [0,1]$ 时</p>
+
+$$\begin{align*}
   a =&0 \\
   b =& \frac{1}{r_1-r_2} \ln \frac{ (1-r_1)r_2 }{ (1-r_2)r_1 }
-\end{align*}</p>
+\end{align*}$$
+
 
 <h3>代回原式</h3>
 
-<p>\begin{align*}
+
+$$\begin{align*}
   \varepsilon_F I(\tilde{\omega}) =&\sum_{\tilde{q}< 1} \frac{ \tilde{\lambda}^2A}{\left(
   \tilde{\omega} -\tilde{\lambda}^2 B\right)^2+\tilde{\lambda}^4 A^2} \\
     \approx& \int_0^1 \mathrm{d}\tilde{q}\cdot \frac{ \tilde{\lambda}^2 \pi A}{\left(
   \frac{(2\pi)^3}{Vk_F}\tilde{\omega} -\tilde{\lambda}^2 B\right)^2+\tilde{\lambda}^4 \pi^2 A^2}
-\end{align*}</p>
+\end{align*}$$
+
 
 <h3>积分和结果</h3>
 
@@ -522,7 +606,7 @@ from scipy import integrate</p>
             A, B = a4, b4
             case = 4</p>
 
-<p>        if case <code>= 2 or case </code>= 3:
+<p>        if case <code>= 2 or case =</code> 3:
             I = l**2*A / ( (o-l**2*B)**2 + l**4*A**2 )
         else:
             I = delta(o - l**2*B)
@@ -559,50 +643,64 @@ I_omega = np.linspace(0,0,N)</p>
 
 <h2>有限温公式推导</h2>
 
-<p>2 粒子的松原函数(有自能修正)
-\begin{align*}
+<p>2 粒子的松原函数(有自能修正)</p>
+
+$$\begin{align*}
   G_2(k, \mathrm{i} \omega_2) =& \frac{1}{G_2^0(k,\mathrm{i}\omega_2)^{-1} -\lambda^2 \Sigma (k, \mathrm{i}\omega_2)} \\
                          =& \frac{1}{\mathrm{i}\omega_2 - \epsilon_{k,2} -\lambda^2 \Sigma (k, \mathrm{i}\omega_2)}
-\end{align*}
-3 粒子的松原函数(无相互作用)
-\begin{align*}
+\end{align*}$$
+
+<p>3 粒子的松原函数(无相互作用)</p>
+
+$$\begin{align*}
   G_3^0(k,\mathrm{i}\omega_3) = \frac{1}{\mathrm{i}\omega_3 - \epsilon_{k,3}}
-\end{align*}
-代入总的松原函数
-\begin{align*}
+\end{align*}$$
+
+<p>代入总的松原函数</p>
+
+$$\begin{align*}
   R(k , \mathrm{i}\omega_n) =& \frac{1}{\beta}\sum_{\omega_2} G_3(k,\mathrm{i}(\omega_2-\omega_n)) G_2(k,\mathrm{i}\omega_2)\\
    =& \frac{1}{\beta} \sum_{\omega_2} \frac{1}{\mathrm{i}(\omega_2 -\omega_n) - \epsilon_{k,3}}\cdot
      \frac{1}{\mathrm{i}\omega_2 - \epsilon_{k,2} -\lambda^2 \Sigma (k, \mathrm{i}\omega_2)} \\
    =&\frac{1}{\beta} \sum_{\omega_2}\left( \frac{1}{\mathrm{i}(\omega_2 -\omega_n) - \epsilon_{k,3}} +
      \frac{-1}{\mathrm{i}\omega_2 - \epsilon_{k,2} -\lambda^2 \Sigma (k, \mathrm{i}\omega_2)} \right)\cdot
      \frac{1}{\mathrm{i}\omega_n +\epsilon_{k,3}-\epsilon_{k,2}-\lambda^2 \Sigma (k, \mathrm{i}\omega_2)}
-\end{align*}
-接下来单独计算第一项
-\begin{align*}
+\end{align*}$$
+
+<p>接下来单独计算第一项</p>
+
+$$\begin{align*}
   \frac{1}{\beta} \sum_{\omega_2} \frac{1}{\mathrm{i}(\omega_2 -\omega_n) - \epsilon_{k,3}}\cdot
   \frac{1}{\mathrm{i}\omega_n +\epsilon_{k,3}-\epsilon_{k,2}-\lambda^2 \Sigma (k, \mathrm{i}\omega_2)}
-\end{align*}
-利用环路积分计算此项. 积分
-\begin{align*}
+\end{align*}$$
+
+<p>利用环路积分计算此项. 积分</p>
+
+$$\begin{align*}
   \oint_{R\to\infty}\frac{1}{\mathrm{i}(\omega_2 -\omega_n) - \epsilon_{k,3}}\cdot
   \frac{1}{\mathrm{i}\omega_n +\epsilon_{k,3}-\epsilon_{k,2}-\lambda^2 \Sigma (k, \mathrm{i}\omega_2)}
   \cdot \frac{1}{e^{\mathrm{i}\beta\omega_2} +1}\mathrm{d}\omega_2 = 0
-\end{align*}
- 积分的留数为:</p>
+\end{align*}$$
 
-<p>第三项对应的留数
-\begin{align*}
+<p> 积分的留数为:</p>
+
+<p>第三项对应的留数</p>
+
+$$\begin{align*}
   R_3 =   \frac{1}{\beta} \sum_{\omega_2} \frac{1}{\mathrm{i}(\omega_2 -\omega_n) - \epsilon_{k,3}}\cdot
   \frac{1}{\mathrm{i}\omega_n +\epsilon_{k,3}-\epsilon_{k,2}-\lambda^2 \Sigma (k, \mathrm{i}\omega_2)}
-\end{align*}
-其中 $\omega_2 = (2m+1)\pi/\beta$ . 就是要求的总的松原函数 $R(k,\mathrm{i}\omega)$ .</p>
+\end{align*}$$
 
-<p>第一项对应的留数
-\begin{align*}
+<p>其中 $\omega_2 = (2m+1)\pi/\beta$ . 就是要求的总的松原函数 $R(k,\mathrm{i}\omega)$ .</p>
+
+<p>第一项对应的留数</p>
+
+$$\begin{align*}
   R_1 =& \frac{1}{\mathrm{i}\omega_n +\epsilon_{k,3}-\epsilon_{k,2}-\lambda^2 \Sigma (k, \mathrm{i}\omega_n +\epsilon_{k,3})}
   \cdot \frac{1}{e^{\beta(\mathrm{i}\omega_n + \epsilon_{k,3})} +1} \\
       =& \frac{ f(\epsilon_{k,3}) }{\mathrm{i}\omega_n +\epsilon_{k,3}-\epsilon_{k,2}-\lambda^2 \Sigma (k, \mathrm{i}\omega_n +\epsilon_{k,3})}
-\end{align*}</p>
+\end{align*}$$
+
 
 <h2>有限温及零温的最终重复结果</h2>
 <h3>code</h3>
@@ -657,7 +755,7 @@ def twovarplt(f,ax,bx,ay,by,Nx<code>100,Ny</code>10,gap = 2):
     plt.xlabel(r'$\tilde{\omega}$')
     plt.ylabel(r'$I(\tilde{\omega})$')
     plt.yticks([])
-    plt.savefig('./T <code> 2.jpeg',writer</code>'imagemagick')
+    plt.savefig('./T = 2.jpeg',writer='imagemagick')
     plt.show()</p>
 
 <p>def f(p,m,T):   # Fermi distribution function
@@ -700,20 +798,20 @@ def S(o,d,k):   # the integrated Real part of self-energy
     aa = AA(o,d,k)
     bb = S(o,d,k)
     if aa == 0:
-        I <code> k**2*f(k,m,T)*delta(o-bb,b</code>1)
+        I = k**2*f(k,m,T)*delta(o-bb,b=1)
     else:
         I = k**2*f(k,m,T)*aa/((o-bb)**2+aa**2)
     return I
 def II(o,d):    # the integrated spectral function
     if d>o:
-        II,err <code> gauquad(lambda k:I(o,d,k),0,up,n </code> 100)
+        II,err = gauquad(lambda k:I(o,d,k),0,up,n = 100)
     else:
-        II, err <code> integrate.quad(lambda k:I(o,d,k),0,up,epsabs</code>1.49e-2)
+        II, err = integrate.quad(lambda k:I(o,d,k),0,up,epsabs=1.49e-2)
     return II
     
-twovarplt(II,-2,2,-8,8,Nx <code> 1000,Ny</code>33,gap=3)</p>
+twovarplt(II,-2,2,-8,8,Nx = 1000,Ny<code>33,gap</code>3)</p>
 
-<p>#twovarplt(lambda k ,o:S(o,0,k),0,10,0.1,2,Nx <code> 100,Ny </code> 25,gap=0)</p>
+<p>#twovarplt(lambda k ,o:S(o,0,k),0,10,0.1,2,Nx = 100,Ny = 25,gap=0)</p>
 
 <p>'''
 def A(o,d,k,x):
@@ -777,9 +875,9 @@ fig, ax = plt.subplots()
 <p>#ax.plot(o,o*0+1)
 #ax.plot(o,o*0)
 ax.plot(o*0+delta,o, color = 'green')
-ax.plot(o*0+delta-.5,o, color <code> 'gray', linestyle </code> '--')
-ax.plot(delta - q**2/2, q, 'r', label <code> r'$\~\omega </code> \~\delta - \frac{\~q^2}{2}$')
-ax.plot(delta - (q-1)**2/2, q, color <code> 'blue', label </code> r'$\~\omega = \~\delta - \frac{(\~q-1)^2}{2}$')</p>
+ax.plot(o*0+delta-.5,o, color = 'gray', linestyle = '--')
+ax.plot(delta - q**2/2, q, 'r', label = r'$\~\omega = \~\delta - \frac{\~q^2}{2}$')
+ax.plot(delta - (q-1)**2/2, q, color = 'blue', label = r'$\~\omega = \~\delta - \frac{(\~q-1)^2}{2}$')</p>
 
 <p>ax.text(-1.2, .5, r'$r_1,r_2\notin [0,1]$', {'fontsize':20})
 ax.text(.05, .95, r'$r_2\in [0,1]$', {'fontsize':20})

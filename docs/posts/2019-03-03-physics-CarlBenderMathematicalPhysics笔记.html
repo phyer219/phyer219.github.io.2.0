@@ -73,25 +73,95 @@
 
 <p>#+BEGIN_QUOTE</p>
 <ul>
-<li>$\sim$ : 'is asympotic to' \begin{align*} f(x) \sim g(x) \quad (x \to x_0) \end{align*} means \begin{align*} \lim_{x\to x_0} \frac{f(x)}{g(x)} = 1 \end{align*} #+END_QUOTE</li>
+<li>$\sim$ : 'is asympotic to'</li>
 </ul>
+
+$$\begin{align*}
+  f(x) \sim g(x) \quad (x \to x_0)
+\end{align*}$$
+
+<p>means</p>
+
+$$\begin{align*}
+  \lim_{x\to x_0} \frac{f(x)}{g(x)} = 1
+\end{align*}$$
+
+<p>#+END_QUOTE</p>
+
 <p>#+BEGIN_QUOTE</p>
 <ul>
-<li>$\ll$ : 'is negligible compared with' \begin{align*} f(x) \ll g(x) \quad (x \to x_0) \end{align*} means \begin{align*} \lim_{x\to x_0} \frac{f(x)}{g(x)} = 0 \end{align*} #+END_QUOTE</li>
+<li>$\ll$ : 'is negligible compared with'</li>
 </ul>
+
+$$\begin{align*}
+  f(x) \ll g(x) \quad (x \to x_0)
+\end{align*}$$
+
+<p>means</p>
+
+$$\begin{align*}
+  \lim_{x\to x_0} \frac{f(x)}{g(x)} = 0
+\end{align*}$$
+
+<p>#+END_QUOTE</p>
+
 <h3>Method of Dominant Balance</h3>
 
-<p>求方程
-\begin{align*}
+<p>求方程</p>
+
+$$\begin{align*}
   \epsilon x^5 +x = 1
-\end{align*}
-的解在 $\epsilon \to 0$ 时, 行为.</p>
+\end{align*}$$
+
+<p>的解在 $\epsilon \to 0$ 时, 行为.</p>
 
 <ul>
-<li>Neglect 1 \begin{align*} \epsilon x^5 \sim -x \end{align*} 得到 \begin{align*} x \sim \frac{(-1)^{1/4}}{\epsilon^{1/4}} \end{align*} 是复平面上四个在无穷远的解. $1$ 相比无穷大, 可以忽略, 不矛盾.</li>
-<li>Neglect $x$ \begin{align*} \epsilon x^5 \sim 1 \end{align*} 得到 \begin{align*} x \sim \frac{1^{1/5}}{\epsilon^{1/5}} \end{align*} 这里无穷大的 $x$ 相比于 $1$ 是不可忽略的. 矛盾</li>
-<li>Neglect $\epsilon x^5$ \begin{align*} x \sim 1 \end{align*} 那么 \begin{align*} \epsilon x^5 \sim \epsilon\cdot 1 \ll 1 \end{align*} 可以忽略.</li>
+<li>Neglect 1</li>
 </ul>
+
+$$\begin{align*}
+  \epsilon x^5 \sim -x
+\end{align*}$$
+
+<p>得到</p>
+
+$$\begin{align*}
+  x \sim \frac{(-1)^{1/4}}{\epsilon^{1/4}}
+\end{align*}$$
+
+<p>是复平面上四个在无穷远的解. $1$ 相比无穷大, 可以忽略, 不矛盾.</p>
+
+<ul>
+<li>Neglect $x$</li>
+</ul>
+
+$$\begin{align*}
+  \epsilon x^5 \sim 1
+\end{align*}$$
+
+<p>得到</p>
+
+$$\begin{align*}
+  x \sim \frac{1^{1/5}}{\epsilon^{1/5}}
+\end{align*}$$
+
+<p>这里无穷大的 $x$ 相比于 $1$ 是不可忽略的. 矛盾</p>
+
+<ul>
+<li>Neglect $\epsilon x^5$</li>
+</ul>
+
+$$\begin{align*}
+  x \sim 1
+\end{align*}$$
+
+<p>那么</p>
+
+$$\begin{align*}
+  \epsilon x^5 \sim \epsilon\cdot 1 \ll 1
+\end{align*}$$
+
+<p>可以忽略.</p>
 
             </section>
             <section class="post-meta">

@@ -162,21 +162,18 @@ FFT 将 $\omega$ 同样离散化成 $N$ 个 (这样做的优势以后将会看�
        0
     \end{array}
   \right)\end{align*}
-然后用 Numpy 中的 numpy.fft.fft() 函数计算
-#+BEGIN_SRC python :results output
+然后用 Numpy 中的 =numpy.fft.fft()= 函数计算
+#+begin_src python
 import numpy as np
 f = ([1,1,0,0])
 F = np.fft.fft(f)
 print(F)
-#+END_SRC
-
-#+RESULTS:
-: [2.+0.j 1.-1.j 0.+0.j 1.+1.j]
+#+end_src
 
 输出结果为
-#+BEGIN_SRC python
+#+begin_src python
 : [2.+0.j 1.-1.j 0.+0.j 1.+1.j]
-#+END_SRC
+#+end_src
 验证了前面对于 FFT 的原理理解.
 
 * 输出结果分析
@@ -229,7 +226,7 @@ print(F)
    \right] \\
       =& \sum_{n =-\infty}^{\infty}e^{\mathrm{i}n\omega t} \frac{a_n -\mathrm{i}b_n}{2}
 \end{align*}
-最后一个等号利用了 $a_n =a_{-n}, b_n = -b_{-n}, b_0 =0$ .
+最后一个等号利用了 $a_n = a_{-n}, b_n = -b_{-n}, b_0 = 0$ .
 而
 \begin{align*}
   \frac{a_n -\mathrm{i}b_n}{2} =& \frac{2}{T} \int_{0}^{T} f(t)\frac{\cos (n\omega t) - \mathrm{i}\sin(n\omega t)}{2} \mathrm{d} t \\
@@ -262,7 +259,7 @@ print(F)
 \end{align*}
 的 Fourier Transform
 
-#+BEGIN_SRC python :results output
+#+begin_src python
 import numpy as np
 import matplotlib.pyplot as plt
 N = 1024  #离散化成N个点
@@ -276,9 +273,9 @@ plt.xlabel("$\omega$")
 plt.ylabel("$F(\omega)$")
 plt.title("The Results of FFT")
 plt.show()
-#+END_SRC
+#+end_src
 
-#+RESULTS:
+结果
 
 [[file:./2019-01-03-physics-FFT(Fast Fourier Transformation)笔记/sin.png]]
 
@@ -296,7 +293,7 @@ plt.show()
 \end{align*}
 的 Fourier Transform
 
-#+BEGIN_SRC python :results output
+#+begin_src python
 import numpy as np
 import matplotlib.pyplot as plt
 N = 512  #离散化成N个点
@@ -317,10 +314,9 @@ plt.xlabel("$\omega$")
 plt.ylabel("$F_2(\omega)$")
 plt.suptitle("The Results of FFT")
 plt.show()
-#+END_SRC
+#+end_src
 
-#+RESULTS:
-
+结果为
 [[file:./2019-01-03-physics-FFT(Fast Fourier Transformation)笔记/gau.png]]
 
 这也符合预期, 原来更尖的高斯函数, 变换之后变得更平.

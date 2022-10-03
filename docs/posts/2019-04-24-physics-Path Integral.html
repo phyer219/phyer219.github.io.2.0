@@ -107,8 +107,9 @@ $$\begin{align}
   = 1
 \end{align}$$
 
-<p>在 $t_0$ 和 $t_N$ 之间插入无穷多组完备基, 也就是
-\begin{align*}
+<p>在 $t_0$ 和 $t_N$ 之间插入无穷多组完备基, 也就是</p>
+
+$$\begin{align*}
   &\langle x_N, t_N | x_0 , t_0 \rangle \\
    =&
    \int\mathrm{d}^3 x_{N-1}\cdots
@@ -117,8 +118,9 @@ $$\begin{align}
    \langle \vec{x}_{N-1},t_{N-1} |
    \cdots |\vec{x}_1, t_1\rangle
    \langle \vec{x}_1, t_1 | x_0 , t_0 \rangle
-\end{align*}
-其中 $N\to \infty$ . 这样相当于对于所有的路径都作了计算, 也就是</p>
+\end{align*}$$
+
+<p>其中 $N\to \infty$ . 这样相当于对于所有的路径都作了计算, 也就是</p>
 
 $$\begin{align}
       \langle x_N, t_N | x_0 , t_0 \rangle \quad \sim
@@ -135,15 +137,17 @@ $$\begin{align}
 
 <p>其中 $\omega(\Delta t)$ 是只与 $\Delta t$ 的大小有关的一个归一化系数.</p>
 
-<p>这样, 就得到了 Feynman 的 Path Integral 的表达式
-\begin{align*}
+<p>这样, 就得到了 Feynman 的 Path Integral 的表达式</p>
+
+$$\begin{align*}
   &\langle x_N, t_N | x_0 , t_0 \rangle \\
   =& \lim_{N\to \infty}\frac{1}{[\omega(\Delta t)]^{N-1}}\cdot
    \int\mathrm{d}^3 x_{N-1}\cdots
    \int\mathrm{d}^3 x_1 \cdot e^{\frac{\mathrm{i}}{\hbar}S(N,0)}\\
   =&\int_{x_1}^{x_N}\mathcal{D}[x(t)] \cdot e^{\frac{\mathrm{i}}{\hbar}S(N,0)}\\
-\end{align*}
-第二个等号采用了新的记号</p>
+\end{align*}$$
+
+<p>第二个等号采用了新的记号</p>
 
 $$\begin{align}
   \int_{x_1}^{x_N} \mathcal{D}[x(t)]\equiv \lim_{N\to \infty}\frac{1}{[\omega(\Delta t)]^{N-1}}\cdot
@@ -237,24 +241,28 @@ $$\begin{align}
 <p>其中拉氏量已代为 $L = \frac{m}{2}\left( \frac{\Delta x}{ \Delta t}
 \right)^2 - V$ , 为了简便记 $\lambda = \frac{m}{2\mathrm{i}\hbar
 \Delta t}\sim \frac{1}{\Delta t}$ . 
-将上式最后一项在 $\langle x, t- \Delta t |$ 附近展开
-\begin{align*}
+将上式最后一项在 $\langle x, t- \Delta t |$ 附近展开</p>
+
+$$\begin{align*}
   \langle x- \Delta x, t- \Delta t| x_0, t_0 \rangle
   =& \langle x, t- \Delta t| x_0, t_0 \rangle + \mathrm{Linear\, term}\\
   &+ \frac{(\Delta x)^2}{2}\cdot \frac{\partial^2}{\partial x^2}
   \langle x, t- \Delta t| x_0, t_0 \rangle + \mathcal{O}[(\Delta x)^3]
-\end{align*}
-上式中的线性项及其它奇数次幂项由于是奇函数, 积分后都为零, 所以不加考虑.</p>
+\end{align*}$$
+
+<p>上式中的线性项及其它奇数次幂项由于是奇函数, 积分后都为零, 所以不加考虑.</p>
 
 <p>代回积分式中, 并将 $e^{-\frac{\mathrm{i} V\Delta t}{\hbar}}$ 也按
-$\Delta t$ 进行 Taylor 展开, 可得
-\begin{align*}
+$\Delta t$ 进行 Taylor 展开, 可得</p>
+
+$$\begin{align*}
   \langle x, t| x_0, t_0 \rangle =  \langle x, t-\Delta t | x_0 ,t_0 \rangle
   + \left[\frac{1}{2}\frac{\partial^2}{\partial x^2} \cdot \frac{1}{2}\frac{1}{\lambda}
    -\frac{\mathrm{i}}{\hbar}V \Delta t\right] \langle x, t- \Delta t| x_0, t_0 \rangle
   + \mathcal{O}[(\Delta t)^3]
-\end{align*}
-注意式其中 $\frac{1}{\lambda}\sim t$ . 其中利用了积分公式</p>
+\end{align*}$$
+
+<p>注意式其中 $\frac{1}{\lambda}\sim t$ . 其中利用了积分公式</p>
 
 $$\begin{align}
   \int_{-\infty}^{+\infty}\mathrm{d} x\cdot e^{-\lambda x^2}

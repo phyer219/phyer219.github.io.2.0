@@ -55,67 +55,87 @@
 <ul>
 <li>完全离散</li>
 </ul>
-<p>\begin{align*}
+
+$$\begin{align*}
   \sum_l e^{-i\frac{2\pi}{N}k'l} e^{i\frac{2\pi}{N}kl}=N\delta_{kk'}
-\end{align*}</p>
+\end{align*}$$
+
 
 <ul>
 <li>部分离散</li>
 </ul>
-<p>\begin{align*}
+
+$$\begin{align*}
   \int_{-\infty}^{\infty} e^{-ik'x} e^{ikx} \mathrm{d}x = L \delta_{kk'}
-\end{align*}</p>
+\end{align*}$$
+
 
 <ul>
 <li>完全连续</li>
 </ul>
-<p>\begin{align*}
+
+$$\begin{align*}
   \int_{-\infty}^{\infty} e^{-ikx} e^{ik'x} \mathrm{d}x = 2\pi \delta (x-x')
-\end{align*}</p>
+\end{align*}$$
+
 
 <h2>部分离散</h2>
 
 <h3>动量本征函数</h3>
 
-<p>\begin{align*}
-\frac{\hbar}{i} \frac{\mathrm{d}}{\mathrm{d}x} \psi <code> p \psi\quad \Longrightarrow\quad \psi </code> e^{i\frac{p}{\hbar}x}
-\end{align*}</p>
+
+$$\begin{align*}
+\frac{\hbar}{i} \frac{\mathrm{d}}{\mathrm{d}x} \psi = p \psi\quad \Longrightarrow\quad \psi = e^{i\frac{p}{\hbar}x}
+\end{align*}$$
+
 
 <h3>归一化</h3>
 
-<p>\begin{align*}
-\langle e^{ikx} \mid e^{ikx'} \rangle <code> \int_{-\infty}^{\infty} e^{-ikx} e^{ikx'} \mathrm{d}k </code> \int_{-\infty}^{\infty} e^{ik(x'-x)} \mathrm{d}k = 2\pi \delta(x-x')
-\end{align*}</p>
+
+$$\begin{align*}
+\langle e^{ikx} \mid e^{ikx'} \rangle = \int_{-\infty}^{\infty} e^{-ikx} e^{ikx'} \mathrm{d}k = \int_{-\infty}^{\infty} e^{ik(x'-x)} \mathrm{d}k = 2\pi \delta(x-x')
+\end{align*}$$
+
 
 <h3>周期为 $L$</h3>
 
 <p>$f(x)$ 是周期函数</p>
 
-<p>\begin{align*}
+
+$$\begin{align*}
 f(x+L) = f(x)
-\end{align*}</p>
+\end{align*}$$
+
 
 <p>将 $x$ 从 $2\pi$ 拉伸到 $L$</p>
 
-<p>\begin{align*}
+
+$$\begin{align*}
 x \rightarrow x \cdot \frac{2\pi}{L}​
-\end{align*}</p>
+\end{align*}$$
+
 
 <p>相应归一化到 $L$</p>
 
-<p>\begin{align*}
-\langle e^{ikx \cdot \frac{2\pi}{L}} \mid e^{ikx' \cdot \frac{2\pi}{L}} \rangle <code> \int_{-\infty}^{\infty} e^{-ikx \cdot \frac{2\pi}{L}} e^{ikx' \cdot \frac{2\pi}{L}} \mathrm{d}k </code> L \delta(x-x')
-\end{align*}</p>
+
+$$\begin{align*}
+\langle e^{ikx \cdot \frac{2\pi}{L}} \mid e^{ikx' \cdot \frac{2\pi}{L}} \rangle = \int_{-\infty}^{\infty} e^{-ikx \cdot \frac{2\pi}{L}} e^{ikx' \cdot \frac{2\pi}{L}} \mathrm{d}k = L \delta(x-x')
+\end{align*}$$
+
 
 <p>Fourier展开系数由下式求得</p>
 
-<p>\begin{align*}
-f(x)<code> \frac{1}{L} \sum_k \mid e^{ikx \cdot \frac{2\pi}{L}} \rangle \langle e^{ikx \cdot \frac{2\pi}{L}} \mid f(x) \rangle </code> \sum_k e^{ikx \cdot \frac{2\pi}{L}} C_k
-\end{align*}</p>
 
-<p>\begin{align*}
+$$\begin{align*}
+f(x)= \frac{1}{L} \sum_k \mid e^{ikx \cdot \frac{2\pi}{L}} \rangle \langle e^{ikx \cdot \frac{2\pi}{L}} \mid f(x) \rangle = \sum_k e^{ikx \cdot \frac{2\pi}{L}} C_k
+\end{align*}$$
+
+
+
+$$\begin{align*}
 C_k = \frac{1}{L} \int_{-\infty}^{\infty} f(x) e^{-ikx \cdot \frac{2\pi}{L}} \mathrm{d}x
-\end{align*}</p>
+\end{align*}$$
+
 
 <h2>完全连续</h2>
 
@@ -123,23 +143,29 @@ C_k = \frac{1}{L} \int_{-\infty}^{\infty} f(x) e^{-ikx \cdot \frac{2\pi}{L}} \ma
 
 <p>则Fourier展开变为</p>
 
-<p>\begin{align*}
-f(x) <code> \lim_{L\rightarrow \infty} \frac{1}{2 \pi}\frac{2\pi}{L} \sum_k \mid e^{ikx\cdot\frac{2\pi}{L}}\rangle\langle e^{ikx\cdot\frac{2\pi}{L}}\mid f(x) \rangle </code> \int_{-\infty}^{\infty} \mathrm{d}k \frac{1}{2\pi}\mid e^{ikx\cdot\frac{2\pi}{L}}\rangle\langle e^{ikx\cdot\frac{2\pi}{L}}\mid f(x) \rangle \\\\=\frac{1}{2\pi} \int _{-\infty}^{\infty}\mathrm{d}k\int _{-\infty}^{\infty}\mathrm{d}x' e^{ikx}\cdot e^{-ikx'}f(x')
-\end{align*}</p>
+
+$$\begin{align*}
+f(x) = \lim_{L\rightarrow \infty} \frac{1}{2 \pi}\frac{2\pi}{L} \sum_k \mid e^{ikx\cdot\frac{2\pi}{L}}\rangle\langle e^{ikx\cdot\frac{2\pi}{L}}\mid f(x) \rangle = \int_{-\infty}^{\infty} \mathrm{d}k \frac{1}{2\pi}\mid e^{ikx\cdot\frac{2\pi}{L}}\rangle\langle e^{ikx\cdot\frac{2\pi}{L}}\mid f(x) \rangle \\\\=\frac{1}{2\pi} \int _{-\infty}^{\infty}\mathrm{d}k\int _{-\infty}^{\infty}\mathrm{d}x' e^{ikx}\cdot e^{-ikx'}f(x')
+\end{align*}$$
+
 
 <p>也就是</p>
 
-<p>\begin{align*}
+
+$$\begin{align*}
 f(x) = \frac{1}{2\pi} \int_{-\infty}^{\infty} \mathrm{d}k \int_{-\infty}^{\infty} \mathrm{d}x' e^{ik(x-x')} f(x')
-\end{align*}</p>
+\end{align*}$$
+
 
 <h2>完全离散</h2>
 
 <p>类似群论中的不可约表示。</p>
 
-<p>\begin{align*}
+
+$$\begin{align*}
 \sum_l e^{-i\frac{2\pi}{N}k'l} e^{i\frac{2\pi}{N}kl}=N\delta_{kk'}
-\end{align*}</p>
+\end{align*}$$
+
 
             </section>
             <section class="post-meta">

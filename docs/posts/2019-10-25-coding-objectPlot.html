@@ -79,7 +79,7 @@ import numpy as np
 from matplotlib import pyplot as plt</p>
 
 <p># 创建一个画板(画板是一个 Figure 类), 给它取名为 myFigure
-myFigure <code> plt.figure(facecolor</code>'pink')</p>
+myFigure = plt.figure(facecolor='pink')</p>
 
 <p># 对 myFigure 进行操作, 它可以进行的操作, 可以查看画板(Figure) 这个类的官方文档:
 # https://matplotlib.org/3.1.1/api/_as_gen/matplotlib.figure.Figure.html#matplotlib.figure.Figure
@@ -132,9 +132,9 @@ myAxesAlice.set_title(r'sin and cos function')
 myAxesAlice.legend()</p>
 
 <p># 在纸上写字
-Alice <code> myAxesAlice.text(.5, .5, "Alice", fontsize</code>20)
-Tom <code> myAxesTom.text(.2, .5, "Tom", fontsize</code>20)
-Bob <code> myAxesBob.text(.2, .5, "Bob", fontsize</code>20)</p>
+Alice = myAxesAlice.text(.5, .5, "Alice", fontsize=20)
+Tom = myAxesTom.text(.2, .5, "Tom", fontsize=20)
+Bob = myAxesBob.text(.2, .5, "Bob", fontsize=20)</p>
 
 <p># text 返回的是一个 text 类. 也可以修改它的属性
 Tom.set_backgroundcolor('r')
@@ -156,7 +156,7 @@ Alice.set_fontproperties(font0)</p>
 <p>myFigure.show()
 # 保存图片有一些问题, 在画板上设置的 facecolor 要重新设置才能保存下来.
 # 没有 bbox_inches = 'tight' 可能会保存不全图片
-myFigure.savefig('myFigure.jpg', bbox_inches <code> 'tight', facecolor</code>'pink')
+myFigure.savefig('myFigure.jpg', bbox_inches = 'tight', facecolor='pink')
 #+END_SRC</p>
 
 <h2>Results</h2>

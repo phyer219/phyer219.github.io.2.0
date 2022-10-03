@@ -224,13 +224,15 @@ anifig.save('2d-real.gif', writer='imagemagick')</code></pre>
 
 <h2>2D Complex</h2>
 
-<p>Rabi oscillation(ref: another post)
-\begin{align*}
+<p>Rabi oscillation(ref: another post)</p>
+
+$$\begin{align*}
   \mathrm{i}\hbar\dot{c}_1 =&
        \gamma e^{\mathrm{i}(\omega-\omega_{21})t} c_2 \tag{1}\\
     \mathrm{i}\hbar\dot{c}_2 =&\gamma e^{-\mathrm{i}(\omega-\omega_{21})t}  c_1\tag{2}
-\end{align*}
-exact solution is</p>
+\end{align*}$$
+
+<p>exact solution is</p>
 
 $$\begin{align}
   |c_2(t)|^2 = \frac{1}{1+\frac{\hbar^2(\omega-\omega_{21})^2}{4\gamma^2}}\sin^2\left(
@@ -244,7 +246,7 @@ $$\begin{align}
 \end{align}$$
 
 
-<p>In numerical calculation, we set $\hbar <code> 1, \gamma </code> 1, \Delta\omega = \omega - \omega_{21}$ , then</p>
+<p>In numerical calculation, we set $\hbar = 1, \gamma = 1, \Delta\omega = \omega - \omega_{21}$ , then</p>
 
 $$\begin{align}
 \frac{\mathrm{d}}{\mathrm{d}t}

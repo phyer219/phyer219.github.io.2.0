@@ -51,55 +51,71 @@
                 
 <h2>Statement of the Problem</h2>
 
-<p>已知 $H_0$ 的精确解：
-\begin{align*}
+<p>已知 $H_0$ 的精确解：</p>
+
+$$\begin{align*}
 H_0 \mid n^{(0)} \rangle = E_n^{(0)} \mid n^{(0)} \rangle
-\end{align*}</p>
+\end{align*}$$
+
 
 <p>$\{ \mid n^{(0)} \rangle\}$ 是一组完备基，也就是 $1 = \sum_n \mid n^{(0)} \rangle \langle n^{(0)} \mid$ ；</p>
 
-<p>求解：
-\begin{align*}
+<p>求解：</p>
+
+$$\begin{align*}
 (H_0 + \lambda V) \mid n \rangle = E_n \mid n \rangle \tag{1}
-\end{align*}</p>
+\end{align*}$$
+
 
 <p>$\mid n \rangle$ 和 $E_n$ 都是 $\lambda$ 的连续函数。</p>
 
 <h2>核心思路</h2>
 
-<p>微扰的核心，把本征态和本征能量按 $\lambda$ 级数展开：
-\begin{align*}
-\mid n \rangle = \mid n^{(0)} \rangle +\lambda \mid n^{(1)} \rangle + \lambda^2 \mid n^{(2)} \rangle+\cdots
-\end{align*}</p>
+<p>微扰的核心，把本征态和本征能量按 $\lambda$ 级数展开：</p>
 
-<p>\begin{align*}
+$$\begin{align*}
+\mid n \rangle = \mid n^{(0)} \rangle +\lambda \mid n^{(1)} \rangle + \lambda^2 \mid n^{(2)} \rangle+\cdots
+\end{align*}$$
+
+
+
+$$\begin{align*}
 E_n = E_n^{(0)} +\lambda E_n^{(1)} +\lambda^2 E_n^{(2)} + \cdots
-\end{align*}</p>
+\end{align*}$$
+
 
 <h2>本征能量修正</h2>
 
-<p>从薛定谔方程入手考虑
-\begin{align*}
+<p>从薛定谔方程入手考虑</p>
+
+$$\begin{align*}
 (H_0 + \lambda V) \mid n \rangle = E_n \mid n \rangle
 \tag{1}
-\end{align*}
-基本思是把 $E_n$ 直接展开成 $\lambda$ 的级数，同时把薛定谔方程也展开成 $\lambda$ 的级数，然后二者对应相等，即可得出 $\lambda$ 的系数。
+\end{align*}$$
+
+<p>基本思是把 $E_n$ 直接展开成 $\lambda$ 的级数，同时把薛定谔方程也展开成 $\lambda$ 的级数，然后二者对应相等，即可得出 $\lambda$ 的系数。
 先把方程 $(1)$ 从一个关于态矢的方程变成一个关于数的方程，可以考虑左乘一个左矢。由于 $\langle n^{(0)} \mid$ 是 $H_0$ 的本征矢，所以
-就左乘  $\langle n^{(0)} \mid$ 。由于不知道算符 $V$ 的本征态，而态矢 $\mid n \rangle$ 是最终要求得的量，只能保留。左乘  $\langle n^{(0)} \mid$ 后得到以下方程：
-\begin{align*}
+就左乘  $\langle n^{(0)} \mid$ 。由于不知道算符 $V$ 的本征态，而态矢 $\mid n \rangle$ 是最终要求得的量，只能保留。左乘  $\langle n^{(0)} \mid$ 后得到以下方程：</p>
+
+$$\begin{align*}
   \langle n^{(0)} \mid  (H_0 + \lambda V) \mid n \rangle =& \langle n^{(0)} \mid  E_n \mid n \rangle \\
   \Downarrow &\\
   \langle n^{(0)} \mid  \lambda V \mid n \rangle =& \langle n^{(0)} \mid  (E_n- E_n^{(0)}) \mid n \rangle \\
-\end{align*}
-记
-\begin{align*}
+\end{align*}$$
+
+<p>记</p>
+
+$$\begin{align*}
 \Delta_n \equiv E_n - E_n^{(0)}
-\end{align*}
-求得 $\Delta_n$ 也就求得了 $E_n$ 。如果将新的波函数归一化到 $\langle n^{(0)} \mid$ ，而不是 $\langle n \mid$ ：
-\begin{align*}
+\end{align*}$$
+
+<p>求得 $\Delta_n$ 也就求得了 $E_n$ 。如果将新的波函数归一化到 $\langle n^{(0)} \mid$ ，而不是 $\langle n \mid$ ：</p>
+
+$$\begin{align*}
 \langle n^{(0)} \mid n \rangle = 1
-\end{align*}
-能量修正就为：
+\end{align*}$$
+
+<p>能量修正就为：
 $$
 \Delta_n = \lambda\langle n^{(0)} \mid V \mid n \rangle
 $$
@@ -146,22 +162,26 @@ $$
 (E_n^{(0)}-H_0)\mid n \rangle = (\lambda V -\Delta_n)\mid n \rangle
 \tag{2}
 $$
-思路也是把 $\mid n \rangle$ 直接展开成 $\lambda$ 的级数
-\begin{align*}
+思路也是把 $\mid n \rangle$ 直接展开成 $\lambda$ 的级数</p>
+
+$$\begin{align*}
 \mid n \rangle = \mid n^{(0)} \rangle +\lambda \mid n^{(1)} \rangle + \lambda^2 \mid n^{(2)} \rangle+\cdots
-\end{align*}
-同时把薛定谔方程也展开成 $\lambda$ 的级数，然后二者对应相
+\end{align*}$$
+
+<p>同时把薛定谔方程也展开成 $\lambda$ 的级数，然后二者对应相
 等，即可得出 $\lambda$ 的系数。同样， $H_0$ 的所有信息都是
 已知的，不想让它作为算符存在，而是以它的本征值的形式存在。最终将要
 求得的 $\mid n^{(1)} \rangle$ ， $\mid n^{(2)} \rangle$ ……应该是
 在基底 $\{\mid n^{(0)}\rangle\}$ 下的表示形式，所以只要求得它在这组基底下的系数 $\langle n'^{(0)}\mid n \rangle$ 即可。故
-将方程 $(2)$ 左乘 $\langle n'^{(0)} \mid$ 是最佳选择：
-\begin{align*}
+将方程 $(2)$ 左乘 $\langle n'^{(0)} \mid$ 是最佳选择：</p>
+
+$$\begin{align*}
   \langle n'^{(0)} \mid (E_n^{(0)}-H_0)\mid n \rangle =&\langle n'^{(0)} \mid  (\lambda V -\Delta_n)\mid n \rangle \\
   \Downarrow & \\
   (E_n^{(0)}-E_{n'}^{(0)})\langle n'^{(0)} \mid n \rangle =&\langle n'^{(0)} \mid  (\lambda V -\Delta_n)\mid n \rangle \\
 \tag{3}
-\end{align*}</p>
+\end{align*}$$
+
 
 <p>只要把 $(E_n^{(0)}-E_{n'}^{(0)})​$ 移到右边，就得到想要的表达式。但是移项之前应该考虑要是否为 $0​$ 。以下两种情况满足$E_n^{(0)}\neq E_{n'}^{(0)}​$ ：</p>
 
@@ -222,7 +242,7 @@ $$</p>
 $$</p>
 
 <p>$$
-\langle m'^{(0)} \mid (E_D^{(0)}-E_D^{(0)})\mid m \rangle<code> 0 </code>\langle m'^{(0)} \mid  (\lambda V -\Delta_m)\mid m \rangle
+\langle m'^{(0)} \mid (E_D^{(0)}-E_D^{(0)})\mid m \rangle= 0 =\langle m'^{(0)} \mid  (\lambda V -\Delta_m)\mid m \rangle
 $$</p>
 
 <p>$$
@@ -289,7 +309,7 @@ $$</p>
 
 <p>其中 $P_N \mid l^{(1)} \rangle$ 为：
 $$
-P_N \mid l^{(1)} \rangle <code> \sum_{n\notin D} \mid n^{(0)} \rangle\langle n^{(0)}\mid l^{(1)}\rangle </code>\sum_{n\notin D} \mid n^{(0)} \rangle \frac{1}{E_D^{(0)}-E_{n}^{(0)}}\langle n^{(0)} \mid  V \mid l^{(0)} \rangle
+P_N \mid l^{(1)} \rangle = \sum_{n\notin D} \mid n^{(0)} \rangle\langle n^{(0)}\mid l^{(1)}\rangle =\sum_{n\notin D} \mid n^{(0)} \rangle \frac{1}{E_D^{(0)}-E_{n}^{(0)}}\langle n^{(0)} \mid  V \mid l^{(0)} \rangle
 $$
 由于 $\Delta_l^{(1)} = v_l$ ，最终可求得
 $$
@@ -478,30 +498,38 @@ $100-1.5+0.15 = 98.65$ , 而数值求解的结果为 $98.64010314$ . $E_{2}, E_3
 <h2>Appendix</h2>
 <h3>算符出现在分母上</h3>
 
-<p>意为逆算符. 即
-\begin{align*}
+<p>意为逆算符. 即</p>
+
+$$\begin{align*}
   A^{-1} \equiv \frac{1}{A}
-\end{align*}
-和它本身有共同本征值. 其本征值为自身本征值的倒数.</p>
+\end{align*}$$
+
+<p>和它本身有共同本征值. 其本征值为自身本征值的倒数.</p>
 
 <p>证明如下:</p>
 
 <p>#+BEGIN_QUOTE
-假设 $A$ 对应态 $|n\rangle$ 的本征值为 $a_n$ ,即
-\begin{align*}
+假设 $A$ 对应态 $|n\rangle$ 的本征值为 $a_n$ ,即</p>
+
+$$\begin{align*}
   A |n \rangle = a_n |n\rangle
-\end{align*}
-那么两边左乘 $A^{-1}$ 有
-\begin{align*}
+\end{align*}$$
+
+<p>那么两边左乘 $A^{-1}$ 有</p>
+
+$$\begin{align*}
   | n \rangle =& a_n A^{-1} | n \rangle \\
   \Downarrow& \\
   \frac{1}{a_n} | n \rangle =& A^{-1} | n \rangle
-\end{align*}
-用分数的记法即
-\begin{align*}
+\end{align*}$$
+
+<p>用分数的记法即</p>
+
+$$\begin{align*}
   \frac{1}{A}| n \rangle = \frac{1}{a_n} |n \rangle
-\end{align*}
-#+END_QUOTE</p>
+\end{align*}$$
+
+<p>#+END_QUOTE</p>
 
 <h2>Reference</h2>
 

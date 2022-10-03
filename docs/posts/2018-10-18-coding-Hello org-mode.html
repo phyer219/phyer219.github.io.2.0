@@ -275,7 +275,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 x = np.linspace(-2,2,1000)
 f = np.e**(-(1/(1-x**2)))
-y <code> np.piecewise(x,[x<</code>-1,x>-1],[0,1])*np.piecewise(x,[x<=1,x>1],[1,0])*f
+y = np.piecewise(x,[x<<code>-1,x>-1],[0,1])*np.piecewise(x,[x<</code>1,x>1],[1,0])*f
 plt.plot(x,y)
 plt.show()
 #+END_SRC</p>
@@ -290,7 +290,7 @@ import numpy as np</p>
 d = 3
 x = np.linspace(c-1,d+1,1000)
 f = np.e**(-((1/(x-c))+(1/(d-x))))
-y <code> np.piecewise(x,[x<</code>c,x>c],[0,1])*np.piecewise(x,[x<=d,x>d],[1,0])*f 
+y = np.piecewise(x,[x<<code>c,x>c],[0,1])*np.piecewise(x,[x<</code>d,x>d],[1,0])*f 
 plt.plot(x,y)
 plt.show()
 #+END_SRC</p>
