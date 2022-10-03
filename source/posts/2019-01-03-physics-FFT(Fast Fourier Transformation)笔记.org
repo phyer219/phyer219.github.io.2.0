@@ -62,7 +62,7 @@ FFT 将 $\omega$ 同样离散化成 $N$ 个 (这样做的优势以后将会看�
   F(m \Delta\omega) = \frac{T}{N} \sum_{n=0}^{N-1} f\left( \frac{T}{N}n \right)
   e^{-\mathrm{i}\frac{2\pi}{N} m n}
 \end{align*}
-这实际上就变成了一个矩阵算
+这实际上就变成了一个矩阵运算
 \begin{align*}
   \left(
   \begin{array}{c}

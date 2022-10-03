@@ -1,0 +1,149 @@
+<!DOCTYPE html><html class="no-js" lang="zh">
+
+
+<head>
+<script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+    </script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/styles/default.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Long+Cang&family=Noto+Serif+SC&display=swap" rel="stylesheet"> <meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>Lindblad</title>
+<link rel="apple-touch-icon" sizes="180x180" href="../static/images/apple-touch-icon-next.png?v=6.4.1">
+<link rel="icon" type="image/png" sizes="32x32" href="../static/images/favicon-32x32-next.png?v=6.4.1">
+<link rel="icon" type="image/png" sizes="16x16" href="../static/images/favicon-16x16-next.png?v=6.4.1">
+<link rel="stylesheet" type="text/css" href="../static/css/mystyle.css">    
+
+</head>
+
+<body>
+    <div class="container">
+        <header>
+    <section class="banner"><img src="../static/images/banner.jpg"></section>
+</header>
+        <nav class="row">
+    <a class="nav" href="../">首页</a>
+    <a class="nav" href="../categories">分类</a>
+    <a class="nav" href="../tags">标签</a>
+    <a class="nav" href="../about">关于</a>
+</nav>
+
+        <main>
+            <h1 class="post-title">Lindblad
+            </h1>
+            <section class="post-meta">
+                <p>发表于:2022.10.3 ||</p>
+                <p>分类:<a class="post-link" href="../categories/专业笔记.html">专业笔记</a> ||</p>
+            </section>
+            <section class="post-content">
+                
+<h2>Wavenumberf</h2>
+
+
+$$\begin{align}
+\tilde{\nu} = \frac{1}{\lambda}
+\end{align}$$
+
+
+
+
+$$\begin{align}
+c = \nu \lambda
+\end{align}$$
+
+<p>它</p>
+
+$$\begin{align} 
+\nu = c \tilde{\nu}
+\end{align}$$
+
+
+
+<h2>eVvvvvvvvvvvv</h2>
+
+<p>eV 是能量单位, 即 $1 \mathrm{eV} = 1.602176634 \times 10^{-19} J$ ( $e =
+1.602176634\times 10^{-19} C$ )
+它与 wavenumber 的关系</p>
+
+$$\begin{align}
+E = h \nu = h c \tilde{\nu}
+\end{align}$$
+
+<p>对于波数为 $1 \mathrm{cm}^{-1}$ 的光子, 其能量为</p>
+
+$$\begin{align}
+E = h c \cdot 1 \mathrm{cm}^{-1}
+  =& 6.62607015×10^{−34} \mathrm{J}\cdot \mathrm{Hz}^{−1}
+    \times 299792458 \mathrm{m/s} \times 1 \mathrm{cm}^{-1} \\
+  =& 6.62607015×10^{−34} \times 299792458 \times 10^{2} \mathrm{J} \\
+ = &\frac{6.62607015×10^{−34} \times 299792458 \times 10^{2}}{1.602176634 \times 10^{-19}} \mathrm{eV}
+\end{align}$$
+
+<p>即</p>
+
+$$\begin{align}
+1 \mathrm{eV} = h c \cdot 1 \mathrm{cm}^{-1} \times
+   \frac{1.602176634 \times 10^{-19}}{6.62607015×10^{−34} \times 299792458 \times 10^{2}}
+   = 8065.54 \times h c \cdot 1 \mathrm{cm}^{-1}
+\end{align}$$
+
+<p>8065.54 为 $\frac{e}{100hc}$ 的数值值( $e, h, c$ 取国际单位制 ).</p>
+
+<p>频率与 eV 的关系是类似的, 即</p>
+
+$$\begin{align}
+E =& h \nu = h \cdot 1 \mathrm{Hz} = 6.62607015×10^{−34} \mathrm{J} \\
+  =& \frac{6.62607015×10^{−34}}{1.602176634 \times 10^{-19}} \mathrm{eV}
+\end{align}$$
+
+
+$$\begin{align}
+1 \mathrm{eV} = \frac{1.602176634 \times 10^{-19}}{6.62607015×10^{−34}}
+     \times h \cdot 1 \mathrm{Hz} = 2.41799\times 10^{14} \times h \cdot 1 \mathrm{Hz}
+\end{align}$$
+
+<p>$2.41799\times 10^{14}$ 为 $\frac{e}{h}$ 的数值值( $e, h$ 取国际单位制 ).</p>
+
+<blockquote>Example1:
+
+原子发出可见光的跃是 eV 量级相互作用能级的跃迁, 对应于可见光的频率 $10^{14} \mathrm{Hz}$ .</blockquote>
+
+<blockquote>Example2:
+
+氢原子 $2^2S_{1/2}$ 与 $2^2P_{1/2}$ 能级的 Lamb shift 为
+$4.4 \times 10^{-6} \mathrm{eV}$ , 对应频率大约为 $10^9 \mathrm{Hz}$ , 即 GHz .</blockquote>
+
+<h2>Reference</h2>
+
+<ul>
+<li><a href='https://en.wikipedia.org/wiki/Wavenumber'>wikipedia: Wavenumber</a></li>
+<li><a href='https://en.wikipedia.org/wiki/Planck_constant'>wikipedia: Planck constant</a></li>
+<li><a href='https://en.wikipedia.org/wiki/Speed_of_light'>wikipedia: Speed of light</a></li>
+<li><a href='http://wild.life.nctu.edu.tw/class/common/energy-unit-conv-table.html'>Energy unit conversion table</a></li>
+</ul>
+
+            </section>
+            <section class="post-meta">
+                <p>标签:
+                    <a class="post-link" href="../tags/Atomic and Optical Physics.html">Atomic and Optical Physics</a>
+                </p>
+            </section>
+        </main>
+        <footer>© 2018 - 2022 ZQW</footer>
+
+    </div>
+</body>
+
+</html>
