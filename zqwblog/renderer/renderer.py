@@ -68,7 +68,12 @@ class HTMLRenderer(Renderer):
     def sub_url(self, match):
         return f"<a href='{match.group('url'):s}'>{match.group('tag'):s}</a>"
     def sub_figure(self, match):
-        return f"<p><img src='{match.group('path'):s}' alt='figalt' max-width: 100%><p>"
+        res = f"<p><img src='{match.group('path'):s}'"
+        if match.group('figalt'):
+            res += f" alt='{match.group('figalt'):s}' max-width:100%><p>"
+        else:
+            res += " alt='figalt' max-width:100%><p>"
+        return res
     def sub_pyfile(self, match):
         return f"<a href='{match.group('path'):s}'>{match.group('tag'):s}</a>"
     def sub_codeinline(self, match):

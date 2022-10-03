@@ -33,11 +33,13 @@ class PostChangeHandler(FileSystemEventHandler):
 
     def on_modified(self, event):
         if not event.is_directory:
-            print('------', event.src_path, 'are modified!-------------------')
             file_name = os.path.basename(event.src_path)
             file_root, file_extension = os.path.splitext(file_name)
-            self.website.render_post(file_root, file_extension)
-            print('post has be rerendered, please refresh the page.')
+            if file_extension == '.org' or file_extension == '.md':
+                print('------', event.src_path,
+                      'are modified!-------------------')
+                self.website.render_post(file_root, file_extension)
+                print('post has be rerendered, please refresh the page.')
 
 
 class WebSiteServer:

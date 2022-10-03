@@ -20,7 +20,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Long+Cang&family=Noto+Serif+SC&display=swap" rel="stylesheet"> <meta charset="utf-8">
 <meta name="viewport" content="width=device-width">
-<title>Lindblad</title>
+<title>Lindblad Master Equation and FFT</title>
 <link rel="apple-touch-icon" sizes="180x180" href="../static/images/apple-touch-icon-next.png?v=6.4.1">
 <link rel="icon" type="image/png" sizes="32x32" href="../static/images/favicon-32x32-next.png?v=6.4.1">
 <link rel="icon" type="image/png" sizes="16x16" href="../static/images/favicon-16x16-next.png?v=6.4.1">
@@ -41,7 +41,7 @@
 </nav>
 
         <main>
-            <h1 class="post-title">Lindblad
+            <h1 class="post-title">Lindblad Master Equation and FFT
             </h1>
             <section class="post-meta">
                 <p>发表于:2022.10.3 ||</p>
@@ -49,86 +49,137 @@
             </section>
             <section class="post-content">
                 
-<h2>Wavenumberf</h2>
+<h2>Lindblad Master Equation</h2>
 
 
 $$\begin{align}
-\tilde{\nu} = \frac{1}{\lambda}
+\frac{\mathrm{d}}{\mathrm{d}t}\rho = -\mathrm{i} [H, \rho]
+ + \sum_n \left(L_n \rho L_n^{\dagger} - \frac{1}{2}\{L_n^{\dagger}L_n, \rho\}\right)
 \end{align}$$
 
 
+<p>小括号中的求和对应耗散过程. 求和中第一项是跃迁算符 $L_n$ 导致的 $L_n$ 的末态的增加, 求
+和中第二项是初态的减少, 或者 coherence 的减少.</p>
 
+<h2>Example: Tight binding</h2>
+
+<h3>解析分析</h3>
+
+<p>如 Phys. Rev. Lett. 127, 070402 (2022) 中的例子:</p>
 
 $$\begin{align}
-c = \nu \lambda
+H =& 0 \\
+L_{R, l} =& \sqrt{\gamma_R} |l + 1\rangle\langle l| \\
+L_{L, l} =& \sqrt{\gamma_L} | l - 1 \rangle\langle l|
 \end{align}$$
 
-<p>它</p>
+<p>这是一个一维链, 格点之间没有相互作用, 但相邻格点之间有类似自发辐射的非相干的跃迁
+过程.</p>
 
-$$\begin{align} 
-\nu = c \tilde{\nu}
-\end{align}$$
-
-
-
-<h2>eVvvvvvvvvvvv</h2>
-
-<p>eV 是能量单位, 即 $1 \mathrm{eV} = 1.602176634 \times 10^{-19} J$ ( $e =
-1.602176634\times 10^{-19} C$ )
-它与 wavenumber 的关系</p>
+<p>这此模型中, 主方程只有耗散项. 第一项对应</p>
 
 $$\begin{align}
-E = h \nu = h c \tilde{\nu}
+L_{R,l} \rho L_{R, l}^{\dagger} = \gamma_R  \rho_{ll} |l + 1\rangle\langle l + 1|
 \end{align}$$
 
-<p>对于波数为 $1 \mathrm{cm}^{-1}$ 的光子, 其能量为</p>
+<p>$L_{L, l}$ 是类似的. 可以看出, 这一项的作用是使跃迁的末态 $|l + 1\rangle$ 的 population 增加, 且
+增加的多少与初态 $|l\rangle$ 的 population 成正比. 这很物理.</p>
+
+<p>再看另外一项:</p>
 
 $$\begin{align}
-E = h c \cdot 1 \mathrm{cm}^{-1}
-  =& 6.62607015×10^{−34} \mathrm{J}\cdot \mathrm{Hz}^{−1}
-    \times 299792458 \mathrm{m/s} \times 1 \mathrm{cm}^{-1} \\
-  =& 6.62607015×10^{−34} \times 299792458 \times 10^{2} \mathrm{J} \\
- = &\frac{6.62607015×10^{−34} \times 299792458 \times 10^{2}}{1.602176634 \times 10^{-19}} \mathrm{eV}
+&- \frac{1}{2} \sum_l\{L_{R, l}^{\dagger}L_{R, l}, \rho\}
+= - \frac{1}{2}\gamma_R\sum_{l, m, n} \{|l\rangle\langle l|, \rho_{mn}|m\rangle\langle n|\}\\
+=& - \frac{1}{2}\gamma_R \sum_{l,n}(|l\rangle\langle n| \rho_{l,n} + |n\rangle\langle l|, \rho_{n,l}) \\
+ =& - \gamma_R \sum_l \rho_{ll} |l\rangle\langle l|
+      -\frac{1}{2}\gamma_R \sum_{l, n\neq l}\left(\rho_{l, n}|l\rangle\langle n| + \rho_{n, l}|n\rangle\langle l| \right)
 \end{align}$$
 
-<p>即</p>
+<p>第一项是对角项 population 的减小对角项越大, 减小越多. 第二项是非对角项 coherence
+的减小, 它本来越大, 减小就越多.</p>
+
+<p>这个例子的特点是, 它是描述的是一维格点中的单体运动, 这就导致每个 $L_n$
+只包含一个矩阵元, 这就导致主方程是分块对角的. 因为我们分析过了, $L_n$ 的作用有三
+点</p>
+
+<ul>
+<li>使得对角项 population 有一部分与其相邻的 population 成正比的增加, 这描述的是作 为跃迁的终态, population 的增加. 它在主方程中是正号的那个耗散项.</li>
+<li>使得对角项 population 有一部分与自身成正比的减小, 描述的是作为跃迁的初态, 粒子 跳向别的态, population 减小. 它在主方程中是负号的那个耗散项.</li>
+<li>使得所有的 coherence 都减小, 自身越大, 减小越快. 因此耗散项使得系统的相干性不 断降低.</li>
+</ul>
+<p>这三点没有 population 与 coherence 之间的 couple. 这使得问题大大简化, 立即可以得
+到解析解. 所有的 coherence 都是 exponential decay.
+population 可以用一个 no-Hermition 的有有效 Hamiltonian 来描述</p>
 
 $$\begin{align}
-1 \mathrm{eV} = h c \cdot 1 \mathrm{cm}^{-1} \times
-   \frac{1.602176634 \times 10^{-19}}{6.62607015×10^{−34} \times 299792458 \times 10^{2}}
-   = 8065.54 \times h c \cdot 1 \mathrm{cm}^{-1}
+H_{\mathrm{eff}} = \sum_{l} (\gamma_R |l + 1\rangle\langle l| + \gamma_L |l\rangle\langle l + 1|)
 \end{align}$$
 
-<p>8065.54 为 $\frac{e}{100hc}$ 的数值值( $e, h, c$ 取国际单位制 ).</p>
+<p>我们忽略了一个常数算符.
+它描述了 population 之间的相互跃迁. 这就是一个 tight binding 的模型. 在周期性边
+界条件下, 由于平移对称性, 它可以严格解, 具体结果可以参考 Phys. Rev. Lett. 127,
+070402 (2021).</p>
 
-<p>频率与 eV 的关系是类似的, 即</p>
+<h3>数值分析</h3>
 
-$$\begin{align}
-E =& h \nu = h \cdot 1 \mathrm{Hz} = 6.62607015×10^{−34} \mathrm{J} \\
-  =& \frac{6.62607015×10^{−34}}{1.602176634 \times 10^{-19}} \mathrm{eV}
-\end{align}$$
+<p>这个 model 是快速傅里叶变换 (FFT) 的极佳的例子.</p>
+
+<pre><code class="language-python">import numpy as np
+import matplotlib.pyplot as plt
 
 
-$$\begin{align}
-1 \mathrm{eV} = \frac{1.602176634 \times 10^{-19}}{6.62607015×10^{−34}}
-     \times h \cdot 1 \mathrm{Hz} = 2.41799\times 10^{14} \times h \cdot 1 \mathrm{Hz}
-\end{align}$$
+def hamiltonian(N, gamma_l, gamma_r):
+    a = np.eye(N-1)
+    right = np.vstack((np.zeros(N-1), a))
+    right = np.hstack((right, np.zeros([N, 1])))
+    left = np.hstack((np.zeros([N-1, 1]), a))
+    left = np.vstack((left, np.zeros(N)))
+    pbc = np.zeros([N, N])
+    pbc[0, -1] = gamma_l        # peridical boundary condition
+    pbc[-1, 0] = gamma_r
+    h = left*gamma_l + right*gamma_r + pbc
+    return h
 
-<p>$2.41799\times 10^{14}$ 为 $\frac{e}{h}$ 的数值值( $e, h$ 取国际单位制 ).</p>
 
-<blockquote>Example1:
+N = 10
+h = hamiltonian(N, 1, 2)
+plt.imshow(h)
+plt.colorbar()
+plt.savefig('hamiltonian.png', transparent=True)
 
-原子发出可见光的跃是 eV 量级相互作用能级的跃迁, 对应于可见光的频率 $10^{14} \mathrm{Hz}$ .</blockquote>
+P = np.array([[np.exp(-1j*2*np.pi/N * a*b) for a in range(N)]
+              for b in range(N)])
+D = P.conjugate()@h@P
+plt.clf()
+plt.imshow(np.abs(D))
+plt.colorbar()
+plt.savefig('population.png', transparent=True)
 
-<blockquote>Example2:
+eigenvalues = np.array([D[i, i] for i in range(N)])
+plt.clf()
+for i in eigenvalues:
+    plt.plot(i.real, i.imag, 'bo')
+plt.xlabel('Re')
+plt.ylabel('Im')
+plt.savefig('eigenvalues.png', transparent=True)</code></pre>
+<p><a href='2022-10-03-physics-lindblad_master_eq/code.py'>code.py</a></p>
 
-氢原子 $2^2S_{1/2}$ 与 $2^2P_{1/2}$ 能级的 Lamb shift 为
-$4.4 \times 10^{-6} \mathrm{eV}$ , 对应频率大约为 $10^9 \mathrm{Hz}$ , 即 GHz .</blockquote>
+<p>周期边界条件下的 Hamiltonian:</p>
+
+<p><p><img src='2022-10-03-physics-lindblad_master_eq/hamiltonian.png' alt='hamiltonian' max-width:100%><p></p>
+
+<p>对坐标基底做 FFT , 换到动量基底下, Hamiltonian 就对角化了:</p>
+
+<p><p><img src='2022-10-03-physics-lindblad_master_eq/population.png' alt='population' max-width:100%><p></p>
+
+<p>本征值就是一组平面波:</p>
+
+<p><p><img src='2022-10-03-physics-lindblad_master_eq/eigenvalues.png' alt='eigenvalues' max-width:100%><p></p>
 
 <h2>Reference</h2>
 
 <ul>
-<li><a href='https://en.wikipedia.org/wiki/Wavenumber'>wikipedia: Wavenumber</a></li>
+<li><a href='https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.127.070402'>Phys. Rev. Lett. 127, 070402 (2021) Liouvillian Skin Effect: Slowing Down of Relaxation Processes without Gap Closing</a></li>
 <li><a href='https://en.wikipedia.org/wiki/Planck_constant'>wikipedia: Planck constant</a></li>
 <li><a href='https://en.wikipedia.org/wiki/Speed_of_light'>wikipedia: Speed of light</a></li>
 <li><a href='http://wild.life.nctu.edu.tw/class/common/energy-unit-conv-table.html'>Energy unit conversion table</a></li>
@@ -137,7 +188,10 @@ $4.4 \times 10^{-6} \mathrm{eV}$ , 对应频率大约为 $10^9 \mathrm{Hz}$ , �
             </section>
             <section class="post-meta">
                 <p>标签:
-                    <a class="post-link" href="../tags/Atomic and Optical Physics.html">Atomic and Optical Physics</a>
+                    <a class="post-link" href="../tags/物理.html">物理</a>
+                    <a class="post-link" href="../tags/Lindblad Master Equation.html">Lindblad Master Equation</a>
+                    <a class="post-link" href="../tags/FFT.html">FFT</a>
+                    <a class="post-link" href="../tags/tight binding.html">tight binding</a>
                 </p>
             </section>
         </main>

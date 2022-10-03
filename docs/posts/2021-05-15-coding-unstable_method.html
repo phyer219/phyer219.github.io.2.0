@@ -114,7 +114,7 @@ plt.legend()
 plt.savefig('unstable_method.png')</code></pre>
 
 <p>[[file:2021-05-15-coding-unstable_method/unstable_method.py]]
-<p><img src='2021-05-15-coding-unstable_method/unstable_method.png' alt='figalt' max-width: 100%><p></p>
+<p><img src='2021-05-15-coding-unstable_method/unstable_method.png' alt='figalt' max-width:100%><p></p>
 
 <h2>解决方法</h2>
 
@@ -172,7 +172,7 @@ Mathematica 中设置 WorkingPrecision 即为此方法.</p>
 </code></pre>
 
 <p>file:2021-05-15-coding-unstable_method/unstable_method_with_mpmath.py
-<p><img src='2021-05-15-coding-unstable_method/unstable_method_with_mpmath.png' alt='figalt' max-width: 100%><p></p>
+<p><img src='2021-05-15-coding-unstable_method/unstable_method_with_mpmath.png' alt='figalt' max-width:100%><p></p>
 
 <p>可以看出, 将求根的计算精度由 <code>numpy.float64</code> (53个二进制位表示一个浮点数) 提高到
 70 个二进制位表示一个浮点数, 在 $n\le 80$ 的范围内, round-off error 被压住了.</p>
@@ -250,7 +250,7 @@ result of numpy float64 type: (2.472099569305563, 1.412300021975624e-10)
 result of mpmath mpf type: (2.472099451021771, 7.496323446432029e-07)</code></pre>
 
 <p>[[file:2021-05-15-coding-unstable_method/mpmath_example.py]]
-<p><img src='2021-05-15-coding-unstable_method/mpmath_example.png' alt='figalt' max-width: 100%><p></p>
+<p><img src='2021-05-15-coding-unstable_method/mpmath_example.png' alt='figalt' max-width:100%><p></p>
 
 <p>可以看出如果用 <code>numpy.float64</code> 计算会提示 round-off error. </p>
 
