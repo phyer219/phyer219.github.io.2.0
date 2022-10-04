@@ -82,7 +82,7 @@ $$\begin{align}
 import matplotlib.pyplot as plt
 
 
-def unstable(n: int) -> float:
+def unstable(n: int) -&gt; float:
     p = []
     p.append(1)
     p.append((np.sqrt(5) - 1) / 2)
@@ -92,7 +92,7 @@ def unstable(n: int) -> float:
     return p[-1]
 
 
-def stable(n: int) -> float:
+def stable(n: int) -&gt; float:
     return ((np.sqrt(5) - 1) / 2)**n
 
 
@@ -132,7 +132,7 @@ Mathematica 中设置 WorkingPrecision 即为此方法.</p>
   print(mp)
 
 
-  def unstable(n: int) -> float:
+  def unstable(n: int) -&gt; float:
       p = []
       p.append(1)
       p.append((mp.sqrt(5) - 1) / 2)
@@ -142,7 +142,7 @@ Mathematica 中设置 WorkingPrecision 即为此方法.</p>
       return p[-1]
 
 
-  def stable(n: int) -> float:
+  def stable(n: int) -&gt; float:
       return ((np.sqrt(5) - 1) / 2)**n
 
 
@@ -164,7 +164,7 @@ Mathematica 中设置 WorkingPrecision 即为此方法.</p>
   plt.savefig('unstable_method_with_mpmath.png')
 
 
-    >>>
+    &gt;&gt;&gt;
     Mpmath settings:
       mp.prec = 70                [default: 53]
       mp.dps = 20                 [default: 15]
@@ -236,7 +236,7 @@ $\sim 1/k^2\to 0$ 的, 却出现抖动.</p>
   print('result of mpmath mpf type:', quad(func, 0, np.inf))
 
 
->>>
+&gt;&gt;&gt;
 Mpmath settings:
   mp.prec = 63                [default: 53]
   mp.dps = 18                 [default: 15]
@@ -263,7 +263,7 @@ result of mpmath mpf type: (2.472099451021771, 7.496323446432029e-07)</code></pr
 <li><a href='https://en.wikipedia.org/wiki/Numerical_stability'>wikipedia: Numerical stability</a></li>
 <li><a href='https://en.wikipedia.org/wiki/Double-precision_floating-point_format'>wikipedia: Double-precision floating-point format</a></li>
 <li><a href='https://mpmath.org/doc/1.2.0/index.html'>mpmath's documentation</a></li>
-<li>[[https://scicomp.stackexchange.com/questions/21483/how-to-avoid-the-round-off-errors-in-the-larger-calculations]]</li>
+<li><a href='https://scicomp.stackexchange.com/questions/21483/how-to-avoid-the-round-off-errors-in-the-larger-calculations'>https://scicomp.stackexchange.com/questions/21483/how-to-avoid-the-round-off-errors-in-the-larger-calculations</a></li>
 <li>Fan Yang 的讨论</li>
 </ul>
 

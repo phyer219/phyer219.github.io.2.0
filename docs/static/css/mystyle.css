@@ -131,6 +131,7 @@ table,th, td
 }
 blockquote{
     color: grey;
+    width: 100%;
 }
 
 .post-link{

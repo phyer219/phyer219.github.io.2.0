@@ -60,6 +60,9 @@ class WebSiteServer:
         server_process = Process(target=s.serve_forever)
         server_process.start()
 
+        watchdog_process.join()
+        server_process.join()
+
     def watch_source(self):
         """
         during the server runing, generate the post when it is modified.

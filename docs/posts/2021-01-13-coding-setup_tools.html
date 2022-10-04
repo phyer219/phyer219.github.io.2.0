@@ -71,22 +71,22 @@
 <h2>结果</h2>
 
 <p>安装完以后就可以调用了. 如</p>
-<pre><code class="language-python">>>> import saudade as sau
->>> @sau.timer
+<pre><code class="language-python">&gt;&gt;&gt; import saudade as sau
+&gt;&gt;&gt; @sau.timer
 ... def foo(x):
 ...     return x**2
 ... 
->>> foo(3)
+&gt;&gt;&gt; foo(3)
 Finished 'foo' in 0.0000 secs
 9
->>></code></pre>
+&gt;&gt;&gt;</code></pre>
 <p>可以看出, 可以调用包的中计时器了.</p>
 
 <p>而 <code>demo</code> 目录下的函数, 调用时要调用 demo , 如</p>
-<pre><code class="language-python">>>> import demo
->>> demo.hello()
+<pre><code class="language-python">&gt;&gt;&gt; import demo
+&gt;&gt;&gt; demo.hello()
 hello
->>></code></pre>
+&gt;&gt;&gt;</code></pre>
 
 <h2>源码说明</h2>
 
@@ -202,7 +202,7 @@ class PrincipalValueInt():
 
     def get_imag(self):
         """计算积分的虚部."""
-        root_exist = self.delta > 0
+        root_exist = self.delta &gt; 0
 
         if root_exist:
             # 如果根存在, 计算两根
@@ -210,8 +210,8 @@ class PrincipalValueInt():
             root2 = (-self.coeff[1] + np.sqrt(self.delta)) / (2 * self.coeff[0])
 
             # 判断两根是否位于积分区间内
-            root1_in = self.down_bound < root1 and root1 < self.upbound
-            root2_in = self.down_bound < root2 and root2 < self.upbound
+            root1_in = self.down_bound &lt; root1 and root1 &lt; self.upbound
+            root2_in = self.down_bound &lt; root2 and root2 &lt; self.upbound
 
             # 计算积分结果
             imag = (root1_in) * self.numerator(root1) 

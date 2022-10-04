@@ -1,7 +1,7 @@
 #+TITLE: FFT (Fast Fourier Transform) 笔记
 #+DATE: <2019-01-03>
 #+CATEGORIES: 专业笔记
-#+TAGS: Fourier, 数学, Python
+#+TAGS: Fourier, 数学, Python, FFT
 #+HTML: <!-- toc -->
 #+HTML: <!-- more -->
 * 问题

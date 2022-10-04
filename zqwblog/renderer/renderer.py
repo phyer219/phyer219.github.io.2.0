@@ -23,6 +23,8 @@ class HTMLRenderer(Renderer):
     def render_code(self, block):
         before = f'<pre><code class="language-{block.bmeta["lang"].strip():s}">'
         end = '</code></pre>'
+        block.data = block.data.replace(r'<', r'&lt;')
+        block.data = block.data.replace(r'>', r'&gt;')
         block.data = before + block.data + end
         return None
     def render_quote(self, block):
@@ -64,9 +66,14 @@ class HTMLRenderer(Renderer):
         block.data = li
         return None
     def sub_url(self, match):
-        return f"<a href='{match.group('url'):s}'>{match.group('tag'):s}</a>"
-    def sub_url(self, match):
-        return f"<a href='{match.group('url'):s}'>{match.group('tag'):s}</a>"
+        res = f"<a href='{match.group('url'):s}'>"
+        if match.group('tag'):
+            res += f"{match.group('tag'):s}</a>"
+        else:
+            res += f"{match.group('url'):s}</a>"
+        return res
+    # def sub_url(self, match):
+    #     return f"<a href='{match.group('url'):s}'>{match.group('tag'):s}</a>"
     def sub_figure(self, match):
         res = f"<p><img src='{match.group('path'):s}'"
         if match.group('figalt'):

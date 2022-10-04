@@ -23,4 +23,4 @@ vx, vy = field(X, Y)
 
 
 plt.streamplot(x, y, vx, vy)
-plt.savefig('magnetic-dipole.png')
+plt.savefig('magnetic-dipole.png', transparent=True)

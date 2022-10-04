@@ -203,8 +203,8 @@ int func(int *A);</code></pre>
 
 <h3>1. Using a single pointer</h3>
 
-<pre><code class="language-c">#include <stdio.h>
-#include <stdlib.h>
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
 
 int main()
 {
@@ -212,12 +212,12 @@ int main()
     int *arr = (int *)malloc(r * c * sizeof(int));
 
     int i, j, count = 0;
-    for (i = 0; i <  r; i++)
-      for (j = 0; j < c; j++)
+    for (i = 0; i &lt;  r; i++)
+      for (j = 0; j &lt; c; j++)
          *(arr + i*c + j) = ++count;
 
-    for (i = 0; i <  r; i++)
-      for (j = 0; j < c; j++)
+    for (i = 0; i &lt;  r; i++)
+      for (j = 0; j &lt; c; j++)
          printf("%d ", *(arr + i*c + j));
 
    /* Code for further processing and free the
@@ -228,25 +228,25 @@ int main()
 
 <h3>2. Using an array of pointers</h3>
 
-<pre><code class="language-c">#include <stdio.h>
-#include <stdlib.h>
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
 
 int main()
 {
 	int r = 3, c = 4, i, j, count;
 
 	int *arr[r];
-	for (i=0; i<r; i++)
+	for (i=0; i&lt;r; i++)
 		arr[i] = (int *)malloc(c * sizeof(int));
 
 	// Note that arr[i][j] is same as *(*(arr+i)+j)
 	count = 0;
-	for (i = 0; i < r; i++)
-	for (j = 0; j < c; j++)
+	for (i = 0; i &lt; r; i++)
+	for (j = 0; j &lt; c; j++)
 		arr[i][j] = ++count; // Or *(*(arr+i)+j) = ++count
 
-	for (i = 0; i < r; i++)
-	for (j = 0; j < c; j++)
+	for (i = 0; i &lt; r; i++)
+	for (j = 0; j &lt; c; j++)
 		printf("%d ", arr[i][j]);
 
 	/* Code for further processing and free the
@@ -257,25 +257,25 @@ return 0;
 
 <h3>3. Using pointer to a pointer</h3>
 
-<pre><code class="language-c">#include <stdio.h>
-#include <stdlib.h>
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
 
 int main()
 {
 	int r = 3, c = 4, i, j, count;
 
 	int **arr = (int **)malloc(r * sizeof(int *));
-	for (i=0; i<r; i++)
+	for (i=0; i&lt;r; i++)
 		arr[i] = (int *)malloc(c * sizeof(int));
 
 	// Note that arr[i][j] is same as *(*(arr+i)+j)
 	count = 0;
-	for (i = 0; i < r; i++)
-	for (j = 0; j < c; j++)
+	for (i = 0; i &lt; r; i++)
+	for (j = 0; j &lt; c; j++)
 		arr[i][j] = ++count; // OR *(*(arr+i)+j) = ++count
 
-	for (i = 0; i < r; i++)
-	for (j = 0; j < c; j++)
+	for (i = 0; i &lt; r; i++)
+	for (j = 0; j &lt; c; j++)
 		printf("%d ", arr[i][j]);
 
 /* Code for further processing and free the
@@ -286,8 +286,8 @@ return 0;
 
 <h3>4. Using double pointer and one malloc call</h3>
 
-<pre><code class="language-c">#include<stdio.h>
-#include<stdlib.h>
+<pre><code class="language-c">#include&lt;stdio.h&gt;
+#include&lt;stdlib.h&gt;
 
 int main()
 {
@@ -302,15 +302,15 @@ int main()
 	ptr = (int *)(arr + r);
 
 	// for loop to point rows pointer to appropriate location in 2D array
-	for(i = 0; i < r; i++)
+	for(i = 0; i &lt; r; i++)
 		arr[i] = (ptr + c * i);
 
-	for (i = 0; i < r; i++)
-		for (j = 0; j < c; j++)
+	for (i = 0; i &lt; r; i++)
+		for (j = 0; j &lt; c; j++)
 			arr[i][j] = ++count; // OR *(*(arr+i)+j) = ++count
 
-	for (i = 0; i < r; i++)
-		for (j = 0; j < c; j++)
+	for (i = 0; i &lt; r; i++)
+		for (j = 0; j &lt; c; j++)
 			printf("%d ", arr[i][j]);
 
 	return 0;
@@ -319,8 +319,8 @@ int main()
 <h2>Memory leak</h2>
 
 <p>下面的 code 可以演示内存泄漏</p>
-<pre><code class="language-c">include <stdio.h>
- #include <stdlib.h>
+<pre><code class="language-c">include &lt;stdio.h&gt;
+ #include &lt;stdlib.h&gt;
 
  void f(void)
  {
