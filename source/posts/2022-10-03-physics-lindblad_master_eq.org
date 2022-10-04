@@ -129,9 +129,3 @@ plt.savefig('eigenvalues.png', transparent=True)
 * Reference
 
 - [[https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.127.070402][Phys. Rev. Lett. 127, 070402 (2021) Liouvillian Skin Effect: Slowing Down of Relaxation Processes without Gap Closing]]
-
-- [[https://en.wikipedia.org/wiki/Planck_constant][wikipedia: Planck constant]]
-
-- [[https://en.wikipedia.org/wiki/Speed_of_light][wikipedia: Speed of light]]
-
-- [[http://wild.life.nctu.edu.tw/class/common/energy-unit-conv-table.html][Energy unit conversion table]]
