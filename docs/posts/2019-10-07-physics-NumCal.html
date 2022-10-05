@@ -80,8 +80,7 @@ $$\begin{align}
 \end{align}$$
 
 
-<p>#+BEGIN_SRC python
-  from scipy.special import roots_legendre as leg
+<pre><code class="language-python">  from scipy.special import roots_legendre as leg
   def gauquad(f, a, b, n=50):
       '''
       定义 Gaussian quadrature 积分
@@ -90,15 +89,14 @@ $$\begin{align}
       def Gaussian quadrature integration
       integrate function f from a to b
       take n Legendre roots
-      '''</p>
-<h2>(b-a)/2</h2>
-<p>      x, w = leg(n)
+      '''
+      ft = lambda t: f( (b-a)*t/2 +(a+b)/2 ) * (b-a)/2
+      x, w = leg(n)
       I = 0
       for i in range(n):
           I = I + w[i]*ft(x[i])
       err = 0                     # 为了与 scipy.integrate 中积分函数的输出一致, 多一个 err 参数.
-      return I,err
-#+END_SRC</p>
+      return I,err</code></pre>
 
 <h2>Cauchy Principal Value (CPV) Gaussian Quadrature</h2>
 
@@ -137,8 +135,7 @@ $$\begin{align}
 
 <p>如果奇点不是 $0$ , 也可以通过换元转化成上式的形式.</p>
 <h3>code</h3>
-<p>#+BEGIN_SRC python
-from scipy import integrate
+<pre><code class="language-python">from scipy import integrate
 from scipy.integrate import fixed_quad
 def sgq(f, a, b, sp, n=10):
     """带有主值积分的积分.
@@ -148,15 +145,14 @@ def sgq(f, a, b, sp, n=10):
     def ff(t):
         ff = f(t+sp) + f(-t+sp)
         return ff
-    if diffa<diffb:
+    if diffa&lt;diffb:
         sgq1, err = gauquad(ff, 0, sp-a, n=rootNum)
         sgq2, err = gauquad(f, 2*sp-a, b, n=rootNum)
     else:
         sgq1, err = gauquad(ff, 0, b-sp, n=rootNum)
         sgq2, err = gauquad(f, a, 2*sp-b, n=rootNum)
     sgq = sgq1 + sgq2
-    return sgq, err
-#+END_SRC</p>
+    return sgq, err</code></pre>
 
 <h2>Tanh-Sinh Quadrature</h2>
 <p>对于端点发散的情况, 可以用 Tanh-Sinh quadrature (Double Exponential)
@@ -188,9 +184,8 @@ $$\begin{align}
 
 <p>权重 $w(t)$ 是一个以原点为中心的钟形函数, 因此可以抵消原来在端点的发散.</p>
 
-<p>然后将积分离散化, 将积分区间作适当截断, 做数值计算.
-#+BEGIN_SRC python
-def ts(f, a, b, n=51):
+<p>然后将积分离散化, 将积分区间作适当截断, 做数值计算.</p>
+<pre><code class="language-python">def ts(f, a, b, n=51):
     """Tanh-sinh quadrature 方法.
     适用于端点发散的情况."""
     up = 4
@@ -203,10 +198,9 @@ def ts(f, a, b, n=51):
     for i in range(n):
         p = (x[i]*(b-a) + a + b)/2
         gc = gc + f(p)*w[i]
-    err = 0</p>
-<h2>(b-a)/2</h2>
-<p>    return gc, err
-#+END_SRC</p>
+    err = 0
+    gc = gc * (b-a)/2
+    return gc, err</code></pre>
 
 <h2>Reference</h2>
 

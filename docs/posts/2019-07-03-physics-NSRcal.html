@@ -234,24 +234,23 @@ $$\begin{align}
 
 <p>计算 $\Delta F$</p>
 
-<p>#+BEGIN_SRC python
-from matplotlib import pyplot as plt
+<pre><code class="language-python">from matplotlib import pyplot as plt
 import numpy as np
 from scipy import integrate
 #from scipy.misc import derivative
 from scipy.integrate import fixed_quad
-import time</p>
+import time
 
-<p>start = time.process_time()</p>
+start = time.process_time()
 
-<p>nn = 10</p>
+nn = 10
 
-<p>beta = 1
+beta = 1
 er = 1e-6
 R = 1/30
-epsabs = 1e-1</p>
+epsabs = 1e-1
 
-<p>def xi(k, mu):
+def xi(k, mu):
     return k**2 - mu
 def n(k, mu):
     x = xi(k,mu)
@@ -260,19 +259,19 @@ def n(k, mu):
     return n
     
 def z(omega, q, mu):
-    return omega - q**2/2 + 2*mu</p>
+    return omega - q**2/2 + 2*mu
 
-<p>def pi(omega, q, k, mu):
+def pi(omega, q, k, mu):
     pi = 1 + n(k+q/2, mu) + n(-k+q/2, mu)
-    pi = pi / (xi(k+q/2, mu) + xi(-k+q/2, mu) -omega)</p>
-<h2>k**4</h2>
-<p>    pi = pi -k**2/2 - z(omega, q, mu)/4
+    pi = pi / (xi(k+q/2, mu) + xi(-k+q/2, mu) -omega)
+    pi = pi * k**4
+    pi = pi -k**2/2 - z(omega, q, mu)/4
     pi = pi*2 / np.pi**2
-    return pi</p>
+    return pi
 
-<p>def PI(omega, q, mu):
+def PI(omega, q, mu):
     zz = z(omega, q, mu)
-    if zz<0:
+    if zz&lt;0:
         PI, err = fixed_quad(lambda x: pi(omega, q, x, mu), er, 10,
                              n=nn) 
     else:
@@ -281,87 +280,85 @@ def z(omega, q, mu):
                               n=nn) 
         PI2, err = fixed_quad(lambda x: pi(omega, q, x, mu), a+er,
                               10, n=nn)
-        PI = PI1 + PI2</p>
-<h2>R</h2>
-<p>    return PI</p>
+        PI = PI1 + PI2
+    PI = PI * R
+    return PI
 
-<p>def delta(omega, q, rkv, mu):
+def delta(omega, q, rkv, mu):
     zz = z(omega, q, mu)
-    if zz<0:
+    if zz&lt;0:
         img = 0
     else:
         k = np.sqrt(zz/2)
-        img = 1 + n(k+q/2, mu) + n(-k+q/2, mu)</p>
-<h2>R/(2*np.pi)</h2>
-<h2>k**3</h2>
-<p>    rel = PI(omega, q, mu)
+        img = 1 + n(k+q/2, mu) + n(-k+q/2, mu)
+        img = img * R/(2*np.pi)
+        img = img * k**3
+    rel = PI(omega, q, mu)
     rel = rel + rkv/(4*np.pi)
     rel = rel +zz/(4*np.pi)
     delta = np.angle(rel + 1j*img) - np.pi
     return delta
 def f(omega, q, rkv, mu):
-    f = 1 / (np.exp(beta*omega) - 1)</p>
-<h2>delta(omega, q, rkv, mu)</h2>
-<h2>f /np.pi</h2>
-<p>    return f</p>
+    f = 1 / (np.exp(beta*omega) - 1)
+    f = f * delta(omega, q, rkv, mu)
+    f = 3 * f /np.pi
+    return f
 
-<p>def F(rkv, mu):
+def F(rkv, mu):
     ff = lambda y, x: f(y, x, rkv, mu)
     F, err = integrate.dblquad(ff, er, 3, lambda x:er, lambda x:10, epsabs
                                = epsabs)
-    return F</p>
+    return F
 
 
-<p>M = 1000
+M = 1000
 N = 10
 x = np.linspace(0, 2, M)
 y = np.zeros(M*N)
-y.shape = (M, N)</p>
+y.shape = (M, N)
 
-<p>mu = np.linspace(-2.1, -1.2, N)</p>
+mu = np.linspace(-2.1, -1.2, N)
 
-<p>for j in range(N):
+for j in range(N):
     for i in range(M):
         y[i, j] = F(x[i], mu[j])
-        print('mu_', j, 'y_', i, '=', y[i, j])</p>
+        print('mu_', j, 'y_', i, '=', y[i, j])
 
-<p>np.savetxt('y.txt', y)
-print(y)</p>
+np.savetxt('y.txt', y)
+print(y)
 
-<p>density = np.zeros(M*(N-2))
+density = np.zeros(M*(N-2))
 density.shape = (M, N-2)
-dd = mu[1] - mu[0]</p>
+dd = mu[1] - mu[0]
 
-<p>for j in range(N-2):
+for j in range(N-2):
     for i in range(M):
         density[i, j] = y[i, j+2] - y[i, j]
         density[i, j] = - density[i, j] / (2*dd)
-        print('mu_', j, 'density_', i, '=', density[i, j])</p>
+        print('mu_', j, 'density_', i, '=', density[i, j])
 
-<p>np.savetxt('density.txt', density)
-print(density)</p>
+np.savetxt('density.txt', density)
+print(density)
 
-<p>for i in range(N):
-    plt.plot(x, y[:, i], label<code>r'$\mu/\epsilon$</code>%.2f' %mu[i])
-plt.legend()</p>
+for i in range(N):
+    plt.plot(x, y[:, i], label=r'$\mu/\epsilon$=%.2f' %mu[i])
+plt.legend()
 
-<p>end = time.process_time()
+end = time.process_time()
 print('time=', end-start, 'seconds')
-plt.show()</p>
-
-<p>#+END_SRC</p>
+plt.show()
+</code></pre>
 
 <p>计算 $T_{C}$</p>
 
-<p>#+BEGIN_SRC python
-N = 100
-rkv = np.linspace(-10, -.1, N)</p>
+<pre><code class="language-python">N = 100
+rkv = np.linspace(-10, -.1, N)
 
-<p>f0 = np.zeros(N)
+f0 = np.zeros(N)
 f1 = np.zeros(N)
-density = np.zeros(N)</p>
+density = np.zeros(N)
 
-<p>for i in range(N):
+for i in range(N):
     print('rkv_', i, '=', rkv[i])
     f0[i] = F(rkv[i], -1e-3)
     print('f0_', i, '=', f0[i])
@@ -372,25 +369,23 @@ density = np.zeros(N)</p>
     
 np.savetxt('f0.txt', f0)
 np.savetxt('f1.txt', f1)
-np.savetxt('density.txt', density)</p>
+np.savetxt('density.txt', density)
 
-<p>x = np.zeros(N)
+x = np.zeros(N)
 y = np.zeros(N)
 for i in range(N):
     x[i] = rkv[i]/(density[i]**(2/3))
     y[i] = 1/(density[i]**(2/3))
-plt.plot(x, y)</p>
+plt.plot(x, y)
 
-<p>end = time.process_time()
+end = time.process_time()
 print('time=', end-start, 'seconds')
 plt.xlabel(r'$2R/(k_n^2 v)$')
 plt.ylabel(r'$k_BT_C/E_n$')
-plt.show()</p>
+plt.show()
+</code></pre>
 
-<p>#+END_SRC</p>
-
-<p>#+BEGIN_SRC python
-def tm(omega, q, rkv, mu):
+<pre><code class="language-python">def tm(omega, q, rkv, mu):
     zz = z(omega, q, mu)
     rel = PI(omega, q, mu)
     rel = rel + rkv/(4*np.pi)
@@ -406,26 +401,26 @@ for j in range(M):
     c = 0
     for i in range(N):
         y[i] = tm(0, 0, rkv[j], mu[i])
-        if np.abs(y[i])<np.abs(y[c]):
+        if np.abs(y[i])&lt;np.abs(y[c]):
             c = i
     print('y_', c, '=', y[c])
-    muRoot[j] = mu[c]</p>
+    muRoot[j] = mu[c]
 
-<p>    plt.plot(mu, y, label<code>r'$2R/(k_{\epsilon}^2v)</code>%.1f$'%rkv[j])
+    plt.plot(mu, y, label=r'$2R/(k_{\epsilon}^2v)=%.1f$'%rkv[j])
 plt.legend()
 plt.xlabel(r'$\mu/\epsilon$')
 plt.ylabel(r'$T^{-1}$')
 print(muRoot)
-plt.show()</p>
+plt.show()
 
-<p>Tc = np.zeros(M)
-Rn = np.zeros(M)</p>
+Tc = np.zeros(M)
+Rn = np.zeros(M)
 
-<p>dens = np.zeros(M)
+dens = np.zeros(M)
 for i in range(M):
-    print(i)</p>
-<h2>.1</h2>
-<p>    print('dd=', dd)
+    print(i)
+    dd = np.abs(muRoot[i]) * .1
+    print('dd=', dd)
     f1 = F(rkv[i], muRoot[i]+dd)
     print('f1=', f1)
     f2 = F(rkv[i], muRoot[i]-dd)
@@ -443,11 +438,10 @@ print('time is', end-start, 'secends')
 np.savetxt('density.txt', dens)
 plt.plot(Rn, Tc)
 plt.xlabel(r'$2R/(k_n^2 v)$')
-plt.ylabel(r'$k_BT_C/E_n$')</p>
+plt.ylabel(r'$k_BT_C/E_n$')
 
-<p>plt.show()</p>
-
-<p>#+END_SRC</p>
+plt.show()
+</code></pre>
 
             </section>
             <section class="post-meta">

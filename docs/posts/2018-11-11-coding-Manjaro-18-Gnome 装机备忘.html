@@ -62,17 +62,13 @@
 
 <p>生成可用中国镜像站列表:</p>
 
-<p>#+BEGIN_SRC shell
-sudo pacman-mirrors -i -c China -m rank
-#+END_SRC</p>
+<pre><code class="language-shell">sudo pacman-mirrors -i -c China -m rank</code></pre>
 
 <p>出现镜像列表后勾选所需要的镜像.</p>
 
 <p>然后刷新缓存:</p>
 
-<p>#+BEGIN_SRC shell
-sudo pacman -Syy
-#+END_SRC</p>
+<pre><code class="language-shell">sudo pacman -Syy</code></pre>
 
 <p>参见: <a href='http://mirrors.ustc.edu.cn/help/manjaro.html'>http://mirrors.ustc.edu.cn/help/manjaro.html</a></p>
 
@@ -80,10 +76,8 @@ sudo pacman -Syy
 
 <p>在 `/etc/pacman.conf` 文件末尾添加两行：</p>
 
-<p>#+BEGIN_SRC shell
-[archlinuxcn]
-Server = https://mirrors.ustc.edu.cn/archlinuxcn/$arch
-#+END_SRC</p>
+<pre><code class="language-shell">[archlinuxcn]
+Server = https://mirrors.ustc.edu.cn/archlinuxcn/$arch</code></pre>
 
 <p>刷新</p>
 <pre><code class="language-shell">sudo pacman -Syy</code></pre>
@@ -97,17 +91,13 @@ Server = https://mirrors.ustc.edu.cn/archlinuxcn/$arch
 <ul>
 <li>安装 yaourt</li>
 </ul>
-<p>#+BEGIN_SRC shell
-sudo pacman -S yaourt</p>
-
-<p>#+END_SRC</p>
+<pre><code class="language-shell">sudo pacman -S yaourt
+</code></pre>
 <ul>
 <li>安装 base-devel</li>
 </ul>
-<p>#+BEGIN_SRC shell
-sudo pacman -S base-devel</p>
-
-<p>#+END_SRC</p>
+<pre><code class="language-shell">sudo pacman -S base-devel
+</code></pre>
 
 <p>参见: <a href='https://wiki.archlinux.org/index.php/Arch_User_Repository_(%25E7%25AE%2580%25E4%25BD%2593%25E4%25B8%25AD%25E6%2596%2587)'>https://wiki.archlinux.org/index.php/Arch_User_Repository_(%25E7%25AE%2580%25E4%25BD%2593%25E4%25B8%25AD%25E6%2596%2587)</a></p>
 
@@ -116,29 +106,23 @@ sudo pacman -S base-devel</p>
 
 <h5>连不上网</h5>
 
-<p>#+BEGIN_SRC shell
-systemctl start snapd.service
-#+END_SRC</p>
+<pre><code class="language-shell">systemctl start snapd.service</code></pre>
 
 <h3>中文输入法</h3>
 
 <h4>安装</h4>
 
-<p>#+BEGIN_SRC shell
-sudo pacman -S fcitx
+<pre><code class="language-shell">sudo pacman -S fcitx
 sudo pacman -S fcitx -configtool   ----配置工具
-sudo pacman -S fcitx-sogoupinyin    ----可选安装，fcitx默认已有中文输入
-#+END_SRC</p>
+sudo pacman -S fcitx-sogoupinyin    ----可选安装，fcitx默认已有中文输入</code></pre>
 
 <h4>配置文件</h4>
 
 <p>在 <code>~/.xprofile</code> 中添加以下内容</p>
 
-<p>#+BEGIN_SRC shell
-export GTK_IM_MODULE=fcitx
+<pre><code class="language-shell">export GTK_IM_MODULE=fcitx
 export QT_IM_MODULE=fcitx
-export XMODIFIERS<code>@im</code>fcitx
-#+END_SRC</p>
+export XMODIFIERS=@im=fcitx</code></pre>
 
 
 <p>参见: <a href='https://wiki.archlinux.org/index.php/Fcitx_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)#.E5.AE.89.E8.A3.85'>https://wiki.archlinux.org/index.php/Fcitx_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)#.E5.AE.89.E8.A3.85</a></p>
@@ -163,9 +147,7 @@ export XMODIFIERS<code>@im</code>fcitx
 
 <h4>安装 Hexo</h4>
 
-<p>#+BEGIN_SRC shell
-sudo npm install -g hexo-cli
-#+END_SRC</p>
+<pre><code class="language-shell">sudo npm install -g hexo-cli</code></pre>
 
 <h4>复制旧的文件过来</h4>
 
@@ -173,23 +155,17 @@ sudo npm install -g hexo-cli
 
 <h5>执行命令安装sitemap</h5>
 
-<p>#+BEGIN_SRC shell
-npm install hexo-generator-sitemap --save
-#+END_SRC</p>
+<pre><code class="language-shell">npm install hexo-generator-sitemap --save</code></pre>
 
 <h5>在Hexo站点配置文件 _config.yml 中加入 sitemap 插件</h5>
 
-<p>#+BEGIN_SRC shell
-# Extensions
-plugins: hexo-generator-sitemap
-#+END_SRC</p>
+<pre><code class="language-shell"># Extensions
+plugins: hexo-generator-sitemap</code></pre>
 
 <h5>执行命令生成sitemap文件</h5>
 
-<p>#+BEGIN_SRC
-hexo clean
-hexo g
-#+END_SRC</p>
+<pre><code class="language-">hexo clean
+hexo g</code></pre>
 
 <h3>emacs</h3>
 
@@ -207,10 +183,8 @@ hexo g
 
 <h4>不能连网：</h4>
 
-<p>#+BEGIN_SRC shell
-sudo teamviewer --daemon start
-teamviewer
-#+END_SRC</p>
+<pre><code class="language-shell">sudo teamviewer --daemon start
+teamviewer</code></pre>
 
 
 

@@ -276,19 +276,18 @@ $$\begin{align*}
 
 <h4>code</h4>
 
-<p>#+BEGIN_SRC python</p>
-
-<p>import numpy as np
+<pre><code class="language-python">
+import numpy as np
 from matplotlib import pyplot as plt
-from scipy import integrate</p>
+from scipy import integrate
 
-<p># 定义变量
-l = 1 # lambd_tilde</p>
+# 定义变量
+l = 1 # lambd_tilde
 
-<p>#画图的精度
-N = 1000</p>
+#画图的精度
+N = 1000
 
-<p># 定义delta函数
+# 定义delta函数
 def delta(x):
     b = .0001
     f = b/(b**2 + x**2)/np.pi
@@ -297,60 +296,59 @@ def delta(x):
 def pv(x):
     b = 0.0001
     f = x/(b*2 + x**2)
-    return f</p>
+    return f
 
 
-<p># 定义最终想要得到的函数
-def I(o,d):</p>
+# 定义最终想要得到的函数
+def I(o,d):
 
-<p>    def I(q):#定义没有积分的结果</p>
+    def I(q):#定义没有积分的结果
 
-<p>        def A(q):#定义theta的虚部
+        def A(q):#定义theta的虚部
             def A(p):
-                x = o + (p-q)**2/2 - d</p>
-<h2>delta(x)</h2>
-<p>                return A
+                x = o + (p-q)**2/2 - d
+                A =np.pi * delta(x)
+                return A
             (fres,err) = integrate.quad(A,0,1)
-            return fres</p>
+            return fres
 
-<p>        def B(q):#定义theta的实部
+        def B(q):#定义theta的实部
             def B(p):
                 x = o + (p-q)**2/2 - d
                 B = pv(x)
                 return B
             (fres,err) = integrate.quad(B,0,1)
-            return fres</p>
+            return fres
 
-<p>        I = l**2*A(q) / ( (o-l**2*B(q))**2 + l**4*A(q)**2 )
-        return I</p>
+        I = l**2*A(q) / ( (o-l**2*B(q))**2 + l**4*A(q)**2 )
+        return I
 
-<p>    (fres,err) = integrate.quad(I,0,1)#对其积分,即得到最终结果
-    return(fres)</p>
+    (fres,err) = integrate.quad(I,0,1)#对其积分,即得到最终结果
+    return(fres)
 
 
 
-<p>#画图的横坐标omega从-2取到2
-omega = np.linspace(-2,2,N)</p>
+#画图的横坐标omega从-2取到2
+omega = np.linspace(-2,2,N)
 
-<p>C = 33 # 画C根线
+C = 33 # 画C根线
 #求出想要的函数在横坐标取值区间内的结果
-I_omega = np.linspace(0,0,N)</p>
+I_omega = np.linspace(0,0,N)
 
-<p>for j in range (C):
+for j in range (C):
     d = j-(C-1)/2
     d = d/2 #间距是分母分之一
     for i in range(N):
         I_omega[i-1] = I(omega[i-1],d)
         print(d)
         print(i-1)
-    plt.plot(omega,I_omega+100*j, label<code>'d</code> %.2f' %(d) , color='gray')</p>
+    plt.plot(omega,I_omega+100*j, label='d= %.2f' %(d) , color='gray')
 
-<p>#plt.legend()</p>
+#plt.legend()
 
-<p>plt.show()</p>
+plt.show()
 
-
-<p>#+END_SRC</p>
+</code></pre>
 
 <h4>fig</h4>
 
@@ -560,84 +558,82 @@ $$\begin{align*}
 
 <h4>code</h4>
 
-<p>#+BEGIN_SRC python
-import numpy as np
+<pre><code class="language-python">import numpy as np
 from matplotlib import pyplot as plt
-from scipy import integrate</p>
+from scipy import integrate
 
-<p>l = 1                           # 定义变量</p>
+l = 1                           # 定义变量
 
-<p>def delta(x):
+def delta(x):
     b = .01
     f = b/(b**2 + x**2)/np.pi
-    return f</p>
+    return f
 
-<p>def I(o,d):
+def I(o,d):
     def I(q):
         r1 = q + np.sqrt( 2*(d-o) )
-        r2 = q - np.sqrt( 2*(d-o) )</p>
+        r2 = q - np.sqrt( 2*(d-o) )
 
-<p>        a1 = 0                  # 无根</p>
-<h2>( \</h2>
-<p>                         np.arctan( (1-q)/np.sqrt( 2*(o-d) )  ) - \
-                         np.arctan( ( -q)/np.sqrt( 2*(o-d) )  ))</p>
+        a1 = 0                  # 无根
+        b1 = 1/(o-d) * ( \
+                         np.arctan( (1-q)/np.sqrt( 2*(o-d) )  ) - \
+                         np.arctan( ( -q)/np.sqrt( 2*(o-d) )  ))
 
-<p>        a2 = 1/np.sqrt( 2*(d-o) ) # 根都在积分区间内
+        a2 = 1/np.sqrt( 2*(d-o) ) # 根都在积分区间内
         b2 = 1/(r1-r2)*np.log( ( (1-r1)*r2 )/ \
-                               ( (1-r2)*r1 ) )</p>
+                               ( (1-r2)*r1 ) )
 
-<p>        a3 = .5/np.sqrt( 2*(d-o) ) # 一内一外
+        a3 = .5/np.sqrt( 2*(d-o) ) # 一内一外
         b3 = 1/(r1-r2)*np.log(-( (1-r1)*r2 )/ \
-                               ( (1-r2)*r1 ) )</p>
+                               ( (1-r2)*r1 ) )
 
-<p>        a4 = 0                   # 都在外
-        b4 = b2</p>
+        a4 = 0                   # 都在外
+        b4 = b2
 
-<p>        if o>d:
+        if o&gt;d:
             A, B = a1, b1
             case = 1
-        elif o>(d-q**2/2) and o>(d-(1-q)**2/2):
+        elif o&gt;(d-q**2/2) and o&gt;(d-(1-q)**2/2):
             A, B = a2, b2
             case = 2
-        elif o>(d-q**2/2) or o>(d-(1-q)**2/2):
+        elif o&gt;(d-q**2/2) or o&gt;(d-(1-q)**2/2):
             A, B = a3, b3
             case = 3
         else:
             A, B = a4, b4
-            case = 4</p>
+            case = 4
 
-<p>        if case <code>= 2 or case =</code> 3:
+        if case == 2 or case == 3:
             I = l**2*A / ( (o-l**2*B)**2 + l**4*A**2 )
         else:
             I = delta(o - l**2*B)
         return I
     (fres, err) = integrate.quad(I, 0, 1)
-    return fres</p>
+    return fres
 
 
 
 
-<p>N = 1000
+N = 1000
 #画图的横坐标omega从-2取到2
-omega = np.linspace(-2,2,N)</p>
+omega = np.linspace(-2,2,N)
 
-<p>C = 33 # 画C根线
+C = 33 # 画C根线
 #求出想要的函数在横坐标取值区间内的结果
-I_omega = np.linspace(0,0,N)</p>
+I_omega = np.linspace(0,0,N)
 
-<p>for j in range (C):
+for j in range (C):
     d = j-(C-1)/2
     d = d/2 #间距是分母分之一
     for i in range(N):
         I_omega[i-1] = I(omega[i-1],d)
         print(d)
         print(i-1)
-    plt.plot(omega,I_omega+j*10, label<code>'d</code> %.2f' %(d) , color='gray')</p>
+    plt.plot(omega,I_omega+j*10, label='d= %.2f' %(d) , color='gray')
 
 
-<p>plt.show()</p>
-
-<p>#+END_SRC</p>
+plt.show()
+</code></pre>
 
 <h3>fig</h3>
 
@@ -708,9 +704,8 @@ $$\begin{align*}
 
 <p>file:./2019-02-21-physics-RF谱RPA文献重复/T=1.py</p>
 
-<p>file:./2019-02-21-physics-RF谱RPA文献重复/T=1.py
-#+BEGIN_SRC python
-import numpy as np
+<p>file:./2019-02-21-physics-RF谱RPA文献重复/T=1.py</p>
+<pre><code class="language-python">import numpy as np
 from matplotlib import pyplot as plt
 from scipy import integrate
 from scipy.special import roots_legendre as leg
@@ -722,15 +717,15 @@ def gauquad(f,a,b,n = 50):
     def Gaussian quadrature integration
     integrate function f from a to b
     take n Legendre roots
-    '''</p>
-<h2>(b-a)/2</h2>
-<p>    x, w = leg(n)
+    '''
+    ft = lambda t: f( (b-a)*t/2 +(a+b)/2 ) * (b-a)/2
+    x, w = leg(n)
     I = 0
     for i in range(n):
         I = I + w[i]*ft(x[i])
     err = 0
     return I,err
-def twovarplt(f,ax,bx,ay,by,Nx<code>100,Ny</code>10,gap = 2):
+def twovarplt(f,ax,bx,ay,by,Nx=100,Ny=10,gap = 2):
     '''
     两变量画图
     f(x,y): 要绘制的函数
@@ -756,13 +751,13 @@ def twovarplt(f,ax,bx,ay,by,Nx<code>100,Ny</code>10,gap = 2):
     plt.ylabel(r'$I(\tilde{\omega})$')
     plt.yticks([])
     plt.savefig('./T = 2.jpeg',writer='imagemagick')
-    plt.show()</p>
+    plt.show()
 
-<p>def f(p,m,T):   # Fermi distribution function
+def f(p,m,T):   # Fermi distribution function
     f = 1/(np.exp((p**2-m)/T)+1)
     return f
 def theta(x):   # Heaviside theta function
-    if x>=0:
+    if x&gt;=0:
         f = 1
     else:
         f = 0
@@ -770,16 +765,16 @@ def theta(x):   # Heaviside theta function
 def delta(x,b = 1e-2):  # Dirac delta function
     b = 1e-2
     f = b/(b**2 + x**2)/np.pi
-    return f</p>
+    return f
 
-<p>T = 2  # Temperature
+T = 2  # Temperature
 m = 1   # Chemical potential mu
-up = 10 # Integration cut off of </p>
+up = 10 # Integration cut off of 
 
-<p>def A(o,d,k,p): # the unintegrated Imaginary part of self-energy
+def A(o,d,k,p): # the unintegrated Imaginary part of self-energy
     x1 = o-d+p**2/2+k**2/2-p*k
     x2 = o-d+p**2/2+k**2/2+p*k
-    if x1>0 or x2<0:
+    if x1&gt;0 or x2&lt;0:
         A = 0
     else:
         A = np.pi*p/k*f(p,m,T)
@@ -792,9 +787,9 @@ def s(o,d,k,p): # the unintegrated Real part of self-energy
     return s
 def S(o,d,k):   # the integrated Real part of self-energy
     S,err = gauquad(lambda p:s(o,d,k,p),0,up)
-    return S</p>
+    return S
 
-<p>def I(o,d,k):   # the unintegrated spectral function
+def I(o,d,k):   # the unintegrated spectral function
     aa = AA(o,d,k)
     bb = S(o,d,k)
     if aa == 0:
@@ -803,24 +798,24 @@ def S(o,d,k):   # the integrated Real part of self-energy
         I = k**2*f(k,m,T)*aa/((o-bb)**2+aa**2)
     return I
 def II(o,d):    # the integrated spectral function
-    if d>o:
+    if d&gt;o:
         II,err = gauquad(lambda k:I(o,d,k),0,up,n = 100)
     else:
         II, err = integrate.quad(lambda k:I(o,d,k),0,up,epsabs=1.49e-2)
     return II
     
-twovarplt(II,-2,2,-8,8,Nx = 1000,Ny<code>33,gap</code>3)</p>
+twovarplt(II,-2,2,-8,8,Nx = 1000,Ny=33,gap=3)
 
-<p>#twovarplt(lambda k ,o:S(o,0,k),0,10,0.1,2,Nx = 100,Ny = 25,gap=0)</p>
+#twovarplt(lambda k ,o:S(o,0,k),0,10,0.1,2,Nx = 100,Ny = 25,gap=0)
 
-<p>'''
+'''
 def A(o,d,k,x):
     g = o-d+k**2/2
     r1 = k*x + np.sqrt( k**2*x**2 -2*g )
     r2 = k*x - np.sqrt( k**2*x**2 -2*g )
-    A = theta(-g)*theta(1+2*g-2*k*x)*r1**2*f(r1,m,T)</p>
-<h2>( theta(1+2*g-2*k*x)*r1**2*f(r1,m,T) + r2**2*f(r2,m,T))</h2>
-<p>    A = A/(r1-r2)
+    A = theta(-g)*theta(1+2*g-2*k*x)*r1**2*f(r1,m,T)
+    A = A+ theta(g)*theta(k*x-np.sqrt(2*g))*theta(x) * ( theta(1+2*g-2*k*x)*r1**2*f(r1,m,T) + r2**2*f(r2,m,T))
+    A = A/(r1-r2)
     return A
 def AA(o,d,k):
     AA, err = gauquad(lambda x:A(o,d,k,x),-1,1)
@@ -834,15 +829,14 @@ def AA(o,d,k):
     for i in range(n):
         dd = np.abs(o - S(o,d,k[i]))
     #    print(dd)
-        if dd<1e-1:
+        if dd&lt;1e-1:
             ko = k[i]
             break
         else:
             ko = 0
     II = ko**2*f(ko,m,T)
     return II
-'''
-#+END_SRC</p>
+'''</code></pre>
 <h3>结果</h3>
 
 <p>file:./2019-02-21-physics-RF谱RPA文献重复/T=0.png</p>
@@ -859,35 +853,34 @@ def AA(o,d,k):
 
 <h2>Supplementary</h2>
 
-<p>#+BEGIN_SRC python</p>
+<pre><code class="language-python">
+import numpy as np
+from matplotlib import pyplot as plt
 
-<p>import numpy as np
-from matplotlib import pyplot as plt</p>
-
-<p>delta = .5
+delta = .5
 N = 100
 o = np.linspace(-2, 2, N)
 q = np.linspace(-2, 2, N)
 fig, ax = plt.subplots()
 #line = ax.plot(o,q)
-#ax3 = fig.add_axes([0.1, 0.1, 0.2, 0.2])</p>
+#ax3 = fig.add_axes([0.1, 0.1, 0.2, 0.2])
 
-<p>#ax.plot(o,o*0+1)
+#ax.plot(o,o*0+1)
 #ax.plot(o,o*0)
 ax.plot(o*0+delta,o, color = 'green')
 ax.plot(o*0+delta-.5,o, color = 'gray', linestyle = '--')
 ax.plot(delta - q**2/2, q, 'r', label = r'$\~\omega = \~\delta - \frac{\~q^2}{2}$')
-ax.plot(delta - (q-1)**2/2, q, color = 'blue', label = r'$\~\omega = \~\delta - \frac{(\~q-1)^2}{2}$')</p>
+ax.plot(delta - (q-1)**2/2, q, color = 'blue', label = r'$\~\omega = \~\delta - \frac{(\~q-1)^2}{2}$')
 
-<p>ax.text(-1.2, .5, r'$r_1,r_2\notin [0,1]$', {'fontsize':20})
+ax.text(-1.2, .5, r'$r_1,r_2\notin [0,1]$', {'fontsize':20})
 ax.text(.05, .95, r'$r_2\in [0,1]$', {'fontsize':20})
 ax.text(.07, .05, r'$r_1\in [0,1]$', {'fontsize':20})
-ax.text(1, .5, r'no root', {'fontsize':20})</p>
+ax.text(1, .5, r'no root', {'fontsize':20})
 
-<p>ax.arrow(1, .25, -.55, .25, width = .01)
-ax.text(1, .25, r'$r_1,r_2\in [0,1]$', {'fontsize':20})</p>
+ax.arrow(1, .25, -.55, .25, width = .01)
+ax.text(1, .25, r'$r_1,r_2\in [0,1]$', {'fontsize':20})
 
-<p>#ax.set_xlim(0,4*np.pi)
+#ax.set_xlim(0,4*np.pi)
 ax.set_xlim(-2,2)
 ax.set_ylim(0,1)
 ax.set_xticks([-2, delta-.5, delta, 2])
@@ -897,9 +890,8 @@ ax.set_yticklabels([0,1],{'fontsize':20})
 ax.set_xlabel('$\~\omega$',{'fontsize':20})
 ax.set_ylabel('$\~q$',{'fontsize':20})
 ax.legend(fontsize = 20)
-plt.show()</p>
-
-<p>#+END_SRC</p>
+plt.show()
+</code></pre>
 
 
 

@@ -234,18 +234,17 @@ $$\begin{align*}
 
 <h3>code</h3>
 
-<p>#+BEGIN_SRC python
-import numpy as np
+<pre><code class="language-python">import numpy as np
 from matplotlib import pyplot as plt
-from matplotlib import animation</p>
+from matplotlib import animation
 
-<p>N = 1000</p>
+N = 1000
 
-<p>gamma = 1</p>
+gamma = 1
 
-<p>t = np.linspace(0,16,N)</p>
+t = np.linspace(0,16,N)
 
-<p>def c2(omega):
+def c2(omega):
     Omega = np.sqrt( (omega-1)**2/4 + gamma )
     c2 = 1/( 1+(omega-1)**2/(4*gamma**2) ) \
         *np.sin(Omega*t)**2
@@ -253,46 +252,45 @@ from matplotlib import animation</p>
                    3*np.pi/Omega, 4*np.pi/Omega, \
                    5*np.pi/Omega])
     ax.set_xlim(0,4*np.pi/Omega)
-    return c2</p>
+    return c2
 
-<p>fig, ax = plt.subplots()
-line, = ax.plot(t,c2(1))</p>
+fig, ax = plt.subplots()
+line, = ax.plot(t,c2(1))
 
-<p>#ax3 = fig.add_axes([0.1, 0.1, 0.8, 0.8])</p>
+#ax3 = fig.add_axes([0.1, 0.1, 0.8, 0.8])
 
 
 
-<p>def init():
+def init():
     line.set_ydata(c2(1))
-    return line</p>
+    return line
 
-<p>def animata(i):
+def animata(i):
     line.set_ydata(c2(1+.01*i))
 #    ax.text(1+0.1*i,1,'x')
-    return line</p>
+    return line
 
-<p>ani = animation.FuncAnimation(fig<code>fig, func</code>animata, \
-                              frames<code>400, interval</code>20)</p>
+ani = animation.FuncAnimation(fig=fig, func=animata, \
+                              frames=400, interval=20)
 
-<p>ax.set_xlabel('$t$')
+ax.set_xlabel('$t$')
 ax.set_ylabel('$|c_2(t)|^2$')
-ax.set_title('Plot of $|c_2(t)|^2$ at $\omega = \omega_{21}$ to $\omega =5 \omega_{21}$')</p>
+ax.set_title('Plot of $|c_2(t)|^2$ at $\omega = \omega_{21}$ to $\omega =5 \omega_{21}$')
 
-<p>ax.set_yticks([0,0.2,0.5,1])</p>
+ax.set_yticks([0,0.2,0.5,1])
 
-<p>ax.set_xticklabels(['$\pi/\Omega$', '$2\pi/\Omega$', \
+ax.set_xticklabels(['$\pi/\Omega$', '$2\pi/\Omega$', \
                     '$3\pi/\Omega$', '$4\pi/\Omega$', \
                     '$5\pi/\Omega$'])
 ani.save('fig.gif',writer='imagemagick')
-plt.show()</p>
-
-<p>#+END_SRC</p>
+plt.show()
+</code></pre>
 
 <h3>figure</h3>
 
-<p>[[file:./2019-03-06-physics-RabiFormula/fig.gif]]</p>
+<p><p><img src='./2019-03-06-physics-RabiFormula/fig.gif' alt='figalt' max-width:100%><p></p>
 
-<p>[[file:./2019-03-06-physics-RabiFormula/fig.mp4]]</p>
+<p><a href='./2019-03-06-physics-RabiFormula/fig.mp4'>./2019-03-06-physics-RabiFormula/fig.mp4</a></p>
 
 <h2>总结</h2>
 

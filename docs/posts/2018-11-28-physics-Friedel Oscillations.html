@@ -108,13 +108,11 @@ $$\begin{align}
 
 <p>在 $q \rightarrow +\infty$ 展开(与在 $q_{TF}\rightarrow 0$ 时对 $q_{TF}$ 展开相同):</p>
 
-<p>#+BEGIN_SRC python
-import sympy as sym
+<pre><code class="language-python">import sympy as sym
 q = sym.Symbol('q')
 q_tf = sym.Symbol('q_TF')
 s = sym.series(q/(q**2+q_tf**2),q,sym.oo,5)
-print(sym.latex(s))
-#+END_SRC</p>
+print(sym.latex(s))</code></pre>
 
 <p>    - \frac{q_{TF}^{2}}{q^{3}} + \frac{1}{q} + O\left(\frac{1}{q^{5}}; q\rightarrow \infty\right)</p>
 
@@ -198,8 +196,7 @@ $$\begin{align}
 <p>在 $q\rightarrow +\infty$ 展开</p>
 
 
-<p>#+BEGIN_SRC python
-import sympy as sym
+<pre><code class="language-python">import sympy as sym
 q = sym.Symbol('q')
 q_tf = sym.Symbol('q_TF')
 kf = sym.Symbol('k_F')
@@ -207,8 +204,7 @@ u = q/(2*kf)
 *g=1
 g = sym.Rational(1,2)*( 1+(1-u**2)/(2*u)*sym.log((u+1)/(u-1) ) )
 s = sym.series(q/(q**2+q_tf**2)*g,q,sym.oo,10)
-print(sym.latex(s))
-#+END_SRC</p>
+print(sym.latex(s))</code></pre>
 
 <p>   - \frac{\frac{256 k_{F}^{8}}{63} - \frac{64 k_{F}^{6} q_{TF}^{2}}{35} + \frac{16 k_{F}^{4} q_{TF}^{4}}{15}}{q^{9}} + \frac{\frac{64 k_{F}^{6}}{35} - \frac{16 k_{F}^{4} q_{TF}^{2}}{15} + \frac{4 k_{F}^{2} q_{TF}^{4}}{3}}{q^{7}} + \frac{\frac{16 k_{F}^{4}}{15} - \frac{4 k_{F}^{2} q_{TF}^{2}}{3}}{q^{5}} + \frac{4 k_{F}^{2}}{3 q^{3}} + O\left(\frac{1}{q^{10}}; q\rightarrow \infty\right)</p>
 
@@ -224,16 +220,14 @@ $$\begin{align}
 
 <h3>正确的级数展开</h3>
 
-<p>#+BEGIN_SRC python
-import sympy as sym
+<pre><code class="language-python">import sympy as sym
 q = sym.Symbol('q')
 q_tf = sym.Symbol('q_TF')
 kf = sym.Symbol('k_F')
 u = q/(2*kf)
 g = sym.Rational(1,2)*( 1+(1-u**2)/(2*u)*sym.log(sym.Abs((u+1)/(u-1)) ) )
 s = sym.series(q/(q**2+q_tf**2*g),q,sym.oo,10)
-print(sym.latex(s))
-#+END_SRC</p>
+print(sym.latex(s))</code></pre>
 
 <p>   - \frac{1}{q} - \frac{4 k_{F}^{2} q_{TF}^{2}}{3 q^{5}} - \frac{16 k_{F}^{4} q_{TF}^{2}}{15 q^{7}} - \frac{64 k_{F}^{6} q_{TF}^{2}}{35 q^{9}} + O\left(\frac{1}{q^{10}}; q\rightarrow \infty\right)</p>
 
@@ -297,20 +291,19 @@ $$\begin{align}
 
 <p>python 程序如下</p>
 
-<p>#+BEGIN_SRC python
-#导入数值计算包, 画图包, 积分包
+<pre><code class="language-python">#导入数值计算包, 画图包, 积分包
 import numpy as np
 import matplotlib.pyplot as plt
-from scipy import integrate</p>
+from scipy import integrate
 
-<p>#设置物理参量
+#设置物理参量
 qtf = 3/4
-kf = 1/2</p>
+kf = 1/2
 
-<p>#数值积分的区间:(0,end)
-end = 5</p>
+#数值积分的区间:(0,end)
+end = 5
 
-<p>#定义函数 phi_r, g(u), phi_q, lo(q)是phi_q 的 leading order, F(q)是从 phi(q) 里边减去 leading order
+#定义函数 phi_r, g(u), phi_q, lo(q)是phi_q 的 leading order, F(q)是从 phi(q) 里边减去 leading order
 def phi_r(r):
     def g(u):
         return 1/2*(1+1/(2*u)*(1-u**2)*np.log(np.abs((1+u)/(1-u))))
@@ -325,149 +318,148 @@ def phi_r(r):
         return F
     (Fres,err) = integrate.quad(F,0,end)
     phir = Fres + np.pi/2
-    return phir</p>
+    return phir
 
 
-<p>#计算N个不同的 r 的取值的数值积分 
-N = 100</p>
+#计算N个不同的 r 的取值的数值积分 
+N = 100
 
 
-<p>#画六个图中的第一个图
+#画六个图中的第一个图
 plt.subplot(321) #(321)的意思是整个图是3行2列,这个图画在第1个位置
 a = 0.1 #画图的区间为[a,b],这里第一个图为 r 取 [0,10]
 b = a+10
-r = np.linspace(a,b,N)</p>
+r = np.linspace(a,b,N)
 
-<p>#进行 N 次数值积分, 然后把 N 个点的数值积分的结果保存在数组 s 中
+#进行 N 次数值积分, 然后把 N 个点的数值积分的结果保存在数组 s 中
 s = np.linspace(0,0,N)
 for i in range(N):
     s[i-1] = phi_r(r[i-1])
 #画图, 指定线的颜色和图例
-plt.plot(r, s, color<code>"red", label</code>"Numerical Result")
+plt.plot(r, s, color="red", label="Numerical Result")
 #我们想要将数值的结果和 Friedel Oscillations 的结果做比较, 但它们之间会差一个常数k, 现在把这个常数 k 取 N 次数值积分中第一个点的比值
 k = phi_r(a)/(1/(a**3)*np.cos(2*kf*a))
 fo = k*1/(r**3)*np.cos(2*kf*r) #这是 Friedel Oscillations 的结果
-plt.plot(r,fo, "--", color<code>"blue", label</code>"Friedel Oscillation") #画出 Friedel Oscillations 的结果</p>
+plt.plot(r,fo, "--", color="blue", label="Friedel Oscillation") #画出 Friedel Oscillations 的结果
 
-<p>plt.xlabel("$r$") #设置横坐标的物理量
-plt.ylabel("$\phi(r)$") #设置纵坐标的物理量</p>
+plt.xlabel("$r$") #设置横坐标的物理量
+plt.ylabel("$\phi(r)$") #设置纵坐标的物理量
 
-<p>#以下三行是为了让坐标的数值以科学计数法显示
+#以下三行是为了让坐标的数值以科学计数法显示
 ax = plt.gca()  # 获取当前图像的坐标轴信息
 ax.yaxis.get_major_formatter().set_powerlimits((0,1)) # 将坐标轴的base number设置为一位。
-plt.legend()</p>
+plt.legend()
 
 
 
-<p>#与画第一个图同样的方法, 画出剩下的5个图, 它们的区别在于 r 的区间不同
+#与画第一个图同样的方法, 画出剩下的5个图, 它们的区别在于 r 的区间不同
 plt.subplot(322)
 a = 10
 b = a+10
-r = np.linspace(a,b,N)</p>
+r = np.linspace(a,b,N)
 
-<p>s = np.linspace(0,0,N)
+s = np.linspace(0,0,N)
 for i in range(N):
     s[i-1] = phi_r(r[i-1])
-plt.plot(r, s, color<code>"red", label</code>"Numerical Result")</p>
+plt.plot(r, s, color="red", label="Numerical Result")
 
-<p>k = phi_r(a)/(1/(a**3)*np.cos(2*kf*a))
+k = phi_r(a)/(1/(a**3)*np.cos(2*kf*a))
 fo = k*1/(r**3)*np.cos(2*kf*r)
-plt.plot(r,fo, "--", color<code>"blue", label</code>"Friedel Oscillation")</p>
+plt.plot(r,fo, "--", color="blue", label="Friedel Oscillation")
 
-<p>plt.xlabel("$r$")
-plt.ylabel("$\phi(r)$")</p>
+plt.xlabel("$r$")
+plt.ylabel("$\phi(r)$")
 
-<p>ax = plt.gca()  # 获取当前图像的坐标轴信息
-ax.yaxis.get_major_formatter().set_powerlimits((0,1)) # 将坐标轴的base number设置为一位。</p>
+ax = plt.gca()  # 获取当前图像的坐标轴信息
+ax.yaxis.get_major_formatter().set_powerlimits((0,1)) # 将坐标轴的base number设置为一位。
 
-<p>plt.subplot(323)
+plt.subplot(323)
 a = 20
 b = a+10
-r = np.linspace(a,b,N)</p>
+r = np.linspace(a,b,N)
 
-<p>s = np.linspace(0,0,N)
+s = np.linspace(0,0,N)
 for i in range(N):
     s[i-1] = phi_r(r[i-1])
-plt.plot(r, s, color<code>"red", label</code>"Numerical Result")</p>
+plt.plot(r, s, color="red", label="Numerical Result")
 
-<p>k = phi_r(a)/(1/(a**3)*np.cos(2*kf*a))
+k = phi_r(a)/(1/(a**3)*np.cos(2*kf*a))
 fo = k*1/(r**3)*np.cos(2*kf*r)
-plt.plot(r,fo, "--", color<code>"blue", label</code>"Friedel Oscillation")</p>
+plt.plot(r,fo, "--", color="blue", label="Friedel Oscillation")
 
-<p>plt.xlabel("$r$")
-plt.ylabel("$\phi(r)$")</p>
+plt.xlabel("$r$")
+plt.ylabel("$\phi(r)$")
 
-<p>ax = plt.gca()  # 获取当前图像的坐标轴信息
-ax.yaxis.get_major_formatter().set_powerlimits((0,1)) # 将坐标轴的base number设置为一位。</p>
+ax = plt.gca()  # 获取当前图像的坐标轴信息
+ax.yaxis.get_major_formatter().set_powerlimits((0,1)) # 将坐标轴的base number设置为一位。
 
 
-<p>plt.subplot(324)
+plt.subplot(324)
 a = 50
 b = a+10
-r = np.linspace(a,b,N)</p>
+r = np.linspace(a,b,N)
 
-<p>s = np.linspace(0,0,N)
+s = np.linspace(0,0,N)
 for i in range(N):
     s[i-1] = phi_r(r[i-1])
-plt.plot(r, s, color<code>"red", label</code>"Numerical Result")</p>
+plt.plot(r, s, color="red", label="Numerical Result")
 
-<p>k = phi_r(a)/(1/(a**3)*np.cos(2*kf*a))
+k = phi_r(a)/(1/(a**3)*np.cos(2*kf*a))
 fo = k*1/(r**3)*np.cos(2*kf*r)
-plt.plot(r,fo, "--", color<code>"blue", label</code>"Friedel Oscillation")</p>
+plt.plot(r,fo, "--", color="blue", label="Friedel Oscillation")
 
-<p>plt.xlabel("$r$")
-plt.ylabel("$\phi(r)$")</p>
+plt.xlabel("$r$")
+plt.ylabel("$\phi(r)$")
 
-<p>ax = plt.gca()  # 获取当前图像的坐标轴信息
-ax.yaxis.get_major_formatter().set_powerlimits((0,1)) # 将坐标轴的base number设置为一位。</p>
+ax = plt.gca()  # 获取当前图像的坐标轴信息
+ax.yaxis.get_major_formatter().set_powerlimits((0,1)) # 将坐标轴的base number设置为一位。
 
 
-<p>plt.subplot(325)
+plt.subplot(325)
 a = 100
 b = a+10
-r = np.linspace(a,b,N)</p>
+r = np.linspace(a,b,N)
 
-<p>s = np.linspace(0,0,N)
+s = np.linspace(0,0,N)
 for i in range(N):
     s[i-1] = phi_r(r[i-1])
-plt.plot(r, s, color<code>"red", label</code>"Numerical Result")</p>
+plt.plot(r, s, color="red", label="Numerical Result")
 
-<p>k = phi_r(a)/(1/(a**3)*np.cos(2*kf*a))
+k = phi_r(a)/(1/(a**3)*np.cos(2*kf*a))
 fo = k*1/(r**3)*np.cos(2*kf*r)
-plt.plot(r,fo, "--", color<code>"blue", label</code>"Friedel Oscillation")</p>
+plt.plot(r,fo, "--", color="blue", label="Friedel Oscillation")
 
-<p>plt.xlabel("$r$")
-plt.ylabel("$\phi(r)$")</p>
+plt.xlabel("$r$")
+plt.ylabel("$\phi(r)$")
 
-<p>ax = plt.gca()  # 获取当前图像的坐标轴信息
-ax.yaxis.get_major_formatter().set_powerlimits((0,1)) # 将坐标轴的base number设置为一位。</p>
+ax = plt.gca()  # 获取当前图像的坐标轴信息
+ax.yaxis.get_major_formatter().set_powerlimits((0,1)) # 将坐标轴的base number设置为一位。
 
 
-<p>plt.subplot(326)
+plt.subplot(326)
 a = 200
 b = a+10
-r = np.linspace(a,b,N)</p>
+r = np.linspace(a,b,N)
 
-<p>s = np.linspace(0,0,N)
+s = np.linspace(0,0,N)
 for i in range(N):
     s[i-1] = phi_r(r[i-1])
-plt.plot(r, s, color<code>"red", label</code>"Numerical Result")</p>
+plt.plot(r, s, color="red", label="Numerical Result")
 
-<p>k = phi_r(a)/(1/(a**3)*np.cos(2*kf*a))
+k = phi_r(a)/(1/(a**3)*np.cos(2*kf*a))
 fo = k*1/(r**3)*np.cos(2*kf*r)
-plt.plot(r,fo, "--", color<code>"blue", label</code>"Friedel Oscillation")</p>
+plt.plot(r,fo, "--", color="blue", label="Friedel Oscillation")
 
-<p>plt.xlabel("$r$")
-plt.ylabel("$\phi(r)$")</p>
+plt.xlabel("$r$")
+plt.ylabel("$\phi(r)$")
 
-<p>ax = plt.gca()  # 获取当前图像的坐标轴信息
-ax.yaxis.get_major_formatter().set_powerlimits((0,1)) # 将坐标轴的base number设置为一位。</p>
+ax = plt.gca()  # 获取当前图像的坐标轴信息
+ax.yaxis.get_major_formatter().set_powerlimits((0,1)) # 将坐标轴的base number设置为一位。
 
 
 
-<p>plt.suptitle("The Results of RPA") #画出整个图的标题
-plt.show() #显示图片
-#+END_SRC</p>
+plt.suptitle("The Results of RPA") #画出整个图的标题
+plt.show() #显示图片</code></pre>
 
 <p>#+RESULTS:
 : None</p>

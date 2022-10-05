@@ -65,14 +65,10 @@
 </ul>
 <h2>插入代码</h2>
 <h3>行间代码(org9.2 更新后, 默认以下方法不可行, 新方法 <code>C-c C-</code> , 见 <a href='https://emacs.stackexchange.com/questions/46988/why-do-easy-templates-e-g-s-tab-in-org-9-2-not-work'>https://emacs.stackexchange.com/questions/46988/why-do-easy-templates-e-g-s-tab-in-org-9-2-not-work</a>) </h3>
-<p>在空白行输入
-#+BEGIN_SRC org-mode
-< s TAB
-#+END_SRC
-或者
-#+BEGIN_SRC org-mode
-< e TAB
-#+END_SRC</p>
+<p>在空白行输入</p>
+<pre><code class="language-org-mode">&lt; s TAB</code></pre>
+<p>或者</p>
+<pre><code class="language-org-mode">&lt; e TAB</code></pre>
 <h3>行内代码</h3>
 <p>将代码夹在两个 "=" 之间</p>
 <h2>$\LaTeX$ 公式</h2>
@@ -90,19 +86,15 @@
 <p>都采用两个方括号. 对于 Hexo, 只有放在与文章文件名同名的文件夹下才可以正常访问.</p>
 
 <h3>网页链接示例</h3>
-<p>#+BEGIN_SRC shell
-<a href='https://phyer219.github.io/'>https://phyer219.github.io/</a>
-#+END_SRC
-效果为</p>
+<pre><code class="language-shell">[[https://phyer219.github.io/]]</code></pre>
+<p>效果为</p>
 
 <p>https://phyer219.github.io/</p>
 
 <h3>图片示例</h3>
 
-<p>#+BEGIN_SRC shell
-[[file:./2018-10-18-coding-Hello org-mode/cpho.jpeg]]
-#+END_SRC
-效果为</p>
+<pre><code class="language-shell">[[file:./2018-10-18-coding-Hello org-mode/cpho.jpeg]]</code></pre>
+<p>效果为</p>
 
 <p>[[file:./2018-10-18-coding-Hello org-mode/cpho.jpeg]]</p>
 
@@ -110,21 +102,17 @@
 
 <h4>pdf文件</h4>
 
-<p>#+BEGIN_SRC shell
-[[file:./2018-10-18-coding-Hello org-mode/Friedel Oscillations1.pdf]]
-#+END_SRC
-效果为</p>
+<pre><code class="language-shell">[[file:./2018-10-18-coding-Hello org-mode/Friedel Oscillations1.pdf]]</code></pre>
+<p>效果为</p>
 
 <p>[[file:./2018-10-18-coding-Hello org-mode/Friedel Oscillations1.pdf]]</p>
 
 <h4>python程序</h4>
 
-<p>#+BEGIN_SRC shell
-[[file:./2018-10-18-coding-Hello org-mode/plot.py]]
-#+END_SRC
-效果为</p>
+<pre><code class="language-shell">[[file:./2018-10-18-coding-Hello org-mode/plot.py]]</code></pre>
+<p>效果为</p>
 
-<p>[[file:./2018-10-18-coding-Hello org-mode/plot.py]]</p>
+<p><a href='./2018-10-18-coding-Hello org-mode/plot.py'>./2018-10-18-coding-Hello org-mode/plot.py</a></p>
 
 <h4>内部链接</h4>
 
@@ -270,30 +258,26 @@
 
 <h2>内容示例</h2>
 <h3>python 代码块示例</h3>
-<p>#+BEGIN_SRC python :results output
-import matplotlib.pyplot as plt
+<pre><code class="language-python :results output">import matplotlib.pyplot as plt
 import numpy as np
 x = np.linspace(-2,2,1000)
 f = np.e**(-(1/(1-x**2)))
-y = np.piecewise(x,[x<<code>-1,x>-1],[0,1])*np.piecewise(x,[x<</code>1,x>1],[1,0])*f
+y = np.piecewise(x,[x&lt;=-1,x&gt;-1],[0,1])*np.piecewise(x,[x&lt;=1,x&gt;1],[1,0])*f
 plt.plot(x,y)
-plt.show()
-#+END_SRC</p>
+plt.show()</code></pre>
 
 <p>#+RESULTS:</p>
 
-<p>#+BEGIN_SRC python :results output
-import matplotlib.pyplot as plt
-import numpy as np</p>
+<pre><code class="language-python :results output">import matplotlib.pyplot as plt
+import numpy as np
 
-<p>c = 2
+c = 2
 d = 3
 x = np.linspace(c-1,d+1,1000)
 f = np.e**(-((1/(x-c))+(1/(d-x))))
-y = np.piecewise(x,[x<<code>c,x>c],[0,1])*np.piecewise(x,[x<</code>d,x>d],[1,0])*f 
+y = np.piecewise(x,[x&lt;=c,x&gt;c],[0,1])*np.piecewise(x,[x&lt;=d,x&gt;d],[1,0])*f 
 plt.plot(x,y)
-plt.show()
-#+END_SRC</p>
+plt.show()</code></pre>
 
 <h3>手册上的例子(release 9.4)</h3>
 

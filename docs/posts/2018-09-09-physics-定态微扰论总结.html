@@ -452,9 +452,8 @@ $$\begin{align}
  \right)
 \end{align}$$
 
-<p>假设它们具体数值, 并用数值精确求解
-#+BEGIN_SRC python
-import numpy as np
+<p>假设它们具体数值, 并用数值精确求解</p>
+<pre><code class="language-python">import numpy as np
 e1 = 100
 e2 = 300
 e3 = 500
@@ -466,16 +465,13 @@ a = np.array([[e1,   v12,   v13],
               [v13,  v23,    e3]])
 w, v = np.linalg.eig(a)
 print(w)
-print(v)
-#+END_SRC
-结果为
-#+BEGIN_SRC python
-[ 98.64010314 505.51622055 295.84367631]
+print(v)</code></pre>
+<p>结果为</p>
+<pre><code class="language-python">[ 98.64010314 505.51622055 295.84367631]
 [[-0.99800619  0.0523362  -0.03527831]
  [ 0.04262872  0.14673809 -0.98825641]
- [ 0.04654492  0.98778988  0.14867655]]
-#+END_SRC
-用微扰论求解 $E_1$ , 一阶修正是零. 二阶修正为</p>
+ [ 0.04654492  0.98778988  0.14867655]]</code></pre>
+<p>用微扰论求解 $E_1$ , 一阶修正是零. 二阶修正为</p>
 
 $$\begin{align}
   E_1^{(2)} =& V_{12}\frac{1}{E_1 - E_2}V_{12} + V_{13}\frac{1}{E_1 - E_3}V_{13} \\ 

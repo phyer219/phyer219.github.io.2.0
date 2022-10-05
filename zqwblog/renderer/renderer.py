@@ -81,8 +81,13 @@ class HTMLRenderer(Renderer):
         else:
             res += " alt='figalt' max-width:100%><p>"
         return res
-    def sub_pyfile(self, match):
-        return f"<a href='{match.group('path'):s}'>{match.group('tag'):s}</a>"
+    def sub_file(self, match):
+        res = f"<a href='{match.group('path'):s}'>"
+        if match.group('tag'):
+            res += f"{match.group('tag'):s}</a>"
+        else:
+            res += f"{match.group('path'):s}</a>"
+        return res
     def sub_codeinline(self, match):
         return f"<code>{match.group('data'):s}</code>"
     def render_line(self, block):

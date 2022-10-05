@@ -159,27 +159,26 @@ $$\begin{align}
 
 <h3>Legendre Polynomials</h3>
 
-<p>下面是画前七阶 Legendre Polynomials 的图像
-#+BEGIN_SRC python
-import numpy as np
+<p>下面是画前七阶 Legendre Polynomials 的图像</p>
+<pre><code class="language-python">import numpy as np
 from matplotlib import pyplot as plt
 def P(N,x):
     l = N*(N+1)
     a = np.zeros(N+1)
-    k = N//2</p>
+    k = N//2
 
-<p>    if N > 0:
+    if N &gt; 0:
         if N%2 == 0:
             a[0] = (-1)**k
             a[1] = 0
         if N%2 == 1:
             a[0] = 0
-            a[1] = (-1)**k</p>
+            a[1] = (-1)**k
 
-<p>        for j in range(N-1):
-            a[j+2] = j*(j+1) - l </p>
-<h2>a[j]</h2>
-<p>            a[j+2] = a[j+2] / (j+1)
+        for j in range(N-1):
+            a[j+2] = j*(j+1) - l 
+            a[j+2] = a[j+2] * a[j]
+            a[j+2] = a[j+2] / (j+1)
             a[j+2] = a[j+2] / (j+2)
         a = a/a.sum()
         s = 0
@@ -203,22 +202,20 @@ plt.ylabel(r"$P_ { l }(x)$")
 plt.title("Legendre Polynomials")
 plt.legend()
 plt.savefig("./2019-06-03-physics-PartialWaveExpansion/LegenderPolynomials.jpg"\
-    ,writer<code>'imageffmagick', dpi</code>100)
-#+END_SRC</p>
+    ,writer='imageffmagick', dpi=100)</code></pre>
 
 <p>#+RESULTS:
 : None</p>
 
 <p><p><img src='./2019-06-03-physics-PartialWaveExpansion/LegenderPolynomials.jpg' alt='figalt' max-width:100%><p></p>
 
-<p>下面是用 sympy 输出前七阶 Legendre Polynomials
-#+BEGIN_SRC python :results output 
-from sympy import Rational as R
+<p>下面是用 sympy 输出前七阶 Legendre Polynomials</p>
+<pre><code class="language-python :results output">from sympy import Rational as R
 from sympy import Symbol
 from sympy import factor
-from sympy import latex</p>
+from sympy import latex
 
-<p>def P(N):
+def P(N):
     l = N*(N+1)
     a = []
     k = N//2
@@ -229,27 +226,26 @@ from sympy import latex</p>
         a.append(0)
         a.append((-1)**k) 
     for j in range(N-1):
-        a.append(j*(j+1) - l )</p>
-<h2>a[j]</h2>
-<p>        a[j+2] = R( a[j+2] , (j+1) )
+        a.append(j*(j+1) - l )
+        a[j+2] = a[j+2] * a[j]
+        a[j+2] = R( a[j+2] , (j+1) )
         a[j+2] = R( a[j+2] , (j+2) )
         
     c = 0
     for i in range(N+1):
-        c = c + a[i]</p>
+        c = c + a[i]
 
-<p>    P = 0
+    P = 0
     x = Symbol('x')
-    for i in range(N+1):</p>
-<h2>x**i</h2>
-<p>        P = P + a[i]
+    for i in range(N+1):
+        a[i] = R(a[i], c) * x**i
+        P = P + a[i]
     P = latex(P)
-    return P</p>
+    return P
 
-<p>for i in range(8):
-    print(r'P_%d(x)=&'%i,P(i),"\\\\")
-#+END_SRC
-#+RESULTS:
+for i in range(8):
+    print(r'P_%d(x)=&'%i,P(i),"\\\\")</code></pre>
+<p>#+RESULTS:
 : P_0(x)=& 1 \\
 : P_1(x)=& x \\
 : P_2(x)=& \frac{3 x^{2}}{2} - \frac{1}{2} \\
@@ -499,15 +495,14 @@ $$\begin{align}
 
 <h4>code </h4>
 
-<p>下面是画前3阶 Bessel functions of the first kind 的图像
-#+BEGIN_SRC python :results output
-import numpy as np
+<p>下面是画前3阶 Bessel functions of the first kind 的图像</p>
+<pre><code class="language-python :results output">import numpy as np
 from matplotlib import pyplot as plt
-import time</p>
+import time
 
-<p>start = time.process_time()</p>
+start = time.process_time()
 
-<p>def J(n,x,up=10):
+def J(n,x,up=10):
     J = 0
     for s in range(up):
         js = (-1)**s
@@ -515,35 +510,34 @@ import time</p>
         js = js/(np.math.factorial(s+n))
         js = js*(x/2)**(n+2*s)
         J = J + js
-    return J</p>
+    return J
 
 
-<p>N = 1000
+N = 1000
 x = np.linspace(1e-8,30,N)
 up =100
 def pltj(J,n,x,N):
     j = np.zeros(N)
     for i in range(N):
         j[i] = J(n,x[i],up = up)
-    return j</p>
+    return j
 
-<p>for i in range(4):
+for i in range(4):
     l = r"$J _ { %d } (x)$" %i
-    plt.plot( x, pltj(J,i,x,N), label = l)</p>
+    plt.plot( x, pltj(J,i,x,N), label = l)
 
-<p>plt.plot(x, 1/np.sqrt(x),label=r"$x^{-1/2}$") </p>
+plt.plot(x, 1/np.sqrt(x),label=r"$x^{-1/2}$") 
 
-<p>plt.ylim(-.5,1.)
+plt.ylim(-.5,1.)
 plt.xlabel("x")
 plt.ylabel(r"$J_n(x)$")
 plt.legend()
-plt.title("Bessel Functions")</p>
+plt.title("Bessel Functions")
 
-<p>end = time.process_time()
+end = time.process_time()
 print('time is',end-start)
 plt.savefig("./2019-06-03-physics-PartialWaveExpansion/BFF.jpg"\
-    ,writer<code>'imageffmagick', dpi</code>100)
-#+END_SRC</p>
+    ,writer='imageffmagick', dpi=100)</code></pre>
 
 <p>#+RESULTS:
 : time is 0.765683398</p>
@@ -624,48 +618,46 @@ $$\begin{align}
 
 <h4>Code</h4>
 
-<p>下面是画前3阶 modified Bessel functions of the first kind 的图像
-#+BEGIN_SRC python :results output
-import numpy as np
+<p>下面是画前3阶 modified Bessel functions of the first kind 的图像</p>
+<pre><code class="language-python :results output">import numpy as np
 from matplotlib import pyplot as plt
-import time</p>
+import time
 
-<p>start = time.process_time()</p>
+start = time.process_time()
 
-<p>def J(n,x,up=10):
+def J(n,x,up=10):
     J = 0
     for s in range(up):
         js = 1/(np.math.factorial(s))
         js = js/(np.math.factorial(s+n))
         js = js*(x/2)**(n+2*s)
         J = J + js
-    return J</p>
+    return J
 
 
-<p>N = 1000
+N = 1000
 x = np.linspace(1e-8,3,N)
 up =100
 def pltj(J,n,x,N):
     j = np.zeros(N)
     for i in range(N):
         j[i] = J(n,x[i],up = up)
-    return j</p>
+    return j
 
-<p>for i in range(4):
+for i in range(4):
     l = r"$I _ { %d } (x)$" %i
-    plt.plot( x, pltj(J,i,x,N), label = l)</p>
+    plt.plot( x, pltj(J,i,x,N), label = l)
 
 
-<p>plt.xlabel("x")
+plt.xlabel("x")
 plt.ylabel(r"$I_n(x)$")
 plt.legend()
-plt.title("Modified Bessel Functions")</p>
+plt.title("Modified Bessel Functions")
 
-<p>end = time.process_time()
+end = time.process_time()
 print('time is',end-start)
 plt.savefig("./2019-06-03-physics-PartialWaveExpansion/MBFF.jpg"\
-    ,writer<code>'imageffmagick', dpi</code>100)
-#+END_SRC</p>
+    ,writer='imageffmagick', dpi=100)</code></pre>
 
 <p>#+RESULTS:
 : time is 0.721994943</p>

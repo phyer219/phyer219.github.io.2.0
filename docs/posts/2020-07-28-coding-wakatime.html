@@ -93,10 +93,8 @@ vscodium ...)</p>
 
 <p>昨天发现 wakatime 还有 emacs 的插件, 那岂不美哉! </p>
 
-<p>但是无论怎么搞, 它都会报错
-#+BEGIN_SRC lisp
-error "WakaTime Error 104 Invalid API Key. Set your api key with: (custom-set-variables '(wakatime-api-key \"XXXX\")) 
-#+END_SRC</p>
+<p>但是无论怎么搞, 它都会报错</p>
+<pre><code class="language-lisp">error "WakaTime Error 104 Invalid API Key. Set your api key with: (custom-set-variables '(wakatime-api-key \"XXXX\")) </code></pre>
 
 <p>几个小时没有解决(折腾这种事容易上头, 这还是近几个月来少见地上头了) . 回头一看 VS
 code 竟然也 Invalid API Key 了, 在 atom 也是 Invalid API Key . 然后换了系统, 换
@@ -109,9 +107,8 @@ Invalid API Key. 我打开 dashboard 一看, 让我震惊的是 dashboard 上竟
 但是实际是 dashboard 已经收到信号了. 这是谎报的!</p>
 
 <p>经过一波测试, 断定是 emacs 的 wakatime-mode 插件的 bug! 于是找到插件对应的
-wakatime-mode.elc , 定位到 Error 104 对应的语句
-#+BEGIN_SRC lisp
-    (set-process-sentinel process
+wakatime-mode.elc , 定位到 Error 104 对应的语句</p>
+<pre><code class="language-lisp">    (set-process-sentinel process
       `(lambda (process signal)
          (when (memq (process-status process) '(exit signal))
            (kill-buffer (process-buffer process))
@@ -128,14 +125,11 @@ wakatime-mode.elc , 定位到 Error 104 对应的语句
            )
          )
       )
-    )
-#+END_SRC</p>
+    )</code></pre>
 
-<p>果断删除了
-#+BEGIN_SRC lisp
- ((= exit-status 104) (error "WakaTime Error (%s) Invalid API Key. Set your api key with: (custom-set-variables '(wakatime-api-key \"XXXX\"))" exit-status))
-#+END_SRC
-再测试一波, dashboard 能统计到 emacs 的活动, emacs 的 wakatime-mode 也不再报错.
+<p>果断删除了</p>
+<pre><code class="language-lisp"> ((= exit-status 104) (error "WakaTime Error (%s) Invalid API Key. Set your api key with: (custom-set-variables '(wakatime-api-key \"XXXX\"))" exit-status))</code></pre>
+<p>再测试一波, dashboard 能统计到 emacs 的活动, emacs 的 wakatime-mode 也不再报错.
 完美解决.</p>
 
 <p>对我来说是解决了, 如果有能力的话, 还是把这个 bug 报给开发都比较好. 我还是算了...</p>

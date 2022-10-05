@@ -113,7 +113,7 @@ plt.ylabel(r'$\left(\frac{\sqrt{5} - 1}{2}\right)^n$')
 plt.legend()
 plt.savefig('unstable_method.png')</code></pre>
 
-<p>[[file:2021-05-15-coding-unstable_method/unstable_method.py]]
+<p><a href='2021-05-15-coding-unstable_method/unstable_method.py'>2021-05-15-coding-unstable_method/unstable_method.py</a>
 <p><img src='2021-05-15-coding-unstable_method/unstable_method.png' alt='figalt' max-width:100%><p></p>
 
 <h2>解决方法</h2>
@@ -249,7 +249,7 @@ result of numpy float64 type: (2.472099569305563, 1.412300021975624e-10)
   print('result of mpmath mpf type:', quad(func, 0, np.inf))
 result of mpmath mpf type: (2.472099451021771, 7.496323446432029e-07)</code></pre>
 
-<p>[[file:2021-05-15-coding-unstable_method/mpmath_example.py]]
+<p><a href='2021-05-15-coding-unstable_method/mpmath_example.py'>2021-05-15-coding-unstable_method/mpmath_example.py</a>
 <p><img src='2021-05-15-coding-unstable_method/mpmath_example.png' alt='figalt' max-width:100%><p></p>
 
 <p>可以看出如果用 <code>numpy.float64</code> 计算会提示 round-off error. </p>

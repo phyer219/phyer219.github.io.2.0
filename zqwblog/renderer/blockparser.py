@@ -66,9 +66,11 @@ class OrgCodeBlocksParser(BlocksParser):
     protect = True
     btype = 'code'
     def start(self, block):
-        return re.search(r'#\+begin_src(?P<lang>.*?$)', block.data)
+        return re.search(r'#\+begin_src(?P<lang>.*?$)', block.data,
+                         re.IGNORECASE)
     def end(self, block):
-        return re.search(r'#\+end_src', block.data)
+        return re.search(r'#\+end_src', block.data,
+                         re.IGNORECASE)
     def run(self, post):
         inside = False
         temp = []

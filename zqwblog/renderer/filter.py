@@ -20,6 +20,6 @@ class OrgFilter(Filter):
         self.filters = []
         self.addFilter(r'\=(?!\s)(?P<data>.+?)(?<!\s)\=', 'codeinline')
         self.addFilter(r'(\[\[)(?P<url>http.*?)(\]\]|\]\[(?P<tag>.*?)\]\])', 'url')
-        self.addFilter(r'(\[\[)(file:)(?P<path>.*?\.(png|jpg))(\]\]|\]\[(?P<figalt>.*?)\]\])', 'figure')
-        self.addFilter(r'(\[*)(file:)(?P<path>.*?\.py)\]\[(?P<tag>.*?)\](\]*)', 'pyfile')
+        self.addFilter(r'(\[\[)(file:)(?P<path>.*?\.(png|jpg|gif))(\]\]|\]\[(?P<figalt>.*?)\]\])', 'figure')
+        self.addFilter(r'(\[\[)(file:)(?P<path>.*?\.(py|mp4))(\]\]|\]\[(?P<tag>.*?)\]\])', 'file')
 
