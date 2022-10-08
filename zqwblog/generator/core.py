@@ -1,6 +1,7 @@
 import os
 import shutil
 import re
+from datetime import datetime
 
 from ..renderer.core import OrgPost, MdPost
 from ..util import clean_dir, dump_file
@@ -123,6 +124,7 @@ class WebSite:
         self.gen_tags_list_page()
         self.gen_tags_content_page()
         self.gen_about()
+        self.gen_site_map()
 
     def init_output(self):
         """
@@ -295,3 +297,22 @@ class WebSite:
                                link_base='../',
                                page_title="标签:"+c,
                                post_list_name="标签:"+c)
+
+    def gen_site_map(self):
+        site_map = """<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">"""
+        for dirpath, _, filenames in os.walk(self.output_path):
+            if filenames:
+                for f in filenames:
+                    url = os.path.join(dirpath, f)
+                    lastmod = datetime.utcfromtimestamp(os.path.getmtime(url))
+                    url = url.replace(self.output_path,
+                                      'https://'+self.cname+'/')
+                    lastmod = lastmod.isoformat() + 'Z'
+                    site_map += '\n  <url>\n    <loc>'
+                    site_map += url
+                    site_map += '</loc>\n    <lastmod>'
+                    site_map += lastmod
+                    site_map += '</lastmod>\n  </url>\n'
+        site_map += '</urlset>'
+        dump_file(self.output_path + 'sitemap.xml', site_map)
