@@ -90,6 +90,8 @@ class HTMLRenderer(Renderer):
         return res
     def sub_codeinline(self, match):
         return f"<code>{match.group('data'):s}</code>"
+    def sub_em(self, match):
+        return f"<em>{match.group('data'):s}</em>"
     def render_line(self, block):
         if block.data != '':
             print("Warning! There is an unblank Block with btype=line:")
