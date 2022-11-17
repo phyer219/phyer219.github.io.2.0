@@ -20,7 +20,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Long+Cang&family=Noto+Serif+SC&display=swap" rel="stylesheet"> <meta charset="utf-8">
 <meta name="viewport" content="width=device-width">
-<title>Atomic and Optical Physics I, 08 Atoms IV: Hyperfine Structure</title>
+<title>Atomic and Optical Physics I, 08 Atoms IV: Hyperfine Structure (updage 17/Nov/2022)</title>
 <link rel="apple-touch-icon" sizes="180x180" href="../static/images/apple-touch-icon-next.png?v=6.4.1">
 <link rel="icon" type="image/png" sizes="32x32" href="../static/images/favicon-32x32-next.png?v=6.4.1">
 <link rel="icon" type="image/png" sizes="16x16" href="../static/images/favicon-16x16-next.png?v=6.4.1">
@@ -41,7 +41,7 @@
 </nav>
 
         <main>
-            <h1 class="post-title">Atomic and Optical Physics I, 08 Atoms IV: Hyperfine Structure
+            <h1 class="post-title">Atomic and Optical Physics I, 08 Atoms IV: Hyperfine Structure (updage 17/Nov/2022)
             </h1>
             <section class="post-meta">
                 <p>发表于:2022.2.23 ||</p>
@@ -54,20 +54,163 @@
 <li>官方介绍: https://ocw.mit.edu/courses/physics/8-421-atomic-and-optical-physics-i-spring-2014/</li>
 <li>视频列表地址: https://www.youtube.com/playlist?list=PLUl4u3cNGP62FPGcyFJkzhqq9c5cHCK32</li>
 </ul>
-<h2>Hyperfine</h2>
+<h2>Lamb Shift</h2>
+
+<p>Two contribution:</p>
+
+<ul>
+<li>Coulomb potential is "smeared out", so a weaker binding energy.</li>
+<li>Futher contribution to the Lamb shift. 27 MHz, 3% : vaccum polarization. We observe the shielded charge. $\Rightarrow$ s(l = 0) electron sees a higher charge(s 电子 穿透到里面) $\Rightarrow$ down shift for $2S_{1/2}$ 27MHz.</li>
+</ul>
+<p><p><img src='2022-02-23-physics-MITAMO08/vaccum_polarization.png' alt='vaccum polarization' max-width:100%><p></p>
+
+<h2>Introduction: Effect of Nucleus (Hyperfine Structure)</h2>
+
+<p>So far: point charge</p>
+
+<p>Now: nucleus has structure</p>
+
+<p>mangnetic moment: dipole or quadrapole $\Rightarrow$ HFS.</p>
+
+<p>mass and volume $\Rightarrow$ Isotope shifts</p>
+
+<p><p><img src='2022-02-23-physics-MITAMO08/hfs.png' alt='hyperfine structure' max-width:100%><p></p>
+
+<p>Relevance of hpyerfine structure:</p>
+
+<ul>
+<li>several ground states (optical pumping, manuplation of atoms)</li>
+<li>astronomical observation 21cm line</li>
+<li>determination of nuclear properties(even of unstable nuclei)</li>
+</ul>
+<h2>HFS</h2>
+
+<p>the most important effect due to the hyperfine structure: the nucleolus has a
+magnetic moment, and this magnetic moment couples to the magnetic field, even if
+you don't apply an external magnetic field.</p>
 
 
+$$\begin{align}
+H_{\mathrm{HF}} = - \vec{B}_J(0)\cdot \vec{\mu}_{I}
+\end{align}$$
+
+
+<p>this is the Zeeman Hamiltonian of the nucleus in the magnetic field created by
+the electron.</p>
+
+<blockquote>Alternatively: $e^-$ moves in the potential of the nucleus
+\begin{align}
+V = - \frac{e^2}{r} , \vec{A} = \frac{\vec{\mu}_I\times \mathrm{r}}{r^3}
+\quad \mathrm{Jackson(5.55)}
+\end{align}
+then solve the Schrodinger Eq.</blockquote>
+
+<p><em>Semi classical</em> derivation of $\vec{B}_{J}$</p>
+
+<p>orbital and spin part:</p>
+
+$$\begin{align}
+\vec{B}_J = \vec{B}_L + \vec{B}_S
+\end{align}$$
+
+<p>Jackson (5.64):</p>
+
+$$\begin{align}
+\vec{B}_S = \frac{1}{r^3}[-\vec{\mu} + 3(\vec{\mu}\cdot \hat{r})\hat{r}]
+              + \frac{8\pi}{3}\delta(\vec{r}) \vec{\mu}
+\end{align}$$
+
+<p>where $\vec{\mu} = g\mu_B\vec{S}$. Biot and Savart:</p>
+
+$$\begin{align}
+\vec{B}_L(0) = \frac{1}{c}\int \vec{I} \frac{\mathrm{d}\vec{r}\times \vec{r}}{r^3}
+\rightarrow \frac{e}{c} \int \rho (\vec{r}) \frac{\vec{v}\times \vec{r}}{r^3}
+= - \frac{e}{mc}\vec{L} \langle \frac{1}{r^3} \rangle
+= - 2\mu_B \vec{L} \langle \frac{1}{r^3} \rangle
+\end{align}$$
+
+<p>total $\vec{B}$ field (using $g= -2$ for electron spin)</p>
+
+$$\begin{align}
+\vec{B}_J = -2\mu_B \left(
+\frac{\vec{L}}{r^3} - \frac{\vec{S}}{r^3}
++ \frac{3(\vec{S}\cdot \hat{r})\hat{r}}{r^{3}}
++ \frac{8}{3}\pi \delta(\vec{r})\vec{S}
+ \right)
+\end{align}$$
+
+<p>the first three terms is $0$ for $L = 0$ because of spherical average, the last
+term is $0$ for $L\neq 0$ .</p>
+
+
+$$\begin{align}
+H_{HF} = - \vec{B}_J \vec{\mu}_I = a h \vec{I} \cdot \vec{J}
+\end{align}$$
+
+
+<p>For $L = 0$ , $\langle \vec{J} \cdot \vec{B}_J = - 4\pi \mu_B |\psi_{s}|^2$</p>
+
+$$\begin{align}
+a h =  \frac{g_I \mu_N \mu_B 4\pi |\psi(0)|^2}{S(S + 1)} , \quad
+\vec{\mu}_I = g_I \mu_N \vec{I}
+\end{align}$$
+
+<p>For hydrogen: 1420MHz</p>
+
+$$\begin{align}
+H = a h \vec{I}\cdot\vec{J} = \frac{a h}{2} (F(F + 1) - I(I + 1) - J(J + 1))
+\end{align}$$
+
+<p>$I = J = S = 1/2$, $F = 1, 0$</p>
+
+<p><p><img src='2022-02-23-physics-MITAMO08/hfs1.png' alt='hyperfine structure for hydrogen' max-width:100%><p></p>
+
+<p>center of mass of HF states is not change.</p>
+
+<h2>Quadrapole moments</h2>
+
+<p>What further (electric or magnetic) moments can a nucleus have?</p>
+
+<p>parity of electric multiple: $( - 1)^l$ parity
+parity of magnetic multiple: $( - 1)^{ l + 1}$ parity</p>
+
+<h2>Minimum I for magnetic dipole and electric quadrapole</h2>
+
+<p>for magnetic dipole is $I\ge 1/2$ ：
+分清两个方向, 只需要翻个个就行</p>
+
+<p>for electric quadrapole is $I \ge 1$ ：
+分清一个椭球还是一个球, 需要有一个反转 90 度的操作</p>
+
+<h2>Formal</h2>
+
+<h2>Isotopic effects</h2>
+
+<h3>Mass</h3>
+
+
+$$\begin{align}
+E_n = E_n^{\infty} (\frac{M}{M + m})
+\end{align}$$
+
+<p>$M$ : nucleus mass. $m$ : electron mass</p>
+
+<h3>Volumn</h3>
+
+<p>Coulomb level shits. only $s$ electron</p>
+
+<h3>weakens the binding energies</h3>
+
+<p>Volum effect: Largest for heavy nuclei</p>
+
+<p>Mass effect: Largest for hightest nuclei</p>
 
 <h2>Reference</h2>
 
 <ul>
-<li><a href='https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.103.053002'>S. S. Hodgman, R. G. Dall, L. J. Byron, K. G. H. Baldwin, S. J. Buckman, and A. G. Truscott Phys. Rev. Lett. 103, 053002 – Published 30 July 2009</a></li>
-<li><a href='https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.100.023001'>Phys. Rev. Lett. 100, 023001 – Published 15 January 2008, Experimental Determination of the Helium $2^3P_1–1^1S_0$ Transition Rate</a></li>
-<li><a href='https://en.wikipedia.org/wiki/Zitterbewegung'>Wikipedia: Zitterbewegung</a></li>
-<li><a href='https://en.wikipedia.org/wiki/Theodore_A._Welton'>Wikipedia: Welton</a></li>
-<li><a href='https://en.wikipedia.org/wiki/Victor_Weisskopf'>Wikipedia: Weisskopf</a></li>
-<li>Demtröder, W. Atoms, Molecules and Photons: An Introduction to Atomic-, Molecular- and Quantum Physics. (Springer Berlin Heidelberg, 2018)</li>
+<li><a href='https://en.wikipedia.org/wiki/Lamb_shift'>wikipedia: Lamb shift</a></li>
 <li><a href='https://en.wikipedia.org/wiki/Fine_structure'>wikipedia: Fine structure</a></li>
+<li>Jackson, J. D. Classical electrodynamics. (Wiley, 1999)</li>
 </ul>
 
             </section>
