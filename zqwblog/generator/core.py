@@ -246,7 +246,8 @@ class WebSite:
         posts_source = self.source_path + 'posts/'
         if post.file_root in os.listdir(posts_source):
             shutil.copytree(posts_source + post.file_root,
-                            self.output_path + 'posts/' + post.file_root)
+                            self.output_path + 'posts/' + post.file_root,
+                            dirs_exist_ok=True)
 
     def gen_category_list_page(self):
         self.cat_set = {}
