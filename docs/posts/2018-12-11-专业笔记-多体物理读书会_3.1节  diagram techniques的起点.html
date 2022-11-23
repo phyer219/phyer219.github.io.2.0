@@ -1,0 +1,314 @@
+<!DOCTYPE html><html class="no-js" lang="zh">
+
+
+<head>
+<script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+    </script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/styles/base16/solarized-light.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Long+Cang&family=Noto+Serif+SC&display=swap" rel="stylesheet"> <meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>多体物理读书会:3.1节 Dirac表象中的演化算符-diagram techniques的起点</title>
+<link rel="apple-touch-icon" sizes="180x180" href="../static/images/apple-touch-icon-next.png?v=6.4.1">
+<link rel="icon" type="image/png" sizes="32x32" href="../static/images/favicon-32x32-next.png?v=6.4.1">
+<link rel="icon" type="image/png" sizes="16x16" href="../static/images/favicon-16x16-next.png?v=6.4.1">
+<link rel="stylesheet" type="text/css" href="../static/css/mystyle.css">    
+
+</head>
+
+<body>
+    <div class="container">
+        <header>
+    <section class="banner"><img src="../static/images/banner.jpg"></section>
+</header>
+        <nav class="row">
+    <a class="nav" href="../">首页</a>
+    <a class="nav" href="../categories">分类</a>
+    <a class="nav" href="../tags">标签</a>
+    <a class="nav" href="../about">关于</a>
+</nav>
+
+        <main>
+            <h1 class="post-title">多体物理读书会:3.1节 Dirac表象中的演化算符-diagram techniques的起点
+            </h1>
+            <section class="post-meta">
+                <p>发表于:2018.12.11 ||</p>
+                <p>分类:<a class="post-link" href="../categories/专业笔记.html">专业笔记</a> ||</p>
+            </section>
+            <section class="post-content">
+                
+<h2>Schrodinger 表象</h2>
+<h3>定义运动方程</h3>
+
+<p>Schrodinger 表象的定义就是学习量子力学的过程中用的定义. Schrodinger 表象中的运动方程是 Schrodinger 方程</p>
+
+$$\begin{align}
+\label{eq:seq}
+\mathrm{i}\hbar \mid \dot{\psi}_S(t) \rangle = H \mid \psi _S(t) \rangle
+\end{align}$$
+
+
+<h3>演化算符的定义</h3>
+
+<p>定义演化算符 $U_S(t,t_0)$ 使得满足</p>
+
+$$\begin{align}
+\mid \psi_{S}(t) \rangle= U_S (t,t_0) \mid \psi_S(t_0)\rangle
+\end{align}$$
+
+<p>也就是说算符 $U_S(t,t_0)$ 能够把态从 $t_0$ 变到 $t$ .
+这样定义  $U_S(t,t_0)$ 的话, 它就有如下性质:
+1. $U_S^{\dagger}(t,t_0) = U_S^{-1}(t,t_0)$ ,也就是说它是幺正的. 它作用在 bra 上时是反向演化, 这是物理的.
+2. $U_S(t_0,t_0) = \mathbf{1}$ ,它在相同之间的演化是单位算符. 这当然是物理的.
+3. $U_S(t,t_0) = U_S(t,t')U_S(t',t_0)$ 时间的演化是可以连接和拆分的, 这也是物理的.
+这三条性质都可以由定义证明.</p>
+
+<p>态随时间的演化应该满足 Schrodinger 方程, 所以将定义代入 Schrodinger 方程,  就可以知道演化算符随时间的演化</p>
+
+$$\begin{align}
+\label{eq:eoms}
+\mathrm{i}\hbar \dot{U}_S(t,t_0) = H_t U_S (t,t_0)
+\end{align}$$
+
+<p>这也符合预期. 因为根据定义, 态随时间变化的信息全都包含在了演化算符中, 所以演化算符对时间的导数就等于态对时间的导数.</p>
+
+<h3>演化算符的具体形式</h3>
+
+<h4>原始形式</h4>
+
+<p>根据演化算符随时间演化的方程 \eqref{eq:eoms} , 就可以推出演化算符的具体形式</p>
+
+$$\begin{align}
+\label{eq:evl1}
+U_S (t,t_0) = \mathbf{1} +\frac{1}{\mathrm{i}\hbar} \int_{t_0}^t \mathrm{d}t_1 \, H_{t_t} U_S(t_1,t_0)
+\end{align}$$
+
+<p>第一项是单位算符, 是演化算符的初值, 也就是对就它的第二条性质 $U_S(t_0,t_0) = 1$ . 第二项是对变化率的积分. 这只是形式上的, 因为它是一个迭代方程.
+如果 $H$ 不随时间变化,那么情况就大为简化, 这就是常见的微分方程, 求导之后是本身再出来一个常数, 它就是 $e$ 指数.</p>
+
+<h4>von Neumann's series 形式</h4>
+
+<p>将原始的形式 \eqref{eq:evl1} 进行迭代, 就得到了它的级数形式</p>
+
+$$\begin{align}
+U_S (t,t_0) = \mathbf{1} +\sum_{n=1}^{\infty} U_S^{(n)}(t,t_0)
+\end{align}$$
+
+<p>其中</p>
+
+$$\begin{align}
+U_S^{(n)}(t,t_0) = \left( \frac{1}{\mathrm{i}\hbar} \right)^n \cdot \int_{t_0}^t \mathrm{d}t_1 \int_{t_0}^{t_1} \mathrm{d}t_2 \cdots \int_{t_0}^{t_{n-1}}\mathrm{d}t_n\cdot
+H_{t_1}H_{t_2} \cdots H_{t_n} \quad \quad (t \ge t_1 \ge \cdots t_n \ge t_0)
+\end{align}$$
+
+<p>通项中第一项是 $n$ 次迭代后的常数项. 第二项是 $n$ 次迭代后的 $n$ 个积分. 第三项是 $n$ 次迭代后的 $n$ 个变化率.
+$n$ 个积分是互相嵌套的, 后一个积分的上限是前一个积分的变量. 由于这个嵌套关系,这 $n$ 个积分是不独立的, 因此没法写成一个积分的 $n$ 次方.</p>
+
+<h4>time-ordered 形式</h4>
+
+<p>可以通过 Heaviside step function $\Theta$ 将所有的积分上限都写成 $t$</p>
+
+$$\begin{align}
+\label{eq:evl2}
+U_S^{(n)}(t,t_0) = \left( \frac{1}{\mathrm{i}\hbar} \right)^n \cdot \int_{t_0}^t \mathrm{d}t_1 \int_{t_0}^{t} \mathrm{d}t_2 \cdots \int_{t_0}^t\mathrm{d}t_n\cdot
+H_{t_1}H_{t_2} \cdots H_{t_n} \cdot \Theta (t-t_1) \Theta(t_1-t_2) \cdots \Theta(t_{n-1}-t_n)
+\end{align}$$
+
+<p>随便打乱 $t_1 \cdots t_n$ 的指标, 积分的结果是一样的, 所有的打乱方法一共有 $n!$ 种. 这些所有的排列打乱求和, 就是 time-ordering 算符定义. 所以上式可以写为</p>
+
+$$\begin{align}
+\label{eq:evl3}
+U_S^{(n)}(t,t_0) = \frac{1}{n!} \cdot \left( \frac{1}{\mathrm{i}\hbar} \right)^n \cdot \int_{t_0}^t \mathrm{d}t_1 \int_{t_0}^{t} \mathrm{d}t_2 \cdots \int_{t_0}^t\mathrm{d}t_n\cdot
+T_D\left\{ H_{t_1}H_{t_2} \cdots H_{t_n} \right\}
+\end{align}$$
+
+<p>把 time-ordering 算符提到前面, 后面是 $n$ 个结果相同的积分, 可以写成一个积分的 $n$ 次幂. 这恰好是 $e$ 指数的级数展开, 因此</p>
+
+$$\begin{align}
+U_S^{(n)}(t,t_0) = T_D \left\{ e^{\frac{1}{\mathrm{i}\hbar}\int _{t_0}^t \mathrm{d}t' H_{t'}} \right\}
+\end{align}$$
+
+
+<h4>几何意义</h4>
+
+<p>类比二维, 积分 \eqref{eq:evl2} 可以理解成一个高维的"锥"的体积. 这个"锥", 从二维开始增加维度, 然后把新增加的维度捏到一个点上. 比如一维是一条线, 增加到二维是一个正方形, 然后把新增加的维度捏到一个点上,
+就变成了一个等腰直角三角形, 积分 \eqref{eq:evl2} 在 $n<code>2$ 的时对应的就是一个三角形的"体积"(二维的体积就是面积). 再增加到三维, 变成一个三棱柱, 然后把其中一个底面捏到一个点上 积分 \eqref{eq:evl2} 在 $n</code>3$ 时
+就对应这个锥的体积. 依此可以推广到高维的情形. 可以证明, 一个 $n$ 维的这种"锥"的体积为对应的 $n$ 维的立方体体积的 $\frac{1}{n!}$ (证明见最后的 Supplementary 部分) , 如果边长是 $a$ ,
+那么其体积就是 $\frac{a^n}{n!}$ ,这就对应到了积分 \eqref{eq:evl3} .</p>
+
+<h2>Heisenberg 表象</h2>
+
+<h3>定义</h3>
+
+<p>Heisenberg 表象将系统的变化从态中移到了力学量算符中</p>
+
+$$\begin{align}
+\langle \psi_S(t) | A_S | \psi_S(t)\rangle = \underbrace{\langle \psi_S(t_0) |}_{\langle \psi_H |} \underbrace{U(t_0,t) A_S U(t,t_0)}_{A_H(t)} \underbrace{| \psi_S(t_0)\rangle}_{| \psi_H\rangle}
+= \langle \psi_H | A_H(t)| \psi_H\rangle
+\end{align}$$
+
+<p>也就是说 Heisenberg 表象中的态不变, 算符作用在态上时, 自动将态演化到 $t$ 时刻</p>
+
+$$\begin{align}
+A_H(t) = U(t_0,t) A_S U(t,t_0) = U^{-1}(t,t_0) A_S U(t,t_0)
+\end{align}$$
+
+
+<h3>运动方程</h3>
+
+<p>在 Heisenberg 表象中, 运动方程从 Schrodinger 表象中态的 Schrodinger 方程, 变为算符的 Heisenberg 方程</p>
+
+$$\begin{align}
+\mathrm{i}\hbar \dot{A}_H(t) = [A_H,H_H](t) + \boxed{\mathrm{i}\hbar U_S(t_0,t) \frac{ \partial A_S}{\partial t}U_S(t,t_0)}
+\end{align}$$
+
+<p>方框中的部分一般为零, 代表算符本身的随时间变化. 而第一项是由 Hamiltonian 主导的变化. 可以理解, 算符左右各有一个演化算符, 每个演化算符的时间导数出来一项 $H$ ,两项相减就出来了对易子.</p>
+
+<h2>Dirac 表象</h2>
+
+<h3>定义</h3>
+
+<p>Dirac 表象对 Hamiltonian 进行了分解</p>
+
+$$\begin{align}
+H = H_0 + V_t
+\end{align}$$
+
+<p>第一项 $H_0$ 代表自由系统, 第二项 $V_t$ 代表含时的相互作用. Dirac 表象中将这两者的演化分别放到了算符和态中.  $H_0$ 自由系统的演化放到了算符中,  $V_t$ 含时相互作用的演化放到了态中.
+ 和 Schrodinger 表象类似地, 定义 Dirac 表象中的演化算符, 作用也是将态从一个时刻演化到另一个时刻, 只不过这时的态是 Dirac 表象中的态.</p>
+
+<p>首先定义 Dirac 表象中的初态与 Schrodinger 表象中的初态相同, 即</p>
+
+$$\begin{align}
+| \psi_D (t_0) \rangle = | \psi_S (t_0) \rangle
+\end{align}$$
+
+<p>然后定义 Dirac 表象中 $t$ 时刻的态</p>
+
+$$\begin{align*}
+\langle \psi_S(t) | A_S | \psi_S(t)\rangle =& \langle \psi_S (t_0) |\cdot U_S (t_0,t) \cdot A_S \cdot U_S(t,t_0) \cdot|\psi_S (t_0) \rangle \\
+=& \underbrace{ \langle \psi_S (t_0) | U_D (t_0,t) }_{ \langle \psi_D(t) | }
+\underbrace{U_0(t_0,t) A_S  U_0(t,t_0)}_{ A_D(t) }
+\underbrace{ U_D (t,t_0) | \psi_S(t_0)\rangle }_{ | \psi_D(t)\rangle }
+\end{align*}$$
+
+<p>上式就是我对 Dirac 表象中的演化算符的定义. 单独把定义摘出来就是</p>
+
+$$\begin{align}
+\label{eq:evld1}
+| \psi_D(t) \rangle = U_D(t,t_0) | \psi_D(t_0)\rangle= U_0(t_0,t) U_S(t,t_0) |\psi_S(t_0)\rangle
+\end{align}$$
+
+<p>其中 $U_0(t,t') = e^{\frac{1}{\mathrm{i}\hbar}H_0(t-t')}$ , $H_0$ 在 Schrodinger 表象中的演化. 也就是说先把初态用总的 Hamiltonian 演化到 $t$ 时刻, 再自由系统的 Hamiltonian 演化回初态, 相当于把自由系统的时间演化去除.
+换一种说法, 总的演化, 也就是 Schrodinger 演化, 是第一步先 Dirac 演化, 之后再用自由系统去演化. 这样态的演化相当于由相互作用主导.</p>
+
+<p>但定义式 \eqref{eq:evld1} 不能给出任意两个时刻之间的 Schrodinger 演化算符和 Dirac 演化算符之间的关系. 这在逻辑上是连接不起来的.
+ 不能直接把初始时刻 $t_0$ 换成任意时刻, 因为 $t_0$ 时刻是 Schrodinger 表象和 Dirac 表象的连接点. 不同的初始时刻会定义出不同的 Dirac 表象, 不同的 Dirac 演化算符. 下面将会看到这一点.</p>
+
+<p>下面得到任意两个时刻之间的 Dirac 演化算符与 Schrodinger 演化算符之间的关系</p>
+
+$$\begin{align*}
+| \psi_D (t) \rangle = U_D(t,t') | \psi_D(t')\rangle =&  U_D(t,t') U_0(t_0,t') U_S(t',t_0)| \psi_S(t_0)\rangle \\
+=& U_0(t_0,t) U_S(t,t_0) | \psi_S (t_0) \rangle
+\end{align*}$$
+
+<p>由上式第三个等号可得</p>
+
+$$\begin{align}
+U_D(t,t') = U_0(t_0,t) U_S(t,t') U_0(t',t_0)
+\end{align}$$
+
+<p>可以看出, $t_0$ 选取的不同, 会定义出不同的 $U_D(t,t')$ . 上式说的物理就是, 要在 Dirac 表象中将两个不同时刻的态演化, 第一步先把它的 $H_0$ 加上, 变回到 Schrodinger 表象.
+ 第二步在 Schrodinger 表象中演化到目标时刻 $t'$ . 最后, 再把 $H_0$ 的演化去年, 变到 Dirac 表象.</p>
+
+<h3>运动方程</h3>
+
+<p>由于 Dirac 表象中算符和态都会随时间变化, 所以算符和态各对应不同的运动方程.</p>
+
+<p>对于 Dirac 表象的算符, 它就是 Hamiltonian 为 $H_0$ 的 Heisenberg 表象中的算符, 那么算符的运动方程就如同 Heisenberg 方程一般</p>
+
+$$\begin{align}
+\mathrm{i}\hbar \dot{A}_D(t) = [A_D,H_0] + \boxed{\mathrm{i}\hbar U_0(t_0,t) \frac{ \partial A_D}{\partial t}U_0(t,t_0)}
+\end{align}$$
+
+
+<p>对于 Dirac 表象的态, 它的定义中的 $U_D(t,t_0)$ 的具体形式不知道, 只能将 \eqref{eq:evld1} 代入 Schrodinger 方程 \eqref{eq:seq}</p>
+
+$$\begin{align*}
+\mathrm{i}\hbar| \dot{\psi}_D (t) \rangle = \mathrm{i}\hbar \frac{\mathrm{d}}{\mathrm{d}t} \left( U_0^{\dagger}(t,t_0) |\psi_S(t) \rangle \right)
+\end{align*}$$
+
+<p>右边的求导对应两项时间变化, 第一项会出来一个 $H_0$ ,第二项会出来一个 $H$ ,二者相减只剩下一个 $V_D$ .然后把 $| \psi_S(t)\rangle$ 变回到 Dirac 表象, 最终正好多出来相互作用在 Dirac 表象中的结果</p>
+
+$$\begin{align}
+\mathrm{i}\hbar | \dot{\psi}_D(t)\rangle = V_t^D (t) | \psi_D(t)\rangle
+\end{align}$$
+
+<h4>演化算符</h4>
+
+<p>和 Schrodinger 表象类似, Dirac 表象中的演化算符的时间演化就是态的时间演化</p>
+
+$$\begin{align}
+\mathrm{i}\hbar \dot{U}_D(t,t') = V_t^D(t)U_D(t,t')
+\end{align}$$
+
+<p>类似于 Schrodinger 表象, 演化算符的具体形式也可以写出</p>
+
+$$\begin{align}
+\label{eq:startpoint}
+\boxed{U_D(t,t') = T_D \left\{ e^{\frac{1}{\mathrm{i}\hbar} \int_{t'}^t \mathrm{d}t'' V_{t''}^D(t'')} \right\}}
+\end{align}$$
+
+<p>其中 $V_{t}^D(t)$ 的下标 $t$ 代表相互作用含时, 括号中的 $t$ 代表想到作用演化产生的含时.</p>
+
+<p>式 \eqref{eq:startpoint} 就是 diagram techniques 的起点!</p>
+<h2>Supplementary</h2>
+
+<p>一个 $n$ 维的这种"锥"的体积为对应的 $n$ 维的立方体体积的 $\frac{1}{n!}$ 的证明:</p>
+
+<p>首先证明 $n$ 维"棱锥"的体积是对应的 $n$ 维立方体的体积的 $\frac{1}{n}$ . 这里的"棱锥"与"锥"是不同的, "棱锥"只是把一个维度捏到一个点上, 而"锥"是把每次增加的维度都捏到一个点上. 证明如下</p>
+
+<ul>
+<li>假设 $n$ 维立方体边长是 a ，那么它的体积是 $a^n$ 。</li>
+<li>$n$ 维立方体的底面积，也就是 $n-1$ 维立方体的体积是 $a^{n-1}$ .</li>
+<li>所以 $n$ 维锥体的体积是 $\int_0^a a_1^{n-1}\text{d}a_1=\frac{1}{n}\cdot a^n$  .</li>
+</ul>
+<p>证毕.</p>
+
+<p>把 $n$ 维立方体的第 $n$ 个维度捏到一个点上, 体积变成 $\frac{1}{n}$ . 可以类比, 再把第 $n-1$ 个维度捏到一个点上, 体积变成 $\frac{1}{n\cdot (n-1)}$ .
+再把第 $n-2$ 个维度捏到一个点上, 体积变成 $\frac{1}{n\cdot (n-1) \cdot (n-2)}$ , $\cdots$ , 所以都捏完, 体积就变成了 $\frac{1}{n!}$ .</p>
+
+<p>证毕.</p>
+
+            </section>
+            <section class="post-meta">
+                <p>标签:
+                    <a class="post-link" href="../tags/物理.html">物理</a>
+                    <a class="post-link" href="../tags/多体物理读书会.html">多体物理读书会</a>
+                    <a class="post-link" href="../tags/Dirac 表象.html">Dirac 表象</a>
+                    <a class="post-link" href="../tags/Schrodinger 表象.html">Schrodinger 表象</a>
+                    <a class="post-link" href="../tags/Heisenberg 表象.html">Heisenberg 表象</a>
+                    <a class="post-link" href="../tags/演化算符.html">演化算符</a>
+                    <a class="post-link" href="../tags/格林函数.html">格林函数</a>
+                    <a class="post-link" href="../tags/Feynman graphs.html">Feynman graphs</a>
+                </p>
+            </section>
+        </main>
+        <footer>© 2018 - 2022 ZQW</footer>
+
+    </div>
+</body>
+
+</html>

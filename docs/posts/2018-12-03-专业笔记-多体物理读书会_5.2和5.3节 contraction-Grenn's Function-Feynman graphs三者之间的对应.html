@@ -1,0 +1,213 @@
+<!DOCTYPE html><html class="no-js" lang="zh">
+
+
+<head>
+<script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+    </script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/styles/base16/solarized-light.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Long+Cang&family=Noto+Serif+SC&display=swap" rel="stylesheet"> <meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>多体物理读书会: 5.2和5.3节 contraction-Grenn's Function-Feynman graphs三者之间的对应</title>
+<link rel="apple-touch-icon" sizes="180x180" href="../static/images/apple-touch-icon-next.png?v=6.4.1">
+<link rel="icon" type="image/png" sizes="32x32" href="../static/images/favicon-32x32-next.png?v=6.4.1">
+<link rel="icon" type="image/png" sizes="16x16" href="../static/images/favicon-16x16-next.png?v=6.4.1">
+<link rel="stylesheet" type="text/css" href="../static/css/mystyle.css">    
+
+</head>
+
+<body>
+    <div class="container">
+        <header>
+    <section class="banner"><img src="../static/images/banner.jpg"></section>
+</header>
+        <nav class="row">
+    <a class="nav" href="../">首页</a>
+    <a class="nav" href="../categories">分类</a>
+    <a class="nav" href="../tags">标签</a>
+    <a class="nav" href="../about">关于</a>
+</nav>
+
+        <main>
+            <h1 class="post-title">多体物理读书会: 5.2和5.3节 contraction-Grenn's Function-Feynman graphs三者之间的对应
+            </h1>
+            <section class="post-meta">
+                <p>发表于:2018.12.3 ||</p>
+                <p>分类:<a class="post-link" href="../categories/专业笔记.html">专业笔记</a> ||</p>
+            </section>
+            <section class="post-content">
+                
+
+
+
+
+<h2>contraction 与因果格林函数对应</h2>
+<h3>因果格林函数的定义式</h3>
+<p>第三章中因果格林函数的定义为</p>
+
+
+$$\begin{align*}
+G_{AB}^c (t-t') \equiv - \mathrm{i} \langle T_{\varepsilon} (A(t)B(t'))\rangle 
+\end{align*}$$
+
+
+<p>如果系统取为零温无相互作用费米气体, 算符 $A(t),B(t')$ 取为 $a_k(t),a_l^{\dagger}(t')$ ,上式就变为</p>
+
+
+$$\begin{align}
+\label{eq:contraction}
+G_{kl}^{0,c}(t-t') = -\mathrm{i} \langle T_{\varepsilon}(a_k(t)a_l(t')) \rangle 
+= - \mathrm{i} \langle \eta_0 \mid T_{\varepsilon}\left\{ a_k(t)a_l^{\dagger}(t') \right\}  \mid \eta_0 \rangle
+\end{align}$$
+
+
+<p>其中目标 $0$ 代表无相互作用.</p>
+
+<h3>contraction 的定义</h3>
+
+<p>根据 contraction 的定义, 可得 ( 收缩符号不好在这打, 用大括号代替了 )</p>
+
+<p>\begin{equation}
+\begin{split}
+\underbrace{a_k(t)a_l^{\dagger}(t')} =& \langle \eta_0 \mid \underbrace{a_k(t)a_l^{\dagger}(t')} \mid \eta_0 \rangle \\
+=& \langle \eta_0 \mid T_{\varepsilon}\left\{ a_k(t)a_l^{\dagger}(t') \right\} - N \left\{\mid a_k(t)a_l^{\dagger}(t') \right\} \mid \eta_0 \rangle \\
+=& \langle \eta_0 \mid T_{\varepsilon}\left\{ a_k(t)a_l^{\dagger}(t') \right\}  \mid \eta_0 \rangle \\
+=& \langle \eta_0 \mid T_{\varepsilon}\left\{ a_k(t)a_l^{\dagger}(t') \right\}  \mid \eta_0 \rangle  \delta_{kl}
+\end{split}
+\end{equation}</p>
+
+<p>其中第一个等号是因为收缩是一个数, 第二个等号是 contraction 的定义, 第三个等号是因为正规 normal product 在基态下的期望是 $0$ .</p>
+
+<p>根据 contraction 的定义, 对于费米子也可直接得到</p>
+
+
+$$\begin{align}
+\underbrace{a_k(t)a_l^{\dagger}(t')} = - \underbrace{a_l^{\dagger}(t')a_k(t)}
+\end{align}$$
+
+
+<h3>结论</h3>
+
+<p>对比 (\ref{eq:contraction}) 和 $(2)$ 可得</p>
+
+
+$$\begin{align}
+\underbrace{a_k(t)a_l^{\dagger}(t')} = \mathrm{i} G_{kl}^{0,c}(t-t') \delta_{kl} =  \mathrm{i} G_{k}^{0,c}(t-t') \delta_{kl}
+\end{align}$$
+
+
+<h2>time-ordering 算符的 convention</h2>
+
+<p>当 time-ordering 算符作用的两个算符相等时,通常取消灭算符的时间要稍小于产生算符, 也就是</p>
+
+
+$$\begin{align}
+t_{\mathrm{annihilation operator}} - t_{\mathrm{creation operation}} = 0^-
+\end{align}$$
+
+
+<h2>因果格林函数与粒子数平均值的关系</h2>
+
+<p>书中第三章中有结论</p>
+
+
+$$\begin{align}
+\mathrm{i}G_k^c(t-t'=0^-) = - \langle n_k \rangle
+\end{align}$$
+
+
+<h2>Feynman graphs 的正负号问题</h2>
+
+<p>图的正负号与收缩中带 "$\prime$" 的 $t$ 在右边时的符号相同.</p>
+
+<h2>总结</h2>
+
+<p>综合上面的考虑, 我发现只要用以下五条规则就可以把 contraction-Grenn's Function-Feynman graphs 以及粒子数算符在基态上的期望相联系</p>
+
+<ul>
+<li></li>
+</ul>
+
+$$\begin{align*}
+\boxed{
+t_{\mathrm{annihilation operator}} - t_{\mathrm{creation operation}} = 0^-
+}
+\end{align*}$$
+
+<ul>
+<li></li>
+</ul>
+
+$$\begin{align*}
+\boxed{
+\underbrace{a_k(t)a_l^{\dagger}(t')} = \mathrm{i} G_{k}^{0,c}(t-t') \delta_{kl}
+}
+\end{align*}$$
+
+<ul>
+<li></li>
+</ul>
+
+$$\begin{align*}
+\boxed{
+\underbrace{a_k(t)a_l^{\dagger}(t')} = - \underbrace{a_l^{\dagger}(t')a_k(t)}
+}
+\end{align*}$$
+
+<ul>
+<li></li>
+</ul>
+
+$$\begin{align*}
+\boxed{
+\mathrm{i}G_k^c(t-t'=0^-) = - \langle n_k \rangle
+}
+\end{align*}$$
+
+<ul>
+<li></li>
+</ul>
+
+$$\begin{align*}
+\boxed{
+\mathrm{图的正负号与收缩中带 "\prime" 的 t 在右边时的符号相同.}
+}
+\end{align*}$$
+
+
+
+
+<h2>注</h2>
+
+<p>$LaTeX$ 中收缩的打法可以参考 <a href='http://tug.ctan.org/macros/latex/contrib/simplewick/simplewick.pdf'>http://tug.ctan.org/macros/latex/contrib/simplewick/simplewick.pdf</a> 使用 simplewick.sty</p>
+
+
+            </section>
+            <section class="post-meta">
+                <p>标签:
+                    <a class="post-link" href="../tags/物理.html">物理</a>
+                    <a class="post-link" href="../tags/多体物理读书会.html">多体物理读书会</a>
+                    <a class="post-link" href="../tags/contraction.html">contraction</a>
+                    <a class="post-link" href="../tags/格林函数.html">格林函数</a>
+                    <a class="post-link" href="../tags/Feynman graphs.html">Feynman graphs</a>
+                </p>
+            </section>
+        </main>
+        <footer>© 2018 - 2022 ZQW</footer>
+
+    </div>
+</body>
+
+</html>

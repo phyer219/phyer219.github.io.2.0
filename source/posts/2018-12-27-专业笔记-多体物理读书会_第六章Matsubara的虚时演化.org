@@ -1,0 +1,345 @@
+#+TITLE: 多体物理读书会:第六章Matsubara的虚时演化
+#+DATE: <2018-12-27>
+#+CATEGORIES: 专业笔记
+#+TAGS: 多体物理读书会, 物理, 虚时演化
+#+HTML: <!-- toc -->
+#+HTML: <!-- more -->
+#+LATEX_HEADER: \usepackage{ctex}
+PDF: [[file:./2018-12-27-专业笔记-多体物理读书会:第六章Matsubara的虚时演化/2018-12-27-专业笔记-多体物理读书会:第六章Matsubara的虚时演化.pdf]]
+
+* 引入
+
+** 引入一
+
+格林函数的定义中有两项, 是
+\begin{align*}
+  \langle A(t) B(t') \rangle\quad,\quad \langle B(t') A(t) \rangle
+\end{align*}
+但是, 如果时间不是一个实数, 而可以是复数, 允许有虚部的话, 那么这两项就不是相互独立的了. 因为
+\begin{align*}
+  \Xi \langle A(t) B(0) \rangle =& \mathrm{Tr} \left\{ e^{-\beta H} \cdot
+  e^{-\frac{1}{\mathrm{i}\hbar}Ht} A(0) e^{\frac{1}{\mathrm{i}\hbar}Ht}
+  \cdot B(0)\right\} \\
+  =& \mathrm{Tr} \left\{ e^{-\frac{1}{\mathrm{i}\hbar}H(t+\mathrm{i}\hbar \beta)}
+  A(0) e^{\frac{1}{\mathrm{i}\hbar}H(t+\mathrm{i} \hbar \beta) }\cdot e^{-\beta H}
+  \cdot B(0)\right\} \\
+  =& \mathrm{Tr} \left\{ e^{-\beta H}
+  \cdot B(0) \cdot e^{-\frac{1}{\mathrm{i}\hbar}H(t+\mathrm{i}\hbar \beta)}
+  A(0) e^{\frac{1}{\mathrm{i}\hbar}H(t+\mathrm{i} \hbar \beta) }\right\} \\
+  =& \Xi \langle B(0) A(t+\mathrm{i}\hbar\beta)
+\end{align*}
+也就是
+\begin{align}
+  \label{eq:p}
+  \langle A(t)B(0)\rangle = \langle B(0)A(t+\mathrm{i}\hbar\beta)
+\end{align}
+
+因此,引入复数时间将会使格林函数的定义更加精简? 这和其周期性有什么关系?
+
+** 引入二
+
+时间演化算符
+\begin{align}
+U(t,0) = e^{\frac{1}{\mathrm{i}\hbar}Ht}
+\end{align}
+和巨正则系综的密度算符
+\begin{align*}
+\rho =\frac{1}{\Xi} e^{-\beta H} \\
+\rho \Xi =e^{-\beta H}
+\end{align*}
+(其中 $H$ 包含了化学势)
+十分相似. 也可以说巨正则系综的密度算符是一个特殊的时间演化算符
+\begin{align*}
+U(t,0) &\rightarrow e^{\frac{1}{\mathrm{i}\hbar}Ht}\\
+\rho \Xi &\rightarrow e^{-\beta H} \\
+\Downarrow \\
+\rho \Xi &= U(-i\hbar \beta,0) = e^{-\beta H}
+\end{align*}
+
+所以得出结论:
+
+$\rho \Xi$ 是时间
+\begin{align}
+t=-i\hbar \beta
+\end{align}
+的时间演化算符, 对应一个虚数时间.
+它将系统从无穷高的温度 $T\to +\infty$ 演化到 $T = \frac{1}{k \beta}$ .
+
+这最先由 Kubo 在 1950s 早期发现.
+接下来呢, Matsubara 就 pick up 了 Kubo 的这个发现,
+写下了第一个有限温多体问题的虚时方程!
+
+知道了配分函数, 就知道了一切.
+而配分函数不过是演化算符的求迹!
+\begin{align}
+\Xi = \mathrm{Tr} [ U(-\mathrm{i}\hbar \beta, 0)]
+\end{align}
+
+** 引入三
+
+对于非零温的情况, 微扰 $V$ 不仅出现在演化算符中, 还出现在密度算符中. 虚时
+的引入, 可以使得两部分合并, 在对 $V$ 进行展开时只进行一次展开即可.
+
+* Modified Heisenberg Representation
+
+一个纯虚的时间, 对应于温度的演化, 与真实的时间无关. 如果时间是虚, 那么可以定义
+\begin{align*}
+  \tau = \mathrm{i}t
+\end{align*}
+是一个实数.
+
+由虚时演化的 Heisenberg Representation 叫做 Modified Heisenberg Representation ,在此
+表象下的算符为
+\begin{align*}
+  A(\tau) = e^{\frac{1}{\hbar}H\tau} A(0) e^{-\frac{1}{\hbar}H\tau}
+\end{align*}
+此算符关于虚时间,实数 $\tau$ 对应的运动方程为
+\begin{align*}
+  \mathrm{i}\hbar \frac{\partial}{\partial t}A(t) =& [A(t),H] \\
+  \Downarrow & \\
+  -\hbar \frac{\partial}{\partial \mathrm{i}t}A(\tau) =& [A(\tau),H] \\
+  \Downarrow &\\
+  -\hbar \frac{\partial}{\partial \tau}A(\tau) =& [A(\tau),H] \\
+\end{align*}
+
+* Matsubara function
+
+** Defination
+
+与因果格林函数一样的定义, 只不过由于时间是虚的, $\mathrm{i}$ 被 $t$ 吸收变成
+实数 $\tau$ , 定义中不再有 $\mathrm{i}$ 出现
+\begin{align*}
+  G_{AB}^M(t,t') = -\langle T_{\varepsilon}(A(\tau)B(\tau))\rangle
+\end{align*}
+
+对应的运动方程为
+\begin{align*}
+  -\hbar \frac{\partial}{\partial \tau}G_{AB}^M (\tau, \tau') =
+  \hbar \delta(\tau-\tau')\langle [A,B]_{-\varepsilon}\rangle
+  +\langle \langle \,[A(\tau),H] \,;\,B(\tau') \, \rangle\rangle^M
+\end{align*}
+
+有一疑问, 定义中是否要加一限制 $\tau-\tau'\in [-\hbar\beta,\hbar\beta]$ ?为什么加? 这里
+暂且假设是. 下面的推导也说得通.
+
+** 周期性
+
+Matsubara function 在区间 $[-\hbar\beta,\hbar\beta]$ 之间, 对于 Boson 是
+关于原点对称的, Fermion 关于原点是反对称的. 证明如下
+\begin{align*}
+  \mathrm{For} \tau < 0 &, \quad \mathrm{then} \quad \tau+\hbar\beta > 0\\
+  \Xi G(\tau+\hbar\beta) =& -\mathrm{Tr} \left\{
+  e^{-\beta H}\cdot e^{\frac{1}{\hbar}H(\tau+\hbar\beta)}A(0)
+   e^{-\frac{1}{\hbar}H(\tau+\hbar\beta)}\cdot B(0) \right\} \\
+  =& -\mathrm{Tr} \left\{
+  e^{\frac{1}{\hbar}H\tau}A(0)
+   e^{-\frac{1}{\hbar}H\tau}\cdot e^{-\beta H}\cdot B(0) \right\} \\
+    =& -\mathrm{Tr} \left\{ e^{-\beta H}\cdot B(0)\cdot
+  e^{\frac{1}{\hbar}H\tau}A(0)
+   e^{-\frac{1}{\hbar}H\tau}  \right\} \\
+    =& -\varepsilon\mathrm{Tr} \left\{ T_{\varepsilon}(A(\tau)  \cdot B(0))\right\} \\
+   =& \varepsilon\Xi G(\tau)
+\end{align*}
+也可以利用关系 \eqref{eq:p} 的变形
+\begin{align*}
+  \langle A(\tau)B(\tau')\rangle = \langle B(\tau')A(\tau-\hbar\beta)\rangle
+\end{align*}
+即
+\begin{align*}
+   \mathrm{For} \tau < 0 &, \quad \mathrm{then} \quad \tau+\hbar\beta > 0\\
+   G(\tau+\hbar\beta) =& -\langle A(\tau+\hbar\beta) B(t) \rangle \\
+                      =& -\langle B(0) A(\tau)\rangle \\
+                      =& -\varepsilon \langle T_{\tau} A(\tau)B(0) \rangle \\
+                      =& \varepsilon G(\tau)
+\end{align*}
+所以关系 \eqref{eq:p} 与 Matsubara function 的对称与反对称性是相关的.
+
+** Fourier Transform
+
+Matsubara function 按区间 $[-\hbar\beta,\hbar\beta]$ 延拓成周期为 $2\hbar\beta$ 的
+周期函数. 对周期函数的 Fourier Transform , 其结果是离散的
+\begin{align*}
+  \omega_n = n\frac{2\pi}{2\hbar\beta} = \frac{n\pi}{\hbar\beta}
+\end{align*}
+Fourier 展开为
+\begin{align*}
+  G(\tau) = \sum_{n=-\infty}^{\infty} C_n
+  e^{-\mathrm{i}\omega_n\tau}
+\end{align*}
+where
+\begin{align*}
+  C_n =\frac{1}{2\hbar\beta} \int_{-\hbar\beta}^{\hbar\beta}\mathrm{d}\cdot\tau
+  G(\tau) e^{\mathrm{i}\omega_n\tau}
+\end{align*}
+记
+\begin{align*}
+  E_n =& \hbar\omega = \frac{n\pi}{\beta} \\
+  G(E_n) =& \hbar\beta C_n
+\end{align*}
+则得到书上的形式
+\begin{align*}
+  G(\tau) =& \frac{1}{\hbar\beta}\sum_{n=-\infty}^{\infty}e^{-\frac{\mathrm{i}}{\hbar}E_n\tau}
+  G(E_n) \\
+  G(E_n) =& \frac{1}{2}\int_{-\hbar\beta}^{\hbar\beta}\mathrm{d}\tau\cdot
+  G(\tau)e^{\frac{\mathrm{i}}{\hbar}E_n\tau}
+\end{align*}
+
+对于 Boson, 其周期实际为 $\hbar\beta$ ,所以其变换为
+
+\begin{align*}
+  G(\tau) =& \frac{1}{\hbar\beta}\sum_{n=-\infty}^{\infty}e^{-\frac{\mathrm{i}}{\hbar}E_n\tau}
+  G(E_n) \\
+  G(E_n) =& \int_{0}^{\hbar\beta}\mathrm{d}\tau\cdot
+  G(\tau)e^{\frac{\mathrm{i}}{\hbar}E_n\tau} \\
+  E_n =& n\frac{2\pi}{\hbar\beta} = \frac{2n\pi}{\hbar\beta}
+\end{align*}
+
+而对于 Fermion
+\begin{align*}
+  & \int_{-\hbar\beta}^{0}\mathrm{d}\tau\cdot
+  G(\tau)e^{\frac{\mathrm{i}}{\hbar}E_n\tau} \\
+  =& \int_{0}^{\hbar\beta}\mathrm{d}\tau'\cdot
+  G(\tau+\hbar\beta)e^{\frac{\mathrm{i}}{\hbar}E_n\tau}
+  \cdot e^{\frac{\mathrm{i}}{\hbar}E_n\hbar\beta} \\
+  =& \int_{0}^{\hbar\beta}\mathrm{d}\tau\cdot
+  (-G(\tau))e^{\frac{\mathrm{i}}{\hbar}E_n\tau}
+  \cdot e^{\mathrm{i}\cdot n\pi} \\
+\end{align*}
+只有 $E_n=(2n+1)\pi/\beta$ 时 $G_n$ 才不为零.
+
+** Relation to the Green's Function
+
+它们的关系可以由 Spectral function 联系.
+
+\begin{align*}
+  \langle A(\tau) B(0) \rangle = \frac{1}{\Xi}
+  \sum_{nm} \langle E_n | A |E_m \rangle \langle E_m
+  |B |E_n\rangle e^{\frac{1}{\hbar}(E_n-E_m)\tau}e^{-\beta E_n}
+\end{align*}
+\begin{align*}
+  S_{AB}(E) = \frac{\hbar}{\Xi}
+  \sum_{nm} \langle E_n | A |E_m \rangle \langle E_m
+  |B |E_n\rangle e^{-\beta E_n}(1-\varepsilon e^{-\beta E})
+  \delta[E-(E_m-E_n)]
+\end{align*}
+比较以上两式可得
+\begin{align*}
+  \langle A(\tau) B(0) \rangle = \frac{1}{\hbar}\int \mathrm{d}E\cdot
+  \frac{S_{AB}(E)}{1-\varepsilon e^{-\beta E}}e^{-\frac{1}{\hbar}E\tau}
+\end{align*}
+
+知道了 $\langle A(\tau)B(0)\rangle$ , 便可求得 Matsubara function
+\begin{align*}
+  G_{AB}(E_n) =& -\int_0^{\hbar\beta}e^{\frac{\mathrm{i}}{\hbar}E_n\tau}
+  \langle A(\tau)B(0)\rangle \cdot\mathrm{d}\tau \\
+  =& \int \mathrm{d}E\cdot \frac{S_{AB}}{\mathrm{i}E_n-E}
+\end{align*}
+第一个等号是因为积分区间中 $\tau > 0$ ,所以 $G(\tau) = -\langle A(\tau)B(0)\rangle$ .
+ 与 Grenn's function 相比, 只是把原来的 $E\pm\mathrm{i}0^+$ 换成了
+ $\mathrm{i}E_n$ . 从原来的实轴附近变到了虚轴. 原因大概是与能量共轭的量
+时间也从实轴变到了虚轴.
+
+
+
+* Grand Canonical Partition Function
+
+** Dirac Representation
+
+对应于实时, 虚时也可以定义 Dirac Representation .
+\begin{align*}
+  A_D(\tau) = e^{\frac{1}{\hbar}H_0\tau} A_S e^{-\frac{1}{\hbar}H_0\tau}
+\end{align*}
+
+运动方程
+\begin{align*}
+  -\hbar \frac{\partial}{\partial t}U_D(\tau,\tau') = V_D(\tau)U_D(\tau,\tau')
+\end{align*}
+
+一切都与实时相类似. 虚时同样有
+\begin{align*}
+  U_D(\tau,\tau') = T_{\tau}e^{-\frac{1}{\hbar}\int_{\tau'}^{\tau}\mathrm{d}\tau''
+  \cdot V_D(\tau'')}
+\end{align*}
+
+** Grand Canonical Partition Function
+
+\begin{align*}
+  e^{-\frac{1}{\hbar}H\tau} = e^{-\frac{1}{\hbar}H_0\tau}U_D(\tau,0)
+\end{align*}
+
+所以 Grand Canonical Partition Function 就表示为 Diarc 演化算符在无相互作用系统下的迹
+\begin{align*}
+  \Xi =\mathrm{Tr} e^{-\frac{1}{\hbar}H_0\tau}U_D(\tau,0)
+  = \mathrm{Tr} \left\{ e^{-\beta H_0} U(\hbar \beta,0) \right\}
+\end{align*}
+展开后就是
+\begin{align*}
+  \Xi =&  \mathrm{Tr} \left\{ e^{-\beta H_0} U(\hbar \beta,0) \right\} \\
+  =&\sum_{n=0}^{\infty} \frac{1}{n!}\left( -\frac{1}{\hbar} \right)^n
+  \int_0^{\hbar\beta} \cdots \int_0^{\hbar\beta} \mathrm{d}\tau_1\cdots \mathrm{d}\tau_n
+  \mathrm{Tr}\left\{ e^{-\beta H_0} T_{\tau}(V_D(\tau_1)\cdots V_D(\tau_n)) \right\}
+\end{align*}
+
+* Single-Particle Matsubara function
+
+** Defination
+
+Single-Particle Matsubara function 定义为
+\begin{align*}
+  G_k(\tau) = -\langle T_{\tau}(a_k(\tau)a_k^{\dagger}(0))  \rangle
+\end{align*}
+它也满足 Dyson equation
+\begin{align*}
+  G_k(E_n) = \frac{\hbar}{\mathrm{i}E_n -(\varepsilon(\vec{k})-\mu)-\Sigma^M(k,E_n)}
+\end{align*}
+
+Equation of Motion
+
+类似实时, 由 Heisenberg 运动方程可以得到产生和消灭算符的虚时演化
+\begin{align*}
+  a_k(\tau) =&a_k e^{-\frac{1}{\hbar}(\varepsilon(\vec{k})-\mu)\tau}\\
+  a_k^{\dagger}(\tau) =&a_k^{\dagger} e^{\frac{1}{\hbar}(\varepsilon(\vec{k})-\mu)\tau}
+\end{align*}
+注意二者并不互为厄米!
+由单粒子的谱函数, 可以得到 Single-Particle Matsubara function 的
+具体形式
+\begin{align*}
+  G_k^{0,M}(E_n) = \frac{\hbar}{\mathrm{i}E_n-(\varepsilon(\vec{k})-\mu)}
+\end{align*}
+当然也可由 $G_k^{0,\alpha}(E)$ 做 $E\pm \mathrm{i}0^+ \rightarrow \mathrm{i}E_n$ 的
+替换得到上述结果.
+
+** Start Point of Digramatic Perturbation Theory
+
+微扰 $V$ 存在的情况下, Single-Particle Matsubara function 为
+\begin{align*}
+  G_k^M (\tau_1,\tau_2) = -\frac{1}{\Xi}\mathrm{Tr}\left\{
+  e^{-\beta H_0} U_D(\hbar\beta,0) T_{\tau}[a_k(\tau_1)
+  a_k^{\dagger}(\tau_2)] \right\}
+\end{align*}
+将其从 Heisenberg 表象换到 Dirac 表象
+\begin{align*}
+  T_{\tau}[a_k(\tau_1)a_k^{\dagger}(\tau_2)]=&
+  T_{\tau}[U(0,\tau_1)a_k^D(\tau_1)U(\tau_1,0)U(0,\tau_2)
+  a_k^{\dagger D}(\tau_2)U(\tau_2,0)]\\
+  =&   T_{\tau}[a_k^D(\tau_1)
+  a_k^{\dagger D}(\tau_2)]
+\end{align*}
+\begin{align*}
+  G_k^M (\tau_1,\tau_2) =& -\frac{1}{\Xi}\mathrm{Tr}\left\{
+  e^{-\beta H_0} U_D(\hbar\beta,0) T_{\tau}[a_k^D(\tau_1)
+  a_k^{\dagger D}(\tau_2)] \right\}\\
+  =& -\frac{\mathrm{Tr}\left\{
+  e^{-\beta H_0} T_{\tau}[ U_D(\hbar\beta,0)a_k^D(\tau_1)
+  a_k^{\dagger D}(\tau_2)] \right\}}{\mathrm{Tr}\left\{
+  e^{-\beta H_0} T_{\tau} U_D(\hbar\beta,0)\right\}} \\
+\end{align*}
+为什么把 $U_D(\hbar\beta,0)$ 扔进了编时里边? 如果给 $U_D(\hbar\beta,0)$
+编时的话, 按 $0$ 算还是按 $\tau$ 算?
+这和零温的情况很类似. 如果求迹也有 Wick 定理, 那么就可以发展非零温的
+ Digramatic Perturbation Theory .
+
+* 致谢
+
+除了 Wolfgang Nolting 的书外,
+ 还参考了 Piers Coleman 的 Introduction to Many-Body Physics 一书.

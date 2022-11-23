@@ -1,0 +1,134 @@
+<!DOCTYPE html><html class="no-js" lang="zh">
+
+
+<head>
+<script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+    </script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/styles/base16/solarized-light.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Long+Cang&family=Noto+Serif+SC&display=swap" rel="stylesheet"> <meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>多体物理读书会：多体物理读书会: 3.1.6 谱密度</title>
+<link rel="apple-touch-icon" sizes="180x180" href="../static/images/apple-touch-icon-next.png?v=6.4.1">
+<link rel="icon" type="image/png" sizes="32x32" href="../static/images/favicon-32x32-next.png?v=6.4.1">
+<link rel="icon" type="image/png" sizes="16x16" href="../static/images/favicon-16x16-next.png?v=6.4.1">
+<link rel="stylesheet" type="text/css" href="../static/css/mystyle.css">    
+
+</head>
+
+<body>
+    <div class="container">
+        <header>
+    <section class="banner"><img src="../static/images/banner.jpg"></section>
+</header>
+        <nav class="row">
+    <a class="nav" href="../">首页</a>
+    <a class="nav" href="../categories">分类</a>
+    <a class="nav" href="../tags">标签</a>
+    <a class="nav" href="../about">关于</a>
+</nav>
+
+        <main>
+            <h1 class="post-title">多体物理读书会：多体物理读书会: 3.1.6 谱密度
+            </h1>
+            <section class="post-meta">
+                <p>发表于:2018.11.12 ||</p>
+                <p>分类:<a class="post-link" href="../categories/专业笔记.html">专业笔记</a> ||</p>
+            </section>
+            <section class="post-content">
+                <h2>单粒子谱 (single particle spectroscopy)</h2>
+<h3>Photoemission (PES)</h3>
+<p>1. 能量为 $\hbar \omega$ 的光子被固体部分占据的能带 (partially filled energy band) 中的电子吸收.
+2. 电子吸收能量后跑出固体.
+3. 分析跑出光电子的动能, 得到能带中占据态的信息.</p>
+<ul>
+<li>研究的对象是能带. 能带中减少一个电子. 跃迁算符为 $Z_{-1} = a_{\alpha}$.</li>
+</ul>
+<h3>Iverse Photoemission (IPE)</h3>
+<p>1. 将电子注入到固体中, 降落到部分占据的能带 (partially filled energy band) 中的非占据态.
+2. 电子释放能量为 $\hbar \omega$ 的光子.
+3. 分析释放的光子,得到能带中非占据态的信息.</p>
+<ul>
+<li>研究的对象是能带. 能带中增加一个电子. 跃迁算符为 \(Z_{+1}=a_{\$\beta}^{\dagger}\). PES 和 IPE 是两种互补的谱(complementary spectroscopies).</li>
+</ul>
+<h2>二粒子谱 (two particle spectroscopy)</h2>
+<h3>Auger Electron Spectroscopy (AES)</h3>
+<p>1. 固体中原子的内层电子态有空穴.
+2. 电子从部分占据的能带 (partially filled energy band) 跃迁到这个内层电子态.
+3. 释放的能量传递给部分占据的能带 (partially filled energy band)中的另一个电子.
+4. 另一个电子跑出固体.
+5. 分析跑出的电子的动能, 得到未占据未占据能态的能带结构信息.</p>
+<ul>
+<li>研究的对象是能带, 能带中少了两个电子 ,跃迁算符为 $Z_{-2} = a_{\alpha}a_{\beta}$.</li>
+</ul>
+<h3>Appearance Potential Spectroscopy (APS)</h3>
+<p>1. 电子降落到带中的非占据态.
+2. 释放的能量传递给内层电子(非价电子)
+3. 内层电子得到能量, 激发到能带中的另一个态上.
+4. 分析什么?
+AES 和 APS 是两种互补的二粒子谱(complementary two-particle spectroscopies).</p>
+<ul>
+<li>研究的对象是能带, 能带中多了两个电子 ,跃迁算符为 $Z_{+2} = a_{\beta}^{\dagger}a_{\alpha}^{\dagger}$.</li>
+</ul>
+<h2>强度</h2>
+
+$$\begin{align*}
+  I_r(E) = \frac{1}{\Xi}\sum_{mn}e^{-\beta E_n} \mid \langle E_m Z_r \mid E_n \rangle \mid^2 \delta (E-(E_m-E_n))
+\end{align*}$$
+
+<p>强度由三部分组成:
+1. 占据概率
+2. 跃迁概率
+3. Dirac delta函数</p>
+<h2>跃迁算符与强度的性质</h2>
+<p>对于互补的谱有:</p>
+
+$$\begin{align*}
+  Z_r = Z_{-r}^{\dagger}
+\end{align*}$$
+
+
+$$\begin{align*}
+  I_r(E) = e^{\beta E} I_{-r}(-E)
+\end{align*}$$
+
+<p>所以互补的谱不是相互独立的. 因此就引出了谱密度的定义:</p>
+
+$$\begin{align*}
+  \frac{1}{\hbar} S_r^{\pm} (E) = I_{-r} (E) \mp I_r(-E) = \left( e^{-\beta E} \pm 1 \right)
+\end{align*}$$
+
+<p>变换到时间表示下就是格林函数中常见的谱密度:</p>
+
+$$\begin{align*}
+  S_{AB}^{(\varepsilon)}(t,t') =\frac{1}{2 \pi} \langle \left[ \hat{A}(t),\hat{B}(t') \right]_{-\varepsilon}\rangle
+\end{align*}$$
+
+            </section>
+            <section class="post-meta">
+                <p>标签:
+                    <a class="post-link" href="../tags/物理.html">物理</a>
+                    <a class="post-link" href="../tags/格林函数.html">格林函数</a>
+                    <a class="post-link" href="../tags/多体物理读书会.html">多体物理读书会</a>
+                    <a class="post-link" href="../tags/谱密度.html">谱密度</a>
+                </p>
+            </section>
+        </main>
+        <footer>© 2018 - 2022 ZQW</footer>
+
+    </div>
+</body>
+
+</html>

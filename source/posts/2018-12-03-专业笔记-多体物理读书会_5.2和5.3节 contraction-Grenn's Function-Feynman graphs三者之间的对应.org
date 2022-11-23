@@ -1,0 +1,138 @@
+#+TITLE: 多体物理读书会: 5.2和5.3节 contraction-Grenn's Function-Feynman graphs三者之间的对应
+#+DATE: <2018-12-03>
+#+CATEGORIES: 专业笔记
+#+TAGS: 物理, 多体物理读书会, contraction, 格林函数, Feynman graphs
+#+HTML: <!-- toc -->
+#+HTML: <!-- more -->
+
+#+HTML: <script src="js/jquery-2.1.0.min.js"></script>
+#+HTML: <script src="js/jquery.feyn-1.0.1.min.js"></script>
+
+
+
+#+HTML: <script>
+#+HTML:   $(document).ready(function() {
+#+HTML:     $('#container').feyn({
+#+HTML:       description: 'Four-gluon vertex for QCD',
+#+HTML:       width: 480,
+#+HTML:       height: 140,
+#+HTML:      incoming: {i1: '40,120', i2: '140,120', i3: '40,20', i4: '140,20'},
+#+HTML:       vertex: {v1: '90,70'},
+#+HTML:       gluon: {line: 'v1-i1,v1-i2,v1-i3,v1-i4'},
+#+HTML:       node: {show: 'v', type: 'dot', fill: 'black', radius: 2},
+#+HTML:       label: {t1: ['15,110', '$c,\\rho$', 30], t2: ['140,110', '$d,\\sigma$', 30],
+#+HTML:         t3: ['15,10', '$b,\\nu$', 30], t4: ['140,10', '$a,\\mu$', 30],
+#+HTML:         t5: ['190,15', '$=-ig^2\\big[\\!f^{abe}f^{cde}(\\eta^{\\mu\\rho}\\eta^{\\nu\\sigma}-\\eta^{\\mu\\sigma}\\eta^{\\nu\\rho})\\\\\\qquad+f^{ace}f^{bde}(\\eta^{\\mu\\nu}\\eta^{\\rho\\sigma}-\\eta^{\\mu\\sigma}\\eta^{\\nu\\rho})\\\\\\qquad+f^{ade}f^{bce}(\\eta^{\\mu\\nu}\\eta^{\\rho\\sigma}-\\eta^{\\mu\\rho}\\eta^{\\nu\\sigma})\\big]$', 290, 100]},
+#+HTML:       mathjax: true
+#+HTML:     });
+#+HTML:   });
+#+HTML: </script>
+
+* contraction 与因果格林函数对应
+** 因果格林函数的定义式
+第三章中因果格林函数的定义为
+
+\begin{align*}
+G_{AB}^c (t-t') \equiv - \mathrm{i} \langle T_{\varepsilon} (A(t)B(t'))\rangle 
+\end{align*}
+
+如果系统取为零温无相互作用费米气体, 算符 $A(t),B(t')$ 取为 $a_k(t),a_l^{\dagger}(t')$ ,上式就变为
+
+\begin{align}
+\label{eq:contraction}
+G_{kl}^{0,c}(t-t') = -\mathrm{i} \langle T_{\varepsilon}(a_k(t)a_l(t')) \rangle 
+= - \mathrm{i} \langle \eta_0 \mid T_{\varepsilon}\left\{ a_k(t)a_l^{\dagger}(t') \right\}  \mid \eta_0 \rangle
+\end{align}
+
+其中目标 $0$ 代表无相互作用.
+
+** contraction 的定义
+
+根据 contraction 的定义, 可得 ( 收缩符号不好在这打, 用大括号代替了 )
+
+\begin{equation}
+\begin{split}
+\underbrace{a_k(t)a_l^{\dagger}(t')} =& \langle \eta_0 \mid \underbrace{a_k(t)a_l^{\dagger}(t')} \mid \eta_0 \rangle \\
+=& \langle \eta_0 \mid T_{\varepsilon}\left\{ a_k(t)a_l^{\dagger}(t') \right\} - N \left\{\mid a_k(t)a_l^{\dagger}(t') \right\} \mid \eta_0 \rangle \\
+=& \langle \eta_0 \mid T_{\varepsilon}\left\{ a_k(t)a_l^{\dagger}(t') \right\}  \mid \eta_0 \rangle \\
+=& \langle \eta_0 \mid T_{\varepsilon}\left\{ a_k(t)a_l^{\dagger}(t') \right\}  \mid \eta_0 \rangle  \delta_{kl}
+\end{split}
+\end{equation}
+
+其中第一个等号是因为收缩是一个数, 第二个等号是 contraction 的定义, 第三个等号是因为正规 normal product 在基态下的期望是 $0$ .
+
+根据 contraction 的定义, 对于费米子也可直接得到
+
+\begin{align}
+\underbrace{a_k(t)a_l^{\dagger}(t')} = - \underbrace{a_l^{\dagger}(t')a_k(t)}
+\end{align}
+
+** 结论
+
+对比 (\ref{eq:contraction}) 和 $(2)$ 可得
+
+\begin{align}
+\underbrace{a_k(t)a_l^{\dagger}(t')} = \mathrm{i} G_{kl}^{0,c}(t-t') \delta_{kl} =  \mathrm{i} G_{k}^{0,c}(t-t') \delta_{kl}
+\end{align}
+
+* time-ordering 算符的 convention
+
+当 time-ordering 算符作用的两个算符相等时,通常取消灭算符的时间要稍小于产生算符, 也就是
+
+\begin{align}
+t_{\mathrm{annihilation operator}} - t_{\mathrm{creation operation}} = 0^-
+\end{align}
+
+* 因果格林函数与粒子数平均值的关系
+
+书中第三章中有结论
+
+\begin{align}
+\mathrm{i}G_k^c(t-t'=0^-) = - \langle n_k \rangle
+\end{align}
+
+* Feynman graphs 的正负号问题
+
+图的正负号与收缩中带 "$\prime$" 的 $t$ 在右边时的符号相同.
+
+* 总结
+
+综合上面的考虑, 我发现只要用以下五条规则就可以把 contraction-Grenn's Function-Feynman graphs 以及粒子数算符在基态上的期望相联系
+
+- 
+\begin{align*}
+\boxed{
+t_{\mathrm{annihilation operator}} - t_{\mathrm{creation operation}} = 0^-
+}
+\end{align*}
+- 
+\begin{align*}
+\boxed{
+\underbrace{a_k(t)a_l^{\dagger}(t')} = \mathrm{i} G_{k}^{0,c}(t-t') \delta_{kl}
+}
+\end{align*}
+- 
+\begin{align*}
+\boxed{
+\underbrace{a_k(t)a_l^{\dagger}(t')} = - \underbrace{a_l^{\dagger}(t')a_k(t)}
+}
+\end{align*}
+- 
+\begin{align*}
+\boxed{
+\mathrm{i}G_k^c(t-t'=0^-) = - \langle n_k \rangle
+}
+\end{align*}
+- 
+\begin{align*}
+\boxed{
+\mathrm{图的正负号与收缩中带 "\prime" 的 t 在右边时的符号相同.}
+}
+\end{align*}
+
+
+
+* 注
+
+$LaTeX$ 中收缩的打法可以参考 [[http://tug.ctan.org/macros/latex/contrib/simplewick/simplewick.pdf]] 使用 simplewick.sty
+

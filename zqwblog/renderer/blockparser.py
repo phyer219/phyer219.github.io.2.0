@@ -131,9 +131,9 @@ class OrgTableBlocksParser(BlocksParser):
     protect = True
     btype = 'table'
     def start(self, block):
-        return re.search(r'^\|', block.data)
+        return re.search(r'^(\s*\|)', block.data)
     def end(self, block):
-        return re.search(r'^(?!\|)', block.data) 
+        return re.search(r'^(?!\s*\|)', block.data)
     def run(self, post):
         inside = False
         temp = []

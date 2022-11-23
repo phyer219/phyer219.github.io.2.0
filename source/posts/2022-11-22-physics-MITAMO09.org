@@ -1,0 +1,127 @@
+#+TITLE: Atomic and Optical Physics I, 09 Atoms V and Atoms in External Filds I
+#+DATE: <2022-11-22>
+#+CATEGORIES: 专业笔记
+#+TAGS: Atomic and Optical Physics, Zeeman effect
+#+HTML: <!-- toc -->
+#+HTML: <!-- more -->
+
+* Information
+- [[https://ocw.mit.edu/courses/physics/8-421-atomic-and-optical-physics-i-spring-2014/][MIT官方介绍]]
+
+- [[https://www.youtube.com/playlist?list=PLUl4u3cNGP62FPGcyFJkzhqq9c5cHCK32][Youtube视频列表地址]]
+
+* Atoms V
+
+Summary of spectroscipy of hydrogen over 80 years from precursors to the Lamb
+shift, to the [[https://en.wikipedia.org/wiki/Proton_radius_puzzle][*proton radius puzzle*]] .
+
+* Atoms in external magnetic fields
+
+** Fine structure and [[https://en.wikipedia.org/wiki/Land%C3%A9_g-factor][Landé g-factor]]
+
+"game of $\vec{L}, \vec{S}, \vec{B}$ "
+
+Add the Zeeman term
+\begin{align}
+H_Z = - \vec{\mu} \cdot \vec{B}
+\end{align}
+to the SOC Hamiltonian
+\begin{align}
+H = H_0 + H_{FS} + H_Z = H_0 + A_{FS} \vec{L}\cdot \vec{S}
+-\frac{\mu_B}{\hbar} (g_s \vec{S} + g_l \vec{L})\cdot \vec{B}
+\end{align}
+where $|g_s| = 2(1 + \frac{\alpha}{2\pi} + \cdots )$ for electron spin, and $|g_l| = 1$
+electon orbital angular momentum. FS term: an internal magnetic field $\sim 1$
+Tesla.
+
+** direct derivation by using
+
+\begin{align}
+\langle S, L, J, m_J | H_Z | S', L', J', m_J' \rangle
+\end{align}
+
+** weak field limit $H_{FS} \gg H_{Z}$
+
+vector model: $\vec{L}, \vec{S}$ rapidly process aroud total angular momentum
+$\vec{J}$ , only projection on $\vec{J}$ .
+
+use $\vec{L}^2 = (\vec{J} - \vec{S})^2 \Rightarrow 2\vec{J}\cdot \vec{S} = \vec{J}^2 + \vec{S
+}^2 - \vec{L}^2$ and let $g_s \to -2, g_l \to -1$
+\begin{align}
+H_Z =& - \left(\vec{\mu}\cdot \frac{ \vec{J}}{|\vec{J}|} \right)
+       \left( \vec{B}\cdot \frac{\vec{J}}{|\vec{J}|} \right) \\
+ =& \frac{\mu_B}{\hbar} \frac{(\vec{L}+ 2\vec{S})\cdot \vec{J}}{|\vec{J}|^2} B J_Z \\
+ =&  \frac{\mu_B B}{\hbar}J_z \cdot
+ \frac{\vec{J}^2 + \frac{1}{2}(\vec{J}^2 + \vec{S}^{2} - \vec{L}^2)}{\vec{J}^2}\\
+ =& \mu_B B m_J \left(1 +  \frac{J(J + 1) + S(S + 1) - L(L + 1)}{2 J(J + 1)} \right)\\
+\equiv & \mu_B B m_J g_J
+\end{align}
+where $g_J$ is [[https://en.wikipedia.org/wiki/Land%C3%A9_g-factor][Landé g-factor]]
+
+limiting case
+
+- $S = 0 \Rightarrow g_J = 1$
+
+- $L = 0 \Rightarrow g_J = 2$
+
+** HFS in an Applied Field
+
+Now add nucleus spin $\vec{I}$ :
+\begin{align}
+\vec{L} , \vec{S}, \vec{I}, \vec{B} , \quad \vec{I} + \vec{J} = \vec{F}
+\end{align}
+
+(No fine structure Hamiltonian?)
+\begin{align}
+H = H_0 + a h \vec{I}\cdot \vec{J} - \vec{\mu}_J \cdot B_0 - \vec{\mu}_I \cdot \vec{B}_0
+\end{align}
+
+*** LOW FIELD $\vec{\mu}_J\cdot \vec{B}_0 \ll a h \vec{I}\cdot \vec{J}$
+
+\begin{align}
+H_Z = -(\vec{\mu}_J + \vec{\mu}_{I})\cdot \vec{B}_0
+\end{align}
+treated in a perturbation theory, similar to landé g factor
+\begin{align}
+H_Z = -\mu_B ( -|g_J| \vec{J}\cdot \vec{F} + g_I \frac{\mu_N}{\mu_B}\vec{I}\cdot \vec{F})
+\frac{\vec{F} \cdot \vec{B}_0}{|\vec{F}|^{2}}
+\end{align}
+where $\mu_N = \frac{e\hbar}{2m_p}$ ([[https://en.wikipedia.org/wiki/Nucleon_magnetic_moment][Wikipedia: Nucleon magnetic moment]]) , and because $m_p \gg m_3$ , so $\mu_N\ll \mu_B$ , we
+neglect the second term, we define
+\begin{align}
+g_F \equiv \frac{\vec{J}\cdot \vec{F}}{|\vec{F}|^2}g_J
+\end{align}
+thus
+\begin{align}
+H_Z = \mu_B g_F B_0 m_F
+\end{align}
+
+*** HIGH FIELD $\vec{\mu}_J\cdot \vec{B} \gg a h \vec{I}\cdot \vec{J}$
+
+Zeeman energy fist comes, $\vec{B}_0$ quantize $\vec{J}$ and $\vec{I}$
+along $B_0$
+\begin{align}
+H_Z = |g_J| \mu_B m_J B_0 - g_I \mu_N m_I B_0 + a h m_I m_J
+\end{align}
+
+*** GENERAL SOLUTION: EXACT DIAGNOLIZATION
+
+\begin{align}
+H = a h \vec{I}\cdot \vec{J} + (g_J\mu_B m_J - g_I \mu_N m_I) B_0
+\end{align}
+
+\begin{align}
+m_F = m_I + m_J = m_{\mathrm{TOTAL}}
+\end{align}
+structure: repulsive and anti-crossings of state with the same $m_F$ , for
+example: Na $^{87}\mathrm{Rb}$ . $^2S_{1/2}$ ground state $I = \frac{3}{2}$ .
+
+* Reference
+
+- [[https://en.wikipedia.org/wiki/Proton_radius_puzzle][Wikipedia: Proton radius puzzle]]
+
+- [[https://en.wikipedia.org/wiki/Land%C3%A9_g-factor][Wikipedia: Landé g-factor]]
+
+- [[http://sites.unice.fr/site/kastberg/My_Sites/Physique_Atomique/Cours_files/lscoupling.pdf][vector model: lscoupling.pdf]]
+
+- [[https://en.wikipedia.org/wiki/Nucleon_magnetic_moment][Wikipedia: Nucleon magnetic moment]]

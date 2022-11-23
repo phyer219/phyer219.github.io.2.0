@@ -1,0 +1,278 @@
+<!DOCTYPE html><html class="no-js" lang="zh">
+
+
+<head>
+<script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+    </script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/styles/base16/solarized-light.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Long+Cang&family=Noto+Serif+SC&display=swap" rel="stylesheet"> <meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>Cold Atom Physics Note: Energy Structure of Rb87 in Magnetic Field</title>
+<link rel="apple-touch-icon" sizes="180x180" href="../static/images/apple-touch-icon-next.png?v=6.4.1">
+<link rel="icon" type="image/png" sizes="32x32" href="../static/images/favicon-32x32-next.png?v=6.4.1">
+<link rel="icon" type="image/png" sizes="16x16" href="../static/images/favicon-16x16-next.png?v=6.4.1">
+<link rel="stylesheet" type="text/css" href="../static/css/mystyle.css">    
+
+</head>
+
+<body>
+    <div class="container">
+        <header>
+    <section class="banner"><img src="../static/images/banner.jpg"></section>
+</header>
+        <nav class="row">
+    <a class="nav" href="../">首页</a>
+    <a class="nav" href="../categories">分类</a>
+    <a class="nav" href="../tags">标签</a>
+    <a class="nav" href="../about">关于</a>
+</nav>
+
+        <main>
+            <h1 class="post-title">Cold Atom Physics Note: Energy Structure of Rb87 in Magnetic Field
+            </h1>
+            <section class="post-meta">
+                <p>发表于:2019.3.4 ||</p>
+                <p>分类:<a class="post-link" href="../categories/专业笔记.html">专业笔记</a> ||</p>
+            </section>
+            <section class="post-content">
+                
+<h2>Hamiltonian</h2>
+
+<p>Nuclear Spin $I$ , orbital angular momentum $L$ , and $spin$ is</p>
+
+$$\begin{align*}
+  I =& \frac{3}{2} \\
+  L =& 0 \\
+  S =& \frac{1}{2} \\
+\end{align*}$$
+
+<p>Hamiltonian is</p>
+
+$$\begin{align*}
+  H_S =& A \vec{I} \cdot \vec{J} + C J_z +D I_z \\
+      =& A \left[ I_z J_z + \frac{1}{2}(I_{ +}J_- +I_-J_{ +}) \right]
+       + C J_z + D I_z
+\end{align*}$$
+
+
+$$\begin{align*}
+  |1\rangle =& |\frac{3}{2},\frac{1}{2}\rangle \\
+  |2\rangle =& |\frac{1}{2},\frac{1}{2}\rangle \\
+  |3\rangle =& |-\frac{1}{2},\frac{1}{2}\rangle \\
+  |4\rangle =& |-\frac{3}{2},\frac{1}{2}\rangle \\
+  |5\rangle =& |\frac{3}{2},-\frac{1}{2}\rangle \\
+  |6\rangle =& |\frac{1}{2},-\frac{1}{2}\rangle \\
+  |7\rangle =& |-\frac{1}{2},-\frac{1}{2}\rangle \\
+  |8\rangle =& |-\frac{3}{2},-\frac{1}{2}\rangle \\
+\end{align*}$$
+
+
+<p>Hamiltonian in the Hilbert space spaned by above kets is</p>
+
+
+<table>
+<tr>
+<td>  </td>
+<td>                  </td>
+<td> $\mid 1 \rangle$                         </td>
+<td> $\mid 2 \rangle$                         </td>
+<td> $\mid 3 \rangle$                          </td>
+<td> $\mid 4 \rangle$                          </td>
+<td> $\mid 5 \rangle$                          </td>
+<td> $\mid 6 \rangle$                          </td>
+<td> $\mid 7 \rangle$                          </td>
+<td> $\mid 8 \rangle$                         </td>
+<td></td>
+</tr>
+<tr>
+<td>  </td>
+<td> $\langle 1 \mid$ </td>
+<td> $\frac{3}{4}A+\frac{1}{2}C+\frac{3}{2}D$ </td>
+<td> $0$                                      </td>
+<td> $0$                                       </td>
+<td> $0$                                       </td>
+<td> $0$                                       </td>
+<td> $0$                                       </td>
+<td> $0$                                       </td>
+<td> $0$                                      </td>
+<td></td>
+</tr>
+<tr>
+<td>  </td>
+<td> $\langle 2 \mid$ </td>
+<td> $0$                                      </td>
+<td> $\frac{1}{4}A+\frac{1}{2}C+\frac{1}{2}D$ </td>
+<td> $0$                                       </td>
+<td> $0$                                       </td>
+<td> $\frac{\sqrt{3}}{2}A$                     </td>
+<td> $0$                                       </td>
+<td> $0$                                       </td>
+<td> $0$                                      </td>
+<td></td>
+</tr>
+<tr>
+<td>  </td>
+<td> $\langle 3 \mid$ </td>
+<td> $0$                                      </td>
+<td> $0$                                      </td>
+<td> $-\frac{1}{4}A+\frac{1}{2}C-\frac{1}{2}D$ </td>
+<td> $0$                                       </td>
+<td> $0$                                       </td>
+<td> $A$                                       </td>
+<td> $0$                                       </td>
+<td> $0$                                      </td>
+<td></td>
+</tr>
+<tr>
+<td>  </td>
+<td> $\langle 4 \mid$ </td>
+<td> $0$                                      </td>
+<td> $0$                                      </td>
+<td> $0$                                       </td>
+<td> $-\frac{3}{4}A+\frac{1}{2}C-\frac{3}{2}D$ </td>
+<td> $0$                                       </td>
+<td> $0$                                       </td>
+<td> $\frac{\sqrt{3}}{2}A$                     </td>
+<td> $0$                                      </td>
+<td></td>
+</tr>
+<tr>
+<td>  </td>
+<td> $\langle 5 \mid$ </td>
+<td> $0$                                      </td>
+<td> $\frac{\sqrt{3}}{2}A$                    </td>
+<td> $0$                                       </td>
+<td> $0$                                       </td>
+<td> $-\frac{3}{4}A-\frac{1}{2}C+\frac{3}{2}D$ </td>
+<td> $0$                                       </td>
+<td> $0$                                       </td>
+<td> $0$                                      </td>
+<td></td>
+</tr>
+<tr>
+<td>  </td>
+<td> $\langle 6 \mid$ </td>
+<td> $0$                                      </td>
+<td> $0$                                      </td>
+<td> $A$                                       </td>
+<td> $0$                                       </td>
+<td> $0$                                       </td>
+<td> $-\frac{1}{4}A-\frac{1}{2}C+\frac{1}{2}D$ </td>
+<td> $0$                                       </td>
+<td> $0$                                      </td>
+<td></td>
+</tr>
+<tr>
+<td>  </td>
+<td> $\langle 7 \mid$ </td>
+<td> $0$                                      </td>
+<td> $0$                                      </td>
+<td> $0$                                       </td>
+<td> $\frac{\sqrt{3}}{2}A$                     </td>
+<td> $0$                                       </td>
+<td> $0$                                       </td>
+<td> $\frac{1}{4}A-\frac{1}{2}C-\frac{1}{2}D$  </td>
+<td> $0$                                      </td>
+<td></td>
+</tr>
+<tr>
+<td>  </td>
+<td> $\langle 8 \mid$ </td>
+<td> $0$                                      </td>
+<td> $0$                                      </td>
+<td> $0$                                       </td>
+<td> $0$                                       </td>
+<td> $0$                                       </td>
+<td> $0$                                       </td>
+<td> $0$                                       </td>
+<td> $\frac{3}{4}A-\frac{1}{2}C-\frac{3}{2}D$ </td>
+<td></td>
+</tr>
+</table>
+<h2>Numerical Results</h2>
+<h3>Python code</h3>
+
+<pre><code class="language-python">import numpy as np
+import sympy as sym
+from matplotlib import pyplot as plt
+
+# Hamiltonian is H = a*I*J + c*J_z + d*I_z
+a = 4000000
+
+def H(B):
+    c = 4000*B
+    d = 4*B
+
+    H = np.zeros([8,8])      #Hamiltonian in direct production Hilbert space
+
+    H[0,0] =  3/4*a +  1/2*c +  3/2*d
+    H[7,7] =  3/4*a -  1/2*c -  3/2*d
+
+    H[1,1] =  1/4*a +  1/2*c +  1/2*d
+    H[2,2] = -3/4*a -  1/2*c +  3/2*d
+    H[1,2] =  np.sqrt(3)/2*a
+    H[2,1] = H[1,2]
+
+    H[3,3] = -1/4*a +  1/2*c -  1/2*d
+    H[4,4] = -1/4*a -  1/2*c +  1/2*d
+    H[3,4] =  a
+    H[4,3] = H[3,4]
+
+    H[5,5] = -3/4*a +  1/2*c -  3/2*d
+    H[6,6] =  1/4*a -  1/2*c -  1/2*d
+    H[5,6] =  np.sqrt(3)/2*a
+    H[6,5] = H[5,6]
+#    np.set_printoptions(precision=1)
+    [x,y] = np.linalg.eig(H)  #Diagnolization the Hamiltonian
+    x = np.sort(x)
+    return x
+
+N = 2000
+bmax = 5000        #the upper limit of magnetic field
+b = np.linspace(0,bmax,N)
+E = np.zeros([8,N])  #the eight eigenvaluses of energy , as a function of magnetic field
+for i in range(8):
+    for j in range(N):
+        E[i,j] = H(b[j])[i]
+    plt.plot(b,E[i])
+
+plt.show()
+</code></pre>
+
+<p>#+RESULTS:
+: None</p>
+
+<h3>Results</h3>
+<p><p><img src='./2019-03-04-专业笔记-Cold Atom Physics Note_Energy Structure of Rb87 in Magnetic Field/fig1.png' alt='rb87_HFS' max-width:100%><p></p>
+<h2>Reference</h2>
+
+<p>C. J. Pethick, H. Smith, Bose-Einstein Codensation in Dilute Gases</p>
+
+            </section>
+            <section class="post-meta">
+                <p>标签:
+                    <a class="post-link" href="../tags/物理.html">物理</a>
+                    <a class="post-link" href="../tags/Cold Atoms.html">Cold Atoms</a>
+                    <a class="post-link" href="../tags/python.html">python</a>
+                </p>
+            </section>
+        </main>
+        <footer>© 2018 - 2022 ZQW</footer>
+
+    </div>
+</body>
+
+</html>
