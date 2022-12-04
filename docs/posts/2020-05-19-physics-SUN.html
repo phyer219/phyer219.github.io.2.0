@@ -137,72 +137,56 @@ $$\begin{align}
   \psi_i \to& \psi'_i = \psi_j (U^{\dagger})^j_{\,i}
 \end{align}$$
 
-<p>总的来说就是: 上标由 $U$ 变换, 下标由 $U^{\dagger}$ 变换.
-#+BEGIN_QUOTE
-Example:</p>
-
-$$\begin{align}
+<p>总的来说就是: 上标由 $U$ 变换, 下标由 $U^{\dagger}$ 变换.</p>
+<blockquote>Example:
+\begin{align}
   \phi^{ij}_k \to \phi'^{ij}_k = U^i_{\,l} U^j_{\,m} \phi^{lm}_n (U^{\dagger})^n_{\,k}
-\end{align}$$
-
-<p>#+END_QUOTE
-在此记法下, 它们的 trace 为一个上标和一个下标的求和</p>
+\end{align}</blockquote>
+<p>在此记法下, 它们的 trace 为一个上标和一个下标的求和</p>
 
 $$\begin{align}
   \delta^k_{\,j} \phi^{ij}_k \equiv \phi^{ij}_j
 \end{align}$$
 
-<p>#+BEGIN_QUOTE
-Exercise:</p>
-
-$$\begin{align}
+<blockquote>Exercise:
+\begin{align}
   \phi^{ij}_j \to U^i_{\,l}U^j_{\,m} \phi^{lm}_n(U^{\dagger})^n_{\,j}
   =& U^i_{\,l}\delta ^n_{\,m} \phi^{lm}_n  = U^i_{\,l} \phi^{ln}_n
-\end{align}$$
-
-<p>#+END_QUOTE</p>
+\end{align}</blockquote>
 
 <h2>$SO(N)$ 群的不可约表示</h2>
 
 <p>因为上标和下标按不同的方式变换, 所以它们各自有独立的对称性.</p>
 
-<p>书上说
-#+BEGIN_QUOTE
-Thus, in summary, the irreducible representations of $SU(N)$ are realized by traceless
-tensors with definite symmetry properties under permutation of indices.</p>
+<p>书上说</p>
+<blockquote>Thus, in summary, the irreducible representations of $SU(N)$ are realized by traceless
+tensors with definite symmetry properties under permutation of indices.
 
-<p>Convince yourself that for $SU(N)$ , the dimensions of the representations
+Convince yourself that for $SU(N)$ , the dimensions of the representations
 defined by the following tensors $\phi^i$ , $\phi^{ij}$ (antisymmetric), $\phi^{ij}$
 (symmetric), $\phi^i_{\,j}$ , and $\phi^{ij}_k$ (antisymmetric in the upper indices) 
 are, respectively, $N , N (N − 1)/2, N (N + 1)/2, N^2 − 1$ and $\frac{1}{2} N (N −
-2)(N + 1)$. 
-#+END_QUOTE</p>
+2)(N + 1)$. </blockquote>
 
-<p>#+BEGIN_QUOTE
-Example:</p>
+<blockquote>Example:
 
-<p>symmetric traceless representation $S^{ij}_k = S^{ji}_k$ 是 $\frac{1}{2}N(N+1)N-N
-=\frac{1}{2}N(N-1)(N+2)$ 维的. </p>
+symmetric traceless representation $S^{ij}_k = S^{ji}_k$ 是 $\frac{1}{2}N(N+1)N-N
+=\frac{1}{2}N(N-1)(N+2)$ 维的. 
 
-<p>先不考虑下标, 目标的对称表示共有 $\frac{1}{2}N(N+1)$ 种, 下标还有 $N$ 种可能, 再
-减去 $N$ 个迹. 这 $N$ 个迹 $S^{ij}_i$ 对应 $N$ 个不同的 $j$ .
-#+END_QUOTE</p>
+先不考虑下标, 目标的对称表示共有 $\frac{1}{2}N(N+1)$ 种, 下标还有 $N$ 种可能, 再
+减去 $N$ 个迹. 这 $N$ 个迹 $S^{ij}_i$ 对应 $N$ 个不同的 $j$ .</blockquote>
 
-<p>#+BEGIN_QUOTE
-Exercise:
+<blockquote>Exercise:
 说明 antisymmetric traceless representation $A^{ij}_k = - A^{ji}_k$ 是
-$\frac{1}{2}N(N-1)N - N = \frac{1}{2}N(N+1)(N-2)$ 维的.
-#+END_QUOTE</p>
+$\frac{1}{2}N(N-1)N - N = \frac{1}{2}N(N+1)(N-2)$ 维的.</blockquote>
 
 <p>$SU(N)$ 群的不可约表示是由具有确定对称性的无迹张量生成的. (不知道第二句话的意思
 是否是说所有的 $SU(N)$ 群的不可约表示都只有这几个维度, 这里貌似是不加证明地给出
 了这个结论) .</p>
 
-<p>#+BEGIN_QUOTE
-Example:</p>
+<blockquote>Example:
 
-<p>$SU(5)$ 有 $5, 10, 15, 24, 45$ 维的不可约表示.
-#+END_QUOTE</p>
+$SU(5)$ 有 $5, 10, 15, 24, 45$ 维的不可约表示.</blockquote>
 
 
 <h2>上下标之间的移动</h2>
@@ -221,25 +205,19 @@ $$\begin{align}
     \varepsilon_{i_1i_2\cdots p_N} U^{i_1}_{\,j_1}U^{i_2}_{\,j_2} \cdots U^{i_{N-1}}_{\,j_{N-1}} =& \varepsilon_{j_1j_2\cdots j_N}(U^{\dagger})^{j_N}_{p_N} 
 \end{align}$$
 
-<p>重复上述过程可以把 $U$ 换成 $U^{\dagger}$ .
-#+BEGIN_QUOTE
-Example:</p>
+<p>重复上述过程可以把 $U$ 换成 $U^{\dagger}$ .</p>
+<blockquote>Example:
 
-<p>定义</p>
-
-$$\begin{align}
+定义
+\begin{align}
   \phi_{kpq} \equiv \epsilon_{ijpq} \phi^{ij}_k
-\end{align}$$
-
-<p>那么它的变换</p>
-
-$$\begin{align}
+\end{align}
+那么它的变换
+\begin{align}
   \varepsilon_{ijpq} \phi^{ij}_k \to \varepsilon_{ijpq} U^i_{\,l}U^j_{\,m} \phi^{ij}_k (U^{\dagger})^n_{\,k}
   = (U^{\dagger})^s_{\,p}(U^{\dagger})^t_{\,q}(U^{\dagger})^n_{\,k} \phi_{nst}
-\end{align}$$
-
-<p>#+END_QUOTE
-总结一下, 用两个反对称符号, 就可以将 $SU(N)$ 群张量的上下标上下移动. </p>
+\end{align}</blockquote>
+<p>总结一下, 用两个反对称符号, 就可以将 $SU(N)$ 群张量的上下标上下移动. </p>
 
 <h2>Reference</h2>
 

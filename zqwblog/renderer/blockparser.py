@@ -101,9 +101,9 @@ class OrgQuoteBlocksParser(BlocksParser):
     protect = True
     btype = 'quote'
     def start(self, block):
-        return re.search(r'#\+begin_quote', block.data)
+        return re.search(r'#\+begin_quote', block.data, re.IGNORECASE)
     def end(self, block):
-        return re.search(r'#\+end_quote', block.data)   
+        return re.search(r'#\+end_quote', block.data, re.IGNORECASE)
     def run(self, post):
         inside = False
         temp = []

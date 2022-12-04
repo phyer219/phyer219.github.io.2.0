@@ -63,14 +63,12 @@ $$\begin{align}
   \int_{-1}^1 f(x)\mathrm{d}x = \sum_{i=1}^n w_i f(x_i)
 \end{align}$$
 
-<p>其中 $x_i$ 是 $n$ 阶 Legendre 多项式的根.   $x_i$ 和权重 $w_i$ 可以由 scipy.special.roots_ legendre 生成:
-#+BEGIN_QUOTE
-Computes the sample points and weights for Gauss-Legendre
+<p>其中 $x_i$ 是 $n$ 阶 Legendre 多项式的根.   $x_i$ 和权重 $w_i$ 可以由 scipy.special.roots_ legendre 生成:</p>
+<blockquote>Computes the sample points and weights for Gauss-Legendre
 quadrature. The sample points are the roots of the n-th degree
 Legendre polynomial 
 . These sample points and weights correctly integrate polynomials of
-degree or less over the interval with weight function . 
-#+END_QUOTE</p>
+degree or less over the interval with weight function . </blockquote>
 
 <p>积分区间不在 $[-1, 1]$ , 可以通过换换元来转换</p>
 

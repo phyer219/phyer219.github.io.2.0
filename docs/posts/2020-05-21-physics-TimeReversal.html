@@ -74,14 +74,12 @@ $$\begin{align}
   \mathrm{i}\frac{\partial}{\partial t'} \psi^{*}(-t') =& H \psi^{*}(-t')
 \end{align}$$
 
-<p>因此 $\psi^{*}(-t)$ 还是 Schrodinger 方程的解. 
-#+BEGIN_QUOTE
-对于一个在平面波态 $\psi(t) =
+<p>因此 $\psi^{*}(-t)$ 还是 Schrodinger 方程的解. </p>
+<blockquote>对于一个在平面波态 $\psi(t) =
 e^{\mathrm{i} (\vec{p}\cdot \vec{x} - Et)}$ spinless 的 
 粒子, $\psi^{*}(-t) = e^{-\mathrm{i} (-\vec{p}\cdot \vec{x} - Et)}$ 是反向传播的平面波,
-还是 Schrodinger 方程的解.
-#+END_QUOTE
-定义时间反演算符 $T \psi(t) = \psi^{*}(-t)$ , 这是一种对称操作. 如果波函数破缺了这种
+还是 Schrodinger 方程的解.</blockquote>
+<p>定义时间反演算符 $T \psi(t) = \psi^{*}(-t)$ , 这是一种对称操作. 如果波函数破缺了这种
 对称性, 它也会引起简并. 具体地说:</p>
 
 <p>如果 $[H, T] = 0$ , 也就是说 Hamiltonian 具有时间反演对称性, 那么</p>
@@ -92,26 +90,22 @@ $$\begin{align}
 
 <p>从上式可以看出, 如果 $\psi$ 不具有时间反演对称性, 那么就会有简并.</p>
 
-<p>#+BEGIN_QUOTE
-Example: </p>
+<blockquote>Example: 
 
-<p>对于一个静电场中的电子, 它的 Hamiltonian 中有关相互作用的部分为</p>
-
-$$\begin{align}
+对于一个静电场中的电子, 它的 Hamiltonian 中有关相互作用的部分为
+\begin{align}
   H = e\phi(\vec{x})
-\end{align}$$
+\end{align}
+$\phi(\vec{x})$ 是位置 $\vec{x}$ 的实函数, 由于 $\vec{x}$ 在时间反演下是不变的, 所
+以这个系统的 Hamiltonian $[H, T] = 0$ . 
 
-<p>$\phi(\vec{x})$ 是位置 $\vec{x}$ 的实函数, 由于 $\vec{x}$ 在时间反演下是不变的, 所
-以这个系统的 Hamiltonian $[H, T] = 0$ . </p>
-
-<p>同时, 时间反演对 spin $1/2$ 作用的结果为
+同时, 时间反演对 spin $1/2$ 作用的结果为
 $T^2 |\rangle = - |\rangle$
 所以 $T$ 作用在自旋上会使原来的态变成另一个态. 如果 $T$ 作用的结果仅仅是一个相伴
-的化, 就会有 $T^2 = 1$ .</p>
+的化, 就会有 $T^2 = 1$ .
 
-<p>因此, 在这个系统中, Hamiltonian 具有时间反演对称性, 而系统的态不具有时间反演对称
-性, 所以会产生简并, 这就是 Kramer's Degeneracy
-#+END_QUOTE</p>
+因此, 在这个系统中, Hamiltonian 具有时间反演对称性, 而系统的态不具有时间反演对称
+性, 所以会产生简并, 这就是 Kramer's Degeneracy</blockquote>
 
 <h2>时间反演的含义</h2>
 
@@ -127,40 +121,28 @@ $$\begin{align}
 \end{align}$$
 
 
-<p>考虑这样一个过程.
-#+BEGIN_QUOTE
-我们对它进行一个时间反演的操作, 根据时间反演的含义, 它应该变成向左的动量, 也就是
-$|-p, 0\rangle$ 也就是</p>
-
-$$\begin{align}
+<p>考虑这样一个过程.</p>
+<blockquote>我们对它进行一个时间反演的操作, 根据时间反演的含义, 它应该变成向左的动量, 也就是
+$|-p, 0\rangle$ 也就是
+\begin{align}
 T |p, 0\rangle = |-p, 0\rangle
-\end{align}$$
-
-<p>然后让 $T|-p, 0\rangle$ 经过一段小时间后, 它会按动量 $-p$ 向左传播, 记经过
-$\delta t$ 时间后, 波包中心到了 $-\delta x$ , 记为态 $|\beta\rangle = |-p, -\delta x\rangle$ , 也就是</p>
-
-$$\begin{align}
+\end{align}
+然后让 $T|-p, 0\rangle$ 经过一段小时间后, 它会按动量 $-p$ 向左传播, 记经过
+$\delta t$ 时间后, 波包中心到了 $-\delta x$ , 记为态 $|\beta\rangle = |-p, -\delta x\rangle$ , 也就是
+\begin{align}
   \left[1 - \frac{\mathrm{i}}{\hbar} H\, \delta t\right] T |p, 0\rangle = |-p, -\delta x\rangle = |\beta \rangle
-\end{align}$$
-
-<p>#+END_QUOTE
-再考虑另一个过程
-#+BEGIN_QUOTE
-先让这个粒子演化 $- \delta t$ 的时间, 相当于往左后退, 它应该变成态 $| p , -\delta x\rangle$ ,
-也就是</p>
-
-$$\begin{align}
+\end{align}</blockquote>
+<p>再考虑另一个过程</p>
+<blockquote>先让这个粒子演化 $- \delta t$ 的时间, 相当于往左后退, 它应该变成态 $| p , -\delta x\rangle$ ,
+也就是
+\begin{align}
   \left[1 - \frac{\mathrm{i}}{\hbar} H\, (-\delta t)\right] |p, 0\rangle = |p, -\delta x\rangle
-\end{align}$$
-
-<p>再做一个时间反演操作, 使它的动量反向, 也就是</p>
-
-$$\begin{align}
+\end{align}
+再做一个时间反演操作, 使它的动量反向, 也就是
+\begin{align}
   T\left[1 - \frac{\mathrm{i}}{\hbar} H\, (-\delta t)\right] |p, 0\rangle = |-p, -\delta x\rangle = |\beta\rangle
-\end{align}$$
-
-<p>#+END_QUOTE
-对比两个过程, 它们的初末态是一样的, 所以两个演化过程是等价的, 也就是说</p>
+\end{align}</blockquote>
+<p>对比两个过程, 它们的初末态是一样的, 所以两个演化过程是等价的, 也就是说</p>
 
 $$\begin{align}
   T\left[1 - \frac{\mathrm{i}}{\hbar} H\, (-\delta t)\right] = \left[1 - \frac{\mathrm{i}}{\hbar} H\, \delta t\right]T
@@ -187,34 +169,24 @@ $$\begin{align}
 <p>得出的结论是态 $T |n\rangle$ 具有负能量, 但这对于一个自由波包来说是非物理的.</p>
 
 <p>因此, $T$ 只能是反幺正的, 就也是 $T\mathrm{i} = -\mathrm{i}T $ 那么就有 $TH =
-HT$ , 这才是物理的.
-#+BEGIN_QUOTE
-关于 antiunitary 的定义, 高量书上给出了两个条件.</p>
+HT$ , 这才是物理的.</p>
+<blockquote>关于 antiunitary 的定义, 高量书上给出了两个条件.
 
-<p>反幺正算符作用在态 $|\alpha\rangle, |\beta\rangle$ 上</p>
-
-$$\begin{align}
+反幺正算符作用在态 $|\alpha\rangle, |\beta\rangle$ 上
+\begin{align}
 |\alpha\rangle \to |\tilde{\alpha}\rangle = \theta |\alpha\rangle, \quad |\beta\rangle \to |\tilde{\beta}\rangle = \theta |\beta\rangle
-\end{align}$$
-
-<p>有两个性质</p>
-
-$$\begin{align}
+\end{align}
+有两个性质
+\begin{align}
 \langle \tilde{\beta} | \tilde{\alpha} \rangle &= \langle \beta|\alpha \rangle^{*} \\
 \theta \left(c_1|\alpha\rangle + c_2|\beta\rangle  \right) &= c^{*}_1\theta|\alpha\rangle + c^{*}_2\theta|\beta\rangle 
-\end{align}$$
-
-<p>第二条单列出来叫做 antilinear. 
-#+END_QUOTE
-有一个重要的 identity:
-#+BEGIN_QUOTE
-Exercise: 证明对于线性算符 $A$ 有</p>
-
-$$\begin{align}
+\end{align}
+第二条单列出来叫做 antilinear. </blockquote>
+<p>有一个重要的 identity:</p>
+<blockquote>Exercise: 证明对于线性算符 $A$ 有
+\begin{align}
   \langle \beta | \hat{A} | \alpha \rangle = \langle \tilde{\alpha} | T \hat{A}^{\dagger} T^{-1} | \tilde{\beta} \rangle
-\end{align}$$
-
-<p>#+END_QUOTE</p>
+\end{align}</blockquote>
 
 <h2>可观测量在时间反演下的奇偶</h2>
 
@@ -253,11 +225,9 @@ $$\begin{align}
   T \vec{J} T^{-1} = - \vec{J}
 \end{align}$$
 
-<p>角动量在时间反演下反号, 这是符合物理的.
-#+BEGIN_QUOTE
-Exercise: 由 $\vec{x}$ 是时间反演不变的, 以及位置与动量的对易关系, 得出动量在时
-间反演下是反号的.
-#+END_QUOTE</p>
+<p>角动量在时间反演下反号, 这是符合物理的.</p>
+<blockquote>Exercise: 由 $\vec{x}$ 是时间反演不变的, 以及位置与动量的对易关系, 得出动量在时
+间反演下是反号的.</blockquote>
 
 <h2>角动量时间反演作用下的结果</h2>
 

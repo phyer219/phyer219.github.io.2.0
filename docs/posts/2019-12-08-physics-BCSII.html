@@ -163,26 +163,22 @@ $$\begin{align}
   V(\vec{k} - \vec{k}') = \sum_i \lambda_i f_{\vec{k}}^i f_{\vec{k}'}^i
 \end{align}$$
 
-<p>#+BEGIN_QUOTE
-这里相当于是做了对角化(<a href='https://zh.wikipedia.org/wiki/%E7%89%B9%E5%BE%81%E5%88%86%E8%A7%A3'>特征分解</a>) . 而且上式的结果已经默认 $V(\vec{k} -
+<blockquote>这里相当于是做了对角化([[https://zh.wikipedia.org/wiki/%E7%89%B9%E5%BE%81%E5%88%86%E8%A7%A3][特征分解]]) . 而且上式的结果已经默认 $V(\vec{k} -
 \vec{k}')$ 是实对称的, 这符合物理. 从上式也可以体会特征分解的本质. 每个矩阵元都
 包含不同的特征值的成分, 每个特征值对应的成分就是特征值对应的特征向量的的两个元素
-的乘积, 就是每个特征向量的外积按特征值为权重做线性组合.</p>
+的乘积, 就是每个特征向量的外积按特征值为权重做线性组合.
 
-<p>比如一个 $2\times 2$ 的实对称的矩阵 $\Sigma$ 可以对角化</p>
-
-$$\begin{align}
+比如一个 $2\times 2$ 的实对称的矩阵 $\Sigma$ 可以对角化
+\begin{align}
   U^T\Sigma U = \Lambda = \left(  
     \begin{array}{cc}
       \lambda_a & \\
          & \lambda_b 
     \end{array}
    \right)
-\end{align}$$
-
-<p>其中</p>
-
-$$\begin{align}
+\end{align}
+其中
+\begin{align}
   U =    \left( \begin{array}{cc}
            \vec{u}_a & \vec{u}_b
     \end{array}\right)
@@ -190,43 +186,37 @@ $$\begin{align}
       C_{a1} & C_{b1}\\
       C_{a2}   & C_{b2}
     \end{array}\right)
-\end{align}$$
+\end{align}
 
-
-<p>如果分解成外积的形式</p>
-
-$$\begin{align}
+如果分解成外积的形式
+\begin{align}
   \Sigma = \sum_i \, \lambda_i \cdot\vec{u}_i \otimes \vec{u}^T_i
-\end{align}$$
-
-<p>如果写成矩阵元的形式</p>
-
-$$\begin{align}
+\end{align}
+如果写成矩阵元的形式
+\begin{align}
   \Sigma_{ij} = \sum_{kl} U_{ik} \lambda_k\delta_{kl} U_{jl} = \sum_k \lambda_k U_{ik}  U_{jk}
-\end{align}$$
-
-<p>具体写出来就是</p>
-
-$$\begin{align}
+\end{align}
+具体写出来就是
+\begin{align}
   \Sigma = U \Lambda U^T = \left(
     \begin{array}{cc}
       \lambda_aC_{a1}^2 + \lambda_bC_{b1}^2 & \lambda_a C_{a1} C_{a2} + \lambda_b C_{b1} C_{b2}\\
       \lambda_aC_{a1}C_{a2} + \lambda_bC_{b1}C_{b2} & \lambda_a C_{a2}^2 + \lambda_b C_{b2}^2
     \end{array}\right)
-\end{align}$$
+\end{align}
 
+$U_{ij}$ 下标表示第 $j$ 个本征向量第 $i$ 个元素. 很明显, 每个元素都是 $\lambda_a$ 与
+$\lambda_b$ 的组合. 
+- $\Sigma_{11}$ 是: $\lambda_a$ 乘上第 $a$ 个本征值的第 $1$ 个元素与第 $1$ 个元素, 加上
+  $\lambda_b$ 乘上第 $b$ 个本征值的第 $1$ 个元素与第 $1$ 个元素.  
+- $\Sigma_{12}$ 是: $\lambda_a$ 乘上第 $a$ 个本征值的第 $1$ 个元素与第 $2$ 个元素, 加上
+  $\lambda_b$ 乘上第 $b$ 个本征值的第 $1$ 个元素与第 $2$ 个元素.  
+- $\Sigma_{21}$ 是: $\lambda_a$ 乘上第 $a$ 个本征值的第 $2$ 个元素与第 $1$ 个元素, 加上
+  $\lambda_b$ 乘上第 $b$ 个本征值的第 $2$ 个元素与第 $1$ 个元素.  
+- ...
 
-<p>$U_{ij}$ 下标表示第 $j$ 个本征向量第 $i$ 个元素. 很明显, 每个元素都是 $\lambda_a$ 与
-$\lambda_b$ 的组合. </p>
-<ul>
-<li>$\Sigma_{11}$ 是: $\lambda_a$ 乘上第 $a$ 个本征值的第 $1$ 个元素与第 $1$ 个元素, 加上 $\lambda_b$ 乘上第 $b$ 个本征值的第 $1$ 个元素与第 $1$ 个元素.</li>
-<li>$\Sigma_{12}$ 是: $\lambda_a$ 乘上第 $a$ 个本征值的第 $1$ 个元素与第 $2$ 个元素, 加上 $\lambda_b$ 乘上第 $b$ 个本征值的第 $1$ 个元素与第 $2$ 个元素.</li>
-<li>$\Sigma_{21}$ 是: $\lambda_a$ 乘上第 $a$ 个本征值的第 $2$ 个元素与第 $1$ 个元素, 加上 $\lambda_b$ 乘上第 $b$ 个本征值的第 $2$ 个元素与第 $1$ 个元素.</li>
-<li>...</li>
-</ul>
-<p>还可以发现, 不同的特征值之间没有耦合. 这也合理, 因为它们是正交的.
-#+END_QUOTE
-如果有一个 $\lambda_i$ 特别重要, 把它特别提出来(省略下标 $i$ )</p>
+还可以发现, 不同的特征值之间没有耦合. 这也合理, 因为它们是正交的.</blockquote>
+<p>如果有一个 $\lambda_i$ 特别重要, 把它特别提出来(省略下标 $i$ )</p>
 
 $$\begin{align}
   \lambda \sum_{\vec{k}, \vec{k}'} \, f_{\vec{k}} f_{\vec{k}'}\,

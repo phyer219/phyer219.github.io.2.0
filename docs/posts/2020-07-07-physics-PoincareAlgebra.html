@@ -78,15 +78,13 @@ $$\begin{align}
  \right)
 \end{align}$$
 
-<p>#+BEGIN_QUOTE
-由一个例子说明上式的合理性.</p>
+<blockquote>由一个例子说明上式的合理性.
 
-<p>在垂直于 $y$ 方向上放两面相距为 $l$ 的镜子, 在 $xOy$ 平面内, 一束光从一面镜子射
+在垂直于 $y$ 方向上放两面相距为 $l$ 的镜子, 在 $xOy$ 平面内, 一束光从一面镜子射
 出, 出射的方向与 $z$ 轴垂直, 到达另一面镜子后反射, 再回到第一面镜子上. 在相对镜
 子静止的参考系中, 光走过的路程为 $c\Delta t = 2\sqrt{(\frac{\Delta x}{2})^2 + l^2}$ . 在另
 一个沿 $x$ 方向相对匀速运动的惯性系中, 光走过的路程为 $c\Delta t' = 2\sqrt{(\frac{\Delta
-x'}{2})^2 + l^2}$ , 由这两式可得 $- (c \Delta t)^2 + (\Delta x)^2 = - (c \Delta t')^2 + (\Delta x')^2$ .
-#+END_QUOTE</p>
+x'}{2})^2 + l^2}$ , 由这两式可得 $- (c \Delta t)^2 + (\Delta x)^2 = - (c \Delta t')^2 + (\Delta x')^2$ .</blockquote>
 
 <p>可以证明, 不同惯性系之间的 Lorentz 变换(沿 $x_1$ 方向)可以写为</p>
 
@@ -108,12 +106,10 @@ $$\begin{align}
 
 
 
-<p>#+BEGIN_QUOTE
-Exercise: </p>
+<blockquote>Exercise: 
 
-<p>沿 $x$ 方向的 Lorentz transformation 可以写为</p>
-
-$$\begin{align}
+沿 $x$ 方向的 Lorentz transformation 可以写为
+\begin{align}
   \Lambda = \left(
   \begin{array}{cccc}
     \gamma  &  \beta \gamma  & 0 & 0 \\
@@ -122,12 +118,10 @@ $$\begin{align}
     0  &  0    & 0 & 1
   \end{array}
  \right)
-\end{align}$$
-
-<p>其中 $\beta = \frac{v}{c}$, $\gamma = \frac{1}{\sqrt{1- \beta^2}}$ . 
-验证其逆变换为</p>
-
-$$\begin{align}
+\end{align}
+其中 $\beta = \frac{v}{c}$, $\gamma = \frac{1}{\sqrt{1- \beta^2}}$ . 
+验证其逆变换为
+\begin{align}
   \Lambda^{-1} = \left(
   \begin{array}{cccc}
     \gamma  & -\beta \gamma  & 0 & 0 \\
@@ -136,15 +130,11 @@ $$\begin{align}
     0  &  0    & 0 & 1
   \end{array}
  \right)
-\end{align}$$
-
-<p>验证 $\Lambda$ 满足</p>
-
-$$\begin{align}
+\end{align}
+验证 $\Lambda$ 满足
+\begin{align}
   \eta_{\mu\nu} \Lambda^{\mu}_{\,\,\rho}\Lambda^{\nu}_{\,\,\sigma} = \eta_{\rho\sigma}
-\end{align}$$
-
-<p>#+END_QUOTE</p>
+\end{align}</blockquote>
 
 
 <p>Lorentz tranformation 构成 Lorentz group. </p>
@@ -165,27 +155,19 @@ $$\begin{align}
 \end{align}$$
 
 
-<p>#+BEGIN_QUOTE
-Exercise:</p>
+<blockquote>Exercise:
 
-<p>由定义 $x^{\mu} \to x'^{\mu} \to x''^{\mu}$ 验证如果作用两次, 其结果为</p>
-
-$$\begin{align}
+由定义 $x^{\mu} \to x'^{\mu} \to x''^{\mu}$ 验证如果作用两次, 其结果为
+\begin{align}
 U(\bar{\Lambda}, \bar{a})U(\Lambda, a) = U(\bar{\Lambda}\Lambda, \bar{\Lambda}a + \bar{a})
-\end{align}$$
+\end{align}</blockquote>
 
-<p>#+END_QUOTE</p>
+<blockquote>Exercise:
 
-<p>#+BEGIN_QUOTE
-Exercise:</p>
-
-<p>由上面的结果验证</p>
-
-$$\begin{align}
+由上面的结果验证
+\begin{align}
 U^{-1}(\Lambda, a) = U(\Lambda^{-1}, -\Lambda^{-1}a)
-\end{align}$$
-
-<p>#+END_QUOTE</p>
+\end{align}</blockquote>
 
 <h2>The Poincare Algebra</h2>
 
@@ -269,12 +251,10 @@ $$\begin{align}
   + \mathrm{i} \Lambda_{\rho}^{\,\,\mu} \omega_{\mu\nu}\Lambda_{\sigma}^{\,\,\nu} a^{\sigma} P^{\rho}
 \end{align}$$
 
-<p>#+BEGIN_QUOTE
-Exercise:</p>
+<blockquote>Exercise:
 
-<p>下面验证上式</p>
-
-$$\begin{align}
+下面验证上式
+\begin{align}
   & U(\Lambda, a) U(1 + \omega, \epsilon) U^{-1}(\Lambda, a) \\
   =& U(1 + \Lambda\omega\Lambda^{-1}, \Lambda\epsilon - \Lambda\omega\Lambda^{-1}a)\\
   = & 1 + \frac{1}{2}\mathrm{i}(\Lambda\omega\Lambda^{-1})_{\rho\sigma} J^{\rho\sigma} - \mathrm{i}(\Lambda\epsilon - \Lambda\omega\Lambda^{-1}a)_{\rho} P^{\rho} \\
@@ -284,10 +264,8 @@ $$\begin{align}
  =& 1  + \frac{1}{2}\mathrm{i}\Lambda_{\rho}^{\,\,\mu} \omega_{\mu\nu}\Lambda_{\sigma}^{\,\,\nu}J^{\rho\sigma}
   - \mathrm{i} \Lambda_{\rho}^{\,\,\mu} \epsilon_{\mu} P^{\rho}
   + \mathrm{i} \Lambda_{\rho}^{\,\,\mu} \omega_{\mu\nu}\Lambda_{\sigma}^{\,\,\nu} a^{\sigma} P^{\rho}
-\end{align}$$
-
-<p>#+END_QUOTE
-对比上面两种展开的系数. 首先对应 $\omega_{\rho\sigma}$ 的系数得</p>
+\end{align}</blockquote>
+<p>对比上面两种展开的系数. 首先对应 $\omega_{\rho\sigma}$ 的系数得</p>
 
 $$\begin{align}
   U(\Lambda, a) J^{\rho\sigma}U^{-1}(\Lambda, a) = \Lambda_{\mu}^{\,\,\rho} \Lambda_{\nu}^{\,\,\sigma}
@@ -351,17 +329,13 @@ $$\begin{align}
     [P^{\mu}, P^{\rho}] =& 0
 \end{align}$$
 
-<p>#+BEGIN_QUOTE
-Exercise:</p>
+<blockquote>Exercise:
 
-<p>验证动量和角动量 $\vec{P} = \{P^1, P^2, P^{3} \}, \vec{J} = \{J^{23}, J^{31}, J^{12}\}$ 是守恒量, 也就是它们和 $H
-= P^0$ 对易. 而 boost three-vector $K = \{J^{01}, J^{02}, J^{03}\}$ 不是守恒量. 
-#+END_QUOTE
-#+BEGIN_QUOTE
-Exercise:</p>
+验证动量和角动量 $\vec{P} = \{P^1, P^2, P^{3} \}, \vec{J} = \{J^{23}, J^{31}, J^{12}\}$ 是守恒量, 也就是它们和 $H
+= P^0$ 对易. 而 boost three-vector $K = \{J^{01}, J^{02}, J^{03}\}$ 不是守恒量. </blockquote>
+<blockquote>Exercise:
 
-<p>从庞加莱代数的对易关系得到量子力学中常见的动量与角动量之间的对易关系. 
-#+END_QUOTE</p>
+从庞加莱代数的对易关系得到量子力学中常见的动量与角动量之间的对易关系. </blockquote>
 
 
 <h2>Reference</h2>

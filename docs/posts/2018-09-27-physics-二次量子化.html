@@ -338,68 +338,54 @@ $$\begin{align}
 
 <h3>+动能算符作用在态上(之前不恰当的理解)+</h3>
 
-<p>#+BEGIN_QUOTE
-动能算符在坐标空间中应该有</p>
-
-$$\begin{align}
+<blockquote>动能算符在坐标空间中应该有
+\begin{align}
   \label{eq:kinCoor}
   \langle \vec{r} | \hat{T} | \Phi \rangle = - \frac{\hbar^2}{2m} 
          \nabla^2 \langle \vec{r} | \Phi \rangle
         = - \frac{\hbar^2}{2m} \nabla^2 \phi(\vec{r})
-\end{align}$$
+\end{align}
 
-
-<p>验证二次量子化的结果, 将 $\hat{T}$ 用二次量子化的形式写出有</p>
-
-$$\begin{align}
+验证二次量子化的结果, 将 $\hat{T}$ 用二次量子化的形式写出有
+\begin{align}
   \langle \vec{r}_4 | \hat{T} | \Phi \rangle =& -\frac{\hbar^2}{2m}
              \langle \vec{r}_4 | \int \mathrm{d} \vec{r} \cdot
             \hat{\psi}^{\dagger}(\vec{r})  \hat{\psi}(\vec{r})
              \nabla^2_{\vec{r}} \cdot
              | \Phi \rangle \\
-\end{align}$$
-
-<p>将波函数在坐标空间展开可得 </p>
-
-$$\begin{align}
+\end{align}
+将波函数在坐标空间展开可得 
+\begin{align}
   \langle \vec{r}_4 | \hat{T} | \Phi \rangle = -\frac{\hbar^2}{2m}
              \langle \vec{r}_4 | \int \mathrm{d} \vec{r} \cdot
             \hat{\psi}^{\dagger}(\vec{r})  \hat{\psi}(\vec{r})
              \nabla^2_{\vec{r}} \cdot
               \int \mathrm{d}\vec{r}_1 \cdot \phi(\vec{r}_1) 
                    \cdot | \vec{r}_1 \rangle 
-\end{align}$$
-
-<p>其中 $\hat{\psi}^{\dagger}(\vec{r})  \hat{\psi}(\vec{r})$ 是一个粒子数算符, 将它
+\end{align}
+其中 $\hat{\psi}^{\dagger}(\vec{r})  \hat{\psi}(\vec{r})$ 是一个粒子数算符, 将它
 向左作用在态 $\langle \vec{r}_4|$ 上, 得到一个 Dirac 函数. 因为 $\langle
 \vec{r}_4|$ 只有在 $\vec{r} = \vec{r}_4$ 时, 它才有一个粒子, 是 $1$ , 在其它的坐
-标上, 粒子数为 $0$ 即</p>
-
-$$\begin{align}
+标上, 粒子数为 $0$ 即
+\begin{align}
   \langle  \vec{r}_4| \hat{\psi}^{\dagger}(\vec{r})  \hat{\psi}(\vec{r}) 
   = \langle \vec{r}_4| \delta(\vec{r} - \vec{r}_4)
-\end{align}$$
-
-<p>所以代入原式, 并用 Dirac 函数积掉 $\vec{r}$ 后, 得</p>
-
-$$\begin{align}
+\end{align}
+所以代入原式, 并用 Dirac 函数积掉 $\vec{r}$ 后, 得
+\begin{align}
   \langle \vec{r}_4 | \hat{T} | \Phi \rangle = -\frac{\hbar^2}{2m}
              \langle \vec{r}_4 |
              \nabla^2_{\vec{r}_4} \cdot
               \int \mathrm{d}\vec{r}_1 \cdot \phi(\vec{r}_1) 
                    \cdot | \vec{r}_1 \rangle 
-\end{align}$$
-
-<p>把两边的态矢做内积, 得到 $\langle \vec{r}_4 |\vec{r}_1\rangle =
-\delta(\vec{r}_1-\vec{r}_4)$ 然后把 $\vec{r}_1$ 积掉, 得</p>
-
-$$\begin{align}
+\end{align}
+把两边的态矢做内积, 得到 $\langle \vec{r}_4 |\vec{r}_1\rangle =
+\delta(\vec{r}_1-\vec{r}_4)$ 然后把 $\vec{r}_1$ 积掉, 得
+\begin{align}
   \langle \vec{r}_4 | \hat{T} | \Phi \rangle = -\frac{\hbar^2}{2m}
                \nabla^2_{\vec{r}_4}  \phi(\vec{r}_4) 
-\end{align}$$
-
-<p>与我们期待的 $(\ref{eq:kinCoor})$ 式相同. 说明二次量子化的表达形式是自洽的. 
-#+END_QUOTE</p>
+\end{align}
+与我们期待的 $(\ref{eq:kinCoor})$ 式相同. 说明二次量子化的表达形式是自洽的. </blockquote>
 
 <h2>例: 费米子接触势</h2>
 
