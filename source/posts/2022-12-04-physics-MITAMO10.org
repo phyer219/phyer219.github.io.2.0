@@ -1,0 +1,170 @@
+#+TITLE: Atomic and Optical Physics I, 10 Atoms in External Filds II, Quadratic DC Stark effect
+#+DATE: <2022-12-04>
+#+CATEGORIES: 专业笔记
+#+TAGS: Atomic and Optical Physics, Stark effect, Quadratic DC stark effect
+#+HTML: <!-- toc -->
+#+HTML: <!-- more -->
+
+* Information
+
+- [[https://ocw.mit.edu/courses/physics/8-421-atomic-and-optical-physics-i-spring-2014/][MIT官方介绍]]
+
+- [[https://www.youtube.com/playlist?list=PLUl4u3cNGP62FPGcyFJkzhqq9c5cHCK32][Youtube视频列表地址]]
+
+* Summary HFS
+
+\begin{align}
+H = a h \vec{I}\cdot \vec{J} + (g_J \mu_B m_J - g_I \mu_N m_I) B_0
+\end{align}
+
+weak field: HFS + $\mu_B g_F B_0 m_F$
+
+\begin{align}
+\frac{a h}{2} [(F(F + 1) - J(J + 1) - I(I + 1) ]
+\end{align}
+
+strong field
+
+\begin{align}
+ah m_I m_J + (g_J \mu_B m_J - g_I \mu_N m_I) B_0
+\end{align}
+
+even stronger field
+\begin{align}
+A_{FS} m_l m_s + a_S m_I m_S + a_l m_I m_l
++ g_S \mu_B m_S + g_l \mu_B m_l - g_I \mu_N m_I
+\end{align}
+
+- Nice example for Hamiltonian with different scaler products:
+  $\vec{B}\cdot \vec{S} , \quad \vec{B}\cdot \vec{L} \quad \vec{S}\cdot \vec{L} \quad
+  \vec{I} \cdot \vec{J}$
+
+- vector model (rapid procession of projection) (calculation without explicit
+  use of CG coefficents)
+
+* Atom in external electric fields: standard theory of the DC Stark effect of the atom polarizbility
+
+Uniform electric field $\mathcal{E} \hat{z}$ .
+ref Jackson Chap 4.6, Eq(4.24)
+\begin{align}
+U(\vec{r}) = q \phi(\vec{r}) - \vec{d}\cdot \hat{z} \mathcal{E} - \alpha \mathcal{E}^2
+\end{align}
+this three terms corresponds monopole, permanent dipole moment, polarizbility
+$\alpha$ induced dipole momentum $d_{IND} = \alpha \mathcal{E}$ .
+
+Use perturbation operator $H' = - \vec{d} \hat{z} \mathcal{E} = e z \mathcal{E}$
+($\vec{d} = -e \vec{r}, d = -ez$) . $H'$ is odd parity, we have no permanent
+dipole until we have degenerate energy levels.
+
+1st order perturbation energy (no degeneration)
+
+$E_n^{(1)} = \langle n^{(0)} | H' | n^{(0)}\rangle = 0$ .
+
+2nd order perturbation energy
+\begin{align}
+E_n^{(2)} = \sum_m ^{'} \frac{\langle n^{(0)}  | ez\mathcal{E}| m^{(0)}\rangle
+\langle m^{(0)} | ez\mathcal{E} | n^{(0)}\rangle}
+{E_n^{(0)} - E_m^{(0)}}
+= e^2 \mathcal{E}^2
+\sum_m^{'} \frac{|\langle n^{(0)}  | z| m^{(0)}\rangle|^2}{E_n^{(0)} - E_m^{(0)}}
+\end{align}
+where $\sum_m^{'}$ means sum over all $m\neq n$ .
+
+dipole in the 1st order perturbed state
+\begin{align}
+\langle \vec{d} \rangle =& (\langle n^{(0)}| + \langle n^{(1)}|) \vec{d}
+              (| n^{(0)}\rangle + | n^{(1)}\rangle) \\
+ = & \langle n^{(1)} | \vec{d} | n^{(0)} \rangle + \langle n^{(0)} | \vec{d} | n^{(1)} \rangle \\
+ = & 2 \mathrm{Re} \left[\langle n^{(1)} | \vec{d} | n^{(0)} \rangle \right] \\
+ = & 2 \mathrm{Re} \left(
+\sum_m^{'} \frac{\langle n^{(0)} | \vec{d} | m^{(0)} \rangle
+              \langle m^{(0)} | ez\mathcal{E} | n^{(0)} \rangle}{E_n^{(0)} - E_m^{(0)}}
+ \right) \\
+ = & - 2 \hat{z} e^2 \mathcal{E}  \sum_m^{'}
+\frac{|\langle n^{(0)} |z| m^{(0)}\rangle |^{2}}{E_n^{(0)} - E_m^{(0)}} \\
+ =& \alpha \vec{\mathcal{E}}
+\end{align}
+where the second equality use the parity of $\vec{d}$ . The polarizbility
+\begin{align}
+\alpha \equiv \frac{d}{\mathcal{E}} = - 2  e^2  \sum_m^{'}
+\frac{|\langle n^{(0)} |z| m^{(0)}\rangle |^{2}}{E_n^{(0)} - E_m^{(0)}}
+\end{align}
+so, we can rewrite the 2nd order perturbed energy as
+\begin{align}
+E_n^{(2)} = - \frac{1}{2}\alpha \mathcal{E}^2 = - \frac{1}{2}\langle \vec{d} \rangle \cdot \mathcal{E}
+\end{align}
+
+Another veiw, 2nd perturbed total energy is (there is a problem about the
+nomalization of perturbed wave function, a little funny)
+\begin{align}
+E_n^{(0)} + \Delta E =& E_n^{(0)} + E_n^{(1)} + E_n^{(2)}
+= \left( \langle n^{(0)} | + \langle n^{(1) |} \right) \left( H_0 + H' \right)
+  \left( | n^{(0)} \rangle + |n^{(1)} \rangle \right) \\
+=& \langle n^{(0)} | H_0 | n^{(0)}\rangle + \langle n^{(1)} | H_0 | n^{(1)}\rangle
+  + 2 \mathrm{Re} \left[ \langle n^{(0)} | H' | n^{(1)}\rangle \right]
+\end{align}
+the second term
+\begin{align}
+\langle n^{(1)} | H_0 | n^{(1)}\rangle
+ =& \sum_{lm}^{'} \left( \frac{\langle n^{(0)} | H' | l^{(0)} \rangle\langle l^{(0)} | }
+     {E_n^{(0)} - E_l^{(0)}}  \right)
+ \left( H_0 \right)
+\left( \frac{| m^{(0)} \rangle\langle m^{(0)} | H' | n^{(0)} \rangle  }
+     {E_n^{(0)} - E_m^{(0)}}  \right) \\
+=& \sum_m^{'} \frac{|\langle n^{(0)} | H' | m^{(0)} \rangle|^2}{(E_n^{(0)} - E_m^{(0)})^2}
+   E_m^{(0)}
+\end{align}
+if we set $E_n^{(0)} = 0$ , then
+\begin{align}
+\langle n^{(1)} | H_0 | n^{(1)}\rangle = \frac{1}{2}\alpha \mathcal{E}^2
+\end{align}
+then
+\begin{align}
+E_n^{(0)} + \Delta E = E_n^{(0)} \langle n^{(0)} | n^{(0)} \rangle + \frac{1}{2}\alpha \mathcal{E}
+ - \alpha \mathcal{E}^2
+\end{align}
+and $\Delta E = - \frac{1}{2}\alpha \mathcal{E}$ , the same as before.
+
+* Unit of $\alpha$
+
+dimension of $[\alpha] = [\frac{q^2l^2}{E}] = [\frac{q^2}{l} \frac{1}{E}l^3] = L^3$ , is
+volum.
+
+For hydrogen, only consider the matrix element between 1s and 2p, then we get
+\begin{align}
+\alpha \approx 2.96 a_0^3
+\end{align}
+where $\alpha = 4.5 a_0^3$ if we use all matrix elements (include the positive energy
+continuum states of hydrogen).
+
+* Unsold's approximation
+
+something like Sakurai page 315.
+
+* Compare with classical EM for conducting sphere
+
+dipole moment of a conducting sphere in a uniform electric filed is (Jackson
+4.56) $\mathcal{E} R^3$
+\begin{align}
+\tag{Jackson (4.56)}
+p =& 4\pi \epsilon_0 \left( \frac{\epsilon/\epsilon_0 - 1}{\epsilon / \epsilon_0 + 2} \right)R^3\mathcal{E} \\
+p_{\mathrm{conducting sphere}} =& \lim_{\epsilon\to \infty} p = 4\pi \epsilon_0 R^3 E_0 \quad(\mathrm{SI}) \\
+p_{\mathrm{conducting sphere}} \sqrt{4\pi\epsilon_0}
+ =&4\pi \epsilon_0 R^3 E_0 \frac{1}{\sqrt{4\pi\epsilon_0}} \quad(\mathrm{Gauss}) \\
+p_{\mathrm{conducting sphere}}
+ =& R^3 E_0  \quad(\mathrm{Gauss})
+\end{align}
+
+so, atoms $\Leftrightarrow$ conducting sphere.
+
+#+begin_quote
+When it comes to dipole moments and to polarizbility, atoms pretty much behave
+like metallic conducting sphere of the same volum.
+#+end_quote
+
+* Reference
+
+- Jackson, J. D. Classical electrodynamics. (Wiley, 1999)
+
+- Jun John Sakurai, Jim Napolitano, Modern Quantum Mechanics. (Cambridge
+  University Press, 2017)

@@ -1,0 +1,255 @@
+<!DOCTYPE html><html class="no-js" lang="zh">
+
+
+<head>
+<script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+    </script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/styles/base16/solarized-light.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Long+Cang&family=Noto+Serif+SC&display=swap" rel="stylesheet"> <meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>Atomic and Optical Physics I, 10 Atoms in External Filds II, Quadratic DC Stark effect</title>
+<link rel="apple-touch-icon" sizes="180x180" href="../static/images/apple-touch-icon-next.png?v=6.4.1">
+<link rel="icon" type="image/png" sizes="32x32" href="../static/images/favicon-32x32-next.png?v=6.4.1">
+<link rel="icon" type="image/png" sizes="16x16" href="../static/images/favicon-16x16-next.png?v=6.4.1">
+<link rel="stylesheet" type="text/css" href="../static/css/mystyle.css">    
+
+</head>
+
+<body>
+    <div class="container">
+        <header>
+    <section class="banner"><img src="../static/images/banner.jpg"></section>
+</header>
+        <nav class="row">
+    <a class="nav" href="../">首页</a>
+    <a class="nav" href="../categories">分类</a>
+    <a class="nav" href="../tags">标签</a>
+    <a class="nav" href="../about">关于</a>
+</nav>
+
+        <main>
+            <h1 class="post-title">Atomic and Optical Physics I, 10 Atoms in External Filds II, Quadratic DC Stark effect
+            </h1>
+            <section class="post-meta">
+                <p>发表于:2022.12.4 ||</p>
+                <p>分类:<a class="post-link" href="../categories/专业笔记.html">专业笔记</a> ||</p>
+            </section>
+            <section class="post-content">
+                
+<h2>Information</h2>
+
+<ul>
+<li><a href='https://ocw.mit.edu/courses/physics/8-421-atomic-and-optical-physics-i-spring-2014/'>MIT官方介绍</a></li>
+<li><a href='https://www.youtube.com/playlist?list=PLUl4u3cNGP62FPGcyFJkzhqq9c5cHCK32'>Youtube视频列表地址</a></li>
+</ul>
+<h2>Summary HFS</h2>
+
+
+$$\begin{align}
+H = a h \vec{I}\cdot \vec{J} + (g_J \mu_B m_J - g_I \mu_N m_I) B_0
+\end{align}$$
+
+
+<p>weak field: HFS + $\mu_B g_F B_0 m_F$</p>
+
+
+$$\begin{align}
+\frac{a h}{2} [(F(F + 1) - J(J + 1) - I(I + 1) ]
+\end{align}$$
+
+
+<p>strong field</p>
+
+
+$$\begin{align}
+ah m_I m_J + (g_J \mu_B m_J - g_I \mu_N m_I) B_0
+\end{align}$$
+
+
+<p>even stronger field</p>
+
+$$\begin{align}
+A_{FS} m_l m_s + a_S m_I m_S + a_l m_I m_l
++ g_S \mu_B m_S + g_l \mu_B m_l - g_I \mu_N m_I
+\end{align}$$
+
+
+<ul>
+<li>Nice example for Hamiltonian with different scaler products: $\vec{B}\cdot \vec{S} , \quad \vec{B}\cdot \vec{L} \quad \vec{S}\cdot \vec{L} \quad \vec{I} \cdot \vec{J}$</li>
+<li>vector model (rapid procession of projection) (calculation without explicit use of CG coefficents)</li>
+</ul>
+<h2>Atom in external electric fields: standard theory of the DC Stark effect of the atom polarizbility</h2>
+
+<p>Uniform electric field $\mathcal{E} \hat{z}$ .
+ref Jackson Chap 4.6, Eq(4.24)</p>
+
+$$\begin{align}
+U(\vec{r}) = q \phi(\vec{r}) - \vec{d}\cdot \hat{z} \mathcal{E} - \alpha \mathcal{E}^2
+\end{align}$$
+
+<p>this three terms corresponds monopole, permanent dipole moment, polarizbility
+$\alpha$ induced dipole momentum $d_{IND} = \alpha \mathcal{E}$ .</p>
+
+<p>Use perturbation operator $H' = - \vec{d} \hat{z} \mathcal{E} = e z \mathcal{E}$
+($\vec{d} = -e \vec{r}, d = -ez$) . $H'$ is odd parity, we have no permanent
+dipole until we have degenerate energy levels.</p>
+
+<p>1st order perturbation energy (no degeneration)</p>
+
+<p>$E_n^{(1)} = \langle n^{(0)} | H' | n^{(0)}\rangle = 0$ .</p>
+
+<p>2nd order perturbation energy</p>
+
+$$\begin{align}
+E_n^{(2)} = \sum_m ^{'} \frac{\langle n^{(0)}  | ez\mathcal{E}| m^{(0)}\rangle
+\langle m^{(0)} | ez\mathcal{E} | n^{(0)}\rangle}
+{E_n^{(0)} - E_m^{(0)}}
+= e^2 \mathcal{E}^2
+\sum_m^{'} \frac{|\langle n^{(0)}  | z| m^{(0)}\rangle|^2}{E_n^{(0)} - E_m^{(0)}}
+\end{align}$$
+
+<p>where $\sum_m^{'}$ means sum over all $m\neq n$ .</p>
+
+<p>dipole in the 1st order perturbed state</p>
+
+$$\begin{align}
+\langle \vec{d} \rangle =& (\langle n^{(0)}| + \langle n^{(1)}|) \vec{d}
+              (| n^{(0)}\rangle + | n^{(1)}\rangle) \\
+ = & \langle n^{(1)} | \vec{d} | n^{(0)} \rangle + \langle n^{(0)} | \vec{d} | n^{(1)} \rangle \\
+ = & 2 \mathrm{Re} \left[\langle n^{(1)} | \vec{d} | n^{(0)} \rangle \right] \\
+ = & 2 \mathrm{Re} \left(
+\sum_m^{'} \frac{\langle n^{(0)} | \vec{d} | m^{(0)} \rangle
+              \langle m^{(0)} | ez\mathcal{E} | n^{(0)} \rangle}{E_n^{(0)} - E_m^{(0)}}
+ \right) \\
+ = & - 2 \hat{z} e^2 \mathcal{E}  \sum_m^{'}
+\frac{|\langle n^{(0)} |z| m^{(0)}\rangle |^{2}}{E_n^{(0)} - E_m^{(0)}} \\
+ =& \alpha \vec{\mathcal{E}}
+\end{align}$$
+
+<p>where the second equality use the parity of $\vec{d}$ . The polarizbility</p>
+
+$$\begin{align}
+\alpha \equiv \frac{d}{\mathcal{E}} = - 2  e^2  \sum_m^{'}
+\frac{|\langle n^{(0)} |z| m^{(0)}\rangle |^{2}}{E_n^{(0)} - E_m^{(0)}}
+\end{align}$$
+
+<p>so, we can rewrite the 2nd order perturbed energy as</p>
+
+$$\begin{align}
+E_n^{(2)} = - \frac{1}{2}\alpha \mathcal{E}^2 = - \frac{1}{2}\langle \vec{d} \rangle \cdot \mathcal{E}
+\end{align}$$
+
+
+<p>Another veiw, 2nd perturbed total energy is (there is a problem about the
+nomalization of perturbed wave function, a little funny)</p>
+
+$$\begin{align}
+E_n^{(0)} + \Delta E =& E_n^{(0)} + E_n^{(1)} + E_n^{(2)}
+= \left( \langle n^{(0)} | + \langle n^{(1) |} \right) \left( H_0 + H' \right)
+  \left( | n^{(0)} \rangle + |n^{(1)} \rangle \right) \\
+=& \langle n^{(0)} | H_0 | n^{(0)}\rangle + \langle n^{(1)} | H_0 | n^{(1)}\rangle
+  + 2 \mathrm{Re} \left[ \langle n^{(0)} | H' | n^{(1)}\rangle \right]
+\end{align}$$
+
+<p>the second term</p>
+
+$$\begin{align}
+\langle n^{(1)} | H_0 | n^{(1)}\rangle
+ =& \sum_{lm}^{'} \left( \frac{\langle n^{(0)} | H' | l^{(0)} \rangle\langle l^{(0)} | }
+     {E_n^{(0)} - E_l^{(0)}}  \right)
+ \left( H_0 \right)
+\left( \frac{| m^{(0)} \rangle\langle m^{(0)} | H' | n^{(0)} \rangle  }
+     {E_n^{(0)} - E_m^{(0)}}  \right) \\
+=& \sum_m^{'} \frac{|\langle n^{(0)} | H' | m^{(0)} \rangle|^2}{(E_n^{(0)} - E_m^{(0)})^2}
+   E_m^{(0)}
+\end{align}$$
+
+<p>if we set $E_n^{(0)} = 0$ , then</p>
+
+$$\begin{align}
+\langle n^{(1)} | H_0 | n^{(1)}\rangle = \frac{1}{2}\alpha \mathcal{E}^2
+\end{align}$$
+
+<p>then</p>
+
+$$\begin{align}
+E_n^{(0)} + \Delta E = E_n^{(0)} \langle n^{(0)} | n^{(0)} \rangle + \frac{1}{2}\alpha \mathcal{E}
+ - \alpha \mathcal{E}^2
+\end{align}$$
+
+<p>and $\Delta E = - \frac{1}{2}\alpha \mathcal{E}$ , the same as before.</p>
+
+<h2>Unit of $\alpha$</h2>
+
+<p>dimension of $[\alpha] = [\frac{q^2l^2}{E}] = [\frac{q^2}{l} \frac{1}{E}l^3] = L^3$ , is
+volum.</p>
+
+<p>For hydrogen, only consider the matrix element between 1s and 2p, then we get</p>
+
+$$\begin{align}
+\alpha \approx 2.96 a_0^3
+\end{align}$$
+
+<p>where $\alpha = 4.5 a_0^3$ if we use all matrix elements (include the positive energy
+continuum states of hydrogen).</p>
+
+<h2>Unsold's approximation</h2>
+
+<p>something like Sakurai page 315.</p>
+
+<h2>Compare with classical EM for conducting sphere</h2>
+
+<p>dipole moment of a conducting sphere in a uniform electric filed is (Jackson
+4.56) $\mathcal{E} R^3$</p>
+
+$$\begin{align}
+\tag{Jackson (4.56)}
+p =& 4\pi \epsilon_0 \left( \frac{\epsilon/\epsilon_0 - 1}{\epsilon / \epsilon_0 + 2} \right)R^3\mathcal{E} \\
+p_{\mathrm{conducting sphere}} =& \lim_{\epsilon\to \infty} p = 4\pi \epsilon_0 R^3 E_0 \quad(\mathrm{SI}) \\
+p_{\mathrm{conducting sphere}} \sqrt{4\pi\epsilon_0}
+ =&4\pi \epsilon_0 R^3 E_0 \frac{1}{\sqrt{4\pi\epsilon_0}} \quad(\mathrm{Gauss}) \\
+p_{\mathrm{conducting sphere}}
+ =& R^3 E_0  \quad(\mathrm{Gauss})
+\end{align}$$
+
+
+<p>so, atoms $\Leftrightarrow$ conducting sphere.</p>
+
+<blockquote>When it comes to dipole moments and to polarizbility, atoms pretty much behave
+like metallic conducting sphere of the same volum.</blockquote>
+
+<h2>Reference</h2>
+
+<ul>
+<li>Jackson, J. D. Classical electrodynamics. (Wiley, 1999)</li>
+<li>Jun John Sakurai, Jim Napolitano, Modern Quantum Mechanics. (Cambridge University Press, 2017)</li>
+</ul>
+
+            </section>
+            <section class="post-meta">
+                <p>标签:
+                    <a class="post-link" href="../tags/Atomic and Optical Physics.html">Atomic and Optical Physics</a>
+                    <a class="post-link" href="../tags/Stark effect.html">Stark effect</a>
+                    <a class="post-link" href="../tags/Quadratic DC stark effect.html">Quadratic DC stark effect</a>
+                </p>
+            </section>
+        </main>
+        <footer>© 2018 - 2022 ZQW</footer>
+
+    </div>
+</body>
+
+</html>
