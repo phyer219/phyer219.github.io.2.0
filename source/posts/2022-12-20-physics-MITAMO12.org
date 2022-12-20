@@ -1,0 +1,152 @@
+#+TITLE: Atomic and Optical Physics I, 12 Atoms in External Filds IV and Atom-light Interaction I
+#+DATE: <2022-12-20>
+#+CATEGORIES: 专业笔记
+#+TAGS: Atomic and Optical Physics, Dipole approximation
+#+HTML: <!-- toc -->
+#+HTML: <!-- more -->
+
+* Information
+
+- [[https://ocw.mit.edu/courses/physics/8-421-atomic-and-optical-physics-i-spring-2014/][MIT官方介绍]]
+
+- [[https://www.youtube.com/playlist?list=PLUl4u3cNGP62FPGcyFJkzhqq9c5cHCK32][Youtube视频列表地址]]
+
+* Atoms light interaction outline
+
+- coupling matrix element (TODAY)
+
+- narrow band and broad band
+
+- quantized EM filed
+
+* Results of Classical EM and Lagrangian Formalism
+
+Ref Goldstein Eq.(1.63) and Eq.(8.35).
+\begin{align}
+\vec{p}_{\mathrm{canonical}} = \vec{p}_{\mathrm{kinetic}} + \frac{q}{c}\vec{A}
+\end{align}
+for electron, charge $q = -e$
+\begin{align}
+H = \underbrace{\frac{1}{2m} \left( \vec{p}_{\mathrm{canonical}}
+                 + \frac{e}{c}\vec{A} \right)^2}_{E_{\mathrm{kinetic}}} + V(r)
+\end{align}
+where the first term is kinetic energy. Chose Coulomb gauge $\nabla\cdot \vec{A} = 0$ ,
+so $[\vec{A}, \vec{p}] = 0$ , then
+\begin{align}
+H = \underbrace{\frac{p^2}{2m} + V(r)}_{H_0}
+    + \underbrace{\frac{e}{mc}\vec{p}\cdot \vec{A}}_{H_{\mathrm{int}}}
+ + \underbrace{\frac{e^2}{2 mc^2}\vec{A}^2}_{H^{(2)}}
+\end{align}
+Consider a plane wave
+\begin{align}
+H_{\mathrm{int}} = \frac{e}{m c}
+             \vec{p} \cdot\hat{e} A_0 e^{\mathrm{i}\vec{k}\cdot \vec{r} - \mathrm{i}\omega t}
+\end{align}
+then matrix element
+\begin{align}
+\langle b |H_{\mathrm{int}} | a\rangle = H_{ba} e^{-\mathrm{i}\omega t}
+\end{align}
+where
+\begin{align}
+H_{ba} = \frac{eA_0}{mc} \hat{e}\cdot \langle b |
+             \vec{p} e^{\mathrm{i}\vec{k}\cdot \vec{r}} | a\rangle
+\end{align}
+for long wave length approximation, $k r \ll 1$ , expand the exponential
+\begin{align}
+e^{\mathrm{i}\vec{k}\cdot \vec{r}} = 1 + \mathrm{i} \vec{k}\cdot \vec{r}
+  - \frac{1}{2} (\vec{k}\cdot \vec{r})^2 + \cdots
+\end{align}
+
+* Diople term
+
+take the first term
+\begin{align}
+H_{ba} = - \frac{\mathrm{i} e E_0}{m\omega} \hat{e} \langle b| \vec{p} | a\rangle
+\end{align}
+where we have used (radiation field)
+\begin{align}
+\vec{E} = - \frac{1}{c}\frac{\partial \vec{A}}{\partial t}
+          = \frac{\mathrm{i}\omega}{c}A_0 \hat{e} \equiv E_0 \hat{e}.
+\end{align}
+Then use
+\begin{align}
+\vec{p} = \frac{m}{i\hbar} [\vec{r}, H_0]
+\end{align}
+we get
+\begin{align}
+H_{ba} = e E_0 \hat{e} \langle b| \vec{r} | a\rangle \frac{\omega_{ba}}{\omega}
+ = \vec{E}\cdot \langle \vec{D}\rangle \frac{\omega_{ba}}{\omega}
+\end{align}
+where $D$ is the dipole operator.
+
+* Higher-order radiation processes
+
+assume the polarization is along the $z$ direction, and propagate along $x$
+direction
+\begin{align}
+A(\vec{r}) = A\hat{z} e^{\mathrm{i} kx}
+\end{align}
+\begin{align}
+k r = \frac{\hbar \omega}{\hbar c} a_0 = \frac{e^2}{a_0} \frac{1}{\hbar c} a_0 = \frac{e^2}{\hbar c}
+    = \alpha.
+\end{align}
+
+The expansion
+\begin{align}
+H_b = \frac{e A}{mc}\langle b| p_z \left[
+                         1 + \mathrm{i} kx -\frac{1}{2}(kx)^2   \right]| a\rangle,
+\end{align}
+the 2nd term
+\begin{align}
+p_z x = \underbrace{\frac{1}{2}(p_z x - z p_x)}_{- \frac{1}{2}\hbar L_y}
+ + \frac{1}{2}(p_zx + z p_x)
+\end{align}
+then
+\begin{align}
+\mathrm{i} k \frac{e A}{mc}\langle b| \frac{1}{2}(p_z   x - zp_x)| a\rangle
+= \underbrace{- \mathrm{i}A k}_{B_y}
+   \underbrace{\frac{e\hbar}{2 mc}}_{\mu_B}  \langle b| L_y |a\rangle = \vec{B}\mu_B \langle b|
+   \underbrace{\vec{L}}_{-\vec{\mu}} | a\rangle
+\end{align}
+where we have used $\vec{B} = \nabla\times \vec{A} = - \mathrm{i}k A \hat{y}$ .
+
+the other term
+\begin{align}
+\frac{1}{2}(p_zx + z p_x) = \frac{m}{2\mathrm{i}\hbar} \left(
+             [z, H_0] x + z[x, H_0] \right)
+ = \frac{m}{2\mathrm{i}\hbar} \left(
+             -H_0 zx + zx H_0 \right)
+\end{align}
+then (use $\vec{E} = - \frac{1}{c} \frac{\partial \vec{A}}{\partial t}, E = \mathrm{i}kA$)
+\begin{align}
+\mathrm{i} k \frac{e A}{mc}\langle b| \frac{1}{2}(p_z   x + zp_x)| a\rangle
+= -\frac{e A k}{2 c} \omega_{ba} \langle b|z x |a\rangle
+ = \frac{\mathrm{i} e E \omega_{ba}}{2 c} \langle b|z x |a\rangle
+\end{align}
+this is electric quadropole.
+
+So,
+\begin{align}
+H_{\mathrm{int}}^{(2)} = \underbrace{H_{\mathrm{int}}(M1)}_{\mathrm{real}}
+           + \underbrace{H_{\mathrm{int}}(E2)}_{\mathrm{imaginary}}
+\end{align}
+there are no interference, that is to say
+\begin{align}
+|H_{\mathrm{int}}^{(2)}|^2 = |H_{\mathrm{int}}(M1)|^2 +
+                 |H_{\mathrm{int}}(E2)|^2
+\end{align}
+
+* Summary
+
+|                    | Operator                        | Parity |
+| Electric dipole E1 | $-e\vec{r}$                     | -      |
+| Magnetic dipole M1 | $-\mu_B (\vec{L} + g_s \vec{S})$ | +      |
+| Electric dipole E2 | Tensor $-e \vec{r}:\vec{r}$     | +      |
+
+M1, E2 are "Forbidden" transitions, $\alpha^2 \approx 5\times 10^{-5}$ weaker than an allowed
+E1 transition.
+
+* Reference
+
+- Goldstein, H., Poole, C. P. & Safko, J. Classical Mechanics. 665 (2011).
+

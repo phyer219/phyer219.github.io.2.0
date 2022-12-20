@@ -1,0 +1,277 @@
+<!DOCTYPE html><html class="no-js" lang="zh">
+
+
+<head>
+<script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+    </script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/styles/base16/solarized-light.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Long+Cang&family=Noto+Serif+SC&display=swap" rel="stylesheet"> <meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>Atomic and Optical Physics I, 12 Atoms in External Filds IV and Atom-light Interaction I</title>
+<link rel="apple-touch-icon" sizes="180x180" href="../static/images/apple-touch-icon-next.png?v=6.4.1">
+<link rel="icon" type="image/png" sizes="32x32" href="../static/images/favicon-32x32-next.png?v=6.4.1">
+<link rel="icon" type="image/png" sizes="16x16" href="../static/images/favicon-16x16-next.png?v=6.4.1">
+<link rel="stylesheet" type="text/css" href="../static/css/mystyle.css">    
+
+</head>
+
+<body>
+    <div class="container">
+        <header>
+    <section class="banner"><img src="../static/images/banner.jpg"></section>
+</header>
+        <nav class="row">
+    <a class="nav" href="../">首页</a>
+    <a class="nav" href="../categories">分类</a>
+    <a class="nav" href="../tags">标签</a>
+    <a class="nav" href="../about">关于</a>
+</nav>
+
+        <main>
+            <h1 class="post-title">Atomic and Optical Physics I, 12 Atoms in External Filds IV and Atom-light Interaction I
+            </h1>
+            <section class="post-meta">
+                <p>发表于:2022.12.20 ||</p>
+                <p>分类:<a class="post-link" href="../categories/专业笔记.html">专业笔记</a> ||</p>
+            </section>
+            <section class="post-content">
+                
+<h2>Information</h2>
+
+<ul>
+<li><a href='https://ocw.mit.edu/courses/physics/8-421-atomic-and-optical-physics-i-spring-2014/'>MIT官方介绍</a></li>
+<li><a href='https://www.youtube.com/playlist?list=PLUl4u3cNGP62FPGcyFJkzhqq9c5cHCK32'>Youtube视频列表地址</a></li>
+</ul>
+<h2>Atoms light interaction outline</h2>
+
+<ul>
+<li>coupling matrix element (TODAY)</li>
+<li>narrow band and broad band</li>
+<li>quantized EM filed</li>
+</ul>
+<h2>Results of Classical EM and Lagrangian Formalism</h2>
+
+<p>Ref Goldstein Eq.(1.63) and Eq.(8.35).</p>
+
+$$\begin{align}
+\vec{p}_{\mathrm{canonical}} = \vec{p}_{\mathrm{kinetic}} + \frac{q}{c}\vec{A}
+\end{align}$$
+
+<p>for electron, charge $q = -e$</p>
+
+$$\begin{align}
+H = \underbrace{\frac{1}{2m} \left( \vec{p}_{\mathrm{canonical}}
+                 + \frac{e}{c}\vec{A} \right)^2}_{E_{\mathrm{kinetic}}} + V(r)
+\end{align}$$
+
+<p>where the first term is kinetic energy. Chose Coulomb gauge $\nabla\cdot \vec{A} = 0$ ,
+so $[\vec{A}, \vec{p}] = 0$ , then</p>
+
+$$\begin{align}
+H = \underbrace{\frac{p^2}{2m} + V(r)}_{H_0}
+    + \underbrace{\frac{e}{mc}\vec{p}\cdot \vec{A}}_{H_{\mathrm{int}}}
+ + \underbrace{\frac{e^2}{2 mc^2}\vec{A}^2}_{H^{(2)}}
+\end{align}$$
+
+<p>Consider a plane wave</p>
+
+$$\begin{align}
+H_{\mathrm{int}} = \frac{e}{m c}
+             \vec{p} \cdot\hat{e} A_0 e^{\mathrm{i}\vec{k}\cdot \vec{r} - \mathrm{i}\omega t}
+\end{align}$$
+
+<p>then matrix element</p>
+
+$$\begin{align}
+\langle b |H_{\mathrm{int}} | a\rangle = H_{ba} e^{-\mathrm{i}\omega t}
+\end{align}$$
+
+<p>where</p>
+
+$$\begin{align}
+H_{ba} = \frac{eA_0}{mc} \hat{e}\cdot \langle b |
+             \vec{p} e^{\mathrm{i}\vec{k}\cdot \vec{r}} | a\rangle
+\end{align}$$
+
+<p>for long wave length approximation, $k r \ll 1$ , expand the exponential</p>
+
+$$\begin{align}
+e^{\mathrm{i}\vec{k}\cdot \vec{r}} = 1 + \mathrm{i} \vec{k}\cdot \vec{r}
+  - \frac{1}{2} (\vec{k}\cdot \vec{r})^2 + \cdots
+\end{align}$$
+
+
+<h2>Diople term</h2>
+
+<p>take the first term</p>
+
+$$\begin{align}
+H_{ba} = - \frac{\mathrm{i} e E_0}{m\omega} \hat{e} \langle b| \vec{p} | a\rangle
+\end{align}$$
+
+<p>where we have used (radiation field)</p>
+
+$$\begin{align}
+\vec{E} = - \frac{1}{c}\frac{\partial \vec{A}}{\partial t}
+          = \frac{\mathrm{i}\omega}{c}A_0 \hat{e} \equiv E_0 \hat{e}.
+\end{align}$$
+
+<p>Then use</p>
+
+$$\begin{align}
+\vec{p} = \frac{m}{i\hbar} [\vec{r}, H_0]
+\end{align}$$
+
+<p>we get</p>
+
+$$\begin{align}
+H_{ba} = e E_0 \hat{e} \langle b| \vec{r} | a\rangle \frac{\omega_{ba}}{\omega}
+ = \vec{E}\cdot \langle \vec{D}\rangle \frac{\omega_{ba}}{\omega}
+\end{align}$$
+
+<p>where $D$ is the dipole operator.</p>
+
+<h2>Higher-order radiation processes</h2>
+
+<p>assume the polarization is along the $z$ direction, and propagate along $x$
+direction</p>
+
+$$\begin{align}
+A(\vec{r}) = A\hat{z} e^{\mathrm{i} kx}
+\end{align}$$
+
+
+$$\begin{align}
+k r = \frac{\hbar \omega}{\hbar c} a_0 = \frac{e^2}{a_0} \frac{1}{\hbar c} a_0 = \frac{e^2}{\hbar c}
+    = \alpha.
+\end{align}$$
+
+
+<p>The expansion</p>
+
+$$\begin{align}
+H_b = \frac{e A}{mc}\langle b| p_z \left[
+                         1 + \mathrm{i} kx -\frac{1}{2}(kx)^2   \right]| a\rangle,
+\end{align}$$
+
+<p>the 2nd term</p>
+
+$$\begin{align}
+p_z x = \underbrace{\frac{1}{2}(p_z x - z p_x)}_{- \frac{1}{2}\hbar L_y}
+ + \frac{1}{2}(p_zx + z p_x)
+\end{align}$$
+
+<p>then</p>
+
+$$\begin{align}
+\mathrm{i} k \frac{e A}{mc}\langle b| \frac{1}{2}(p_z   x - zp_x)| a\rangle
+= \underbrace{- \mathrm{i}A k}_{B_y}
+   \underbrace{\frac{e\hbar}{2 mc}}_{\mu_B}  \langle b| L_y |a\rangle = \vec{B}\mu_B \langle b|
+   \underbrace{\vec{L}}_{-\vec{\mu}} | a\rangle
+\end{align}$$
+
+<p>where we have used $\vec{B} = \nabla\times \vec{A} = - \mathrm{i}k A \hat{y}$ .</p>
+
+<p>the other term</p>
+
+$$\begin{align}
+\frac{1}{2}(p_zx + z p_x) = \frac{m}{2\mathrm{i}\hbar} \left(
+             [z, H_0] x + z[x, H_0] \right)
+ = \frac{m}{2\mathrm{i}\hbar} \left(
+             -H_0 zx + zx H_0 \right)
+\end{align}$$
+
+<p>then (use $\vec{E} = - \frac{1}{c} \frac{\partial \vec{A}}{\partial t}, E = \mathrm{i}kA$)</p>
+
+$$\begin{align}
+\mathrm{i} k \frac{e A}{mc}\langle b| \frac{1}{2}(p_z   x + zp_x)| a\rangle
+= -\frac{e A k}{2 c} \omega_{ba} \langle b|z x |a\rangle
+ = \frac{\mathrm{i} e E \omega_{ba}}{2 c} \langle b|z x |a\rangle
+\end{align}$$
+
+<p>this is electric quadropole.</p>
+
+<p>So,</p>
+
+$$\begin{align}
+H_{\mathrm{int}}^{(2)} = \underbrace{H_{\mathrm{int}}(M1)}_{\mathrm{real}}
+           + \underbrace{H_{\mathrm{int}}(E2)}_{\mathrm{imaginary}}
+\end{align}$$
+
+<p>there are no interference, that is to say</p>
+
+$$\begin{align}
+|H_{\mathrm{int}}^{(2)}|^2 = |H_{\mathrm{int}}(M1)|^2 +
+                 |H_{\mathrm{int}}(E2)|^2
+\end{align}$$
+
+
+<h2>Summary</h2>
+
+
+<table>
+<tr>
+<td></td>
+<td>                    </td>
+<td> Operator                        </td>
+<td> Parity </td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td> Electric dipole E1 </td>
+<td> $-e\vec{r}$                     </td>
+<td> -      </td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td> Magnetic dipole M1 </td>
+<td> $-\mu_B (\vec{L} + g_s \vec{S})$ </td>
+<td> +      </td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td> Electric dipole E2 </td>
+<td> Tensor $-e \vec{r}:\vec{r}$     </td>
+<td> +      </td>
+<td></td>
+</tr>
+</table>
+<p>M1, E2 are "Forbidden" transitions, $\alpha^2 \approx 5\times 10^{-5}$ weaker than an allowed
+E1 transition.</p>
+
+<h2>Reference</h2>
+
+<ul>
+<li>Goldstein, H., Poole, C. P. & Safko, J. Classical Mechanics. 665 (2011).</li>
+</ul>
+
+            </section>
+            <section class="post-meta">
+                <p>标签:
+                    <a class="post-link" href="../tags/Atomic and Optical Physics.html">Atomic and Optical Physics</a>
+                    <a class="post-link" href="../tags/Dipole approximation.html">Dipole approximation</a>
+                </p>
+            </section>
+        </main>
+        <footer>© 2018 - 2022 ZQW</footer>
+
+    </div>
+</body>
+
+</html>
