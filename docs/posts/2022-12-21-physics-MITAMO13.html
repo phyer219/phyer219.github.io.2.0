@@ -1,0 +1,337 @@
+<!DOCTYPE html><html class="no-js" lang="zh">
+
+
+<head>
+<script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+    </script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/styles/base16/solarized-light.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Long+Cang&family=Noto+Serif+SC&display=swap" rel="stylesheet"> <meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>Atomic and Optical Physics I, 13 Atom-light Interaction II， Wigner–Eckart theorem</title>
+<link rel="apple-touch-icon" sizes="180x180" href="../static/images/apple-touch-icon-next.png?v=6.4.1">
+<link rel="icon" type="image/png" sizes="32x32" href="../static/images/favicon-32x32-next.png?v=6.4.1">
+<link rel="icon" type="image/png" sizes="16x16" href="../static/images/favicon-16x16-next.png?v=6.4.1">
+<link rel="stylesheet" type="text/css" href="../static/css/mystyle.css">    
+
+</head>
+
+<body>
+    <div class="container">
+        <header>
+    <section class="banner"><img src="../static/images/banner.jpg"></section>
+</header>
+        <nav class="row">
+    <a class="nav" href="../">首页</a>
+    <a class="nav" href="../categories">分类</a>
+    <a class="nav" href="../tags">标签</a>
+    <a class="nav" href="../about">关于</a>
+</nav>
+
+        <main>
+            <h1 class="post-title">Atomic and Optical Physics I, 13 Atom-light Interaction II， Wigner–Eckart theorem
+            </h1>
+            <section class="post-meta">
+                <p>发表于:2022.12.21 ||</p>
+                <p>分类:<a class="post-link" href="../categories/专业笔记.html">专业笔记</a> ||</p>
+            </section>
+            <section class="post-content">
+                
+<h2>Information</h2>
+
+<ul>
+<li><a href='https://ocw.mit.edu/courses/physics/8-421-atomic-and-optical-physics-i-spring-2014/'>MIT官方介绍</a></li>
+<li><a href='https://www.youtube.com/playlist?list=PLUl4u3cNGP62FPGcyFJkzhqq9c5cHCK32'>Youtube视频列表地址</a></li>
+</ul>
+<h2><a href='https://en.wikipedia.org/wiki/Wigner%E2%80%93Eckart_theorem'>Wigner–Eckart theorem</a></h2>
+
+<p>Every operator can be written as the sum of spherical tensors.</p>
+
+<p>Ref Sakurai Eq.(3.11.31)</p>
+
+$$\begin{align}
+\langle n J M |T_{l, m} | n' J' M'\rangle = \frac{\langle n J || T_l || n' J'\rangle}{\sqrt{2J + 1}}
+\langle J' l ; M' m |J M\rangle
+\end{align}$$
+
+<p>where $T_{l, m}$ is spherical tensor of rank $l$ (transforms under rotations
+like the spherical harmonics $Y_{l, m}$ ). $\langle J' l ; M' m |J M\rangle$
+<a href='https://en.wikipedia.org/wiki/Clebsch%E2%80%93Gordan_coefficients'>Clebsch–Gordan coefficients</a> .
+$\langle n J || T_l || n' J'\rangle$ is the reduced matrix element.</p>
+
+<p>$M = M' + m$ and Triangular rule</p>
+
+$$\begin{align}
+|J' - J| \le l \le |J' + J|
+\end{align}$$
+
+
+<blockquote>Example:
+
+E1, M1, $\langle a| \vec{r} | b\rangle$ , $\langle a| \vec{L} | b\rangle$ vectors is $Y_{1, m}$ .
+Dipole section rules
+\begin{align}
+|\Delta J| =& 0, 1 \\
+\Delta m =& 0, \pm 1
+\end{align}</blockquote>
+
+<blockquote>Example:
+
+E2(quadrapole), $xz$ , $Y_{2, m}$ , selection rules for quadrapole
+transition
+\begin{align}
+|\Delta J| =& 0, 1, 2 \\
+\Delta m =& 0, \pm 1, \pm 2
+\end{align}</blockquote>
+
+<h2>Example: How (E1) section rules depend on the polarization of light</h2>
+
+
+$$\begin{align}
+\hat{\epsilon} \langle b | \vec{r} |a\rangle
+\end{align}$$
+
+
+<p>For example circular polarization</p>
+
+$$\begin{align}
+\hat{\epsilon} = \frac{\hat{x} \pm \mathrm{i} \hat{y}}{\sqrt{2}}
+\end{align}$$
+
+<p>and decompose $\vec{r}$ as</p>
+
+$$\begin{align}
+\vec{r} =& r \left(\sharp Y_{1, -1}
+                  + \sharp Y_{1, 1}
+                  + \sharp Y_{1, 0}
+                   \right) \\
+= & r \left(\sharp \frac{\hat{x} + \mathrm{i} \hat{y}}{\sqrt{2}}
+             + \sharp \frac{\hat{x} - \mathrm{i} \hat{y}}{\sqrt{2}}
+             + \sharp \hat{z}
+                   \right)
+\end{align}$$
+
+<p>so, circular $\hat{\epsilon}$ will project out $T_{1, \pm 1}$ ,
+for example,</p>
+
+$$\begin{align}
+\frac{(\hat{x} + \mathrm{i}\hat{y})}{\sqrt{2}} \cdot
+\frac{(\hat{x} + \mathrm{i}\hat{y})}{\sqrt{2}} =& 0 \\
+\frac{(\hat{x} + \mathrm{i}\hat{y})}{\sqrt{2}} \cdot
+\frac{(\hat{x} - \mathrm{i}\hat{y})}{\sqrt{2}} =& 1 \\
+\frac{(\hat{x} + \mathrm{i}\hat{y})}{\sqrt{2}} \cdot \hat{z} =& 0 ,
+\end{align}$$
+
+<p>that is $\Delta m = \pm 1$ . Linear polarization can be decomposed as the linear
+superposition of $\sigma_+$ , $\sigma_-$ .</p>
+
+<h2>$\sigma$ light and $\pi$ light</h2>
+
+<p><p><img src='2022-12-21-physics-MITAMO13/polarization.png' alt='pi and sigma light' max-width:100%><p></p>
+
+<h2>Atom-light Interaction</h2>
+
+<p>Two important cases when an atom interacts with monochromatic wave, or when it
+interacts with a broad spectrum.</p>
+
+<p>An atom in a low temperature ( $k_BT \ll \hbar\omega_{eg}$ ,
+$2 \mathrm{eV}\sim 20, 000 \mathrm{K}$ ,
+$k_B T_{\mathrm{room\, temperature}} \sim 25 \mathrm{meV}$ ) vacuum, means that the
+atom will
+irreversibly decay
+to the ground state with a life time $\tau$ . That means in some picture, the
+excited state is broadening by nature lifetime</p>
+
+$$\begin{align}
+\Gamma = \frac{1}{\tau}
+\end{align}$$
+
+
+<p>Now: add light with a bandwidth $\Delta \omega$</p>
+
+<ul>
+<li>$\Delta \omega \ll \Gamma$ , narrow band excitation, $\Delta \omega \to 0$</li>
+<li>$\Delta \omega \gg \Gamma$ , broad band radiation</li>
+</ul>
+<h2>Broadband</h2>
+
+<p>Spectral density</p>
+
+$$\begin{align}
+S(\omega) = \frac{[\mathrm{energy}]}
+{[\mathrm{volumn}][\mathrm{frequency}\, \mathrm{intervel}]}
+\end{align}$$
+
+<p>or intensity per unit frequency intervel</p>
+
+$$\begin{align}
+I(\omega) = \underbrace{c}_{\mathrm{speed\,of\,light}} S(\omega)
+= \frac{[\mathrm{energy}]}{[\mathrm{aera}][\mathrm{time}]
+          [\mathrm{frequency}\, \mathrm{intervel}]}
+\end{align}$$
+
+
+<h2>Monochromatic radiation</h2>
+
+<p>$\omega$ , $\mathcal{E}$ (electric field amplitude) or intensity $I$ .</p>
+
+<h2>Look at $t\ll \Gamma^{-1}$</h2>
+
+<p>A two level system, driven by a laser system, will behave identically to a spin
+driven by a magnetic field.</p>
+
+<h3>Strong driving field, Rabi flopping</h3>
+
+<p>Rabi oscillations between two electronic states covered by a laser beam.</p>
+
+<p>We have only limited time window before spontaneous emission. We have to
+disscuss the physics in this short time window. And if we want to excite an atom
+and see Rabi oscillation in a short time,
+you better have a <em>strong</em> laser beam.</p>
+
+<p>$|g\rangle, |e\rangle, V_{eg} e^{-\mathrm{i}\omega t}$ , perturbation:</p>
+
+
+$$\begin{align}
+a_e(t) =& \frac{1}{\mathrm{i}\hbar} \int_0^t V_{eg} e^{-\mathrm{i}(\omega - \omega_{eg})t'}
+          \mathrm{d} t' \\
+    =& \frac{V_{eg}}{\hbar} \left[
+   \frac{e^{-\mathrm{i}(\omega - \omega_{eg})t} - 1}{\omega - \omega_{eg}},
+ \right]
+\end{align}$$
+
+
+$$\begin{align}
+P_e = |a_e|^2 = \frac{|V_{eg}|^2}{\hbar^2}
+ \frac{\sin^2 \left( \frac{\omega - \omega_{eg}}{2}t \right)}{[(\omega - \omega_{eg})/2]^2}.
+\end{align}$$
+
+<p>For short times:</p>
+
+$$\begin{align}
+\label{eq:15}
+P_e = \frac{|V_{eg}|^2}{\hbar^2}t^2 \propto t^2 ,
+\end{align}$$
+
+<p>the proportionality to $t^2$ means it's a fully coherent process.</p>
+
+<p>For longer times:</p>
+
+<p>Rabi oscillations, have deriving perturbatively (i.e. $|a_e|^2 \ll 1$ , off resoance
+case).</p>
+
+<h3>Let's do it now exactly</h3>
+
+
+$$\begin{align}
+H_{eg} = \langle e | H | g\rangle =  \underbrace{-\vec{d} \cdot \vec{E}_0}_{\hbar \omega_R}  \cos(\omega t)
+\end{align}$$
+
+<p>to compare with spin 1/2, shift the ground state to $-\frac{1}{2}\hbar \omega_{eg}$</p>
+
+$$\begin{align}
+H =& \frac{1}{2}\hbar \omega_{eg} \left(\underbrace{|e\rangle\langle e| - |g\rangle\langle g|}_{\sigma_z} \right)
+  + \hbar\omega_R \left(\underbrace{|g\rangle\langle e| + |e\rangle\langle g|}_{\sigma_x} \right)\cos (\omega t) \\
+=& \frac{1}{2}\hbar \omega_{eg} \sigma_z + \hbar \omega_R \cos (\omega t) \sigma_x
+\end{align}$$
+
+<p>$H$ corresponds to spin 1/2 in a static $z$ -field and linearly polarization
+oscillating field along $x$ .</p>
+
+<p>Rotating magnetic field</p>
+
+$$\begin{align}
+H = \frac{1}{2}\hbar\omega_{eg} \sigma_z +&
+    \underbrace{\frac{1}{2}\hbar\omega_R [\sigma_x \cos(\omega t) + \sigma_y \sin(\omega t)]}
+_{\mathrm{co-rotating}}  \\
+   +&\underbrace{\frac{1}{2}\hbar\omega_R [(\sigma_x \cos(\omega t) - \sigma_y \sin(\omega t)]}
+_{\mathrm{counter-rotating}}
+\end{align}$$
+
+<p>We solve the problem exactly by going into a frame which rotated at the Larmor
+frequency, $\omega_{eg}$ . The co-rotating term became stationary on resoance in
+this rotating frame, whereas the counter-rotating term rotates at a very high
+frequency in this frame at $\omega_{eg} + \omega$ in the Larmor frequency. So, if this
+frequency $|\omega - \omega_{eg}| \ll \omega_{eg}$ and $\omega_R \ll \omega_{eg}$ , we can neglect the
+last term, RWA.</p>
+
+<p>Our results for spin 1/2, if $P_e(t = 0) = 0$ ,</p>
+
+$$\begin{align}
+P(t) = \frac{\omega_R^2}{\Omega^2} \sin^2 \left( \frac{1}{2}\Omega_{R} t \right)
+\end{align}$$
+
+<p>where generalized Rabi frequency $\Omega_R = \sqrt{\omega_R^2 + \Delta^2}$ ,
+detuning $\Delta = \omega - \omega_{eg}$ .</p>
+
+<h2>Broadband excitation</h2>
+
+<p>Perturbative result,</p>
+
+$$\begin{align}
+|a_e(t)|^2 = \left( \frac{\omega_R}{2} \right)^2
+\frac{\sin^2(\frac{\Delta}{2}t)}{(\Delta/2)^2},
+\end{align}$$
+
+<p>and now we want to integrate over that because we have a broadband distribution
+of light. Energy density $W(\omega)$ ,</p>
+
+$$\begin{align}
+\frac{1}{2}\epsilon_0 E_0^2 = \int \mathrm{d}\omega \cdot W(\omega)
+\end{align}$$
+
+<p>linearly polarized light in the x direction</p>
+
+$$\begin{align}
+\omega_R^2 = \frac{1}{\hbar^2}(d_x E_0)^2
+\end{align}$$
+
+
+
+$$\begin{align}
+P_e(t) = \frac{d_x^2 E_0^2}{4 \hbar^2}
+\frac{\sin^2(\frac{\Delta}{2}t)}{(\Delta/2)^2}
+= \frac{d_x^2}{2\epsilon_0\hbar^2}\int \mathrm{d}\Delta \cdot W(\omega + \Delta) \frac{\sin^2(\frac{\Delta}{2}t)}{(\Delta/2)^2}
+\end{align}$$
+
+
+
+<h2>Reference</h2>
+
+<ul>
+<li><a href='https://en.wikipedia.org/wiki/Wigner%E2%80%93Eckart_theorem'>Wikipedia: Wigner–Eckart theorem</a></li>
+<li>Jun John Sakurai, Jim Napolitano, Modern Quantum Mechanics. (Cambridge University Press, 2017)</li>
+<li><a href='https://en.wikipedia.org/wiki/Clebsch%E2%80%93Gordan_coefficients'>Wikipedia: Clebsch–Gordan coefficients</a></li>
+<li><a href='https://en.wikipedia.org/wiki/Spherical_harmonics'>Wikipedia: Spherical harmonics</a></li>
+<li><a href='https://en.wikipedia.org/wiki/Table_of_spherical_harmonics'>Wikipedia: Table of spherical harmonics</a></li>
+<li><a href='https://quantummechanics.ucsd.edu/ph130a/130_notes/node422.html'>https://quantummechanics.ucsd.edu/ph130a/130_notes/node422.html</a></li>
+<li><a href='https://physics.stackexchange.com/questions/213736/pi-sigma-atomic-transitions-with-respect-to-the-magnetic-field-axis'>Physics StackExchange: $\pi$ , $\sigma$ - atomic transitions with respect to the magnetic field axis</a></li>
+<li><a href='https://en.wikipedia.org/wiki/Polarization_(waves)'>Wikipedia: Polarization (waves) (defination of $\pi$ , $\sigma$ light)</a></li>
+</ul>
+
+            </section>
+            <section class="post-meta">
+                <p>标签:
+                    <a class="post-link" href="../tags/Atomic and Optical Physics.html">Atomic and Optical Physics</a>
+                    <a class="post-link" href="../tags/Wigner–Eckart theorem.html">Wigner–Eckart theorem</a>
+                </p>
+            </section>
+        </main>
+        <footer>© 2018 - 2022 ZQW</footer>
+
+    </div>
+</body>
+
+</html>
