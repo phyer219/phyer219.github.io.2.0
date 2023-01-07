@@ -1,0 +1,51 @@
+#+TITLE: 幂函数的割线选取 Branch cut of exponentiation
+#+DATE: <2023-01-07>
+#+CATEGORIES: 专业笔记
+#+TAGS: 数学, 复变函数, branch cut, contour integral
+#+HTML: <!-- toc -->
+#+HTML: <!-- more -->
+
+* 问题
+
+一个简单的计算
+\begin{align}
+\mathrm{i}\sqrt{-1} = \sqrt{-1}\sqrt{-1} = \sqrt{(-1)^2} = \sqrt{1} = 1
+\end{align}
+
+但在 Mathematica 中
+#+begin_src Wolfram
+In[1]:= I*Sqrt[-1]
+Out[1]= -1
+#+end_src
+
+结果差了一个负号。
+
+或者另一种计算方法
+\begin{align}
+\mathrm{i}\sqrt{-1} = \mathrm{i}\cdot \mathrm{i} = \mathrm{i}^2 = -1
+\end{align}
+就会给出与 Mathematica 相同的结果。
+
+* 原因
+
+\begin{align}
+\sqrt{zw} = \sqrt{z} \sqrt{w}
+\end{align}
+并不总是成立。在我们的例子里
+\begin{align}
+\sqrt{-1}\sqrt{-1}\neq \sqrt{(-1)^2}
+\end{align}
+
+一般来讲，也是 Mathematica 的约定，将根号函数的割线取为实轴负半轴
+[[https://reference.wolfram.com/language/tutorial/MathematicalFunctions.html.en?source=footer][根号函数的割线取为实轴负半轴]]
+，将辐角
+$\theta\in (-\pi, \pi]$ 选为第一黎曼面，也就是主值所在的黎曼面。所以平时做复数运算时要小
+心。
+
+* Reference
+
+- [[https://reference.wolfram.com/language/tutorial/MathematicalFunctions.html.en?source=footer][Wolfram Language and System:Mathematical Functions]]
+
+- [[https://en.wikipedia.org/wiki/Square_root#Square_roots_of_negative_and_complex_numbers][Wikipedia: Square root]]
+
+- [[https://en.wikipedia.org/wiki/Exponentiation#Power_functions][Wikipedia: Exponentiation]] Failure of power and logarithm identities 部分
