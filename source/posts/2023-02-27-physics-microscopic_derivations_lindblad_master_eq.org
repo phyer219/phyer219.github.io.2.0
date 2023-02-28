@@ -1,0 +1,174 @@
+#+TITLE: 开放系统读书会：Lindblad 主方程的微观推导
+#+DATE: <2023-02-27>
+#+CATEGORIES: 专业笔记
+#+TAGS: 物理, Lindblad Master Equation, Open System
+#+HTML: <!-- toc -->
+#+HTML: <!-- more -->
+
+* Model
+
+\begin{align}
+H = H_S + H_B + H_I
+\end{align}
+von Neumann equation in the *INTERACTION PICTURE*
+\begin{align}
+\frac{\mathrm{d}}{\mathrm{d}t}\rho(t) = - \mathrm{i}
+[H_I(t), \rho(t)]
+\end{align}
+
+A formal solution
+
+\begin{align}
+\frac{\mathrm{d}}{\mathrm{d}t}\rho(t) =
+- \mathrm{i} [H_I(t), \rho(0)]
+-\int_0^t \mathrm{d} s[H_I(t), [H_I(s), \rho(s)]]
+\end{align}
+
+* Four Approximation
+
+** 1. Separability
+
+At $t=0$ , there are no correlations between the system
+
+\begin{align}
+\rho(0) \approx \rho_S(0) \otimes \rho_B(0)
+\end{align}
+
+** 2. Born approximation
+
+Large environment means:
+
+- that the state of the environment does not significantly change as a result of
+  the interaction with the system,
+  $\rho(t) \approx \rho_S(t) \otimes \rho_B(t)$
+
+Weak coupling means:
+
+- the system and the environment are noncorrelated during all the time
+  evolution, $\rho_B(t) = \rho_B(0) \equiv \rho_B$
+
+In summary
+
+\begin{align}
+\rho(t) \approx \rho_S(t) \otimes \rho_B
+\end{align}
+
+** 3. Markov approximation
+
+Short-memory environment
+
+The reservior correlation functions decay faster compared to the system.
+
+** 4. Secular approximation(Not necessary for all systems)
+
+Only consider the resonance transition.
+
+Not necessary for all master equation.
+
+* Derivations
+
+In *SCHRODINGER PICTURE*
+\begin{align}
+H_I^{SP} = \sum_{\alpha} A_{\alpha} \otimes B_{\alpha}
+= \sum_{\alpha, \omega}A_{\alpha}(\omega) \otimes B_{\alpha}
+\end{align}
+where
+\begin{align}
+A_{\alpha}(\omega) = \sum_{\varepsilon - \varepsilon' = \omega} |\varepsilon\rangle\langle\varepsilon|
+                     A_{\alpha} |\varepsilon' \rangle\langle\varepsilon'|
+\end{align}
+So, in the interaction picture
+\begin{align}
+H_I(t) = \sum_{\alpha,\omega} e^{- \mathrm{i}\omega t}A_{\alpha}(\omega)\otimes B_{\alpha}(t)
+= \sum_{\alpha,\omega} e^{ \mathrm{i}\omega t}A^{\dagger}_{\alpha}(\omega)\otimes B^{\dagger}_{\alpha}(t)
+\end{align}
+use *SEPARABILITY*, we get
+\begin{align}
+[H_I(t), \rho(0)] =& \sum_{\alpha,\omega}e^{\mathrm{i}\omega t}[A^{\dagger}_{\alpha}(\omega)\otimes
+     B^{\dagger}_{\alpha}(t), \rho_S(0)\otimes \rho_B(0)] \\
+=& \sum_{\alpha,\omega}e^{\mathrm{i}\omega t}
+[A^{\dagger}_{\alpha}(\omega) \rho_S(0)
+\otimes B^{\dagger}_{\alpha}(t) \rho_B(0)
+-  \rho_S(0) A^{\dagger}_{\alpha}(\omega)
+\otimes\rho_B(0) B^{\dagger}_{\alpha}(t)  ] \\
+=& \sum_{\alpha,\omega}e^{\mathrm{i}\omega t}
+[A^{\dagger}_{\alpha}(\omega), \rho_S(0)] \langle B_\alpha(t) \rangle \\
+\end{align}
+where
+\begin{align}
+\langle B_\alpha(t) \rangle \equiv \mathrm{Tr}_B[B^{\dagger}_{\alpha}(t) \rho_B] = 0
+\end{align}
+
+use
+$[H_I(t), \rho(0)] = 0$
+and *BORN APPROXIMATION*, we get
+\begin{align}
+\mathrm{Tr}_B \left[\frac{\mathrm{d}}{\mathrm{d}t}\rho(t)  \right]  =
+\frac{\mathrm{d}}{\mathrm{d}t}\rho_S(t) =
+-\int_0^t \mathrm{d} s \cdot \mathrm{Tr}_B[H_I(t), [H_I(s), \rho_S(s)\otimes \rho_B]]
+\end{align}
+According *MARKOV APPROXIMATION*, we can approximate
+$\rho_S(s) \approx \rho_S(t)$ , and extend $t$ to $\infty$ .
+Substitute $s \to t - s$ ,
+\begin{align}
+\frac{\mathrm{d}}{\mathrm{d}t}\rho_S(t)=
+\frac{\mathrm{d}}{\mathrm{d}t}\rho_S(t) =
+-\int_0^{\infty} \mathrm{d} s \cdot \mathrm{Tr}_B[H_I(t), [H_I(t - s), \rho_S(t)\otimes \rho_B]]
+\end{align}
+decompose $H_{I}(t)$ , we get (convolution theorem)
+\begin{align}
+\frac{\mathrm{d}}{\mathrm{d}t}\rho_S(t) =
+\sum_{\omega, \omega'} \sum_{\alpha, \beta} e^{\mathrm{i}(\omega' - \omega)t}
+\Gamma_{\alpha\beta}(\omega)\left[A_{\beta}(\omega)\rho_S(t)A^{\dagger}_{\alpha}(\omega') - A_{\alpha}^{\dagger}(\omega') A_{\beta}(\omega)\rho_s(t)\right]
+ + \mathrm{h.c.}
+\end{align}
+where
+\begin{align}
+\Gamma_{\alpha\beta}(\omega) = \int_0^{\infty} \mathrm{d}s\cdot e^{\mathrm{i}\omega s}
+\langle B_{\alpha}^{\dagger}(t) B_{\beta}(t - s)\rangle
+\end{align}
+Then *SECULAR APPROXIMATION*,
+only keep the resonance term, that is $\omega' = \omega$
+\begin{align}
+\frac{\mathrm{d}}{\mathrm{d}t}\rho_S(t) =
+\sum_{\omega} \sum_{\alpha, \beta}
+\Gamma_{\alpha\beta}(\omega)\left[A_{\beta}(\omega)\rho_S(t)A^{\dagger}_{\alpha}(\omega) - A_{\alpha}^{\dagger}(\omega) A_{\beta}(\omega)\rho_s(t)\right]
+ + \mathrm{h.c.}
+\end{align}
+if we define
+\begin{align}
+\left\{
+\begin{matrix}
+S_{\alpha\beta}(\omega) \equiv& \frac{1}{2\mathrm{i}} \left[ \Gamma_{\alpha\beta}(\omega) - \Gamma_{\beta\alpha}^{ * }(\omega) \right]& \\
+\gamma_{\alpha\beta}(\omega) \equiv&  \Gamma_{\alpha\beta}(\omega) - \Gamma_{\beta\alpha}^{ * }(\omega)
+=& \int_{-\infty}^{\infty} \mathrm{d}s e^{\mathrm{i}\omega s} \langle B^{\dagger}_{\alpha}(s) B_{\beta}(0)\rangle\\
+\Gamma_{\alpha\beta}(\omega) =& \frac{1}{2}\gamma_{\alpha\beta}(\omega) + \mathrm{i}S_{\alpha\beta}(\omega)&
+\end{matrix}
+\right.
+\end{align}
+and (Lamb shift Hamiltonian. It seems like the interaction between vacuum energy
+fluctuations and the hydrogen electron in different orbitals, ref
+*Atomic and Optical Physics I, 07 Atoms III: Fine Structure*)
+\begin{align}
+H_{LS} = \sum_{\omega} \sum_{\alpha,\beta} S_{\alpha,\beta}(\omega)A_{\alpha}^{\dagger}(\omega) A_{\beta}(\omega)
+\end{align}
+then we get our master equation in the interaction picture
+\begin{align}
+\frac{\mathrm{d}}{\mathrm{d}t}\rho_{S}(t)
+= -\mathrm{i}[H_{LS}, \rho_S(t)] + \mathcal{D}[\rho_S(t)]
+\end{align}
+where
+\begin{align}
+D(\rho_S) = \sum_{\omega}\sum_{\alpha,\beta} \gamma_{\alpha\beta}(\omega) \left[
+A_{\beta}(\omega) \rho_SA_{\alpha}^{\dagger}(\omega) - \frac{1}{2}{A^{\dagger}_{\alpha}(\omega)A_{\beta}(\omega), \rho_S} \right]
+\end{align}
+For Schrodinger picture, just shift $H_{LS}\to H_{LS} + H_S$ .
+
+* Reference
+
+- [[https://qutip.readthedocs.io/en/latest/guide/dynamics/dynamics-master.html][QuTiP Documents]]
+
+- Breuer, H.-P. & Petruccione, F. The theory of open quantum systems. (Clarendon
+  Press, 2009). Chap 3.3
+
+- AIP Advances 10, 025106 (2020) [[https://doi.org/10.1063/1.5115323]]

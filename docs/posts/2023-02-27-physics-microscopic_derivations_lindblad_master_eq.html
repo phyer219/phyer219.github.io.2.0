@@ -1,0 +1,270 @@
+<!DOCTYPE html><html class="no-js" lang="zh">
+
+
+<head>
+<script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+    </script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/styles/base16/solarized-light.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Long+Cang&family=Noto+Serif+SC&display=swap" rel="stylesheet"> <meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>开放系统读书会：Lindblad 主方程的微观推导</title>
+<link rel="apple-touch-icon" sizes="180x180" href="../static/images/apple-touch-icon-next.png?v=6.4.1">
+<link rel="icon" type="image/png" sizes="32x32" href="../static/images/favicon-32x32-next.png?v=6.4.1">
+<link rel="icon" type="image/png" sizes="16x16" href="../static/images/favicon-16x16-next.png?v=6.4.1">
+<link rel="stylesheet" type="text/css" href="../static/css/mystyle.css">    
+
+</head>
+
+<body>
+    <div class="container">
+        <header>
+    <section class="banner"><img src="../static/images/banner.jpg"></section>
+</header>
+        <nav class="row">
+    <a class="nav" href="../">首页</a>
+    <a class="nav" href="../categories">分类</a>
+    <a class="nav" href="../tags">标签</a>
+    <a class="nav" href="../about">关于</a>
+</nav>
+
+        <main>
+            <h1 class="post-title">开放系统读书会：Lindblad 主方程的微观推导
+            </h1>
+            <section class="post-meta">
+                <p>发表于:2023.2.27 ||</p>
+                <p>分类:<a class="post-link" href="../categories/专业笔记.html">专业笔记</a> ||</p>
+            </section>
+            <section class="post-content">
+                
+<h2>Model</h2>
+
+
+$$\begin{align}
+H = H_S + H_B + H_I
+\end{align}$$
+
+<p>von Neumann equation in the <em>INTERACTION PICTURE</em></p>
+
+$$\begin{align}
+\frac{\mathrm{d}}{\mathrm{d}t}\rho(t) = - \mathrm{i}
+[H_I(t), \rho(t)]
+\end{align}$$
+
+
+<p>A formal solution</p>
+
+
+$$\begin{align}
+\frac{\mathrm{d}}{\mathrm{d}t}\rho(t) =
+- \mathrm{i} [H_I(t), \rho(0)]
+-\int_0^t \mathrm{d} s[H_I(t), [H_I(s), \rho(s)]]
+\end{align}$$
+
+
+<h2>Four Approximation</h2>
+
+<h3>1. Separability</h3>
+
+<p>At $t=0$ , there are no correlations between the system</p>
+
+
+$$\begin{align}
+\rho(0) \approx \rho_S(0) \otimes \rho_B(0)
+\end{align}$$
+
+
+<h3>2. Born approximation</h3>
+
+<p>Large environment means:</p>
+
+<ul>
+<li>that the state of the environment does not significantly change as a result of the interaction with the system, $\rho(t) \approx \rho_S(t) \otimes \rho_B(t)$</li>
+</ul>
+<p>Weak coupling means:</p>
+
+<ul>
+<li>the system and the environment are noncorrelated during all the time evolution, $\rho_B(t) = \rho_B(0) \equiv \rho_B$</li>
+</ul>
+<p>In summary</p>
+
+
+$$\begin{align}
+\rho(t) \approx \rho_S(t) \otimes \rho_B
+\end{align}$$
+
+
+<h3>3. Markov approximation</h3>
+
+<p>Short-memory environment</p>
+
+<p>The reservior correlation functions decay faster compared to the system.</p>
+
+<h3>4. Secular approximation(Not necessary for all systems)</h3>
+
+<p>Only consider the resonance transition.</p>
+
+<p>Not necessary for all master equation.</p>
+
+<h2>Derivations</h2>
+
+<p>In <em>SCHRODINGER PICTURE</em></p>
+
+$$\begin{align}
+H_I^{SP} = \sum_{\alpha} A_{\alpha} \otimes B_{\alpha}
+= \sum_{\alpha, \omega}A_{\alpha}(\omega) \otimes B_{\alpha}
+\end{align}$$
+
+<p>where</p>
+
+$$\begin{align}
+A_{\alpha}(\omega) = \sum_{\varepsilon - \varepsilon' = \omega} |\varepsilon\rangle\langle\varepsilon|
+                     A_{\alpha} |\varepsilon' \rangle\langle\varepsilon'|
+\end{align}$$
+
+<p>So, in the interaction picture</p>
+
+$$\begin{align}
+H_I(t) = \sum_{\alpha,\omega} e^{- \mathrm{i}\omega t}A_{\alpha}(\omega)\otimes B_{\alpha}(t)
+= \sum_{\alpha,\omega} e^{ \mathrm{i}\omega t}A^{\dagger}_{\alpha}(\omega)\otimes B^{\dagger}_{\alpha}(t)
+\end{align}$$
+
+<p>use <em>SEPARABILITY</em>, we get</p>
+
+$$\begin{align}
+[H_I(t), \rho(0)] =& \sum_{\alpha,\omega}e^{\mathrm{i}\omega t}[A^{\dagger}_{\alpha}(\omega)\otimes
+     B^{\dagger}_{\alpha}(t), \rho_S(0)\otimes \rho_B(0)] \\
+=& \sum_{\alpha,\omega}e^{\mathrm{i}\omega t}
+[A^{\dagger}_{\alpha}(\omega) \rho_S(0)
+\otimes B^{\dagger}_{\alpha}(t) \rho_B(0)
+-  \rho_S(0) A^{\dagger}_{\alpha}(\omega)
+\otimes\rho_B(0) B^{\dagger}_{\alpha}(t)  ] \\
+=& \sum_{\alpha,\omega}e^{\mathrm{i}\omega t}
+[A^{\dagger}_{\alpha}(\omega), \rho_S(0)] \langle B_\alpha(t) \rangle \\
+\end{align}$$
+
+<p>where</p>
+
+$$\begin{align}
+\langle B_\alpha(t) \rangle \equiv \mathrm{Tr}_B[B^{\dagger}_{\alpha}(t) \rho_B] = 0
+\end{align}$$
+
+
+<p>use
+$[H_I(t), \rho(0)] = 0$
+and <em>BORN APPROXIMATION</em>, we get</p>
+
+$$\begin{align}
+\mathrm{Tr}_B \left[\frac{\mathrm{d}}{\mathrm{d}t}\rho(t)  \right]  =
+\frac{\mathrm{d}}{\mathrm{d}t}\rho_S(t) =
+-\int_0^t \mathrm{d} s \cdot \mathrm{Tr}_B[H_I(t), [H_I(s), \rho_S(s)\otimes \rho_B]]
+\end{align}$$
+
+<p>According <em>MARKOV APPROXIMATION</em>, we can approximate
+$\rho_S(s) \approx \rho_S(t)$ , and extend $t$ to $\infty$ .
+Substitute $s \to t - s$ ,</p>
+
+$$\begin{align}
+\frac{\mathrm{d}}{\mathrm{d}t}\rho_S(t)=
+\frac{\mathrm{d}}{\mathrm{d}t}\rho_S(t) =
+-\int_0^{\infty} \mathrm{d} s \cdot \mathrm{Tr}_B[H_I(t), [H_I(t - s), \rho_S(t)\otimes \rho_B]]
+\end{align}$$
+
+<p>decompose $H_{I}(t)$ , we get (convolution theorem)</p>
+
+$$\begin{align}
+\frac{\mathrm{d}}{\mathrm{d}t}\rho_S(t) =
+\sum_{\omega, \omega'} \sum_{\alpha, \beta} e^{\mathrm{i}(\omega' - \omega)t}
+\Gamma_{\alpha\beta}(\omega)\left[A_{\beta}(\omega)\rho_S(t)A^{\dagger}_{\alpha}(\omega') - A_{\alpha}^{\dagger}(\omega') A_{\beta}(\omega)\rho_s(t)\right]
+ + \mathrm{h.c.}
+\end{align}$$
+
+<p>where</p>
+
+$$\begin{align}
+\Gamma_{\alpha\beta}(\omega) = \int_0^{\infty} \mathrm{d}s\cdot e^{\mathrm{i}\omega s}
+\langle B_{\alpha}^{\dagger}(t) B_{\beta}(t - s)\rangle
+\end{align}$$
+
+<p>Then <em>SECULAR APPROXIMATION</em>,
+only keep the resonance term, that is $\omega' = \omega$</p>
+
+$$\begin{align}
+\frac{\mathrm{d}}{\mathrm{d}t}\rho_S(t) =
+\sum_{\omega} \sum_{\alpha, \beta}
+\Gamma_{\alpha\beta}(\omega)\left[A_{\beta}(\omega)\rho_S(t)A^{\dagger}_{\alpha}(\omega) - A_{\alpha}^{\dagger}(\omega) A_{\beta}(\omega)\rho_s(t)\right]
+ + \mathrm{h.c.}
+\end{align}$$
+
+<p>if we define</p>
+
+$$\begin{align}
+\left\{
+\begin{matrix}
+S_{\alpha\beta}(\omega) \equiv& \frac{1}{2\mathrm{i}} \left[ \Gamma_{\alpha\beta}(\omega) - \Gamma_{\beta\alpha}^{ * }(\omega) \right]& \\
+\gamma_{\alpha\beta}(\omega) \equiv&  \Gamma_{\alpha\beta}(\omega) - \Gamma_{\beta\alpha}^{ * }(\omega)
+=& \int_{-\infty}^{\infty} \mathrm{d}s e^{\mathrm{i}\omega s} \langle B^{\dagger}_{\alpha}(s) B_{\beta}(0)\rangle\\
+\Gamma_{\alpha\beta}(\omega) =& \frac{1}{2}\gamma_{\alpha\beta}(\omega) + \mathrm{i}S_{\alpha\beta}(\omega)&
+\end{matrix}
+\right.
+\end{align}$$
+
+<p>and (Lamb shift Hamiltonian. It seems like the interaction between vacuum energy
+fluctuations and the hydrogen electron in different orbitals, ref
+<em>Atomic and Optical Physics I, 07 Atoms III: Fine Structure</em>)</p>
+
+$$\begin{align}
+H_{LS} = \sum_{\omega} \sum_{\alpha,\beta} S_{\alpha,\beta}(\omega)A_{\alpha}^{\dagger}(\omega) A_{\beta}(\omega)
+\end{align}$$
+
+<p>then we get our master equation in the interaction picture</p>
+
+$$\begin{align}
+\frac{\mathrm{d}}{\mathrm{d}t}\rho_{S}(t)
+= -\mathrm{i}[H_{LS}, \rho_S(t)] + \mathcal{D}[\rho_S(t)]
+\end{align}$$
+
+<p>where</p>
+
+$$\begin{align}
+D(\rho_S) = \sum_{\omega}\sum_{\alpha,\beta} \gamma_{\alpha\beta}(\omega) \left[
+A_{\beta}(\omega) \rho_SA_{\alpha}^{\dagger}(\omega) - \frac{1}{2}{A^{\dagger}_{\alpha}(\omega)A_{\beta}(\omega), \rho_S} \right]
+\end{align}$$
+
+<p>For Schrodinger picture, just shift $H_{LS}\to H_{LS} + H_S$ .</p>
+
+<h2>Reference</h2>
+
+<ul>
+<li><a href='https://qutip.readthedocs.io/en/latest/guide/dynamics/dynamics-master.html'>QuTiP Documents</a></li>
+<li>Breuer, H.-P. & Petruccione, F. The theory of open quantum systems. (Clarendon Press, 2009). Chap 3.3</li>
+<li>AIP Advances 10, 025106 (2020) <a href='https://doi.org/10.1063/1.5115323'>https://doi.org/10.1063/1.5115323</a></li>
+</ul>
+
+            </section>
+            <section class="post-meta">
+                <p>标签:
+                    <a class="post-link" href="../tags/物理.html">物理</a>
+                    <a class="post-link" href="../tags/Lindblad Master Equation.html">Lindblad Master Equation</a>
+                    <a class="post-link" href="../tags/Open System.html">Open System</a>
+                </p>
+            </section>
+        </main>
+        <footer>© 2018 - 2022 ZQW</footer>
+
+    </div>
+</body>
+
+</html>
