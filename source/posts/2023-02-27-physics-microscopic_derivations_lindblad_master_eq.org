@@ -74,8 +74,8 @@ H_I^{SP} = \sum_{\alpha} A_{\alpha} \otimes B_{\alpha}
 \end{align}
 where
 \begin{align}
-A_{\alpha}(\omega) = \sum_{\varepsilon - \varepsilon' = \omega} |\varepsilon\rangle\langle\varepsilon|
-                     A_{\alpha} |\varepsilon' \rangle\langle\varepsilon'|
+A_{\alpha}(\omega) = \sum_{\varepsilon } |\varepsilon\rangle\langle\varepsilon|
+                     A_{\alpha} |\varepsilon + \omega \rangle\langle\varepsilon + \omega|
 \end{align}
 So, in the interaction picture
 \begin{align}
