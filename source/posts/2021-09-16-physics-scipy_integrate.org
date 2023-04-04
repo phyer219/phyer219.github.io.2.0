@@ -1,11 +1,13 @@
-#+TITLE: scipy.integrate.quad 是如何取点的
+#+TITLE: scipy.integrate.quad 是如何取点的, 以及记录所计算的点(update 4/April/2023)
 #+DATE: <2021-09-16>
 #+CATEGORIES: 软件使用
 #+TAGS: python, quadrature
 #+HTML: <!-- toc -->
 #+HTML: <!-- more -->
 
-探究 =scipy.integrate.quad= 取点的方式
+* 探究 =scipy.integrate.quad= 取点的方式
+
+[[file:2021-09-16-physics-scipy_integrate/code.py][code.py]]
 
 #+begin_src python
 import numpy as np
@@ -33,9 +35,60 @@ plt.ylabel("position of $i$th node")
 plt.savefig('fig.png')
 #+end_src
 
-[[file:2021-09-16-scipy_integrate/code.py][code]]
+[[file:2021-09-16-physics-scipy_integrate/fig.png][fig]]
 
-[[file:2021-09-16-scipy_integrate/fig.png]]
+* 记录所计算的值
+
+利用列表的性质，实现记录积分的过程中所计算的函数值。
+
+[[file:2021-09-16-physics-scipy_integrate/code.py][quad_recorded.py]]
+
+#+begin_src python
+import matplotlib.pyplot as plt
+import numpy as np
+from scipy.integrate import quad
+
+
+def quad_recorded(func, *args, **kwargs):
+    """
+    use scipy.integrate.quad, but return the results with additional
+    information "nc" and "vc".
+
+    Returns:
+        inte_res: the return of scipy.integrate.quad
+              nc: the points calculated
+              vc: the calculated functiona values
+    """
+    def func_recorded(x, node_container, value_container):
+        res = func(x)
+        node_container.append(x)
+        value_container.append(res)
+        return res
+    nc = []
+    vc = []
+    inte_res = quad(lambda x: func_recorded(x, node_container=nc,
+                                            value_container=vc),
+                    *args, **kwargs)
+    idx = np.argsort(np.array(nc))
+    nc = np.array(nc)[idx].tolist()
+    vc = np.array(vc)[idx].tolist()
+    return inte_res, nc, vc
+
+
+res, nc, vc = quad_recorded(np.sin, 0, np.pi, points=[.5])
+plt.plot(nc, vc, '*')
+print(res)
+plt.savefig('quad_recorded.png', transparent=True)
+#+end_src
+
+#+begin_src python
+>>> (1.9999999999999998, 2.2204460492503128e-14)
+#+end_src
+
+[[file:2021-09-16-physics-scipy_integrate/quad_recorded.png][quad_recorded]]
+
+可以看出，正如所预期的，在 $0.5$ 处切开了。此函数可以用于保存计算较慢的积分，查
+看被积函数是否光滑，是否真的收敛。
 
 * Reference
 
