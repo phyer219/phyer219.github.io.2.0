@@ -56,7 +56,7 @@ class WebSiteServer:
         s = HTTPServer(('', 8000), h)
         print('serving localhost:8000')
         url = "localhost:8000"
-        webbrowser.open(url, new=0, autoraise=True)
+        # webbrowser.open(url, new=0, autoraise=True)
         server_process = Process(target=s.serve_forever)
         server_process.start()
 

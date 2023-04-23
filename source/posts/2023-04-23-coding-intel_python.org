@@ -1,0 +1,77 @@
+#+TITLE: Intel AI Analytics Toolkit 加速 numpy, scipy
+#+DATE: <2023-04-23>
+#+CATEGORIES: 软件使用
+#+TAGS: python, intel python
+#+HTML: <!-- toc -->
+#+HTML: <!-- more -->
+
+* MATLAB
+
+#+begin_src matlab
+clear all;
+clc;
+
+a = rand(1220,1220);
+tic;
+for i=1:10
+    fprintf("%i", i)
+    eig(a);
+end
+toc;
+#+end_src
+
+返回结果如下：
+
+#+begin_src matlab
+12345678910Elapsed time is 6.629721 seconds.
+#+end_src
+
+* Python
+
+#+begin_src python
+import numpy as np
+from scipy.linalg import eig
+from time import perf_counter
+import sys
+
+a = np.random.randn(1220, 1220)
+
+tic = perf_counter()
+for i in range(10):
+    print(i, end='\r')
+    np.linalg.eig(a)
+toc = perf_counter()
+print("Elapsed time is ", toc-tic)
+#+end_src
+
+返回结果如下：
+
+#+begin_src python
+Elapsed time is  93.00676925900007
+#+end_src
+
+* Intel Python
+
+与上面相同的程序，返回结果如下：
+#+begin_src python
+Elapsed time is  7.760291491999851
+#+end_src
+
+与 MATLAB 相近的水平。
+
+* 总结
+
+Intel 优化编译版本的 python ，在底层与 MATLAB 相似，会调用多个核。
+除此以外 =scipy.linalg= 需要手动根据不同的矩阵选择不同的方法。比如对于实对称矩阵，
+选择 =eigh= 会大大提升效率。而 MATLAB 则不需要手动选择。
+
+重要的是想法，而选择什么方法，只是一种手段。
+
+* Reference
+
+- [[https://www.intel.com/content/www/us/en/developer/tools/oneapi/ai-analytics-toolkit.html#gs.w44gqo][Intel® AI Analytics Toolkit (AI Kit)]]
+
+- [[https://www.intel.com/content/www/us/en/developer/tools/oneapi/distribution-for-python.html#gs.w44b4p][Intel® Distribution for Python]]
+
+
+
