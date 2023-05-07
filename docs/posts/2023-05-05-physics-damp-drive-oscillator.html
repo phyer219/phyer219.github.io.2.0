@@ -1,0 +1,351 @@
+<!DOCTYPE html><html class="no-js" lang="zh">
+
+
+<head>
+<script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+    </script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/styles/base16/solarized-light.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Long+Cang&family=Noto+Serif+SC&display=swap" rel="stylesheet"> <meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>Classical Forced Oscillator 经典受迫振动</title>
+<link rel="apple-touch-icon" sizes="180x180" href="../static/images/apple-touch-icon-next.png?v=6.4.1">
+<link rel="icon" type="image/png" sizes="32x32" href="../static/images/favicon-32x32-next.png?v=6.4.1">
+<link rel="icon" type="image/png" sizes="16x16" href="../static/images/favicon-16x16-next.png?v=6.4.1">
+<link rel="stylesheet" type="text/css" href="../static/css/mystyle.css">    
+
+</head>
+
+<body>
+    <div class="container">
+        <header>
+    <section class="banner"><img src="../static/images/banner.jpg"></section>
+</header>
+        <nav class="row">
+    <a class="nav" href="../">首页</a>
+    <a class="nav" href="../categories">分类</a>
+    <a class="nav" href="../tags">标签</a>
+    <a class="nav" href="../about">关于</a>
+</nav>
+
+        <main>
+            <h1 class="post-title">Classical Forced Oscillator 经典受迫振动
+            </h1>
+            <section class="post-meta">
+                <p>发表于:2023.5.5 ||</p>
+                <p>分类:<a class="post-link" href="../categories/专业笔记.html">专业笔记</a> ||</p>
+            </section>
+            <section class="post-content">
+                
+<h2>model</h2>
+
+
+$$\begin{align}
+\ddot{x} = - \omega^2 x + F(t)
+\end{align}$$
+
+
+<p>In Landau's book, the solution(non-resoance) is</p>
+
+
+$$\begin{align}
+\xi(t) = e^{\mathrm{i}\omega t} \int_0^t \mathrm{d}t' \cdot F(t') e^{-\mathrm{i}\omega t'}
+\end{align}$$
+
+
+
+$$\begin{align}
+x(t) = A \sin(\omega t) + B \cos(\omega t) + \frac{\mathrm{Im}[\xi(t)]}{\omega}
+\end{align}$$
+
+
+<p>where</p>
+
+
+$$\begin{align}
+B =& x(t) \\
+A =& \frac{1}{\omega} \left( \dot{x}(0) - \frac{\dot{\xi}(0)}{\omega} \right)
+\end{align}$$
+
+
+<h2>solve by Fourier transform</h2>
+
+<p>For</p>
+
+$$\begin{align}
+F(t) = f_{\gamma} \cos(\gamma t)
+\end{align}$$
+
+<p>it is easy get</p>
+
+$$\begin{align}
+x_{\gamma}(t) = A \cos(\omega t + \phi) + \frac{f_{\gamma}}{\omega^2 - \gamma^2} \cos(\gamma t)
+\end{align}$$
+
+
+<p>Similar for</p>
+
+$$\begin{align}
+F(t) = f_{\gamma} \sin(\gamma t)
+\end{align}$$
+
+<p>it is easy get</p>
+
+$$\begin{align}
+x_{\gamma}(t) = A \cos(\omega t + \phi) + \frac{f_{\gamma}}{\omega^2 - \gamma^2} \sin(\gamma t)
+\end{align}$$
+
+
+<p>So, for</p>
+
+$$\begin{align}
+F(t) = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\infty}
+\tilde{F}(\gamma) e^{\mathrm{i}(\gamma+\mathrm{i}0^+) t}
+ \mathrm{d}\gamma
+\end{align}$$
+
+<p>where</p>
+
+$$\begin{align}
+\tilde{F}(\gamma) = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\infty} F(t)
+e^{-\mathrm{i}(\gamma + \mathrm{i} 0^+) t}
+ \mathrm{d}t
+\end{align}$$
+
+<p>we have</p>
+
+$$\begin{align}
+x(t) = A \cos(\omega t + \phi) + x_1(t)
+\end{align}$$
+
+<p>where</p>
+
+$$\begin{align}
+x_1(t) =\frac{1}{2\pi}\int_{-\infty}^{\infty} \mathrm{d}\gamma\cdot
+\frac{\tilde{F}(\gamma)}{\omega^2 - (\gamma + \mathrm{i} 0^{+ })^2} e^{ \mathrm{i}(\gamma + \mathrm{i}0^+)}
+\end{align}$$
+
+
+<p>we can use the identity(Sokhotski–Plemelj theorem)</p>
+
+$$\begin{align}
+\int_0^{\infty} \mathrm{d} s\cdot e^{- \mathrm{i}(\omega + \mathrm{i}0^+) s}
+= \frac{1}{\mathrm{i}(\omega + \mathrm{i}0^+)}
+ = \pi\delta(\omega) - \mathrm{i}\mathcal{P} \frac{1}{\omega}
+\end{align}$$
+
+<p>get a more physical form(non-resoance case)</p>
+
+$$\begin{align}
+x_1(t) =&   \mathrm{Im} \left\{  \frac{1}{2\pi}\int_{-\infty}^{\infty} \mathrm{d}\gamma\cdot
+\left[
+\frac{1}{\omega - \gamma- \mathrm{i}0^+} + \frac{1}{\omega + \gamma+ i 0^+}
+ \right]
+\tilde{F}(\gamma) e^{ \mathrm{i}(\gamma + \mathrm{i}0^+)}
+\right\} \\
+ =&   \frac{1}{2\omega} (-1) \mathrm{Im} \left\{
+\int_0^{\infty} \mathrm{d}s \cdot e^{- \mathrm{i}\omega s} \left[
+F(t + s) + F(t - s)
+ \right]
+ \right\}
+\end{align}$$
+
+<p>we can also substract a homogeous solution from it to get the solution in
+Landau's book</p>
+
+$$\begin{align}
+x_1(t) + \frac{1}{2\omega} \mathrm{Im} \left\{
+e^{\mathrm{i}\omega t} \left[
+\int_0^{\infty} e^{- \mathrm{i}\omega s} \mathrm{d}s -
+\int_{-\infty}^0 e^{- \mathrm{i}\omega s} \mathrm{d}s
+ \right]
+ \right\} = \frac{\mathrm{Im}[\xi(t)]}{\omega}
+\end{align}$$
+
+
+<p>All these are check by the following numerical code</p>
+
+<h2>code</h2>
+
+<pre><code class="language-python">import numpy as np
+import matplotlib.pyplot as plt
+from scipy.integrate import odeint
+from scipy.integrate import quad
+
+
+def quad_c(func, *args, **kwargs):
+    re = quad(lambda x: func(x).real, *args, **kwargs)
+    im = quad(lambda x: func(x).imag, *args, **kwargs)
+    return re[0]+1j*im[0], re[1]+1j*im[1]
+
+
+def ftrans(func, x):
+    res = quad_c(func, 0, np.inf, weight='cos', wvar=x)[0]
+    res += 1j*quad(func, 0, np.inf, weight='sin', wvar=x)[0]
+    res += quad(func, -np.inf, 0, weight='cos', wvar=x)[0]
+    res += 1j*quad(func, -np.inf, 0, weight='sin', wvar=x)[0]
+    return res/np.sqrt(2*np.pi)
+
+
+class Oscillator:
+    def __init__(self, w, Ft, x0, v0):
+        """
+        dx^2/dt^2 + w^2 = Ft
+        w: oemga
+        Ft: function of t
+        x0: intial position
+        v0: intial dx/dt, volecity
+        """
+        self.w = w
+        self.Ft = Ft
+        self.x0 = x0
+        self.v0 = v0
+
+    def dX_dt(self, X, t):
+        return [X[1], -self.w**2*X[0] + self.Ft(t)]
+
+    def xi_im_landau(self, t):
+        """
+        Imaginary part of Landau (22.10) with out xi_0
+        """
+        xil = - quad(self.Ft, 0, t,
+                     weight='sin', wvar=self.w)[0] * np.cos(self.w*t)
+        xil += quad(self.Ft, 0, t,
+                    weight='cos', wvar=self.w)[0] * np.sin(self.w*t)
+        return xil
+
+    def X_t_ana(self, t, ts):
+        xt = self.xi_im_landau(t) / self.w
+
+        xt += np.cos(self.w*t) * self.x0
+
+        dxi_dt0 = self.xi_im_landau(ts[1]) - self.xi_im_landau(ts[0])
+        dxi_dt0 /= ts[1] - ts[0]
+
+        xt += np.sin(self.w*t) * (self.v0 - dxi_dt0/self.w) / self.w
+        return xt
+
+    def X_t_ana_FT(self, t):
+        xt = quad(lambda s: (self.Ft(t+s) + self.Ft(t-s)), 0, np.inf,
+                  weight='sin', wvar=self.w)[0]
+        xt /= (2*self.w)
+
+        cor = np.sin(self.w*t) * quad(self.Ft, 0, np.inf,
+                                      weight='cos', wvar=self.w)[0]
+        cor -= np.cos(self.w*t) * quad(self.Ft, 0, np.inf,
+                                       weight='sin', wvar=self.w)[0]
+        cor -= np.sin(self.w*t) * quad(self.Ft, -np.inf, 0,
+                                       weight='cos', wvar=self.w)[0]
+        cor += np.cos(self.w*t) * quad(self.Ft, -np.inf, 0, weight='sin',
+                                       wvar=self.w)[0]
+
+        xt += cor/(2*self.w)
+        xt += np.cos(self.w*t) * self.x0
+
+        dxi_dt0 = self.xi_im_landau(ts[1]) - self.xi_im_landau(ts[0])
+        dxi_dt0 /= ts[1] - ts[0]
+
+        xt += np.sin(self.w*t) * (self.v0 - dxi_dt0/self.w) / self.w
+        return xt
+
+    def Xt_ode(self, ts):
+        Xs = odeint(self.dX_dt, [self.x0, self.v0], ts)
+        return Xs
+
+
+osc = Oscillator(w=.5, Ft=lambda t: 5*np.exp(-(t-10)**2), x0=.7, v0=.5)
+ts = np.linspace(0, 30, 300)
+plt.plot(ts, [osc.X_t_ana_FT(ti) for ti in ts], 'ro', mfc='None', ms=10,
+         label='Fourier')
+plt.plot(ts, osc.Xt_ode(ts)[:, 0], 'bx', label="Numerically solve ODE")
+plt.plot(ts, [osc.X_t_ana(ti, ts) for ti in ts], 'g', label='Analytic', lw=2)
+plt.xlabel('t')
+plt.legend()
+plt.savefig('osc.png', transparent=True)
+plt.show()</code></pre>
+
+<p><a href='2023-05-05-physics-damp-drive-oscillator/osc.py'>osc.py</a></p>
+
+<p><p><img src='2023-05-05-physics-damp-drive-oscillator/osc.png' alt='osc_fig' max-width:100%><p></p>
+
+<h2>Caution</h2>
+
+<p><code>scipy.integrate.quad</code> method gives a wrong result when use <code>weight</code> and
+infinity integral range. The following integral are not converge, but the code
+give a result without waring or error. Why? if I have time, ...</p>
+
+<pre><code class="language-python">import numpy as np
+import matplotlib.pyplot as plt
+from scipy.integrate import quad
+
+
+def quad_recorded(func, *args, **kwargs):
+    """
+    use scipy.integrate.quad, but return the results with additional
+    information "nc" and "vc"
+    Returns:
+        inte_res: the return of scipy.integrate.quad
+              nc: the points calculated
+              vc: the calculated functiona values
+    """
+    def func_recorded(x, node_container, value_container):
+        res = func(x)
+        node_container.append(x)
+        value_container.append(res)
+        return res
+    nc = []
+    vc = []
+    inte_res = quad(lambda x: func_recorded(x, node_container=nc,
+                                            value_container=vc),
+                    *args, **kwargs)
+    idx = np.argsort(np.array(nc))
+    nc = np.array(nc)[idx].tolist()
+    vc = np.array(vc)[idx].tolist()
+    return inte_res, nc, vc
+
+
+r, nc, vc = quad_recorded(np.sin, 0, np.inf, weight='sin', wvar=0.2)
+plt.plot(nc, vc, '-x')
+plt.savefig('caution.png', transparent=True)
+print(r)</code></pre>
+
+<pre><code class="language-python">  &gt;&gt;&gt; (2.4313884239290928e-14, 2.0748702051907655e-10)</code></pre>
+
+<p><a href='2023-05-05-physics-damp-drive-oscillator/caution.py'>caution.py</a></p>
+
+<p><p><img src='2023-05-05-physics-damp-drive-oscillator/caution.png' alt='caution.png' max-width:100%><p></p>
+
+<h2>Reference</h2>
+
+<ul>
+<li>Mechanics, Third Edition: Volume 1 (Course of Theoretical Physics)</li>
+<li><a href='https://en.wikipedia.org/wiki/Sokhotski%E2%80%93Plemelj_theorem'>Wikipedia: Sokhotski–Plemelj theorem</a></li>
+</ul>
+
+            </section>
+            <section class="post-meta">
+                <p>标签:
+                    <a class="post-link" href="../tags/物理.html">物理</a>
+                    <a class="post-link" href="../tags/Oscillator.html">Oscillator</a>
+                </p>
+            </section>
+        </main>
+        <footer>© 2018 - 2023 ZQW</footer>
+
+
+    </div>
+</body>
+
+</html>
