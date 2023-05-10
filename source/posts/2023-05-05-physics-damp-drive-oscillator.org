@@ -81,7 +81,7 @@ We can use the identity(Sokhotski–Plemelj theorem)
 get a more physical form
 \begin{align}
 x_1(t) =&    \frac{1}{\sqrt{2\pi}} \mathcal{P}\int_{-\infty}^{\infty} \mathrm{d}\gamma\cdot
-\left[
+\frac{1}{2\omega}\left[
 \frac{1}{\omega - \gamma} + \frac{1}{\omega + \gamma}
  \right]
 \tilde{F}(\gamma) e^{ \mathrm{i}\gamma  t}
