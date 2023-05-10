@@ -101,7 +101,7 @@ $$\begin{align}
 F(t) = f_{\gamma} \sin(\gamma t)
 \end{align}$$
 
-<p>it is easy get</p>
+<p>For non-resonance case, it is easy get</p>
 
 $$\begin{align}
 x_{\gamma}(t) = A \cos(\omega t + \phi) + \frac{f_{\gamma}}{\omega^2 - \gamma^2} \sin(\gamma t)
@@ -112,7 +112,7 @@ x_{\gamma}(t) = A \cos(\omega t + \phi) + \frac{f_{\gamma}}{\omega^2 - \gamma^2}
 
 $$\begin{align}
 F(t) = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\infty}
-\tilde{F}(\gamma) e^{\mathrm{i}(\gamma+\mathrm{i}0^+) t}
+\tilde{F}(\gamma) e^{\mathrm{i}\gamma t}
  \mathrm{d}\gamma
 \end{align}$$
 
@@ -124,7 +124,8 @@ e^{-\mathrm{i}(\gamma + \mathrm{i} 0^+) t}
  \mathrm{d}t
 \end{align}$$
 
-<p>we have</p>
+<p>(where $\mathrm{i}0^{ + }$ is for the Fourier transforms
+such as sine function) we have</p>
 
 $$\begin{align}
 x(t) = A \cos(\omega t + \phi) + x_1(t)
@@ -133,12 +134,13 @@ x(t) = A \cos(\omega t + \phi) + x_1(t)
 <p>where</p>
 
 $$\begin{align}
-x_1(t) =\frac{1}{2\pi}\int_{-\infty}^{\infty} \mathrm{d}\gamma\cdot
-\frac{\tilde{F}(\gamma)}{\omega^2 - (\gamma + \mathrm{i} 0^{+ })^2} e^{ \mathrm{i}(\gamma + \mathrm{i}0^+)}
+x_1(t) = \mathcal{P}\frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty} \mathrm{d}\gamma\cdot
+\frac{\tilde{F}(\gamma)}{\omega^2 - \gamma} e^{ \mathrm{i}(\gamma + \mathrm{i}0^+) t}
 \end{align}$$
 
-
-<p>we can use the identity(Sokhotski–Plemelj theorem)</p>
+<p>becasue we only consider the non-resoance case, the principal value
+$\mathcal{P}$ is added.
+We can use the identity(Sokhotski–Plemelj theorem)</p>
 
 $$\begin{align}
 \int_0^{\infty} \mathrm{d} s\cdot e^{- \mathrm{i}(\omega + \mathrm{i}0^+) s}
@@ -146,30 +148,32 @@ $$\begin{align}
  = \pi\delta(\omega) - \mathrm{i}\mathcal{P} \frac{1}{\omega}
 \end{align}$$
 
-<p>get a more physical form(non-resoance case)</p>
+<p>get a more physical form</p>
 
 $$\begin{align}
-x_1(t) =&   \mathrm{Im} \left\{  \frac{1}{2\pi}\int_{-\infty}^{\infty} \mathrm{d}\gamma\cdot
+x_1(t) =&    \frac{1}{\sqrt{2\pi}} \mathcal{P}\int_{-\infty}^{\infty} \mathrm{d}\gamma\cdot
 \left[
-\frac{1}{\omega - \gamma- \mathrm{i}0^+} + \frac{1}{\omega + \gamma+ i 0^+}
+\frac{1}{\omega - \gamma} + \frac{1}{\omega + \gamma}
  \right]
-\tilde{F}(\gamma) e^{ \mathrm{i}(\gamma + \mathrm{i}0^+)}
-\right\} \\
+\tilde{F}(\gamma) e^{ \mathrm{i}\gamma  t}
+ \\
  =&   \frac{1}{2\omega} (-1) \mathrm{Im} \left\{
-\int_0^{\infty} \mathrm{d}s \cdot e^{- \mathrm{i}\omega s} \left[
+\int_0^{\infty} \mathrm{d}s \cdot e^{- \mathrm{i}(\omega + \mathrm{i}0^+) s} \left[
 F(t + s) + F(t - s)
  \right]
  \right\}
 \end{align}$$
 
-<p>we can also substract a homogeous solution from it to get the solution in
+<p>We also add $\mathrm{i}0^+$ here for a possible $\lim_{t\to\infty}F(t)\neq 0$,
+such as $F(t) = \sin(t)$ .
+We can also substract a homogeous solution from it to get the solution in
 Landau's book</p>
 
 $$\begin{align}
 x_1(t) + \frac{1}{2\omega} \mathrm{Im} \left\{
 e^{\mathrm{i}\omega t} \left[
-\int_0^{\infty} e^{- \mathrm{i}\omega s} \mathrm{d}s -
-\int_{-\infty}^0 e^{- \mathrm{i}\omega s} \mathrm{d}s
+\int_0^{\infty} e^{- \mathrm{i}(\omega + \mathrm{i} 0^+) s} F(s)\mathrm{d}s -
+\int_{-\infty}^0 e^{- \mathrm{i}(\omega + \mathrm{i} 0^+) s} F(s)\mathrm{d}s
  \right]
  \right\} = \frac{\mathrm{Im}[\xi(t)]}{\omega}
 \end{align}$$
