@@ -68,7 +68,7 @@ x(t) = A \cos(\omega t + \phi) + x_1(t)
 where
 \begin{align}
 x_1(t) = \mathcal{P}\frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty} \mathrm{d}\gamma\cdot
-\frac{\tilde{F}(\gamma)}{\omega^2 - \gamma} e^{ \mathrm{i}(\gamma + \mathrm{i}0^+) t}
+\frac{\tilde{F}(\gamma)}{\omega^2 - \gamma} e^{ \mathrm{i}\gamma t}
 \end{align}
 becasue we only consider the non-resoance case, the principal value
 $\mathcal{P}$ is added.
