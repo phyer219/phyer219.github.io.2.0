@@ -76,26 +76,28 @@
 <h3>打开</h3>
 <p>终端模式：<code>emacs -nw</code></p>
 <h3>配置备份</h3>
-<p>```lisp
-;;用xetex编译,以支持中文
+<pre><code class="language-lisp">;;用xetex编译,以支持中文
 (setq-default TeX-engine 'xetex)
 ;;默认输出pdf
-(setq-default TeX-PDF-mode t)</p>
-<p>;;ELPA (Emacs Lisp Package Archive)扩展插件管理,用命令<code>package-list-packages</code>调用.
+(setq-default TeX-PDF-mode t)
+
+;;ELPA (Emacs Lisp Package Archive)扩展插件管理,用命令`package-list-packages`调用.
 ;;主题网站https://emacsthemes.com/ 
 (require 'package)
 (add-to-list 'package-archives 
-             '("melpa" . "http://melpa.org/packages/"))
-(package-initialize)</p>
-<p>;;加载主题
+             '(&quot;melpa&quot; . &quot;http://melpa.org/packages/&quot;))
+(package-initialize)
+
+;;加载主题
 (load-theme 'light-blue t)
 ;;auctex插件
-(load "auctex.el" nil t t)
-(load "preview-latex.el" nil t t)
+(load &quot;auctex.el&quot; nil t t)
+(load &quot;preview-latex.el&quot; nil t t)
 (setq TeX-auto-save t)
 (setq TeX-parse-self t)
-(setq-default TeX-master nil)</p>
-<p>;;在 LaTeX mode 中，默认开启 PDF mode，即默认使用 xelatex 直接生成 pdf 文 件，而不用每次用 'C-c C-t C-p' 进行切换。设置 'Tex-show-compilation' 为 t，在另一个窗口显示编译信息，对于错误的排除很方便。另外，编译时默认直接 保存文件，绑定补全符号到 TAB 键。
+(setq-default TeX-master nil)
+
+;;在 LaTeX mode 中，默认开启 PDF mode，即默认使用 xelatex 直接生成 pdf 文 件，而不用每次用 'C-c C-t C-p' 进行切换。设置 'Tex-show-compilation' 为 t，在另一个窗口显示编译信息，对于错误的排除很方便。另外，编译时默认直接 保存文件，绑定补全符号到 TAB 键。
 (add-hook 'LaTeX-mode-hook
           (lambda ()
             (setq TeX-auto-untabify t     ; remove all tabs before saving
@@ -104,8 +106,10 @@
             (TeX-global-PDF-mode t)       ; PDF mode enable, not plain
             (setq TeX-save-query nil)
             (imenu-add-menubar-index)
-            (define-key LaTeX-mode-map (kbd "TAB") 'TeX-complete-symbol)))</p>
-<p>;;自动换行，数学公式，reftex，显示号
+            (define-key LaTeX-mode-map (kbd &quot;TAB&quot;) 'TeX-complete-symbol)))
+
+
+;;自动换行，数学公式，reftex，显示号
 (mapc (lambda (mode)
       (add-hook 'LaTeX-mode-hook mode))
       (list 'auto-fill-mode
@@ -123,42 +127,52 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )</p>
-<p>(elpy-use-ipython)</p>
-<p>; python-mode
-(setq py-install-directory "~/.emacs.d/python-mode-6.0.11")
+ )
+
+(elpy-use-ipython)
+
+; python-mode
+(setq py-install-directory &quot;~/.emacs.d/python-mode-6.0.11&quot;)
 (add-to-list 'load-path py-install-directory)
-(require 'python-mode)</p>
-<p>; use IPython
-(setq-default py-shell-name "ipython")
-(setq-default py-which-bufname "IPython")
+(require 'python-mode)
+
+; use IPython
+(setq-default py-shell-name &quot;ipython&quot;)
+(setq-default py-which-bufname &quot;IPython&quot;)
 ; use the wx backend, for both mayavi and matplotlib
 (setq py-python-command-args
-  '("--gui=wx" "--pylab=wx" "-colors" "Linux"))
-(setq py-force-py-shell-name-p t)</p>
-<p>; switch to the interpreter after executing code
+  '(&quot;--gui=wx&quot; &quot;--pylab=wx&quot; &quot;-colors&quot; &quot;Linux&quot;))
+(setq py-force-py-shell-name-p t)
+
+; switch to the interpreter after executing code
 (setq py-shell-switch-buffers-on-execute-p t)
 (setq py-switch-buffers-on-execute-p t)
 ; don't split windows
 (setq py-split-windows-on-execute-p nil)
 ; try to automagically figure out indentation
-(setq py-smart-indentation t)</p>
-<p>(setq TeX-view-program-list
-      '(("SumatraPDF" "SumatraPDF.exe %o")
-        ("Gsview" "gsview32.exe %o")
-        ("Okular" "okular --unique %o")
-        ("Evince" "evince %o")
-        ("Firefox" "firefox %o")))
+(setq py-smart-indentation t)
+
+
+(setq TeX-view-program-list
+      '((&quot;SumatraPDF&quot; &quot;SumatraPDF.exe %o&quot;)
+        (&quot;Gsview&quot; &quot;gsview32.exe %o&quot;)
+        (&quot;Okular&quot; &quot;okular --unique %o&quot;)
+        (&quot;Evince&quot; &quot;evince %o&quot;)
+        (&quot;Firefox&quot; &quot;firefox %o&quot;)))
  ((eq system-type 'gnu/linux)
   (add-hook 'LaTeX-mode-hook
             (lambda ()
-              (setq TeX-view-program-selection '((output-pdf "Okular")
-                                                 (output-dvi "Okular")))))))</p>
-<p>(add-to-list 'load-path "/home/dx/Downloads/neotree")
+              (setq TeX-view-program-selection '((output-pdf &quot;Okular&quot;)
+                                                 (output-dvi &quot;Okular&quot;)))))))
+
+
+(add-to-list 'load-path &quot;/home/dx/Downloads/neotree&quot;)
 (require 'neotree)
-(global-set-key [f8] 'neotree-toggle)</p>
-<p>(require 'sr-speedbar)</p>
-<p>```</p>
+(global-set-key [f8] 'neotree-toggle)
+
+(require 'sr-speedbar)
+
+</code></pre>
             </section>
             <section class="post-meta">
                 <p>标签:
