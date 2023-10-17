@@ -120,6 +120,32 @@ plt.savefig('newcmap.png', transparent=True)
 </code></pre>
 <p><img alt="image-newcamp" src="2023-10-12-coding-matplotlib/newcmap.png" /></p>
 <p><a href="2023-10-12-coding-matplotlib/newcmap.py">newcmap.py</a></p>
+<h2>在每个子图插入 colorbar</h2>
+<pre><code class="language-python">import matplotlib.pyplot as plt
+from mpl_toolkits.axes_grid1 import make_axes_locatable
+import numpy as np
+
+
+fig = plt.figure(figsize=[8, 4])
+ax_1 = fig.add_subplot(1, 2, 1)
+ax_2 = fig.add_subplot(1, 2, 2)
+
+divider1 = make_axes_locatable(ax_1)
+ax_cb1 = divider1.new_horizontal(size='5%', pad=.05)
+fig.add_axes(ax_cb1)
+
+divider2 = make_axes_locatable(ax_2)
+ax_cb2 = divider2.new_horizontal(size='5%', pad=.05)
+fig.add_axes(ax_cb2)
+
+im1 = ax_1.imshow(np.random.randn(100, 100), origin='lower', cmap='rainbow')
+im2 = ax_2.imshow(100*np.random.randn(100, 100), origin='lower', cmap='rainbow')
+fig.colorbar(im1, ax_cb1)
+fig.colorbar(im2, ax_cb2)
+fig.savefig('divider.png', transparent=True)
+</code></pre>
+<p><a href="2023-10-12-coding-matplotlib/divider.py">divider.py</a></p>
+<p><img alt="divider" src="2023-10-12-coding-matplotlib/divider.png" /></p>
 <h1>双重坐标轴</h1>
 <pre><code class="language-python">import numpy as np
 import matplotlib.pyplot as plt
@@ -373,7 +399,7 @@ fig.savefig(get_file_name(__file__)[:-4] + '.png', dpi=200, transparent=True)
 <p><img alt="image-fig2" src="2023-10-12-coding-matplotlib/fig2/fig2.png" /></p>
 <h1>参考资料</h1>
 <ol>
-<li>https://matplotlib.org/stable/</li>
+<li><a href="https://matplotlib.org/stable/">https://matplotlib.org/stable/</a></li>
 </ol>
             </section>
             <section class="post-meta">
