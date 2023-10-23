@@ -112,11 +112,11 @@ I_2(\mu) = \frac{1}{2}\left[ 0 - \frac{1}{\sqrt{\mu}}\left(-\mathrm{i}\frac{\pi}
 $I_{1(a)}$ 的被积函数在 $x\to a$ 时看起来是 $1/x^2$ 发散的:
 [[file:2021-05-25-physics-Pole_of_order_2/diverge.png]]
 
-file:2021-05-25-physics-Pole_of_order_2/C10.png
+[[file:2021-05-25-physics-Pole_of_order_2/C10.png]]
 
-file:2021-05-25-physics-Pole_of_order_2/C1.png
+[[file:2021-05-25-physics-Pole_of_order_2/C1.png]]
 
-file:2021-05-25-physics-Pole_of_order_2/C2.png
+[[file:2021-05-25-physics-Pole_of_order_2/C2.png]]
 
 * Acknowledge
 
