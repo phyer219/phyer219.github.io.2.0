@@ -1,6 +1,8 @@
 import markdown
 import os
 
+from markdown_math_escape import MathEscapeExtension
+
 from .extractor import MdExtractor, OrgExtractor
 from .blockparser import OrgBlockParser
 from .renderer import HTMLRenderer
@@ -62,4 +64,5 @@ class MdPost:
         p.run(self)
         self.html = markdown.markdown(self.ori_str,
                                       extensions=['tables',
-                                                  'fenced_code'])
+                                                  'fenced_code',
+                                                  MathEscapeExtension(delimiters="dollers")])

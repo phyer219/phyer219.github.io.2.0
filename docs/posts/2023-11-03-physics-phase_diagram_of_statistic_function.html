@@ -1,0 +1,189 @@
+<!DOCTYPE html><html class="no-js" lang="zh">
+
+
+<head>
+<script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+    </script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/styles/base16/solarized-light.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Long+Cang&family=Noto+Serif+SC&display=swap" rel="stylesheet"> <meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>三种统计分布的相图</title>
+<link rel="apple-touch-icon" sizes="180x180" href="../static/images/apple-touch-icon-next.png?v=6.4.1">
+<link rel="icon" type="image/png" sizes="32x32" href="../static/images/favicon-32x32-next.png?v=6.4.1">
+<link rel="icon" type="image/png" sizes="16x16" href="../static/images/favicon-16x16-next.png?v=6.4.1">
+<link rel="stylesheet" type="text/css" href="../static/css/mystyle.css">    
+
+</head>
+
+<body>
+    <div class="container">
+        <header>
+    <section class="banner"><img src="../static/images/banner.jpg"></section>
+</header>
+        <nav class="row">
+    <a class="nav" href="../">首页</a>
+    <a class="nav" href="../categories">分类</a>
+    <a class="nav" href="../tags">标签</a>
+    <a class="nav" href="../about">关于</a>
+</nav>
+
+        <main>
+            <h1 class="post-title">三种统计分布的相图
+            </h1>
+            <section class="post-meta">
+                <p>发表于:2023.11.3 ||</p>
+                <p>分类:<a class="post-link" href="../categories/专业笔记.html">专业笔记</a> ||</p>
+            </section>
+            <section class="post-content">
+                <h2>---</h2>
+<!-- toc -->
+
+<!-- more -->
+
+<ul>
+<li><a href="#bose-einstein-distribution">Bose-Einstein distribution</a><ul>
+<li><a href="#free-boson">Free Boson</a></li>
+<li><a href="#condensation-of-free-boson">Condensation of free Boson</a></li>
+<li><a href="#condensation-of-fermi-pairs">Condensation of Fermi pairs</a></li>
+<li><a href="#more-generally-dispersion-cases">More generally dispersion cases</a></li>
+</ul>
+</li>
+<li><a href="#fermi-dirac-distribution">Fermi-Dirac distribution</a></li>
+<li><a href="#maxwell-boltzmann-distribution">Maxwell-Boltzmann distribution</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+<h1>Bose-Einstein distribution</h1>
+<h2>Free Boson</h2>
+<p>For free Bosons, the particle density can be written as the sum of the Bose-Einstein distribution for every energy level with momentum \(\mathbf{k}\),</p>
+\[
+n(T, \mu) = \frac{1}{V}\sum_{\mathbf{k}}
+\frac{1}{e^{ \frac{1}{k_B T}\left( \frac{\hbar^2 k^2}{2m} - \mu\right)} - 1}
+= \frac{1}{V}\sum_{\mathbf{k}}
+\frac{1}{z^{-1}e^{ \frac{1}{k_B T} \frac{\hbar^2 k^2}{2m}} - 1}
+\]
+<p>where fugacity \(z = e^{\frac{\mu}{k_BT}}\). Using</p>
+\[
+ \frac{1}{V} \sum_{\mathbf{k}}\to \frac{1}{(2\pi)^3}\int \mathrm{d}^3k
+\]
+<p>convert a sum over momentum states into an integral, then,</p>
+\[
+\begin{align}
+n(T, \mu) =&amp; \frac{4\pi}{(2\pi)^3}\int_0^{\infty} \mathrm{d}k
+\frac{k^2}{z^{-1}e^{ \frac{1}{k_B T} \frac{\hbar^2 k^2}{2m} } - 1}\\
+=&amp; \frac{1}{\lambda_{\mathrm{d.B.}}^3} \frac{4}{\sqrt{\pi}}
+  \int_0^{\infty}\mathrm{d}x \frac{x^2}{z^{-1}e^{x^2} - 1}\\
+=&amp; \frac{1}{\lambda_{\mathrm{d.B.}}^3} \frac{2}{\sqrt{\pi}}
+  \int_0^{\infty}\mathrm{d}\varepsilon \frac{\sqrt{\varepsilon}}{z^{-1}e^{\varepsilon} - 1} \\
+=&amp; \frac{1}{\lambda_{\mathrm{d.B.}}^3} \mathrm{Li}_{3/2}(z) \\
+=&amp; \left(\frac{m k_B T}{2 \pi \hbar^2} \right)^{3/2}\mathrm{Li}_{3/2}(z)
+\end{align}
+\]
+<p>where we have defined the thermal de Broglie wavelength
+ \(\lambda_{\mathrm{d.B.}} = \sqrt{\frac{2\pi \hbar^2}{m k_B T}}\) by setting</p>
+\[
+\frac{\hbar^2}{m}\frac{1}{\lambda_{\mathrm{d.B.}}^2} = \frac{k_B T}{2\pi}.
+\]
+
+<p>The <a href="https://en.wikipedia.org/wiki/Polylogarithm">Polylogarithm</a> is defined as</p>
+\[
+\begin{align}
+\mathrm{Li}_s(z) = \sum_{k = 1}^{\infty} \frac{z^k}{k^s}
+\end{align}
+\]
+<p><img alt="free-bose" src="./2023-11-03-physics-phase_diagram_of_statistic_function/free-bose.svg" /></p>
+<p><a href="./2023-11-03-physics-phase_diagram_of_statistic_function/free-bose.py">free-bose.py</a></p>
+<h2>Condensation of free Boson</h2>
+<p>For free Bosons, when the density fixed, lower the temperature, the chemical potential will approach \(0\). Therefore the Bosons will condense to the zero momentum states. Therefore, we can find the condensate critical temperature \(T_C\) by setting \(\mu\to 0\),</p>
+\[
+k_B T_C = \left(\frac{n}{\mathrm{Li}_{3/2}(1)}\right)^{2/3}\frac{1}{\frac{m}{2\pi\hbar^2}}
+\]
+<p>where \(\mathrm{Li}_{3/2}(1) = \zeta(3/2)\approx2.612\).</p>
+<h2>Condensation of Fermi pairs</h2>
+<p>The two components Fermion system on the strong BEC side, every two Fermions form a bound Boson pairs. Thus we can consider this system as a free Bosons. We label the density of pairs as \(n\), also every component has a density \(n\). Label the mass of a Fermion as \(m\), so the mass of a pair is \(M=2m\), and the chemical potential \(2\mu\). We define the Fermi momentum as \(k_F^3 = 6\pi^2 n\), and Fermi energy as \(E_F = \frac{\hbar^2 k_F^2}{2m}\). Then the density of pairs can be written as</p>
+\[
+\begin{align}
+n(T, 2\mu)
+= \left(\frac{M k_B T}{2 \pi \hbar^2} \right)^{3/2}\mathrm{Li}_{3/2}(z)
+\end{align}
+\]
+<p>where \(z=e^{\frac{2\mu}{k_B T}}\). We can get the condensate critical temperature of pairs</p>
+\[
+k_B T_C = \left(\frac{n}{\mathrm{Li}_{3/2}(1)}\right)^{2/3}\frac{1}{\frac{M}{2\pi\hbar^2}} = \frac{2\pi}{\left[6\pi^2\mathrm{Li}_{3/2}(1)\right]^{2/3}} E_F
+\approx 0.218 E_F
+\]
+
+<h2>More generally dispersion cases</h2>
+\[
+\int_0^{\infty}\mathrm{d}\varepsilon \frac{x^{\nu}}{z^{-1} e^{\varepsilon} - 1}
+= \Gamma(1+\nu)\mathrm{Li}_{1+\nu}(z)
+\]
+<p>where \(\nu = 1/2\) for the 3D free Boson. And the gamma function</p>
+\[
+ \Gamma(z)=\int _0^{\infty}\mathrm{d}t\cdot e^{-t} t^{z-1}
+\]
+<p>which \(\Gamma(3/2) = \sqrt{\pi}/2\) for the 3D free Boson.</p>
+<p>For Fermion case</p>
+\[
+\int_0^{\infty}\mathrm{d}\varepsilon \frac{x^{\nu}}{z^{-1} e^{\varepsilon} + 1}
+= -\Gamma(1+\nu)\mathrm{Li}_{1+\nu}(-z)
+\]
+
+<h1>Fermi-Dirac distribution</h1>
+<p>For free Bosons, the particle density can be written as the sum of the Bose-Einstein distribution for every energy level with momentum \(\mathbf{k}\),</p>
+\[
+n(T, \mu) = \frac{1}{V}\sum_{\mathbf{k}}
+
+\frac{1}{z^{-1}e^{ \frac{1}{k_B T} \frac{\hbar^2 k^2}{2m}} + 1}
+\]
+<p>where fugacity \(z = e^{\frac{\mu}{k_BT}}\). Convert a sum over momentum states into an integral, then,</p>
+\[
+\begin{align}
+n(T, \mu) =&amp; \frac{4\pi}{(2\pi)^3}\int_0^{\infty} \mathrm{d}k
+\frac{k^2}{z^{-1}e^{ \frac{1}{k_B T} \frac{\hbar^2 k^2}{2m} } + 1}\\
+=&amp; \frac{1}{\lambda_{\mathrm{d.B.}}^3} \frac{4}{\sqrt{\pi}}
+  \int_0^{\infty}\mathrm{d}x \frac{x^2}{z^{-1}e^{x^2} + 1}\\
+=&amp; \frac{1}{\lambda_{\mathrm{d.B.}}^3} \frac{2}{\sqrt{\pi}}
+  \int_0^{\infty}\mathrm{d}\varepsilon \frac{\sqrt{\varepsilon}}{z^{-1}e^{\varepsilon} + 1} \\
+=&amp; \frac{1}{\lambda_{\mathrm{d.B.}}^3} \left[-\mathrm{Li}_{3/2}(-z)\right] \\
+=&amp; \left(\frac{m k_B T}{2 \pi \hbar^2} \right)^{3/2}\left[-\mathrm{Li}_{3/2}(-z)\right]
+\end{align}
+\]
+
+<p><img alt="free-fermi" src="./2023-11-03-physics-phase_diagram_of_statistic_function/free-fermi.svg" /></p>
+<p><a href="./2023-11-03-physics-phase_diagram_of_statistic_function/free-fermi.py">free-fermi.py</a></p>
+<h1>Maxwell-Boltzmann distribution</h1>
+<h1>Reference</h1>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Polylogarithm">Polylogarithm</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Gamma_function">Gamma function</a></li>
+<li>Pathria, R. K., and Paul D. Beale. Statistical Mechanics. 3rd ed. Amsterdam ; Boston: Elsevier/Academic Press, 2011. Chap.7 and Appendices D, E.</li>
+<li>Stoof, Henk T. C., Koos B. Gubbels, and Dennis B. M. Dickerscheid. Ultracold Quantum Fields. Theoretical and Mathematical Physics. Dordrecht ; New York: Springer, 2009. Chap.4.3.</li>
+</ul>
+            </section>
+            <section class="post-meta">
+                <p>标签:
+                    <a class="post-link" href="../tags/physics.html">physics</a>
+                    <a class="post-link" href="../tags/chemical potential.html">chemical potential</a>
+                </p>
+            </section>
+        </main>
+        <footer>© 2018 - 2023 ZQW</footer>
+
+
+    </div>
+</body>
+
+</html>
