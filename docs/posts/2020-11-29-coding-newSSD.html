@@ -92,8 +92,9 @@
 <h1>wayland 换 xorg</h1>
 <p>奇怪的网络问题让我对了机械和 SSD 的 gnome 版本, 发现新的 manjaro 包默认是 wayland. 我突然意识到之前给 cy 的机械硬盘装 manjaro 后闪屏的问题, 很有可能也是用了 wayland.</p>
 <p>换回 Xorg 直接安装 Xorg 包就好了</p>
-<pre><code class="language-shell">sudo pacman -S xorg 
+<pre><code class="shell">sudo pacman -S xorg 
 </code></pre>
+
 <p>登陆选 xorg 的 gnome 即可.</p>
 <h1>输入法</h1>
 <p>arch wiki 关于中文输入法的部分升级了, 存放环境变量的文件有了变化, 详见: https://wiki.archlinux.org/index.php/Fcitx_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)#.E5.AE.89.E8.A3.85</p>
@@ -105,45 +106,53 @@
 <p>这次安装 <code>poppler-data</code> 就好了</p>
 <h1>emacs 开启卡顿</h1>
 <p>看卡顿的时间, 卡顿完字体变大, 推测是 cnfonts 的问题, 注释掉就好了</p>
-<pre><code class="language-lisp">;; 字体设置
+<pre><code class="lisp">;; 字体设置
 ;;(require 'cnfonts)
 ;; 让 cnfonts 随着 Emacs 自动生效。
 ;;(cnfonts-enable)
 ;; 让 spacemacs mode-line 中的 Unicode 图标正确显示。
 ;;(cnfonts-set-spacemacs-fallback-fonts)
 </code></pre>
+
 <h1>修改默认 shell</h1>
 <p>新的 manjaro 包默认的 shell 也改成了 zsh. 不过我还是习惯原来的 bash. 改下面的文件就可以:</p>
-<pre><code class="language-shell">sudo emacs /etc/passwd 
+<pre><code class="shell">sudo emacs /etc/passwd 
 </code></pre>
+
 <h1>GRUB theme</h1>
 <p>新的 manjaro 包里也没有了 GRUB theme, 有点不好看, 可以直接 <code>yaourt grub theme</code> 找到 manjaro 的 grub theme 安装就好.</p>
 <h1>开机挂载</h1>
 <p>旧的机械硬盘可以设置开机自动挂到某个目录, 方法是修改 <code>/etc/fstab</code> , 比如增加记录</p>
-<pre><code class="language-shell">/dev/sda5                 /docu      ntfs    defaults           0 0
+<pre><code class="shell">/dev/sda5                 /docu      ntfs    defaults           0 0
 </code></pre>
+
 <h1>对 manjaro 版本时用到的命令</h1>
-<pre><code class="language-shell">lsb_release -a
+<pre><code class="shell">lsb_release -a
 </code></pre>
+
 <h1>对 hexo</h1>
 <p>hexo 貌似对新版的 node 支持不友好, 需要将 node 进行版本回退才可以正常 deploy. </p>
 <p>用 <code>n</code> 来管理和切换 node 版本. </p>
 <p>查看 node 版本</p>
-<pre><code class="language-shell">node -v
+<pre><code class="shell">node -v
 </code></pre>
+
 <p>安装</p>
-<pre><code class="language-shell">npm install -g n
+<pre><code class="shell">npm install -g n
 </code></pre>
+
 <p>下载 hexo 可用的 node 版本 13.14.0</p>
-<pre><code class="language-shell">sudo n 13.14.0
+<pre><code class="shell">sudo n 13.14.0
 </code></pre>
+
 <p>切换版本是与上面相同的命令</p>
 <p>或许有一天, 我该把 blog 换到 pelican 上面, 毕竟比较熟悉语言.</p>
 <h1>VirtualBox</h1>
 <p>不仅需要安装 virtualbox, 还需要安装宿主机对应内核的 host modules. <code>umane -a</code> 查看 Linux 内核版本, 比如我的结果是 5.8.18, 所以还要安装 <code>linux58-virtualbox-host-modules</code> .</p>
 <p>两个安装好之后, 还要激活模块(这个在安装 virtualbox 时有过一行提示)</p>
-<pre><code class="language-shell">sudo modprobe vboxdrv
+<pre><code class="shell">sudo modprobe vboxdrv
 </code></pre>
+
 <p>之后即可正常使用</p>
             </section>
             <section class="post-meta">

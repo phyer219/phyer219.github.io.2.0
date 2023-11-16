@@ -1,0 +1,228 @@
+<!DOCTYPE html><html class="no-js" lang="zh">
+
+
+<head>
+<script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+    </script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/styles/base16/solarized-light.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Long+Cang&family=Noto+Serif+SC&display=swap" rel="stylesheet"> <meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>Arch安装deb包：为 deb 包编写 PKGBUILD 文件</title>
+<link rel="apple-touch-icon" sizes="180x180" href="../static/images/apple-touch-icon-next.png?v=6.4.1">
+<link rel="icon" type="image/png" sizes="32x32" href="../static/images/favicon-32x32-next.png?v=6.4.1">
+<link rel="icon" type="image/png" sizes="16x16" href="../static/images/favicon-16x16-next.png?v=6.4.1">
+<link rel="stylesheet" type="text/css" href="../static/css/mystyle.css">    
+
+</head>
+
+<body>
+    <div class="container">
+        <header>
+    <section class="banner"><img src="../static/images/banner.jpg"></section>
+</header>
+        <nav class="row">
+    <a class="nav" href="../">首页</a>
+    <a class="nav" href="../categories">分类</a>
+    <a class="nav" href="../tags">标签</a>
+    <a class="nav" href="../about">关于</a>
+</nav>
+
+        <main>
+            <h1 class="post-title">Arch安装deb包：为 deb 包编写 PKGBUILD 文件
+            </h1>
+            <section class="post-meta">
+                <p>发表于:2023.11.16 ||</p>
+                <p>分类:<a class="post-link" href="../categories/软件使用.html">软件使用</a> ||</p>
+            </section>
+            <section class="post-content">
+                <h2>---</h2>
+<ul>
+<li><a href="#前言">前言</a></li>
+<li><a href="#makepkg-简介"><code>makepkg</code> 简介</a></li>
+<li><a href="#一个最简单的-pkgbuild-文件">一个最简单的 <code>PKGBUILD</code> 文件</a></li>
+<li><a href="#打包流程一个不-trivial-的测试">打包流程（一个不 trivial 的测试）</a></li>
+<li><a href="#deb-包示例wps-office">deb 包示例：wps-office</a></li>
+</ul>
+<h2>前言</h2>
+<p>使用 Arch, 或者基于 Arch 的 Manjaro 时，有些软件官方仓库里没有，而网上又可以下载到编译好的二进制文件，deb包，或者rpm包。二进制文件可以直接运行，deb或者rpm包解压后，找到对应的二进制文件，也可以直接运行。</p>
+<p>但时，它们不被 <code>pacman</code> 包管理器管理，也不能从 app lancher 里面便捷的运行。</p>
+<p>对于 deb 包，AUR库里有一个 <code>debtap</code> 脚本，可以将 deb 包转换成 <code>pacman -U</code> 可以直接安装的 <code>.pkg.tar.zst</code> 格式。这个脚本非常方便，但是由于这个脚本考虑非常全面，注意普适性，这就导致有时候转换后的 <code>.pkg.tar.zst</code> 包会出现一些问题，安装不上。</p>
+<p>用 <code>makepkg</code> 打包软件是非常简单的事情，只是如果一点也不了解的话，会生怵。但是只要知道了它的运行机理，就会觉得非常简单，而且很多问题也就不存在了。</p>
+<h2><code>makepkg</code> 简介</h2>
+<p>详细地介绍在 ArchWiki 里面都有介绍。在此按我的理解梳理一下。</p>
+<p><code>makepkg</code> 是 Arch 系统中的一个软件，它的作用是将写好的程序源代码编译好，并且打包成 <code>.pkg.tar.zst</code> 格式，然后发布。大家就可以下载打包好的 <code>.pkg.tar.zst</code> 文件在 Arch 上直接安装。</p>
+<p>要想用 <code>makepkg</code> 打包一个程序，必须先写一个 <code>PKGBUILD</code> 文件。系统中有一些示例文件，比如 <code>/usr/share/pacman/PKGBUILD.proto</code> 。</p>
+<p>写好了 <code>PKGBUILD</code> 文件，就可以直接在  <code>PKGBUILD</code> 文件所在的目录直接运行</p>
+<pre><code class="shell">makepkg
+</code></pre>
+
+<p>然后就生成了 <code>.pkg.tar.zst</code> 格式的软件包，然后 <code>pacman -U</code> 安装就可以了。</p>
+<h2>一个最简单的 <code>PKGBUILD</code> 文件</h2>
+<p><code>PKGBUILD</code> 文件使用的是 <code>shell</code> 语言。最简单的 <code>PKGBUILD</code> 文件如下</p>
+<pre><code>pkgname=hello-makepkg
+pkgver=1.0
+pkgrel=1
+arch=('x86_64')
+
+package() {
+    echo &quot;packaging...&quot;
+}
+</code></pre>
+
+<p>前四行定义了四个变量，是软件的名字，版本，以及运行架构。最后三行定义了一个函数，输出一行字 packaging...。</p>
+<p><code>pkgname</code> 、 <code>pkgver</code> 、 <code>pkgrel</code> 、 <code>arch</code> 四个变量必须定义。名为 <code>package()</code> 的函数会被 <code>makepkg</code> 自动执行。</p>
+<p>这个最简单的 <code>PKGBUILD</code> 文件是 trivial 的，因为它什么也没干，只是走了个过场。</p>
+<h2>打包流程（一个不 trivial 的测试）</h2>
+<p>下面写一个不 trivial 的 <code>PKGBUILD</code> 文件。如下：</p>
+<pre><code class="shell"># This is an example PKGBUILD file. Use this as a start to creating your own,
+# and remove these comments. For more information, see 'man PKGBUILD'.
+# NOTE: Please fill out the license field for your package! If it is unknown,
+# then please put 'unknown'.
+
+# Maintainer: Your Name &lt;youremail@domain.com&gt;
+pkgname=zqwtest
+pkgver=1.0
+pkgrel=1
+arch=('x86_64')
+source=(&quot;m.vsix&quot;)
+md5sums=('541126551a459a74e740ac6a82875d24')
+
+
+prepare() {
+    echo &quot;prepare...&quot;
+}
+
+build() {
+    echo &quot;building...&quot;
+#   pwd
+#   cd ${srcdir}
+#   pwd
+#   mkdir diraa
+}
+
+check() {
+    echo &quot;checking...&quot;
+}
+
+package() {
+    echo &quot;packaging...&quot;
+    mkdir ${pkgdir}/home
+    cp m.vsix ${pkgdir}/home/m.vsix
+}
+</code></pre>
+
+<p><code>PKGBUILD</code> 文件所在的目录结构如下：</p>
+<pre><code class="shell">.
+├── m.vsix
+└── PKGBUILD
+</code></pre>
+
+<p>与之前相比，多定义了两个变量，<code>source</code> 和 <code>md5sums</code> 。这两个变量有什么用处呢？那应该先说一下 <code>makepkg</code> 具体都做了什么。</p>
+<p>首先，它们通过我们定义的变量，得到软件包的名字，版本号等信息。<code>source</code> 变量是告诉 <code>makepkg</code> 我们打包过程中所需要的文件，它可以是一个本地文件，也可以是一个文件网址。 <code>makepkg</code> 会获取这个文件，验证它的 md5，然后将它放在（链接）目录 <code>src</code> 下。 <code>src</code> 目录是 <code>makepkg</code> 进行一些处理，比如编译，时的工作目录。</p>
+<p>接下来， <code>makepkg</code> 依次执行四个函数 <code>prepare()</code> 、 <code>build()</code> 、 <code>check()</code> 、 <code>package()</code> 。 <code>prepare()</code> 一般做编译前的处理，比如解压文件。 <code>build()</code> 进行编译。<code>check()</code> 检查编译结果。最后 <code>package()</code> 进行打包。我们这里的 <code>prepare()</code> 、 <code>build()</code> 、 <code>check()</code> 不进行操作，只输出一行文字提示。</p>
+<p>最后，我在函数 <code>package()</code> 中，先新建了一个目录 <code>\({pkgdir}/home` 。这里先说明一下，  `makepkg` 会默认定义两个变量：`\){srcdir}</code> 是前面提到的工作路径 <code>src</code>；另一个 <code>\({pkgdir}` 是软件包的目录 `pkg/\){pkgname}</code> 。 <code>\({pkgdir}` 目录就是最终打包成 `.pkg.tar.zst` 的目录。在安装包时，`\){pkgdir}</code> 会被安装对应的目录中。比如我们在这个例子中，将文件 <code>m.vsix</code> 放在 <code>${pkgdir}/home/m.vsix</code> ，那么我们用 <code>pacman -U</code> 安装时，就会把 <code>m.vsix</code> 复制到 <code>/home/m.vsix</code> 。</p>
+<p>运行</p>
+<pre><code class="shell">makepkg
+</code></pre>
+
+<p>后，目录结构如下</p>
+<pre><code class="shell">.
+├── m.vsix
+├── pkg
+│   └── zqwtest
+├── PKGBUILD
+├── src
+│   ├── [Content_Types].xml
+│   ├── extension
+│   ├── extension.vsixmanifest
+│   └── m.vsix -&gt; /home/zqw/pkgtest/m.vsix
+└── zqwtest-1.0-1-x86_64.pkg.tar.zst
+</code></pre>
+
+<p>然后我们运行</p>
+<pre><code class="shell">sudo pacman -U zqwtest-1.0-1-x86_64.pkg.tar.zst
+</code></pre>
+
+<p>安装一下，就可以看到，如我们所预期，<code>/home</code> 目录下多了文件 <code>m.vsix</code>：</p>
+<pre><code class="shell">/home
+├── m.vsix
+└── zqw
+</code></pre>
+
+<p>然后我们运行</p>
+<pre><code class="shell">sudo pacman -R zqwtest
+</code></pre>
+
+<p>删除软件包，就发现<code>/home</code> 目录下的 <code>m.vsix</code> 被删除了：</p>
+<pre><code class="shell">/home
+└── zqw
+</code></pre>
+
+<p>更加多的例子可以去 AUR 仓库里随便找一些看。比如 <a href="https://aur.archlinux.org/packages/quickapp-ide">quickapp-ide</a> ，可以直接 clone 下来学习。</p>
+<h2>deb 包示例：wps-office</h2>
+<p>我们提前准备好 wps-office 的 deb 格式安装包，并和 <code>PKGBUILD</code> 文件放在一起：</p>
+<pre><code class="shell">.
+├── PKGBUILD
+└── wps-office_11.1.0.11698.XA_amd64.deb
+</code></pre>
+
+<p><code>PKGBUILD</code> 文件如下：</p>
+<pre><code class="shell"># This is an example PKGBUILD file. Use this as a start to creating your own,
+# and remove these comments. For more information, see 'man PKGBUILD'.
+# NOTE: Please fill out the license field for your package! If it is unknown,
+# then please put 'unknown'.
+
+# Maintainer: Your Name &lt;youremail@domain.com&gt;
+pkgname=wps-office
+pkgver=11.1.0.11698
+pkgrel=1
+arch=('x86_64')
+source=(&quot;wps-office_11.1.0.11698.XA_amd64.deb&quot;)
+md5sums=('c80a2b32604cb2a8eb0de456a062fe30')
+
+
+prepare() {
+    mv wps-office_11.1.0.11698.XA_amd64.deb ${pkgver}_${pkgver}.deb
+    ar -x ${pkgver}_${pkgver}.deb
+    mkdir ${pkgname}-${pkgver}
+    tar -xf data.tar.xz --directory=&quot;${pkgname}-${pkgver}&quot;
+}
+
+
+package() {
+  cd &quot;$pkgname-$pkgver&quot;
+  cp -r ./ ${pkgdir}/
+}
+</code></pre>
+
+<p>这里说明一下， <code>deb</code> 包全部解压后会有两个文件夹，<code>control</code> 和 <code>data</code> 。<code>control</code> 类似于我们的  <code>PKGBUILD</code> ，包含了软件的信息和安装过程中进行的一些操作。 <code>data</code> 类似于 <code>{pkgdir}</code> ，包含了需要安装的所有文件。因此我们要做的就是把 <code>deb</code> 全部解压，然后将 <code>data</code> 目录打包。</p>
+            </section>
+            <section class="post-meta">
+                <p>标签:
+                    <a class="post-link" href="../tags/Arch.html">Arch</a>
+                    <a class="post-link" href="../tags/manjaro.html">manjaro</a>
+                    <a class="post-link" href="../tags/makepkg.html">makepkg</a>
+                    <a class="post-link" href="../tags/PKGBUILD.html">PKGBUILD</a>
+                </p>
+            </section>
+        </main>
+        <footer>© 2018 - 2023 ZQW</footer>
+
+
+    </div>
+</body>
+
+</html>

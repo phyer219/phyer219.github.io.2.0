@@ -52,60 +52,59 @@
 <!-- toc -->
 
 <!-- more -->
-<p>\(F(\rho, z)\) 是一个光滑，并且在正负无穷快速decay到时0,的函数，比如 \(F(\rho, z) = 1/(z^2 + 1)\)。我们想要计算</p>
-\[
+
+<p>\(F(\rho, z)\) 是一个光滑，并且在正负无穷快速decay到时0,的函数，比如 \(F(\rho, z) = 1/(z^2 + 1)\)。我们想要计算
+[
 \lim_{\rho\to 0} \frac{\partial}{\partial\rho}\left[\rho
 \int_{-\infty}^{+\infty} \frac{F(\rho, z)}{\rho^2 + z^2}\mathrm{d}z\right]
-\]
-
-<p>其中的积分</p>
-\[
+]</p>
+<p>其中的积分
+[
 \int_{-\infty}^{+\infty} \frac{F(\rho, z)}{\rho^2 + z^2}\mathrm{d}z
-\]
-<p>可以在 \(\rho\to 0\) 处展开</p>
-\[
+]
+可以在 \(\rho\to 0\) 处展开
+[
 \int_{-\infty}^{+\infty} \frac{F(\rho, z)}{\rho^2 + z^2}\mathrm{d}z
 = \frac{\pi}{\rho}F(0, 0) + C_0 + C_1 \rho + C_2\rho^2 + \cdots
-\]
-<p>其中第一项</p>
-\[
+]
+其中第一项
+[
 \lim_{\rho\to 0}\int_{-\infty}^{+\infty} \frac{F(\rho, z)}{\rho^2 + z^2}\mathrm{d}z
 =\lim_{\rho\to 0}\int_{-\infty}^{+\infty} \frac{F(\rho, z)}{\rho}\frac{\rho}{\rho^2 + z^2}\mathrm{d}z
 =\int_{-\infty}^{+\infty} \frac{F(\rho, z)}{\rho}\pi\delta(z)\mathrm{d}z
 = \frac{\pi}{\rho}F(0, 0)
-\]
-<p>代回原式后得</p>
-\[
+]
+代回原式后得
+[
 \lim_{\rho\to 0} \frac{\partial}{\partial\rho}\left[\rho
 \int_{-\infty}^{+\infty} \frac{F(\rho, z)}{\rho^2 + z^2}\mathrm{d}z\right]
  = C_0
-\]
-<p>也就是说，我们想要的就是 \(C_0\)。但这在数值上如何计算呢？我们可以把发散的部分</p>
-\[
+]
+也就是说，我们想要的就是 \(C_0\)。但这在数值上如何计算呢？我们可以把发散的部分
+[
 \lim_{\rho\to 0}\int_{-\infty}^{+\infty} \frac{F(\rho, z)}{\rho^2 + z^2}\mathrm{d}z
 =
 \int_{-\infty}^{+\infty} \frac{F(0, z)}{ z^2}\mathrm{d}z
 = \frac{\pi}{\rho}F(0, 0)
-\]
-<p>减去，就得到</p>
-\[
+]
+减去，就得到
+[
 \lim_{\rho\to 0} \frac{\partial}{\partial\rho}\left[\rho
 \int_{-\infty}^{+\infty} \frac{F(\rho, z)}{\rho^2 + z^2}\mathrm{d}z\right]
 =
 \int_{-\infty}^{\infty}\left[
 \frac{F(0, z)}{z^2} - \frac{F(0, 0)}{z^2}\right]\mathrm{d}z
-\]
-<p>这样我们就可以做数值计算了。</p>
+]
+这样我们就可以做数值计算了。</p>
 <h1>例</h1>
-<p>比如\(F(\rho, z) = 1/(z^2 + 1)\)时，</p>
-\[
+<p>比如\(F(\rho, z) = 1/(z^2 + 1)\)时，
+[
 \int_{-\infty}^{\infty}\left[
 \frac{1}{z^2}\frac{1}{z^2 + 1} - \frac{1}{z^2}\frac{1}{0^2 + 1}\right]\mathrm{d}z
 = \int_{-\infty}^{\infty}
 \frac{-1}{z^2 + 1} \mathrm{d}z = -\pi
-\]
-
-<pre><code class="language-python">import matplotlib.pyplot as plt
+]</p>
+<pre><code class="python">import matplotlib.pyplot as plt
 import numpy as np
 from scipy.integrate import quad
 
@@ -164,10 +163,12 @@ plt.plot(nc, vc, '*')
 print(res)
 plt.savefig('finite-part.png', transparent=True)
 </code></pre>
-<pre><code class="language-python">numeric: (310.9760738639882, 9.137428740868536e-07)
+
+<pre><code class="python">numeric: (310.9760738639882, 9.137428740868536e-07)
 analytic: 314.1592653589793
 (-3.140592653672964, 4.381553441406457e-11)
 </code></pre>
+
 <p><img alt="first-term" src="2023-10-23-physics-Hadamard/first-term.png" /></p>
 <p><img alt="finite-part" src="2023-10-23-physics-Hadamard/finite-part.png" /></p>
 <p><a href="2023-10-23-physics-Hadamard/Hadamard.py">Hadamard.py</a></p>

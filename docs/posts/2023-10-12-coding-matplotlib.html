@@ -55,7 +55,7 @@
 
 <p>结合近几年的经验，把<code>matplotlib</code>作图常用的脚本集合在此。这包含了之前一些关于<code>matplotlib</code>作图的博文。</p>
 <h1>作图风格</h1>
-<pre><code class="language-python">from matplotlib import rc
+<pre><code class="python">from matplotlib import rc
 def prettify_plot():
     &quot;&quot;&quot;
     change the plot matplotlibrc file
@@ -71,9 +71,10 @@ def prettify_plot():
     rc('xtick', direction='in')
     rc('ytick', direction='in')
 </code></pre>
+
 <p>用于调整作图的字体，风格。</p>
 <h1>作图尺寸，布局</h1>
-<pre><code class="language-python">import matplotlib.pyplot as plt
+<pre><code class="python">import matplotlib.pyplot as plt
 fig = plt.figure(figsize=(3.375, 3.5))# 单栏图宽度固定3.375， 双栏图宽度固定 6.75
 
 gs = fig.add_gridspec(nrows=2, ncols=2,
@@ -85,8 +86,9 @@ ax_a = fig.add_subplot(gs[0, 0])
 ax_b = fig.add_subplot(gs[0, 1])
 ax_c = fig.add_subplot(gs[1, :])
 </code></pre>
+
 <h1>彩图及colorbar</h1>
-<pre><code class="language-python">gs = fig.add_gridspec(nrows=2, ncols=2,
+<pre><code class="python">gs = fig.add_gridspec(nrows=2, ncols=2,
                       left=.08, bottom=.1, right=.99, top=.94,
                       wspace=1, hspace=1,
                       width_ratios=[1, 2],
@@ -97,8 +99,9 @@ ax_c = fig.add_subplot(gs[1, :])
 ima = ax_a.imshow(np.random.randn(20, 20))
 fig.colorbar(ima, cax=ax_c, orientation='horizontal')
 </code></pre>
+
 <h2>自定义color map</h2>
-<pre><code class="language-python">import numpy as np
+<pre><code class="python">import numpy as np
 from matplotlib.colors import ListedColormap
 import matplotlib.pyplot as plt
 import matplotlib as mpl
@@ -118,10 +121,11 @@ plt.imshow(np.random.randn(100, 100), cmap=newcmap('jet'))
 plt.colorbar()
 plt.savefig('newcmap.png', transparent=True)
 </code></pre>
+
 <p><img alt="image-newcamp" src="2023-10-12-coding-matplotlib/newcmap.png" /></p>
 <p><a href="2023-10-12-coding-matplotlib/newcmap.py">newcmap.py</a></p>
 <h2>在每个子图插入 colorbar</h2>
-<pre><code class="language-python">import matplotlib.pyplot as plt
+<pre><code class="python">import matplotlib.pyplot as plt
 from mpl_toolkits.axes_grid1 import make_axes_locatable
 import numpy as np
 
@@ -144,10 +148,11 @@ fig.colorbar(im1, ax_cb1)
 fig.colorbar(im2, ax_cb2)
 fig.savefig('divider.png', transparent=True)
 </code></pre>
+
 <p><a href="2023-10-12-coding-matplotlib/divider.py">divider.py</a></p>
 <p><img alt="divider" src="2023-10-12-coding-matplotlib/divider.png" /></p>
 <h1>双重坐标轴</h1>
-<pre><code class="language-python">import numpy as np
+<pre><code class="python">import numpy as np
 import matplotlib.pyplot as plt
 fig = plt.figure()
 ax00 = fig.add_subplot(1, 2, 1)
@@ -166,10 +171,11 @@ ax01.plot(x, np.cos(x))
 ax01.secondary_xaxis(location='top', functions=(lambda x: 2*x, lambda x: 2*x))
 fig.savefig('double_ax.png', transparent=True)
 </code></pre>
+
 <p><img alt="image-double_ax" src="2023-10-12-coding-matplotlib/double_ax.png" /></p>
 <p><a href="2023-10-12-coding-matplotlib/double_ax.py">double_ax.py</a></p>
 <h1>示例 Phys. Rev. B 108, 054313 (2023) fig1</h1>
-<pre><code class="language-python">import matplotlib.pyplot as plt
+<pre><code class="python">import matplotlib.pyplot as plt
 from matplotlib import rc
 import numpy as np
 import json
@@ -395,6 +401,7 @@ fig.colorbar(im_d, cax=ax_cbar)
 fig.savefig(get_file_name(__file__)[:-4] + '.pdf', dpi=200)
 fig.savefig(get_file_name(__file__)[:-4] + '.png', dpi=200, transparent=True)
 </code></pre>
+
 <p>画图数据：<a href="2023-10-12-coding-matplotlib/fig2/fig2.json">fig2.json</a></p>
 <p><img alt="image-fig2" src="2023-10-12-coding-matplotlib/fig2/fig2.png" /></p>
 <h1>参考资料</h1>
