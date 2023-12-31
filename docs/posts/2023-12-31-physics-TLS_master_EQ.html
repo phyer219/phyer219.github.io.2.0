@@ -1,0 +1,337 @@
+<!DOCTYPE html><html class="no-js" lang="zh">
+
+
+<head>
+<script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+    </script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/styles/base16/solarized-light.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Long+Cang&family=Noto+Serif+SC&display=swap" rel="stylesheet"> <meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>原子自发辐射与主方程</title>
+<link rel="apple-touch-icon" sizes="180x180" href="../static/images/apple-touch-icon-next.png?v=6.4.1">
+<link rel="icon" type="image/png" sizes="32x32" href="../static/images/favicon-32x32-next.png?v=6.4.1">
+<link rel="icon" type="image/png" sizes="16x16" href="../static/images/favicon-16x16-next.png?v=6.4.1">
+<link rel="stylesheet" type="text/css" href="../static/css/mystyle.css">    
+
+</head>
+
+<body>
+    <div class="container">
+        <header>
+    <section class="banner"><img src="../static/images/banner.jpg"></section>
+</header>
+        <nav class="row">
+    <a class="nav" href="../">首页</a>
+    <a class="nav" href="../categories">分类</a>
+    <a class="nav" href="../tags">标签</a>
+    <a class="nav" href="../about">关于</a>
+</nav>
+
+        <main>
+            <h1 class="post-title">原子自发辐射与主方程
+            </h1>
+            <section class="post-meta">
+                <p>发表于:2023.12.31 ||</p>
+                <p>分类:<a class="post-link" href="../categories/专业笔记.html">专业笔记</a> ||</p>
+            </section>
+            <section class="post-content">
+                <h2>---</h2>
+<!-- toc -->
+
+<!-- more -->
+
+<ul>
+<li><a href="#原子自发辐射与主方程">原子自发辐射与主方程</a></li>
+<li><a href="#模型">模型</a></li>
+<li><a href="#粗粒化的时间演化-coarse-grained-rate-of-variation">粗粒化的时间演化 (coarse-grained rate of variation)</a></li>
+<li><a href="#对热库的假设">对热库的假设</a><ul>
+<li><a href="#热库很大处于定态">热库很大，处于定态</a></li>
+<li><a href="#热库关联时间很短">热库关联时间很短</a></li>
+<li><a href="#真空电磁场作为热库">真空电磁场作为热库</a></li>
+</ul>
+</li>
+<li><a href="#对相互作用的假设">对相互作用的假设</a></li>
+<li><a href="#近似之后的结果">近似之后的结果</a><ul>
+<li><a href="#v-的一阶项为零">\(V\) 的一阶项为零</a></li>
+<li><a href="#截断-v-的二阶项">截断 \(V\) 的二阶项</a></li>
+<li><a href="#利用-tau-tau_c-时-gtau-to-0把对-t-和-t-的积分解耦">利用 \(\\tau \&gt;\\tau\_c\) 时 \(g(\\tau) \\to 0\)，把对 \(t'\) 和 \(t''\) 的积分解耦</a></li>
+</ul>
+</li>
+<li><a href="#在能量本征态下写出积掉-t做久期近似">在能量本征态下写出，积掉 \(t'\)，做久期近似</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+<h1>原子自发辐射与主方程</h1>
+<h2>模型</h2>
+\[
+H = H_A + H_R + V
+\]
+
+<ul>
+<li>\(H_A\) : 要研究的系统 \(A\) 的哈密顿量， 比如原子 (Atom)。</li>
+<li>\(H_R\) : 系统所处的热库 (Reservoir) \(R\) 的哈密顿量，比如真空电磁场 (Radiation)</li>
+<li>\(V = -AR\) : 系统与热库的耦合。\(A\) 系统子空间的算符。\(R\) 热库子空间的算符。</li>
+</ul>
+<p>对于二能级原子与真空电磁场的耦合：</p>
+\[
+\begin{align}
+H_A = \frac{\hbar}{2}\left(\omega_{ba}|b\rangle\langle b|
+           - \omega_{ba}|a\rangle\langle a|\right)
+\end{align}
+\]
+<p>真空电磁场：</p>
+\[
+\begin{align}
+H_R = \sum_i \hbar \omega_i a_i^{\dagger} a_i
+\end{align}
+\]
+<p>偶极近似下，算符 \(A\) 是原子偶极跃迁的矩阵元，算符 \(R\) 是量子化的电场强度。具体来讲:</p>
+\[
+\begin{align}
+A =&amp; D (|a\rangle\langle b| + |b\rangle\langle a|) \\
+R =&amp; \sum_i \epsilon_i (a_i - a_i^\dagger)
+\end{align}
+\]
+<p>其中 \(D, \epsilon_i\) 都是系数。</p>
+<h2>粗粒化的时间演化 (coarse-grained rate of variation)</h2>
+<p>有两个重要的时间尺度。第一个是热库的关联时间 \(\tau_c\) 。第二个是系统 \(A\) 演化的时间尺度 \(T_R\)。他们应当满足 \(\tau_c\ll T_R\)
+主方程的时间尺度 \(\Delta t\) 的量级为</p>
+\[
+\begin{align}
+\tau_c \ll \Delta t \ll T_R
+\end{align}
+\]
+<p>以下考虑相互作用绘景，任意算符 \(O\) 在相互作用绘景中记为 \(\tilde{O}(t) = e^{-\frac{1}{i\hbar} (H_A + H_R)}Oe^{\frac{1}{i\hbar} (H_A + H_R)}\) 。系统加热库的密度矩阵记为 \(\rho(t)\) 。在相互作用绘景中</p>
+\[
+\begin{align}
+\tilde{\rho}(t) =&amp; e^{-\frac{1}{i\hbar} (H_A + H_R)}\rho(t)e^{\frac{1}{i\hbar} (H_A + H_R)}\\
+\tilde{V}(t) =&amp; e^{-\frac{1}{i\hbar} (H_A + H_R)}Ve^{\frac{1}{i\hbar} (H_A + H_R)}\\
+\tilde{A}(t) =&amp; e^{-\frac{1}{i\hbar} H_A}Ae^{\frac{1}{i\hbar} H_A}\\
+\tilde{R}(t) =&amp; e^{-\frac{1}{i\hbar} H_R}Re^{\frac{1}{i\hbar} (H_R)}
+\end{align}
+\]
+<p>根据密度矩阵在相互作用绘景中的演化方程 \(i\hbar \dot{\tilde{\rho}(t)} = [\tilde{V(t)}, \tilde{\rho}(t)]\)， 可知在我们粗粒化的时间 \(t\) 到 \(t + \Delta t\) 内，密度矩阵的演化为</p>
+\[
+\begin{align}
+\tilde{\rho}(t + \Delta t) = \tilde{\rho}(t) + \frac{1}{i\hbar}\int_t^{t+\Delta t} dt'\,
+\left[ \tilde{V}(t'), \tilde{\rho}(t') \right]
+\end{align}
+\]
+<p>我们对上式迭代一次，并把环境求偏迹掉，得到环境密度矩阵 \(\tilde{\sigma}(t) = \mathrm{Tr}_R [\tilde{\rho}(t)]\) 的演化增量</p>
+\[
+\begin{align}
+\Delta\tilde{\sigma}(t) \equiv &amp;
+\tilde{\sigma}(t + \Delta t) - \tilde{\sigma}(t) \\
+=&amp; \frac{1}{i\hbar}\int_t^{t+\Delta t} dt'\,
+\mathrm{Tr}_R\left[ \tilde{V}(t'), \tilde{\rho}(t) \right]\\
+&amp; + \left(\frac{1}{i\hbar}\right)^2\int_t^{t+\Delta t} dt'\,
+\int_t^{t'} dt''\,
+\mathrm{Tr}_R\left[ \tilde{V}(t'), \left[\tilde{V}(t''), \tilde{\rho}(t'') \right] \right]
+\end{align}
+\]
+<p>直到上式，都是严格精确的，没有做任何近似。</p>
+<h2>对热库的假设</h2>
+<h3>热库很大，处于定态</h3>
+<p>热库，顾名思义，要比研究的系统 \(A\) 大得多。把系统 \(A\) 求偏迹掉，热库的密度矩阵记为 \(\tilde{\sigma}_R(t) = \mathrm{Tr}_A [\tilde{\rho} (t)]\) 。</p>
+<p>由于热库比系统 \(A\) 大得多，所以可以认为一直不变</p>
+\[
+\begin{align}
+\tilde{\sigma}_R(t) \approx \tilde{\sigma}_R(t) = \sigma_R
+\end{align}
+\]
+<p>其次，假设热库一直处在一个定态上，也就是说</p>
+\[
+\begin{align}
+[\sigma_R, H_R] = 0
+\end{align}
+\]
+<p>记热库的能量本征态为</p>
+\[
+\begin{align}
+H_R |\mu \rangle = E_{\mu} |\mu \rangle
+\end{align}
+\]
+<p>那么定态 \(\sigma_R\) 可以展开为</p>
+\[
+\begin{align}
+\sigma_R = \sum_{\mu} p_{\mu} | \mu \rangle \langle \mu |
+\end{align}
+\]
+<p>假设 \(R\) 在 \(\sigma_R\) 上的均值为 \(0\)</p>
+\[
+\begin{align}
+\mathrm{Tr}[\sigma_R R] = \mathrm{Tr}[\sigma_R \tilde{R}(t)]
+\end{align}
+\]
+<p>因此就有</p>
+\[
+\begin{align}
+\mathrm{Tr}_R[\tilde{V}(t')\sigma_R] = 0
+\end{align}
+\]
+
+<h3>热库关联时间很短</h3>
+<p>定义热库中的算符 \(R\) 的双时平均</p>
+\[
+\begin{align}
+g(\tau) \equiv g(t' - t'') \equiv \mathrm{Tr}\left[\sigma_R \tilde{R}(t') \tilde{R}(t'')\right]
+= \mathrm{Tr}\left[\sigma_R \tilde{R}(\tau) \tilde{R}(0)\right]
+\end{align}
+\]
+<p>我们假设 \(g(\tau)\) 只集中在 \(\tau&lt;\tau_c\) 的范围内， 在 \(\tau &gt; \tau_c\) 迅速衰减。这在热库很大是，是自然的。热库很大，能谱倾向于连续，求和在 \(\tau\) 很大时，就会干涉相消。</p>
+<h3>真空电磁场作为热库</h3>
+<p>真空电磁场的密度矩阵为</p>
+\[
+\begin{align}
+\sigma_R = |0\rangle \langle 0|
+\end{align}
+\]
+<p>是一个温度为零的玻色场，每一个模式都处于基态，没有任何光子激发。它显然满足</p>
+\[
+\begin{align}
+\mathrm{Tr}_R[\tilde{V}(t')\sigma_R] = -\tilde{A}(t') \langle 0 |\tilde{R}(t') | 0\rangle
+= -\tilde{A}(t') \sum_i \epsilon_i \langle 0 | (a_i - a_i^\dagger) | 0\rangle
+= 0
+\end{align}
+\]
+<p>真空电磁场的 \(g(\tau)\) 为</p>
+\[
+\begin{align}
+g(\tau) = \sum_{i} |\epsilon_i|^2 \langle 0 | a_i e^{i \omega_i\tau} a_i^{\dagger} |0\rangle
+= \sum_i |\epsilon_i|^2 e^{-i\omega_i \tau}
+\end{align}
+\]
+<p>这个是可以具体算出的，但是可以看出，当 \(\omega_i\) 非常密时，当 \(\tau\) 大于某个值时，会由于干涉相消变成 \(0\) 。一个用于理解的情况是，\(\epsilon_i\) 是一个常数，\(\omega_i\) 太密，以至于连续，求和化积分，结果就变成一个 \(\delta\) 函数，只在 \(\tau=0\) 时非零。</p>
+<h2>对相互作用的假设</h2>
+<p>当然是弱耦合。</p>
+<p>其次，因为是弱耦合，这也会导致系统 \(A\) 和热库的关联</p>
+\[
+\begin{align}
+\tilde{\rho}_{\mathrm{correl}}(t) \equiv \tilde{\rho}(t)
+- \mathrm{Tr}_R [\tilde{\rho}(t)]\otimes  \mathrm{Tr}_A [\tilde{\rho}(t)]
+\end{align}
+\]
+<p>在粗粒化的时间尺度下(\(\tau_c \ll \Delta t\))只作为高阶项贡献（详见书），因此可以将总的密度矩阵近似为直积</p>
+\[
+\begin{align}
+\tilde{\rho}(t)
+\approx \mathrm{Tr}_R [\tilde{\rho}(t)]\otimes  \mathrm{Tr}_A [\tilde{\rho}(t)]
+\end{align}
+\]
+
+<h2>近似之后的结果</h2>
+<p>现在，我们结合对大环境小系统，弱耦合的假设，对之前的严格结果</p>
+\[
+\begin{align}
+\Delta\tilde{\sigma}(t) \equiv &amp;
+\tilde{\sigma}(t + \Delta t) - \tilde{\sigma}(t) \\
+=&amp; \frac{1}{i\hbar}\int_t^{t+\Delta t} dt'\,
+\mathrm{Tr}_R\left[ \tilde{V}(t'), \tilde{\rho}(t) \right]\\
+&amp; + \left(\frac{1}{i\hbar}\right)^2\int_t^{t+\Delta t} dt'\,
+\int_t^{t'} dt''\,
+\mathrm{Tr}_R\left[ \tilde{V}(t'), \left[\tilde{V}(t''), \tilde{\rho}(t'') \right] \right]
+\end{align}
+\]
+<p>进行化简。</p>
+<h3>\(V\) 的一阶项为零</h3>
+\[
+\begin{align}
+\mathrm{Tr}_R\left[ \tilde{V}(t'), \tilde{\rho}(t) \right]
+= \tilde{A}(t') \tilde{\sigma}(t) \, \mathrm{Tr}\left[ \tilde{R}(t'), \sigma_R \right]
+= 0
+\end{align}
+\]
+<p>因此一阶项消失。</p>
+<h3>截断 \(V\) 的二阶项</h3>
+<p>也就是把 \(V\) 的二阶项中的 \(\tilde{\rho}(t'')\) 换成 \(\tilde{\rho}(t)\)</p>
+<h3>利用 \(\tau &gt;\tau_c\) 时 \(g(\tau) \to 0\)，把对 \(t'\) 和 \(t''\) 的积分解耦</h3>
+\[
+\begin{align}
+\int_t^{t+\Delta t} dt'\, \int_t^{t'} dt''\
+= \int_0^{\Delta t} d\tau \, \int_{t+\tau}^{t+\Delta t} dt'\
+\approx \int_0^{\infty} d\tau \, \int_{t}^{t+\Delta t} dt'\
+\end{align}
+\]
+<p>此时，严格的结果现在变成了</p>
+\[
+\begin{align}
+\frac{\Delta \tilde{\sigma}(t)}{\Delta t}
+=&amp; - \frac{1}{\hbar^2}\int_0^\infty d\tau \, \frac{1}{\Delta{t}}\int_t^{t+\Delta t} d t' \\
+&amp;\left\{
+  g(\tau) \left[\tilde{A}(t')\tilde{A}(t'-\tau) \tilde{\sigma}(t)
+                - \tilde{A}(t'-\tau) \tilde{\sigma} (t) \tilde{A}(t')\right]
+\right.
+                \\
+&amp;\left.
+  + g(-\tau)\left[
+     \tilde{\sigma} (t)\tilde{A}(t'-\tau) \tilde{A}(t')
+     - \tilde{A}(t') \tilde{\sigma} (t)\tilde{A}(t'-\tau)
+   \right]
+\right\}
+\end{align}
+\]
+
+<h2>在能量本征态下写出，积掉 \(t'\)，做久期近似</h2>
+<p>在能量本征表象下，花括号中的四项中关于 \(t'\) 的部分是相同的，因此可以拿出来积掉</p>
+\[
+\begin{align}
+\frac{1}{\Delta t} \int_t^{t+\Delta t} dt'\, e^{-i (\omega_{ba} - \omega_{dc})}
+\end{align}
+\]
+<p>在 \(|\omega_{ba} - \omega_{dc}|\Delta t \ll 1\) 时， 结果为 \(1\) 。
+在 \(|\omega_{ba} - \omega_{dc}|\Delta t \gg 1\) 时， 结果为 \(0\) 。
+在 \(|\omega_{ba} - \omega_{dc}|\Delta t \sim 1\) 时， 为弱耦合，可以忽略。</p>
+<p>因此</p>
+\[
+\begin{align}
+\frac{\Delta \tilde{\sigma}_{ab}(t)}{\Delta t} = \sum_{c, d}^{\mathrm{sec}}
+e^{-i(\omega_{ba} - \omega_dc)t} \mathcal{R}_{abcd}\tilde{\sigma}_{cd}(t)
+\end{align}
+\]
+<p>其中</p>
+\[
+\begin{align}
+\mathcal{R}_{abcd}
+=&amp; -\frac{1}{\hbar^2} \int_0^{\infty} d\tau\, \\
+=&amp; \left\{
+  g(\tau)\left[ \delta_{bd} \sum_n A_{an}A_{nc} e^{i\omega_{cn}\tau}
+  -A_{ac}A_{db}e^{i\omega_{ca}\tau}   \right] \right. \\
+  &amp;+\left.
+    g(-\tau)\left[ \delta_{ac} \sum_n A_{dn}A_{nb} e^{i\omega_{nd}\tau}
+  -A_{ac}A_{db}e^{i\omega_{bd}\tau}   \right]
+ \right\} \\
+\end{align}
+\]
+
+<h1>Reference</h1>
+<ul>
+<li>Cohen-Tannoudji, Claude, Jacques Dupont-Roc, and Gilbert Grynberg. Atom-Photon Interactions: Basic Processes and Applications. New York: Wiley, 1992. Chapter IV.</li>
+</ul>
+            </section>
+            <section class="post-meta">
+                <p>标签:
+                    <a class="post-link" href="../tags/physics.html">physics</a>
+                    <a class="post-link" href="../tags/master equation.html">master equation</a>
+                    <a class="post-link" href="../tags/spontaneous emission.html">spontaneous emission</a>
+                </p>
+            </section>
+        </main>
+        <footer>© 2018 - 2023 ZQW</footer>
+
+
+    </div>
+</body>
+
+</html>

@@ -80,21 +80,18 @@
 <li>确保端口开放</li>
 </ul>
 <h1>记号说明</h1>
-<pre><code class="shell">$
+<pre><code class="language-shell">$
 </code></pre>
-
 <p>表示在本地运行的命令。</p>
-<pre><code class="shell">[root@cloud] $
+<pre><code class="language-shell">[root@cloud] $
 </code></pre>
-
 <p>表示在云服务器上以 root 用户运行命令。</p>
-<pre><code class="shell">(.sabafun)[root@cloud]$
+<pre><code class="language-shell">(.sabafun)[root@cloud]$
 </code></pre>
-
 <p>表示在在云服务器的虚拟环境 .sabafun 中以 root 用户运行命令。</p>
 <h1>安装 Apache, Mariadb, Python3</h1>
 <p>升级软件包，安装 apache（在 yum 库中名字叫 httpd）, mariadb, emacs(文本编辑器，个人偏好，可选)，并开启，然后设置开机自启。</p>
-<pre><code class="shell">[root@cloud]$ yum upgrade
+<pre><code class="language-shell">[root@cloud]$ yum upgrade
 
 [root@cloud]$ yum install httpd httpd-devel
 [root@cloud]$ yum systemctl start httpd
@@ -106,59 +103,50 @@
 
 [root@cloud]$ yum install emacs
 </code></pre>
-
 <p>在 CentOS 上，用 yum 命令来安装，升级，删除软件。yum upgrade 升级软件包，yum install 安装某个软件。systemctl 用来对服务进行开启，关闭，重启等操作。常用的有：systemctl start 开启服务，systemctl stop 停止服务，systemctl restart 重启服务，systemctl enable 让服务开机自启。</p>
 <p>通过安装 Anaconda 来安装 Python3.7，（yum 库中是Python3.6，版本有点低，会报错）。从 Anaconda 官网下载安装包后，进入到安装包所在的目录进行安装</p>
-<pre><code class="shell">[root@cloud]$ bash ./Anaconda3-2019.07-Linux-x86_64.sh 
+<pre><code class="language-shell">[root@cloud]$ bash ./Anaconda3-2019.07-Linux-x86_64.sh 
 </code></pre>
-
 <p>./ 表示当前路径。</p>
 <h1>安装虚拟环境 virtualenv</h1>
 <p>安装完 Anaconda 后，并没有自动将 python3.7 添加到环境变量中，因此直接把路径完整地打出来，来运行 pip</p>
-<pre><code class="shell">[root@cloud]$ /root/anaconda3/bin/pip install virtualenv
+<pre><code class="language-shell">[root@cloud]$ /root/anaconda3/bin/pip install virtualenv
 </code></pre>
-
 <p>pip 是 Python 的包管理工具，安装一些 Python 包都可以用 pip install 来安装。</p>
 <p>安装 virtualenv 是为了给 Django 建立一个独立的 Python 环境，下面可以看出这样做的好处。</p>
 <h1>创建虚拟环境</h1>
 <p>安装好 virtualenv 后，进入到想要进行工作的目录，通过 virtualenv 创建一个虚拟环境，用来进行后续的活动</p>
-<pre><code class="shell">[root@cloud]$ virtualenv .sabafun --python=/root/anaconda3/bin/python3
+<pre><code class="language-shell">[root@cloud]$ virtualenv .sabafun --python=/root/anaconda3/bin/python3
 </code></pre>
-
 <p>-- 后面的参数表示：以指定的 Python 版本创建虚拟环境，这里指定的是我们安装的 Anaconda 中的 Python 3。不加这个参数，就会以系统默认的 Python2.7。创建的虚拟环境名字叫做 .sabafun 前面的点是为了将存放虚拟环境的文件夹隐藏，也可以不加 点。</p>
 <p>进入虚拟环境，此时可以再确认一下 Python 版本</p>
-<pre><code class="shell">[root@cloud]$ source .sabafun/bin/activate
+<pre><code class="language-shell">[root@cloud]$ source .sabafun/bin/activate
 (.sabafun)[root@cloud]$ python --version
 Python 3.7.3
 (.sabafun)[root@cloud]$ pip --version
 pip 20.0.2 from /root/sabafun/.sabafun/lib/python3.7/site-packages/pip (python 3.7)
 </code></pre>
-
 <p>进入虚拟环境中，在命令的开头会出现 (.sabafun) ，表示在虚拟环境中。可以看出，在虚拟环境中直接运行 Python 就是我们创建虚拟环境时指定的 Python 版本。这样就和系统的环境隔离来，以避免一些冲突，因为如果将系统的 Python 绑定到 Python3.7 会导致系统中一些依赖 Python2 的程序无法正常运行。</p>
 <p>source 命令是让某些文件中的设置立即生效，这里是使虚拟环境中的设置生效。source 还用于当我们修改配置文件中的环境变量后，source 一下配置文件，就可以使配置马上生效，而不需要重启设备。</p>
 <p>要停止使用虚拟环境,可执行命令 deactivate </p>
-<pre><code class="shell">(.sabafun)[root@cloud]$ deactivate 
+<pre><code class="language-shell">(.sabafun)[root@cloud]$ deactivate 
 [root@cloud]$ 
 </code></pre>
-
 <p>执行后，前面的 (.sabafun) 就消失了，表示退出了虚拟环境。如果想要删除虚拟环境，直接将保存虚拟环境的文件夹删除就行。</p>
 <h1>安装 Django，创建项目</h1>
 <p>在虚拟环境中，用 pip 安装 Django，然后新建一个项目，名字叫作 sabafun</p>
-<pre><code class="shell">(.sabafun)[root@cloud]$ pip install django
+<pre><code class="language-shell">(.sabafun)[root@cloud]$ pip install django
 (.sabafun)[root@cloud]$ django-admin startproject sabafun .
 </code></pre>
-
 <p>注意不要漏掉最后的点'.'。这个命令末尾的句点让新项目使用合适的目录结构。如果漏了，就把这个项目的文件夹删除，再重新创建一次。</p>
 <h1>启动用于开发的 web 服务器</h1>
 <p>在启动 web 服务器测试之前，需要做一些准备工作。</p>
 <p>首先，将服务器的 IP 加到项目的设置文件 sabafun/settings.py 中，即将 ALLOWED_HOSTS 项修改为</p>
-<pre><code class="python">ALLOWED_HOSTS = [‘服务器IP地址’]
+<pre><code class="language-python">ALLOWED_HOSTS = [‘服务器IP地址’]
 </code></pre>
-
 <p>然后启动 Django 自带的用于测试的 web 服务器</p>
-<pre><code class="shell">(.sabafun)[root@cloud]$ python manage.py runserver 0.0.0.0:8000
+<pre><code class="language-shell">(.sabafun)[root@cloud]$ python manage.py runserver 0.0.0.0:8000
 </code></pre>
-
 <p>对项目的一些操作都保存在 mange.py 文件中。出现关于数据库的提示可以忽略。Django 默认用 SQLite 作数据库。而我们不用它，而是用 Mariadb。</p>
 <p>此时从本地访问 http://你的服务器IP:8000 ，出现如下小火箭界面，表示成功</p>
 <p><img alt="image-20200204125926942" src="./2020-02-03-physics-Django/image-20200204125926942.png" /></p>
@@ -170,19 +158,17 @@ pip 20.0.2 from /root/sabafun/.sabafun/lib/python3.7/site-packages/pip (python 3
 <p>我们上面看到的小火箭的页面，所用的 web 服务器不是 Apache ，而是 Django 自带的用于开发测试的 web 服务器，真正运行网站时，就要连接像 Apache, Nginx 这样的 web服务器。</p>
 <p>下面就设置一下，让 Apache 作为 web 服务器。</p>
 <p>首先安装负责 Apache 和 Python3 之间进行通信的 mod_wsgi 模块</p>
-<pre><code class="shell">(.sabafun)[root@cloud]$ pip install mod_wsgi
+<pre><code class="language-shell">(.sabafun)[root@cloud]$ pip install mod_wsgi
 </code></pre>
-
 <p>wsgi 是 Web Server Gateway Interface 的缩写。参考 Django 的官方文档 https://docs.djangoproject.com/zh-hans/3.0/howto/deployment/wsgi/modwsgi/ 和 https://modwsgi.readthedocs.io/en/develop/ 进行设置。</p>
 <p>安装好 mod_wsgi 后，查看 wsgi 和 Apache 的接头暗号</p>
-<pre><code class="shell">(.sabafun)[root@cloud]$ mod_wsgi-express module-config
+<pre><code class="language-shell">(.sabafun)[root@cloud]$ mod_wsgi-express module-config
 LoadModule wsgi_module &quot;/root/sabafun/.sabafun/lib/python3.7/site-packages/mod_wsgi/server/mod_wsgi-py37.cpython-37m-x86_64-linux-gnu.so&quot;
 WSGIPythonHome &quot;/root/sabafun/.sabafun&quot;
 </code></pre>
-
 <p>第一行是告诉 Apache 在哪里能够找到 wsgi 。第二行是告诉 Apache ，Django 所使用的 Python在哪里。</p>
 <p>然后将接头暗号写入 Apache 的配置文件 /etc/httpd/conf/httpd.conf ，在其末尾添加以下内容</p>
-<pre><code class="mysql">#　加载模块
+<pre><code class="language-mysql">#　加载模块
 LoadModule wsgi_module &quot;/root/sabafun/.sabafun/lib/python3.7/site-packages/mod_wsgi/server/mod_wsgi-py37.cpython-37m-x86_64-linux-gnu.so&quot;
 
 WSGIScriptAlias / /root/sabafun/sabafun/wsgi.py
@@ -195,68 +181,57 @@ Require all granted
 &lt;/Files&gt;
 &lt;/Directory&gt;
 </code></pre>
-
 <p>WSGIPythonPath 是告诉 Apache 项目所在的地方。WSGIScriptAlias 是说 wsgi.py 文件在哪。wsgi.py 文件 Django 已经写好了，我们不用动，里面包含了 Apache 如何与 Django 交流的方法 。</p>
 <p>同样是 Apache 的配置文件 /etc/httpd/conf/httpd.conf ，修改 ServerName 项为</p>
-<pre><code class="mysql">ServerName 你的服务器IP:80
+<pre><code class="language-mysql">ServerName 你的服务器IP:80
 </code></pre>
-
 <p>修改项目的权限，以便 Apache 有权限读取我们创建的项目</p>
-<pre><code class="shell">(.sabafun)[root@cloud]$ chmod 755 -R /root/
+<pre><code class="language-shell">(.sabafun)[root@cloud]$ chmod 755 -R /root/
 </code></pre>
-
 <p>chmod 是 change mode单词前缀的组合，用来修改文件的权限。755 是用八进制表示的权限，7 就是最高权限，三个数字分别表示文件所有者，用户组以及其它用户的权限，具体参考 https://zh.wikipedia.org/wiki/Chmod 。</p>
 <p>然后重启 Apache 服务</p>
-<pre><code class="shell">(.sabafun)[root@cloud]$ systemctl restart httpd
+<pre><code class="language-shell">(.sabafun)[root@cloud]$ systemctl restart httpd
 </code></pre>
-
 <p>直接访问 IP ，出现了小火箭，这时的小火箭是通过 Apache 给我们的，说明 Django 能够和 Apache 交流了。</p>
 <h1>设置 Mariadb 数据库</h1>
 <p>首先初始化数据库</p>
-<pre><code class="shell">(.sabafun)[root@cloud]$ mysql_secure_installation
+<pre><code class="language-shell">(.sabafun)[root@cloud]$ mysql_secure_installation
 </code></pre>
-
 <p>它会让我们设置数据库的 root 用户密码等。</p>
 <p>用 root 用户登陆数据库</p>
-<pre><code class="shell"># mysql -u root -p
+<pre><code class="language-shell"># mysql -u root -p
 </code></pre>
-
 <p>参数 -u 表示 user，后面跟用户名，参数 -p 表示 password。</p>
 <p>登陆数据库后，为 Django 创建一个用户，然后再为我们的项目创建一个数据库，并设置权限</p>
-<pre><code class="mysql">MariaDB [(none)]&gt; create user django@localhost identified by '密码';
+<pre><code class="language-mysql">MariaDB [(none)]&gt; create user django@localhost identified by '密码';
 MariaDB [(none)]&gt; create database sabafun character set utf8mb4 collateutf8mb4_unicode_ci;
 MariaDB [(none)]&gt; grant all on sabafun.* to django@localhost;
 MariaDB [(none)]&gt; exit
 </code></pre>
-
 <p>django@localhost 是说用户名是 django，localhost 表示是本地用户。sabafun 是数据库的名字。character 之后的内容是设置编码。一定注意设置编码！要不然可能没法导入中文！注意不要漏掉每条命令后的分号。命令不区分大小写。</p>
 <p>grant 是设置数据库的权限。all 表示权限的种类是所有权限， sabafun.<em> 表示要设置权限的数据库是 sabafun，</em> 表示这个数据库中所有的表，to 后面是将权限所赋予的用户。</p>
 <p>创建一个数据库就好像创建一个 Excel 文件，一个数据库中有好多表，不同的表就像 Excel 文件中的 sheet1, sheet2...，而每一个表中有好多行和列存储具体的数据。只不过数据库中的数据可能关系要复杂一些。</p>
 <p>创建用户后，可以查看已有的数据库，来确认刚刚创建的数据库确实已经存在</p>
 <pre><code>MariaDB [(none)]&gt; show databases;
 </code></pre>
-
 <p>当然也可以不创建新用户，而是让 Django 直接用 root 用户。创建新用户是出于便于管理和考虑安全性。</p>
 <h1>连接 Mariadb</h1>
 <p>首先安装 pymysql</p>
-<pre><code class="shell">(.sabafun)[root@cloud]$ pip install pymysql
+<pre><code class="language-shell">(.sabafun)[root@cloud]$ pip install pymysql
 </code></pre>
-
 <p>它使 Python3 能够读取 Mariadb 中的数据。</p>
 <p>修改项目中关于数据库的设置。参考 https://docs.djangoproject.com/zh-hans/3.0/ref/settings/#std:setting-DATABASES 。</p>
 <p>修改文件</p>
-<pre><code class="shell"> __init__.py 
+<pre><code class="language-shell"> __init__.py 
 </code></pre>
-
 <p>这个文件中的设置对整个项目都有效。修改为</p>
-<pre><code class="python">import pymysql
+<pre><code class="language-python">import pymysql
 pymysql.version_info = (1, 3, 13, &quot;final&quot;, 0)
 pymysql.install_as_MySQLdb()
 </code></pre>
-
 <p>它的意思是导入 pymysql 模块。第二行是为了解决一个 bug , 是个坑不加的话就会提示数据库的版本过低。第三行如字面意思。</p>
 <p>然后修改设置文件 sabafun/settings.py 中的 DATABASES 项：</p>
-<pre><code class="python">DATABASES = {
+<pre><code class="language-python">DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'sabafun',
@@ -270,24 +245,20 @@ pymysql.install_as_MySQLdb()
 }
 
 </code></pre>
-
 <p>里面都如字面意思，告诉 Django 怎么访问数据库。让它用 django 用户名访问我们创建好的 sabafun 数据库。</p>
 <h1>创建超级用户</h1>
 <p>接下来为项目创建一个超级用户，它能够方便地查看和修改项目的一些信息。</p>
-<pre><code class="shell">(.sabafun)[root@cloud]$ python manage.py createsuperuser
+<pre><code class="language-shell">(.sabafun)[root@cloud]$ python manage.py createsuperuser
 </code></pre>
-
 <p>然后迁移数据库，将我们创建和超级用户的相关信息存入我们之前设置好的数据库</p>
-<pre><code class="shell">(.sabafun)[root@cloud]$ python manage.py makemigrations
+<pre><code class="language-shell">(.sabafun)[root@cloud]$ python manage.py makemigrations
 No changes detected
 (.sabafun)[root@cloud]$ python manage.py migrate
 </code></pre>
-
 <p>如果出现一串 'OK' ，没有报错，则连接 Mariadb 数据库成功！</p>
 <p>之后启动 Django 用于开发测试的 web 服务器</p>
-<pre><code class="shell">(.sabafun)[root@cloud]$ python manage.py runserver 0.0.0.0:8000
+<pre><code class="language-shell">(.sabafun)[root@cloud]$ python manage.py runserver 0.0.0.0:8000
 </code></pre>
-
 <p>之所以不用 Apache，是因为 Django 用于开发的服务器在需要的情况下会对每一次的访问请求重新载入一遍 Python 代码。而用 Apache 的话，每次修改都要重启 Apache 服务。Django 的文档中说</p>
 <blockquote>
 <p>会自动重新加载的服务器 <a href="https://docs.djangoproject.com/zh-hans/3.0/ref/django-admin/#django-admin-runserver"><code>runserver</code></a></p>
@@ -295,13 +266,12 @@ No changes detected
 </blockquote>
 <h1>创建 poetry 应用</h1>
 <p>Django项目由一系列应用程序组成，它们协同工作，让项目成为一个整体。我们创建一个 poetry 应用，来实现网站展示一些古诗词的功能</p>
-<pre><code class="shell">(.sabafun)[root@cloud]$ python manage.py startapp poetry
+<pre><code class="language-shell">(.sabafun)[root@cloud]$ python manage.py startapp poetry
 </code></pre>
-
 <p>创建应用后，在项目文件夹中会出现相应的文件夹。</p>
 <h1>创建 poetry/urls.py　文件</h1>
 <p>这个文件用来说明 poetry 应用对应的网址是什么样的</p>
-<pre><code class="python">from django.urls import path
+<pre><code class="language-python">from django.urls import path
 
 from . import views
 
@@ -309,10 +279,9 @@ urlpatterns = [
     path('', views.poetry, name='poetry'),
 ]
 </code></pre>
-
 <h1>修改 sabafun/urls.py 文件</h1>
 <p>这个文件是整个项目的网址管理</p>
-<pre><code class="python">(.sabafun)[root@cloud]$ emacs sabafun/urls.py 
+<pre><code class="language-python">(.sabafun)[root@cloud]$ emacs sabafun/urls.py 
 
 from django.contrib import admin
 from django.urls import path, include
@@ -322,10 +291,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 ]
 </code></pre>
-
 <h1>创建 Shijing Models</h1>
 <p>修改文件 poetry/models.py </p>
-<pre><code class="python">from django.db import models
+<pre><code class="language-python">from django.db import models
 
 # Create your models here.                                                    
 
@@ -341,11 +309,10 @@ class Shijing(models.Model):
         &quot;&quot;&quot;返回模型的字符串表示&quot;&quot;&quot;
         return self.title
 </code></pre>
-
 <p>这个 Shijing 类就对应于数据库中的一个表，一个实例就对应于表中的一条记录，也就是一行。fixed_id, title, chapter... 这些对应于一条记录包含的属性。</p>
 <h1>注册 poetry 应用</h1>
 <p>修改 sabafun/settings.py 文件，告诉 Django ，我们创建了一个新的应用</p>
-<pre><code class="python">INSTALLED_APPS = [
+<pre><code class="language-python">INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -357,10 +324,9 @@ class Shijing(models.Model):
     'poetry'，
 ]
 </code></pre>
-
 <h1>迁移数据库</h1>
 <p>修改 poetry/admin.py ，将创建的 Shijing 添加到管理页面中</p>
-<pre><code class="python">from django.contrib import admin
+<pre><code class="language-python">from django.contrib import admin
 
 # Register your models here.                                                  
 
@@ -368,22 +334,19 @@ from .models import Shijing
 
 admin.site.register(Shijing)
 </code></pre>
-
 <p>然后迁移数据库</p>
-<pre><code class="shell">(.sabafun)[root@cloud]$ python manage.py makemigrations
+<pre><code class="language-shell">(.sabafun)[root@cloud]$ python manage.py makemigrations
 (.sabafun)[root@cloud]$ python manage.py migrate
 </code></pre>
-
 <p>这时，Django 就在数据库中为 Shijing 类中创建了一个表，但是还没有任何记录，是一个空表。</p>
 <p>启动 Django 用于开发测试的 web 服务器</p>
-<pre><code class="shell">(.sabafun)[root@cloud]$ python manage.py runserver 0.0.0.0:8000
+<pre><code class="language-shell">(.sabafun)[root@cloud]$ python manage.py runserver 0.0.0.0:8000
 </code></pre>
-
 <p>在本地通过浏览器访问 IP::8000/admin/ 就会看到 Shijing</p>
 <p><img alt="image-20200204153009618" src="./2020-02-03-physics-Django/image-20200204153009618.png" /></p>
 <h1>迁入 json 数据</h1>
 <p>然后将 github 上的诗词数据库 https://github.com/chinese-poetry/chinese-poetry 中的 shijing.json 传到服务器上，并在同一目录下编写文件 json_to_database.py</p>
-<pre><code class="python">(.sabafun)[root@cloud]$ emacs json_to_database.py
+<pre><code class="language-python">(.sabafun)[root@cloud]$ emacs json_to_database.py
 
 # -*- coding: &lt;encoding name&gt; -*-                                             
 '''将 json 转换到数据库'''
@@ -441,18 +404,16 @@ for v in shijing_values:                              #
 cursor.executemany(shijing_sql, shijing_values[:])  # 写入数据库              
 poetry.commit()                                      # 提交更改               
 </code></pre>
-
 <p>然后运行它</p>
-<pre><code class="shell">(.sabafun)[root@cloud]$ python json_to_database.py
+<pre><code class="language-shell">(.sabafun)[root@cloud]$ python json_to_database.py
 </code></pre>
-
 <p>就把 305 首诗经导入到数据库中了！</p>
 <p>进入管理界面，看到 305 个导入的数据</p>
 <p><img alt="image-20200204165427906" src="./2020-02-03-physics-Django/image-20200204165427906.png" /></p>
 <p>成功！</p>
 <h1>修改 poetry/views.py 文件</h1>
 <p>至此为止，我们只能够在管理页面中看到诗经，下面让它在网页上显示。</p>
-<pre><code class="python">from django.shortcuts import render
+<pre><code class="language-python">from django.shortcuts import render
 
 # Create your views here.                                                     
 
@@ -464,20 +425,18 @@ def poetry(request):
     context = {'shijing_list': Shijing.objects.all()}
     return render(request, 'poetry/poetry.html', context)
 </code></pre>
-
 <p>poetry 函数将一个字典 context 传递给渲染函数 render()</p>
 <h1>编写网页模板</h1>
 <p>新建一个用于存放 html 模板的地方</p>
-<pre><code class="shell">(.sabafun)[root@cloud sabafun]# cd poetry/
+<pre><code class="language-shell">(.sabafun)[root@cloud sabafun]# cd poetry/
 (.sabafun)[root@cloud poetry]# mkdir templates
 (.sabafun)[root@cloud poetry]# cd templates/
 (.sabafun)[root@cloud templates]# mkdir poetry
 (.sabafun)[root@cloud templates]# ls
 poetry
 </code></pre>
-
 <p>编写模板文件 poetry/templates/poetry/poetry.html</p>
-<pre><code class="html">&lt;body&gt;                                                                        
+<pre><code class="language-html">&lt;body&gt;                                                                        
 {% for item in shijing_list %}                                                
 &lt;center&gt;                                                                      
 第{{ item.fixed_id }}篇：                                                     
@@ -489,7 +448,6 @@ poetry
 &lt;/center&gt;                                                                     
 &lt;/body&gt;                                                                       
 </code></pre>
-
 <p>shijing_list 就是通过 render() 函数传递过来的字典的键。重启 httpd 从本地访问 IP/poetry，就看到如下界面了！</p>
 <p><img alt="image-20200204210647475" src="./2020-02-03-physics-Django/image-20200204210647475.png" /></p>
 <h1>后续操作</h1>
@@ -534,7 +492,6 @@ Require all granted
 # &lt;/Files&gt;                                                                    
 # &lt;/Directory&gt;                                                                
 </code></pre>
-
 <p>settings.py 中关于静态文件的配置</p>
 <pre><code># Static files (CSS, JavaScript, Images)                                      
 # https://docs.djangoproject.com/en/3.0/howto/static-files/                   
@@ -550,117 +507,94 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
 </code></pre>
-
 <h1>具体操作过程（仅供参考）</h1>
 <h2>配置 ssh 登陆</h2>
 <p>在本地连接云端</p>
-<pre><code class="shell">$ ssh root@h.saba.fun
+<pre><code class="language-shell">$ ssh root@h.saba.fun
 </code></pre>
-
 <p>输入密码，确认云端可以登录。</p>
 <p>为了不用每次连接都输入密码，以后采用密钥的方式登录。进入云端的 .ssh 目录，进行查看</p>
-<pre><code class="shell">[root@cloud]$ cd .ssh/
+<pre><code class="language-shell">[root@cloud]$ cd .ssh/
 </code></pre>
-
 <p>进入 .ssh 目录后，确认目录下的文件</p>
-<pre><code class="shell">[root@cloud]$ ls
+<pre><code class="language-shell">[root@cloud]$ ls
 authorized_keys
 [root@cloud]$ pwd
 /root/.ssh
 [root@cloud]$ logout
 </code></pre>
-
 <p>将本地的公钥传到云端</p>
-<pre><code class="shell">$ scp ~/.ssh/xps13.pub root@h.saba.fun:/root/.ssh
+<pre><code class="language-shell">$ scp ~/.ssh/xps13.pub root@h.saba.fun:/root/.ssh
 xps13.pub                                   100%  744     6.8KB/s   00:00 
 </code></pre>
-
 <p>再回到云端</p>
-<pre><code class="shell">$ ssh root@h.saba.fun
+<pre><code class="language-shell">$ ssh root@h.saba.fun
 </code></pre>
-
 <p>加入公钥</p>
-<pre><code class="shell">[root@cloud]$ cat .ssh/xps13.pub &gt;&gt; .ssh/authorized_keys 
+<pre><code class="language-shell">[root@cloud]$ cat .ssh/xps13.pub &gt;&gt; .ssh/authorized_keys 
 </code></pre>
-
 <p>此时从本地登陆云端就不需要输入密码了。</p>
 <h2>配置环境</h2>
 <p>在云端进行升级</p>
-<pre><code class="shell">[root@cloud]$ yum upgrade
+<pre><code class="language-shell">[root@cloud]$ yum upgrade
 </code></pre>
-
 <p>查看 Python 版本</p>
-<pre><code class="shell">[root@cloud]$ python --version
+<pre><code class="language-shell">[root@cloud]$ python --version
 Python 2.7.5
 </code></pre>
-
 <p>是 Python2 。Django 需要 Python3 因此安装 </p>
-<pre><code class="shell">[root@cloud]$ yum install python3
+<pre><code class="language-shell">[root@cloud]$ yum install python3
 </code></pre>
-
 <p>安装后查看确认</p>
-<pre><code class="shell">[root@cloud]$  python3 --version
+<pre><code class="language-shell">[root@cloud]$  python3 --version
 Python 3.6.8
 [root@cloud]$ pip3 --version
 pip 9.0.3 from /usr/lib/python3.6/site-packages (python 3.6)
 </code></pre>
-
 <p>安装 Apache</p>
-<pre><code class="shell">[root@cloud]$ yum install httpd
+<pre><code class="language-shell">[root@cloud]$ yum install httpd
 </code></pre>
-
 <p>运行 </p>
-<pre><code class="shell">[root@cloud]$ systemctl start httpd
+<pre><code class="language-shell">[root@cloud]$ systemctl start httpd
 </code></pre>
-
 <p>从本机登录 IP 会看到测试界面</p>
 <p><img alt="image-20200204114524492" src="./2020-02-03-physics-Django/image-20200204114524492.png" /></p>
 <p>让 Apache 开机自动运行</p>
-<pre><code class="shell">[root@cloud]$ systemctl enable httpd
+<pre><code class="language-shell">[root@cloud]$ systemctl enable httpd
 </code></pre>
-
 <p>安装 Mariadb</p>
-<pre><code class="shell">[root@cloud]$ yum install mariadb
+<pre><code class="language-shell">[root@cloud]$ yum install mariadb
 [root@cloud]$ yum install mariadb-server
 </code></pre>
-
 <h2>配置并测试 Django</h2>
 <p>新建一个存放项目的文件夹并进入</p>
-<pre><code class="shell">[root@cloud]$ mkdir saba
+<pre><code class="language-shell">[root@cloud]$ mkdir saba
 [root@cloud]$ cd saba
 </code></pre>
-
 <p>用 Pip3 安装虚拟环境</p>
-<pre><code class="shell">[root@cloud]$ pip3 install virtualenv
+<pre><code class="language-shell">[root@cloud]$ pip3 install virtualenv
 </code></pre>
-
 <p>创建虚拟环境</p>
-<pre><code class="shell">[root@cloud]$ virtualenv .sabaenv
+<pre><code class="language-shell">[root@cloud]$ virtualenv .sabaenv
 </code></pre>
-
 <p>激活虚拟环境</p>
-<pre><code class="shell">[root@cloud]$ source .sabaenv/bin/activate
+<pre><code class="language-shell">[root@cloud]$ source .sabaenv/bin/activate
 </code></pre>
-
 <p>成功后在终端的前面会出现</p>
-<pre><code class="shell">(.sabaenv)[root@cloud]$
+<pre><code class="language-shell">(.sabaenv)[root@cloud]$
 </code></pre>
-
 <p>此时环境中就是 Python3 了</p>
-<pre><code class="shell">(.sabaenv)[root@cloud]$ pip --version
+<pre><code class="language-shell">(.sabaenv)[root@cloud]$ pip --version
 pip 20.0.2 from /root/saba/.sabaenv/lib/python3.6/site-packages/pip (python 3.6)
 (.sabaenv)[root@cloud]$ python --version 
 Python 3.6.8
 </code></pre>
-
 <p>安装 Django</p>
-<pre><code class="shell">(.sabaenv)[root@cloud]$ pip install django
+<pre><code class="language-shell">(.sabaenv)[root@cloud]$ pip install django
 </code></pre>
-
 <p>创建项目</p>
-<pre><code class="shell">(.sabaenv)[root@cloud]$ django-admin startproject sabafun
+<pre><code class="language-shell">(.sabaenv)[root@cloud]$ django-admin startproject sabafun
 </code></pre>
-
 <p>查看确认</p>
 <pre><code>(.sabaenv)# ls -alh
 total 16K
@@ -670,16 +604,14 @@ drwxr-xr-x  5 root root 4.0K Feb  4 11:52 .sabaenv
 drwxr-xr-x  3 root root 4.0K Feb  4 11:59 sabafun
 
 </code></pre>
-
-<pre><code class="shell">(.sabaenv)[root@cloud]$ cd sabafun/
+<pre><code class="language-shell">(.sabaenv)[root@cloud]$ cd sabafun/
 (.sabaenv)[root@cloud]$ ls
 manage.py  sabafun
 (.sabaenv)[root@cloud]$ ls sabafun/
 asgi.py  __init__.py  settings.py  urls.py  wsgi.py
 
 </code></pre>
-
-<pre><code class="shell">(.sabaenv)[root@cloud]$ python manage.py runserver 0.0.0.0:8000
+<pre><code class="language-shell">(.sabaenv)[root@cloud]$ python manage.py runserver 0.0.0.0:8000
 Watching for file changes with StatReloader
 Exception in thread django-main-thread:
 Traceback (most recent call last):
@@ -738,38 +670,32 @@ django.core.exceptions.ImproperlyConfigured: SQLite 3.8.3 or later is required (
 ERROR: Could not find a version that satisfies the requirement SQLite (from versions: none)
 ERROR: No matching distribution found for SQLite
 </code></pre>
-
-<pre><code class="shell">(.sabaenv)[root@cloud]$ pip install db-sqlite3
+<pre><code class="language-shell">(.sabaenv)[root@cloud]$ pip install db-sqlite3
 </code></pre>
-
 <p>还是不行。重新安装 Python 吧。</p>
 <p>安装 Anaconda 。它的 Python 版本比较新</p>
-<pre><code class="shell">(.sabaenv)[root@cloud]$ deactivate
+<pre><code class="language-shell">(.sabaenv)[root@cloud]$ deactivate
 [root@cloud]$ bash ./Anaconda3-2019.07-Linux-x86_64.sh 
 [root@cloud]$ /root/anaconda3/bin/python3 --version
 Python 3.7.3
 </code></pre>
-
 <p>重新来</p>
-<pre><code class="bash">[root@cloud]$ rm -rf saba/
+<pre><code class="language-bash">[root@cloud]$ rm -rf saba/
 [root@cloud]$ mkdir sabafun
 [root@cloud]$ cd sabafun
 </code></pre>
-
-<pre><code class="shell">[root@cloud]$ virtualenv .sabafun --python=/root/anaconda3/bin/python3
+<pre><code class="language-shell">[root@cloud]$ virtualenv .sabafun --python=/root/anaconda3/bin/python3
 </code></pre>
-
 <p>进入虚拟环境</p>
-<pre><code class="shell">[root@cloud]$ source .sabafun/bin/activate
+<pre><code class="language-shell">[root@cloud]$ source .sabafun/bin/activate
 (.sabafun)[root@cloud]$ python --version
 Python 3.7.3
 (.sabafun)[root@cloud]$ pip --version
 pip 20.0.2 from /root/sabafun/.sabafun/lib/python3.7/site-packages/pip (python 3.7)
 </code></pre>
-
 <p>这时的版本应该没问题了。</p>
 <p>接下来再把之前的工作重复一遍</p>
-<pre><code class="shell">(.sabafun)[root@cloud]$ pip install django
+<pre><code class="language-shell">(.sabafun)[root@cloud]$ pip install django
 Collecting django
   Using cached Django-3.0.3-py3-none-any.whl (7.5 MB)
 Collecting asgiref~=3.2
@@ -781,9 +707,8 @@ Collecting sqlparse&gt;=0.2.2
 Installing collected packages: asgiref, pytz, sqlparse, django
 Successfully installed asgiref-3.2.3 django-3.0.3 pytz-2019.3 sqlparse-0.3.0
 </code></pre>
-
 <p>一定记得加末尾的点</p>
-<pre><code class="shell">(.sabafun)[root@cloud]$ django-admin startproject sabafun .
+<pre><code class="language-shell">(.sabafun)[root@cloud]$ django-admin startproject sabafun .
 (.sabafun)[root@cloud]$ python manage.py runserver 0.0.0.0:8000
 Watching for file changes with StatReloader
 Performing system checks...
@@ -798,25 +723,20 @@ Django version 3.0.3, using settings 'sabafun.settings'
 Starting development server at http://0.0.0.0:8000/
 Quit the server with CONTROL-C.
 </code></pre>
-
 <p>一次试运行不成功提示</p>
 <pre><code>You may need to add '***.***.***.***' to ALLOWED_HOSTS.
 </code></pre>
-
 <p>安装我 熟悉的 emacs 编辑器</p>
-<pre><code class="shell">(.sabafun)[root@cloud]$ yum install emacs
+<pre><code class="language-shell">(.sabafun)[root@cloud]$ yum install emacs
 </code></pre>
-
 <p>将服务器的 IP 加到设置中</p>
-<pre><code class="shell">(.sabafun)[root@cloud]$ emacs sabafun/settings.py 
+<pre><code class="language-shell">(.sabafun)[root@cloud]$ emacs sabafun/settings.py 
 </code></pre>
-
 <p>将  IP 加入</p>
-<pre><code class="python">ALLOWED_HOSTS = [‘你的IP’]
+<pre><code class="language-python">ALLOWED_HOSTS = [‘你的IP’]
 </code></pre>
-
 <p>保存，退出。再运行（无视数据库提示，因为不用这个）</p>
-<pre><code class="shell">(.sabafun)[root@cloud]$ python manage.py runserver 0.0.0.0:8000
+<pre><code class="language-shell">(.sabafun)[root@cloud]$ python manage.py runserver 0.0.0.0:8000
 Watching for file changes with StatReloader
 Performing system checks...
 
@@ -831,35 +751,30 @@ Starting development server at http://0.0.0.0:8000/
 Quit the server with CONTROL-C.
 
 </code></pre>
-
 <p>此时从本地访问 8000 端口，终于出现了小火箭界面</p>
 <p><img alt="image-20200204125926942" src="./2020-02-03-physics-Django/image-20200204125926942.png" /></p>
 <p>参考官方文档连接 Apache https://docs.djangoproject.com/zh-hans/3.0/howto/deployment/wsgi/modwsgi/</p>
 <h2>连接 mod_wsgi</h2>
 <p>首先安装 mod_wsgi</p>
-<pre><code class="shell">(.sabafun)[root@cloud]$ pip install mod_wsgi
+<pre><code class="language-shell">(.sabafun)[root@cloud]$ pip install mod_wsgi
 </code></pre>
-
 <p>参考官方文档连接 Apache https://docs.djangoproject.com/zh-hans/3.0/howto/deployment/wsgi/modwsgi/</p>
 <p>根据　https://modwsgi.readthedocs.io/en/develop/　的提示，查看所需要的路径</p>
-<pre><code class="shell">(.sabafun)[root@cloud]$ mod_wsgi-express module-config
+<pre><code class="language-shell">(.sabafun)[root@cloud]$ mod_wsgi-express module-config
 LoadModule wsgi_module &quot;/root/sabafun/.sabafun/lib/python3.7/site-packages/mod_wsgi/server/mod_wsgi-py37.cpython-37m-x86_64-linux-gnu.so&quot;
 WSGIPythonHome &quot;/root/sabafun/.sabafun&quot;
 
 </code></pre>
-
-<pre><code class="shell">(.sabafun)[root@cloud]$ ls
+<pre><code class="language-shell">(.sabafun)[root@cloud]$ ls
 asgi.py      __pycache__  settings.py~  wsgi.py
 __init__.py  settings.py  urls.py
 (.sabafun)[root@cloud]$ pwd
 /root/sabafun/sabafun
 </code></pre>
-
-<pre><code class="shell">(.sabafun)[root@cloud]$ emacs /etc/httpd/conf/httpd.conf 
+<pre><code class="language-shell">(.sabafun)[root@cloud]$ emacs /etc/httpd/conf/httpd.conf 
 </code></pre>
-
 <p>添加</p>
-<pre><code class="mysql">#　加载模块
+<pre><code class="language-mysql">#　加载模块
 LoadModule wsgi_module &quot;/root/sabafun/.sabafun/lib/python3.7/site-packages/mod_wsgi/server/mod_wsgi-py37.cpython-37m-x86_64-linux-gnu.so&quot;
 
 WSGIScriptAlias / /root/sabafun/sabafun/wsgi.py
@@ -874,23 +789,18 @@ Require all granted
 
 
 </code></pre>
-
-<pre><code class="shell">(.sabafun)[root@cloud]$ systemctl restart httpd
+<pre><code class="language-shell">(.sabafun)[root@cloud]$ systemctl restart httpd
 </code></pre>
-
 <p>重启后访问服务器 IP 没有反应。因此去查看 Apache 的 error log</p>
-<pre><code class="shell">(.sabafun)[root@cloud]$ emacs /etc/httpd/logs/error_log 
+<pre><code class="language-shell">(.sabafun)[root@cloud]$ emacs /etc/httpd/logs/error_log 
 </code></pre>
-
-<pre><code class="mysql">AH00558: httpd: Could not reliably determine the server's fully qualified domain name, using 127.0.0.1. Set the 'ServerName' directive globally to suppress t\
+<pre><code class="language-mysql">AH00558: httpd: Could not reliably determine the server's fully qualified domain name, using 127.0.0.1. Set the 'ServerName' directive globally to suppress t\
 his message
 </code></pre>
-
-<pre><code class="mysql">ServerName 121.36.10.39:80
+<pre><code class="language-mysql">ServerName 121.36.10.39:80
 </code></pre>
-
 <p>还是不行，再次查看 error log</p>
-<pre><code class="mysql">Current thread 0x00007fca65324880 (most recent call first):
+<pre><code class="language-mysql">Current thread 0x00007fca65324880 (most recent call first):
 [Tue Feb 04 13:31:57.815061 2020] [wsgi:warn] [pid 5238] (13)Permission denied: mod_wsgi (pid=5238): Unable to stat Python ho\
 me /root/sabafun/.sabafun. Python interpreter may not be able to be initialized correctly. Verify the supplied path and acces\
 s permissions for whole of the path.
@@ -899,26 +809,21 @@ ModuleNotFoundError: No module named 'encodings'
 
 Current thread 0x00007fca65324880 (most recent call first):
 </code></pre>
-
 <p>说是不能访问环境。但是环境的路径没有错，可能是权限问题。经过几次尝试并参考　http://www.jeepxie.net/article/565984.html　后</p>
-<pre><code class="shell">(.sabafun)[root@cloud]$ chmod 755 -R /root/
+<pre><code class="language-shell">(.sabafun)[root@cloud]$ chmod 755 -R /root/
 </code></pre>
-
 <p>再重启 httpd 。直接访问 IP ，出现了小火箭。</p>
 <h2>配置 Mariadb</h2>
 <p>启动服务（之前忘记安装 mariadb-server，就找不到服务）</p>
-<pre><code class="shell">(.sabafun)[root@cloud]$ systemctl start mariadb
+<pre><code class="language-shell">(.sabafun)[root@cloud]$ systemctl start mariadb
 </code></pre>
-
 <p>初始化</p>
-<pre><code class="shell">(.sabafun)[root@cloud]$ mysql_secure_installation
+<pre><code class="language-shell">(.sabafun)[root@cloud]$ mysql_secure_installation
 </code></pre>
-
 <p>登陆</p>
-<pre><code class="shell"># mysql -u root -p
+<pre><code class="language-shell"># mysql -u root -p
 </code></pre>
-
-<pre><code class="mysql">MariaDB [(none)]&gt; create user django@localhost identified by '*********';
+<pre><code class="language-mysql">MariaDB [(none)]&gt; create user django@localhost identified by '*********';
 
 一定注意设置编码！要不然没法导入中文
 MariaDB [(none)]&gt; create database sabafun character set utf8mb4 collate utf8mb4_unicode_ci;
@@ -930,9 +835,8 @@ Query OK, 0 rows affected (0.00 sec)
 
 MariaDB [(none)]&gt;　exit
 </code></pre>
-
 <p>用新用户登陆</p>
-<pre><code class="mysql">(.sabafun)[root@cloud]$ mysql -u django -p
+<pre><code class="language-mysql">(.sabafun)[root@cloud]$ mysql -u django -p
 
 
 MariaDB [(none)]&gt; use sabafun;
@@ -945,10 +849,9 @@ MariaDB [sabafun]&gt; exit
 
 Bye
 </code></pre>
-
 <h2>连接　mariadb</h2>
 <p>修改项目中的　settings.py 中关于数据库的设置 https://docs.djangoproject.com/zh-hans/3.0/ref/settings/#std:setting-DATABASES</p>
-<pre><code class="mysql">MariaDB [(none)]&gt; show variables like 'port';
+<pre><code class="language-mysql">MariaDB [(none)]&gt; show variables like 'port';
 +---------------+-------+
 | Variable_name | Value |
 +---------------+-------+
@@ -957,23 +860,20 @@ Bye
 1 row in set (0.00 sec)
 
 </code></pre>
-
-<pre><code class="shell">(.sabafun)[root@cloud]$ pip install pymysql
+<pre><code class="language-shell">(.sabafun)[root@cloud]$ pip install pymysql
 Collecting pymysql
   Downloading PyMySQL-0.9.3-py2.py3-none-any.whl (47 kB)
      |████████████████████████████████| 47 kB 13 kB/s 
 Installing collected packages: pymysql
 Successfully installed pymysql-0.9.3
 </code></pre>
-
-<pre><code class="python">__init.py__:
+<pre><code class="language-python">__init.py__:
 
 import pymysql
 pymysql.version_info = (1, 3, 13, &quot;final&quot;, 0)
 pymysql.install_as_MySQLdb()
 </code></pre>
-
-<pre><code class="python">
+<pre><code class="language-python">
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -988,9 +888,8 @@ DATABASES = {
 }
 
 </code></pre>
-
 <p>测试一下</p>
-<pre><code class="shell">(.sabafun)[root@cloud]$ python manage.py makemigrations
+<pre><code class="language-shell">(.sabafun)[root@cloud]$ python manage.py makemigrations
 No changes detected
 (.sabafun)[root@cloud]$ python manage.py migrate
 System check identified some issues:
@@ -1019,20 +918,18 @@ Running migrations:
   Applying auth.0011_update_proxy_permissions... OK
   Applying sessions.0001_initial... OK
 </code></pre>
-
 <p>没有报错，连接成功！</p>
 <h2>开始写 Django 页面</h2>
 <p>创建管理页面</p>
-<pre><code class="shell">(.sabafun)[root@cloud]$ python manage.py createsuperuser
+<pre><code class="language-shell">(.sabafun)[root@cloud]$ python manage.py createsuperuser
 </code></pre>
-
 <p>时候要重启　httpd　才能进入　IP/admin　。而且好像有些问题。因此，在编写项目的过程中用　django　自带的开发服务器，它有一些好处，比如官方文档中说的　</p>
 <blockquote>
 <p>会自动重新加载的服务器 <a href="https://docs.djangoproject.com/zh-hans/3.0/ref/django-admin/#django-admin-runserver"><code>runserver</code></a></p>
 <p>用于开发的服务器在需要的情况下会对每一次的访问请求重新载入一遍 Python 代码。所以你不需要为了让修改的代码生效而频繁的重新启动服务器。然而，一些动作，比如添加新文件，将不会触发自动重新加载，这时你得自己手动重启服务器。</p>
 </blockquote>
 <p>新开一个终端，进入虚拟环境，打开　django　开发服务器</p>
-<pre><code class="shell">$ ssh root@h.saba.fun
+<pre><code class="language-shell">$ ssh root@h.saba.fun
 [root@cloud]$ cd /root/sabafun/
 [root@cloud]$ source .sabafun/bin/activate
 (.sabafun)[root@cloud]$ python manage.py runserver 0.0.0.0:8000
@@ -1045,12 +942,10 @@ Django version 3.0.3, using settings 'sabafun.settings'
 Starting development server at http://0.0.0.0:8000/
 Quit the server with CONTROL-C.
 </code></pre>
-
 <h2>创建 poetry 应用</h2>
-<pre><code class="shell">(.sabafun)[root@cloud]$ python manage.py startapp poetry
+<pre><code class="language-shell">(.sabafun)[root@cloud]$ python manage.py startapp poetry
 </code></pre>
-
-<pre><code class="python">(.sabafun)[root@cloud]$ emacs poetry/views.py 
+<pre><code class="language-python">(.sabafun)[root@cloud]$ emacs poetry/views.py 
 
 
 from django.shortcuts import render
@@ -1062,8 +957,7 @@ from django.http import HttpResponse
 def poetry(request):
     return HttpResponse(&quot;Hello, poetry!&quot;)
 </code></pre>
-
-<pre><code class="python">(.sabafun)[root@cloud]$ emacs poetry/urls.py
+<pre><code class="language-python">(.sabafun)[root@cloud]$ emacs poetry/urls.py
 
 from django.urls import path
 
@@ -1073,8 +967,7 @@ urlpatterns = [
     path('', views.poetry, name='poetry'),
 ]
 </code></pre>
-
-<pre><code class="python">(.sabafun)[root@cloud]$ emacs sabafun/urls.py 
+<pre><code class="language-python">(.sabafun)[root@cloud]$ emacs sabafun/urls.py 
 
 from django.contrib import admin
 from django.urls import path, include
@@ -1084,12 +977,11 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 ]
 </code></pre>
-
 <p>查看　IP:8000/poetry/</p>
 <p>出现　Hello, poetry!</p>
 <p>成功！</p>
 <h2>创建 Shijing Models</h2>
-<pre><code class="python">(.sabafun)[root@cloud]$ emacs poetry/models.py 
+<pre><code class="language-python">(.sabafun)[root@cloud]$ emacs poetry/models.py 
 
 
 from django.db import models
@@ -1108,9 +1000,8 @@ class Shijing(models.Model):
         &quot;&quot;&quot;返回模型的字符串表示&quot;&quot;&quot;
         return self.title
 </code></pre>
-
 <p>添加　poetry　应用</p>
-<pre><code class="python">(.sabafun)[root@cloud]$ emacs sabafun/settings.py
+<pre><code class="language-python">(.sabafun)[root@cloud]$ emacs sabafun/settings.py
 
 
 INSTALLED_APPS = [
@@ -1125,9 +1016,8 @@ INSTALLED_APPS = [
     'poetry'，
 ]
 </code></pre>
-
 <p>迁移</p>
-<pre><code class="shell">(.sabafun)[root@cloud]$ python manage.py makemigrations
+<pre><code class="language-shell">(.sabafun)[root@cloud]$ python manage.py makemigrations
 Migrations for 'poetry':
   poetry/migrations/0001_initial.py
     - Create model Shijing
@@ -1142,8 +1032,7 @@ Operations to perform:
 Running migrations:
   Applying poetry.0001_initial... OK
 </code></pre>
-
-<pre><code class="python">(.sabafun)[root@cloud]$ emacs poetry/admin.py 
+<pre><code class="language-python">(.sabafun)[root@cloud]$ emacs poetry/admin.py 
 
 
 from django.contrib import admin
@@ -1154,16 +1043,14 @@ from .models import Shijing
 
 admin.site.register(Shijing)
 </code></pre>
-
 <p>这时 IP::8000/admin/　就会看到 Shijing</p>
 <p><img alt="image-20200204153009618" src="./2020-02-03-physics-Django/image-20200204153009618.png" /></p>
 <h2>迁入 json 数据</h2>
-<pre><code class="mysql">删除表中所有条目
+<pre><code class="language-mysql">删除表中所有条目
 truncate table poetry_shijing;
 </code></pre>
-
 <p>传入 shijing.json 并编写文件</p>
-<pre><code class="python">(.sabafun)[root@cloud]$ emacs json_to_database.py
+<pre><code class="language-python">(.sabafun)[root@cloud]$ emacs json_to_database.py
 
 # -*- coding: &lt;encoding name&gt; -*-                                             
 '''将 json 转换到数据库'''
@@ -1225,24 +1112,21 @@ poetry.commit()                                      # 提交更改
 
 
 </code></pre>
-
 <p>然后运行导入</p>
-<pre><code class="shell">(.sabafun)[root@cloud]$ python json_to_database.py
+<pre><code class="language-shell">(.sabafun)[root@cloud]$ python json_to_database.py
 </code></pre>
-
 <p>进入管理界面，看到 305 个导入的数据</p>
 <p><img alt="image-20200204165427906" src="./2020-02-03-physics-Django/image-20200204165427906.png" /></p>
 <p>成功！</p>
 <h2>编写网页，来显示</h2>
-<pre><code class="shell">(.sabafun)[root@cloud sabafun]# cd poetry/
+<pre><code class="language-shell">(.sabafun)[root@cloud sabafun]# cd poetry/
 (.sabafun)[root@cloud poetry]# mkdir templates
 (.sabafun)[root@cloud poetry]# cd templates/
 (.sabafun)[root@cloud templates]# mkdir poetry
 (.sabafun)[root@cloud templates]# ls
 poetry
 </code></pre>
-
-<pre><code class="html">(.sabafun)[root@cloud sabafun]# emacs poetry/templates/poetry/poetry.html
+<pre><code class="language-html">(.sabafun)[root@cloud sabafun]# emacs poetry/templates/poetry/poetry.html
 
 
 
@@ -1260,8 +1144,7 @@ poetry
 &lt;/center&gt;                                                                     
 &lt;/body&gt;                                                                       
 </code></pre>
-
-<pre><code class="python">(.sabafun)[root@cloud sabafun]# emacs poetry/views.py
+<pre><code class="language-python">(.sabafun)[root@cloud sabafun]# emacs poetry/views.py
 
 
 from django.shortcuts import render
@@ -1276,7 +1159,6 @@ def poetry(request):
     context = {'shijing_list': Shijing.objects.all()}
     return render(request, 'poetry/poetry.html', context)
 </code></pre>
-
 <p>重启 httpd 从本地访问 IP/poetry，就看到界面了</p>
 <p><img alt="image-20200204210647475" src="./2020-02-03-physics-Django/image-20200204210647475.png" /></p>
 <h1>参考资料</h1>

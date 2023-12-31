@@ -94,7 +94,7 @@ I(\Omega) =&amp;-\pi\int_{-1}^1\mathrm{d}x \int_0^{\infty}\mathrm{d}q\cdot
 \]
 
 <h1>解析积 \(q\) , 数值积 \(x\)</h1>
-<p>[
+\[
 \begin{align}
 I(\Omega) =&amp;-\pi\int_{-1}^1\mathrm{d}x \int_0^{\infty}\mathrm{d}q\cdot 
     q^2\frac{\delta(q-q^+)+\delta(q-q^-)}{|q^+-q^-|}\\
@@ -106,18 +106,20 @@ I(\Omega) =&amp;-\pi\int_{-1}^1\mathrm{d}x \int_0^{\infty}\mathrm{d}q\cdot
                  \frac{\theta(\Omega+14)\theta(18-\Omega)
                 \left( q^{+2}+q^{-2} \right)}{|q^+-q^-|}\right]
 \end{align}
-]</p>
-<p>其中
-[
+\]
+
+<p>其中</p>
+\[
 \begin{align}
 \Delta =&amp; (16x)^2-8(\Omega+14) \\
 q^{\pm} =&amp; \frac{16x \pm\sqrt{\Delta}}{2}
 \end{align}
-]
-而
-[
+\]
+<p>而</p>
+\[
 |q^+ - q^-| = \sqrt{\Delta}
-]</p>
+\]
+
 \[
 \begin{align}
 \int_{-1}^{1}\mathrm{d}x\cdot\frac{q^{+2}}{|q^+-q^-|} 
@@ -135,42 +137,43 @@ q^{\pm} =&amp; \frac{16x \pm\sqrt{\Delta}}{2}
  =&amp; \frac{1}{2}\int_\sqrt{\frac{\Omega+14}{32}}^1\mathrm{d}x\cdot\left[\frac{(16x)^2}{\sqrt{(16x)^2-8(\Omega+14)}} +\sqrt{(16x)^2-8(\Omega+14)}\right]
 \end{align}
 \]
-
-<p>上面这两个积分, 想通过数值计算. 值得注意的是, 被积函数在积分下限处发散, 但是 \(\mathcal{O}\left(x^{-\frac{1}{2}}\right)\) 形式的发散, 积分结果并不发散. 比如当 \(\Omega=-6\) 时
-[
+<p>上面这两个积分, 想通过数值计算. 值得注意的是, 被积函数在积分下限处发散, 但是 \(\mathcal{O}\left(x^{-\frac{1}{2}}\right)\) 形式的发散, 积分结果并不发散. 比如当 \(\Omega=-6\) 时</p>
+\[
 \begin{align}
 \int_\sqrt{\frac{\Omega+14}{32}}^1\mathrm{d}x\cdot\frac{q^{+2}+q^{-2}}{|q^+-q^-|} 
  =&amp; \frac{1}{2}\int_\sqrt{\frac{\Omega+14}{32}}^1\mathrm{d}x\cdot\left[\frac{(16x)^2}{\sqrt{(16x)^2-8(\Omega+14)}} +\sqrt{(16x)^2-8(\Omega+14)}\right] \\
   =&amp; \frac{1}{2}\int_\frac{1}{2}^1\mathrm{d}x\cdot\left[\frac{(16x)^2}{\sqrt{(16x)^2-64}} +\sqrt{(16x)^2-64}\right]
 \end{align}
-]</p>
+\]
 <h1>普遍情况</h1>
-<p>积分
-[
+<p>积分</p>
+\[
 I(B,C,x) = \int_{0}^{\infty}\mathrm{d}q\cdot \mathrm{Im}\left[ 
         \frac{q^2f(q)}{q^2 - qBx+C+\mathrm{i}0^+}\right] 
         ,\quad \mathrm{for} \,\, x\in[-1,1],B&gt;0
-]</p>
-<p>分母中关于 \(q\) 的二次函数的根的判别式
-[
+\]
+
+<p>分母中关于 \(q\) 的二次函数的根的判别式</p>
+\[
 \begin{align}
 \Delta =&amp; (Bx)^2 -4C \\
 \Delta &gt;&amp; 0 \Rightarrow  C&lt;\frac{(Bx)^2}{4} \\
 \end{align}
-]
-只有 \(\Delta&gt;0\) 时, 积分才不为零. 此时分母中关于 \(q\) 的二次函数有两个根
-[
+\]
+<p>只有 \(\Delta&gt;0\) 时, 积分才不为零. 此时分母中关于 \(q\) 的二次函数有两个根</p>
+\[
 q^{\pm} = \frac{Bx\pm\sqrt{\Delta}}{2}
-]
-取虚部
-[
+\]
+<p>取虚部</p>
+\[
 \begin{align}
 I(B,C,x) =&amp; -\pi\int_0^{\infty}\mathrm{d}q\cdot 
            q^2f(q)\frac{\delta(q-q^+)+\delta(q-q^+)}{|q^+-q^-|} \\
          =&amp; -\pi\int_0^{\infty}\mathrm{d}q\cdot 
            q^2f(q)\frac{\delta(q-q^+)+\delta(q-q^+)}{\sqrt{\Delta}}
 \end{align}
-]</p>
+\]
+
 <p>对 \(q\) 的积分范围是 \([0, \infty]\) , 因此 \(q^{\pm}&gt;0\) 时, 对应的 Dirac delta 函数才对积分有贡献.</p>
 <p>\(q^+&gt;0\) 的条件为</p>
 <ul>
@@ -208,31 +211,32 @@ I(B,C,x) =&amp; -\pi\int_0^{\infty}\mathrm{d}q\cdot
 
 <p>上式中第二个等号的计算细节.</p>
 <p>只有当第一个对数中大于零, 第二个对数中小于零时积分才不为零.</p>
-<p>二次函数根的判别式相同, 为
-[
+<p>二次函数根的判别式相同, 为</p>
+\[
 \begin{align}
 \Delta = 16^2-8(\Omega + 14)\\
 \Delta &gt; 0 \Rightarrow \Omega &lt; 18 \\
 \sqrt{\Delta} &gt; 16 \Rightarrow \Omega &lt; 14
 \end{align}
-]
-第一项的根为
-[
+\]
+<p>第一项的根为</p>
+\[
 q^{\pm}= \frac{-16 \pm \sqrt{\Delta}}{2}
-]</p>
-<p>第二项的根为
-[
+\]
+
+<p>第二项的根为</p>
+\[
 q^{\pm}= \frac{16 \pm \sqrt{\Delta}}{2}
-]
-积分不为零的条件为
-[
+\]
+<p>积分不为零的条件为</p>
+\[
 \begin{align}
 0&lt;\frac{\sqrt{\Delta}-16}{2}&lt;q&lt;\frac{\sqrt{\Delta}+16}{2},\quad \mathrm{if}\quad \sqrt{\Delta}&gt;14 \\
 0&lt;\frac{16-\sqrt{\Delta}}{2}&lt;q&lt;\frac{16+\sqrt{\Delta}}{2},\quad \mathrm{if}\quad \sqrt{\Delta}&lt;14
 \end{align}
-]
-所以积分结果为
-[
+\]
+<p>所以积分结果为</p>
+\[
 \begin{align}
 I(\Omega) =&amp; -\pi\left[ 
 \theta(14-\Omega)\left.\frac{q^2}{32}\right|_{q=\frac{\sqrt{\Delta}-16}{2}}^{q=\frac{\sqrt{\Delta}+16}{2}}
@@ -241,7 +245,8 @@ I(\Omega) =&amp; -\pi\left[
 =&amp;-\pi \theta(18-\Omega)\frac{\sqrt{\Delta}}{2} \\
 =&amp; -\pi \theta(18-\Omega)\sqrt{2(18-\Omega)}
 \end{align}
-]</p>
+\]
+
 <h2>先积 \(q\) 再积 \(x\) 的详细过程</h2>
 \[
 \begin{align}

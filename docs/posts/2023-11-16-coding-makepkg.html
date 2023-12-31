@@ -66,9 +66,8 @@
 <p><code>makepkg</code> 是 Arch 系统中的一个软件，它的作用是将写好的程序源代码编译好，并且打包成 <code>.pkg.tar.zst</code> 格式，然后发布。大家就可以下载打包好的 <code>.pkg.tar.zst</code> 文件在 Arch 上直接安装。</p>
 <p>要想用 <code>makepkg</code> 打包一个程序，必须先写一个 <code>PKGBUILD</code> 文件。系统中有一些示例文件，比如 <code>/usr/share/pacman/PKGBUILD.proto</code> 。</p>
 <p>写好了 <code>PKGBUILD</code> 文件，就可以直接在  <code>PKGBUILD</code> 文件所在的目录直接运行</p>
-<pre><code class="shell">makepkg
+<pre><code class="language-shell">makepkg
 </code></pre>
-
 <p>然后就生成了 <code>.pkg.tar.zst</code> 格式的软件包，然后 <code>pacman -U</code> 安装就可以了。</p>
 <h2>一个最简单的 <code>PKGBUILD</code> 文件</h2>
 <p><code>PKGBUILD</code> 文件使用的是 <code>shell</code> 语言。最简单的 <code>PKGBUILD</code> 文件如下</p>
@@ -81,13 +80,12 @@ package() {
     echo &quot;packaging...&quot;
 }
 </code></pre>
-
 <p>前四行定义了四个变量，是软件的名字，版本，以及运行架构。最后三行定义了一个函数，输出一行字 packaging...。</p>
 <p><code>pkgname</code> 、 <code>pkgver</code> 、 <code>pkgrel</code> 、 <code>arch</code> 四个变量必须定义。名为 <code>package()</code> 的函数会被 <code>makepkg</code> 自动执行。</p>
 <p>这个最简单的 <code>PKGBUILD</code> 文件是 trivial 的，因为它什么也没干，只是走了个过场。</p>
 <h2>打包流程（一个不 trivial 的测试）</h2>
 <p>下面写一个不 trivial 的 <code>PKGBUILD</code> 文件。如下：</p>
-<pre><code class="shell"># This is an example PKGBUILD file. Use this as a start to creating your own,
+<pre><code class="language-shell"># This is an example PKGBUILD file. Use this as a start to creating your own,
 # and remove these comments. For more information, see 'man PKGBUILD'.
 # NOTE: Please fill out the license field for your package! If it is unknown,
 # then please put 'unknown'.
@@ -123,23 +121,20 @@ package() {
     cp m.vsix ${pkgdir}/home/m.vsix
 }
 </code></pre>
-
 <p><code>PKGBUILD</code> 文件所在的目录结构如下：</p>
-<pre><code class="shell">.
+<pre><code class="language-shell">.
 ├── m.vsix
 └── PKGBUILD
 </code></pre>
-
 <p>与之前相比，多定义了两个变量，<code>source</code> 和 <code>md5sums</code> 。这两个变量有什么用处呢？那应该先说一下 <code>makepkg</code> 具体都做了什么。</p>
 <p>首先，它们通过我们定义的变量，得到软件包的名字，版本号等信息。<code>source</code> 变量是告诉 <code>makepkg</code> 我们打包过程中所需要的文件，它可以是一个本地文件，也可以是一个文件网址。 <code>makepkg</code> 会获取这个文件，验证它的 md5，然后将它放在（链接）目录 <code>src</code> 下。 <code>src</code> 目录是 <code>makepkg</code> 进行一些处理，比如编译，时的工作目录。</p>
 <p>接下来， <code>makepkg</code> 依次执行四个函数 <code>prepare()</code> 、 <code>build()</code> 、 <code>check()</code> 、 <code>package()</code> 。 <code>prepare()</code> 一般做编译前的处理，比如解压文件。 <code>build()</code> 进行编译。<code>check()</code> 检查编译结果。最后 <code>package()</code> 进行打包。我们这里的 <code>prepare()</code> 、 <code>build()</code> 、 <code>check()</code> 不进行操作，只输出一行文字提示。</p>
 <p>最后，我在函数 <code>package()</code> 中，先新建了一个目录 <code>\({pkgdir}/home` 。这里先说明一下，  `makepkg` 会默认定义两个变量：`\){srcdir}</code> 是前面提到的工作路径 <code>src</code>；另一个 <code>\({pkgdir}` 是软件包的目录 `pkg/\){pkgname}</code> 。 <code>\({pkgdir}` 目录就是最终打包成 `.pkg.tar.zst` 的目录。在安装包时，`\){pkgdir}</code> 会被安装对应的目录中。比如我们在这个例子中，将文件 <code>m.vsix</code> 放在 <code>${pkgdir}/home/m.vsix</code> ，那么我们用 <code>pacman -U</code> 安装时，就会把 <code>m.vsix</code> 复制到 <code>/home/m.vsix</code> 。</p>
 <p>运行</p>
-<pre><code class="shell">makepkg
+<pre><code class="language-shell">makepkg
 </code></pre>
-
 <p>后，目录结构如下</p>
-<pre><code class="shell">.
+<pre><code class="language-shell">.
 ├── m.vsix
 ├── pkg
 │   └── zqwtest
@@ -151,36 +146,30 @@ package() {
 │   └── m.vsix -&gt; /home/zqw/pkgtest/m.vsix
 └── zqwtest-1.0-1-x86_64.pkg.tar.zst
 </code></pre>
-
 <p>然后我们运行</p>
-<pre><code class="shell">sudo pacman -U zqwtest-1.0-1-x86_64.pkg.tar.zst
+<pre><code class="language-shell">sudo pacman -U zqwtest-1.0-1-x86_64.pkg.tar.zst
 </code></pre>
-
 <p>安装一下，就可以看到，如我们所预期，<code>/home</code> 目录下多了文件 <code>m.vsix</code>：</p>
-<pre><code class="shell">/home
+<pre><code class="language-shell">/home
 ├── m.vsix
 └── zqw
 </code></pre>
-
 <p>然后我们运行</p>
-<pre><code class="shell">sudo pacman -R zqwtest
+<pre><code class="language-shell">sudo pacman -R zqwtest
 </code></pre>
-
 <p>删除软件包，就发现<code>/home</code> 目录下的 <code>m.vsix</code> 被删除了：</p>
-<pre><code class="shell">/home
+<pre><code class="language-shell">/home
 └── zqw
 </code></pre>
-
 <p>更加多的例子可以去 AUR 仓库里随便找一些看。比如 <a href="https://aur.archlinux.org/packages/quickapp-ide">quickapp-ide</a> ，可以直接 clone 下来学习。</p>
 <h2>deb 包示例：wps-office</h2>
 <p>我们提前准备好 wps-office 的 deb 格式安装包，并和 <code>PKGBUILD</code> 文件放在一起：</p>
-<pre><code class="shell">.
+<pre><code class="language-shell">.
 ├── PKGBUILD
 └── wps-office_11.1.0.11698.XA_amd64.deb
 </code></pre>
-
 <p><code>PKGBUILD</code> 文件如下：</p>
-<pre><code class="shell"># This is an example PKGBUILD file. Use this as a start to creating your own,
+<pre><code class="language-shell"># This is an example PKGBUILD file. Use this as a start to creating your own,
 # and remove these comments. For more information, see 'man PKGBUILD'.
 # NOTE: Please fill out the license field for your package! If it is unknown,
 # then please put 'unknown'.
@@ -207,7 +196,6 @@ package() {
   cp -r ./ ${pkgdir}/
 }
 </code></pre>
-
 <p>这里说明一下， <code>deb</code> 包全部解压后会有两个文件夹，<code>control</code> 和 <code>data</code> 。<code>control</code> 类似于我们的  <code>PKGBUILD</code> ，包含了软件的信息和安装过程中进行的一些操作。 <code>data</code> 类似于 <code>{pkgdir}</code> ，包含了需要安装的所有文件。因此我们要做的就是把 <code>deb</code> 全部解压，然后将 <code>data</code> 目录打包。</p>
             </section>
             <section class="post-meta">
